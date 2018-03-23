@@ -79,7 +79,7 @@ public class RecommendedElasticPoolInner extends ProxyResourceInner {
      * The list of databases in this pool. Expanded property.
      */
     @JsonProperty(value = "properties.databases", access = JsonProperty.Access.WRITE_ONLY)
-    private List<DatabaseInner> databases;
+    private List<TrackedResourceInner> databases;
 
     /**
      * The list of databases housed in the server. Expanded property.
@@ -217,7 +217,7 @@ public class RecommendedElasticPoolInner extends ProxyResourceInner {
      *
      * @return the databases value
      */
-    public List<DatabaseInner> databases() {
+    public List<TrackedResourceInner> databases() {
         return this.databases;
     }
 

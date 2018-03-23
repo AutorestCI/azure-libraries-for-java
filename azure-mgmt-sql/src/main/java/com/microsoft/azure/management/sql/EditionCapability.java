@@ -12,21 +12,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The database edition capabilities.
+ * The edition capability.
  */
 public class EditionCapability {
     /**
-     * The edition name.
+     * The database edition name.
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
-
-    /**
-     * The status of the edition. Possible values include: 'Visible',
-     * 'Available', 'Default', 'Disabled'.
-     */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
-    private CapabilityStatus status;
 
     /**
      * The list of supported service objectives for the edition.
@@ -41,21 +34,25 @@ public class EditionCapability {
     private Boolean zoneRedundant;
 
     /**
+     * The status of the capability. Possible values include: 'Visible',
+     * 'Available', 'Default', 'Disabled'.
+     */
+    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
+    private CapabilityStatus status;
+
+    /**
+     * The reason for the capability not being available.
+     */
+    @JsonProperty(value = "reason")
+    private String reason;
+
+    /**
      * Get the name value.
      *
      * @return the name value
      */
     public String name() {
         return this.name;
-    }
-
-    /**
-     * Get the status value.
-     *
-     * @return the status value
-     */
-    public CapabilityStatus status() {
-        return this.status;
     }
 
     /**
@@ -74,6 +71,35 @@ public class EditionCapability {
      */
     public Boolean zoneRedundant() {
         return this.zoneRedundant;
+    }
+
+    /**
+     * Get the status value.
+     *
+     * @return the status value
+     */
+    public CapabilityStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Get the reason value.
+     *
+     * @return the reason value
+     */
+    public String reason() {
+        return this.reason;
+    }
+
+    /**
+     * Set the reason value.
+     *
+     * @param reason the reason value to set
+     * @return the EditionCapability object itself.
+     */
+    public EditionCapability withReason(String reason) {
+        this.reason = reason;
+        return this;
     }
 
 }

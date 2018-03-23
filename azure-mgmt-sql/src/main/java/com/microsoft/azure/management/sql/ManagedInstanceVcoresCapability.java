@@ -8,30 +8,23 @@
 
 package com.microsoft.azure.management.sql;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The server capability.
+ * The managed instance virtual cores capability.
  */
-public class ServerVersionCapability {
+public class ManagedInstanceVcoresCapability {
     /**
-     * The server version name.
+     * The virtual cores identifier.
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     /**
-     * The list of supported database editions.
+     * The virtual cores value.
      */
-    @JsonProperty(value = "supportedEditions", access = JsonProperty.Access.WRITE_ONLY)
-    private List<EditionCapability> supportedEditions;
-
-    /**
-     * The list of supported elastic pool editions.
-     */
-    @JsonProperty(value = "supportedElasticPoolEditions", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ElasticPoolEditionCapability> supportedElasticPoolEditions;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer value;
 
     /**
      * The status of the capability. Possible values include: 'Visible',
@@ -56,21 +49,12 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Get the supportedEditions value.
+     * Get the value value.
      *
-     * @return the supportedEditions value
+     * @return the value value
      */
-    public List<EditionCapability> supportedEditions() {
-        return this.supportedEditions;
-    }
-
-    /**
-     * Get the supportedElasticPoolEditions value.
-     *
-     * @return the supportedElasticPoolEditions value
-     */
-    public List<ElasticPoolEditionCapability> supportedElasticPoolEditions() {
-        return this.supportedElasticPoolEditions;
+    public Integer value() {
+        return this.value;
     }
 
     /**
@@ -95,9 +79,9 @@ public class ServerVersionCapability {
      * Set the reason value.
      *
      * @param reason the reason value to set
-     * @return the ServerVersionCapability object itself.
+     * @return the ManagedInstanceVcoresCapability object itself.
      */
-    public ServerVersionCapability withReason(String reason) {
+    public ManagedInstanceVcoresCapability withReason(String reason) {
         this.reason = reason;
         return this;
     }
