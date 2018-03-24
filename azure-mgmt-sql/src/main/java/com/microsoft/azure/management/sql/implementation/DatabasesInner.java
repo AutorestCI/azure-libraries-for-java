@@ -156,9 +156,9 @@ public class DatabasesInner {
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/resume")
         Observable<Response<ResponseBody>> beginResume(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("databaseName") String databaseName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.Databases rename" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.Databases move" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/move")
-        Observable<Response<ResponseBody>> rename(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("databaseName") String databaseName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body ResourceMoveDefinition parameters, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> move(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("databaseName") String databaseName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body ResourceMoveDefinition parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.Databases listByServerNext" })
         @GET
@@ -2273,8 +2273,8 @@ public class DatabasesInner {
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void rename(String resourceGroupName, String serverName, String databaseName, String id) {
-        renameWithServiceResponseAsync(resourceGroupName, serverName, databaseName, id).toBlocking().single().body();
+    public void move(String resourceGroupName, String serverName, String databaseName, String id) {
+        moveWithServiceResponseAsync(resourceGroupName, serverName, databaseName, id).toBlocking().single().body();
     }
 
     /**
@@ -2288,8 +2288,8 @@ public class DatabasesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> renameAsync(String resourceGroupName, String serverName, String databaseName, String id, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(renameWithServiceResponseAsync(resourceGroupName, serverName, databaseName, id), serviceCallback);
+    public ServiceFuture<Void> moveAsync(String resourceGroupName, String serverName, String databaseName, String id, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(moveWithServiceResponseAsync(resourceGroupName, serverName, databaseName, id), serviceCallback);
     }
 
     /**
@@ -2302,8 +2302,8 @@ public class DatabasesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> renameAsync(String resourceGroupName, String serverName, String databaseName, String id) {
-        return renameWithServiceResponseAsync(resourceGroupName, serverName, databaseName, id).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<Void> moveAsync(String resourceGroupName, String serverName, String databaseName, String id) {
+        return moveWithServiceResponseAsync(resourceGroupName, serverName, databaseName, id).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
                 return response.body();
@@ -2321,7 +2321,7 @@ public class DatabasesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> renameWithServiceResponseAsync(String resourceGroupName, String serverName, String databaseName, String id) {
+    public Observable<ServiceResponse<Void>> moveWithServiceResponseAsync(String resourceGroupName, String serverName, String databaseName, String id) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -2340,12 +2340,12 @@ public class DatabasesInner {
         final String apiVersion = "2017-10-01-preview";
         ResourceMoveDefinition parameters = new ResourceMoveDefinition();
         parameters.withId(id);
-        return service.rename(resourceGroupName, serverName, databaseName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
+        return service.move(resourceGroupName, serverName, databaseName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = renameDelegate(response);
+                        ServiceResponse<Void> clientResponse = moveDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2354,7 +2354,7 @@ public class DatabasesInner {
             });
     }
 
-    private ServiceResponse<Void> renameDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<Void> moveDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
