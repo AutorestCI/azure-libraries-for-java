@@ -17,7 +17,7 @@ public class ImportSource {
     /**
      * The resource identifier of the source Azure Container Registry.
      */
-    @JsonProperty(value = "resourceId")
+    @JsonProperty(value = "resourceId", required = true)
     private String resourceId;
 
     /**

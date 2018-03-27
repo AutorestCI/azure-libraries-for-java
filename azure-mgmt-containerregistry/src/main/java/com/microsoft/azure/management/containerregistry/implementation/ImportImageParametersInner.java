@@ -10,6 +10,7 @@ package com.microsoft.azure.management.containerregistry.implementation;
 
 import com.microsoft.azure.management.containerregistry.ImportSource;
 import java.util.List;
+import com.microsoft.azure.management.containerregistry.ImportMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -63,7 +64,7 @@ public class ImportImageParametersInner {
      * NoForce is the default. Possible values include: 'NoForce', 'Force'.
      */
     @JsonProperty(value = "mode")
-    private String mode;
+    private ImportMode mode;
 
     /**
      * Get the sourceRepository value.
@@ -190,7 +191,7 @@ public class ImportImageParametersInner {
      *
      * @return the mode value
      */
-    public String mode() {
+    public ImportMode mode() {
         return this.mode;
     }
 
@@ -200,7 +201,7 @@ public class ImportImageParametersInner {
      * @param mode the mode value to set
      * @return the ImportImageParametersInner object itself.
      */
-    public ImportImageParametersInner withMode(String mode) {
+    public ImportImageParametersInner withMode(ImportMode mode) {
         this.mode = mode;
         return this;
     }
