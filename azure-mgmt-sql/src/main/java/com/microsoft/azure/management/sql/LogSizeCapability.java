@@ -11,21 +11,21 @@ package com.microsoft.azure.management.sql;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The maximum size capability.
+ * The log size capability.
  */
-public class MaxSizeCapability {
+public class LogSizeCapability {
     /**
-     * The maximum size limit (see 'unit' for the units).
+     * The log size limit (see 'unit' for the units).
      */
     @JsonProperty(value = "limit", access = JsonProperty.Access.WRITE_ONLY)
     private Integer limit;
 
     /**
      * The units that the limit is expressed in. Possible values include:
-     * 'Megabytes', 'Gigabytes', 'Terabytes', 'Petabytes'.
+     * 'Megabytes', 'Gigabytes', 'Terabytes', 'Petabytes', 'Percent'.
      */
     @JsonProperty(value = "unit", access = JsonProperty.Access.WRITE_ONLY)
-    private MaxSizeUnit unit;
+    private LogSizeUnit unit;
 
     /**
      * Get the limit value.
@@ -41,7 +41,7 @@ public class MaxSizeCapability {
      *
      * @return the unit value
      */
-    public MaxSizeUnit unit() {
+    public LogSizeUnit unit() {
         return this.unit;
     }
 
