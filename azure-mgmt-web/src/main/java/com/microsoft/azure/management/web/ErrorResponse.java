@@ -27,6 +27,12 @@ public class ErrorResponse {
     private String message;
 
     /**
+     * Error model.
+     */
+    @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
+    private ErrorResponseError error;
+
+    /**
      * Get the code value.
      *
      * @return the code value
@@ -64,6 +70,15 @@ public class ErrorResponse {
     public ErrorResponse withMessage(String message) {
         this.message = message;
         return this;
+    }
+
+    /**
+     * Get the error value.
+     *
+     * @return the error value
+     */
+    public ErrorResponseError error() {
+        return this.error;
     }
 
 }
