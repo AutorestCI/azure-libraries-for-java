@@ -10,6 +10,8 @@ package com.microsoft.azure.management.network.implementation;
 
 import com.microsoft.azure.management.network.ConnectivitySource;
 import com.microsoft.azure.management.network.ConnectivityDestination;
+import com.microsoft.azure.management.network.Protocol;
+import com.microsoft.azure.management.network.ProtocolConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -27,6 +29,19 @@ public class ConnectivityParametersInner {
      */
     @JsonProperty(value = "destination", required = true)
     private ConnectivityDestination destination;
+
+    /**
+     * Network protocol. Possible values include: 'Tcp', 'Http', 'Https',
+     * 'Icmp'.
+     */
+    @JsonProperty(value = "protocol")
+    private Protocol protocol;
+
+    /**
+     * The protocolConfiguration property.
+     */
+    @JsonProperty(value = "protocolConfiguration")
+    private ProtocolConfiguration protocolConfiguration;
 
     /**
      * Get the source value.
@@ -65,6 +80,46 @@ public class ConnectivityParametersInner {
      */
     public ConnectivityParametersInner withDestination(ConnectivityDestination destination) {
         this.destination = destination;
+        return this;
+    }
+
+    /**
+     * Get the protocol value.
+     *
+     * @return the protocol value
+     */
+    public Protocol protocol() {
+        return this.protocol;
+    }
+
+    /**
+     * Set the protocol value.
+     *
+     * @param protocol the protocol value to set
+     * @return the ConnectivityParametersInner object itself.
+     */
+    public ConnectivityParametersInner withProtocol(Protocol protocol) {
+        this.protocol = protocol;
+        return this;
+    }
+
+    /**
+     * Get the protocolConfiguration value.
+     *
+     * @return the protocolConfiguration value
+     */
+    public ProtocolConfiguration protocolConfiguration() {
+        return this.protocolConfiguration;
+    }
+
+    /**
+     * Set the protocolConfiguration value.
+     *
+     * @param protocolConfiguration the protocolConfiguration value to set
+     * @return the ConnectivityParametersInner object itself.
+     */
+    public ConnectivityParametersInner withProtocolConfiguration(ProtocolConfiguration protocolConfiguration) {
+        this.protocolConfiguration = protocolConfiguration;
         return this;
     }
 

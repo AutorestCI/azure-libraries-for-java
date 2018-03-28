@@ -19,7 +19,7 @@ import com.microsoft.azure.Resource;
 @JsonFlatten
 public class NetworkWatcherInner extends Resource {
     /**
-     * The etag property.
+     * A unique read-only string that changes whenever the resource is updated.
      */
     @JsonProperty(value = "etag")
     private String etag;
