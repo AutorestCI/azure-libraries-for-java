@@ -23,30 +23,6 @@ public class PerformanceTierPropertiesInner {
     private String id;
 
     /**
-     * Maximum Backup retention in days for the performance tier edition.
-     */
-    @JsonProperty(value = "maxBackupRetentionDays")
-    private Integer maxBackupRetentionDays;
-
-    /**
-     * Minimum Backup retention in days for the performance tier edition.
-     */
-    @JsonProperty(value = "minBackupRetentionDays")
-    private Integer minBackupRetentionDays;
-
-    /**
-     * Max storage allowed for a server.
-     */
-    @JsonProperty(value = "maxStorageMB")
-    private Integer maxStorageMB;
-
-    /**
-     * Max storage allowed for a server.
-     */
-    @JsonProperty(value = "minStorageMB")
-    private Integer minStorageMB;
-
-    /**
      * Service level objectives associated with the performance tier.
      */
     @JsonProperty(value = "serviceLevelObjectives")
@@ -69,86 +45,6 @@ public class PerformanceTierPropertiesInner {
      */
     public PerformanceTierPropertiesInner withId(String id) {
         this.id = id;
-        return this;
-    }
-
-    /**
-     * Get the maxBackupRetentionDays value.
-     *
-     * @return the maxBackupRetentionDays value
-     */
-    public Integer maxBackupRetentionDays() {
-        return this.maxBackupRetentionDays;
-    }
-
-    /**
-     * Set the maxBackupRetentionDays value.
-     *
-     * @param maxBackupRetentionDays the maxBackupRetentionDays value to set
-     * @return the PerformanceTierPropertiesInner object itself.
-     */
-    public PerformanceTierPropertiesInner withMaxBackupRetentionDays(Integer maxBackupRetentionDays) {
-        this.maxBackupRetentionDays = maxBackupRetentionDays;
-        return this;
-    }
-
-    /**
-     * Get the minBackupRetentionDays value.
-     *
-     * @return the minBackupRetentionDays value
-     */
-    public Integer minBackupRetentionDays() {
-        return this.minBackupRetentionDays;
-    }
-
-    /**
-     * Set the minBackupRetentionDays value.
-     *
-     * @param minBackupRetentionDays the minBackupRetentionDays value to set
-     * @return the PerformanceTierPropertiesInner object itself.
-     */
-    public PerformanceTierPropertiesInner withMinBackupRetentionDays(Integer minBackupRetentionDays) {
-        this.minBackupRetentionDays = minBackupRetentionDays;
-        return this;
-    }
-
-    /**
-     * Get the maxStorageMB value.
-     *
-     * @return the maxStorageMB value
-     */
-    public Integer maxStorageMB() {
-        return this.maxStorageMB;
-    }
-
-    /**
-     * Set the maxStorageMB value.
-     *
-     * @param maxStorageMB the maxStorageMB value to set
-     * @return the PerformanceTierPropertiesInner object itself.
-     */
-    public PerformanceTierPropertiesInner withMaxStorageMB(Integer maxStorageMB) {
-        this.maxStorageMB = maxStorageMB;
-        return this;
-    }
-
-    /**
-     * Get the minStorageMB value.
-     *
-     * @return the minStorageMB value
-     */
-    public Integer minStorageMB() {
-        return this.minStorageMB;
-    }
-
-    /**
-     * Set the minStorageMB value.
-     *
-     * @param minStorageMB the minStorageMB value to set
-     * @return the PerformanceTierPropertiesInner object itself.
-     */
-    public PerformanceTierPropertiesInner withMinStorageMB(Integer minStorageMB) {
-        this.minStorageMB = minStorageMB;
         return this;
     }
 

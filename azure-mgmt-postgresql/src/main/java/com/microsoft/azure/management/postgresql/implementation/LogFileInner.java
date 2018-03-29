@@ -19,12 +19,6 @@ import com.microsoft.azure.management.postgresql.ProxyResource;
 @JsonFlatten
 public class LogFileInner extends ProxyResource {
     /**
-     * Log file name.
-     */
-    @JsonProperty(value = "properties.name")
-    private String logFileName;
-
-    /**
      * Size of the log file.
      */
     @JsonProperty(value = "properties.sizeInKB")
@@ -53,26 +47,6 @@ public class LogFileInner extends ProxyResource {
      */
     @JsonProperty(value = "properties.url")
     private String url;
-
-    /**
-     * Get the logFileName value.
-     *
-     * @return the logFileName value
-     */
-    public String logFileName() {
-        return this.logFileName;
-    }
-
-    /**
-     * Set the logFileName value.
-     *
-     * @param logFileName the logFileName value to set
-     * @return the LogFileInner object itself.
-     */
-    public LogFileInner withLogFileName(String logFileName) {
-        this.logFileName = logFileName;
-        return this;
-    }
 
     /**
      * Get the sizeInKB value.
