@@ -194,9 +194,11 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (parameters == null) {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         Validator.validate(parameters);
-        final String apiVersion = "2018-01-01";
-        Observable<Response<ResponseBody>> observable = service.createOrUpdate(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<VirtualNetworkGatewayConnectionInner>() { }.getType());
     }
 
@@ -269,9 +271,11 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (parameters == null) {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         Validator.validate(parameters);
-        final String apiVersion = "2018-01-01";
-        return service.beginCreateOrUpdate(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginCreateOrUpdate(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualNetworkGatewayConnectionInner>>>() {
                 @Override
                 public Observable<ServiceResponse<VirtualNetworkGatewayConnectionInner>> call(Response<ResponseBody> response) {
@@ -355,8 +359,10 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
-        return service.getByResourceGroup(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getByResourceGroup(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualNetworkGatewayConnectionInner>>>() {
                 @Override
                 public Observable<ServiceResponse<VirtualNetworkGatewayConnectionInner>> call(Response<ResponseBody> response) {
@@ -438,8 +444,10 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
-        Observable<Response<ResponseBody>> observable = service.delete(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Observable<Response<ResponseBody>> observable = service.delete(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
 
@@ -504,8 +512,10 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
-        return service.beginDelete(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.beginDelete(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -590,11 +600,13 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         final Map<String, String> tags = null;
         TagsObject parameters = new TagsObject();
         parameters.withTags(null);
-        Observable<Response<ResponseBody>> observable = service.updateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.updateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<VirtualNetworkGatewayConnectionListEntityInner>() { }.getType());
     }
     /**
@@ -663,11 +675,13 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         Validator.validate(tags);
-        final String apiVersion = "2018-01-01";
         TagsObject parameters = new TagsObject();
         parameters.withTags(tags);
-        Observable<Response<ResponseBody>> observable = service.updateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.updateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<VirtualNetworkGatewayConnectionListEntityInner>() { }.getType());
     }
 
@@ -733,11 +747,13 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         final Map<String, String> tags = null;
         TagsObject parameters = new TagsObject();
         parameters.withTags(null);
-        return service.beginUpdateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
+        return service.beginUpdateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualNetworkGatewayConnectionListEntityInner>>>() {
                 @Override
                 public Observable<ServiceResponse<VirtualNetworkGatewayConnectionListEntityInner>> call(Response<ResponseBody> response) {
@@ -817,11 +833,13 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         Validator.validate(tags);
-        final String apiVersion = "2018-01-01";
         TagsObject parameters = new TagsObject();
         parameters.withTags(tags);
-        return service.beginUpdateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
+        return service.beginUpdateTags(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualNetworkGatewayConnectionListEntityInner>>>() {
                 @Override
                 public Observable<ServiceResponse<VirtualNetworkGatewayConnectionListEntityInner>> call(Response<ResponseBody> response) {
@@ -908,13 +926,15 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         if (value == null) {
             throw new IllegalArgumentException("Parameter value is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
         ConnectionSharedKeyInner parameters = new ConnectionSharedKeyInner();
         parameters.withValue(value);
-        Observable<Response<ResponseBody>> observable = service.setSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.setSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ConnectionSharedKeyInner>() { }.getType());
     }
 
@@ -984,13 +1004,15 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         if (value == null) {
             throw new IllegalArgumentException("Parameter value is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
         ConnectionSharedKeyInner parameters = new ConnectionSharedKeyInner();
         parameters.withValue(value);
-        return service.beginSetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
+        return service.beginSetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ConnectionSharedKeyInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ConnectionSharedKeyInner>> call(Response<ResponseBody> response) {
@@ -1074,8 +1096,10 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
-        return service.getSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ConnectionSharedKeyInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ConnectionSharedKeyInner>> call(Response<ResponseBody> response) {
@@ -1187,8 +1211,10 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
-        return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<VirtualNetworkGatewayConnectionInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<VirtualNetworkGatewayConnectionInner>>> call(Response<ResponseBody> response) {
@@ -1275,10 +1301,12 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         ConnectionResetSharedKeyInner parameters = new ConnectionResetSharedKeyInner();
         parameters.withKeyLength(keyLength);
-        Observable<Response<ResponseBody>> observable = service.resetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.resetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<ConnectionResetSharedKeyInner>() { }.getType());
     }
 
@@ -1348,10 +1376,12 @@ public class VirtualNetworkGatewayConnectionsInner implements InnerSupportsGet<V
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         ConnectionResetSharedKeyInner parameters = new ConnectionResetSharedKeyInner();
         parameters.withKeyLength(keyLength);
-        return service.beginResetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
+        return service.beginResetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ConnectionResetSharedKeyInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ConnectionResetSharedKeyInner>> call(Response<ResponseBody> response) {
