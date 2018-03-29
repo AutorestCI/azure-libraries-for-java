@@ -28,7 +28,7 @@ public class Rendering {
     private String title;
 
     /**
-     * Description.
+     * Description of the data that will help it be interpreted.
      */
     @JsonProperty(value = "description")
     private String description;
