@@ -17,7 +17,7 @@ public class ProtocolConfiguration {
     /**
      * The hTTPConfiguration property.
      */
-    @JsonProperty(value = "hTTPConfiguration")
+    @JsonProperty(value = "HTTPConfiguration")
     private HTTPConfiguration hTTPConfiguration;
 
     /**
