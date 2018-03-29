@@ -63,29 +63,6 @@ public class CognitiveServicesManagementClientImpl extends AzureServiceClient {
         return this.apiVersion;
     }
 
-    /** An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). */
-    private String filter;
-
-    /**
-     * Gets An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names).
-     *
-     * @return the filter value.
-     */
-    public String filter() {
-        return this.filter;
-    }
-
-    /**
-     * Sets An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names).
-     *
-     * @param filter the filter value.
-     * @return the service client itself
-     */
-    public CognitiveServicesManagementClientImpl withFilter(String filter) {
-        this.filter = filter;
-        return this;
-    }
-
     /** Gets or sets the preferred language for the response. */
     private String acceptLanguage;
 

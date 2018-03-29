@@ -1124,7 +1124,91 @@ public class AccountsInner implements InnerSupportsGet<CognitiveServicesAccountI
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.getUsages(resourceGroupName, accountName, this.client.subscriptionId(), this.client.apiVersion(), this.client.filter(), this.client.acceptLanguage(), this.client.userAgent())
+        final String filter = null;
+        return service.getUsages(resourceGroupName, accountName, this.client.subscriptionId(), this.client.apiVersion(), filter, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<UsagesResultInner>>>() {
+                @Override
+                public Observable<ServiceResponse<UsagesResultInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<UsagesResultInner> clientResponse = getUsagesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Get usages for the requested Cognitive Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param accountName The name of Cognitive Services account.
+     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names).
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the UsagesResultInner object if successful.
+     */
+    public UsagesResultInner getUsages(String resourceGroupName, String accountName, String filter) {
+        return getUsagesWithServiceResponseAsync(resourceGroupName, accountName, filter).toBlocking().single().body();
+    }
+
+    /**
+     * Get usages for the requested Cognitive Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param accountName The name of Cognitive Services account.
+     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names).
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<UsagesResultInner> getUsagesAsync(String resourceGroupName, String accountName, String filter, final ServiceCallback<UsagesResultInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getUsagesWithServiceResponseAsync(resourceGroupName, accountName, filter), serviceCallback);
+    }
+
+    /**
+     * Get usages for the requested Cognitive Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param accountName The name of Cognitive Services account.
+     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names).
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the UsagesResultInner object
+     */
+    public Observable<UsagesResultInner> getUsagesAsync(String resourceGroupName, String accountName, String filter) {
+        return getUsagesWithServiceResponseAsync(resourceGroupName, accountName, filter).map(new Func1<ServiceResponse<UsagesResultInner>, UsagesResultInner>() {
+            @Override
+            public UsagesResultInner call(ServiceResponse<UsagesResultInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Get usages for the requested Cognitive Services account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param accountName The name of Cognitive Services account.
+     * @param filter An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names).
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the UsagesResultInner object
+     */
+    public Observable<ServiceResponse<UsagesResultInner>> getUsagesWithServiceResponseAsync(String resourceGroupName, String accountName, String filter) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getUsages(resourceGroupName, accountName, this.client.subscriptionId(), this.client.apiVersion(), filter, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<UsagesResultInner>>>() {
                 @Override
                 public Observable<ServiceResponse<UsagesResultInner>> call(Response<ResponseBody> response) {
