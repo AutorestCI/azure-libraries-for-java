@@ -63,29 +63,6 @@ public class CognitiveServicesManagementClientImpl extends AzureServiceClient {
         return this.apiVersion;
     }
 
-    /** Resource location. */
-    private String location;
-
-    /**
-     * Gets Resource location.
-     *
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Sets Resource location.
-     *
-     * @param location the location value.
-     * @return the service client itself
-     */
-    public CognitiveServicesManagementClientImpl withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
     /** Gets or sets the preferred language for the response. */
     private String acceptLanguage;
 
@@ -153,19 +130,6 @@ public class CognitiveServicesManagementClientImpl extends AzureServiceClient {
     public CognitiveServicesManagementClientImpl withGenerateClientRequestId(boolean generateClientRequestId) {
         this.generateClientRequestId = generateClientRequestId;
         return this;
-    }
-
-    /**
-     * The CognitiveServicesAccountsInner object to access its operations.
-     */
-    private CognitiveServicesAccountsInner cognitiveServicesAccounts;
-
-    /**
-     * Gets the CognitiveServicesAccountsInner object to access its operations.
-     * @return the CognitiveServicesAccountsInner object.
-     */
-    public CognitiveServicesAccountsInner cognitiveServicesAccounts() {
-        return this.cognitiveServicesAccounts;
     }
 
     /**
@@ -242,7 +206,6 @@ public class CognitiveServicesManagementClientImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
-        this.cognitiveServicesAccounts = new CognitiveServicesAccountsInner(restClient().retrofit(), this);
         this.accounts = new AccountsInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.checkSkuAvailabilitys = new CheckSkuAvailabilitysInner(restClient().retrofit(), this);
