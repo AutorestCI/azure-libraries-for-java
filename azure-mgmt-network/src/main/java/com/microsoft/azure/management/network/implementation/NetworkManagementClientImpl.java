@@ -68,6 +68,18 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
+    /** Client API version. */
+    private String apiVersion;
+
+    /**
+     * Gets Client API version.
+     *
+     * @return the apiVersion value.
+     */
+    public String apiVersion() {
+        return this.apiVersion;
+    }
+
     /** Gets or sets the preferred language for the response. */
     private String acceptLanguage;
 
@@ -164,6 +176,19 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The DdosProtectionPlansInner object to access its operations.
+     */
+    private DdosProtectionPlansInner ddosProtectionPlans;
+
+    /**
+     * Gets the DdosProtectionPlansInner object to access its operations.
+     * @return the DdosProtectionPlansInner object.
+     */
+    public DdosProtectionPlansInner ddosProtectionPlans() {
+        return this.ddosProtectionPlans;
+    }
+
+    /**
      * The AvailableEndpointServicesInner object to access its operations.
      */
     private AvailableEndpointServicesInner availableEndpointServices;
@@ -203,6 +228,19 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The ExpressRouteCircuitConnectionsInner object to access its operations.
+     */
+    private ExpressRouteCircuitConnectionsInner expressRouteCircuitConnections;
+
+    /**
+     * Gets the ExpressRouteCircuitConnectionsInner object to access its operations.
+     * @return the ExpressRouteCircuitConnectionsInner object.
+     */
+    public ExpressRouteCircuitConnectionsInner expressRouteCircuitConnections() {
+        return this.expressRouteCircuitConnections;
+    }
+
+    /**
      * The ExpressRouteCircuitsInner object to access its operations.
      */
     private ExpressRouteCircuitsInner expressRouteCircuits;
@@ -226,6 +264,32 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
      */
     public ExpressRouteServiceProvidersInner expressRouteServiceProviders() {
         return this.expressRouteServiceProviders;
+    }
+
+    /**
+     * The ExpressRouteCrossConnectionsInner object to access its operations.
+     */
+    private ExpressRouteCrossConnectionsInner expressRouteCrossConnections;
+
+    /**
+     * Gets the ExpressRouteCrossConnectionsInner object to access its operations.
+     * @return the ExpressRouteCrossConnectionsInner object.
+     */
+    public ExpressRouteCrossConnectionsInner expressRouteCrossConnections() {
+        return this.expressRouteCrossConnections;
+    }
+
+    /**
+     * The ExpressRouteCrossConnectionPeeringsInner object to access its operations.
+     */
+    private ExpressRouteCrossConnectionPeeringsInner expressRouteCrossConnectionPeerings;
+
+    /**
+     * Gets the ExpressRouteCrossConnectionPeeringsInner object to access its operations.
+     * @return the ExpressRouteCrossConnectionPeeringsInner object.
+     */
+    public ExpressRouteCrossConnectionPeeringsInner expressRouteCrossConnectionPeerings() {
+        return this.expressRouteCrossConnectionPeerings;
     }
 
     /**
@@ -649,16 +713,21 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
+        this.apiVersion = "2018-02-01";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
         this.applicationGateways = new ApplicationGatewaysInner(restClient().retrofit(), this);
         this.applicationSecurityGroups = new ApplicationSecurityGroupsInner(restClient().retrofit(), this);
+        this.ddosProtectionPlans = new DdosProtectionPlansInner(restClient().retrofit(), this);
         this.availableEndpointServices = new AvailableEndpointServicesInner(restClient().retrofit(), this);
         this.expressRouteCircuitAuthorizations = new ExpressRouteCircuitAuthorizationsInner(restClient().retrofit(), this);
         this.expressRouteCircuitPeerings = new ExpressRouteCircuitPeeringsInner(restClient().retrofit(), this);
+        this.expressRouteCircuitConnections = new ExpressRouteCircuitConnectionsInner(restClient().retrofit(), this);
         this.expressRouteCircuits = new ExpressRouteCircuitsInner(restClient().retrofit(), this);
         this.expressRouteServiceProviders = new ExpressRouteServiceProvidersInner(restClient().retrofit(), this);
+        this.expressRouteCrossConnections = new ExpressRouteCrossConnectionsInner(restClient().retrofit(), this);
+        this.expressRouteCrossConnectionPeerings = new ExpressRouteCrossConnectionPeeringsInner(restClient().retrofit(), this);
         this.loadBalancers = new LoadBalancersInner(restClient().retrofit(), this);
         this.loadBalancerBackendAddressPools = new LoadBalancerBackendAddressPoolsInner(restClient().retrofit(), this);
         this.loadBalancerFrontendIPConfigurations = new LoadBalancerFrontendIPConfigurationsInner(restClient().retrofit(), this);
@@ -700,7 +769,7 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s)", super.userAgent(), "NetworkManagementClient");
+        return String.format("%s (%s, %s)", super.userAgent(), "NetworkManagementClient", "2018-02-01");
     }
 
     private void initializeService() {
@@ -780,8 +849,10 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
         if (domainNameLabel == null) {
             throw new IllegalArgumentException("Parameter domainNameLabel is required and cannot be null.");
         }
-        final String apiVersion = "2018-01-01";
-        return service.checkDnsNameAvailability(location, this.subscriptionId(), domainNameLabel, apiVersion, this.acceptLanguage(), this.userAgent())
+        if (this.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
+        }
+        return service.checkDnsNameAvailability(location, this.subscriptionId(), domainNameLabel, this.apiVersion(), this.acceptLanguage(), this.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DnsNameAvailabilityResultInner>>>() {
                 @Override
                 public Observable<ServiceResponse<DnsNameAvailabilityResultInner>> call(Response<ResponseBody> response) {
