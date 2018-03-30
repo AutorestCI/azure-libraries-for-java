@@ -294,6 +294,19 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The BillingMetersInner object to access its operations.
+     */
+    private BillingMetersInner billingMeters;
+
+    /**
+     * Gets the BillingMetersInner object to access its operations.
+     * @return the BillingMetersInner object.
+     */
+    public BillingMetersInner billingMeters() {
+        return this.billingMeters;
+    }
+
+    /**
      * The WebAppsInner object to access its operations.
      */
     private WebAppsInner webApps;
@@ -377,6 +390,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
         this.providers = new ProvidersInner(restClient().retrofit(), this);
         this.recommendations = new RecommendationsInner(restClient().retrofit(), this);
         this.resourceHealthMetadatas = new ResourceHealthMetadatasInner(restClient().retrofit(), this);
+        this.billingMeters = new BillingMetersInner(restClient().retrofit(), this);
         this.webApps = new WebAppsInner(restClient().retrofit(), this);
         this.appServiceEnvironments = new AppServiceEnvironmentsInner(restClient().retrofit(), this);
         this.appServicePlans = new AppServicePlansInner(restClient().retrofit(), this);
