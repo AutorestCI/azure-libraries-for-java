@@ -9,39 +9,43 @@
 package com.microsoft.azure.management.web.implementation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.azure.management.web.ProxyOnlyResource;
 
 /**
- * Billing meter.
+ * App Service billing entity that contains information about meter which the
+ * Azure billing system utilizes to charge users for services.
  */
-public class BillingMeterInner {
+@JsonFlatten
+public class BillingMeterInner extends ProxyOnlyResource {
     /**
      * Meter GUID onboarded in Commerce.
      */
-    @JsonProperty(value = "meterId")
+    @JsonProperty(value = "properties.meterId")
     private String meterId;
 
     /**
-     * CSM Location.
+     * Azure Location of billable resource.
      */
-    @JsonProperty(value = "billingLocation")
+    @JsonProperty(value = "properties.billingLocation")
     private String billingLocation;
 
     /**
-     * Short Name from Azure pricing Page.
+     * Short Name from App Service Azure pricing Page.
      */
-    @JsonProperty(value = "shortName")
+    @JsonProperty(value = "properties.shortName")
     private String shortName;
 
     /**
-     * Meter Resource Name.
+     * Friendly name of the meter.
      */
-    @JsonProperty(value = "friendlyName")
+    @JsonProperty(value = "properties.friendlyName")
     private String friendlyName;
 
     /**
-     * ResourceType meter used for.
+     * App Service resource type meter used for.
      */
-    @JsonProperty(value = "resourceType")
+    @JsonProperty(value = "properties.resourceType")
     private String resourceType;
 
     /**

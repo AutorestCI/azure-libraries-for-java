@@ -255,19 +255,6 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The GlobalsInner object to access its operations.
-     */
-    private GlobalsInner globals;
-
-    /**
-     * Gets the GlobalsInner object to access its operations.
-     * @return the GlobalsInner object.
-     */
-    public GlobalsInner globals() {
-        return this.globals;
-    }
-
-    /**
      * The ProvidersInner object to access its operations.
      */
     private ProvidersInner providers;
@@ -304,6 +291,19 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      */
     public ResourceHealthMetadatasInner resourceHealthMetadatas() {
         return this.resourceHealthMetadatas;
+    }
+
+    /**
+     * The BillingMetersInner object to access its operations.
+     */
+    private BillingMetersInner billingMeters;
+
+    /**
+     * Gets the BillingMetersInner object to access its operations.
+     * @return the BillingMetersInner object.
+     */
+    public BillingMetersInner billingMeters() {
+        return this.billingMeters;
     }
 
     /**
@@ -387,10 +387,10 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
         this.certificates = new CertificatesInner(restClient().retrofit(), this);
         this.deletedWebApps = new DeletedWebAppsInner(restClient().retrofit(), this);
         this.diagnostics = new DiagnosticsInner(restClient().retrofit(), this);
-        this.globals = new GlobalsInner(restClient().retrofit(), this);
         this.providers = new ProvidersInner(restClient().retrofit(), this);
         this.recommendations = new RecommendationsInner(restClient().retrofit(), this);
         this.resourceHealthMetadatas = new ResourceHealthMetadatasInner(restClient().retrofit(), this);
+        this.billingMeters = new BillingMetersInner(restClient().retrofit(), this);
         this.webApps = new WebAppsInner(restClient().retrofit(), this);
         this.appServiceEnvironments = new AppServiceEnvironmentsInner(restClient().retrofit(), this);
         this.appServicePlans = new AppServicePlansInner(restClient().retrofit(), this);

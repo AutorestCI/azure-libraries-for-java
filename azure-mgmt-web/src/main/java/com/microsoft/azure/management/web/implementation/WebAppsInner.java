@@ -84,19 +84,19 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebApps createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}")
-        Observable<Response<ResponseBody>> createOrUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body SiteInner siteEnvelope, @Query("skipDnsRegistration") Boolean skipDnsRegistration, @Query("skipCustomDomainVerification") Boolean skipCustomDomainVerification, @Query("forceDnsRegistration") Boolean forceDnsRegistration, @Query("ttlInSeconds") String ttlInSeconds, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> createOrUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body SiteInner siteEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebApps beginCreateOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}")
-        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body SiteInner siteEnvelope, @Query("skipDnsRegistration") Boolean skipDnsRegistration, @Query("skipCustomDomainVerification") Boolean skipCustomDomainVerification, @Query("forceDnsRegistration") Boolean forceDnsRegistration, @Query("ttlInSeconds") String ttlInSeconds, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body SiteInner siteEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebApps delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> delete(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Query("deleteMetrics") Boolean deleteMetrics, @Query("deleteEmptyServerFarm") Boolean deleteEmptyServerFarm, @Query("skipDnsRegistration") Boolean skipDnsRegistration, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> delete(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Query("deleteMetrics") Boolean deleteMetrics, @Query("deleteEmptyServerFarm") Boolean deleteEmptyServerFarm, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebApps update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body SitePatchResourceInner siteEnvelope, @Query("skipDnsRegistration") Boolean skipDnsRegistration, @Query("skipCustomDomainVerification") Boolean skipCustomDomainVerification, @Query("forceDnsRegistration") Boolean forceDnsRegistration, @Query("ttlInSeconds") String ttlInSeconds, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body SitePatchResourceInner siteEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebApps analyzeCustomHostname" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/analyzeCustomHostname")
@@ -2143,109 +2143,7 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
         }
         Validator.validate(siteEnvelope);
         final String apiVersion = "2016-08-01";
-        final Boolean skipDnsRegistration = null;
-        final Boolean skipCustomDomainVerification = null;
-        final Boolean forceDnsRegistration = null;
-        final String ttlInSeconds = null;
-        Observable<Response<ResponseBody>> observable = service.createOrUpdate(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SiteInner>() { }.getType());
-    }
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SiteInner object if successful.
-     */
-    public SiteInner createOrUpdate(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds).toBlocking().last().body();
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<SiteInner> createOrUpdateAsync(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds, final ServiceCallback<SiteInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds), serviceCallback);
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable for the request
-     */
-    public Observable<SiteInner> createOrUpdateAsync(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds).map(new Func1<ServiceResponse<SiteInner>, SiteInner>() {
-            @Override
-            public SiteInner call(ServiceResponse<SiteInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable for the request
-     */
-    public Observable<ServiceResponse<SiteInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
-        }
-        if (name == null) {
-            throw new IllegalArgumentException("Parameter name is required and cannot be null.");
-        }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (siteEnvelope == null) {
-            throw new IllegalArgumentException("Parameter siteEnvelope is required and cannot be null.");
-        }
-        Validator.validate(siteEnvelope);
-        final String apiVersion = "2016-08-01";
-        Observable<Response<ResponseBody>> observable = service.createOrUpdate(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SiteInner>() { }.getType());
     }
 
@@ -2324,120 +2222,7 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
         }
         Validator.validate(siteEnvelope);
         final String apiVersion = "2016-08-01";
-        final Boolean skipDnsRegistration = null;
-        final Boolean skipCustomDomainVerification = null;
-        final Boolean forceDnsRegistration = null;
-        final String ttlInSeconds = null;
-        return service.beginCreateOrUpdate(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SiteInner>>>() {
-                @Override
-                public Observable<ServiceResponse<SiteInner>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SiteInner> clientResponse = beginCreateOrUpdateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SiteInner object if successful.
-     */
-    public SiteInner beginCreateOrUpdate(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds).toBlocking().single().body();
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<SiteInner> beginCreateOrUpdateAsync(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds, final ServiceCallback<SiteInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds), serviceCallback);
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SiteInner object
-     */
-    public Observable<SiteInner> beginCreateOrUpdateAsync(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds).map(new Func1<ServiceResponse<SiteInner>, SiteInner>() {
-            @Override
-            public SiteInner call(ServiceResponse<SiteInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SiteInner object
-     */
-    public Observable<ServiceResponse<SiteInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String name, SiteInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
-        }
-        if (name == null) {
-            throw new IllegalArgumentException("Parameter name is required and cannot be null.");
-        }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (siteEnvelope == null) {
-            throw new IllegalArgumentException("Parameter siteEnvelope is required and cannot be null.");
-        }
-        Validator.validate(siteEnvelope);
-        final String apiVersion = "2016-08-01";
-        return service.beginCreateOrUpdate(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginCreateOrUpdate(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SiteInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SiteInner>> call(Response<ResponseBody> response) {
@@ -2527,8 +2312,7 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
         final String apiVersion = "2016-08-01";
         final Boolean deleteMetrics = null;
         final Boolean deleteEmptyServerFarm = null;
-        final Boolean skipDnsRegistration = null;
-        return service.delete(resourceGroupName, name, this.client.subscriptionId(), deleteMetrics, deleteEmptyServerFarm, skipDnsRegistration, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.delete(resourceGroupName, name, this.client.subscriptionId(), deleteMetrics, deleteEmptyServerFarm, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -2550,13 +2334,12 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
      * @param name Name of the app to delete.
      * @param deleteMetrics If true, web app metrics are also deleted.
      * @param deleteEmptyServerFarm Specify true if the App Service plan will be empty after app deletion and you want to delete the empty App Service plan. By default, the empty App Service plan is not deleted.
-     * @param skipDnsRegistration If true, DNS registration is skipped.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void delete(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm, Boolean skipDnsRegistration) {
-        deleteWithServiceResponseAsync(resourceGroupName, name, deleteMetrics, deleteEmptyServerFarm, skipDnsRegistration).toBlocking().single().body();
+    public void delete(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm) {
+        deleteWithServiceResponseAsync(resourceGroupName, name, deleteMetrics, deleteEmptyServerFarm).toBlocking().single().body();
     }
 
     /**
@@ -2567,13 +2350,12 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
      * @param name Name of the app to delete.
      * @param deleteMetrics If true, web app metrics are also deleted.
      * @param deleteEmptyServerFarm Specify true if the App Service plan will be empty after app deletion and you want to delete the empty App Service plan. By default, the empty App Service plan is not deleted.
-     * @param skipDnsRegistration If true, DNS registration is skipped.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm, Boolean skipDnsRegistration, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, name, deleteMetrics, deleteEmptyServerFarm, skipDnsRegistration), serviceCallback);
+    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, name, deleteMetrics, deleteEmptyServerFarm), serviceCallback);
     }
 
     /**
@@ -2584,12 +2366,11 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
      * @param name Name of the app to delete.
      * @param deleteMetrics If true, web app metrics are also deleted.
      * @param deleteEmptyServerFarm Specify true if the App Service plan will be empty after app deletion and you want to delete the empty App Service plan. By default, the empty App Service plan is not deleted.
-     * @param skipDnsRegistration If true, DNS registration is skipped.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> deleteAsync(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm, Boolean skipDnsRegistration) {
-        return deleteWithServiceResponseAsync(resourceGroupName, name, deleteMetrics, deleteEmptyServerFarm, skipDnsRegistration).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<Void> deleteAsync(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm) {
+        return deleteWithServiceResponseAsync(resourceGroupName, name, deleteMetrics, deleteEmptyServerFarm).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
                 return response.body();
@@ -2605,11 +2386,10 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
      * @param name Name of the app to delete.
      * @param deleteMetrics If true, web app metrics are also deleted.
      * @param deleteEmptyServerFarm Specify true if the App Service plan will be empty after app deletion and you want to delete the empty App Service plan. By default, the empty App Service plan is not deleted.
-     * @param skipDnsRegistration If true, DNS registration is skipped.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm, Boolean skipDnsRegistration) {
+    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -2620,7 +2400,7 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
         final String apiVersion = "2016-08-01";
-        return service.delete(resourceGroupName, name, this.client.subscriptionId(), deleteMetrics, deleteEmptyServerFarm, skipDnsRegistration, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.delete(resourceGroupName, name, this.client.subscriptionId(), deleteMetrics, deleteEmptyServerFarm, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -2718,120 +2498,7 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
         }
         Validator.validate(siteEnvelope);
         final String apiVersion = "2016-08-01";
-        final Boolean skipDnsRegistration = null;
-        final Boolean skipCustomDomainVerification = null;
-        final Boolean forceDnsRegistration = null;
-        final String ttlInSeconds = null;
-        return service.update(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SiteInner>>>() {
-                @Override
-                public Observable<ServiceResponse<SiteInner>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SiteInner> clientResponse = updateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SiteInner object if successful.
-     */
-    public SiteInner update(String resourceGroupName, String name, SitePatchResourceInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        return updateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds).toBlocking().single().body();
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<SiteInner> updateAsync(String resourceGroupName, String name, SitePatchResourceInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds, final ServiceCallback<SiteInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds), serviceCallback);
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SiteInner object
-     */
-    public Observable<SiteInner> updateAsync(String resourceGroupName, String name, SitePatchResourceInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        return updateWithServiceResponseAsync(resourceGroupName, name, siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds).map(new Func1<ServiceResponse<SiteInner>, SiteInner>() {
-            @Override
-            public SiteInner call(ServiceResponse<SiteInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     * Creates a new web, mobile, or API app in an existing resource group, or updates an existing app.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
-     * @param siteEnvelope A JSON representation of the app properties. See example.
-     * @param skipDnsRegistration If true web app hostname is not registered with DNS on creation. This parameter is
-      only used for app creation.
-     * @param skipCustomDomainVerification If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
-     * @param forceDnsRegistration If true, web app hostname is force registered with DNS.
-     * @param ttlInSeconds Time to live in seconds for web app's default domain name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SiteInner object
-     */
-    public Observable<ServiceResponse<SiteInner>> updateWithServiceResponseAsync(String resourceGroupName, String name, SitePatchResourceInner siteEnvelope, Boolean skipDnsRegistration, Boolean skipCustomDomainVerification, Boolean forceDnsRegistration, String ttlInSeconds) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
-        }
-        if (name == null) {
-            throw new IllegalArgumentException("Parameter name is required and cannot be null.");
-        }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (siteEnvelope == null) {
-            throw new IllegalArgumentException("Parameter siteEnvelope is required and cannot be null.");
-        }
-        Validator.validate(siteEnvelope);
-        final String apiVersion = "2016-08-01";
-        return service.update(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, skipDnsRegistration, skipCustomDomainVerification, forceDnsRegistration, ttlInSeconds, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.update(resourceGroupName, name, this.client.subscriptionId(), siteEnvelope, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SiteInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SiteInner>> call(Response<ResponseBody> response) {
