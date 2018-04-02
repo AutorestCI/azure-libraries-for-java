@@ -25,7 +25,7 @@ public class ImportImageParametersInner {
 
     /**
      * List of strings of the form repo[:tag]. When tag is omitted the source
-     * will be used (or 'latest' if source tag is also omitted.).
+     * will be used (or 'latest' if source tag is also omitted).
      */
     @JsonProperty(value = "targetTags")
     private List<String> targetTags;
