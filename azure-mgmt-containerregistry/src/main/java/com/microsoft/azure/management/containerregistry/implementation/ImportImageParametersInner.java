@@ -18,113 +18,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ImportImageParametersInner {
     /**
-     * Repository name of the source image.
-     */
-    @JsonProperty(value = "sourceRepository", required = true)
-    private String sourceRepository;
-
-    /**
-     * The tag name of the source image.  When both source tag and source
-     * manifest are omitted the 'latest' tag will be used.
-     * Exclusive with SourceManifestDigest.
-     */
-    @JsonProperty(value = "sourceTag")
-    private String sourceTag;
-
-    /**
-     * The manifest sha of the source image. Exclusive with SourceTag.
-     */
-    @JsonProperty(value = "sourceManifestDigest")
-    private String sourceManifestDigest;
-
-    /**
      * The source of the image.
      */
     @JsonProperty(value = "source", required = true)
     private ImportSource source;
 
     /**
-     * List of strings of the form repo[:tag].  When tag is omitted the source
+     * List of strings of the form repo[:tag]. When tag is omitted the source
      * will be used (or 'latest' if source tag is also omitted.).
      */
     @JsonProperty(value = "targetTags")
     private List<String> targetTags;
 
     /**
-     * List of strings of repository names to do a manifest only copy.  No tag
+     * List of strings of repository names to do a manifest only copy. No tag
      * will be created.
      */
     @JsonProperty(value = "untaggedTargetRepositories")
     private List<String> untaggedTargetRepositories;
 
     /**
-     * When Force, any existing target tags will be overwritten.  When NoForce,
+     * When Force, any existing target tags will be overwritten. When NoForce,
      * any existing target tags will fail the operation before any copying
-     * begins.
-     * NoForce is the default. Possible values include: 'NoForce', 'Force'.
+     * begins. Possible values include: 'NoForce', 'Force'.
      */
     @JsonProperty(value = "mode")
     private ImportMode mode;
-
-    /**
-     * Get the sourceRepository value.
-     *
-     * @return the sourceRepository value
-     */
-    public String sourceRepository() {
-        return this.sourceRepository;
-    }
-
-    /**
-     * Set the sourceRepository value.
-     *
-     * @param sourceRepository the sourceRepository value to set
-     * @return the ImportImageParametersInner object itself.
-     */
-    public ImportImageParametersInner withSourceRepository(String sourceRepository) {
-        this.sourceRepository = sourceRepository;
-        return this;
-    }
-
-    /**
-     * Get the sourceTag value.
-     *
-     * @return the sourceTag value
-     */
-    public String sourceTag() {
-        return this.sourceTag;
-    }
-
-    /**
-     * Set the sourceTag value.
-     *
-     * @param sourceTag the sourceTag value to set
-     * @return the ImportImageParametersInner object itself.
-     */
-    public ImportImageParametersInner withSourceTag(String sourceTag) {
-        this.sourceTag = sourceTag;
-        return this;
-    }
-
-    /**
-     * Get the sourceManifestDigest value.
-     *
-     * @return the sourceManifestDigest value
-     */
-    public String sourceManifestDigest() {
-        return this.sourceManifestDigest;
-    }
-
-    /**
-     * Set the sourceManifestDigest value.
-     *
-     * @param sourceManifestDigest the sourceManifestDigest value to set
-     * @return the ImportImageParametersInner object itself.
-     */
-    public ImportImageParametersInner withSourceManifestDigest(String sourceManifestDigest) {
-        this.sourceManifestDigest = sourceManifestDigest;
-        return this;
-    }
 
     /**
      * Get the source value.

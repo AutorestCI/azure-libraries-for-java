@@ -15,10 +15,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ImportSource {
     /**
-     * The resource identifier of the source Azure Container Registry.
+     * The resource identifier of the target Azure Container Registry.
      */
     @JsonProperty(value = "resourceId", required = true)
     private String resourceId;
+
+    /**
+     * Repository name of the source image.
+     * Specify an image by repository ('hello-world'). This will use the
+     * 'latest' tag.
+     * Specify an image by tag ('hello-world:latest').
+     * Specify an image by sha256-based manifest digest
+     * ('hello-world@sha256:abc123').
+     */
+    @JsonProperty(value = "sourceImage", required = true)
+    private String sourceImage;
 
     /**
      * Get the resourceId value.
@@ -37,6 +48,26 @@ public class ImportSource {
      */
     public ImportSource withResourceId(String resourceId) {
         this.resourceId = resourceId;
+        return this;
+    }
+
+    /**
+     * Get the sourceImage value.
+     *
+     * @return the sourceImage value
+     */
+    public String sourceImage() {
+        return this.sourceImage;
+    }
+
+    /**
+     * Set the sourceImage value.
+     *
+     * @param sourceImage the sourceImage value to set
+     * @return the ImportSource object itself.
+     */
+    public ImportSource withSourceImage(String sourceImage) {
+        this.sourceImage = sourceImage;
         return this;
     }
 
