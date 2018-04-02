@@ -1590,7 +1590,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<NetworkInterfaceInner>>>>() {
                 @Override
@@ -1711,7 +1711,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName, virtualMachineScaleSetName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<NetworkInterfaceInner>>>>() {
                 @Override
@@ -1809,7 +1809,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         final String expand = null;
         return service.getVirtualMachineScaleSetNetworkInterface(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NetworkInterfaceInner>>>() {
@@ -1905,7 +1905,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.getVirtualMachineScaleSetNetworkInterface(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NetworkInterfaceInner>>>() {
                 @Override
@@ -2042,7 +2042,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         final String expand = null;
         return service.listVirtualMachineScaleSetIpConfigurations(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<NetworkInterfaceIPConfigurationInner>>>>() {
@@ -2178,7 +2178,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.listVirtualMachineScaleSetIpConfigurations(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<NetworkInterfaceIPConfigurationInner>>>>() {
                 @Override
@@ -2283,7 +2283,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         final String expand = null;
         return service.getVirtualMachineScaleSetIpConfiguration(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NetworkInterfaceIPConfigurationInner>>>() {
@@ -2386,7 +2386,7 @@ public class NetworkInterfacesInner implements InnerSupportsGet<NetworkInterface
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.getVirtualMachineScaleSetIpConfiguration(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NetworkInterfaceIPConfigurationInner>>>() {
                 @Override

@@ -1249,7 +1249,7 @@ public class PublicIPAddressesInner implements InnerSupportsGet<PublicIPAddressI
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.listVirtualMachineScaleSetPublicIPAddresses(resourceGroupName, virtualMachineScaleSetName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<PublicIPAddressInner>>>>() {
                 @Override
@@ -1394,7 +1394,7 @@ public class PublicIPAddressesInner implements InnerSupportsGet<PublicIPAddressI
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.listVirtualMachineScaleSetVMPublicIPAddresses(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<PublicIPAddressInner>>>>() {
                 @Override
@@ -1506,7 +1506,7 @@ public class PublicIPAddressesInner implements InnerSupportsGet<PublicIPAddressI
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         final String expand = null;
         return service.getVirtualMachineScaleSetPublicIPAddress(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, publicIpAddressName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<PublicIPAddressInner>>>() {
@@ -1616,7 +1616,7 @@ public class PublicIPAddressesInner implements InnerSupportsGet<PublicIPAddressI
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-02-01";
+        final String apiVersion = "2017-03-30";
         return service.getVirtualMachineScaleSetPublicIPAddress(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, publicIpAddressName, this.client.subscriptionId(), apiVersion, expand, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<PublicIPAddressInner>>>() {
                 @Override
