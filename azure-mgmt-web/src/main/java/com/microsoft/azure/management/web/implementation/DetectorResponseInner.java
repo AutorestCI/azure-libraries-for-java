@@ -9,7 +9,8 @@
 package com.microsoft.azure.management.web.implementation;
 
 import com.microsoft.azure.management.web.DetectorInfo;
-import com.microsoft.azure.management.web.DiagnosticData;
+import java.util.List;
+import com.microsoft.azure.management.web.Solution;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.management.web.ProxyOnlyResource;
@@ -29,7 +30,7 @@ public class DetectorResponseInner extends ProxyOnlyResource {
      * Data Set.
      */
     @JsonProperty(value = "properties.dataset")
-    private DiagnosticData dataset;
+    private List<Solution> dataset;
 
     /**
      * Get the metadata value.
@@ -56,7 +57,7 @@ public class DetectorResponseInner extends ProxyOnlyResource {
      *
      * @return the dataset value
      */
-    public DiagnosticData dataset() {
+    public List<Solution> dataset() {
         return this.dataset;
     }
 
@@ -66,7 +67,7 @@ public class DetectorResponseInner extends ProxyOnlyResource {
      * @param dataset the dataset value to set
      * @return the DetectorResponseInner object itself.
      */
-    public DetectorResponseInner withDataset(DiagnosticData dataset) {
+    public DetectorResponseInner withDataset(List<Solution> dataset) {
         this.dataset = dataset;
         return this;
     }
