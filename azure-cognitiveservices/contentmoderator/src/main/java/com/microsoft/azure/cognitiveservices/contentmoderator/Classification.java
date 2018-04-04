@@ -15,22 +15,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Classification {
     /**
-     * The category1 property.
+     * The category1 score details of the text. &lt;a
+     * href="https://aka.ms/textClassifyCategories"&gt;Click here&lt;/a&gt; for
+     * more details on category classification.
      */
     @JsonProperty(value = "Category1")
-    private Score category1;
+    private ClassificationCategory1 category1;
 
     /**
-     * The category2 property.
+     * The category2 score details of the text. &lt;a
+     * href="https://aka.ms/textClassifyCategories"&gt;Click here&lt;/a&gt; for
+     * more details on category classification.
      */
     @JsonProperty(value = "Category2")
-    private Score category2;
+    private ClassificationCategory2 category2;
 
     /**
-     * The category3 property.
+     * The category3 score details of the text. &lt;a
+     * href="https://aka.ms/textClassifyCategories"&gt;Click here&lt;/a&gt; for
+     * more details on category classification.
      */
     @JsonProperty(value = "Category3")
-    private Score category3;
+    private ClassificationCategory3 category3;
 
     /**
      * The review recommended flag.
@@ -43,7 +49,7 @@ public class Classification {
      *
      * @return the category1 value
      */
-    public Score category1() {
+    public ClassificationCategory1 category1() {
         return this.category1;
     }
 
@@ -53,7 +59,7 @@ public class Classification {
      * @param category1 the category1 value to set
      * @return the Classification object itself.
      */
-    public Classification withCategory1(Score category1) {
+    public Classification withCategory1(ClassificationCategory1 category1) {
         this.category1 = category1;
         return this;
     }
@@ -63,7 +69,7 @@ public class Classification {
      *
      * @return the category2 value
      */
-    public Score category2() {
+    public ClassificationCategory2 category2() {
         return this.category2;
     }
 
@@ -73,7 +79,7 @@ public class Classification {
      * @param category2 the category2 value to set
      * @return the Classification object itself.
      */
-    public Classification withCategory2(Score category2) {
+    public Classification withCategory2(ClassificationCategory2 category2) {
         this.category2 = category2;
         return this;
     }
@@ -83,7 +89,7 @@ public class Classification {
      *
      * @return the category3 value
      */
-    public Score category3() {
+    public ClassificationCategory3 category3() {
         return this.category3;
     }
 
@@ -93,7 +99,7 @@ public class Classification {
      * @param category3 the category3 value to set
      * @return the Classification object itself.
      */
-    public Classification withCategory3(Score category3) {
+    public Classification withCategory3(ClassificationCategory3 category3) {
         this.category3 = category3;
         return this;
     }
