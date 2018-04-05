@@ -605,7 +605,7 @@ public class ActionGroupsInner implements InnerSupportsGet<ActionGroupResourceIn
     }
 
     /**
-     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled.
+     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled. This operation is only supported for Email or SMS receivers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param actionGroupName The name of the action group.
@@ -619,7 +619,7 @@ public class ActionGroupsInner implements InnerSupportsGet<ActionGroupResourceIn
     }
 
     /**
-     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled.
+     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled. This operation is only supported for Email or SMS receivers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param actionGroupName The name of the action group.
@@ -633,7 +633,7 @@ public class ActionGroupsInner implements InnerSupportsGet<ActionGroupResourceIn
     }
 
     /**
-     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled.
+     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled. This operation is only supported for Email or SMS receivers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param actionGroupName The name of the action group.
@@ -651,7 +651,7 @@ public class ActionGroupsInner implements InnerSupportsGet<ActionGroupResourceIn
     }
 
     /**
-     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled.
+     * Enable a receiver in an action group. This changes the receiver's status from Disabled to Enabled. This operation is only supported for Email or SMS receivers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param actionGroupName The name of the action group.
