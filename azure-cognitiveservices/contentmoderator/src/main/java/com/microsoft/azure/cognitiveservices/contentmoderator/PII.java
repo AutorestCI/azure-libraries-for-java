@@ -22,6 +22,12 @@ public class PII {
     private List<Email> email;
 
     /**
+     * The sSN property.
+     */
+    @JsonProperty(value = "SSN")
+    private List<SSN> sSN;
+
+    /**
      * The iPA property.
      */
     @JsonProperty(value = "IPA")
@@ -56,6 +62,26 @@ public class PII {
      */
     public PII withEmail(List<Email> email) {
         this.email = email;
+        return this;
+    }
+
+    /**
+     * Get the sSN value.
+     *
+     * @return the sSN value
+     */
+    public List<SSN> sSN() {
+        return this.sSN;
+    }
+
+    /**
+     * Set the sSN value.
+     *
+     * @param sSN the sSN value to set
+     * @return the PII object itself.
+     */
+    public PII withSSN(List<SSN> sSN) {
+        this.sSN = sSN;
         return this;
     }
 

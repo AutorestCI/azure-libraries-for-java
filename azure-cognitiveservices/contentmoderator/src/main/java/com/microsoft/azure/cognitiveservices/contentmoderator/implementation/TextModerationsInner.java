@@ -16,7 +16,10 @@ import com.microsoft.azure.cognitiveservices.contentmoderator.AzureRegionBaseUrl
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
+import java.io.InputStream;
 import java.io.IOException;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
@@ -55,11 +58,11 @@ public class TextModerationsInner {
     interface TextModerationsService {
         @Headers({ "Content-Type: text/plain", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.contentmoderator.TextModerations screenText" })
         @POST("contentmoderator/moderate/v1.0/ProcessText/Screen/")
-        Observable<Response<ResponseBody>> screenText(@Query("language") String language, @Query("autocorrect") Boolean autocorrect, @Query("PII") Boolean pII, @Query("listId") String listId, @Query("classify") Boolean classify, @Header("Content-Type") String textContentType, @Body String textContent, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> screenText(@Query("language") String language, @Query("autocorrect") Boolean autocorrect, @Query("PII") Boolean pII, @Query("listId") String listId, @Query("classify") Boolean classify, @Header("Content-Type") String textContentType, @Body RequestBody textContent, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: text/plain", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.contentmoderator.TextModerations detectLanguage" })
         @POST("contentmoderator/moderate/v1.0/ProcessText/DetectLanguage")
-        Observable<Response<ResponseBody>> detectLanguage(@Header("Content-Type") String textContentType, @Body String textContent, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> detectLanguage(@Header("Content-Type") String textContentType, @Body RequestBody textContent, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
     }
 
@@ -75,7 +78,7 @@ public class TextModerationsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ScreenInner object if successful.
      */
-    public ScreenInner screenText(String language, String textContentType, String textContent) {
+    public ScreenInner screenText(String language, String textContentType, byte[] textContent) {
         return screenTextWithServiceResponseAsync(language, textContentType, textContent).toBlocking().single().body();
     }
 
@@ -90,7 +93,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ScreenInner> screenTextAsync(String language, String textContentType, String textContent, final ServiceCallback<ScreenInner> serviceCallback) {
+    public ServiceFuture<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent, final ServiceCallback<ScreenInner> serviceCallback) {
         return ServiceFuture.fromResponse(screenTextWithServiceResponseAsync(language, textContentType, textContent), serviceCallback);
     }
 
@@ -104,7 +107,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ScreenInner> screenTextAsync(String language, String textContentType, String textContent) {
+    public Observable<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent) {
         return screenTextWithServiceResponseAsync(language, textContentType, textContent).map(new Func1<ServiceResponse<ScreenInner>, ScreenInner>() {
             @Override
             public ScreenInner call(ServiceResponse<ScreenInner> response) {
@@ -123,7 +126,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String language, String textContentType, String textContent) {
+    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String language, String textContentType, byte[] textContent) {
         if (this.client.baseUrl() == null) {
             throw new IllegalArgumentException("Parameter this.client.baseUrl() is required and cannot be null.");
         }
@@ -141,7 +144,8 @@ public class TextModerationsInner {
         final String listId = null;
         final Boolean classify = null;
         String parameterizedHost = Joiner.on(", ").join("{baseUrl}", this.client.baseUrl());
-        return service.screenText(language, autocorrect, pII, listId, classify, textContentType, textContent, this.client.acceptLanguage(), parameterizedHost, this.client.userAgent())
+        RequestBody textContentConverted = RequestBody.create(MediaType.parse("text/plain"), textContent);
+        return service.screenText(language, autocorrect, pII, listId, classify, textContentType, textContentConverted, this.client.acceptLanguage(), parameterizedHost, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ScreenInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ScreenInner>> call(Response<ResponseBody> response) {
@@ -171,7 +175,7 @@ public class TextModerationsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ScreenInner object if successful.
      */
-    public ScreenInner screenText(String language, String textContentType, String textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
+    public ScreenInner screenText(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
         return screenTextWithServiceResponseAsync(language, textContentType, textContent, autocorrect, pII, listId, classify).toBlocking().single().body();
     }
 
@@ -190,7 +194,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ScreenInner> screenTextAsync(String language, String textContentType, String textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify, final ServiceCallback<ScreenInner> serviceCallback) {
+    public ServiceFuture<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify, final ServiceCallback<ScreenInner> serviceCallback) {
         return ServiceFuture.fromResponse(screenTextWithServiceResponseAsync(language, textContentType, textContent, autocorrect, pII, listId, classify), serviceCallback);
     }
 
@@ -208,7 +212,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ScreenInner> screenTextAsync(String language, String textContentType, String textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
+    public Observable<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
         return screenTextWithServiceResponseAsync(language, textContentType, textContent, autocorrect, pII, listId, classify).map(new Func1<ServiceResponse<ScreenInner>, ScreenInner>() {
             @Override
             public ScreenInner call(ServiceResponse<ScreenInner> response) {
@@ -231,7 +235,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String language, String textContentType, String textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
+    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
         if (this.client.baseUrl() == null) {
             throw new IllegalArgumentException("Parameter this.client.baseUrl() is required and cannot be null.");
         }
@@ -245,7 +249,8 @@ public class TextModerationsInner {
             throw new IllegalArgumentException("Parameter textContent is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{baseUrl}", this.client.baseUrl());
-        return service.screenText(language, autocorrect, pII, listId, classify, textContentType, textContent, this.client.acceptLanguage(), parameterizedHost, this.client.userAgent())
+        RequestBody textContentConverted = RequestBody.create(MediaType.parse("text/plain"), textContent);
+        return service.screenText(language, autocorrect, pII, listId, classify, textContentType, textContentConverted, this.client.acceptLanguage(), parameterizedHost, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ScreenInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ScreenInner>> call(Response<ResponseBody> response) {
@@ -276,7 +281,7 @@ public class TextModerationsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DetectedLanguageInner object if successful.
      */
-    public DetectedLanguageInner detectLanguage(String textContentType, String textContent) {
+    public DetectedLanguageInner detectLanguage(String textContentType, byte[] textContent) {
         return detectLanguageWithServiceResponseAsync(textContentType, textContent).toBlocking().single().body();
     }
 
@@ -289,7 +294,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DetectedLanguageInner> detectLanguageAsync(String textContentType, String textContent, final ServiceCallback<DetectedLanguageInner> serviceCallback) {
+    public ServiceFuture<DetectedLanguageInner> detectLanguageAsync(String textContentType, byte[] textContent, final ServiceCallback<DetectedLanguageInner> serviceCallback) {
         return ServiceFuture.fromResponse(detectLanguageWithServiceResponseAsync(textContentType, textContent), serviceCallback);
     }
 
@@ -301,7 +306,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DetectedLanguageInner object
      */
-    public Observable<DetectedLanguageInner> detectLanguageAsync(String textContentType, String textContent) {
+    public Observable<DetectedLanguageInner> detectLanguageAsync(String textContentType, byte[] textContent) {
         return detectLanguageWithServiceResponseAsync(textContentType, textContent).map(new Func1<ServiceResponse<DetectedLanguageInner>, DetectedLanguageInner>() {
             @Override
             public DetectedLanguageInner call(ServiceResponse<DetectedLanguageInner> response) {
@@ -318,7 +323,7 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DetectedLanguageInner object
      */
-    public Observable<ServiceResponse<DetectedLanguageInner>> detectLanguageWithServiceResponseAsync(String textContentType, String textContent) {
+    public Observable<ServiceResponse<DetectedLanguageInner>> detectLanguageWithServiceResponseAsync(String textContentType, byte[] textContent) {
         if (this.client.baseUrl() == null) {
             throw new IllegalArgumentException("Parameter this.client.baseUrl() is required and cannot be null.");
         }
@@ -329,7 +334,8 @@ public class TextModerationsInner {
             throw new IllegalArgumentException("Parameter textContent is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{baseUrl}", this.client.baseUrl());
-        return service.detectLanguage(textContentType, textContent, this.client.acceptLanguage(), parameterizedHost, this.client.userAgent())
+        RequestBody textContentConverted = RequestBody.create(MediaType.parse("text/plain"), textContent);
+        return service.detectLanguage(textContentType, textContentConverted, this.client.acceptLanguage(), parameterizedHost, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DetectedLanguageInner>>>() {
                 @Override
                 public Observable<ServiceResponse<DetectedLanguageInner>> call(Response<ResponseBody> response) {
