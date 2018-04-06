@@ -14,6 +14,7 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
+import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.eventhub.AccessRights;
 import com.microsoft.azure.management.eventhub.CheckNameAvailabilityParameter;
@@ -103,6 +104,10 @@ public class NamespacesInner implements InnerSupportsGet<EHNamespaceInner>, Inne
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.eventhub.Namespaces update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}")
         Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("subscriptionId") String subscriptionId, @Body EHNamespaceInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.eventhub.Namespaces messagingPlanGet" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/messagingplan")
+        Observable<Response<ResponseBody>> messagingPlanGet(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.eventhub.Namespaces listAuthorizationRules" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/AuthorizationRules")
@@ -953,6 +958,92 @@ public class NamespacesInner implements InnerSupportsGet<EHNamespaceInner>, Inne
                 .register(201, new TypeToken<EHNamespaceInner>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets a description for the specified namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the MessagingPlanInner object if successful.
+     */
+    public MessagingPlanInner messagingPlanGet(String resourceGroupName, String namespaceName) {
+        return messagingPlanGetWithServiceResponseAsync(resourceGroupName, namespaceName).toBlocking().single().body();
+    }
+
+    /**
+     * Gets a description for the specified namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<MessagingPlanInner> messagingPlanGetAsync(String resourceGroupName, String namespaceName, final ServiceCallback<MessagingPlanInner> serviceCallback) {
+        return ServiceFuture.fromResponse(messagingPlanGetWithServiceResponseAsync(resourceGroupName, namespaceName), serviceCallback);
+    }
+
+    /**
+     * Gets a description for the specified namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the MessagingPlanInner object
+     */
+    public Observable<MessagingPlanInner> messagingPlanGetAsync(String resourceGroupName, String namespaceName) {
+        return messagingPlanGetWithServiceResponseAsync(resourceGroupName, namespaceName).map(new Func1<ServiceResponse<MessagingPlanInner>, MessagingPlanInner>() {
+            @Override
+            public MessagingPlanInner call(ServiceResponse<MessagingPlanInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Gets a description for the specified namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the MessagingPlanInner object
+     */
+    public Observable<ServiceResponse<MessagingPlanInner>> messagingPlanGetWithServiceResponseAsync(String resourceGroupName, String namespaceName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (namespaceName == null) {
+            throw new IllegalArgumentException("Parameter namespaceName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.messagingPlanGet(resourceGroupName, namespaceName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MessagingPlanInner>>>() {
+                @Override
+                public Observable<ServiceResponse<MessagingPlanInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<MessagingPlanInner> clientResponse = messagingPlanGetDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<MessagingPlanInner> messagingPlanGetDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<MessagingPlanInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<MessagingPlanInner>() { }.getType())
+                .registerError(CloudException.class)
                 .build(response);
     }
 
