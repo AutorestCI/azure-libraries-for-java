@@ -13,7 +13,7 @@ import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.ListOperationCallback;
-import com.microsoft.azure.management.web.ErrorResponseException;
+import com.microsoft.azure.management.web.DefaultErrorResponseException;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -105,7 +105,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      * List all ResourceHealthMetadata for all sites in the subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -203,10 +203,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -216,7 +216,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      *
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -321,10 +321,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -335,7 +335,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -447,10 +447,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -461,7 +461,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ResourceHealthMetadataInner object if successful.
      */
@@ -535,10 +535,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<ResourceHealthMetadataInner> getBySiteDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ResourceHealthMetadataInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<ResourceHealthMetadataInner> getBySiteDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ResourceHealthMetadataInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ResourceHealthMetadataInner>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -550,7 +550,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      * @param name Name of web app.
      * @param slot Name of web app slot. If not specified then will default to production slot.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -669,10 +669,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteSlotDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -684,7 +684,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      * @param name Name of web app
      * @param slot Name of web app slot. If not specified then will default to production slot.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ResourceHealthMetadataInner object if successful.
      */
@@ -764,10 +764,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<ResourceHealthMetadataInner> getBySiteSlotDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ResourceHealthMetadataInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<ResourceHealthMetadataInner> getBySiteSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ResourceHealthMetadataInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ResourceHealthMetadataInner>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -777,7 +777,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -880,10 +880,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listNextDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -893,7 +893,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -996,10 +996,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -1009,7 +1009,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -1112,10 +1112,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteNextDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
@@ -1125,7 +1125,7 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws DefaultErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceHealthMetadataInner&gt; object if successful.
      */
@@ -1228,10 +1228,10 @@ public class ResourceHealthMetadatasInner implements InnerSupportsListing<Resour
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteSlotNextDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ResourceHealthMetadataInner>> listBySiteSlotNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceHealthMetadataInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ResourceHealthMetadataInner>>() { }.getType())
-                .registerError(ErrorResponseException.class)
+                .registerError(DefaultErrorResponseException.class)
                 .build(response);
     }
 
