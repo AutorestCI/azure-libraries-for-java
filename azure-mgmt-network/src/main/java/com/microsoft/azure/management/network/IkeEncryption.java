@@ -31,12 +31,6 @@ public final class IkeEncryption extends ExpandableStringEnum<IkeEncryption> {
     /** Static value AES256 for IkeEncryption. */
     public static final IkeEncryption AES256 = fromString("AES256");
 
-    /** Static value GCMAES256 for IkeEncryption. */
-    public static final IkeEncryption GCMAES256 = fromString("GCMAES256");
-
-    /** Static value GCMAES128 for IkeEncryption. */
-    public static final IkeEncryption GCMAES128 = fromString("GCMAES128");
-
     /**
      * Creates or finds a IkeEncryption from its string representation.
      * @param name a name to look for

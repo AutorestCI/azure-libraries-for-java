@@ -37,12 +37,6 @@ public final class PfsGroup extends ExpandableStringEnum<PfsGroup> {
     /** Static value PFS24 for PfsGroup. */
     public static final PfsGroup PFS24 = fromString("PFS24");
 
-    /** Static value PFS14 for PfsGroup. */
-    public static final PfsGroup PFS14 = fromString("PFS14");
-
-    /** Static value PFSMM for PfsGroup. */
-    public static final PfsGroup PFSMM = fromString("PFSMM");
-
     /**
      * Creates or finds a PfsGroup from its string representation.
      * @param name a name to look for

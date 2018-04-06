@@ -28,12 +28,6 @@ public final class IkeIntegrity extends ExpandableStringEnum<IkeIntegrity> {
     /** Static value SHA384 for IkeIntegrity. */
     public static final IkeIntegrity SHA384 = fromString("SHA384");
 
-    /** Static value GCMAES256 for IkeIntegrity. */
-    public static final IkeIntegrity GCMAES256 = fromString("GCMAES256");
-
-    /** Static value GCMAES128 for IkeIntegrity. */
-    public static final IkeIntegrity GCMAES128 = fromString("GCMAES128");
-
     /**
      * Creates or finds a IkeIntegrity from its string representation.
      * @param name a name to look for
