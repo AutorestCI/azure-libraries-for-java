@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("Dataset")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "ResponsysObject", value = ResponsysObjectDataset.class),
     @JsonSubTypes.Type(name = "SalesforceMarketingCloudObject", value = SalesforceMarketingCloudObjectDataset.class),
     @JsonSubTypes.Type(name = "VerticaTable", value = VerticaTableDataset.class),
     @JsonSubTypes.Type(name = "NetezzaTable", value = NetezzaTableDataset.class),

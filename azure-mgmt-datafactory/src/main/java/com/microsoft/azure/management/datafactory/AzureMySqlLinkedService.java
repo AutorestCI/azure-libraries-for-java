@@ -25,7 +25,7 @@ public class AzureMySqlLinkedService extends LinkedServiceInner {
      * The connection string.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -40,7 +40,7 @@ public class AzureMySqlLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
@@ -50,7 +50,7 @@ public class AzureMySqlLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the AzureMySqlLinkedService object itself.
      */
-    public AzureMySqlLinkedService withConnectionString(SecretBase connectionString) {
+    public AzureMySqlLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }

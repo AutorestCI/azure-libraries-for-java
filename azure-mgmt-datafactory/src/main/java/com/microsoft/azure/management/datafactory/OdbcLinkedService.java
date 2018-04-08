@@ -26,7 +26,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
      * optional encrypted credential.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * Type of authentication used to connect to the ODBC data store. Possible
@@ -69,7 +69,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
@@ -79,7 +79,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the OdbcLinkedService object itself.
      */
-    public OdbcLinkedService withConnectionString(SecretBase connectionString) {
+    public OdbcLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }

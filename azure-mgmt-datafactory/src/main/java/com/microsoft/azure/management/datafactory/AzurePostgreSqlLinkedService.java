@@ -25,7 +25,7 @@ public class AzurePostgreSqlLinkedService extends LinkedServiceInner {
      * An ODBC connection string.
      */
     @JsonProperty(value = "typeProperties.connectionString")
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -40,7 +40,7 @@ public class AzurePostgreSqlLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
@@ -50,7 +50,7 @@ public class AzurePostgreSqlLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the AzurePostgreSqlLinkedService object itself.
      */
-    public AzurePostgreSqlLinkedService withConnectionString(SecretBase connectionString) {
+    public AzurePostgreSqlLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }
