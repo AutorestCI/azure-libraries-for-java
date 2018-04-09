@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.compute;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for VirtualMachineEvictionPolicyTypes.
  */
-public enum VirtualMachineEvictionPolicyTypes {
-    /** Enum value Deallocate. */
-    DEALLOCATE("Deallocate"),
+public final class VirtualMachineEvictionPolicyTypes extends ExpandableStringEnum<VirtualMachineEvictionPolicyTypes> {
+    /** Static value Deallocate for VirtualMachineEvictionPolicyTypes. */
+    public static final VirtualMachineEvictionPolicyTypes DEALLOCATE = fromString("Deallocate");
 
-    /** Enum value Delete. */
-    DELETE("Delete");
+    /** Static value Delete for VirtualMachineEvictionPolicyTypes. */
+    public static final VirtualMachineEvictionPolicyTypes DELETE = fromString("Delete");
 
-    /** The actual serialized value for a VirtualMachineEvictionPolicyTypes instance. */
-    private String value;
-
-    VirtualMachineEvictionPolicyTypes(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a VirtualMachineEvictionPolicyTypes from its string representation.
+     * @param name a name to look for
+     * @return the corresponding VirtualMachineEvictionPolicyTypes
+     */
+    @JsonCreator
+    public static VirtualMachineEvictionPolicyTypes fromString(String name) {
+        return fromString(name, VirtualMachineEvictionPolicyTypes.class);
     }
 
     /**
-     * Parses a serialized value to a VirtualMachineEvictionPolicyTypes instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed VirtualMachineEvictionPolicyTypes object, or null if unable to parse.
+     * @return known VirtualMachineEvictionPolicyTypes values
      */
-    @JsonCreator
-    public static VirtualMachineEvictionPolicyTypes fromString(String value) {
-        VirtualMachineEvictionPolicyTypes[] items = VirtualMachineEvictionPolicyTypes.values();
-        for (VirtualMachineEvictionPolicyTypes item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<VirtualMachineEvictionPolicyTypes> values() {
+        return values(VirtualMachineEvictionPolicyTypes.class);
     }
 }
