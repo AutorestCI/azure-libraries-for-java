@@ -15,25 +15,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class PlatformImageReference {
     /**
-     * Publisher.
+     * Image publisher.
      */
     @JsonProperty(value = "publisher", access = JsonProperty.Access.WRITE_ONLY)
     private String publisher;
 
     /**
-     * Offer.
+     * Offer type.
      */
     @JsonProperty(value = "offer", access = JsonProperty.Access.WRITE_ONLY)
     private String offer;
 
     /**
-     * Sku.
+     * Sku type.
      */
     @JsonProperty(value = "sku", access = JsonProperty.Access.WRITE_ONLY)
     private String sku;
 
     /**
-     * Version.
+     * Version of the image.
      */
     @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
     private String version;
