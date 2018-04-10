@@ -8,10 +8,11 @@
 
 package com.microsoft.azure.management.servicefabric.implementation;
 
-import com.microsoft.azure.management.servicefabric.CertificateDescription;
 import java.util.List;
-import com.microsoft.azure.management.servicefabric.ClientCertificateThumbprint;
+import com.microsoft.azure.management.servicefabric.CertificateDescription;
+import com.microsoft.azure.management.servicefabric.ServerCertificateCommonNames;
 import com.microsoft.azure.management.servicefabric.ClientCertificateCommonName;
+import com.microsoft.azure.management.servicefabric.ClientCertificateThumbprint;
 import com.microsoft.azure.management.servicefabric.SettingsSectionDescription;
 import com.microsoft.azure.management.servicefabric.NodeTypeDescription;
 import com.microsoft.azure.management.servicefabric.ClusterUpgradePolicy;
@@ -25,70 +26,88 @@ import com.microsoft.rest.serializer.JsonFlatten;
 @JsonFlatten
 public class ClusterUpdateParametersInner {
     /**
-     * This level is used to set the number of replicas of the system services.
-     * Possible values include: 'Bronze', 'Silver', 'Gold'.
+     * The list of add-on features to enable in the cluster.
      */
-    @JsonProperty(value = "properties.reliabilityLevel")
-    private String reliabilityLevel;
+    @JsonProperty(value = "properties.addOnFeatures")
+    private List<String> addOnFeatures;
 
     /**
-     * Cluster upgrade mode indicates if fabric upgrade is initiated
-     * automatically by the system or not. Possible values include:
-     * 'Automatic', 'Manual'.
-     */
-    @JsonProperty(value = "properties.upgradeMode")
-    private String upgradeMode;
-
-    /**
-     * The ServiceFabric code version, if set it, please make sure you have set
-     * upgradeMode to Manual, otherwise ,it will fail, if you are using PUT new
-     * cluster, you can get the version by using ClusterVersions_List, if you
-     * are updating existing cluster, you can get the availableClusterVersions
-     * from Clusters_Get.
-     */
-    @JsonProperty(value = "properties.clusterCodeVersion")
-    private String clusterCodeVersion;
-
-    /**
-     * This primay certificate will be used as cluster node to node security,
-     * SSL certificate for cluster management endpoint and default admin
-     * client, the certificate should exist in the virtual machine scale sets
-     * or Azure key vault, before you add it. It will override original value.
+     * The certificate to use for securing the cluster. The certificate
+     * provided will be used for  node to node security within the cluster, SSL
+     * certificate for cluster management endpoint and default  admin client.
      */
     @JsonProperty(value = "properties.certificate")
     private CertificateDescription certificate;
 
     /**
-     * The client thumbprint details, it is used for client access for cluster
-     * operation, it will override existing collection.
+     * Describes a list of server certificates referenced by common name that
+     * are used to secure the cluster.
      */
-    @JsonProperty(value = "properties.clientCertificateThumbprints")
-    private List<ClientCertificateThumbprint> clientCertificateThumbprints;
+    @JsonProperty(value = "properties.certificateCommonNames")
+    private ServerCertificateCommonNames certificateCommonNames;
 
     /**
-     * List of client certificates to whitelist based on common names.
+     * The list of client certificates referenced by common name that are
+     * allowed to manage the cluster. This will overwrite the existing list.
      */
     @JsonProperty(value = "properties.clientCertificateCommonNames")
     private List<ClientCertificateCommonName> clientCertificateCommonNames;
 
     /**
-     * List of custom fabric settings to configure the cluster, Note, it will
-     * overwrite existing collection.
+     * The list of client certificates referenced by thumbprint that are
+     * allowed to manage the cluster. This will overwrite the existing list.
+     */
+    @JsonProperty(value = "properties.clientCertificateThumbprints")
+    private List<ClientCertificateThumbprint> clientCertificateThumbprints;
+
+    /**
+     * The Service Fabric runtime version of the cluster. This property can
+     * only by set the user when **upgradeMode** is set to 'Manual'. To get
+     * list of available Service Fabric versions for new clusters use
+     * [ClusterVersion API](./ClusterVersion.md). To get the list of available
+     * version for existing clusters use **availableClusterVersions**.
+     */
+    @JsonProperty(value = "properties.clusterCodeVersion")
+    private String clusterCodeVersion;
+
+    /**
+     * The list of custom fabric settings to configure the cluster. This will
+     * overwrite the existing list.
      */
     @JsonProperty(value = "properties.fabricSettings")
     private List<SettingsSectionDescription> fabricSettings;
 
     /**
-     * Certificate for the reverse proxy.
-     */
-    @JsonProperty(value = "properties.reverseProxyCertificate")
-    private CertificateDescription reverseProxyCertificate;
-
-    /**
-     * The list of nodetypes that make up the cluster, it will override.
+     * The list of node types in the cluster. This will overwrite the existing
+     * list.
      */
     @JsonProperty(value = "properties.nodeTypes")
     private List<NodeTypeDescription> nodeTypes;
+
+    /**
+     * The reliability level sets the replica set size of system services.
+     * Learn about
+     * [ReliabilityLevel](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-capacity).
+     *
+     * - None - Run the System services with a target replica set count of 1.
+     * This should only be used for test clusters.
+     * - Bronze - Run the System services with a target replica set count of 3.
+     * This should only be used for test clusters.
+     * - Silver - Run the System services with a target replica set count of 5.
+     * - Gold - Run the System services with a target replica set count of 7.
+     * - Platinum - Run the System services with a target replica set count of
+     * 9.
+     * . Possible values include: 'None', 'Bronze', 'Silver', 'Gold',
+     * 'Platinum'.
+     */
+    @JsonProperty(value = "properties.reliabilityLevel")
+    private String reliabilityLevel;
+
+    /**
+     * The server certificate used by reverse proxy.
+     */
+    @JsonProperty(value = "properties.reverseProxyCertificate")
+    private CertificateDescription reverseProxyCertificate;
 
     /**
      * The policy to use when upgrading the cluster.
@@ -97,68 +116,42 @@ public class ClusterUpdateParametersInner {
     private ClusterUpgradePolicy upgradeDescription;
 
     /**
+     * The upgrade mode of the cluster when new Service Fabric runtime version
+     * is available.
+     *
+     * - Automatic - The cluster will be automatically upgraded to the latest
+     * Service Fabric runtime version as soon as it is available.
+     * - Manual - The cluster will not be automatically upgraded to the latest
+     * Service Fabric runtime version. The cluster is upgraded by setting the
+     * **clusterCodeVersion** property in the cluster resource.
+     * . Possible values include: 'Automatic', 'Manual'.
+     */
+    @JsonProperty(value = "properties.upgradeMode")
+    private String upgradeMode;
+
+    /**
      * Cluster update parameters.
      */
     @JsonProperty(value = "tags")
     private Map<String, String> tags;
 
     /**
-     * Get the reliabilityLevel value.
+     * Get the addOnFeatures value.
      *
-     * @return the reliabilityLevel value
+     * @return the addOnFeatures value
      */
-    public String reliabilityLevel() {
-        return this.reliabilityLevel;
+    public List<String> addOnFeatures() {
+        return this.addOnFeatures;
     }
 
     /**
-     * Set the reliabilityLevel value.
+     * Set the addOnFeatures value.
      *
-     * @param reliabilityLevel the reliabilityLevel value to set
+     * @param addOnFeatures the addOnFeatures value to set
      * @return the ClusterUpdateParametersInner object itself.
      */
-    public ClusterUpdateParametersInner withReliabilityLevel(String reliabilityLevel) {
-        this.reliabilityLevel = reliabilityLevel;
-        return this;
-    }
-
-    /**
-     * Get the upgradeMode value.
-     *
-     * @return the upgradeMode value
-     */
-    public String upgradeMode() {
-        return this.upgradeMode;
-    }
-
-    /**
-     * Set the upgradeMode value.
-     *
-     * @param upgradeMode the upgradeMode value to set
-     * @return the ClusterUpdateParametersInner object itself.
-     */
-    public ClusterUpdateParametersInner withUpgradeMode(String upgradeMode) {
-        this.upgradeMode = upgradeMode;
-        return this;
-    }
-
-    /**
-     * Get the clusterCodeVersion value.
-     *
-     * @return the clusterCodeVersion value
-     */
-    public String clusterCodeVersion() {
-        return this.clusterCodeVersion;
-    }
-
-    /**
-     * Set the clusterCodeVersion value.
-     *
-     * @param clusterCodeVersion the clusterCodeVersion value to set
-     * @return the ClusterUpdateParametersInner object itself.
-     */
-    public ClusterUpdateParametersInner withClusterCodeVersion(String clusterCodeVersion) {
-        this.clusterCodeVersion = clusterCodeVersion;
+    public ClusterUpdateParametersInner withAddOnFeatures(List<String> addOnFeatures) {
+        this.addOnFeatures = addOnFeatures;
         return this;
     }
 
@@ -183,22 +176,22 @@ public class ClusterUpdateParametersInner {
     }
 
     /**
-     * Get the clientCertificateThumbprints value.
+     * Get the certificateCommonNames value.
      *
-     * @return the clientCertificateThumbprints value
+     * @return the certificateCommonNames value
      */
-    public List<ClientCertificateThumbprint> clientCertificateThumbprints() {
-        return this.clientCertificateThumbprints;
+    public ServerCertificateCommonNames certificateCommonNames() {
+        return this.certificateCommonNames;
     }
 
     /**
-     * Set the clientCertificateThumbprints value.
+     * Set the certificateCommonNames value.
      *
-     * @param clientCertificateThumbprints the clientCertificateThumbprints value to set
+     * @param certificateCommonNames the certificateCommonNames value to set
      * @return the ClusterUpdateParametersInner object itself.
      */
-    public ClusterUpdateParametersInner withClientCertificateThumbprints(List<ClientCertificateThumbprint> clientCertificateThumbprints) {
-        this.clientCertificateThumbprints = clientCertificateThumbprints;
+    public ClusterUpdateParametersInner withCertificateCommonNames(ServerCertificateCommonNames certificateCommonNames) {
+        this.certificateCommonNames = certificateCommonNames;
         return this;
     }
 
@@ -223,6 +216,46 @@ public class ClusterUpdateParametersInner {
     }
 
     /**
+     * Get the clientCertificateThumbprints value.
+     *
+     * @return the clientCertificateThumbprints value
+     */
+    public List<ClientCertificateThumbprint> clientCertificateThumbprints() {
+        return this.clientCertificateThumbprints;
+    }
+
+    /**
+     * Set the clientCertificateThumbprints value.
+     *
+     * @param clientCertificateThumbprints the clientCertificateThumbprints value to set
+     * @return the ClusterUpdateParametersInner object itself.
+     */
+    public ClusterUpdateParametersInner withClientCertificateThumbprints(List<ClientCertificateThumbprint> clientCertificateThumbprints) {
+        this.clientCertificateThumbprints = clientCertificateThumbprints;
+        return this;
+    }
+
+    /**
+     * Get the clusterCodeVersion value.
+     *
+     * @return the clusterCodeVersion value
+     */
+    public String clusterCodeVersion() {
+        return this.clusterCodeVersion;
+    }
+
+    /**
+     * Set the clusterCodeVersion value.
+     *
+     * @param clusterCodeVersion the clusterCodeVersion value to set
+     * @return the ClusterUpdateParametersInner object itself.
+     */
+    public ClusterUpdateParametersInner withClusterCodeVersion(String clusterCodeVersion) {
+        this.clusterCodeVersion = clusterCodeVersion;
+        return this;
+    }
+
+    /**
      * Get the fabricSettings value.
      *
      * @return the fabricSettings value
@@ -239,26 +272,6 @@ public class ClusterUpdateParametersInner {
      */
     public ClusterUpdateParametersInner withFabricSettings(List<SettingsSectionDescription> fabricSettings) {
         this.fabricSettings = fabricSettings;
-        return this;
-    }
-
-    /**
-     * Get the reverseProxyCertificate value.
-     *
-     * @return the reverseProxyCertificate value
-     */
-    public CertificateDescription reverseProxyCertificate() {
-        return this.reverseProxyCertificate;
-    }
-
-    /**
-     * Set the reverseProxyCertificate value.
-     *
-     * @param reverseProxyCertificate the reverseProxyCertificate value to set
-     * @return the ClusterUpdateParametersInner object itself.
-     */
-    public ClusterUpdateParametersInner withReverseProxyCertificate(CertificateDescription reverseProxyCertificate) {
-        this.reverseProxyCertificate = reverseProxyCertificate;
         return this;
     }
 
@@ -283,6 +296,46 @@ public class ClusterUpdateParametersInner {
     }
 
     /**
+     * Get the reliabilityLevel value.
+     *
+     * @return the reliabilityLevel value
+     */
+    public String reliabilityLevel() {
+        return this.reliabilityLevel;
+    }
+
+    /**
+     * Set the reliabilityLevel value.
+     *
+     * @param reliabilityLevel the reliabilityLevel value to set
+     * @return the ClusterUpdateParametersInner object itself.
+     */
+    public ClusterUpdateParametersInner withReliabilityLevel(String reliabilityLevel) {
+        this.reliabilityLevel = reliabilityLevel;
+        return this;
+    }
+
+    /**
+     * Get the reverseProxyCertificate value.
+     *
+     * @return the reverseProxyCertificate value
+     */
+    public CertificateDescription reverseProxyCertificate() {
+        return this.reverseProxyCertificate;
+    }
+
+    /**
+     * Set the reverseProxyCertificate value.
+     *
+     * @param reverseProxyCertificate the reverseProxyCertificate value to set
+     * @return the ClusterUpdateParametersInner object itself.
+     */
+    public ClusterUpdateParametersInner withReverseProxyCertificate(CertificateDescription reverseProxyCertificate) {
+        this.reverseProxyCertificate = reverseProxyCertificate;
+        return this;
+    }
+
+    /**
      * Get the upgradeDescription value.
      *
      * @return the upgradeDescription value
@@ -299,6 +352,26 @@ public class ClusterUpdateParametersInner {
      */
     public ClusterUpdateParametersInner withUpgradeDescription(ClusterUpgradePolicy upgradeDescription) {
         this.upgradeDescription = upgradeDescription;
+        return this;
+    }
+
+    /**
+     * Get the upgradeMode value.
+     *
+     * @return the upgradeMode value
+     */
+    public String upgradeMode() {
+        return this.upgradeMode;
+    }
+
+    /**
+     * Set the upgradeMode value.
+     *
+     * @param upgradeMode the upgradeMode value to set
+     * @return the ClusterUpdateParametersInner object itself.
+     */
+    public ClusterUpdateParametersInner withUpgradeMode(String upgradeMode) {
+        this.upgradeMode = upgradeMode;
         return this;
     }
 

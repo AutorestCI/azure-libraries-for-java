@@ -8,14 +8,8 @@
 
 package com.microsoft.azure.management.servicefabric.implementation;
 
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
-import com.microsoft.azure.AzureServiceFuture;
-import com.microsoft.azure.CloudException;
-import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.servicefabric.ErrorModelException;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
@@ -35,7 +29,6 @@ import retrofit2.http.PATCH;
 import retrofit2.http.Path;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 import retrofit2.Response;
 import rx.functions.Func1;
 import rx.Observable;
@@ -44,7 +37,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Clusters.
  */
-public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSupportsDelete<Void>, InnerSupportsListing<ClusterInner> {
+public class ClustersInner {
     /** The Retrofit service to perform REST calls. */
     private ClustersService service;
     /** The service client containing this operation class. */
@@ -66,14 +59,6 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
      * used by Retrofit to perform actually REST calls.
      */
     interface ClustersService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters update" })
-        @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Body ClusterUpdateParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters beginUpdate" })
-        @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Body ClusterUpdateParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters getByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}")
         Observable<Response<ResponseBody>> getByResourceGroup(@Path("resourceGroupName") String resourceGroupName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -85,6 +70,14 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters beginCreate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}")
         Observable<Response<ResponseBody>> beginCreate(@Path("resourceGroupName") String resourceGroupName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Body ClusterInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters update" })
+        @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}")
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Body ClusterUpdateParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters beginUpdate" })
+        @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}")
+        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Body ClusterUpdateParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}", method = "DELETE", hasBody = true)
@@ -98,56 +91,51 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/clusters")
         Observable<Response<ResponseBody>> list(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters listByResourceGroupNext" })
-        @GET
-        Observable<Response<ResponseBody>> listByResourceGroupNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.servicefabric.Clusters listNext" })
-        @GET
-        Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
     }
 
     /**
-     * Update cluster configuration.
+     * Gets a Service Fabric cluster resource.
+     * Get a Service Fabric cluster resource created or in the process of being created in the specified resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorModelException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ClusterInner object if successful.
      */
-    public ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters) {
-        return updateWithServiceResponseAsync(resourceGroupName, clusterName, parameters).toBlocking().last().body();
+    public ClusterInner getByResourceGroup(String resourceGroupName, String clusterName, String subscriptionId) {
+        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId).toBlocking().single().body();
     }
 
     /**
-     * Update cluster configuration.
+     * Gets a Service Fabric cluster resource.
+     * Get a Service Fabric cluster resource created or in the process of being created in the specified resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ClusterInner> updateAsync(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, clusterName, parameters), serviceCallback);
+    public ServiceFuture<ClusterInner> getByResourceGroupAsync(String resourceGroupName, String clusterName, String subscriptionId, final ServiceCallback<ClusterInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId), serviceCallback);
     }
 
     /**
-     * Update cluster configuration.
+     * Gets a Service Fabric cluster resource.
+     * Get a Service Fabric cluster resource created or in the process of being created in the specified resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable for the request
+     * @return the observable to the ClusterInner object
      */
-    public Observable<ClusterInner> updateAsync(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters) {
-        return updateWithServiceResponseAsync(resourceGroupName, clusterName, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
+    public Observable<ClusterInner> getByResourceGroupAsync(String resourceGroupName, String clusterName, String subscriptionId) {
+        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
             @Override
             public ClusterInner call(ServiceResponse<ClusterInner> response) {
                 return response.body();
@@ -156,196 +144,27 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
     }
 
     /**
-     * Update cluster configuration.
+     * Gets a Service Fabric cluster resource.
+     * Get a Service Fabric cluster resource created or in the process of being created in the specified resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable for the request
+     * @return the observable to the ClusterInner object
      */
-    public Observable<ServiceResponse<ClusterInner>> updateWithServiceResponseAsync(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters) {
+    public Observable<ServiceResponse<ClusterInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String clusterName, String subscriptionId) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
         if (clusterName == null) {
             throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
         }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        if (parameters == null) {
-            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
-        }
-        Validator.validate(parameters);
-        Observable<Response<ResponseBody>> observable = service.update(resourceGroupName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ClusterInner>() { }.getType());
-    }
-
-    /**
-     * Update cluster configuration.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorModelException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ClusterInner object if successful.
-     */
-    public ClusterInner beginUpdate(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, clusterName, parameters).toBlocking().single().body();
-    }
-
-    /**
-     * Update cluster configuration.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<ClusterInner> beginUpdateAsync(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, clusterName, parameters), serviceCallback);
-    }
-
-    /**
-     * Update cluster configuration.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ClusterInner object
-     */
-    public Observable<ClusterInner> beginUpdateAsync(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, clusterName, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
-            @Override
-            public ClusterInner call(ServiceResponse<ClusterInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Update cluster configuration.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ClusterInner object
-     */
-    public Observable<ServiceResponse<ClusterInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String clusterName, ClusterUpdateParametersInner parameters) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
-        }
-        if (clusterName == null) {
-            throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
-        }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        if (parameters == null) {
-            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
-        }
-        Validator.validate(parameters);
-        return service.beginUpdate(resourceGroupName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ClusterInner>>>() {
-                @Override
-                public Observable<ServiceResponse<ClusterInner>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<ClusterInner> clientResponse = beginUpdateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<ClusterInner> beginUpdateDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ClusterInner, ErrorModelException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<ClusterInner>() { }.getType())
-                .register(202, new TypeToken<Void>() { }.getType())
-                .registerError(ErrorModelException.class)
-                .build(response);
-    }
-
-    /**
-     * Get cluster resource.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorModelException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ClusterInner object if successful.
-     */
-    public ClusterInner getByResourceGroup(String resourceGroupName, String clusterName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, clusterName).toBlocking().single().body();
-    }
-
-    /**
-     * Get cluster resource.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<ClusterInner> getByResourceGroupAsync(String resourceGroupName, String clusterName, final ServiceCallback<ClusterInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(resourceGroupName, clusterName), serviceCallback);
-    }
-
-    /**
-     * Get cluster resource.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ClusterInner object
-     */
-    public Observable<ClusterInner> getByResourceGroupAsync(String resourceGroupName, String clusterName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, clusterName).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
-            @Override
-            public ClusterInner call(ServiceResponse<ClusterInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Get cluster resource.
-     *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ClusterInner object
-     */
-    public Observable<ServiceResponse<ClusterInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String clusterName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
-        }
-        if (clusterName == null) {
-            throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
-        }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.getByResourceGroup(resourceGroupName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        final String apiVersion = "2018-02-01";
+        return service.getByResourceGroup(resourceGroupName, clusterName, subscriptionId, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ClusterInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ClusterInner>> call(Response<ResponseBody> response) {
@@ -367,45 +186,51 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorModelException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ClusterInner object if successful.
      */
-    public ClusterInner create(String resourceGroupName, String clusterName, ClusterInner parameters) {
-        return createWithServiceResponseAsync(resourceGroupName, clusterName, parameters).toBlocking().last().body();
+    public ClusterInner create(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).toBlocking().last().body();
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ClusterInner> createAsync(String resourceGroupName, String clusterName, ClusterInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, clusterName, parameters), serviceCallback);
+    public ServiceFuture<ClusterInner> createAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters), serviceCallback);
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ClusterInner> createAsync(String resourceGroupName, String clusterName, ClusterInner parameters) {
-        return createWithServiceResponseAsync(resourceGroupName, clusterName, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
+    public Observable<ClusterInner> createAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
             @Override
             public ClusterInner call(ServiceResponse<ClusterInner> response) {
                 return response.body();
@@ -414,75 +239,81 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ClusterInner>> createWithServiceResponseAsync(String resourceGroupName, String clusterName, ClusterInner parameters) {
+    public Observable<ServiceResponse<ClusterInner>> createWithServiceResponseAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
         if (clusterName == null) {
             throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
         }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
         }
         if (parameters == null) {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        Observable<Response<ResponseBody>> observable = service.create(resourceGroupName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
+        final String apiVersion = "2018-02-01";
+        Observable<Response<ResponseBody>> observable = service.create(resourceGroupName, clusterName, subscriptionId, apiVersion, parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ClusterInner>() { }.getType());
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorModelException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ClusterInner object if successful.
      */
-    public ClusterInner beginCreate(String resourceGroupName, String clusterName, ClusterInner parameters) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, clusterName, parameters).toBlocking().single().body();
+    public ClusterInner beginCreate(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).toBlocking().single().body();
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ClusterInner> beginCreateAsync(String resourceGroupName, String clusterName, ClusterInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(resourceGroupName, clusterName, parameters), serviceCallback);
+    public ServiceFuture<ClusterInner> beginCreateAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters), serviceCallback);
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ClusterInner object
      */
-    public Observable<ClusterInner> beginCreateAsync(String resourceGroupName, String clusterName, ClusterInner parameters) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, clusterName, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
+    public Observable<ClusterInner> beginCreateAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
             @Override
             public ClusterInner call(ServiceResponse<ClusterInner> response) {
                 return response.body();
@@ -491,32 +322,32 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
     }
 
     /**
-     * Create cluster resource.
+     * Creates or updates a Service Fabric cluster resource.
+     * Create or update a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
-     * @param parameters Put Request
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The cluster resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ClusterInner object
      */
-    public Observable<ServiceResponse<ClusterInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String clusterName, ClusterInner parameters) {
+    public Observable<ServiceResponse<ClusterInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterInner parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
         if (clusterName == null) {
             throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
         }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
         }
         if (parameters == null) {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        return service.beginCreate(resourceGroupName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
+        final String apiVersion = "2018-02-01";
+        return service.beginCreate(resourceGroupName, clusterName, subscriptionId, apiVersion, parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ClusterInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ClusterInner>> call(Response<ResponseBody> response) {
@@ -533,47 +364,237 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
     private ServiceResponse<ClusterInner> beginCreateDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ClusterInner, ErrorModelException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ClusterInner>() { }.getType())
-                .register(202, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<ClusterInner>() { }.getType())
                 .registerError(ErrorModelException.class)
                 .build(response);
     }
 
     /**
-     * Delete cluster resource.
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorModelException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the ClusterInner object if successful.
      */
-    public void delete(String resourceGroupName, String clusterName) {
-        deleteWithServiceResponseAsync(resourceGroupName, clusterName).toBlocking().single().body();
+    public ClusterInner update(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).toBlocking().last().body();
     }
 
     /**
-     * Delete cluster resource.
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String clusterName, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, clusterName), serviceCallback);
+    public ServiceFuture<ClusterInner> updateAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters), serviceCallback);
     }
 
     /**
-     * Delete cluster resource.
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ClusterInner> updateAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
+            @Override
+            public ClusterInner call(ServiceResponse<ClusterInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<ClusterInner>> updateWithServiceResponseAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (clusterName == null) {
+            throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
+        }
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
+        }
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        }
+        Validator.validate(parameters);
+        final String apiVersion = "2018-02-01";
+        Observable<Response<ResponseBody>> observable = service.update(resourceGroupName, clusterName, subscriptionId, apiVersion, parameters, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ClusterInner>() { }.getType());
+    }
+
+    /**
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorModelException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the ClusterInner object if successful.
+     */
+    public ClusterInner beginUpdate(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters) {
+        return beginUpdateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).toBlocking().single().body();
+    }
+
+    /**
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<ClusterInner> beginUpdateAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters, final ServiceCallback<ClusterInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters), serviceCallback);
+    }
+
+    /**
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ClusterInner object
+     */
+    public Observable<ClusterInner> beginUpdateAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters) {
+        return beginUpdateWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
+            @Override
+            public ClusterInner call(ServiceResponse<ClusterInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Updates the configuration of a Service Fabric cluster resource.
+     * Update the configuration of a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param parameters The parameters which contains the property value and property name which used to update the cluster configuration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ClusterInner object
+     */
+    public Observable<ServiceResponse<ClusterInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String clusterName, String subscriptionId, ClusterUpdateParametersInner parameters) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (clusterName == null) {
+            throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
+        }
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
+        }
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        }
+        Validator.validate(parameters);
+        final String apiVersion = "2018-02-01";
+        return service.beginUpdate(resourceGroupName, clusterName, subscriptionId, apiVersion, parameters, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ClusterInner>>>() {
+                @Override
+                public Observable<ServiceResponse<ClusterInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<ClusterInner> clientResponse = beginUpdateDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<ClusterInner> beginUpdateDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ClusterInner, ErrorModelException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ClusterInner>() { }.getType())
+                .register(202, new TypeToken<ClusterInner>() { }.getType())
+                .registerError(ErrorModelException.class)
+                .build(response);
+    }
+
+    /**
+     * Deletes a Service Fabric cluster resource.
+     * Delete a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorModelException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void delete(String resourceGroupName, String clusterName, String subscriptionId) {
+        deleteWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId).toBlocking().single().body();
+    }
+
+    /**
+     * Deletes a Service Fabric cluster resource.
+     * Delete a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String clusterName, String subscriptionId, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId), serviceCallback);
+    }
+
+    /**
+     * Deletes a Service Fabric cluster resource.
+     * Delete a Service Fabric cluster resource with the specified name.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> deleteAsync(String resourceGroupName, String clusterName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, clusterName).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<Void> deleteAsync(String resourceGroupName, String clusterName, String subscriptionId) {
+        return deleteWithServiceResponseAsync(resourceGroupName, clusterName, subscriptionId).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
                 return response.body();
@@ -582,27 +603,27 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
     }
 
     /**
-     * Delete cluster resource.
+     * Deletes a Service Fabric cluster resource.
+     * Delete a Service Fabric cluster resource with the specified name.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @param clusterName The name of the cluster resource
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param subscriptionId The customer subscription identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String clusterName) {
+    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String clusterName, String subscriptionId) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
         if (clusterName == null) {
             throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
         }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.delete(resourceGroupName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        final String apiVersion = "2018-02-01";
+        return service.delete(resourceGroupName, clusterName, subscriptionId, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -625,106 +646,81 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
     }
 
     /**
-     * List cluster resource by resource group.
+     * Gets the list of Service Fabric cluster resources created in the specified resource group.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ClusterInner&gt; object if successful.
+     * @param resourceGroupName The name of the resource group.
+     * @param subscriptionId The customer subscription identifier.
+     * @return the PagedList<ClusterInner> object if successful.
      */
-    public PagedList<ClusterInner> listByResourceGroup(final String resourceGroupName) {
-        ServiceResponse<Page<ClusterInner>> response = listByResourceGroupSinglePageAsync(resourceGroupName).toBlocking().single();
-        return new PagedList<ClusterInner>(response.body()) {
+    public PagedList<ClusterInner> listByResourceGroup(String resourceGroupName, String subscriptionId) {
+        PageImpl<ClusterInner> page = new PageImpl<>();
+        page.setItems(listByResourceGroupWithServiceResponseAsync(resourceGroupName, subscriptionId).toBlocking().single().body());
+        page.setNextPageLink(null);
+        return new PagedList<ClusterInner>(page) {
             @Override
             public Page<ClusterInner> nextPage(String nextPageLink) {
-                return listByResourceGroupNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return null;
             }
         };
     }
 
     /**
-     * List cluster resource by resource group.
+     * Gets the list of Service Fabric cluster resources created in the specified resource group.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
+     * @param resourceGroupName The name of the resource group.
+     * @param subscriptionId The customer subscription identifier.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ClusterInner>> listByResourceGroupAsync(final String resourceGroupName, final ListOperationCallback<ClusterInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listByResourceGroupSinglePageAsync(resourceGroupName),
-            new Func1<String, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(String nextPageLink) {
-                    return listByResourceGroupNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
+    public ServiceFuture<List<ClusterInner>> listByResourceGroupAsync(String resourceGroupName, String subscriptionId, final ServiceCallback<List<ClusterInner>> serviceCallback) {
+        return ServiceFuture.fromResponse(listByResourceGroupWithServiceResponseAsync(resourceGroupName, subscriptionId), serviceCallback);
     }
 
     /**
-     * List cluster resource by resource group.
+     * Gets the list of Service Fabric cluster resources created in the specified resource group.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
+     * @param resourceGroupName The name of the resource group.
+     * @param subscriptionId The customer subscription identifier.
+     * @return the observable to the List&lt;ClusterInner&gt; object
      */
-    public Observable<Page<ClusterInner>> listByResourceGroupAsync(final String resourceGroupName) {
-        return listByResourceGroupWithServiceResponseAsync(resourceGroupName)
-            .map(new Func1<ServiceResponse<Page<ClusterInner>>, Page<ClusterInner>>() {
-                @Override
-                public Page<ClusterInner> call(ServiceResponse<Page<ClusterInner>> response) {
-                    return response.body();
-                }
-            });
+    public Observable<Page<ClusterInner>> listByResourceGroupAsync(String resourceGroupName, String subscriptionId) {
+        return listByResourceGroupWithServiceResponseAsync(resourceGroupName, subscriptionId).map(new Func1<ServiceResponse<List<ClusterInner>>, Page<ClusterInner>>() {
+            @Override
+            public Page<ClusterInner> call(ServiceResponse<List<ClusterInner>> response) {
+                PageImpl<ClusterInner> page = new PageImpl<>();
+                page.setItems(response.body());
+                return page;
+            }
+        });
     }
 
     /**
-     * List cluster resource by resource group.
+     * Gets the list of Service Fabric cluster resources created in the specified resource group.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
+     * @param resourceGroupName The name of the resource group.
+     * @param subscriptionId The customer subscription identifier.
+     * @return the observable to the List&lt;ClusterInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName) {
-        return listByResourceGroupSinglePageAsync(resourceGroupName)
-            .concatMap(new Func1<ServiceResponse<Page<ClusterInner>>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(ServiceResponse<Page<ClusterInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listByResourceGroupNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * List cluster resource by resource group.
-     *
-    ServiceResponse<PageImpl<ClusterInner>> * @param resourceGroupName The name of the resource group to which the resource belongs or get created
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ClusterInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName) {
+    public Observable<ServiceResponse<List<ClusterInner>>> listByResourceGroupWithServiceResponseAsync(String resourceGroupName, String subscriptionId) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
+        final String apiVersion = "2018-02-01";
+        return service.listByResourceGroup(resourceGroupName, subscriptionId, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ClusterInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<ClusterInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ClusterInner>> result = listByResourceGroupDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ClusterInner>>(result.body(), result.response()));
+                        ServiceResponse<List<ClusterInner>> clientResponse = new ServiceResponse<List<ClusterInner>>(result.body().items(), result.response());
+                        return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -732,106 +728,82 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
             });
     }
 
-    private ServiceResponse<PageImpl<ClusterInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ClusterInner>, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ClusterInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ClusterInner>, ErrorModelException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ClusterInner>>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ErrorModelException.class)
                 .build(response);
     }
 
     /**
-     * List cluster resource.
+     * Gets the list of Service Fabric cluster resources created in the specified subscription.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the subscription.
      *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ClusterInner&gt; object if successful.
+     * @param subscriptionId The customer subscription identifier.
+     * @return the PagedList<ClusterInner> object if successful.
      */
-    public PagedList<ClusterInner> list() {
-        ServiceResponse<Page<ClusterInner>> response = listSinglePageAsync().toBlocking().single();
-        return new PagedList<ClusterInner>(response.body()) {
+    public PagedList<ClusterInner> list(String subscriptionId) {
+        PageImpl<ClusterInner> page = new PageImpl<>();
+        page.setItems(listWithServiceResponseAsync(subscriptionId).toBlocking().single().body());
+        page.setNextPageLink(null);
+        return new PagedList<ClusterInner>(page) {
             @Override
             public Page<ClusterInner> nextPage(String nextPageLink) {
-                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return null;
             }
         };
     }
 
     /**
-     * List cluster resource.
+     * Gets the list of Service Fabric cluster resources created in the specified subscription.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the subscription.
      *
+     * @param subscriptionId The customer subscription identifier.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ClusterInner>> listAsync(final ListOperationCallback<ClusterInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(),
-            new Func1<String, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(String nextPageLink) {
-                    return listNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
+    public ServiceFuture<List<ClusterInner>> listAsync(String subscriptionId, final ServiceCallback<List<ClusterInner>> serviceCallback) {
+        return ServiceFuture.fromResponse(listWithServiceResponseAsync(subscriptionId), serviceCallback);
     }
 
     /**
-     * List cluster resource.
+     * Gets the list of Service Fabric cluster resources created in the specified subscription.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the subscription.
      *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
+     * @param subscriptionId The customer subscription identifier.
+     * @return the observable to the List&lt;ClusterInner&gt; object
      */
-    public Observable<Page<ClusterInner>> listAsync() {
-        return listWithServiceResponseAsync()
-            .map(new Func1<ServiceResponse<Page<ClusterInner>>, Page<ClusterInner>>() {
-                @Override
-                public Page<ClusterInner> call(ServiceResponse<Page<ClusterInner>> response) {
-                    return response.body();
-                }
-            });
+    public Observable<Page<ClusterInner>> listAsync(String subscriptionId) {
+        return listWithServiceResponseAsync(subscriptionId).map(new Func1<ServiceResponse<List<ClusterInner>>, Page<ClusterInner>>() {
+            @Override
+            public Page<ClusterInner> call(ServiceResponse<List<ClusterInner>> response) {
+                PageImpl<ClusterInner> page = new PageImpl<>();
+                page.setItems(response.body());
+                return page;
+            }
+        });
     }
 
     /**
-     * List cluster resource.
+     * Gets the list of Service Fabric cluster resources created in the specified subscription.
+     * Gets all Service Fabric cluster resources created or in the process of being created in the subscription.
      *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
+     * @param subscriptionId The customer subscription identifier.
+     * @return the observable to the List&lt;ClusterInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listWithServiceResponseAsync() {
-        return listSinglePageAsync()
-            .concatMap(new Func1<ServiceResponse<Page<ClusterInner>>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(ServiceResponse<Page<ClusterInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * List cluster resource.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ClusterInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listSinglePageAsync() {
-        if (this.client.subscriptionId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+    public Observable<ServiceResponse<List<ClusterInner>>> listWithServiceResponseAsync(String subscriptionId) {
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Parameter subscriptionId is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.list(this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
+        final String apiVersion = "2018-02-01";
+        return service.list(subscriptionId, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ClusterInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<ClusterInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ClusterInner>> result = listDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ClusterInner>>(result.body(), result.response()));
+                        ServiceResponse<List<ClusterInner>> clientResponse = new ServiceResponse<List<ClusterInner>>(result.body().items(), result.response());
+                        return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -839,232 +811,10 @@ public class ClustersInner implements InnerSupportsGet<ClusterInner>, InnerSuppo
             });
     }
 
-    private ServiceResponse<PageImpl<ClusterInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ClusterInner>, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<ClusterInner>> listDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ClusterInner>, ErrorModelException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ClusterInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * List cluster resource by resource group.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ClusterInner&gt; object if successful.
-     */
-    public PagedList<ClusterInner> listByResourceGroupNext(final String nextPageLink) {
-        ServiceResponse<Page<ClusterInner>> response = listByResourceGroupNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<ClusterInner>(response.body()) {
-            @Override
-            public Page<ClusterInner> nextPage(String nextPageLink) {
-                return listByResourceGroupNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * List cluster resource by resource group.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ClusterInner>> listByResourceGroupNextAsync(final String nextPageLink, final ServiceFuture<List<ClusterInner>> serviceFuture, final ListOperationCallback<ClusterInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listByResourceGroupNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(String nextPageLink) {
-                    return listByResourceGroupNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * List cluster resource by resource group.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
-     */
-    public Observable<Page<ClusterInner>> listByResourceGroupNextAsync(final String nextPageLink) {
-        return listByResourceGroupNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<ClusterInner>>, Page<ClusterInner>>() {
-                @Override
-                public Page<ClusterInner> call(ServiceResponse<Page<ClusterInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * List cluster resource by resource group.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listByResourceGroupNextWithServiceResponseAsync(final String nextPageLink) {
-        return listByResourceGroupNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<ClusterInner>>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(ServiceResponse<Page<ClusterInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listByResourceGroupNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * List cluster resource by resource group.
-     *
-    ServiceResponse<PageImpl<ClusterInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ClusterInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listByResourceGroupNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listByResourceGroupNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<ClusterInner>> result = listByResourceGroupNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ClusterInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<ClusterInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ClusterInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ClusterInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * List cluster resource.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ClusterInner&gt; object if successful.
-     */
-    public PagedList<ClusterInner> listNext(final String nextPageLink) {
-        ServiceResponse<Page<ClusterInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<ClusterInner>(response.body()) {
-            @Override
-            public Page<ClusterInner> nextPage(String nextPageLink) {
-                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * List cluster resource.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ClusterInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<ClusterInner>> serviceFuture, final ListOperationCallback<ClusterInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(String nextPageLink) {
-                    return listNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * List cluster resource.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
-     */
-    public Observable<Page<ClusterInner>> listNextAsync(final String nextPageLink) {
-        return listNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<ClusterInner>>, Page<ClusterInner>>() {
-                @Override
-                public Page<ClusterInner> call(ServiceResponse<Page<ClusterInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * List cluster resource.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ClusterInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
-        return listNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<ClusterInner>>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(ServiceResponse<Page<ClusterInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * List cluster resource.
-     *
-    ServiceResponse<PageImpl<ClusterInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ClusterInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ClusterInner>>> listNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ClusterInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ClusterInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<ClusterInner>> result = listNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ClusterInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<ClusterInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ClusterInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ClusterInner>>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ErrorModelException.class)
                 .build(response);
     }
 

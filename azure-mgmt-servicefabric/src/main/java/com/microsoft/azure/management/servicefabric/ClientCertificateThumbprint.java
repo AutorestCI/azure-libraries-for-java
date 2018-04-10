@@ -11,18 +11,18 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Client certificate details using thumbprint.
+ * Describes the client certificate details using thumbprint.
  */
 public class ClientCertificateThumbprint {
     /**
-     * Is this certificate used for admin access from the client, if false, it
-     * is used or query only access.
+     * Indicates if the client certificate has admin access to the cluster. Non
+     * admin clients can perform only read only operations on the cluster.
      */
     @JsonProperty(value = "isAdmin", required = true)
     private boolean isAdmin;
 
     /**
-     * Certificate thumbprint.
+     * The thumbprint of the client certificate.
      */
     @JsonProperty(value = "certificateThumbprint", required = true)
     private String certificateThumbprint;

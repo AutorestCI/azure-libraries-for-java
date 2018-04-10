@@ -11,91 +11,79 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Cluster upgrade policy.
+ * Describes the policy used when upgrading the cluster.
  */
 public class ClusterUpgradePolicy {
     /**
-     * Use the user defined upgrade policy or not.
-     */
-    @JsonProperty(value = "overrideUserUpgradePolicy")
-    private Boolean overrideUserUpgradePolicy;
-
-    /**
-     * Force node to restart or not.
+     * If true, then processes are forcefully restarted during upgrade even
+     * when the code version has not changed (the upgrade only changes
+     * configuration or data).
      */
     @JsonProperty(value = "forceRestart")
     private Boolean forceRestart;
 
     /**
-     * Timeout for replica set upgrade to complete,it represents .Net TimeSpan.
+     * The maximum amount of time to block processing of an upgrade domain and
+     * revent loss of availability when there are unexpected issues. When this
+     * timeout expires, processing of the upgrade domain will proceed
+     * regardless of availability loss issues. The timeout is reset at the
+     * start of each upgrade domain. The timeout can be in either hh:mm:ss or
+     * in d.hh:mm:ss.ms format.
      */
     @JsonProperty(value = "upgradeReplicaSetCheckTimeout", required = true)
     private String upgradeReplicaSetCheckTimeout;
 
     /**
      * The length of time to wait after completing an upgrade domain before
-     * performing health checks, it represents .Net TimeSpan.
+     * performing health checks. The duration can be in either hh:mm:ss or in
+     * d.hh:mm:ss.ms format.
      */
     @JsonProperty(value = "healthCheckWaitDuration", required = true)
     private String healthCheckWaitDuration;
 
     /**
-     * The length of time that health checks must pass continuously,it
-     * represents .Net TimeSpan.
+     * The amount of time that the application or cluster must remain healthy
+     * before the upgrade proceeds to the next upgrade domain. The duration can
+     * be in either hh:mm:ss or in d.hh:mm:ss.ms format.
      */
     @JsonProperty(value = "healthCheckStableDuration", required = true)
     private String healthCheckStableDuration;
 
     /**
-     * The length of time that health checks can fail continuously,it
-     * represents .Net TimeSpan.
+     * The amount of time to retry health evaluation when the application or
+     * cluster is unhealthy before the upgrade rolls back. The timeout can be
+     * in either hh:mm:ss or in d.hh:mm:ss.ms format.
      */
     @JsonProperty(value = "healthCheckRetryTimeout", required = true)
     private String healthCheckRetryTimeout;
 
     /**
-     * The upgrade timeout,it represents .Net TimeSpan.
+     * The amount of time the overall upgrade has to complete before the
+     * upgrade rolls back. The timeout can be in either hh:mm:ss or in
+     * d.hh:mm:ss.ms format.
      */
     @JsonProperty(value = "upgradeTimeout", required = true)
     private String upgradeTimeout;
 
     /**
-     * The timeout for any upgrade domain,it represents .Net TimeSpan.
+     * The amount of time each upgrade domain has to complete before the
+     * upgrade rolls back. The timeout can be in either hh:mm:ss or in
+     * d.hh:mm:ss.ms format.
      */
     @JsonProperty(value = "upgradeDomainTimeout", required = true)
     private String upgradeDomainTimeout;
 
     /**
-     * Cluster health Policy.
+     * The cluster health policy used when upgrading the cluster.
      */
     @JsonProperty(value = "healthPolicy", required = true)
     private ClusterHealthPolicy healthPolicy;
 
     /**
-     * Delta health policy.
+     * The cluster delta health policy used when upgrading the cluster.
      */
     @JsonProperty(value = "deltaHealthPolicy")
     private ClusterUpgradeDeltaHealthPolicy deltaHealthPolicy;
-
-    /**
-     * Get the overrideUserUpgradePolicy value.
-     *
-     * @return the overrideUserUpgradePolicy value
-     */
-    public Boolean overrideUserUpgradePolicy() {
-        return this.overrideUserUpgradePolicy;
-    }
-
-    /**
-     * Set the overrideUserUpgradePolicy value.
-     *
-     * @param overrideUserUpgradePolicy the overrideUserUpgradePolicy value to set
-     * @return the ClusterUpgradePolicy object itself.
-     */
-    public ClusterUpgradePolicy withOverrideUserUpgradePolicy(Boolean overrideUserUpgradePolicy) {
-        this.overrideUserUpgradePolicy = overrideUserUpgradePolicy;
-        return this;
-    }
 
     /**
      * Get the forceRestart value.

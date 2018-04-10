@@ -11,32 +11,58 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The structure of the error.
+ * The error details.
  */
 public class ErrorModel {
     /**
-     * The error detail.
+     * The error code.
      */
-    @JsonProperty(value = "error")
-    private ErrorModelError error;
+    @JsonProperty(value = "code")
+    private String code;
 
     /**
-     * Get the error value.
-     *
-     * @return the error value
+     * The error message.
      */
-    public ErrorModelError error() {
-        return this.error;
+    @JsonProperty(value = "message")
+    private String message;
+
+    /**
+     * Get the code value.
+     *
+     * @return the code value
+     */
+    public String code() {
+        return this.code;
     }
 
     /**
-     * Set the error value.
+     * Set the code value.
      *
-     * @param error the error value to set
+     * @param code the code value to set
      * @return the ErrorModel object itself.
      */
-    public ErrorModel withError(ErrorModelError error) {
-        this.error = error;
+    public ErrorModel withCode(String code) {
+        this.code = code;
+        return this;
+    }
+
+    /**
+     * Get the message value.
+     *
+     * @return the message value
+     */
+    public String message() {
+        return this.message;
+    }
+
+    /**
+     * Set the message value.
+     *
+     * @param message the message value to set
+     * @return the ErrorModel object itself.
+     */
+    public ErrorModel withMessage(String message) {
+        this.message = message;
         return this;
     }
 
