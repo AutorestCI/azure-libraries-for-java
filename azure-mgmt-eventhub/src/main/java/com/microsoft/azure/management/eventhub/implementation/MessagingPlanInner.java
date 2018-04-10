@@ -13,20 +13,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
 /**
- * Messaging.
+ * Messaging Plan for the namespace.
  */
 @JsonFlatten
 public class MessagingPlanInner extends TrackedResourceInner {
     /**
      * Sku type.
      */
-    @JsonProperty(value = "properties.sku")
+    @JsonProperty(value = "properties.sku", access = JsonProperty.Access.WRITE_ONLY)
     private Integer sku;
 
     /**
      * Selected event hub unit.
      */
-    @JsonProperty(value = "properties.selectedEventHubUnit")
+    @JsonProperty(value = "properties.selectedEventHubUnit", access = JsonProperty.Access.WRITE_ONLY)
     private Integer selectedEventHubUnit;
 
     /**
@@ -38,7 +38,7 @@ public class MessagingPlanInner extends TrackedResourceInner {
     /**
      * revision number.
      */
-    @JsonProperty(value = "properties.revision")
+    @JsonProperty(value = "properties.revision", access = JsonProperty.Access.WRITE_ONLY)
     private Long revision;
 
     /**
@@ -51,34 +51,12 @@ public class MessagingPlanInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the sku value.
-     *
-     * @param sku the sku value to set
-     * @return the MessagingPlanInner object itself.
-     */
-    public MessagingPlanInner withSku(Integer sku) {
-        this.sku = sku;
-        return this;
-    }
-
-    /**
      * Get the selectedEventHubUnit value.
      *
      * @return the selectedEventHubUnit value
      */
     public Integer selectedEventHubUnit() {
         return this.selectedEventHubUnit;
-    }
-
-    /**
-     * Set the selectedEventHubUnit value.
-     *
-     * @param selectedEventHubUnit the selectedEventHubUnit value to set
-     * @return the MessagingPlanInner object itself.
-     */
-    public MessagingPlanInner withSelectedEventHubUnit(Integer selectedEventHubUnit) {
-        this.selectedEventHubUnit = selectedEventHubUnit;
-        return this;
     }
 
     /**
@@ -97,17 +75,6 @@ public class MessagingPlanInner extends TrackedResourceInner {
      */
     public Long revision() {
         return this.revision;
-    }
-
-    /**
-     * Set the revision value.
-     *
-     * @param revision the revision value to set
-     * @return the MessagingPlanInner object itself.
-     */
-    public MessagingPlanInner withRevision(Long revision) {
-        this.revision = revision;
-        return this;
     }
 
 }
