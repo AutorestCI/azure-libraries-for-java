@@ -22,7 +22,9 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class AzureSqlDWLinkedService extends LinkedServiceInner {
     /**
-     * The connection string.
+     * The connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
     private Object connectionString;

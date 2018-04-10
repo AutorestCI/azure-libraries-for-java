@@ -22,7 +22,8 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class NetezzaLinkedService extends LinkedServiceInner {
     /**
-     * An ODBC connection string.
+     * An ODBC connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString")
     private Object connectionString;

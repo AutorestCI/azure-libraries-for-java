@@ -23,7 +23,8 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 public class OdbcLinkedService extends LinkedServiceInner {
     /**
      * The non-access credential portion of the connection string as well as an
-     * optional encrypted credential.
+     * optional encrypted credential. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
     private Object connectionString;

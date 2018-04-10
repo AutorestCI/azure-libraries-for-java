@@ -23,6 +23,7 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 public class AzureStorageLinkedService extends LinkedServiceInner {
     /**
      * The connection string. It is mutually exclusive with sasUri property.
+     * Type: string, SecureString or AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString")
     private Object connectionString;
