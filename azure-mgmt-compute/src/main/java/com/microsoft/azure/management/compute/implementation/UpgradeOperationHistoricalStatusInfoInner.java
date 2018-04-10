@@ -30,7 +30,7 @@ public class UpgradeOperationHistoricalStatusInfoInner {
     /**
      * Resource location.
      */
-    @JsonProperty(value = "location")
+    @JsonProperty(value = "location", access = JsonProperty.Access.WRITE_ONLY)
     private String location;
 
     /**
@@ -58,17 +58,6 @@ public class UpgradeOperationHistoricalStatusInfoInner {
      */
     public String location() {
         return this.location;
-    }
-
-    /**
-     * Set the location value.
-     *
-     * @param location the location value to set
-     * @return the UpgradeOperationHistoricalStatusInfoInner object itself.
-     */
-    public UpgradeOperationHistoricalStatusInfoInner withLocation(String location) {
-        this.location = location;
-        return this;
     }
 
 }

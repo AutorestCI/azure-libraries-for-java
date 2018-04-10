@@ -29,7 +29,7 @@ public class UpgradeOperationHistoryStatus {
     private DateTime startTime;
 
     /**
-     * Start time of the upgrade.
+     * End time of the upgrade.
      */
     @JsonProperty(value = "endTime", access = JsonProperty.Access.WRITE_ONLY)
     private DateTime endTime;

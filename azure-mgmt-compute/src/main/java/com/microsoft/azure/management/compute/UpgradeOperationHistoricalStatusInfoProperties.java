@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.compute;
 
+import com.microsoft.azure.management.compute.implementation.ImageReferenceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -33,17 +34,17 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     private ApiError error;
 
     /**
-     * Error Details for this upgrade if there are any. Possible values
-     * include: 'Unknown', 'User', 'Platform'.
+     * Invoker of the Upgrade Operation. Possible values include: 'Unknown',
+     * 'User', 'Platform'.
      */
     @JsonProperty(value = "startedBy", access = JsonProperty.Access.WRITE_ONLY)
     private UpgradeOperationInvoker startedBy;
 
     /**
-     * Error Details for this upgrade if there are any.
+     * Image Reference details.
      */
     @JsonProperty(value = "targetImageReference", access = JsonProperty.Access.WRITE_ONLY)
-    private PlatformImageReference targetImageReference;
+    private ImageReferenceInner targetImageReference;
 
     /**
      * Get the runningStatus value.
@@ -86,7 +87,7 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
      *
      * @return the targetImageReference value
      */
-    public PlatformImageReference targetImageReference() {
+    public ImageReferenceInner targetImageReference() {
         return this.targetImageReference;
     }
 
