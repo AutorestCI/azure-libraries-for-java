@@ -11,13 +11,13 @@ package com.microsoft.azure.management.mediaservices;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The request  body for a SyncStorageKeys API.
+ * The input to the sync storage keys request.
  */
 public class SyncStorageKeysInput {
     /**
-     * The id of the storage account resource.
+     * The ID of the storage account resource.
      */
-    @JsonProperty(value = "id", required = true)
+    @JsonProperty(value = "id")
     private String id;
 
     /**

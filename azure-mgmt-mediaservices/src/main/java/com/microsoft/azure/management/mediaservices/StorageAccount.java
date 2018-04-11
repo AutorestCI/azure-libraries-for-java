@@ -11,25 +11,25 @@ package com.microsoft.azure.management.mediaservices;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The properties of a storage account associated with this resource.
+ * The storage account details.
  */
 public class StorageAccount {
     /**
-     * The id of the storage account resource. Media Services relies on tables
+     * The ID of the storage account resource. Media Services relies on tables
      * and queues as well as blobs, so the primary storage account must be a
      * Standard Storage account (either Microsoft.ClassicStorage or
      * Microsoft.Storage). Blob only storage accounts can be added as secondary
-     * storage accounts (isPrimary false).
+     * storage accounts.
      */
-    @JsonProperty(value = "id", required = true)
+    @JsonProperty(value = "id")
     private String id;
 
     /**
-     * Is this storage account resource the primary storage account for the
-     * Media Service resource. Blob only storage must set this to false.
+     * The type of the storage account. Possible values include: 'Primary',
+     * 'Secondary'.
      */
-    @JsonProperty(value = "isPrimary", required = true)
-    private boolean isPrimary;
+    @JsonProperty(value = "type", required = true)
+    private StorageAccountType type;
 
     /**
      * Get the id value.
@@ -52,22 +52,22 @@ public class StorageAccount {
     }
 
     /**
-     * Get the isPrimary value.
+     * Get the type value.
      *
-     * @return the isPrimary value
+     * @return the type value
      */
-    public boolean isPrimary() {
-        return this.isPrimary;
+    public StorageAccountType type() {
+        return this.type;
     }
 
     /**
-     * Set the isPrimary value.
+     * Set the type value.
      *
-     * @param isPrimary the isPrimary value to set
+     * @param type the type value to set
      * @return the StorageAccount object itself.
      */
-    public StorageAccount withIsPrimary(boolean isPrimary) {
-        this.isPrimary = isPrimary;
+    public StorageAccount withType(StorageAccountType type) {
+        this.type = type;
         return this;
     }
 

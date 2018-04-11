@@ -8,24 +8,22 @@
 
 package com.microsoft.azure.management.mediaservices.implementation;
 
+import java.util.UUID;
 import java.util.List;
-import com.microsoft.azure.management.mediaservices.ApiEndpoint;
 import com.microsoft.azure.management.mediaservices.StorageAccount;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
-import com.microsoft.azure.Resource;
 
 /**
- * The properties of a Media Service resource.
+ * A Media Services account.
  */
 @JsonFlatten
-public class MediaServiceInner extends Resource {
+public class MediaServiceInner extends TrackedResourceInner {
     /**
-     * Read-only property that lists the Media Services REST API endpoints for
-     * this resource. If supplied on a PUT or PATCH, the value will be ignored.
+     * The Media Services account ID.
      */
-    @JsonProperty(value = "properties.apiEndpoints", access = JsonProperty.Access.WRITE_ONLY)
-    private List<ApiEndpoint> apiEndpoints;
+    @JsonProperty(value = "properties.mediaServiceId", access = JsonProperty.Access.WRITE_ONLY)
+    private UUID mediaServiceId;
 
     /**
      * The storage accounts for this resource.
@@ -34,12 +32,12 @@ public class MediaServiceInner extends Resource {
     private List<StorageAccount> storageAccounts;
 
     /**
-     * Get the apiEndpoints value.
+     * Get the mediaServiceId value.
      *
-     * @return the apiEndpoints value
+     * @return the mediaServiceId value
      */
-    public List<ApiEndpoint> apiEndpoints() {
-        return this.apiEndpoints;
+    public UUID mediaServiceId() {
+        return this.mediaServiceId;
     }
 
     /**

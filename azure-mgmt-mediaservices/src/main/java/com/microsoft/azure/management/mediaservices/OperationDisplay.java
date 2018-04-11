@@ -11,26 +11,32 @@ package com.microsoft.azure.management.mediaservices;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The object that represents the operation.
+ * Operation details.
  */
 public class OperationDisplay {
     /**
-     * Service provider: Microsoft.Media.
+     * The service provider.
      */
-    @JsonProperty(value = "provider", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "provider")
     private String provider;
 
     /**
-     * Resource on which the operation is performed: Invoice, etc.
+     * Resource on which the operation is performed.
      */
-    @JsonProperty(value = "resource", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "resource")
     private String resource;
 
     /**
-     * Operation type: Read, write, delete, etc.
+     * The operation type.
      */
-    @JsonProperty(value = "operation", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "operation")
     private String operation;
+
+    /**
+     * The operation description.
+     */
+    @JsonProperty(value = "description")
+    private String description;
 
     /**
      * Get the provider value.
@@ -39,6 +45,17 @@ public class OperationDisplay {
      */
     public String provider() {
         return this.provider;
+    }
+
+    /**
+     * Set the provider value.
+     *
+     * @param provider the provider value to set
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withProvider(String provider) {
+        this.provider = provider;
+        return this;
     }
 
     /**
@@ -51,12 +68,54 @@ public class OperationDisplay {
     }
 
     /**
+     * Set the resource value.
+     *
+     * @param resource the resource value to set
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withResource(String resource) {
+        this.resource = resource;
+        return this;
+    }
+
+    /**
      * Get the operation value.
      *
      * @return the operation value
      */
     public String operation() {
         return this.operation;
+    }
+
+    /**
+     * Set the operation value.
+     *
+     * @param operation the operation value to set
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withOperation(String operation) {
+        this.operation = operation;
+        return this;
+    }
+
+    /**
+     * Get the description value.
+     *
+     * @return the description value
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Set the description value.
+     *
+     * @param description the description value to set
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withDescription(String description) {
+        this.description = description;
+        return this;
     }
 
 }

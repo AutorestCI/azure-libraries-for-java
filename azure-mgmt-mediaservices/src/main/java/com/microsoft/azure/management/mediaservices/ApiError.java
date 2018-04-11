@@ -11,58 +11,33 @@ package com.microsoft.azure.management.mediaservices;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The error returned from a failed Media Services REST API call.
+ * The API error.
  */
 public class ApiError {
     /**
-     * Error code.
+     * ApiError.
+     * The error properties.
      */
-    @JsonProperty(value = "code")
-    private String code;
+    @JsonProperty(value = "error")
+    private ODataError error;
 
     /**
-     * Error message.
-     */
-    @JsonProperty(value = "message")
-    private String message;
-
-    /**
-     * Get the code value.
+     * Get the error value.
      *
-     * @return the code value
+     * @return the error value
      */
-    public String code() {
-        return this.code;
+    public ODataError error() {
+        return this.error;
     }
 
     /**
-     * Set the code value.
+     * Set the error value.
      *
-     * @param code the code value to set
+     * @param error the error value to set
      * @return the ApiError object itself.
      */
-    public ApiError withCode(String code) {
-        this.code = code;
-        return this;
-    }
-
-    /**
-     * Get the message value.
-     *
-     * @return the message value
-     */
-    public String message() {
-        return this.message;
-    }
-
-    /**
-     * Set the message value.
-     *
-     * @param message the message value to set
-     * @return the ApiError object itself.
-     */
-    public ApiError withMessage(String message) {
-        this.message = message;
+    public ApiError withError(ODataError error) {
+        this.error = error;
         return this;
     }
 
