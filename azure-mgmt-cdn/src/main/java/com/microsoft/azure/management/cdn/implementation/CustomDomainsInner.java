@@ -103,7 +103,6 @@ public class CustomDomainsInner {
     /**
      * Lists all of the existing custom domains within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -111,8 +110,8 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;CustomDomainInner&gt; object if successful.
      */
-    public PagedList<CustomDomainInner> listByEndpoint(final String resourceGroupName, final String profileName, final String endpointName) {
-        ServiceResponse<Page<CustomDomainInner>> response = listByEndpointSinglePageAsync(resourceGroupName, profileName, endpointName).toBlocking().single();
+    public PagedList<CustomDomainInner> listByEndpoint(final String profileName, final String endpointName) {
+        ServiceResponse<Page<CustomDomainInner>> response = listByEndpointSinglePageAsync(profileName, endpointName).toBlocking().single();
         return new PagedList<CustomDomainInner>(response.body()) {
             @Override
             public Page<CustomDomainInner> nextPage(String nextPageLink) {
@@ -124,16 +123,15 @@ public class CustomDomainsInner {
     /**
      * Lists all of the existing custom domains within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<CustomDomainInner>> listByEndpointAsync(final String resourceGroupName, final String profileName, final String endpointName, final ListOperationCallback<CustomDomainInner> serviceCallback) {
+    public ServiceFuture<List<CustomDomainInner>> listByEndpointAsync(final String profileName, final String endpointName, final ListOperationCallback<CustomDomainInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listByEndpointSinglePageAsync(resourceGroupName, profileName, endpointName),
+            listByEndpointSinglePageAsync(profileName, endpointName),
             new Func1<String, Observable<ServiceResponse<Page<CustomDomainInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<CustomDomainInner>>> call(String nextPageLink) {
@@ -146,14 +144,13 @@ public class CustomDomainsInner {
     /**
      * Lists all of the existing custom domains within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;CustomDomainInner&gt; object
      */
-    public Observable<Page<CustomDomainInner>> listByEndpointAsync(final String resourceGroupName, final String profileName, final String endpointName) {
-        return listByEndpointWithServiceResponseAsync(resourceGroupName, profileName, endpointName)
+    public Observable<Page<CustomDomainInner>> listByEndpointAsync(final String profileName, final String endpointName) {
+        return listByEndpointWithServiceResponseAsync(profileName, endpointName)
             .map(new Func1<ServiceResponse<Page<CustomDomainInner>>, Page<CustomDomainInner>>() {
                 @Override
                 public Page<CustomDomainInner> call(ServiceResponse<Page<CustomDomainInner>> response) {
@@ -165,14 +162,13 @@ public class CustomDomainsInner {
     /**
      * Lists all of the existing custom domains within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;CustomDomainInner&gt; object
      */
-    public Observable<ServiceResponse<Page<CustomDomainInner>>> listByEndpointWithServiceResponseAsync(final String resourceGroupName, final String profileName, final String endpointName) {
-        return listByEndpointSinglePageAsync(resourceGroupName, profileName, endpointName)
+    public Observable<ServiceResponse<Page<CustomDomainInner>>> listByEndpointWithServiceResponseAsync(final String profileName, final String endpointName) {
+        return listByEndpointSinglePageAsync(profileName, endpointName)
             .concatMap(new Func1<ServiceResponse<Page<CustomDomainInner>>, Observable<ServiceResponse<Page<CustomDomainInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<CustomDomainInner>>> call(ServiceResponse<Page<CustomDomainInner>> page) {
@@ -188,15 +184,14 @@ public class CustomDomainsInner {
     /**
      * Lists all of the existing custom domains within an endpoint.
      *
-    ServiceResponse<PageImpl<CustomDomainInner>> * @param resourceGroupName Name of the Resource group within the Azure subscription.
     ServiceResponse<PageImpl<CustomDomainInner>> * @param profileName Name of the CDN profile which is unique within the resource group.
     ServiceResponse<PageImpl<CustomDomainInner>> * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;CustomDomainInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<CustomDomainInner>>> listByEndpointSinglePageAsync(final String resourceGroupName, final String profileName, final String endpointName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<Page<CustomDomainInner>>> listByEndpointSinglePageAsync(final String profileName, final String endpointName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -210,7 +205,7 @@ public class CustomDomainsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listByEndpoint(resourceGroupName, profileName, endpointName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.listByEndpoint(this.client.resourceGroupName(), profileName, endpointName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CustomDomainInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<CustomDomainInner>>> call(Response<ResponseBody> response) {
@@ -234,7 +229,6 @@ public class CustomDomainsInner {
     /**
      * Gets an exisitng custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -243,14 +237,13 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CustomDomainInner object if successful.
      */
-    public CustomDomainInner get(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return getWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).toBlocking().single().body();
+    public CustomDomainInner get(String profileName, String endpointName, String customDomainName) {
+        return getWithServiceResponseAsync(profileName, endpointName, customDomainName).toBlocking().single().body();
     }
 
     /**
      * Gets an exisitng custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -258,22 +251,21 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CustomDomainInner> getAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName), serviceCallback);
+    public ServiceFuture<CustomDomainInner> getAsync(String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getWithServiceResponseAsync(profileName, endpointName, customDomainName), serviceCallback);
     }
 
     /**
      * Gets an exisitng custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<CustomDomainInner> getAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return getWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
+    public Observable<CustomDomainInner> getAsync(String profileName, String endpointName, String customDomainName) {
+        return getWithServiceResponseAsync(profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
             @Override
             public CustomDomainInner call(ServiceResponse<CustomDomainInner> response) {
                 return response.body();
@@ -284,16 +276,15 @@ public class CustomDomainsInner {
     /**
      * Gets an exisitng custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<ServiceResponse<CustomDomainInner>> getWithServiceResponseAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<CustomDomainInner>> getWithServiceResponseAsync(String profileName, String endpointName, String customDomainName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -310,7 +301,7 @@ public class CustomDomainsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.get(resourceGroupName, profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.get(this.client.resourceGroupName(), profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CustomDomainInner>>>() {
                 @Override
                 public Observable<ServiceResponse<CustomDomainInner>> call(Response<ResponseBody> response) {
@@ -334,7 +325,6 @@ public class CustomDomainsInner {
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -344,14 +334,13 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CustomDomainInner object if successful.
      */
-    public CustomDomainInner create(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName) {
-        return createWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName, hostName).toBlocking().last().body();
+    public CustomDomainInner create(String profileName, String endpointName, String customDomainName, String hostName) {
+        return createWithServiceResponseAsync(profileName, endpointName, customDomainName, hostName).toBlocking().last().body();
     }
 
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -360,14 +349,13 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CustomDomainInner> createAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName, final ServiceCallback<CustomDomainInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName, hostName), serviceCallback);
+    public ServiceFuture<CustomDomainInner> createAsync(String profileName, String endpointName, String customDomainName, String hostName, final ServiceCallback<CustomDomainInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createWithServiceResponseAsync(profileName, endpointName, customDomainName, hostName), serviceCallback);
     }
 
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -375,8 +363,8 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<CustomDomainInner> createAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName) {
-        return createWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName, hostName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
+    public Observable<CustomDomainInner> createAsync(String profileName, String endpointName, String customDomainName, String hostName) {
+        return createWithServiceResponseAsync(profileName, endpointName, customDomainName, hostName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
             @Override
             public CustomDomainInner call(ServiceResponse<CustomDomainInner> response) {
                 return response.body();
@@ -387,7 +375,6 @@ public class CustomDomainsInner {
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -395,9 +382,9 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<CustomDomainInner>> createWithServiceResponseAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<CustomDomainInner>> createWithServiceResponseAsync(String profileName, String endpointName, String customDomainName, String hostName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -419,14 +406,13 @@ public class CustomDomainsInner {
         }
         CustomDomainParameters customDomainProperties = new CustomDomainParameters();
         customDomainProperties.withHostName(hostName);
-        Observable<Response<ResponseBody>> observable = service.create(resourceGroupName, profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), customDomainProperties, this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.create(this.client.resourceGroupName(), profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), customDomainProperties, this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<CustomDomainInner>() { }.getType());
     }
 
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -436,14 +422,13 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CustomDomainInner object if successful.
      */
-    public CustomDomainInner beginCreate(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName, hostName).toBlocking().single().body();
+    public CustomDomainInner beginCreate(String profileName, String endpointName, String customDomainName, String hostName) {
+        return beginCreateWithServiceResponseAsync(profileName, endpointName, customDomainName, hostName).toBlocking().single().body();
     }
 
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -452,14 +437,13 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CustomDomainInner> beginCreateAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName, final ServiceCallback<CustomDomainInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName, hostName), serviceCallback);
+    public ServiceFuture<CustomDomainInner> beginCreateAsync(String profileName, String endpointName, String customDomainName, String hostName, final ServiceCallback<CustomDomainInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(profileName, endpointName, customDomainName, hostName), serviceCallback);
     }
 
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -467,8 +451,8 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<CustomDomainInner> beginCreateAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName, hostName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
+    public Observable<CustomDomainInner> beginCreateAsync(String profileName, String endpointName, String customDomainName, String hostName) {
+        return beginCreateWithServiceResponseAsync(profileName, endpointName, customDomainName, hostName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
             @Override
             public CustomDomainInner call(ServiceResponse<CustomDomainInner> response) {
                 return response.body();
@@ -479,7 +463,6 @@ public class CustomDomainsInner {
     /**
      * Creates a new custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -487,9 +470,9 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<ServiceResponse<CustomDomainInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, String hostName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<CustomDomainInner>> beginCreateWithServiceResponseAsync(String profileName, String endpointName, String customDomainName, String hostName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -511,7 +494,7 @@ public class CustomDomainsInner {
         }
         CustomDomainParameters customDomainProperties = new CustomDomainParameters();
         customDomainProperties.withHostName(hostName);
-        return service.beginCreate(resourceGroupName, profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), customDomainProperties, this.client.userAgent())
+        return service.beginCreate(this.client.resourceGroupName(), profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), customDomainProperties, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CustomDomainInner>>>() {
                 @Override
                 public Observable<ServiceResponse<CustomDomainInner>> call(Response<ResponseBody> response) {
@@ -537,7 +520,6 @@ public class CustomDomainsInner {
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -546,14 +528,13 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CustomDomainInner object if successful.
      */
-    public CustomDomainInner delete(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).toBlocking().last().body();
+    public CustomDomainInner delete(String profileName, String endpointName, String customDomainName) {
+        return deleteWithServiceResponseAsync(profileName, endpointName, customDomainName).toBlocking().last().body();
     }
 
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -561,22 +542,21 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CustomDomainInner> deleteAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
-        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName), serviceCallback);
+    public ServiceFuture<CustomDomainInner> deleteAsync(String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(profileName, endpointName, customDomainName), serviceCallback);
     }
 
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<CustomDomainInner> deleteAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
+    public Observable<CustomDomainInner> deleteAsync(String profileName, String endpointName, String customDomainName) {
+        return deleteWithServiceResponseAsync(profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
             @Override
             public CustomDomainInner call(ServiceResponse<CustomDomainInner> response) {
                 return response.body();
@@ -587,16 +567,15 @@ public class CustomDomainsInner {
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<CustomDomainInner>> deleteWithServiceResponseAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<CustomDomainInner>> deleteWithServiceResponseAsync(String profileName, String endpointName, String customDomainName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -613,14 +592,13 @@ public class CustomDomainsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Observable<Response<ResponseBody>> observable = service.delete(resourceGroupName, profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.delete(this.client.resourceGroupName(), profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<CustomDomainInner>() { }.getType());
     }
 
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -629,14 +607,13 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CustomDomainInner object if successful.
      */
-    public CustomDomainInner beginDelete(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).toBlocking().single().body();
+    public CustomDomainInner beginDelete(String profileName, String endpointName, String customDomainName) {
+        return beginDeleteWithServiceResponseAsync(profileName, endpointName, customDomainName).toBlocking().single().body();
     }
 
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -644,22 +621,21 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CustomDomainInner> beginDeleteAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName), serviceCallback);
+    public ServiceFuture<CustomDomainInner> beginDeleteAsync(String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(profileName, endpointName, customDomainName), serviceCallback);
     }
 
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<CustomDomainInner> beginDeleteAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
+    public Observable<CustomDomainInner> beginDeleteAsync(String profileName, String endpointName, String customDomainName) {
+        return beginDeleteWithServiceResponseAsync(profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
             @Override
             public CustomDomainInner call(ServiceResponse<CustomDomainInner> response) {
                 return response.body();
@@ -670,16 +646,15 @@ public class CustomDomainsInner {
     /**
      * Deletes an existing custom domain within an endpoint.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<ServiceResponse<CustomDomainInner>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<CustomDomainInner>> beginDeleteWithServiceResponseAsync(String profileName, String endpointName, String customDomainName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -696,7 +671,7 @@ public class CustomDomainsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.beginDelete(resourceGroupName, profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginDelete(this.client.resourceGroupName(), profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CustomDomainInner>>>() {
                 @Override
                 public Observable<ServiceResponse<CustomDomainInner>> call(Response<ResponseBody> response) {
@@ -722,7 +697,6 @@ public class CustomDomainsInner {
     /**
      * Disable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -731,14 +705,13 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CustomDomainInner object if successful.
      */
-    public CustomDomainInner disableCustomHttps(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return disableCustomHttpsWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).toBlocking().single().body();
+    public CustomDomainInner disableCustomHttps(String profileName, String endpointName, String customDomainName) {
+        return disableCustomHttpsWithServiceResponseAsync(profileName, endpointName, customDomainName).toBlocking().single().body();
     }
 
     /**
      * Disable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -746,22 +719,21 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CustomDomainInner> disableCustomHttpsAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
-        return ServiceFuture.fromResponse(disableCustomHttpsWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName), serviceCallback);
+    public ServiceFuture<CustomDomainInner> disableCustomHttpsAsync(String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
+        return ServiceFuture.fromResponse(disableCustomHttpsWithServiceResponseAsync(profileName, endpointName, customDomainName), serviceCallback);
     }
 
     /**
      * Disable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<CustomDomainInner> disableCustomHttpsAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return disableCustomHttpsWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
+    public Observable<CustomDomainInner> disableCustomHttpsAsync(String profileName, String endpointName, String customDomainName) {
+        return disableCustomHttpsWithServiceResponseAsync(profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
             @Override
             public CustomDomainInner call(ServiceResponse<CustomDomainInner> response) {
                 return response.body();
@@ -772,16 +744,15 @@ public class CustomDomainsInner {
     /**
      * Disable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<ServiceResponse<CustomDomainInner>> disableCustomHttpsWithServiceResponseAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<CustomDomainInner>> disableCustomHttpsWithServiceResponseAsync(String profileName, String endpointName, String customDomainName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -798,7 +769,7 @@ public class CustomDomainsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.disableCustomHttps(resourceGroupName, profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.disableCustomHttps(this.client.resourceGroupName(), profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CustomDomainInner>>>() {
                 @Override
                 public Observable<ServiceResponse<CustomDomainInner>> call(Response<ResponseBody> response) {
@@ -823,7 +794,6 @@ public class CustomDomainsInner {
     /**
      * Enable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -832,14 +802,13 @@ public class CustomDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CustomDomainInner object if successful.
      */
-    public CustomDomainInner enableCustomHttps(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return enableCustomHttpsWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).toBlocking().single().body();
+    public CustomDomainInner enableCustomHttps(String profileName, String endpointName, String customDomainName) {
+        return enableCustomHttpsWithServiceResponseAsync(profileName, endpointName, customDomainName).toBlocking().single().body();
     }
 
     /**
      * Enable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
@@ -847,22 +816,21 @@ public class CustomDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CustomDomainInner> enableCustomHttpsAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
-        return ServiceFuture.fromResponse(enableCustomHttpsWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName), serviceCallback);
+    public ServiceFuture<CustomDomainInner> enableCustomHttpsAsync(String profileName, String endpointName, String customDomainName, final ServiceCallback<CustomDomainInner> serviceCallback) {
+        return ServiceFuture.fromResponse(enableCustomHttpsWithServiceResponseAsync(profileName, endpointName, customDomainName), serviceCallback);
     }
 
     /**
      * Enable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<CustomDomainInner> enableCustomHttpsAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        return enableCustomHttpsWithServiceResponseAsync(resourceGroupName, profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
+    public Observable<CustomDomainInner> enableCustomHttpsAsync(String profileName, String endpointName, String customDomainName) {
+        return enableCustomHttpsWithServiceResponseAsync(profileName, endpointName, customDomainName).map(new Func1<ServiceResponse<CustomDomainInner>, CustomDomainInner>() {
             @Override
             public CustomDomainInner call(ServiceResponse<CustomDomainInner> response) {
                 return response.body();
@@ -873,16 +841,15 @@ public class CustomDomainsInner {
     /**
      * Enable https delivery of the custom domain.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param customDomainName Name of the custom domain within an endpoint.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CustomDomainInner object
      */
-    public Observable<ServiceResponse<CustomDomainInner>> enableCustomHttpsWithServiceResponseAsync(String resourceGroupName, String profileName, String endpointName, String customDomainName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<CustomDomainInner>> enableCustomHttpsWithServiceResponseAsync(String profileName, String endpointName, String customDomainName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -899,7 +866,7 @@ public class CustomDomainsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.enableCustomHttps(resourceGroupName, profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.enableCustomHttps(this.client.resourceGroupName(), profileName, endpointName, customDomainName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CustomDomainInner>>>() {
                 @Override
                 public Observable<ServiceResponse<CustomDomainInner>> call(Response<ResponseBody> response) {
