@@ -17,13 +17,13 @@ public class DefaultErrorResponseErrorDetailsItem {
     /**
      * Standardized string to programmatically identify the error.
      */
-    @JsonProperty(value = "code", required = true, access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "code", access = JsonProperty.Access.WRITE_ONLY)
     private String code;
 
     /**
      * Detailed error description and debugging information.
      */
-    @JsonProperty(value = "message", required = true, access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
     /**

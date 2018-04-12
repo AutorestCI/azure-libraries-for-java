@@ -11,8 +11,8 @@ package com.microsoft.azure.management.web.implementation;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
+import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
-import com.microsoft.azure.management.web.DefaultErrorResponseException;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -200,7 +200,7 @@ public class DiagnosticsInner {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Site Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorResponseInner&gt; object if successful.
      */
@@ -312,10 +312,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorResponseInner>> listHostingEnvironmentDetectorResponsesDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorResponseInner>> listHostingEnvironmentDetectorResponsesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorResponseInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -327,7 +327,7 @@ public class DiagnosticsInner {
      * @param name App Service Environment Name
      * @param detectorName Detector Resource Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DetectorResponseInner object if successful.
      */
@@ -421,7 +421,7 @@ public class DiagnosticsInner {
      * @param endTime End Time
      * @param timeGrain Time Grain
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DetectorResponseInner object if successful.
      */
@@ -510,10 +510,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DetectorResponseInner> getHostingEnvironmentDetectorResponseDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DetectorResponseInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DetectorResponseInner> getHostingEnvironmentDetectorResponseDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DetectorResponseInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DetectorResponseInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -524,7 +524,7 @@ public class DiagnosticsInner {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param siteName Site Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorResponseInner&gt; object if successful.
      */
@@ -636,10 +636,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorResponseInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -651,7 +651,7 @@ public class DiagnosticsInner {
      * @param siteName Site Name
      * @param detectorName Detector Resource Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DetectorResponseInner object if successful.
      */
@@ -745,7 +745,7 @@ public class DiagnosticsInner {
      * @param endTime End Time
      * @param timeGrain Time Grain
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DetectorResponseInner object if successful.
      */
@@ -834,10 +834,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DetectorResponseInner> getSiteDetectorResponseDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DetectorResponseInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DetectorResponseInner> getSiteDetectorResponseDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DetectorResponseInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DetectorResponseInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -848,7 +848,7 @@ public class DiagnosticsInner {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param siteName Site Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DiagnosticCategoryInner&gt; object if successful.
      */
@@ -960,10 +960,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DiagnosticCategoryInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -975,7 +975,7 @@ public class DiagnosticsInner {
      * @param siteName Site Name
      * @param diagnosticCategory Diagnostic Category
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticCategoryInner object if successful.
      */
@@ -1055,10 +1055,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticCategoryInner> getSiteDiagnosticCategoryDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticCategoryInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticCategoryInner> getSiteDiagnosticCategoryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticCategoryInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticCategoryInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -1070,7 +1070,7 @@ public class DiagnosticsInner {
      * @param siteName Site Name
      * @param diagnosticCategory Diagnostic Category
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;AnalysisDefinitionInner&gt; object if successful.
      */
@@ -1189,10 +1189,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<AnalysisDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -1205,7 +1205,7 @@ public class DiagnosticsInner {
      * @param diagnosticCategory Diagnostic Category
      * @param analysisName Analysis Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticAnalysisInner object if successful.
      */
@@ -1291,10 +1291,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticAnalysisInner> getSiteAnalysisDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticAnalysisInner> getSiteAnalysisDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticAnalysisInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -1307,7 +1307,7 @@ public class DiagnosticsInner {
      * @param diagnosticCategory Category Name
      * @param analysisName Analysis Resource Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticAnalysisInner object if successful.
      */
@@ -1408,7 +1408,7 @@ public class DiagnosticsInner {
      * @param endTime End Time
      * @param timeGrain Time Grain
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticAnalysisInner object if successful.
      */
@@ -1503,10 +1503,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticAnalysisInner> executeSiteAnalysisDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticAnalysisInner> executeSiteAnalysisDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticAnalysisInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -1518,7 +1518,7 @@ public class DiagnosticsInner {
      * @param siteName Site Name
      * @param diagnosticCategory Diagnostic Category
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -1637,10 +1637,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -1653,7 +1653,7 @@ public class DiagnosticsInner {
      * @param diagnosticCategory Diagnostic Category
      * @param detectorName Detector Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -1779,10 +1779,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -1795,7 +1795,7 @@ public class DiagnosticsInner {
      * @param detectorName Detector Resource Name
      * @param diagnosticCategory Category Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticDetectorResponseInner object if successful.
      */
@@ -1896,7 +1896,7 @@ public class DiagnosticsInner {
      * @param endTime End Time
      * @param timeGrain Time Grain
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticDetectorResponseInner object if successful.
      */
@@ -1991,10 +1991,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticDetectorResponseInner> executeSiteDetectorDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticDetectorResponseInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticDetectorResponseInner> executeSiteDetectorDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticDetectorResponseInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticDetectorResponseInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -2006,7 +2006,7 @@ public class DiagnosticsInner {
      * @param siteName Site Name
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorResponseInner&gt; object if successful.
      */
@@ -2125,10 +2125,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorResponseInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -2141,7 +2141,7 @@ public class DiagnosticsInner {
      * @param detectorName Detector Resource Name
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DetectorResponseInner object if successful.
      */
@@ -2242,7 +2242,7 @@ public class DiagnosticsInner {
      * @param endTime End Time
      * @param timeGrain Time Grain
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DetectorResponseInner object if successful.
      */
@@ -2337,10 +2337,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DetectorResponseInner> getSiteDetectorResponseSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DetectorResponseInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DetectorResponseInner> getSiteDetectorResponseSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DetectorResponseInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DetectorResponseInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -2352,7 +2352,7 @@ public class DiagnosticsInner {
      * @param siteName Site Name
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DiagnosticCategoryInner&gt; object if successful.
      */
@@ -2471,10 +2471,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DiagnosticCategoryInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -2487,7 +2487,7 @@ public class DiagnosticsInner {
      * @param diagnosticCategory Diagnostic Category
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticCategoryInner object if successful.
      */
@@ -2573,10 +2573,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticCategoryInner> getSiteDiagnosticCategorySlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticCategoryInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticCategoryInner> getSiteDiagnosticCategorySlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticCategoryInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticCategoryInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -2589,7 +2589,7 @@ public class DiagnosticsInner {
      * @param diagnosticCategory Diagnostic Category
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;AnalysisDefinitionInner&gt; object if successful.
      */
@@ -2715,10 +2715,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<AnalysisDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -2732,7 +2732,7 @@ public class DiagnosticsInner {
      * @param analysisName Analysis Name
      * @param slot Slot - optional
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticAnalysisInner object if successful.
      */
@@ -2824,10 +2824,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticAnalysisInner> getSiteAnalysisSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticAnalysisInner> getSiteAnalysisSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticAnalysisInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -2841,7 +2841,7 @@ public class DiagnosticsInner {
      * @param analysisName Analysis Resource Name
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticAnalysisInner object if successful.
      */
@@ -2949,7 +2949,7 @@ public class DiagnosticsInner {
      * @param endTime End Time
      * @param timeGrain Time Grain
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticAnalysisInner object if successful.
      */
@@ -3050,10 +3050,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticAnalysisInner> executeSiteAnalysisSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticAnalysisInner> executeSiteAnalysisSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticAnalysisInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticAnalysisInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -3066,7 +3066,7 @@ public class DiagnosticsInner {
      * @param diagnosticCategory Diagnostic Category
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -3192,10 +3192,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -3209,7 +3209,7 @@ public class DiagnosticsInner {
      * @param detectorName Detector Name
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -3342,10 +3342,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -3359,7 +3359,7 @@ public class DiagnosticsInner {
      * @param diagnosticCategory Category Name
      * @param slot Slot Name
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticDetectorResponseInner object if successful.
      */
@@ -3467,7 +3467,7 @@ public class DiagnosticsInner {
      * @param endTime End Time
      * @param timeGrain Time Grain
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiagnosticDetectorResponseInner object if successful.
      */
@@ -3568,10 +3568,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<DiagnosticDetectorResponseInner> executeSiteDetectorSlotDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DiagnosticDetectorResponseInner, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<DiagnosticDetectorResponseInner> executeSiteDetectorSlotDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<DiagnosticDetectorResponseInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DiagnosticDetectorResponseInner>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -3581,7 +3581,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorResponseInner&gt; object if successful.
      */
@@ -3684,10 +3684,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorResponseInner>> listHostingEnvironmentDetectorResponsesNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorResponseInner>> listHostingEnvironmentDetectorResponsesNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorResponseInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -3697,7 +3697,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorResponseInner&gt; object if successful.
      */
@@ -3800,10 +3800,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorResponseInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -3813,7 +3813,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DiagnosticCategoryInner&gt; object if successful.
      */
@@ -3916,10 +3916,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DiagnosticCategoryInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -3929,7 +3929,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;AnalysisDefinitionInner&gt; object if successful.
      */
@@ -4032,10 +4032,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<AnalysisDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -4045,7 +4045,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -4148,10 +4148,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -4161,7 +4161,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -4264,10 +4264,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -4277,7 +4277,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorResponseInner&gt; object if successful.
      */
@@ -4380,10 +4380,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesSlotNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorResponseInner>> listSiteDetectorResponsesSlotNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorResponseInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorResponseInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -4393,7 +4393,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DiagnosticCategoryInner&gt; object if successful.
      */
@@ -4496,10 +4496,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesSlotNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DiagnosticCategoryInner>> listSiteDiagnosticCategoriesSlotNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiagnosticCategoryInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DiagnosticCategoryInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -4509,7 +4509,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;AnalysisDefinitionInner&gt; object if successful.
      */
@@ -4612,10 +4612,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesSlotNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<AnalysisDefinitionInner>> listSiteAnalysesSlotNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<AnalysisDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<AnalysisDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -4625,7 +4625,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -4728,10 +4728,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsSlotNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> listSiteDetectorsSlotNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
@@ -4741,7 +4741,7 @@ public class DiagnosticsInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws DefaultErrorResponseException thrown if the request is rejected by server
+     * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DetectorDefinitionInner&gt; object if successful.
      */
@@ -4844,10 +4844,10 @@ public class DiagnosticsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorSlotNextDelegate(Response<ResponseBody> response) throws DefaultErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, DefaultErrorResponseException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<PageImpl<DetectorDefinitionInner>> getSiteDetectorSlotNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DetectorDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<DetectorDefinitionInner>>() { }.getType())
-                .registerError(DefaultErrorResponseException.class)
+                .registerError(CloudException.class)
                 .build(response);
     }
 
