@@ -202,7 +202,7 @@ public class IotHubClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
-        this.apiVersion = "2018-01-22";
+        this.apiVersion = "2018-04-01";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
@@ -219,6 +219,6 @@ public class IotHubClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "IotHubClient", "2018-01-22");
+        return String.format("%s (%s, %s)", super.userAgent(), "IotHubClient", "2018-04-01");
     }
 }

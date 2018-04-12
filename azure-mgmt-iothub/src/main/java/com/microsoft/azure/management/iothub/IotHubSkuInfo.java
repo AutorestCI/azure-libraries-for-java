@@ -15,14 +15,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class IotHubSkuInfo {
     /**
-     * The name of the SKU. Possible values include: 'F1', 'S1', 'S2', 'S3'.
+     * The name of the SKU. Possible values include: 'F1', 'S1', 'S2', 'S3',
+     * 'B1', 'B2', 'B3'.
      */
     @JsonProperty(value = "name", required = true)
     private IotHubSku name;
 
     /**
      * The billing tier for the IoT hub. Possible values include: 'Free',
-     * 'Standard'.
+     * 'Standard', 'Basic'.
      */
     @JsonProperty(value = "tier", access = JsonProperty.Access.WRITE_ONLY)
     private IotHubSkuTier tier;
