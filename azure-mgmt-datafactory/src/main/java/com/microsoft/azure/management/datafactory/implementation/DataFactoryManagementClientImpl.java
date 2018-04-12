@@ -51,6 +51,29 @@ public class DataFactoryManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
+    /** The location identifier. */
+    private String locationId;
+
+    /**
+     * Gets The location identifier.
+     *
+     * @return the locationId value.
+     */
+    public String locationId() {
+        return this.locationId;
+    }
+
+    /**
+     * Sets The location identifier.
+     *
+     * @param locationId the locationId value.
+     * @return the service client itself
+     */
+    public DataFactoryManagementClientImpl withLocationId(String locationId) {
+        this.locationId = locationId;
+        return this;
+    }
+
     /** The API version. */
     private String apiVersion;
 
@@ -156,6 +179,19 @@ public class DataFactoryManagementClientImpl extends AzureServiceClient {
      */
     public FactoriesInner factories() {
         return this.factories;
+    }
+
+    /**
+     * The ConfigureFactoryReposInner object to access its operations.
+     */
+    private ConfigureFactoryReposInner configureFactoryRepos;
+
+    /**
+     * Gets the ConfigureFactoryReposInner object to access its operations.
+     * @return the ConfigureFactoryReposInner object.
+     */
+    public ConfigureFactoryReposInner configureFactoryRepos() {
+        return this.configureFactoryRepos;
     }
 
     /**
@@ -299,6 +335,7 @@ public class DataFactoryManagementClientImpl extends AzureServiceClient {
         this.generateClientRequestId = true;
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.factories = new FactoriesInner(restClient().retrofit(), this);
+        this.configureFactoryRepos = new ConfigureFactoryReposInner(restClient().retrofit(), this);
         this.integrationRuntimes = new IntegrationRuntimesInner(restClient().retrofit(), this);
         this.integrationRuntimeNodes = new IntegrationRuntimeNodesInner(restClient().retrofit(), this);
         this.linkedServices = new LinkedServicesInner(restClient().retrofit(), this);

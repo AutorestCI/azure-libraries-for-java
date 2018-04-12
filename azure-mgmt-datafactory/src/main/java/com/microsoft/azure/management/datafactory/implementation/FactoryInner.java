@@ -11,6 +11,7 @@ package com.microsoft.azure.management.datafactory.implementation;
 import java.util.Map;
 import com.microsoft.azure.management.datafactory.FactoryIdentity;
 import org.joda.time.DateTime;
+import com.microsoft.azure.management.datafactory.FactoryVSTSConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.Resource;
@@ -49,6 +50,12 @@ public class FactoryInner extends Resource {
      */
     @JsonProperty(value = "properties.version", access = JsonProperty.Access.WRITE_ONLY)
     private String version;
+
+    /**
+     * VSTS repo information of the factory.
+     */
+    @JsonProperty(value = "properties.vstsConfiguration")
+    private FactoryVSTSConfiguration vstsConfiguration;
 
     /**
      * Get the additionalProperties value.
@@ -115,6 +122,26 @@ public class FactoryInner extends Resource {
      */
     public String version() {
         return this.version;
+    }
+
+    /**
+     * Get the vstsConfiguration value.
+     *
+     * @return the vstsConfiguration value
+     */
+    public FactoryVSTSConfiguration vstsConfiguration() {
+        return this.vstsConfiguration;
+    }
+
+    /**
+     * Set the vstsConfiguration value.
+     *
+     * @param vstsConfiguration the vstsConfiguration value to set
+     * @return the FactoryInner object itself.
+     */
+    public FactoryInner withVstsConfiguration(FactoryVSTSConfiguration vstsConfiguration) {
+        this.vstsConfiguration = vstsConfiguration;
+        return this;
     }
 
 }
