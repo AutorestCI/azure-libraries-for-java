@@ -51,29 +51,6 @@ public class DataFactoryManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
-    /** The location identifier. */
-    private String locationId;
-
-    /**
-     * Gets The location identifier.
-     *
-     * @return the locationId value.
-     */
-    public String locationId() {
-        return this.locationId;
-    }
-
-    /**
-     * Sets The location identifier.
-     *
-     * @param locationId the locationId value.
-     * @return the service client itself
-     */
-    public DataFactoryManagementClientImpl withLocationId(String locationId) {
-        this.locationId = locationId;
-        return this;
-    }
-
     /** The API version. */
     private String apiVersion;
 

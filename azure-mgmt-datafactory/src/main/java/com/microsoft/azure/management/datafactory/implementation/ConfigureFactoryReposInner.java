@@ -62,37 +62,40 @@ public class ConfigureFactoryReposInner {
     /**
      * Updates a factory's repo information.
      *
+     * @param locationId The location identifier.
      * @param factoryRepoUpdate Update factory repo request definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the FactoryInner object if successful.
      */
-    public FactoryInner update(FactoryRepoUpdateInner factoryRepoUpdate) {
-        return updateWithServiceResponseAsync(factoryRepoUpdate).toBlocking().single().body();
+    public FactoryInner update(String locationId, FactoryRepoUpdateInner factoryRepoUpdate) {
+        return updateWithServiceResponseAsync(locationId, factoryRepoUpdate).toBlocking().single().body();
     }
 
     /**
      * Updates a factory's repo information.
      *
+     * @param locationId The location identifier.
      * @param factoryRepoUpdate Update factory repo request definition.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<FactoryInner> updateAsync(FactoryRepoUpdateInner factoryRepoUpdate, final ServiceCallback<FactoryInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(factoryRepoUpdate), serviceCallback);
+    public ServiceFuture<FactoryInner> updateAsync(String locationId, FactoryRepoUpdateInner factoryRepoUpdate, final ServiceCallback<FactoryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(locationId, factoryRepoUpdate), serviceCallback);
     }
 
     /**
      * Updates a factory's repo information.
      *
+     * @param locationId The location identifier.
      * @param factoryRepoUpdate Update factory repo request definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the FactoryInner object
      */
-    public Observable<FactoryInner> updateAsync(FactoryRepoUpdateInner factoryRepoUpdate) {
-        return updateWithServiceResponseAsync(factoryRepoUpdate).map(new Func1<ServiceResponse<FactoryInner>, FactoryInner>() {
+    public Observable<FactoryInner> updateAsync(String locationId, FactoryRepoUpdateInner factoryRepoUpdate) {
+        return updateWithServiceResponseAsync(locationId, factoryRepoUpdate).map(new Func1<ServiceResponse<FactoryInner>, FactoryInner>() {
             @Override
             public FactoryInner call(ServiceResponse<FactoryInner> response) {
                 return response.body();
@@ -103,16 +106,17 @@ public class ConfigureFactoryReposInner {
     /**
      * Updates a factory's repo information.
      *
+     * @param locationId The location identifier.
      * @param factoryRepoUpdate Update factory repo request definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the FactoryInner object
      */
-    public Observable<ServiceResponse<FactoryInner>> updateWithServiceResponseAsync(FactoryRepoUpdateInner factoryRepoUpdate) {
+    public Observable<ServiceResponse<FactoryInner>> updateWithServiceResponseAsync(String locationId, FactoryRepoUpdateInner factoryRepoUpdate) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (this.client.locationId() == null) {
-            throw new IllegalArgumentException("Parameter this.client.locationId() is required and cannot be null.");
+        if (locationId == null) {
+            throw new IllegalArgumentException("Parameter locationId is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
@@ -121,7 +125,7 @@ public class ConfigureFactoryReposInner {
             throw new IllegalArgumentException("Parameter factoryRepoUpdate is required and cannot be null.");
         }
         Validator.validate(factoryRepoUpdate);
-        return service.update(this.client.subscriptionId(), this.client.locationId(), this.client.apiVersion(), factoryRepoUpdate, this.client.acceptLanguage(), this.client.userAgent())
+        return service.update(this.client.subscriptionId(), locationId, this.client.apiVersion(), factoryRepoUpdate, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<FactoryInner>>>() {
                 @Override
                 public Observable<ServiceResponse<FactoryInner>> call(Response<ResponseBody> response) {
