@@ -15,9 +15,7 @@ import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.management.compute.UpdateResource;
 
 /**
- * The source user image virtual hard disk. The virtual hard disk will be
- * copied before being attached to the virtual machine. If SourceImage is
- * provided, the destination virtual hard drive must not exist.
+ * The source user image virtual hard disk. Only tags may be updated.
  */
 @JsonFlatten
 public class ImageUpdateInner extends UpdateResource {
