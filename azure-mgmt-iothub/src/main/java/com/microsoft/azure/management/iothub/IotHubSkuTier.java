@@ -19,7 +19,10 @@ public enum IotHubSkuTier {
     FREE("Free"),
 
     /** Enum value Standard. */
-    STANDARD("Standard");
+    STANDARD("Standard"),
+
+    /** Enum value Basic. */
+    BASIC("Basic");
 
     /** The actual serialized value for a IotHubSkuTier instance. */
     private String value;
