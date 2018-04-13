@@ -27,7 +27,7 @@ public class GeoFilter {
      * include: 'Block', 'Allow'.
      */
     @JsonProperty(value = "action", required = true)
-    private GeoFilterActions action;
+    private String action;
 
     /**
      * Two letter country codes defining user country access in a geo filter,
@@ -61,7 +61,7 @@ public class GeoFilter {
      *
      * @return the action value
      */
-    public GeoFilterActions action() {
+    public String action() {
         return this.action;
     }
 
@@ -71,7 +71,7 @@ public class GeoFilter {
      * @param action the action value to set
      * @return the GeoFilter object itself.
      */
-    public GeoFilter withAction(GeoFilterActions action) {
+    public GeoFilter withAction(String action) {
         this.action = action;
         return this;
     }

@@ -125,7 +125,7 @@ public class EndpointInner extends TrackedResourceInner {
     /**
      * The source of the content being delivered via CDN.
      */
-    @JsonProperty(value = "properties.origins", required = true)
+    @JsonProperty(value = "properties.origins", required = true, access = JsonProperty.Access.WRITE_ONLY)
     private List<DeepCreatedOrigin> origins;
 
     /**
@@ -377,17 +377,6 @@ public class EndpointInner extends TrackedResourceInner {
      */
     public List<DeepCreatedOrigin> origins() {
         return this.origins;
-    }
-
-    /**
-     * Set the origins value.
-     *
-     * @param origins the origins value to set
-     * @return the EndpointInner object itself.
-     */
-    public EndpointInner withOrigins(List<DeepCreatedOrigin> origins) {
-        this.origins = origins;
-        return this;
     }
 
     /**

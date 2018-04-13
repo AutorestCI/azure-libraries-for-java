@@ -8,9 +8,6 @@
 
 package com.microsoft.azure.management.cdn.implementation;
 
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
@@ -46,7 +43,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Profiles.
  */
-public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSupportsDelete<Void>, InnerSupportsListing<ProfileInner> {
+public class ProfilesInner {
     /** The Retrofit service to perform REST calls. */
     private ProfilesService service;
     /** The service client containing this operation class. */
@@ -240,14 +237,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Lists all of the CDN profiles within a resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ProfileInner&gt; object if successful.
      */
-    public PagedList<ProfileInner> listByResourceGroup(final String resourceGroupName) {
-        ServiceResponse<Page<ProfileInner>> response = listByResourceGroupSinglePageAsync(resourceGroupName).toBlocking().single();
+    public PagedList<ProfileInner> listByResourceGroup() {
+        ServiceResponse<Page<ProfileInner>> response = listByResourceGroupSinglePageAsync().toBlocking().single();
         return new PagedList<ProfileInner>(response.body()) {
             @Override
             public Page<ProfileInner> nextPage(String nextPageLink) {
@@ -259,14 +255,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Lists all of the CDN profiles within a resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ProfileInner>> listByResourceGroupAsync(final String resourceGroupName, final ListOperationCallback<ProfileInner> serviceCallback) {
+    public ServiceFuture<List<ProfileInner>> listByResourceGroupAsync(final ListOperationCallback<ProfileInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listByResourceGroupSinglePageAsync(resourceGroupName),
+            listByResourceGroupSinglePageAsync(),
             new Func1<String, Observable<ServiceResponse<Page<ProfileInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ProfileInner>>> call(String nextPageLink) {
@@ -279,12 +274,11 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Lists all of the CDN profiles within a resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ProfileInner&gt; object
      */
-    public Observable<Page<ProfileInner>> listByResourceGroupAsync(final String resourceGroupName) {
-        return listByResourceGroupWithServiceResponseAsync(resourceGroupName)
+    public Observable<Page<ProfileInner>> listByResourceGroupAsync() {
+        return listByResourceGroupWithServiceResponseAsync()
             .map(new Func1<ServiceResponse<Page<ProfileInner>>, Page<ProfileInner>>() {
                 @Override
                 public Page<ProfileInner> call(ServiceResponse<Page<ProfileInner>> response) {
@@ -296,12 +290,11 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Lists all of the CDN profiles within a resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ProfileInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ProfileInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName) {
-        return listByResourceGroupSinglePageAsync(resourceGroupName)
+    public Observable<ServiceResponse<Page<ProfileInner>>> listByResourceGroupWithServiceResponseAsync() {
+        return listByResourceGroupSinglePageAsync()
             .concatMap(new Func1<ServiceResponse<Page<ProfileInner>>, Observable<ServiceResponse<Page<ProfileInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ProfileInner>>> call(ServiceResponse<Page<ProfileInner>> page) {
@@ -317,13 +310,12 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Lists all of the CDN profiles within a resource group.
      *
-    ServiceResponse<PageImpl<ProfileInner>> * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ProfileInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ProfileInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<Page<ProfileInner>>> listByResourceGroupSinglePageAsync() {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
@@ -331,7 +323,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.listByResourceGroup(this.client.resourceGroupName(), this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ProfileInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ProfileInner>>> call(Response<ResponseBody> response) {
@@ -355,40 +347,37 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Gets a CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ProfileInner object if successful.
      */
-    public ProfileInner getByResourceGroup(String resourceGroupName, String profileName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, profileName).toBlocking().single().body();
+    public ProfileInner getByResourceGroup(String profileName) {
+        return getByResourceGroupWithServiceResponseAsync(profileName).toBlocking().single().body();
     }
 
     /**
      * Gets a CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ProfileInner> getByResourceGroupAsync(String resourceGroupName, String profileName, final ServiceCallback<ProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(resourceGroupName, profileName), serviceCallback);
+    public ServiceFuture<ProfileInner> getByResourceGroupAsync(String profileName, final ServiceCallback<ProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(profileName), serviceCallback);
     }
 
     /**
      * Gets a CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ProfileInner> getByResourceGroupAsync(String resourceGroupName, String profileName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, profileName).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
+    public Observable<ProfileInner> getByResourceGroupAsync(String profileName) {
+        return getByResourceGroupWithServiceResponseAsync(profileName).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
             @Override
             public ProfileInner call(ServiceResponse<ProfileInner> response) {
                 return response.body();
@@ -399,14 +388,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Gets a CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ServiceResponse<ProfileInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<ProfileInner>> getByResourceGroupWithServiceResponseAsync(String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -417,7 +405,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.getByResourceGroup(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.getByResourceGroup(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ProfileInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ProfileInner>> call(Response<ResponseBody> response) {
@@ -441,7 +429,6 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -449,35 +436,33 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ProfileInner object if successful.
      */
-    public ProfileInner create(String resourceGroupName, String profileName, ProfileInner profile) {
-        return createWithServiceResponseAsync(resourceGroupName, profileName, profile).toBlocking().last().body();
+    public ProfileInner create(String profileName, ProfileInner profile) {
+        return createWithServiceResponseAsync(profileName, profile).toBlocking().last().body();
     }
 
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ProfileInner> createAsync(String resourceGroupName, String profileName, ProfileInner profile, final ServiceCallback<ProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, profileName, profile), serviceCallback);
+    public ServiceFuture<ProfileInner> createAsync(String profileName, ProfileInner profile, final ServiceCallback<ProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createWithServiceResponseAsync(profileName, profile), serviceCallback);
     }
 
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ProfileInner> createAsync(String resourceGroupName, String profileName, ProfileInner profile) {
-        return createWithServiceResponseAsync(resourceGroupName, profileName, profile).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
+    public Observable<ProfileInner> createAsync(String profileName, ProfileInner profile) {
+        return createWithServiceResponseAsync(profileName, profile).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
             @Override
             public ProfileInner call(ServiceResponse<ProfileInner> response) {
                 return response.body();
@@ -488,15 +473,14 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ProfileInner>> createWithServiceResponseAsync(String resourceGroupName, String profileName, ProfileInner profile) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<ProfileInner>> createWithServiceResponseAsync(String profileName, ProfileInner profile) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -511,14 +495,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         Validator.validate(profile);
-        Observable<Response<ResponseBody>> observable = service.create(resourceGroupName, profileName, this.client.subscriptionId(), profile, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.create(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), profile, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ProfileInner>() { }.getType());
     }
 
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -526,35 +509,33 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ProfileInner object if successful.
      */
-    public ProfileInner beginCreate(String resourceGroupName, String profileName, ProfileInner profile) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, profileName, profile).toBlocking().single().body();
+    public ProfileInner beginCreate(String profileName, ProfileInner profile) {
+        return beginCreateWithServiceResponseAsync(profileName, profile).toBlocking().single().body();
     }
 
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ProfileInner> beginCreateAsync(String resourceGroupName, String profileName, ProfileInner profile, final ServiceCallback<ProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(resourceGroupName, profileName, profile), serviceCallback);
+    public ServiceFuture<ProfileInner> beginCreateAsync(String profileName, ProfileInner profile, final ServiceCallback<ProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(profileName, profile), serviceCallback);
     }
 
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ProfileInner> beginCreateAsync(String resourceGroupName, String profileName, ProfileInner profile) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, profileName, profile).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
+    public Observable<ProfileInner> beginCreateAsync(String profileName, ProfileInner profile) {
+        return beginCreateWithServiceResponseAsync(profileName, profile).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
             @Override
             public ProfileInner call(ServiceResponse<ProfileInner> response) {
                 return response.body();
@@ -565,15 +546,14 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Creates a new CDN profile with a profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param profile Profile properties needed to create a new profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ServiceResponse<ProfileInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String profileName, ProfileInner profile) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<ProfileInner>> beginCreateWithServiceResponseAsync(String profileName, ProfileInner profile) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -588,7 +568,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         Validator.validate(profile);
-        return service.beginCreate(resourceGroupName, profileName, this.client.subscriptionId(), profile, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginCreate(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), profile, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ProfileInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ProfileInner>> call(Response<ResponseBody> response) {
@@ -614,40 +594,37 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ProfileInner object if successful.
      */
-    public ProfileInner update(String resourceGroupName, String profileName) {
-        return updateWithServiceResponseAsync(resourceGroupName, profileName).toBlocking().last().body();
+    public ProfileInner update(String profileName) {
+        return updateWithServiceResponseAsync(profileName).toBlocking().last().body();
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ProfileInner> updateAsync(String resourceGroupName, String profileName, final ServiceCallback<ProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, profileName), serviceCallback);
+    public ServiceFuture<ProfileInner> updateAsync(String profileName, final ServiceCallback<ProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(profileName), serviceCallback);
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ProfileInner> updateAsync(String resourceGroupName, String profileName) {
-        return updateWithServiceResponseAsync(resourceGroupName, profileName).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
+    public Observable<ProfileInner> updateAsync(String profileName) {
+        return updateWithServiceResponseAsync(profileName).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
             @Override
             public ProfileInner call(ServiceResponse<ProfileInner> response) {
                 return response.body();
@@ -658,14 +635,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ProfileInner>> updateWithServiceResponseAsync(String resourceGroupName, String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<ProfileInner>> updateWithServiceResponseAsync(String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -679,13 +655,12 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         final Map<String, String> tags = null;
         ProfileUpdateParameters profileUpdateParameters = new ProfileUpdateParameters();
         profileUpdateParameters.withTags(null);
-        Observable<Response<ResponseBody>> observable = service.update(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.update(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ProfileInner>() { }.getType());
     }
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -693,35 +668,33 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ProfileInner object if successful.
      */
-    public ProfileInner update(String resourceGroupName, String profileName, Map<String, String> tags) {
-        return updateWithServiceResponseAsync(resourceGroupName, profileName, tags).toBlocking().last().body();
+    public ProfileInner update(String profileName, Map<String, String> tags) {
+        return updateWithServiceResponseAsync(profileName, tags).toBlocking().last().body();
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ProfileInner> updateAsync(String resourceGroupName, String profileName, Map<String, String> tags, final ServiceCallback<ProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, profileName, tags), serviceCallback);
+    public ServiceFuture<ProfileInner> updateAsync(String profileName, Map<String, String> tags, final ServiceCallback<ProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(profileName, tags), serviceCallback);
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ProfileInner> updateAsync(String resourceGroupName, String profileName, Map<String, String> tags) {
-        return updateWithServiceResponseAsync(resourceGroupName, profileName, tags).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
+    public Observable<ProfileInner> updateAsync(String profileName, Map<String, String> tags) {
+        return updateWithServiceResponseAsync(profileName, tags).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
             @Override
             public ProfileInner call(ServiceResponse<ProfileInner> response) {
                 return response.body();
@@ -732,15 +705,14 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ProfileInner>> updateWithServiceResponseAsync(String resourceGroupName, String profileName, Map<String, String> tags) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<ProfileInner>> updateWithServiceResponseAsync(String profileName, Map<String, String> tags) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -754,47 +726,44 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         Validator.validate(tags);
         ProfileUpdateParameters profileUpdateParameters = new ProfileUpdateParameters();
         profileUpdateParameters.withTags(tags);
-        Observable<Response<ResponseBody>> observable = service.update(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.update(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ProfileInner>() { }.getType());
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ProfileInner object if successful.
      */
-    public ProfileInner beginUpdate(String resourceGroupName, String profileName) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, profileName).toBlocking().single().body();
+    public ProfileInner beginUpdate(String profileName) {
+        return beginUpdateWithServiceResponseAsync(profileName).toBlocking().single().body();
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ProfileInner> beginUpdateAsync(String resourceGroupName, String profileName, final ServiceCallback<ProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, profileName), serviceCallback);
+    public ServiceFuture<ProfileInner> beginUpdateAsync(String profileName, final ServiceCallback<ProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(profileName), serviceCallback);
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ProfileInner> beginUpdateAsync(String resourceGroupName, String profileName) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, profileName).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
+    public Observable<ProfileInner> beginUpdateAsync(String profileName) {
+        return beginUpdateWithServiceResponseAsync(profileName).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
             @Override
             public ProfileInner call(ServiceResponse<ProfileInner> response) {
                 return response.body();
@@ -805,14 +774,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ServiceResponse<ProfileInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<ProfileInner>> beginUpdateWithServiceResponseAsync(String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -826,7 +794,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         final Map<String, String> tags = null;
         ProfileUpdateParameters profileUpdateParameters = new ProfileUpdateParameters();
         profileUpdateParameters.withTags(null);
-        return service.beginUpdate(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent())
+        return service.beginUpdate(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ProfileInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ProfileInner>> call(Response<ResponseBody> response) {
@@ -843,7 +811,6 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -851,35 +818,33 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ProfileInner object if successful.
      */
-    public ProfileInner beginUpdate(String resourceGroupName, String profileName, Map<String, String> tags) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, profileName, tags).toBlocking().single().body();
+    public ProfileInner beginUpdate(String profileName, Map<String, String> tags) {
+        return beginUpdateWithServiceResponseAsync(profileName, tags).toBlocking().single().body();
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ProfileInner> beginUpdateAsync(String resourceGroupName, String profileName, Map<String, String> tags, final ServiceCallback<ProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, profileName, tags), serviceCallback);
+    public ServiceFuture<ProfileInner> beginUpdateAsync(String profileName, Map<String, String> tags, final ServiceCallback<ProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(profileName, tags), serviceCallback);
     }
 
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ProfileInner> beginUpdateAsync(String resourceGroupName, String profileName, Map<String, String> tags) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, profileName, tags).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
+    public Observable<ProfileInner> beginUpdateAsync(String profileName, Map<String, String> tags) {
+        return beginUpdateWithServiceResponseAsync(profileName, tags).map(new Func1<ServiceResponse<ProfileInner>, ProfileInner>() {
             @Override
             public ProfileInner call(ServiceResponse<ProfileInner> response) {
                 return response.body();
@@ -890,15 +855,14 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param tags Profile tags
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ProfileInner object
      */
-    public Observable<ServiceResponse<ProfileInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String profileName, Map<String, String> tags) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<ProfileInner>> beginUpdateWithServiceResponseAsync(String profileName, Map<String, String> tags) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -912,7 +876,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         Validator.validate(tags);
         ProfileUpdateParameters profileUpdateParameters = new ProfileUpdateParameters();
         profileUpdateParameters.withTags(tags);
-        return service.beginUpdate(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent())
+        return service.beginUpdate(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), profileUpdateParameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ProfileInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ProfileInner>> call(Response<ResponseBody> response) {
@@ -937,39 +901,36 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void delete(String resourceGroupName, String profileName) {
-        deleteWithServiceResponseAsync(resourceGroupName, profileName).toBlocking().last().body();
+    public void delete(String profileName) {
+        deleteWithServiceResponseAsync(profileName).toBlocking().last().body();
     }
 
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String profileName, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, profileName), serviceCallback);
+    public ServiceFuture<Void> deleteAsync(String profileName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(profileName), serviceCallback);
     }
 
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<Void> deleteAsync(String resourceGroupName, String profileName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, profileName).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<Void> deleteAsync(String profileName) {
+        return deleteWithServiceResponseAsync(profileName).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
                 return response.body();
@@ -980,14 +941,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -998,46 +958,43 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Observable<Response<ResponseBody>> observable = service.delete(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.delete(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
 
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void beginDelete(String resourceGroupName, String profileName) {
-        beginDeleteWithServiceResponseAsync(resourceGroupName, profileName).toBlocking().single().body();
+    public void beginDelete(String profileName) {
+        beginDeleteWithServiceResponseAsync(profileName).toBlocking().single().body();
     }
 
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> beginDeleteAsync(String resourceGroupName, String profileName, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, profileName), serviceCallback);
+    public ServiceFuture<Void> beginDeleteAsync(String profileName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(profileName), serviceCallback);
     }
 
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> beginDeleteAsync(String resourceGroupName, String profileName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, profileName).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<Void> beginDeleteAsync(String profileName) {
+        return beginDeleteWithServiceResponseAsync(profileName).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
                 return response.body();
@@ -1048,14 +1005,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<Void>> beginDeleteWithServiceResponseAsync(String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -1066,7 +1022,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.beginDelete(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginDelete(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -1091,40 +1047,37 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Generates a dynamic SSO URI used to sign in to the CDN supplemental portal. Supplemnetal portal is used to configure advanced feature capabilities that are not yet available in the Azure portal, such as core reports in a standard profile; rules engine, advanced HTTP reports, and real-time stats and alerts in a premium profile. The SSO URI changes approximately every 10 minutes.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SsoUriInner object if successful.
      */
-    public SsoUriInner generateSsoUri(String resourceGroupName, String profileName) {
-        return generateSsoUriWithServiceResponseAsync(resourceGroupName, profileName).toBlocking().single().body();
+    public SsoUriInner generateSsoUri(String profileName) {
+        return generateSsoUriWithServiceResponseAsync(profileName).toBlocking().single().body();
     }
 
     /**
      * Generates a dynamic SSO URI used to sign in to the CDN supplemental portal. Supplemnetal portal is used to configure advanced feature capabilities that are not yet available in the Azure portal, such as core reports in a standard profile; rules engine, advanced HTTP reports, and real-time stats and alerts in a premium profile. The SSO URI changes approximately every 10 minutes.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SsoUriInner> generateSsoUriAsync(String resourceGroupName, String profileName, final ServiceCallback<SsoUriInner> serviceCallback) {
-        return ServiceFuture.fromResponse(generateSsoUriWithServiceResponseAsync(resourceGroupName, profileName), serviceCallback);
+    public ServiceFuture<SsoUriInner> generateSsoUriAsync(String profileName, final ServiceCallback<SsoUriInner> serviceCallback) {
+        return ServiceFuture.fromResponse(generateSsoUriWithServiceResponseAsync(profileName), serviceCallback);
     }
 
     /**
      * Generates a dynamic SSO URI used to sign in to the CDN supplemental portal. Supplemnetal portal is used to configure advanced feature capabilities that are not yet available in the Azure portal, such as core reports in a standard profile; rules engine, advanced HTTP reports, and real-time stats and alerts in a premium profile. The SSO URI changes approximately every 10 minutes.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SsoUriInner object
      */
-    public Observable<SsoUriInner> generateSsoUriAsync(String resourceGroupName, String profileName) {
-        return generateSsoUriWithServiceResponseAsync(resourceGroupName, profileName).map(new Func1<ServiceResponse<SsoUriInner>, SsoUriInner>() {
+    public Observable<SsoUriInner> generateSsoUriAsync(String profileName) {
+        return generateSsoUriWithServiceResponseAsync(profileName).map(new Func1<ServiceResponse<SsoUriInner>, SsoUriInner>() {
             @Override
             public SsoUriInner call(ServiceResponse<SsoUriInner> response) {
                 return response.body();
@@ -1135,14 +1088,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Generates a dynamic SSO URI used to sign in to the CDN supplemental portal. Supplemnetal portal is used to configure advanced feature capabilities that are not yet available in the Azure portal, such as core reports in a standard profile; rules engine, advanced HTTP reports, and real-time stats and alerts in a premium profile. The SSO URI changes approximately every 10 minutes.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SsoUriInner object
      */
-    public Observable<ServiceResponse<SsoUriInner>> generateSsoUriWithServiceResponseAsync(String resourceGroupName, String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<SsoUriInner>> generateSsoUriWithServiceResponseAsync(String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -1153,7 +1105,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.generateSsoUri(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.generateSsoUri(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SsoUriInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SsoUriInner>> call(Response<ResponseBody> response) {
@@ -1177,40 +1129,37 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Gets the supported optimization types for the current profile. A user can create an endpoint with an optimization type from the listed values.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SupportedOptimizationTypesListResultInner object if successful.
      */
-    public SupportedOptimizationTypesListResultInner listSupportedOptimizationTypes(String resourceGroupName, String profileName) {
-        return listSupportedOptimizationTypesWithServiceResponseAsync(resourceGroupName, profileName).toBlocking().single().body();
+    public SupportedOptimizationTypesListResultInner listSupportedOptimizationTypes(String profileName) {
+        return listSupportedOptimizationTypesWithServiceResponseAsync(profileName).toBlocking().single().body();
     }
 
     /**
      * Gets the supported optimization types for the current profile. A user can create an endpoint with an optimization type from the listed values.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SupportedOptimizationTypesListResultInner> listSupportedOptimizationTypesAsync(String resourceGroupName, String profileName, final ServiceCallback<SupportedOptimizationTypesListResultInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listSupportedOptimizationTypesWithServiceResponseAsync(resourceGroupName, profileName), serviceCallback);
+    public ServiceFuture<SupportedOptimizationTypesListResultInner> listSupportedOptimizationTypesAsync(String profileName, final ServiceCallback<SupportedOptimizationTypesListResultInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listSupportedOptimizationTypesWithServiceResponseAsync(profileName), serviceCallback);
     }
 
     /**
      * Gets the supported optimization types for the current profile. A user can create an endpoint with an optimization type from the listed values.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SupportedOptimizationTypesListResultInner object
      */
-    public Observable<SupportedOptimizationTypesListResultInner> listSupportedOptimizationTypesAsync(String resourceGroupName, String profileName) {
-        return listSupportedOptimizationTypesWithServiceResponseAsync(resourceGroupName, profileName).map(new Func1<ServiceResponse<SupportedOptimizationTypesListResultInner>, SupportedOptimizationTypesListResultInner>() {
+    public Observable<SupportedOptimizationTypesListResultInner> listSupportedOptimizationTypesAsync(String profileName) {
+        return listSupportedOptimizationTypesWithServiceResponseAsync(profileName).map(new Func1<ServiceResponse<SupportedOptimizationTypesListResultInner>, SupportedOptimizationTypesListResultInner>() {
             @Override
             public SupportedOptimizationTypesListResultInner call(ServiceResponse<SupportedOptimizationTypesListResultInner> response) {
                 return response.body();
@@ -1221,14 +1170,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Gets the supported optimization types for the current profile. A user can create an endpoint with an optimization type from the listed values.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SupportedOptimizationTypesListResultInner object
      */
-    public Observable<ServiceResponse<SupportedOptimizationTypesListResultInner>> listSupportedOptimizationTypesWithServiceResponseAsync(String resourceGroupName, String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<SupportedOptimizationTypesListResultInner>> listSupportedOptimizationTypesWithServiceResponseAsync(String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -1239,7 +1187,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listSupportedOptimizationTypes(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.listSupportedOptimizationTypes(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SupportedOptimizationTypesListResultInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SupportedOptimizationTypesListResultInner>> call(Response<ResponseBody> response) {
@@ -1263,15 +1211,14 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Checks the quota and actual usage of endpoints under the given CDN profile.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ResourceUsageInner&gt; object if successful.
      */
-    public PagedList<ResourceUsageInner> listResourceUsage(final String resourceGroupName, final String profileName) {
-        ServiceResponse<Page<ResourceUsageInner>> response = listResourceUsageSinglePageAsync(resourceGroupName, profileName).toBlocking().single();
+    public PagedList<ResourceUsageInner> listResourceUsage(final String profileName) {
+        ServiceResponse<Page<ResourceUsageInner>> response = listResourceUsageSinglePageAsync(profileName).toBlocking().single();
         return new PagedList<ResourceUsageInner>(response.body()) {
             @Override
             public Page<ResourceUsageInner> nextPage(String nextPageLink) {
@@ -1283,15 +1230,14 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Checks the quota and actual usage of endpoints under the given CDN profile.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ResourceUsageInner>> listResourceUsageAsync(final String resourceGroupName, final String profileName, final ListOperationCallback<ResourceUsageInner> serviceCallback) {
+    public ServiceFuture<List<ResourceUsageInner>> listResourceUsageAsync(final String profileName, final ListOperationCallback<ResourceUsageInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listResourceUsageSinglePageAsync(resourceGroupName, profileName),
+            listResourceUsageSinglePageAsync(profileName),
             new Func1<String, Observable<ServiceResponse<Page<ResourceUsageInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ResourceUsageInner>>> call(String nextPageLink) {
@@ -1304,13 +1250,12 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Checks the quota and actual usage of endpoints under the given CDN profile.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ResourceUsageInner&gt; object
      */
-    public Observable<Page<ResourceUsageInner>> listResourceUsageAsync(final String resourceGroupName, final String profileName) {
-        return listResourceUsageWithServiceResponseAsync(resourceGroupName, profileName)
+    public Observable<Page<ResourceUsageInner>> listResourceUsageAsync(final String profileName) {
+        return listResourceUsageWithServiceResponseAsync(profileName)
             .map(new Func1<ServiceResponse<Page<ResourceUsageInner>>, Page<ResourceUsageInner>>() {
                 @Override
                 public Page<ResourceUsageInner> call(ServiceResponse<Page<ResourceUsageInner>> response) {
@@ -1322,13 +1267,12 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Checks the quota and actual usage of endpoints under the given CDN profile.
      *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ResourceUsageInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ResourceUsageInner>>> listResourceUsageWithServiceResponseAsync(final String resourceGroupName, final String profileName) {
-        return listResourceUsageSinglePageAsync(resourceGroupName, profileName)
+    public Observable<ServiceResponse<Page<ResourceUsageInner>>> listResourceUsageWithServiceResponseAsync(final String profileName) {
+        return listResourceUsageSinglePageAsync(profileName)
             .concatMap(new Func1<ServiceResponse<Page<ResourceUsageInner>>, Observable<ServiceResponse<Page<ResourceUsageInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ResourceUsageInner>>> call(ServiceResponse<Page<ResourceUsageInner>> page) {
@@ -1344,14 +1288,13 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     /**
      * Checks the quota and actual usage of endpoints under the given CDN profile.
      *
-    ServiceResponse<PageImpl<ResourceUsageInner>> * @param resourceGroupName Name of the Resource group within the Azure subscription.
     ServiceResponse<PageImpl<ResourceUsageInner>> * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ResourceUsageInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ResourceUsageInner>>> listResourceUsageSinglePageAsync(final String resourceGroupName, final String profileName) {
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+    public Observable<ServiceResponse<Page<ResourceUsageInner>>> listResourceUsageSinglePageAsync(final String profileName) {
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (profileName == null) {
             throw new IllegalArgumentException("Parameter profileName is required and cannot be null.");
@@ -1362,7 +1305,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listResourceUsage(resourceGroupName, profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.listResourceUsage(this.client.resourceGroupName(), profileName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ResourceUsageInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ResourceUsageInner>>> call(Response<ResponseBody> response) {
