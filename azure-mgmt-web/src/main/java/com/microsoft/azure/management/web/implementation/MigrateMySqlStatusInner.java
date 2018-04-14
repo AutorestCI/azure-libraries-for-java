@@ -38,6 +38,12 @@ public class MigrateMySqlStatusInner extends ProxyOnlyResource {
     private Boolean localMySqlEnabled;
 
     /**
+     * Is HTTP2 enabled?.
+     */
+    @JsonProperty(value = "properties.http20Enabled")
+    private Boolean http20Enabled;
+
+    /**
      * Get the migrationOperationStatus value.
      *
      * @return the migrationOperationStatus value
@@ -62,6 +68,26 @@ public class MigrateMySqlStatusInner extends ProxyOnlyResource {
      */
     public Boolean localMySqlEnabled() {
         return this.localMySqlEnabled;
+    }
+
+    /**
+     * Get the http20Enabled value.
+     *
+     * @return the http20Enabled value
+     */
+    public Boolean http20Enabled() {
+        return this.http20Enabled;
+    }
+
+    /**
+     * Set the http20Enabled value.
+     *
+     * @param http20Enabled the http20Enabled value to set
+     * @return the MigrateMySqlStatusInner object itself.
+     */
+    public MigrateMySqlStatusInner withHttp20Enabled(Boolean http20Enabled) {
+        this.http20Enabled = http20Enabled;
+        return this;
     }
 
 }
