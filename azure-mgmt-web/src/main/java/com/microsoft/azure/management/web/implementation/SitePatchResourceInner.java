@@ -248,6 +248,12 @@ public class SitePatchResourceInner extends ProxyOnlyResource {
     private Boolean httpsOnly;
 
     /**
+     * Is HTTP2 enabled?.
+     */
+    @JsonProperty(value = "properties.http20Enabled")
+    private Boolean http20Enabled;
+
+    /**
      * Get the state value.
      *
      * @return the state value
@@ -697,6 +703,26 @@ public class SitePatchResourceInner extends ProxyOnlyResource {
      */
     public SitePatchResourceInner withHttpsOnly(Boolean httpsOnly) {
         this.httpsOnly = httpsOnly;
+        return this;
+    }
+
+    /**
+     * Get the http20Enabled value.
+     *
+     * @return the http20Enabled value
+     */
+    public Boolean http20Enabled() {
+        return this.http20Enabled;
+    }
+
+    /**
+     * Set the http20Enabled value.
+     *
+     * @param http20Enabled the http20Enabled value to set
+     * @return the SitePatchResourceInner object itself.
+     */
+    public SitePatchResourceInner withHttp20Enabled(Boolean http20Enabled) {
+        this.http20Enabled = http20Enabled;
         return this;
     }
 
