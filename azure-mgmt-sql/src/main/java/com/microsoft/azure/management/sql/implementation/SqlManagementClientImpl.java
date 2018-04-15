@@ -147,19 +147,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The CapabilitiesInner object to access its operations.
-     */
-    private CapabilitiesInner capabilities;
-
-    /**
-     * Gets the CapabilitiesInner object to access its operations.
-     * @return the CapabilitiesInner object.
-     */
-    public CapabilitiesInner capabilities() {
-        return this.capabilities;
-    }
-
-    /**
      * The ServersInner object to access its operations.
      */
     private ServersInner servers;
@@ -183,19 +170,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
      */
     public ServerConnectionPoliciesInner serverConnectionPolicies() {
         return this.serverConnectionPolicies;
-    }
-
-    /**
-     * The DatabasesInner object to access its operations.
-     */
-    private DatabasesInner databases;
-
-    /**
-     * Gets the DatabasesInner object to access its operations.
-     * @return the DatabasesInner object.
-     */
-    public DatabasesInner databases() {
-        return this.databases;
     }
 
     /**
@@ -238,19 +212,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The ElasticPoolsInner object to access its operations.
-     */
-    private ElasticPoolsInner elasticPools;
-
-    /**
-     * Gets the ElasticPoolsInner object to access its operations.
-     * @return the ElasticPoolsInner object.
-     */
-    public ElasticPoolsInner elasticPools() {
-        return this.elasticPools;
-    }
-
-    /**
      * The FirewallRulesInner object to access its operations.
      */
     private FirewallRulesInner firewallRules;
@@ -274,6 +235,45 @@ public class SqlManagementClientImpl extends AzureServiceClient {
      */
     public GeoBackupPoliciesInner geoBackupPolicies() {
         return this.geoBackupPolicies;
+    }
+
+    /**
+     * The DatabasesInner object to access its operations.
+     */
+    private DatabasesInner databases;
+
+    /**
+     * Gets the DatabasesInner object to access its operations.
+     * @return the DatabasesInner object.
+     */
+    public DatabasesInner databases() {
+        return this.databases;
+    }
+
+    /**
+     * The ElasticPoolsInner object to access its operations.
+     */
+    private ElasticPoolsInner elasticPools;
+
+    /**
+     * Gets the ElasticPoolsInner object to access its operations.
+     * @return the ElasticPoolsInner object.
+     */
+    public ElasticPoolsInner elasticPools() {
+        return this.elasticPools;
+    }
+
+    /**
+     * The RecommendedElasticPoolsInner object to access its operations.
+     */
+    private RecommendedElasticPoolsInner recommendedElasticPools;
+
+    /**
+     * Gets the RecommendedElasticPoolsInner object to access its operations.
+     * @return the RecommendedElasticPoolsInner object.
+     */
+    public RecommendedElasticPoolsInner recommendedElasticPools() {
+        return this.recommendedElasticPools;
     }
 
     /**
@@ -352,19 +352,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
      */
     public ElasticPoolDatabaseActivitiesInner elasticPoolDatabaseActivities() {
         return this.elasticPoolDatabaseActivities;
-    }
-
-    /**
-     * The RecommendedElasticPoolsInner object to access its operations.
-     */
-    private RecommendedElasticPoolsInner recommendedElasticPools;
-
-    /**
-     * Gets the RecommendedElasticPoolsInner object to access its operations.
-     * @return the RecommendedElasticPoolsInner object.
-     */
-    public RecommendedElasticPoolsInner recommendedElasticPools() {
-        return this.recommendedElasticPools;
     }
 
     /**
@@ -667,16 +654,16 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The DatabaseVulnerabilityAssessmentScansInner object to access its operations.
+     * The CapabilitiesInner object to access its operations.
      */
-    private DatabaseVulnerabilityAssessmentScansInner databaseVulnerabilityAssessmentScans;
+    private CapabilitiesInner capabilities;
 
     /**
-     * Gets the DatabaseVulnerabilityAssessmentScansInner object to access its operations.
-     * @return the DatabaseVulnerabilityAssessmentScansInner object.
+     * Gets the CapabilitiesInner object to access its operations.
+     * @return the CapabilitiesInner object.
      */
-    public DatabaseVulnerabilityAssessmentScansInner databaseVulnerabilityAssessmentScans() {
-        return this.databaseVulnerabilityAssessmentScans;
+    public CapabilitiesInner capabilities() {
+        return this.capabilities;
     }
 
     /**
@@ -715,23 +702,22 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.generateClientRequestId = true;
         this.recoverableDatabases = new RecoverableDatabasesInner(restClient().retrofit(), this);
         this.restorableDroppedDatabases = new RestorableDroppedDatabasesInner(restClient().retrofit(), this);
-        this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
         this.servers = new ServersInner(restClient().retrofit(), this);
         this.serverConnectionPolicies = new ServerConnectionPoliciesInner(restClient().retrofit(), this);
-        this.databases = new DatabasesInner(restClient().retrofit(), this);
         this.databaseThreatDetectionPolicies = new DatabaseThreatDetectionPoliciesInner(restClient().retrofit(), this);
         this.dataMaskingPolicies = new DataMaskingPoliciesInner(restClient().retrofit(), this);
         this.dataMaskingRules = new DataMaskingRulesInner(restClient().retrofit(), this);
-        this.elasticPools = new ElasticPoolsInner(restClient().retrofit(), this);
         this.firewallRules = new FirewallRulesInner(restClient().retrofit(), this);
         this.geoBackupPolicies = new GeoBackupPoliciesInner(restClient().retrofit(), this);
+        this.databases = new DatabasesInner(restClient().retrofit(), this);
+        this.elasticPools = new ElasticPoolsInner(restClient().retrofit(), this);
+        this.recommendedElasticPools = new RecommendedElasticPoolsInner(restClient().retrofit(), this);
         this.replicationLinks = new ReplicationLinksInner(restClient().retrofit(), this);
         this.serverAzureADAdministrators = new ServerAzureADAdministratorsInner(restClient().retrofit(), this);
         this.serverCommunicationLinks = new ServerCommunicationLinksInner(restClient().retrofit(), this);
         this.serviceObjectives = new ServiceObjectivesInner(restClient().retrofit(), this);
         this.elasticPoolActivities = new ElasticPoolActivitiesInner(restClient().retrofit(), this);
         this.elasticPoolDatabaseActivities = new ElasticPoolDatabaseActivitiesInner(restClient().retrofit(), this);
-        this.recommendedElasticPools = new RecommendedElasticPoolsInner(restClient().retrofit(), this);
         this.serviceTierAdvisors = new ServiceTierAdvisorsInner(restClient().retrofit(), this);
         this.transparentDataEncryptions = new TransparentDataEncryptionsInner(restClient().retrofit(), this);
         this.transparentDataEncryptionActivities = new TransparentDataEncryptionActivitiesInner(restClient().retrofit(), this);
@@ -755,7 +741,7 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.restorePoints = new RestorePointsInner(restClient().retrofit(), this);
         this.databaseOperations = new DatabaseOperationsInner(restClient().retrofit(), this);
         this.elasticPoolOperations = new ElasticPoolOperationsInner(restClient().retrofit(), this);
-        this.databaseVulnerabilityAssessmentScans = new DatabaseVulnerabilityAssessmentScansInner(restClient().retrofit(), this);
+        this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 

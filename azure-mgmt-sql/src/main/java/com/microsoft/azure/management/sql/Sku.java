@@ -17,7 +17,7 @@ public class Sku {
     /**
      * The name of the SKU, typically, a letter + Number code, e.g. P3.
      */
-    @JsonProperty(value = "name")
+    @JsonProperty(value = "name", required = true)
     private String name;
 
     /**
