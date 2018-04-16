@@ -72,7 +72,7 @@ public class VirtualMachineScaleSetVMProfile {
     private VirtualMachinePriorityTypes priority;
 
     /**
-     * Specifies the eviction policy for virtual machines in the low priority
+     * Specifies the eviction policy for virtual machines in a low priority
      * scale set. &lt;br&gt;&lt;br&gt;Minimum api-version: 2017-10-30-preview.
      * Possible values include: 'Deallocate', 'Delete'.
      */

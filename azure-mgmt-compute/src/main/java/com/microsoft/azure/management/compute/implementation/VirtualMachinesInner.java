@@ -263,7 +263,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         final String expand = null;
         return service.getExtensions(resourceGroupName, vmName, this.client.subscriptionId(), expand, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineExtensionsListResultInner>>>() {
@@ -345,7 +345,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.getExtensions(resourceGroupName, vmName, this.client.subscriptionId(), expand, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineExtensionsListResultInner>>>() {
                 @Override
@@ -437,7 +437,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.capture(resourceGroupName, vmName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<VirtualMachineCaptureResultInner>() { }.getType());
     }
@@ -512,7 +512,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginCapture(resourceGroupName, vmName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineCaptureResultInner>>>() {
                 @Override
@@ -605,7 +605,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.createOrUpdate(resourceGroupName, vmName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<VirtualMachineInner>() { }.getType());
     }
@@ -680,7 +680,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginCreateOrUpdate(resourceGroupName, vmName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineInner>>>() {
                 @Override
@@ -773,7 +773,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.update(resourceGroupName, vmName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<VirtualMachineInner>() { }.getType());
     }
@@ -848,7 +848,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginUpdate(resourceGroupName, vmName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineInner>>>() {
                 @Override
@@ -933,7 +933,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.delete(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -1000,7 +1000,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginDelete(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -1086,7 +1086,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         final InstanceViewTypes expand = null;
         return service.getByResourceGroup(resourceGroupName, vmName, this.client.subscriptionId(), expand, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineInner>>>() {
@@ -1168,7 +1168,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.getByResourceGroup(resourceGroupName, vmName, this.client.subscriptionId(), expand, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineInner>>>() {
                 @Override
@@ -1252,7 +1252,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.instanceView(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VirtualMachineInstanceViewInner>>>() {
                 @Override
@@ -1336,7 +1336,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.convertToManagedDisks(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -1403,7 +1403,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginConvertToManagedDisks(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -1488,7 +1488,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.deallocate(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -1555,7 +1555,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginDeallocate(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -1640,7 +1640,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.generalize(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -1753,7 +1753,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<VirtualMachineInner>>>>() {
                 @Override
@@ -1858,7 +1858,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.list(this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<VirtualMachineInner>>>>() {
                 @Override
@@ -1942,7 +1942,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.listAvailableSizes(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<VirtualMachineSizeInner>>>>() {
                 @Override
@@ -2027,7 +2027,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.powerOff(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -2094,7 +2094,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginPowerOff(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -2179,7 +2179,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.restart(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -2246,7 +2246,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginRestart(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -2331,7 +2331,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.start(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -2398,7 +2398,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginStart(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -2483,7 +2483,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.redeploy(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -2550,7 +2550,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginRedeploy(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
@@ -2635,7 +2635,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         Observable<Response<ResponseBody>> observable = service.performMaintenance(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
@@ -2702,7 +2702,7 @@ public class VirtualMachinesInner implements InnerSupportsGet<VirtualMachineInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2017-12-01-alphadummy";
         return service.beginPerformMaintenance(resourceGroupName, vmName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override

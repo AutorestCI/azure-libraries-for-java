@@ -22,7 +22,7 @@ import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.management.compute.UpdateResource;
 
 /**
- * Describes a Virtual Machine.
+ * Describes a Virtual Machine Update.
  */
 @JsonFlatten
 public class VirtualMachineUpdateInner extends UpdateResource {
