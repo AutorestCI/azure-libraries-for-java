@@ -28,6 +28,15 @@ public final class IotHubSku extends ExpandableStringEnum<IotHubSku> {
     /** Static value S3 for IotHubSku. */
     public static final IotHubSku S3 = fromString("S3");
 
+    /** Static value B1 for IotHubSku. */
+    public static final IotHubSku B1 = fromString("B1");
+
+    /** Static value B2 for IotHubSku. */
+    public static final IotHubSku B2 = fromString("B2");
+
+    /** Static value B3 for IotHubSku. */
+    public static final IotHubSku B3 = fromString("B3");
+
     /**
      * Creates or finds a IotHubSku from its string representation.
      * @param name a name to look for
