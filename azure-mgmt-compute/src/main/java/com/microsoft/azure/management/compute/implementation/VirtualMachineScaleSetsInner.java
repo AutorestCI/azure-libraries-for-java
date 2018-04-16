@@ -128,6 +128,10 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/skus")
         Observable<Response<ResponseBody>> listSkus(@Path("resourceGroupName") String resourceGroupName, @Path("vmScaleSetName") String vmScaleSetName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineScaleSets getOSUpgradeHistory" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/osUpgradeHistory")
+        Observable<Response<ResponseBody>> getOSUpgradeHistory(@Path("resourceGroupName") String resourceGroupName, @Path("vmScaleSetName") String vmScaleSetName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineScaleSets powerOff" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/poweroff")
         Observable<Response<ResponseBody>> powerOff(@Path("resourceGroupName") String resourceGroupName, @Path("vmScaleSetName") String vmScaleSetName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body VirtualMachineScaleSetVMInstanceIDs vmInstanceIDs, @Header("User-Agent") String userAgent);
@@ -207,6 +211,10 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineScaleSets listSkusNext" })
         @GET
         Observable<Response<ResponseBody>> listSkusNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineScaleSets getOSUpgradeHistoryNext" })
+        @GET
+        Observable<Response<ResponseBody>> getOSUpgradeHistoryNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -1694,6 +1702,127 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     private ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> listSkusDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetSkuInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param vmScaleSetName The name of the VM scale set.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object if successful.
+     */
+    public PagedList<UpgradeOperationHistoricalStatusInfoInner> getOSUpgradeHistory(final String resourceGroupName, final String vmScaleSetName) {
+        ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>> response = getOSUpgradeHistorySinglePageAsync(resourceGroupName, vmScaleSetName).toBlocking().single();
+        return new PagedList<UpgradeOperationHistoricalStatusInfoInner>(response.body()) {
+            @Override
+            public Page<UpgradeOperationHistoricalStatusInfoInner> nextPage(String nextPageLink) {
+                return getOSUpgradeHistoryNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param vmScaleSetName The name of the VM scale set.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryAsync(final String resourceGroupName, final String vmScaleSetName, final ListOperationCallback<UpgradeOperationHistoricalStatusInfoInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            getOSUpgradeHistorySinglePageAsync(resourceGroupName, vmScaleSetName),
+            new Func1<String, Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(String nextPageLink) {
+                    return getOSUpgradeHistoryNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param vmScaleSetName The name of the VM scale set.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object
+     */
+    public Observable<Page<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryAsync(final String resourceGroupName, final String vmScaleSetName) {
+        return getOSUpgradeHistoryWithServiceResponseAsync(resourceGroupName, vmScaleSetName)
+            .map(new Func1<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>, Page<UpgradeOperationHistoricalStatusInfoInner>>() {
+                @Override
+                public Page<UpgradeOperationHistoricalStatusInfoInner> call(ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param vmScaleSetName The name of the VM scale set.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> getOSUpgradeHistoryWithServiceResponseAsync(final String resourceGroupName, final String vmScaleSetName) {
+        return getOSUpgradeHistorySinglePageAsync(resourceGroupName, vmScaleSetName)
+            .concatMap(new Func1<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>, Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(getOSUpgradeHistoryNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+    ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> * @param vmScaleSetName The name of the VM scale set.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> getOSUpgradeHistorySinglePageAsync(final String resourceGroupName, final String vmScaleSetName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (vmScaleSetName == null) {
+            throw new IllegalArgumentException("Parameter vmScaleSetName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        final String apiVersion = "2017-12-01";
+        return service.getOSUpgradeHistory(resourceGroupName, vmScaleSetName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> result = getOSUpgradeHistoryDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -4534,6 +4663,117 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     private ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> listSkusNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetSkuInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object if successful.
+     */
+    public PagedList<UpgradeOperationHistoricalStatusInfoInner> getOSUpgradeHistoryNext(final String nextPageLink) {
+        ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>> response = getOSUpgradeHistoryNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<UpgradeOperationHistoricalStatusInfoInner>(response.body()) {
+            @Override
+            public Page<UpgradeOperationHistoricalStatusInfoInner> nextPage(String nextPageLink) {
+                return getOSUpgradeHistoryNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryNextAsync(final String nextPageLink, final ServiceFuture<List<UpgradeOperationHistoricalStatusInfoInner>> serviceFuture, final ListOperationCallback<UpgradeOperationHistoricalStatusInfoInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            getOSUpgradeHistoryNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(String nextPageLink) {
+                    return getOSUpgradeHistoryNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object
+     */
+    public Observable<Page<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryNextAsync(final String nextPageLink) {
+        return getOSUpgradeHistoryNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>, Page<UpgradeOperationHistoricalStatusInfoInner>>() {
+                @Override
+                public Page<UpgradeOperationHistoricalStatusInfoInner> call(ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> getOSUpgradeHistoryNextWithServiceResponseAsync(final String nextPageLink) {
+        return getOSUpgradeHistoryNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>, Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(getOSUpgradeHistoryNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets list of OS upgrades on a VM scale set instance.
+     *
+    ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> getOSUpgradeHistoryNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getOSUpgradeHistoryNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> result = getOSUpgradeHistoryNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

@@ -8,9 +8,6 @@
 
 package com.microsoft.azure.management.compute.implementation;
 
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
@@ -44,7 +41,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Snapshots.
  */
-public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSupportsDelete<OperationStatusResponseInner>, InnerSupportsListing<SnapshotInner> {
+public class SnapshotsInner {
     /** The Retrofit service to perform REST calls. */
     private SnapshotsService service;
     /** The service client containing this operation class. */
@@ -131,7 +128,6 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -139,35 +135,33 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SnapshotInner object if successful.
      */
-    public SnapshotInner createOrUpdate(String resourceGroupName, String snapshotName, SnapshotInner snapshot) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).toBlocking().last().body();
+    public SnapshotInner createOrUpdate(String snapshotName, SnapshotInner snapshot) {
+        return createOrUpdateWithServiceResponseAsync(snapshotName, snapshot).toBlocking().last().body();
     }
 
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SnapshotInner> createOrUpdateAsync(String resourceGroupName, String snapshotName, SnapshotInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot), serviceCallback);
+    public ServiceFuture<SnapshotInner> createOrUpdateAsync(String snapshotName, SnapshotInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(snapshotName, snapshot), serviceCallback);
     }
 
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SnapshotInner> createOrUpdateAsync(String resourceGroupName, String snapshotName, SnapshotInner snapshot) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
+    public Observable<SnapshotInner> createOrUpdateAsync(String snapshotName, SnapshotInner snapshot) {
+        return createOrUpdateWithServiceResponseAsync(snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
             @Override
             public SnapshotInner call(ServiceResponse<SnapshotInner> response) {
                 return response.body();
@@ -178,18 +172,17 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SnapshotInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String snapshotName, SnapshotInner snapshot) {
+    public Observable<ServiceResponse<SnapshotInner>> createOrUpdateWithServiceResponseAsync(String snapshotName, SnapshotInner snapshot) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
@@ -199,14 +192,13 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
         }
         Validator.validate(snapshot);
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SnapshotInner>() { }.getType());
     }
 
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -214,35 +206,33 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SnapshotInner object if successful.
      */
-    public SnapshotInner beginCreateOrUpdate(String resourceGroupName, String snapshotName, SnapshotInner snapshot) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).toBlocking().single().body();
+    public SnapshotInner beginCreateOrUpdate(String snapshotName, SnapshotInner snapshot) {
+        return beginCreateOrUpdateWithServiceResponseAsync(snapshotName, snapshot).toBlocking().single().body();
     }
 
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SnapshotInner> beginCreateOrUpdateAsync(String resourceGroupName, String snapshotName, SnapshotInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot), serviceCallback);
+    public ServiceFuture<SnapshotInner> beginCreateOrUpdateAsync(String snapshotName, SnapshotInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(snapshotName, snapshot), serviceCallback);
     }
 
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SnapshotInner object
      */
-    public Observable<SnapshotInner> beginCreateOrUpdateAsync(String resourceGroupName, String snapshotName, SnapshotInner snapshot) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
+    public Observable<SnapshotInner> beginCreateOrUpdateAsync(String snapshotName, SnapshotInner snapshot) {
+        return beginCreateOrUpdateWithServiceResponseAsync(snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
             @Override
             public SnapshotInner call(ServiceResponse<SnapshotInner> response) {
                 return response.body();
@@ -253,18 +243,17 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Creates or updates a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SnapshotInner object
      */
-    public Observable<ServiceResponse<SnapshotInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String snapshotName, SnapshotInner snapshot) {
+    public Observable<ServiceResponse<SnapshotInner>> beginCreateOrUpdateWithServiceResponseAsync(String snapshotName, SnapshotInner snapshot) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
@@ -274,7 +263,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
         }
         Validator.validate(snapshot);
         final String apiVersion = "2018-04-01";
-        return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginCreateOrUpdate(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SnapshotInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SnapshotInner>> call(Response<ResponseBody> response) {
@@ -299,7 +288,6 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -307,35 +295,33 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SnapshotInner object if successful.
      */
-    public SnapshotInner update(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot) {
-        return updateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).toBlocking().last().body();
+    public SnapshotInner update(String snapshotName, SnapshotUpdateInner snapshot) {
+        return updateWithServiceResponseAsync(snapshotName, snapshot).toBlocking().last().body();
     }
 
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SnapshotInner> updateAsync(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot), serviceCallback);
+    public ServiceFuture<SnapshotInner> updateAsync(String snapshotName, SnapshotUpdateInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(snapshotName, snapshot), serviceCallback);
     }
 
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SnapshotInner> updateAsync(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot) {
-        return updateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
+    public Observable<SnapshotInner> updateAsync(String snapshotName, SnapshotUpdateInner snapshot) {
+        return updateWithServiceResponseAsync(snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
             @Override
             public SnapshotInner call(ServiceResponse<SnapshotInner> response) {
                 return response.body();
@@ -346,18 +332,17 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SnapshotInner>> updateWithServiceResponseAsync(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot) {
+    public Observable<ServiceResponse<SnapshotInner>> updateWithServiceResponseAsync(String snapshotName, SnapshotUpdateInner snapshot) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
@@ -367,14 +352,13 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
         }
         Validator.validate(snapshot);
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SnapshotInner>() { }.getType());
     }
 
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -382,35 +366,33 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SnapshotInner object if successful.
      */
-    public SnapshotInner beginUpdate(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).toBlocking().single().body();
+    public SnapshotInner beginUpdate(String snapshotName, SnapshotUpdateInner snapshot) {
+        return beginUpdateWithServiceResponseAsync(snapshotName, snapshot).toBlocking().single().body();
     }
 
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SnapshotInner> beginUpdateAsync(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot), serviceCallback);
+    public ServiceFuture<SnapshotInner> beginUpdateAsync(String snapshotName, SnapshotUpdateInner snapshot, final ServiceCallback<SnapshotInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(snapshotName, snapshot), serviceCallback);
     }
 
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SnapshotInner object
      */
-    public Observable<SnapshotInner> beginUpdateAsync(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
+    public Observable<SnapshotInner> beginUpdateAsync(String snapshotName, SnapshotUpdateInner snapshot) {
+        return beginUpdateWithServiceResponseAsync(snapshotName, snapshot).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
             @Override
             public SnapshotInner call(ServiceResponse<SnapshotInner> response) {
                 return response.body();
@@ -421,18 +403,17 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Updates (patches) a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SnapshotInner object
      */
-    public Observable<ServiceResponse<SnapshotInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String snapshotName, SnapshotUpdateInner snapshot) {
+    public Observable<ServiceResponse<SnapshotInner>> beginUpdateWithServiceResponseAsync(String snapshotName, SnapshotUpdateInner snapshot) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
@@ -442,7 +423,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
         }
         Validator.validate(snapshot);
         final String apiVersion = "2018-04-01";
-        return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginUpdate(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, snapshot, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SnapshotInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SnapshotInner>> call(Response<ResponseBody> response) {
@@ -467,40 +448,37 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Gets information about a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SnapshotInner object if successful.
      */
-    public SnapshotInner getByResourceGroup(String resourceGroupName, String snapshotName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, snapshotName).toBlocking().single().body();
+    public SnapshotInner getByResourceGroup(String snapshotName) {
+        return getByResourceGroupWithServiceResponseAsync(snapshotName).toBlocking().single().body();
     }
 
     /**
      * Gets information about a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SnapshotInner> getByResourceGroupAsync(String resourceGroupName, String snapshotName, final ServiceCallback<SnapshotInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(resourceGroupName, snapshotName), serviceCallback);
+    public ServiceFuture<SnapshotInner> getByResourceGroupAsync(String snapshotName, final ServiceCallback<SnapshotInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(snapshotName), serviceCallback);
     }
 
     /**
      * Gets information about a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SnapshotInner object
      */
-    public Observable<SnapshotInner> getByResourceGroupAsync(String resourceGroupName, String snapshotName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, snapshotName).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
+    public Observable<SnapshotInner> getByResourceGroupAsync(String snapshotName) {
+        return getByResourceGroupWithServiceResponseAsync(snapshotName).map(new Func1<ServiceResponse<SnapshotInner>, SnapshotInner>() {
             @Override
             public SnapshotInner call(ServiceResponse<SnapshotInner> response) {
                 return response.body();
@@ -511,23 +489,22 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Gets information about a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SnapshotInner object
      */
-    public Observable<ServiceResponse<SnapshotInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String snapshotName) {
+    public Observable<ServiceResponse<SnapshotInner>> getByResourceGroupWithServiceResponseAsync(String snapshotName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.getByResourceGroup(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.getByResourceGroup(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SnapshotInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SnapshotInner>> call(Response<ResponseBody> response) {
@@ -551,40 +528,37 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner delete(String resourceGroupName, String snapshotName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, snapshotName).toBlocking().last().body();
+    public OperationStatusResponseInner delete(String snapshotName) {
+        return deleteWithServiceResponseAsync(snapshotName).toBlocking().last().body();
     }
 
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, snapshotName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> deleteAsync(String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(snapshotName), serviceCallback);
     }
 
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String snapshotName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> deleteAsync(String snapshotName) {
+        return deleteWithServiceResponseAsync(snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -595,63 +569,59 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> deleteWithServiceResponseAsync(String resourceGroupName, String snapshotName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> deleteWithServiceResponseAsync(String snapshotName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
 
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner beginDelete(String resourceGroupName, String snapshotName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, snapshotName).toBlocking().single().body();
+    public OperationStatusResponseInner beginDelete(String snapshotName) {
+        return beginDeleteWithServiceResponseAsync(snapshotName).toBlocking().single().body();
     }
 
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, snapshotName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> beginDeleteAsync(String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(snapshotName), serviceCallback);
     }
 
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String snapshotName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> beginDeleteAsync(String snapshotName) {
+        return beginDeleteWithServiceResponseAsync(snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -662,23 +632,22 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Deletes a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String snapshotName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> beginDeleteWithServiceResponseAsync(String snapshotName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.beginDelete(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginDelete(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
                 public Observable<ServiceResponse<OperationStatusResponseInner>> call(Response<ResponseBody> response) {
@@ -704,14 +673,13 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;SnapshotInner&gt; object if successful.
      */
-    public PagedList<SnapshotInner> listByResourceGroup(final String resourceGroupName) {
-        ServiceResponse<Page<SnapshotInner>> response = listByResourceGroupSinglePageAsync(resourceGroupName).toBlocking().single();
+    public PagedList<SnapshotInner> listByResourceGroup() {
+        ServiceResponse<Page<SnapshotInner>> response = listByResourceGroupSinglePageAsync().toBlocking().single();
         return new PagedList<SnapshotInner>(response.body()) {
             @Override
             public Page<SnapshotInner> nextPage(String nextPageLink) {
@@ -723,14 +691,13 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<SnapshotInner>> listByResourceGroupAsync(final String resourceGroupName, final ListOperationCallback<SnapshotInner> serviceCallback) {
+    public ServiceFuture<List<SnapshotInner>> listByResourceGroupAsync(final ListOperationCallback<SnapshotInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listByResourceGroupSinglePageAsync(resourceGroupName),
+            listByResourceGroupSinglePageAsync(),
             new Func1<String, Observable<ServiceResponse<Page<SnapshotInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<SnapshotInner>>> call(String nextPageLink) {
@@ -743,12 +710,11 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;SnapshotInner&gt; object
      */
-    public Observable<Page<SnapshotInner>> listByResourceGroupAsync(final String resourceGroupName) {
-        return listByResourceGroupWithServiceResponseAsync(resourceGroupName)
+    public Observable<Page<SnapshotInner>> listByResourceGroupAsync() {
+        return listByResourceGroupWithServiceResponseAsync()
             .map(new Func1<ServiceResponse<Page<SnapshotInner>>, Page<SnapshotInner>>() {
                 @Override
                 public Page<SnapshotInner> call(ServiceResponse<Page<SnapshotInner>> response) {
@@ -760,12 +726,11 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;SnapshotInner&gt; object
      */
-    public Observable<ServiceResponse<Page<SnapshotInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName) {
-        return listByResourceGroupSinglePageAsync(resourceGroupName)
+    public Observable<ServiceResponse<Page<SnapshotInner>>> listByResourceGroupWithServiceResponseAsync() {
+        return listByResourceGroupSinglePageAsync()
             .concatMap(new Func1<ServiceResponse<Page<SnapshotInner>>, Observable<ServiceResponse<Page<SnapshotInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<SnapshotInner>>> call(ServiceResponse<Page<SnapshotInner>> page) {
@@ -781,19 +746,18 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a resource group.
      *
-    ServiceResponse<PageImpl1<SnapshotInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;SnapshotInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<SnapshotInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName) {
+    public Observable<ServiceResponse<Page<SnapshotInner>>> listByResourceGroupSinglePageAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.listByResourceGroup(this.client.subscriptionId(), resourceGroupName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.listByResourceGroup(this.client.subscriptionId(), this.client.resourceGroupName(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SnapshotInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<SnapshotInner>>> call(Response<ResponseBody> response) {
@@ -922,7 +886,6 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -930,35 +893,33 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AccessUriInner object if successful.
      */
-    public AccessUriInner grantAccess(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData) {
-        return grantAccessWithServiceResponseAsync(resourceGroupName, snapshotName, grantAccessData).toBlocking().last().body();
+    public AccessUriInner grantAccess(String snapshotName, GrantAccessDataInner grantAccessData) {
+        return grantAccessWithServiceResponseAsync(snapshotName, grantAccessData).toBlocking().last().body();
     }
 
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AccessUriInner> grantAccessAsync(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
-        return ServiceFuture.fromResponse(grantAccessWithServiceResponseAsync(resourceGroupName, snapshotName, grantAccessData), serviceCallback);
+    public ServiceFuture<AccessUriInner> grantAccessAsync(String snapshotName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
+        return ServiceFuture.fromResponse(grantAccessWithServiceResponseAsync(snapshotName, grantAccessData), serviceCallback);
     }
 
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<AccessUriInner> grantAccessAsync(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData) {
-        return grantAccessWithServiceResponseAsync(resourceGroupName, snapshotName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
+    public Observable<AccessUriInner> grantAccessAsync(String snapshotName, GrantAccessDataInner grantAccessData) {
+        return grantAccessWithServiceResponseAsync(snapshotName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
             @Override
             public AccessUriInner call(ServiceResponse<AccessUriInner> response) {
                 return response.body();
@@ -969,18 +930,17 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<AccessUriInner>> grantAccessWithServiceResponseAsync(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData) {
+    public Observable<ServiceResponse<AccessUriInner>> grantAccessWithServiceResponseAsync(String snapshotName, GrantAccessDataInner grantAccessData) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
@@ -990,14 +950,13 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
         }
         Validator.validate(grantAccessData);
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.grantAccess(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.grantAccess(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<AccessUriInner>() { }.getType());
     }
 
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1005,35 +964,33 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AccessUriInner object if successful.
      */
-    public AccessUriInner beginGrantAccess(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData) {
-        return beginGrantAccessWithServiceResponseAsync(resourceGroupName, snapshotName, grantAccessData).toBlocking().single().body();
+    public AccessUriInner beginGrantAccess(String snapshotName, GrantAccessDataInner grantAccessData) {
+        return beginGrantAccessWithServiceResponseAsync(snapshotName, grantAccessData).toBlocking().single().body();
     }
 
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginGrantAccessWithServiceResponseAsync(resourceGroupName, snapshotName, grantAccessData), serviceCallback);
+    public ServiceFuture<AccessUriInner> beginGrantAccessAsync(String snapshotName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginGrantAccessWithServiceResponseAsync(snapshotName, grantAccessData), serviceCallback);
     }
 
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AccessUriInner object
      */
-    public Observable<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData) {
-        return beginGrantAccessWithServiceResponseAsync(resourceGroupName, snapshotName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
+    public Observable<AccessUriInner> beginGrantAccessAsync(String snapshotName, GrantAccessDataInner grantAccessData) {
+        return beginGrantAccessWithServiceResponseAsync(snapshotName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
             @Override
             public AccessUriInner call(ServiceResponse<AccessUriInner> response) {
                 return response.body();
@@ -1044,18 +1001,17 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Grants access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AccessUriInner object
      */
-    public Observable<ServiceResponse<AccessUriInner>> beginGrantAccessWithServiceResponseAsync(String resourceGroupName, String snapshotName, GrantAccessDataInner grantAccessData) {
+    public Observable<ServiceResponse<AccessUriInner>> beginGrantAccessWithServiceResponseAsync(String snapshotName, GrantAccessDataInner grantAccessData) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
@@ -1065,7 +1021,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
         }
         Validator.validate(grantAccessData);
         final String apiVersion = "2018-04-01";
-        return service.beginGrantAccess(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginGrantAccess(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<AccessUriInner>>>() {
                 @Override
                 public Observable<ServiceResponse<AccessUriInner>> call(Response<ResponseBody> response) {
@@ -1090,40 +1046,37 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner revokeAccess(String resourceGroupName, String snapshotName) {
-        return revokeAccessWithServiceResponseAsync(resourceGroupName, snapshotName).toBlocking().last().body();
+    public OperationStatusResponseInner revokeAccess(String snapshotName) {
+        return revokeAccessWithServiceResponseAsync(snapshotName).toBlocking().last().body();
     }
 
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> revokeAccessAsync(String resourceGroupName, String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(revokeAccessWithServiceResponseAsync(resourceGroupName, snapshotName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> revokeAccessAsync(String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(revokeAccessWithServiceResponseAsync(snapshotName), serviceCallback);
     }
 
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<OperationStatusResponseInner> revokeAccessAsync(String resourceGroupName, String snapshotName) {
-        return revokeAccessWithServiceResponseAsync(resourceGroupName, snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> revokeAccessAsync(String snapshotName) {
+        return revokeAccessWithServiceResponseAsync(snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -1134,63 +1087,59 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> revokeAccessWithServiceResponseAsync(String resourceGroupName, String snapshotName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> revokeAccessWithServiceResponseAsync(String snapshotName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.revokeAccess(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.revokeAccess(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
 
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner beginRevokeAccess(String resourceGroupName, String snapshotName) {
-        return beginRevokeAccessWithServiceResponseAsync(resourceGroupName, snapshotName).toBlocking().single().body();
+    public OperationStatusResponseInner beginRevokeAccess(String snapshotName) {
+        return beginRevokeAccessWithServiceResponseAsync(snapshotName).toBlocking().single().body();
     }
 
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> beginRevokeAccessAsync(String resourceGroupName, String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginRevokeAccessWithServiceResponseAsync(resourceGroupName, snapshotName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> beginRevokeAccessAsync(String snapshotName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginRevokeAccessWithServiceResponseAsync(snapshotName), serviceCallback);
     }
 
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<OperationStatusResponseInner> beginRevokeAccessAsync(String resourceGroupName, String snapshotName) {
-        return beginRevokeAccessWithServiceResponseAsync(resourceGroupName, snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> beginRevokeAccessAsync(String snapshotName) {
+        return beginRevokeAccessWithServiceResponseAsync(snapshotName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -1201,23 +1150,22 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Revokes access to a snapshot.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param snapshotName The name of the snapshot that is being created. The name can't be changed after the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> beginRevokeAccessWithServiceResponseAsync(String resourceGroupName, String snapshotName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> beginRevokeAccessWithServiceResponseAsync(String snapshotName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         if (snapshotName == null) {
             throw new IllegalArgumentException("Parameter snapshotName is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.beginRevokeAccess(this.client.subscriptionId(), resourceGroupName, snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginRevokeAccess(this.client.subscriptionId(), this.client.resourceGroupName(), snapshotName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
                 public Observable<ServiceResponse<OperationStatusResponseInner>> call(Response<ResponseBody> response) {
