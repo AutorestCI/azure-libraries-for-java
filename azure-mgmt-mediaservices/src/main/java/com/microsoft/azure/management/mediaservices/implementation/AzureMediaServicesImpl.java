@@ -159,16 +159,16 @@ public class AzureMediaServicesImpl extends AzureServiceClient {
     }
 
     /**
-     * The ProvidersInner object to access its operations.
+     * The LocationsInner object to access its operations.
      */
-    private ProvidersInner providers;
+    private LocationsInner locations;
 
     /**
-     * Gets the ProvidersInner object to access its operations.
-     * @return the ProvidersInner object.
+     * Gets the LocationsInner object to access its operations.
+     * @return the LocationsInner object.
      */
-    public ProvidersInner providers() {
-        return this.providers;
+    public LocationsInner locations() {
+        return this.locations;
     }
 
     /**
@@ -325,7 +325,7 @@ public class AzureMediaServicesImpl extends AzureServiceClient {
         this.generateClientRequestId = true;
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.mediaservices = new MediaservicesInner(restClient().retrofit(), this);
-        this.providers = new ProvidersInner(restClient().retrofit(), this);
+        this.locations = new LocationsInner(restClient().retrofit(), this);
         this.assets = new AssetsInner(restClient().retrofit(), this);
         this.contentKeyPolicies = new ContentKeyPoliciesInner(restClient().retrofit(), this);
         this.transforms = new TransformsInner(restClient().retrofit(), this);
