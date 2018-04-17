@@ -36,7 +36,7 @@ public class Source {
     /**
      * Set value to ResultCount if query should be returning search result
      * count. Set it to Number if its a metric query. Possible values include:
-     * 'ResultCount', 'Number'.
+     * 'ResultCount'.
      */
     @JsonProperty(value = "queryType")
     private QueryType queryType;

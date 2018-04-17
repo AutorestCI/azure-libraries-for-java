@@ -16,6 +16,9 @@ import com.microsoft.rest.ExpandableStringEnum;
  * Defines values for AlertSeverity.
  */
 public final class AlertSeverity extends ExpandableStringEnum<AlertSeverity> {
+    /** Static value 0 for AlertSeverity. */
+    public static final AlertSeverity ZERO = fromString("0");
+
     /** Static value 1 for AlertSeverity. */
     public static final AlertSeverity ONE = fromString("1");
 

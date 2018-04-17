@@ -19,9 +19,6 @@ public final class QueryType extends ExpandableStringEnum<QueryType> {
     /** Static value ResultCount for QueryType. */
     public static final QueryType RESULT_COUNT = fromString("ResultCount");
 
-    /** Static value Number for QueryType. */
-    public static final QueryType NUMBER = fromString("Number");
-
     /**
      * Creates or finds a QueryType from its string representation.
      * @param name a name to look for

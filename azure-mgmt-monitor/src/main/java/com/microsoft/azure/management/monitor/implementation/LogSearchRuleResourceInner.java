@@ -11,6 +11,7 @@ package com.microsoft.azure.management.monitor.implementation;
 import com.microsoft.azure.management.monitor.Enabled;
 import com.microsoft.azure.management.monitor.SkuType;
 import org.joda.time.DateTime;
+import com.microsoft.azure.management.monitor.ProvisioningState;
 import com.microsoft.azure.management.monitor.Source;
 import com.microsoft.azure.management.monitor.Schedule;
 import com.microsoft.azure.management.monitor.Action;
@@ -49,25 +50,26 @@ public class LogSearchRuleResourceInner extends Resource {
     private DateTime lastUpdatedTime;
 
     /**
-     * Provisioning state of the scheduledquery rule.
+     * Provisioning state of the scheduledquery rule. Possible values include:
+     * 'Succeeded', 'Deploying', 'Canceled', 'Failed'.
      */
     @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
+    private ProvisioningState provisioningState;
 
     /**
-     * The source property.
+     * Data Source against which rule will Query Data.
      */
     @JsonProperty(value = "properties.source", required = true)
     private Source source;
 
     /**
-     * The schedule property.
+     * Schedule (Frequnecy, Time Window) for rule.
      */
     @JsonProperty(value = "properties.schedule", required = true)
     private Schedule schedule;
 
     /**
-     * The action property.
+     * Action needs to be taken on rule execution.
      */
     @JsonProperty(value = "properties.action", required = true)
     private Action action;
@@ -146,7 +148,7 @@ public class LogSearchRuleResourceInner extends Resource {
      *
      * @return the provisioningState value
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.provisioningState;
     }
 

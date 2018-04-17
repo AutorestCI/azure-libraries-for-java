@@ -14,28 +14,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * The AlertingAction model.
+ * Specifiy action need to be taken when rule type is Alert.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "odata.type")
 @JsonTypeName("Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.Microsoft.AppInsights.Nexus.DataContracts.Resources.ScheduledQueryRules.AlertingAction")
 public class AlertingAction extends Action {
     /**
-     * Last time the rule was fired in IS08601 format.
-     */
-    @JsonProperty(value = "lastFiredTime", access = JsonProperty.Access.WRITE_ONLY)
-    private String lastFiredTime;
-
-    /**
-     * Severity of the alert. Possible values include: '1', '2', '3', '4'.
+     * Severity of the alert. Possible values include: '0', '1', '2', '3', '4'.
      */
     @JsonProperty(value = "severity")
     private AlertSeverity severity;
-
-    /**
-     * Alert state. Possible values include: 'Active', 'Inactive'.
-     */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
-    private AlertStatus status;
 
     /**
      * azns notification group reference.
@@ -56,15 +44,6 @@ public class AlertingAction extends Action {
     private TriggerCondition trigger;
 
     /**
-     * Get the lastFiredTime value.
-     *
-     * @return the lastFiredTime value
-     */
-    public String lastFiredTime() {
-        return this.lastFiredTime;
-    }
-
-    /**
      * Get the severity value.
      *
      * @return the severity value
@@ -82,15 +61,6 @@ public class AlertingAction extends Action {
     public AlertingAction withSeverity(AlertSeverity severity) {
         this.severity = severity;
         return this;
-    }
-
-    /**
-     * Get the status value.
-     *
-     * @return the status value
-     */
-    public AlertStatus status() {
-        return this.status;
     }
 
     /**
