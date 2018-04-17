@@ -70,7 +70,6 @@ public class TextModerationsInner {
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -78,37 +77,35 @@ public class TextModerationsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ScreenInner object if successful.
      */
-    public ScreenInner screenText(String language, String textContentType, byte[] textContent) {
-        return screenTextWithServiceResponseAsync(language, textContentType, textContent).toBlocking().single().body();
+    public ScreenInner screenText(String textContentType, byte[] textContent) {
+        return screenTextWithServiceResponseAsync(textContentType, textContent).toBlocking().single().body();
     }
 
     /**
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent, final ServiceCallback<ScreenInner> serviceCallback) {
-        return ServiceFuture.fromResponse(screenTextWithServiceResponseAsync(language, textContentType, textContent), serviceCallback);
+    public ServiceFuture<ScreenInner> screenTextAsync(String textContentType, byte[] textContent, final ServiceCallback<ScreenInner> serviceCallback) {
+        return ServiceFuture.fromResponse(screenTextWithServiceResponseAsync(textContentType, textContent), serviceCallback);
     }
 
     /**
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent) {
-        return screenTextWithServiceResponseAsync(language, textContentType, textContent).map(new Func1<ServiceResponse<ScreenInner>, ScreenInner>() {
+    public Observable<ScreenInner> screenTextAsync(String textContentType, byte[] textContent) {
+        return screenTextWithServiceResponseAsync(textContentType, textContent).map(new Func1<ServiceResponse<ScreenInner>, ScreenInner>() {
             @Override
             public ScreenInner call(ServiceResponse<ScreenInner> response) {
                 return response.body();
@@ -120,18 +117,14 @@ public class TextModerationsInner {
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String language, String textContentType, byte[] textContent) {
+    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String textContentType, byte[] textContent) {
         if (this.client.baseUrl() == null) {
             throw new IllegalArgumentException("Parameter this.client.baseUrl() is required and cannot be null.");
-        }
-        if (language == null) {
-            throw new IllegalArgumentException("Parameter language is required and cannot be null.");
         }
         if (textContentType == null) {
             throw new IllegalArgumentException("Parameter textContentType is required and cannot be null.");
@@ -139,6 +132,7 @@ public class TextModerationsInner {
         if (textContent == null) {
             throw new IllegalArgumentException("Parameter textContent is required and cannot be null.");
         }
+        final String language = null;
         final Boolean autocorrect = null;
         final Boolean pII = null;
         final String listId = null;
@@ -163,9 +157,9 @@ public class TextModerationsInner {
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
+     * @param language Language of the text.
      * @param autocorrect Autocorrect text.
      * @param pII Detect personal identifiable information.
      * @param listId The list Id.
@@ -175,17 +169,17 @@ public class TextModerationsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ScreenInner object if successful.
      */
-    public ScreenInner screenText(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
-        return screenTextWithServiceResponseAsync(language, textContentType, textContent, autocorrect, pII, listId, classify).toBlocking().single().body();
+    public ScreenInner screenText(String textContentType, byte[] textContent, String language, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
+        return screenTextWithServiceResponseAsync(textContentType, textContent, language, autocorrect, pII, listId, classify).toBlocking().single().body();
     }
 
     /**
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
+     * @param language Language of the text.
      * @param autocorrect Autocorrect text.
      * @param pII Detect personal identifiable information.
      * @param listId The list Id.
@@ -194,17 +188,17 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify, final ServiceCallback<ScreenInner> serviceCallback) {
-        return ServiceFuture.fromResponse(screenTextWithServiceResponseAsync(language, textContentType, textContent, autocorrect, pII, listId, classify), serviceCallback);
+    public ServiceFuture<ScreenInner> screenTextAsync(String textContentType, byte[] textContent, String language, Boolean autocorrect, Boolean pII, String listId, Boolean classify, final ServiceCallback<ScreenInner> serviceCallback) {
+        return ServiceFuture.fromResponse(screenTextWithServiceResponseAsync(textContentType, textContent, language, autocorrect, pII, listId, classify), serviceCallback);
     }
 
     /**
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
+     * @param language Language of the text.
      * @param autocorrect Autocorrect text.
      * @param pII Detect personal identifiable information.
      * @param listId The list Id.
@@ -212,8 +206,8 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ScreenInner> screenTextAsync(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
-        return screenTextWithServiceResponseAsync(language, textContentType, textContent, autocorrect, pII, listId, classify).map(new Func1<ServiceResponse<ScreenInner>, ScreenInner>() {
+    public Observable<ScreenInner> screenTextAsync(String textContentType, byte[] textContent, String language, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
+        return screenTextWithServiceResponseAsync(textContentType, textContent, language, autocorrect, pII, listId, classify).map(new Func1<ServiceResponse<ScreenInner>, ScreenInner>() {
             @Override
             public ScreenInner call(ServiceResponse<ScreenInner> response) {
                 return response.body();
@@ -225,9 +219,9 @@ public class TextModerationsInner {
      * Detect profanity and match against custom and shared blacklists.
      * Detects profanity in more than 100 languages and match against custom and shared blacklists.
      *
-     * @param language Language of the terms.
      * @param textContentType The content type. Possible values include: 'text/plain', 'text/html', 'text/xml', 'text/markdown'
      * @param textContent Content to screen.
+     * @param language Language of the text.
      * @param autocorrect Autocorrect text.
      * @param pII Detect personal identifiable information.
      * @param listId The list Id.
@@ -235,12 +229,9 @@ public class TextModerationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ScreenInner object
      */
-    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String language, String textContentType, byte[] textContent, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
+    public Observable<ServiceResponse<ScreenInner>> screenTextWithServiceResponseAsync(String textContentType, byte[] textContent, String language, Boolean autocorrect, Boolean pII, String listId, Boolean classify) {
         if (this.client.baseUrl() == null) {
             throw new IllegalArgumentException("Parameter this.client.baseUrl() is required and cannot be null.");
-        }
-        if (language == null) {
-            throw new IllegalArgumentException("Parameter language is required and cannot be null.");
         }
         if (textContentType == null) {
             throw new IllegalArgumentException("Parameter textContentType is required and cannot be null.");
