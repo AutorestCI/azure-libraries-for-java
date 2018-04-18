@@ -9,6 +9,7 @@
 package com.microsoft.azure.management.datafactory;
 
 import org.joda.time.DateTime;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -81,6 +82,12 @@ public class TumblingWindowTrigger extends TriggerInner {
      */
     @JsonProperty(value = "typeProperties.retryPolicy")
     private RetryPolicy retryPolicy;
+
+    /**
+     * Tumbling Window depends on condition.
+     */
+    @JsonProperty(value = "typeProperties.dependsOn")
+    private List<TumblingWindowDependency> dependsOn;
 
     /**
      * Get the pipeline value.
@@ -239,6 +246,26 @@ public class TumblingWindowTrigger extends TriggerInner {
      */
     public TumblingWindowTrigger withRetryPolicy(RetryPolicy retryPolicy) {
         this.retryPolicy = retryPolicy;
+        return this;
+    }
+
+    /**
+     * Get the dependsOn value.
+     *
+     * @return the dependsOn value
+     */
+    public List<TumblingWindowDependency> dependsOn() {
+        return this.dependsOn;
+    }
+
+    /**
+     * Set the dependsOn value.
+     *
+     * @param dependsOn the dependsOn value to set
+     * @return the TumblingWindowTrigger object itself.
+     */
+    public TumblingWindowTrigger withDependsOn(List<TumblingWindowDependency> dependsOn) {
+        this.dependsOn = dependsOn;
         return this;
     }
 
