@@ -159,16 +159,16 @@ public class DataFactoryManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The ConfigureFactoryReposInner object to access its operations.
+     * The ConfigureReposInner object to access its operations.
      */
-    private ConfigureFactoryReposInner configureFactoryRepos;
+    private ConfigureReposInner configureRepos;
 
     /**
-     * Gets the ConfigureFactoryReposInner object to access its operations.
-     * @return the ConfigureFactoryReposInner object.
+     * Gets the ConfigureReposInner object to access its operations.
+     * @return the ConfigureReposInner object.
      */
-    public ConfigureFactoryReposInner configureFactoryRepos() {
-        return this.configureFactoryRepos;
+    public ConfigureReposInner configureRepos() {
+        return this.configureRepos;
     }
 
     /**
@@ -312,7 +312,7 @@ public class DataFactoryManagementClientImpl extends AzureServiceClient {
         this.generateClientRequestId = true;
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.factories = new FactoriesInner(restClient().retrofit(), this);
-        this.configureFactoryRepos = new ConfigureFactoryReposInner(restClient().retrofit(), this);
+        this.configureRepos = new ConfigureReposInner(restClient().retrofit(), this);
         this.integrationRuntimes = new IntegrationRuntimesInner(restClient().retrofit(), this);
         this.integrationRuntimeNodes = new IntegrationRuntimeNodesInner(restClient().retrofit(), this);
         this.linkedServices = new LinkedServicesInner(restClient().retrofit(), this);

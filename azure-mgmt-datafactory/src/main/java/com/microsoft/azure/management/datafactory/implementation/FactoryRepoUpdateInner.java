@@ -22,12 +22,6 @@ public class FactoryRepoUpdateInner {
     private String factoryId;
 
     /**
-     * The resource group name.
-     */
-    @JsonProperty(value = "resourceGroupName")
-    private String resourceGroupName;
-
-    /**
      * VSTS repo information of the factory.
      */
     @JsonProperty(value = "vstsConfiguration")
@@ -50,26 +44,6 @@ public class FactoryRepoUpdateInner {
      */
     public FactoryRepoUpdateInner withFactoryId(String factoryId) {
         this.factoryId = factoryId;
-        return this;
-    }
-
-    /**
-     * Get the resourceGroupName value.
-     *
-     * @return the resourceGroupName value
-     */
-    public String resourceGroupName() {
-        return this.resourceGroupName;
-    }
-
-    /**
-     * Set the resourceGroupName value.
-     *
-     * @param resourceGroupName the resourceGroupName value to set
-     * @return the FactoryRepoUpdateInner object itself.
-     */
-    public FactoryRepoUpdateInner withResourceGroupName(String resourceGroupName) {
-        this.resourceGroupName = resourceGroupName;
         return this;
     }
 
