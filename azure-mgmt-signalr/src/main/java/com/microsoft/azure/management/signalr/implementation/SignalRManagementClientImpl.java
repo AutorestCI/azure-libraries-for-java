@@ -133,16 +133,16 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The SignalrsInner object to access its operations.
+     * The SignalRsInner object to access its operations.
      */
-    private SignalrsInner signalrs;
+    private SignalRsInner signalRs;
 
     /**
-     * Gets the SignalrsInner object to access its operations.
-     * @return the SignalrsInner object.
+     * Gets the SignalRsInner object to access its operations.
+     * @return the SignalRsInner object.
      */
-    public SignalrsInner signalrs() {
-        return this.signalrs;
+    public SignalRsInner signalRs() {
+        return this.signalRs;
     }
 
     /**
@@ -180,7 +180,7 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
-        this.signalrs = new SignalrsInner(restClient().retrofit(), this);
+        this.signalRs = new SignalRsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
