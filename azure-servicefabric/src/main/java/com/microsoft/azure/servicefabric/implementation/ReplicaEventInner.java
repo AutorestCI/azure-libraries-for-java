@@ -49,7 +49,7 @@ public class ReplicaEventInner extends FabricEventInner {
      * replica id.
      */
     @JsonProperty(value = "ReplicaId", required = true)
-    private String replicaId;
+    private long replicaId;
 
     /**
      * Get the partitionId value.
@@ -76,7 +76,7 @@ public class ReplicaEventInner extends FabricEventInner {
      *
      * @return the replicaId value
      */
-    public String replicaId() {
+    public long replicaId() {
         return this.replicaId;
     }
 
@@ -86,7 +86,7 @@ public class ReplicaEventInner extends FabricEventInner {
      * @param replicaId the replicaId value to set
      * @return the ReplicaEventInner object itself.
      */
-    public ReplicaEventInner withReplicaId(String replicaId) {
+    public ReplicaEventInner withReplicaId(long replicaId) {
         this.replicaId = replicaId;
         return this;
     }

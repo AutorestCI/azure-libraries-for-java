@@ -182,7 +182,7 @@ public class ServiceFabricClientAPIsImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "ServiceFabricClientAPIs", "6.2.0");
+        return String.format("%s (%s, %s)", super.userAgent(), "ServiceFabricClientAPIs", "6.2.0.9");
     }
 
     private void initializeService() {
@@ -7205,7 +7205,6 @@ public class ServiceFabricClientAPIsImpl extends AzureServiceClient {
     private ServiceResponse<List<ServiceTypeInfoInner>> getServiceTypeInfoListDelegate(Response<ResponseBody> response) throws FabricErrorException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<List<ServiceTypeInfoInner>, FabricErrorException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<List<ServiceTypeInfoInner>>() { }.getType())
-                .register(404, new TypeToken<Void>() { }.getType())
                 .registerError(FabricErrorException.class)
                 .build(response);
     }
@@ -7388,8 +7387,7 @@ public class ServiceFabricClientAPIsImpl extends AzureServiceClient {
     private ServiceResponse<ServiceTypeInfoInner> getServiceTypeInfoByNameDelegate(Response<ResponseBody> response) throws FabricErrorException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<ServiceTypeInfoInner, FabricErrorException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<ServiceTypeInfoInner>() { }.getType())
-                .register(204, new TypeToken<ServiceTypeInfoInner>() { }.getType())
-                .register(404, new TypeToken<Void>() { }.getType())
+                .register(204, new TypeToken<Void>() { }.getType())
                 .registerError(FabricErrorException.class)
                 .build(response);
     }
@@ -30278,7 +30276,7 @@ public class ServiceFabricClientAPIsImpl extends AzureServiceClient {
 
     private ServiceResponse<Void> suspendServiceBackupDelegate(Response<ResponseBody> response) throws FabricErrorException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Void, FabricErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(FabricErrorException.class)
                 .build(response);
     }
@@ -30446,7 +30444,7 @@ public class ServiceFabricClientAPIsImpl extends AzureServiceClient {
 
     private ServiceResponse<Void> resumeServiceBackupDelegate(Response<ResponseBody> response) throws FabricErrorException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Void, FabricErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(FabricErrorException.class)
                 .build(response);
     }
@@ -31259,7 +31257,7 @@ public class ServiceFabricClientAPIsImpl extends AzureServiceClient {
 
     private ServiceResponse<Void> suspendPartitionBackupDelegate(Response<ResponseBody> response) throws FabricErrorException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Void, FabricErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(FabricErrorException.class)
                 .build(response);
     }
@@ -31411,7 +31409,7 @@ public class ServiceFabricClientAPIsImpl extends AzureServiceClient {
 
     private ServiceResponse<Void> resumePartitionBackupDelegate(Response<ResponseBody> response) throws FabricErrorException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Void, FabricErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(FabricErrorException.class)
                 .build(response);
     }

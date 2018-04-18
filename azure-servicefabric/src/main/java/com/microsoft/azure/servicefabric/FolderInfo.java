@@ -26,7 +26,7 @@ public class FolderInfo {
      * The number of files from within the image store folder.
      */
     @JsonProperty(value = "FileCount")
-    private Long fileCount;
+    private String fileCount;
 
     /**
      * Get the storeRelativePath value.
@@ -53,7 +53,7 @@ public class FolderInfo {
      *
      * @return the fileCount value
      */
-    public Long fileCount() {
+    public String fileCount() {
         return this.fileCount;
     }
 
@@ -63,7 +63,7 @@ public class FolderInfo {
      * @param fileCount the fileCount value to set
      * @return the FolderInfo object itself.
      */
-    public FolderInfo withFileCount(Long fileCount) {
+    public FolderInfo withFileCount(String fileCount) {
         this.fileCount = fileCount;
         return this;
     }

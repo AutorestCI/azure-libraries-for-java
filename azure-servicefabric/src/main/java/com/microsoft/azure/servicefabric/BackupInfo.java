@@ -65,7 +65,7 @@ public class BackupInfo {
      * Epoch of the last record in this backup.
      */
     @JsonProperty(value = "EpochOfLastBackupRecord")
-    private Epoch epochOfLastBackupRecord;
+    private BackupEpoch epochOfLastBackupRecord;
 
     /**
      * LSN of the last record in this backup.
@@ -230,7 +230,7 @@ public class BackupInfo {
      *
      * @return the epochOfLastBackupRecord value
      */
-    public Epoch epochOfLastBackupRecord() {
+    public BackupEpoch epochOfLastBackupRecord() {
         return this.epochOfLastBackupRecord;
     }
 
@@ -240,7 +240,7 @@ public class BackupInfo {
      * @param epochOfLastBackupRecord the epochOfLastBackupRecord value to set
      * @return the BackupInfo object itself.
      */
-    public BackupInfo withEpochOfLastBackupRecord(Epoch epochOfLastBackupRecord) {
+    public BackupInfo withEpochOfLastBackupRecord(BackupEpoch epochOfLastBackupRecord) {
         this.epochOfLastBackupRecord = epochOfLastBackupRecord;
         return this;
     }

@@ -27,14 +27,14 @@ public class UniformInt64RangePartitionSchemeDescription extends PartitionScheme
 
     /**
      * String indicating the lower bound of the partition key range that
-     * should be split between the partition ‘Count’.
+     * should be split between the partitions.
      */
     @JsonProperty(value = "LowKey", required = true)
     private String lowKey;
 
     /**
      * String indicating the upper bound of the partition key range that
-     * should be split between the partition ‘Count’.
+     * should be split between the partitions.
      */
     @JsonProperty(value = "HighKey", required = true)
     private String highKey;

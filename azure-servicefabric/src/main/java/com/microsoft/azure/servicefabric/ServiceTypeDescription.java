@@ -47,6 +47,13 @@ public class ServiceTypeDescription {
     private String placementConstraints;
 
     /**
+     * The service load metrics is given as an array of
+     * ServiceLoadMetricDescription objects.
+     */
+    @JsonProperty(value = "LoadMetrics")
+    private List<ServiceLoadMetricDescription> loadMetrics;
+
+    /**
      * List of service placement policy descriptions.
      */
     @JsonProperty(value = "ServicePlacementPolicies")
@@ -115,6 +122,26 @@ public class ServiceTypeDescription {
      */
     public ServiceTypeDescription withPlacementConstraints(String placementConstraints) {
         this.placementConstraints = placementConstraints;
+        return this;
+    }
+
+    /**
+     * Get the loadMetrics value.
+     *
+     * @return the loadMetrics value
+     */
+    public List<ServiceLoadMetricDescription> loadMetrics() {
+        return this.loadMetrics;
+    }
+
+    /**
+     * Set the loadMetrics value.
+     *
+     * @param loadMetrics the loadMetrics value to set
+     * @return the ServiceTypeDescription object itself.
+     */
+    public ServiceTypeDescription withLoadMetrics(List<ServiceLoadMetricDescription> loadMetrics) {
+        this.loadMetrics = loadMetrics;
         return this;
     }
 

@@ -10,7 +10,7 @@ package com.microsoft.azure.servicefabric.implementation;
 
 import com.microsoft.azure.servicefabric.RestoreState;
 import org.joda.time.DateTime;
-import com.microsoft.azure.servicefabric.Epoch;
+import com.microsoft.azure.servicefabric.BackupEpoch;
 import com.microsoft.azure.servicefabric.FabricErrorError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -36,7 +36,7 @@ public class RestoreProgressInfoInner {
      * Describes the epoch at which the partition is restored.
      */
     @JsonProperty(value = "RestoredEpoch")
-    private Epoch restoredEpoch;
+    private BackupEpoch restoredEpoch;
 
     /**
      * Restored LSN.
@@ -95,7 +95,7 @@ public class RestoreProgressInfoInner {
      *
      * @return the restoredEpoch value
      */
-    public Epoch restoredEpoch() {
+    public BackupEpoch restoredEpoch() {
         return this.restoredEpoch;
     }
 
@@ -105,7 +105,7 @@ public class RestoreProgressInfoInner {
      * @param restoredEpoch the restoredEpoch value to set
      * @return the RestoreProgressInfoInner object itself.
      */
-    public RestoreProgressInfoInner withRestoredEpoch(Epoch restoredEpoch) {
+    public RestoreProgressInfoInner withRestoredEpoch(BackupEpoch restoredEpoch) {
         this.restoredEpoch = restoredEpoch;
         return this;
     }
