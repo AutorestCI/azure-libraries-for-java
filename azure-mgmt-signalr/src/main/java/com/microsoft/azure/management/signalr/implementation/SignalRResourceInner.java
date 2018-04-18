@@ -22,7 +22,7 @@ public class SignalRResourceInner extends TrackedResourceInner {
      * SKU of the service.
      */
     @JsonProperty(value = "sku")
-    private ResourceSku signalrsku;
+    private ResourceSku sku;
 
     /**
      * Prefix for the hostName of the SignalR service. Retained for future use.
@@ -67,22 +67,22 @@ public class SignalRResourceInner extends TrackedResourceInner {
     private Integer serverPort;
 
     /**
-     * Get the signalrsku value.
+     * Get the sku value.
      *
-     * @return the signalrsku value
+     * @return the sku value
      */
-    public ResourceSku signalrsku() {
-        return this.signalrsku;
+    public ResourceSku sku() {
+        return this.sku;
     }
 
     /**
-     * Set the signalrsku value.
+     * Set the sku value.
      *
-     * @param signalrsku the signalrsku value to set
+     * @param sku the sku value to set
      * @return the SignalRResourceInner object itself.
      */
-    public SignalRResourceInner withSignalrsku(ResourceSku signalrsku) {
-        this.signalrsku = signalrsku;
+    public SignalRResourceInner withSku(ResourceSku sku) {
+        this.sku = sku;
         return this;
     }
 
