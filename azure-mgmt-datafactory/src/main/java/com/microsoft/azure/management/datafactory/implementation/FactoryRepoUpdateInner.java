@@ -16,10 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class FactoryRepoUpdateInner {
     /**
-     * The factory id.
+     * The factory resource id.
      */
-    @JsonProperty(value = "factoryId")
-    private String factoryId;
+    @JsonProperty(value = "factoryResourceId")
+    private String factoryResourceId;
 
     /**
      * VSTS repo information of the factory.
@@ -28,22 +28,22 @@ public class FactoryRepoUpdateInner {
     private FactoryVSTSConfiguration vstsConfiguration;
 
     /**
-     * Get the factoryId value.
+     * Get the factoryResourceId value.
      *
-     * @return the factoryId value
+     * @return the factoryResourceId value
      */
-    public String factoryId() {
-        return this.factoryId;
+    public String factoryResourceId() {
+        return this.factoryResourceId;
     }
 
     /**
-     * Set the factoryId value.
+     * Set the factoryResourceId value.
      *
-     * @param factoryId the factoryId value to set
+     * @param factoryResourceId the factoryResourceId value to set
      * @return the FactoryRepoUpdateInner object itself.
      */
-    public FactoryRepoUpdateInner withFactoryId(String factoryId) {
-        this.factoryId = factoryId;
+    public FactoryRepoUpdateInner withFactoryResourceId(String factoryResourceId) {
+        this.factoryResourceId = factoryResourceId;
         return this;
     }
 
