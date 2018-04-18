@@ -14,6 +14,7 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.monitor.ErrorResponseException;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -90,7 +91,7 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
      * @param ruleName The name of the rule.
      * @param parameters The parameters of the rule to create or update.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the LogSearchRuleResourceInner object if successful.
      */
@@ -168,11 +169,11 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
             });
     }
 
-    private ServiceResponse<LogSearchRuleResourceInner> createOrUpdateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<LogSearchRuleResourceInner, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<LogSearchRuleResourceInner> createOrUpdateDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<LogSearchRuleResourceInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<LogSearchRuleResourceInner>() { }.getType())
                 .register(201, new TypeToken<LogSearchRuleResourceInner>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ErrorResponseException.class)
                 .build(response);
     }
 
@@ -182,7 +183,7 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
      * @param resourceGroupName The name of the resource group.
      * @param ruleName The name of the rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the LogSearchRuleResourceInner object if successful.
      */
@@ -253,11 +254,10 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
             });
     }
 
-    private ServiceResponse<LogSearchRuleResourceInner> getByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<LogSearchRuleResourceInner, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<LogSearchRuleResourceInner> getByResourceGroupDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<LogSearchRuleResourceInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<LogSearchRuleResourceInner>() { }.getType())
-                .register(404, new TypeToken<Void>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ErrorResponseException.class)
                 .build(response);
     }
 
