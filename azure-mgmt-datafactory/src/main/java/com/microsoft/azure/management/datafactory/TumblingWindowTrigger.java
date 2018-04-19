@@ -84,10 +84,10 @@ public class TumblingWindowTrigger extends TriggerInner {
     private RetryPolicy retryPolicy;
 
     /**
-     * Tumbling Window depends on condition.
+     * Tumbling window triggers that this trigger depends on.
      */
     @JsonProperty(value = "typeProperties.dependsOn")
-    private List<TumblingWindowDependency> dependsOn;
+    private List<TumblingWindowTriggerReference> dependsOn;
 
     /**
      * Get the pipeline value.
@@ -254,7 +254,7 @@ public class TumblingWindowTrigger extends TriggerInner {
      *
      * @return the dependsOn value
      */
-    public List<TumblingWindowDependency> dependsOn() {
+    public List<TumblingWindowTriggerReference> dependsOn() {
         return this.dependsOn;
     }
 
@@ -264,7 +264,7 @@ public class TumblingWindowTrigger extends TriggerInner {
      * @param dependsOn the dependsOn value to set
      * @return the TumblingWindowTrigger object itself.
      */
-    public TumblingWindowTrigger withDependsOn(List<TumblingWindowDependency> dependsOn) {
+    public TumblingWindowTrigger withDependsOn(List<TumblingWindowTriggerReference> dependsOn) {
         this.dependsOn = dependsOn;
         return this;
     }
