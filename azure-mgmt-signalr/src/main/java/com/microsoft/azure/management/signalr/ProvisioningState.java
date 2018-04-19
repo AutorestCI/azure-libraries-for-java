@@ -16,6 +16,9 @@ import com.microsoft.rest.ExpandableStringEnum;
  * Defines values for ProvisioningState.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
+    /** Static value Unknown for ProvisioningState. */
+    public static final ProvisioningState UNKNOWN = fromString("Unknown");
+
     /** Static value Succeeded for ProvisioningState. */
     public static final ProvisioningState SUCCEEDED = fromString("Succeeded");
 
@@ -24,6 +27,9 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
 
     /** Static value Canceled for ProvisioningState. */
     public static final ProvisioningState CANCELED = fromString("Canceled");
+
+    /** Static value Running for ProvisioningState. */
+    public static final ProvisioningState RUNNING = fromString("Running");
 
     /** Static value Creating for ProvisioningState. */
     public static final ProvisioningState CREATING = fromString("Creating");

@@ -46,11 +46,11 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Signalrs.
  */
-public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, InnerSupportsDelete<Void>, InnerSupportsListing<SignalRResourceInner> {
+public class SignalrsInner implements InnerSupportsGet<SignalrResourceInner>, InnerSupportsDelete<Void>, InnerSupportsListing<SignalrResourceInner> {
     /** The Retrofit service to perform REST calls. */
     private SignalrsService service;
     /** The service client containing this operation class. */
-    private SignalRManagementClientImpl client;
+    private SignalrManagementClientImpl client;
 
     /**
      * Initializes an instance of SignalrsInner.
@@ -58,7 +58,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param retrofit the Retrofit instance built from a Retrofit Builder.
      * @param client the instance of the service client containing this operation class.
      */
-    public SignalrsInner(Retrofit retrofit, SignalRManagementClientImpl client) {
+    public SignalrsInner(Retrofit retrofit, SignalrManagementClientImpl client) {
         this.service = retrofit.create(SignalrsService.class);
         this.client = client;
     }
@@ -68,10 +68,6 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * used by Retrofit to perform actually REST calls.
      */
     interface SignalrsService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs listOperations" })
-        @GET("providers/Microsoft.SignalRService/operations")
-        Observable<Response<ResponseBody>> listOperations(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs checkNameAvailability" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.SignalRService/checkNameAvailability")
         Observable<Response<ResponseBody>> checkNameAvailability(@Path("subscriptionId") String subscriptionId, @Body NameAvailabilityParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -102,11 +98,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/SignalR/{resourceName}")
-        Observable<Response<ResponseBody>> createOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalRCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> createOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalrCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs beginCreateOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/SignalR/{resourceName}")
-        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalRCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalrCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/SignalR/{resourceName}", method = "DELETE", hasBody = true)
@@ -118,15 +114,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/SignalR/{resourceName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalRUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalrUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/SignalR/{resourceName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalRUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs listOperationsNext" })
-        @GET
-        Observable<Response<ResponseBody>> listOperationsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalrUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.Signalrs listNext" })
         @GET
@@ -136,110 +128,6 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         @GET
         Observable<Response<ResponseBody>> listByResourceGroupNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;OperationInner&gt; object if successful.
-     */
-    public PagedList<OperationInner> listOperations() {
-        ServiceResponse<Page<OperationInner>> response = listOperationsSinglePageAsync().toBlocking().single();
-        return new PagedList<OperationInner>(response.body()) {
-            @Override
-            public Page<OperationInner> nextPage(String nextPageLink) {
-                return listOperationsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<OperationInner>> listOperationsAsync(final ListOperationCallback<OperationInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listOperationsSinglePageAsync(),
-            new Func1<String, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(String nextPageLink) {
-                    return listOperationsNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<Page<OperationInner>> listOperationsAsync() {
-        return listOperationsWithServiceResponseAsync()
-            .map(new Func1<ServiceResponse<Page<OperationInner>>, Page<OperationInner>>() {
-                @Override
-                public Page<OperationInner> call(ServiceResponse<Page<OperationInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsWithServiceResponseAsync() {
-        return listOperationsSinglePageAsync()
-            .concatMap(new Func1<ServiceResponse<Page<OperationInner>>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(ServiceResponse<Page<OperationInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listOperationsNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;OperationInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsSinglePageAsync() {
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listOperations(this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<OperationInner>> result = listOperationsDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<OperationInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<OperationInner>> listOperationsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<OperationInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<OperationInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
     }
 
     /**
@@ -391,13 +279,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;SignalRResourceInner&gt; object if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object if successful.
      */
-    public PagedList<SignalRResourceInner> list() {
-        ServiceResponse<Page<SignalRResourceInner>> response = listSinglePageAsync().toBlocking().single();
-        return new PagedList<SignalRResourceInner>(response.body()) {
+    public PagedList<SignalrResourceInner> list() {
+        ServiceResponse<Page<SignalrResourceInner>> response = listSinglePageAsync().toBlocking().single();
+        return new PagedList<SignalrResourceInner>(response.body()) {
             @Override
-            public Page<SignalRResourceInner> nextPage(String nextPageLink) {
+            public Page<SignalrResourceInner> nextPage(String nextPageLink) {
                 return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -410,12 +298,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<SignalRResourceInner>> listAsync(final ListOperationCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<List<SignalrResourceInner>> listAsync(final ListOperationCallback<SignalrResourceInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listSinglePageAsync(),
-            new Func1<String, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(String nextPageLink) {
                     return listNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -426,13 +314,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * Handles requests to list all resources in a subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<Page<SignalRResourceInner>> listAsync() {
+    public Observable<Page<SignalrResourceInner>> listAsync() {
         return listWithServiceResponseAsync()
-            .map(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Page<SignalRResourceInner>>() {
+            .map(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Page<SignalrResourceInner>>() {
                 @Override
-                public Page<SignalRResourceInner> call(ServiceResponse<Page<SignalRResourceInner>> response) {
+                public Page<SignalrResourceInner> call(ServiceResponse<Page<SignalrResourceInner>> response) {
                     return response.body();
                 }
             });
@@ -442,13 +330,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * Handles requests to list all resources in a subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listWithServiceResponseAsync() {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listWithServiceResponseAsync() {
         return listSinglePageAsync()
-            .concatMap(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(ServiceResponse<Page<SignalRResourceInner>> page) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(ServiceResponse<Page<SignalrResourceInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -462,9 +350,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * Handles requests to list all resources in a subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;SignalRResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listSinglePageAsync() {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listSinglePageAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -472,12 +360,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.list(this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<SignalRResourceInner>> result = listDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<SignalRResourceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<SignalrResourceInner>> result = listDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<SignalrResourceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -485,9 +373,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<PageImpl<SignalRResourceInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalRResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<SignalRResourceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SignalrResourceInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalrResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SignalrResourceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -499,13 +387,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;SignalRResourceInner&gt; object if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object if successful.
      */
-    public PagedList<SignalRResourceInner> listByResourceGroup(final String resourceGroupName) {
-        ServiceResponse<Page<SignalRResourceInner>> response = listByResourceGroupSinglePageAsync(resourceGroupName).toBlocking().single();
-        return new PagedList<SignalRResourceInner>(response.body()) {
+    public PagedList<SignalrResourceInner> listByResourceGroup(final String resourceGroupName) {
+        ServiceResponse<Page<SignalrResourceInner>> response = listByResourceGroupSinglePageAsync(resourceGroupName).toBlocking().single();
+        return new PagedList<SignalrResourceInner>(response.body()) {
             @Override
-            public Page<SignalRResourceInner> nextPage(String nextPageLink) {
+            public Page<SignalrResourceInner> nextPage(String nextPageLink) {
                 return listByResourceGroupNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -519,12 +407,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<SignalRResourceInner>> listByResourceGroupAsync(final String resourceGroupName, final ListOperationCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<List<SignalrResourceInner>> listByResourceGroupAsync(final String resourceGroupName, final ListOperationCallback<SignalrResourceInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listByResourceGroupSinglePageAsync(resourceGroupName),
-            new Func1<String, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(String nextPageLink) {
                     return listByResourceGroupNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -536,13 +424,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<Page<SignalRResourceInner>> listByResourceGroupAsync(final String resourceGroupName) {
+    public Observable<Page<SignalrResourceInner>> listByResourceGroupAsync(final String resourceGroupName) {
         return listByResourceGroupWithServiceResponseAsync(resourceGroupName)
-            .map(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Page<SignalRResourceInner>>() {
+            .map(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Page<SignalrResourceInner>>() {
                 @Override
-                public Page<SignalRResourceInner> call(ServiceResponse<Page<SignalRResourceInner>> response) {
+                public Page<SignalrResourceInner> call(ServiceResponse<Page<SignalrResourceInner>> response) {
                     return response.body();
                 }
             });
@@ -553,13 +441,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName) {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName) {
         return listByResourceGroupSinglePageAsync(resourceGroupName)
-            .concatMap(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(ServiceResponse<Page<SignalRResourceInner>> page) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(ServiceResponse<Page<SignalrResourceInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -572,11 +460,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
     /**
      * Handles requests to list all resources in a resource group.
      *
-    ServiceResponse<PageImpl<SignalRResourceInner>> * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
+    ServiceResponse<PageImpl<SignalrResourceInner>> * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;SignalRResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName) {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -587,12 +475,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listByResourceGroup(this.client.subscriptionId(), resourceGroupName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<SignalRResourceInner>> result = listByResourceGroupDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<SignalRResourceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<SignalrResourceInner>> result = listByResourceGroupDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<SignalrResourceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -600,9 +488,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<PageImpl<SignalRResourceInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalRResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<SignalRResourceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SignalrResourceInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalrResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SignalrResourceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -615,9 +503,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRKeysInner object if successful.
+     * @return the SignalrKeysInner object if successful.
      */
-    public SignalRKeysInner listKeys(String resourceGroupName, String resourceName) {
+    public SignalrKeysInner listKeys(String resourceGroupName, String resourceName) {
         return listKeysWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().single().body();
     }
 
@@ -630,7 +518,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRKeysInner> listKeysAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRKeysInner> serviceCallback) {
+    public ServiceFuture<SignalrKeysInner> listKeysAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrKeysInner> serviceCallback) {
         return ServiceFuture.fromResponse(listKeysWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -640,12 +528,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRKeysInner object
+     * @return the observable to the SignalrKeysInner object
      */
-    public Observable<SignalRKeysInner> listKeysAsync(String resourceGroupName, String resourceName) {
-        return listKeysWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRKeysInner>, SignalRKeysInner>() {
+    public Observable<SignalrKeysInner> listKeysAsync(String resourceGroupName, String resourceName) {
+        return listKeysWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrKeysInner>, SignalrKeysInner>() {
             @Override
-            public SignalRKeysInner call(ServiceResponse<SignalRKeysInner> response) {
+            public SignalrKeysInner call(ServiceResponse<SignalrKeysInner> response) {
                 return response.body();
             }
         });
@@ -657,9 +545,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRKeysInner object
+     * @return the observable to the SignalrKeysInner object
      */
-    public Observable<ServiceResponse<SignalRKeysInner>> listKeysWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrKeysInner>> listKeysWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -673,11 +561,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listKeys(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRKeysInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrKeysInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRKeysInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrKeysInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRKeysInner> clientResponse = listKeysDelegate(response);
+                        ServiceResponse<SignalrKeysInner> clientResponse = listKeysDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -686,9 +574,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<SignalRKeysInner> listKeysDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<SignalRKeysInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<SignalRKeysInner>() { }.getType())
+    private ServiceResponse<SignalrKeysInner> listKeysDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<SignalrKeysInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<SignalrKeysInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -701,9 +589,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRKeysInner object if successful.
+     * @return the SignalrKeysInner object if successful.
      */
-    public SignalRKeysInner regenerateKey(String resourceGroupName, String resourceName) {
+    public SignalrKeysInner regenerateKey(String resourceGroupName, String resourceName) {
         return regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().last().body();
     }
 
@@ -716,7 +604,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRKeysInner> serviceCallback) {
+    public ServiceFuture<SignalrKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrKeysInner> serviceCallback) {
         return ServiceFuture.fromResponse(regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -728,10 +616,10 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SignalRKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName) {
-        return regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRKeysInner>, SignalRKeysInner>() {
+    public Observable<SignalrKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName) {
+        return regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrKeysInner>, SignalrKeysInner>() {
             @Override
-            public SignalRKeysInner call(ServiceResponse<SignalRKeysInner> response) {
+            public SignalrKeysInner call(ServiceResponse<SignalrKeysInner> response) {
                 return response.body();
             }
         });
@@ -745,7 +633,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SignalRKeysInner>> regenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrKeysInner>> regenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -762,7 +650,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         RegenerateKeyParameters parameters = new RegenerateKeyParameters();
         parameters.withKeyType(null);
         Observable<Response<ResponseBody>> observable = service.regenerateKey(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
-        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<SignalRKeysInner>() { }.getType());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<SignalrKeysInner>() { }.getType());
     }
     /**
      * Regenerate SignalR service access key. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
@@ -773,9 +661,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRKeysInner object if successful.
+     * @return the SignalrKeysInner object if successful.
      */
-    public SignalRKeysInner regenerateKey(String resourceGroupName, String resourceName, KeyType keyType) {
+    public SignalrKeysInner regenerateKey(String resourceGroupName, String resourceName, KeyType keyType) {
         return regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType).toBlocking().last().body();
     }
 
@@ -789,7 +677,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType, final ServiceCallback<SignalRKeysInner> serviceCallback) {
+    public ServiceFuture<SignalrKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType, final ServiceCallback<SignalrKeysInner> serviceCallback) {
         return ServiceFuture.fromResponse(regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType), serviceCallback);
     }
 
@@ -802,10 +690,10 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SignalRKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType) {
-        return regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType).map(new Func1<ServiceResponse<SignalRKeysInner>, SignalRKeysInner>() {
+    public Observable<SignalrKeysInner> regenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType) {
+        return regenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType).map(new Func1<ServiceResponse<SignalrKeysInner>, SignalrKeysInner>() {
             @Override
-            public SignalRKeysInner call(ServiceResponse<SignalRKeysInner> response) {
+            public SignalrKeysInner call(ServiceResponse<SignalrKeysInner> response) {
                 return response.body();
             }
         });
@@ -820,7 +708,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SignalRKeysInner>> regenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName, KeyType keyType) {
+    public Observable<ServiceResponse<SignalrKeysInner>> regenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName, KeyType keyType) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -839,7 +727,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             parameters.withKeyType(keyType);
         }
         Observable<Response<ResponseBody>> observable = service.regenerateKey(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
-        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<SignalRKeysInner>() { }.getType());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<SignalrKeysInner>() { }.getType());
     }
 
     /**
@@ -850,9 +738,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRKeysInner object if successful.
+     * @return the SignalrKeysInner object if successful.
      */
-    public SignalRKeysInner beginRegenerateKey(String resourceGroupName, String resourceName) {
+    public SignalrKeysInner beginRegenerateKey(String resourceGroupName, String resourceName) {
         return beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().single().body();
     }
 
@@ -865,7 +753,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRKeysInner> serviceCallback) {
+    public ServiceFuture<SignalrKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrKeysInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -875,12 +763,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRKeysInner object
+     * @return the observable to the SignalrKeysInner object
      */
-    public Observable<SignalRKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName) {
-        return beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRKeysInner>, SignalRKeysInner>() {
+    public Observable<SignalrKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName) {
+        return beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrKeysInner>, SignalrKeysInner>() {
             @Override
-            public SignalRKeysInner call(ServiceResponse<SignalRKeysInner> response) {
+            public SignalrKeysInner call(ServiceResponse<SignalrKeysInner> response) {
                 return response.body();
             }
         });
@@ -892,9 +780,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRKeysInner object
+     * @return the observable to the SignalrKeysInner object
      */
-    public Observable<ServiceResponse<SignalRKeysInner>> beginRegenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrKeysInner>> beginRegenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -911,11 +799,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         RegenerateKeyParameters parameters = new RegenerateKeyParameters();
         parameters.withKeyType(null);
         return service.beginRegenerateKey(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRKeysInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrKeysInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRKeysInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrKeysInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRKeysInner> clientResponse = beginRegenerateKeyDelegate(response);
+                        ServiceResponse<SignalrKeysInner> clientResponse = beginRegenerateKeyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -933,9 +821,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRKeysInner object if successful.
+     * @return the SignalrKeysInner object if successful.
      */
-    public SignalRKeysInner beginRegenerateKey(String resourceGroupName, String resourceName, KeyType keyType) {
+    public SignalrKeysInner beginRegenerateKey(String resourceGroupName, String resourceName, KeyType keyType) {
         return beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType).toBlocking().single().body();
     }
 
@@ -949,7 +837,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType, final ServiceCallback<SignalRKeysInner> serviceCallback) {
+    public ServiceFuture<SignalrKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType, final ServiceCallback<SignalrKeysInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType), serviceCallback);
     }
 
@@ -960,12 +848,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceName The name of the SignalR resource.
      * @param keyType The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive). Possible values include: 'Primary', 'Secondary'
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRKeysInner object
+     * @return the observable to the SignalrKeysInner object
      */
-    public Observable<SignalRKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType) {
-        return beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType).map(new Func1<ServiceResponse<SignalRKeysInner>, SignalRKeysInner>() {
+    public Observable<SignalrKeysInner> beginRegenerateKeyAsync(String resourceGroupName, String resourceName, KeyType keyType) {
+        return beginRegenerateKeyWithServiceResponseAsync(resourceGroupName, resourceName, keyType).map(new Func1<ServiceResponse<SignalrKeysInner>, SignalrKeysInner>() {
             @Override
-            public SignalRKeysInner call(ServiceResponse<SignalRKeysInner> response) {
+            public SignalrKeysInner call(ServiceResponse<SignalrKeysInner> response) {
                 return response.body();
             }
         });
@@ -978,9 +866,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceName The name of the SignalR resource.
      * @param keyType The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive). Possible values include: 'Primary', 'Secondary'
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRKeysInner object
+     * @return the observable to the SignalrKeysInner object
      */
-    public Observable<ServiceResponse<SignalRKeysInner>> beginRegenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName, KeyType keyType) {
+    public Observable<ServiceResponse<SignalrKeysInner>> beginRegenerateKeyWithServiceResponseAsync(String resourceGroupName, String resourceName, KeyType keyType) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -999,11 +887,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             parameters.withKeyType(keyType);
         }
         return service.beginRegenerateKey(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRKeysInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrKeysInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRKeysInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrKeysInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRKeysInner> clientResponse = beginRegenerateKeyDelegate(response);
+                        ServiceResponse<SignalrKeysInner> clientResponse = beginRegenerateKeyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1012,9 +900,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<SignalRKeysInner> beginRegenerateKeyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<SignalRKeysInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(201, new TypeToken<SignalRKeysInner>() { }.getType())
+    private ServiceResponse<SignalrKeysInner> beginRegenerateKeyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<SignalrKeysInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(201, new TypeToken<SignalrKeysInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1027,9 +915,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner getByResourceGroup(String resourceGroupName, String resourceName) {
+    public SignalrResourceInner getByResourceGroup(String resourceGroupName, String resourceName) {
         return getByResourceGroupWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().single().body();
     }
 
@@ -1042,7 +930,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> getByResourceGroupAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> getByResourceGroupAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -1052,12 +940,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<SignalRResourceInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
+        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1069,9 +957,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrResourceInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1085,11 +973,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.getByResourceGroup(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRResourceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrResourceInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRResourceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrResourceInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRResourceInner> clientResponse = getByResourceGroupDelegate(response);
+                        ServiceResponse<SignalrResourceInner> clientResponse = getByResourceGroupDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1098,9 +986,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<SignalRResourceInner> getByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<SignalRResourceInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<SignalRResourceInner>() { }.getType())
+    private ServiceResponse<SignalrResourceInner> getByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<SignalrResourceInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<SignalrResourceInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1113,9 +1001,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner createOrUpdate(String resourceGroupName, String resourceName) {
+    public SignalrResourceInner createOrUpdate(String resourceGroupName, String resourceName) {
         return createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().last().body();
     }
 
@@ -1128,7 +1016,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -1140,10 +1028,10 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SignalRResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1157,7 +1045,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrResourceInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1170,9 +1058,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final SignalRCreateParametersInner parameters = null;
+        final SignalrCreateParametersInner parameters = null;
         Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalrResourceInner>() { }.getType());
     }
     /**
      * Create a new SignalR service and update an exiting SignalR service.
@@ -1183,9 +1071,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner createOrUpdate(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters) {
+    public SignalrResourceInner createOrUpdate(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters) {
         return createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).toBlocking().last().body();
     }
 
@@ -1199,7 +1087,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters), serviceCallback);
     }
 
@@ -1212,10 +1100,10 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SignalRResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> createOrUpdateAsync(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1230,7 +1118,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters) {
+    public Observable<ServiceResponse<SignalrResourceInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1245,7 +1133,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         Validator.validate(parameters);
         Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalrResourceInner>() { }.getType());
     }
 
     /**
@@ -1256,9 +1144,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner beginCreateOrUpdate(String resourceGroupName, String resourceName) {
+    public SignalrResourceInner beginCreateOrUpdate(String resourceGroupName, String resourceName) {
         return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().single().body();
     }
 
@@ -1271,7 +1159,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -1281,12 +1169,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<SignalRResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName) {
+        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1298,9 +1186,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrResourceInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1313,13 +1201,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final SignalRCreateParametersInner parameters = null;
+        final SignalrCreateParametersInner parameters = null;
         return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRResourceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrResourceInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRResourceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrResourceInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRResourceInner> clientResponse = beginCreateOrUpdateDelegate(response);
+                        ServiceResponse<SignalrResourceInner> clientResponse = beginCreateOrUpdateDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1337,9 +1225,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner beginCreateOrUpdate(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters) {
+    public SignalrResourceInner beginCreateOrUpdate(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters) {
         return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).toBlocking().single().body();
     }
 
@@ -1353,7 +1241,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters), serviceCallback);
     }
 
@@ -1364,12 +1252,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceName The name of the SignalR resource.
      * @param parameters Parameters for the create or update operation
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<SignalRResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> beginCreateOrUpdateAsync(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters) {
+        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1382,9 +1270,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceName The name of the SignalR resource.
      * @param parameters Parameters for the create or update operation
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalRCreateParametersInner parameters) {
+    public Observable<ServiceResponse<SignalrResourceInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalrCreateParametersInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1399,11 +1287,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         Validator.validate(parameters);
         return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRResourceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrResourceInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRResourceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrResourceInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRResourceInner> clientResponse = beginCreateOrUpdateDelegate(response);
+                        ServiceResponse<SignalrResourceInner> clientResponse = beginCreateOrUpdateDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1412,9 +1300,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<SignalRResourceInner> beginCreateOrUpdateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<SignalRResourceInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(201, new TypeToken<SignalRResourceInner>() { }.getType())
+    private ServiceResponse<SignalrResourceInner> beginCreateOrUpdateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<SignalrResourceInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(201, new TypeToken<SignalrResourceInner>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
@@ -1582,9 +1470,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner update(String resourceGroupName, String resourceName) {
+    public SignalrResourceInner update(String resourceGroupName, String resourceName) {
         return updateWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().last().body();
     }
 
@@ -1597,7 +1485,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> updateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> updateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -1609,10 +1497,10 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SignalRResourceInner> updateAsync(String resourceGroupName, String resourceName) {
-        return updateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> updateAsync(String resourceGroupName, String resourceName) {
+        return updateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1626,7 +1514,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1639,9 +1527,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final SignalRUpdateParametersInner parameters = null;
+        final SignalrUpdateParametersInner parameters = null;
         Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalrResourceInner>() { }.getType());
     }
     /**
      * Operation to update an exiting SignalR service.
@@ -1652,9 +1540,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner update(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters) {
+    public SignalrResourceInner update(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).toBlocking().last().body();
     }
 
@@ -1668,7 +1556,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> updateAsync(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> updateAsync(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, resourceName, parameters), serviceCallback);
     }
 
@@ -1681,10 +1569,10 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<SignalRResourceInner> updateAsync(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters) {
-        return updateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> updateAsync(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1699,7 +1587,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters) {
+    public Observable<ServiceResponse<SignalrResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1714,7 +1602,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         Validator.validate(parameters);
         Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalrResourceInner>() { }.getType());
     }
 
     /**
@@ -1725,9 +1613,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner beginUpdate(String resourceGroupName, String resourceName) {
+    public SignalrResourceInner beginUpdate(String resourceGroupName, String resourceName) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName).toBlocking().single().body();
     }
 
@@ -1740,7 +1628,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName), serviceCallback);
     }
 
@@ -1750,12 +1638,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<SignalRResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName) {
+        return beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1767,9 +1655,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param resourceName The name of the SignalR resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
+    public Observable<ServiceResponse<SignalrResourceInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1782,13 +1670,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final SignalRUpdateParametersInner parameters = null;
+        final SignalrUpdateParametersInner parameters = null;
         return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRResourceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrResourceInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRResourceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrResourceInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRResourceInner> clientResponse = beginUpdateDelegate(response);
+                        ServiceResponse<SignalrResourceInner> clientResponse = beginUpdateDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1806,9 +1694,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SignalRResourceInner object if successful.
+     * @return the SignalrResourceInner object if successful.
      */
-    public SignalRResourceInner beginUpdate(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters) {
+    public SignalrResourceInner beginUpdate(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).toBlocking().single().body();
     }
 
@@ -1822,7 +1710,7 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SignalRResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters, final ServiceCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<SignalrResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters, final ServiceCallback<SignalrResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters), serviceCallback);
     }
 
@@ -1833,12 +1721,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceName The name of the SignalR resource.
      * @param parameters Parameters for the update operation
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<SignalRResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalRResourceInner>, SignalRResourceInner>() {
+    public Observable<SignalrResourceInner> beginUpdateAsync(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters) {
+        return beginUpdateWithServiceResponseAsync(resourceGroupName, resourceName, parameters).map(new Func1<ServiceResponse<SignalrResourceInner>, SignalrResourceInner>() {
             @Override
-            public SignalRResourceInner call(ServiceResponse<SignalRResourceInner> response) {
+            public SignalrResourceInner call(ServiceResponse<SignalrResourceInner> response) {
                 return response.body();
             }
         });
@@ -1851,9 +1739,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @param resourceName The name of the SignalR resource.
      * @param parameters Parameters for the update operation
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SignalRResourceInner object
+     * @return the observable to the SignalrResourceInner object
      */
-    public Observable<ServiceResponse<SignalRResourceInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalRUpdateParametersInner parameters) {
+    public Observable<ServiceResponse<SignalrResourceInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String resourceName, SignalrUpdateParametersInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1868,11 +1756,11 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         Validator.validate(parameters);
         return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRResourceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalrResourceInner>>>() {
                 @Override
-                public Observable<ServiceResponse<SignalRResourceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SignalrResourceInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<SignalRResourceInner> clientResponse = beginUpdateDelegate(response);
+                        ServiceResponse<SignalrResourceInner> clientResponse = beginUpdateDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1881,121 +1769,10 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<SignalRResourceInner> beginUpdateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<SignalRResourceInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<SignalRResourceInner>() { }.getType())
+    private ServiceResponse<SignalrResourceInner> beginUpdateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<SignalrResourceInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<SignalrResourceInner>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;OperationInner&gt; object if successful.
-     */
-    public PagedList<OperationInner> listOperationsNext(final String nextPageLink) {
-        ServiceResponse<Page<OperationInner>> response = listOperationsNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<OperationInner>(response.body()) {
-            @Override
-            public Page<OperationInner> nextPage(String nextPageLink) {
-                return listOperationsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<OperationInner>> listOperationsNextAsync(final String nextPageLink, final ServiceFuture<List<OperationInner>> serviceFuture, final ListOperationCallback<OperationInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listOperationsNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(String nextPageLink) {
-                    return listOperationsNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<Page<OperationInner>> listOperationsNextAsync(final String nextPageLink) {
-        return listOperationsNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<OperationInner>>, Page<OperationInner>>() {
-                @Override
-                public Page<OperationInner> call(ServiceResponse<Page<OperationInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsNextWithServiceResponseAsync(final String nextPageLink) {
-        return listOperationsNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<OperationInner>>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(ServiceResponse<Page<OperationInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listOperationsNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-    ServiceResponse<PageImpl<OperationInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;OperationInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listOperationsNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<OperationInner>> result = listOperationsNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<OperationInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<OperationInner>> listOperationsNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<OperationInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<OperationInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -2007,13 +1784,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;SignalRResourceInner&gt; object if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object if successful.
      */
-    public PagedList<SignalRResourceInner> listNext(final String nextPageLink) {
-        ServiceResponse<Page<SignalRResourceInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<SignalRResourceInner>(response.body()) {
+    public PagedList<SignalrResourceInner> listNext(final String nextPageLink) {
+        ServiceResponse<Page<SignalrResourceInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<SignalrResourceInner>(response.body()) {
             @Override
-            public Page<SignalRResourceInner> nextPage(String nextPageLink) {
+            public Page<SignalrResourceInner> nextPage(String nextPageLink) {
                 return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -2028,12 +1805,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<SignalRResourceInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<SignalRResourceInner>> serviceFuture, final ListOperationCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<List<SignalrResourceInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<SignalrResourceInner>> serviceFuture, final ListOperationCallback<SignalrResourceInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(String nextPageLink) {
                     return listNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -2045,13 +1822,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<Page<SignalRResourceInner>> listNextAsync(final String nextPageLink) {
+    public Observable<Page<SignalrResourceInner>> listNextAsync(final String nextPageLink) {
         return listNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Page<SignalRResourceInner>>() {
+            .map(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Page<SignalrResourceInner>>() {
                 @Override
-                public Page<SignalRResourceInner> call(ServiceResponse<Page<SignalRResourceInner>> response) {
+                public Page<SignalrResourceInner> call(ServiceResponse<Page<SignalrResourceInner>> response) {
                     return response.body();
                 }
             });
@@ -2062,13 +1839,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
         return listNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(ServiceResponse<Page<SignalRResourceInner>> page) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(ServiceResponse<Page<SignalrResourceInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -2081,22 +1858,22 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
     /**
      * Handles requests to list all resources in a subscription.
      *
-    ServiceResponse<PageImpl<SignalRResourceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<SignalrResourceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;SignalRResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listNextSinglePageAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listNextSinglePageAsync(final String nextPageLink) {
         if (nextPageLink == null) {
             throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
         }
         String nextUrl = String.format("%s", nextPageLink);
         return service.listNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<SignalRResourceInner>> result = listNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<SignalRResourceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<SignalrResourceInner>> result = listNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<SignalrResourceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -2104,9 +1881,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<PageImpl<SignalRResourceInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalRResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<SignalRResourceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SignalrResourceInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalrResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SignalrResourceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -2118,13 +1895,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;SignalRResourceInner&gt; object if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object if successful.
      */
-    public PagedList<SignalRResourceInner> listByResourceGroupNext(final String nextPageLink) {
-        ServiceResponse<Page<SignalRResourceInner>> response = listByResourceGroupNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<SignalRResourceInner>(response.body()) {
+    public PagedList<SignalrResourceInner> listByResourceGroupNext(final String nextPageLink) {
+        ServiceResponse<Page<SignalrResourceInner>> response = listByResourceGroupNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<SignalrResourceInner>(response.body()) {
             @Override
-            public Page<SignalRResourceInner> nextPage(String nextPageLink) {
+            public Page<SignalrResourceInner> nextPage(String nextPageLink) {
                 return listByResourceGroupNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -2139,12 +1916,12 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<SignalRResourceInner>> listByResourceGroupNextAsync(final String nextPageLink, final ServiceFuture<List<SignalRResourceInner>> serviceFuture, final ListOperationCallback<SignalRResourceInner> serviceCallback) {
+    public ServiceFuture<List<SignalrResourceInner>> listByResourceGroupNextAsync(final String nextPageLink, final ServiceFuture<List<SignalrResourceInner>> serviceFuture, final ListOperationCallback<SignalrResourceInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listByResourceGroupNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(String nextPageLink) {
                     return listByResourceGroupNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -2156,13 +1933,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<Page<SignalRResourceInner>> listByResourceGroupNextAsync(final String nextPageLink) {
+    public Observable<Page<SignalrResourceInner>> listByResourceGroupNextAsync(final String nextPageLink) {
         return listByResourceGroupNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Page<SignalRResourceInner>>() {
+            .map(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Page<SignalrResourceInner>>() {
                 @Override
-                public Page<SignalRResourceInner> call(ServiceResponse<Page<SignalRResourceInner>> response) {
+                public Page<SignalrResourceInner> call(ServiceResponse<Page<SignalrResourceInner>> response) {
                     return response.body();
                 }
             });
@@ -2173,13 +1950,13 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;SignalRResourceInner&gt; object
+     * @return the observable to the PagedList&lt;SignalrResourceInner&gt; object
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listByResourceGroupNextWithServiceResponseAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listByResourceGroupNextWithServiceResponseAsync(final String nextPageLink) {
         return listByResourceGroupNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<SignalRResourceInner>>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<SignalrResourceInner>>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(ServiceResponse<Page<SignalRResourceInner>> page) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(ServiceResponse<Page<SignalrResourceInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -2192,22 +1969,22 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
     /**
      * Handles requests to list all resources in a resource group.
      *
-    ServiceResponse<PageImpl<SignalRResourceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<SignalrResourceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;SignalRResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;SignalrResourceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<SignalRResourceInner>>> listByResourceGroupNextSinglePageAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<SignalrResourceInner>>> listByResourceGroupNextSinglePageAsync(final String nextPageLink) {
         if (nextPageLink == null) {
             throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
         }
         String nextUrl = String.format("%s", nextPageLink);
         return service.listByResourceGroupNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalrResourceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<SignalRResourceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<SignalrResourceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<SignalRResourceInner>> result = listByResourceGroupNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<SignalRResourceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<SignalrResourceInner>> result = listByResourceGroupNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<SignalrResourceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -2215,9 +1992,9 @@ public class SignalrsInner implements InnerSupportsGet<SignalRResourceInner>, In
             });
     }
 
-    private ServiceResponse<PageImpl<SignalRResourceInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalRResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<SignalRResourceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SignalrResourceInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SignalrResourceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SignalrResourceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
