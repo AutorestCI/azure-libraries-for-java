@@ -17,7 +17,7 @@ import com.microsoft.rest.serializer.JsonFlatten;
  * A class represent a SignalR service resource.
  */
 @JsonFlatten
-public class SignalRResourceInner extends TrackedResourceInner {
+public class SignalrResourceInner extends TrackedResourceInner {
     /**
      * SKU of the service.
      */
@@ -33,9 +33,9 @@ public class SignalRResourceInner extends TrackedResourceInner {
     private String hostNamePrefix;
 
     /**
-     * Provisioning state of the resource. Possible values include:
-     * 'Succeeded', 'Failed', 'Canceled', 'Creating', 'Updating', 'Deleting',
-     * 'Moving'.
+     * Provisioning state of the resource. Possible values include: 'Unknown',
+     * 'Succeeded', 'Failed', 'Canceled', 'Running', 'Creating', 'Updating',
+     * 'Deleting', 'Moving'.
      */
     @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
@@ -79,9 +79,9 @@ public class SignalRResourceInner extends TrackedResourceInner {
      * Set the sku value.
      *
      * @param sku the sku value to set
-     * @return the SignalRResourceInner object itself.
+     * @return the SignalrResourceInner object itself.
      */
-    public SignalRResourceInner withSku(ResourceSku sku) {
+    public SignalrResourceInner withSku(ResourceSku sku) {
         this.sku = sku;
         return this;
     }
@@ -99,9 +99,9 @@ public class SignalRResourceInner extends TrackedResourceInner {
      * Set the hostNamePrefix value.
      *
      * @param hostNamePrefix the hostNamePrefix value to set
-     * @return the SignalRResourceInner object itself.
+     * @return the SignalrResourceInner object itself.
      */
-    public SignalRResourceInner withHostNamePrefix(String hostNamePrefix) {
+    public SignalrResourceInner withHostNamePrefix(String hostNamePrefix) {
         this.hostNamePrefix = hostNamePrefix;
         return this;
     }

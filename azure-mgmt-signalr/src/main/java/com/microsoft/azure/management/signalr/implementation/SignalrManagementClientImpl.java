@@ -14,9 +14,9 @@ import com.microsoft.rest.credentials.ServiceClientCredentials;
 import com.microsoft.rest.RestClient;
 
 /**
- * Initializes a new instance of the SignalRManagementClientImpl class.
+ * Initializes a new instance of the SignalrManagementClientImpl class.
  */
-public class SignalRManagementClientImpl extends AzureServiceClient {
+public class SignalrManagementClientImpl extends AzureServiceClient {
     /** the {@link AzureClient} used for long running operations. */
     private AzureClient azureClient;
 
@@ -58,7 +58,7 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
      * @param subscriptionId the subscriptionId value.
      * @return the service client itself
      */
-    public SignalRManagementClientImpl withSubscriptionId(String subscriptionId) {
+    public SignalrManagementClientImpl withSubscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -81,7 +81,7 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
      * @param acceptLanguage the acceptLanguage value.
      * @return the service client itself
      */
-    public SignalRManagementClientImpl withAcceptLanguage(String acceptLanguage) {
+    public SignalrManagementClientImpl withAcceptLanguage(String acceptLanguage) {
         this.acceptLanguage = acceptLanguage;
         return this;
     }
@@ -104,7 +104,7 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
      * @param longRunningOperationRetryTimeout the longRunningOperationRetryTimeout value.
      * @return the service client itself
      */
-    public SignalRManagementClientImpl withLongRunningOperationRetryTimeout(int longRunningOperationRetryTimeout) {
+    public SignalrManagementClientImpl withLongRunningOperationRetryTimeout(int longRunningOperationRetryTimeout) {
         this.longRunningOperationRetryTimeout = longRunningOperationRetryTimeout;
         return this;
     }
@@ -127,50 +127,63 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
      * @param generateClientRequestId the generateClientRequestId value.
      * @return the service client itself
      */
-    public SignalRManagementClientImpl withGenerateClientRequestId(boolean generateClientRequestId) {
+    public SignalrManagementClientImpl withGenerateClientRequestId(boolean generateClientRequestId) {
         this.generateClientRequestId = generateClientRequestId;
         return this;
     }
 
     /**
-     * The SignalRsInner object to access its operations.
+     * The OperationsInner object to access its operations.
      */
-    private SignalRsInner signalRs;
+    private OperationsInner operations;
 
     /**
-     * Gets the SignalRsInner object to access its operations.
-     * @return the SignalRsInner object.
+     * Gets the OperationsInner object to access its operations.
+     * @return the OperationsInner object.
      */
-    public SignalRsInner signalRs() {
-        return this.signalRs;
+    public OperationsInner operations() {
+        return this.operations;
     }
 
     /**
-     * Initializes an instance of SignalRManagementClient client.
+     * The SignalrsInner object to access its operations.
+     */
+    private SignalrsInner signalrs;
+
+    /**
+     * Gets the SignalrsInner object to access its operations.
+     * @return the SignalrsInner object.
+     */
+    public SignalrsInner signalrs() {
+        return this.signalrs;
+    }
+
+    /**
+     * Initializes an instance of SignalrManagementClient client.
      *
      * @param credentials the management credentials for Azure
      */
-    public SignalRManagementClientImpl(ServiceClientCredentials credentials) {
+    public SignalrManagementClientImpl(ServiceClientCredentials credentials) {
         this("https://management.azure.com", credentials);
     }
 
     /**
-     * Initializes an instance of SignalRManagementClient client.
+     * Initializes an instance of SignalrManagementClient client.
      *
      * @param baseUrl the base URL of the host
      * @param credentials the management credentials for Azure
      */
-    public SignalRManagementClientImpl(String baseUrl, ServiceClientCredentials credentials) {
+    public SignalrManagementClientImpl(String baseUrl, ServiceClientCredentials credentials) {
         super(baseUrl, credentials);
         initialize();
     }
 
     /**
-     * Initializes an instance of SignalRManagementClient client.
+     * Initializes an instance of SignalrManagementClient client.
      *
      * @param restClient the REST client to connect to Azure.
      */
-    public SignalRManagementClientImpl(RestClient restClient) {
+    public SignalrManagementClientImpl(RestClient restClient) {
         super(restClient);
         initialize();
     }
@@ -180,7 +193,8 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
-        this.signalRs = new SignalRsInner(restClient().retrofit(), this);
+        this.operations = new OperationsInner(restClient().retrofit(), this);
+        this.signalrs = new SignalrsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
@@ -191,6 +205,6 @@ public class SignalRManagementClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "SignalRManagementClient", "2018-03-01-preview");
+        return String.format("%s (%s, %s)", super.userAgent(), "SignalrManagementClient", "2018-03-01-preview");
     }
 }
