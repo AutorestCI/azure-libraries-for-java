@@ -25,6 +25,15 @@ public class TabularTranslator extends CopyTranslator {
     private Object columnMappings;
 
     /**
+     * The schema mapping to map between tabular data and hierarchical data.
+     * Example: {"Column1": "$.Column1", "Column2": "$.Column2.Property1",
+     * "Column3": "$.Column2.Property2"}. Type: object (or Expression with
+     * resultType object).
+     */
+    @JsonProperty(value = "schemaMapping")
+    private Object schemaMapping;
+
+    /**
      * Get the columnMappings value.
      *
      * @return the columnMappings value
@@ -41,6 +50,26 @@ public class TabularTranslator extends CopyTranslator {
      */
     public TabularTranslator withColumnMappings(Object columnMappings) {
         this.columnMappings = columnMappings;
+        return this;
+    }
+
+    /**
+     * Get the schemaMapping value.
+     *
+     * @return the schemaMapping value
+     */
+    public Object schemaMapping() {
+        return this.schemaMapping;
+    }
+
+    /**
+     * Set the schemaMapping value.
+     *
+     * @param schemaMapping the schemaMapping value to set
+     * @return the TabularTranslator object itself.
+     */
+    public TabularTranslator withSchemaMapping(Object schemaMapping) {
+        this.schemaMapping = schemaMapping;
         return this;
     }
 
