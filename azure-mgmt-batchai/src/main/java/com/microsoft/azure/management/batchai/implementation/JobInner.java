@@ -71,7 +71,7 @@ public class JobInner extends ProxyResource {
      * Batch AI to make the path unique and can be used to find the output
      * directory on the node or mounted filesystem.
      */
-    @JsonProperty(value = "properties.jobOutputDirectoryPathSegment")
+    @JsonProperty(value = "properties.jobOutputDirectoryPathSegment", access = JsonProperty.Access.WRITE_ONLY)
     private String jobOutputDirectoryPathSegment;
 
     /**
@@ -233,7 +233,7 @@ public class JobInner extends ProxyResource {
      * occurred launching the job. Possible values include: 'queued',
      * 'running', 'terminating', 'succeeded', 'failed'.
      */
-    @JsonProperty(value = "properties.executionState")
+    @JsonProperty(value = "properties.executionState", access = JsonProperty.Access.WRITE_ONLY)
     private ExecutionState executionState;
 
     /**
@@ -317,17 +317,6 @@ public class JobInner extends ProxyResource {
      */
     public String jobOutputDirectoryPathSegment() {
         return this.jobOutputDirectoryPathSegment;
-    }
-
-    /**
-     * Set the jobOutputDirectoryPathSegment value.
-     *
-     * @param jobOutputDirectoryPathSegment the jobOutputDirectoryPathSegment value to set
-     * @return the JobInner object itself.
-     */
-    public JobInner withJobOutputDirectoryPathSegment(String jobOutputDirectoryPathSegment) {
-        this.jobOutputDirectoryPathSegment = jobOutputDirectoryPathSegment;
-        return this;
     }
 
     /**
@@ -724,17 +713,6 @@ public class JobInner extends ProxyResource {
      */
     public ExecutionState executionState() {
         return this.executionState;
-    }
-
-    /**
-     * Set the executionState value.
-     *
-     * @param executionState the executionState value to set
-     * @return the JobInner object itself.
-     */
-    public JobInner withExecutionState(ExecutionState executionState) {
-        this.executionState = executionState;
-        return this;
     }
 
     /**
