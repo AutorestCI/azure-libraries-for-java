@@ -56,25 +56,17 @@ public class AssetInner extends ProxyResourceInner {
     private String container;
 
     /**
-     * The ARM resource ID of the Azure Storage account containing the Asset.
+     * The name of the storage account.
      */
-    @JsonProperty(value = "properties.storageAccountId")
-    private String storageAccountId;
+    @JsonProperty(value = "properties.storageAccountName")
+    private String storageAccountName;
 
     /**
-     * The Asset encryption format. One of None, MediaStorageEncryption,
-     * StaticCommonEncryption or StaticEnvelopeEncryption. Possible values
-     * include: 'None', 'MediaStorageClientEncryption',
-     * 'StaticCommonEncryption', 'StaticEnvelopeEncryption'.
+     * The Asset encryption format. One of None or MediaStorageEncryption.
+     * Possible values include: 'None', 'MediaStorageClientEncryption'.
      */
-    @JsonProperty(value = "properties.storageEncryptionFormat")
+    @JsonProperty(value = "properties.storageEncryptionFormat", access = JsonProperty.Access.WRITE_ONLY)
     private AssetStorageEncryptionFormat storageEncryptionFormat;
-
-    /**
-     * The Base64 encoded key for the Asset storage encryption.
-     */
-    @JsonProperty(value = "properties.storageEncryptionKey")
-    private String storageEncryptionKey;
 
     /**
      * Get the assetId value.
@@ -164,22 +156,22 @@ public class AssetInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the storageAccountId value.
+     * Get the storageAccountName value.
      *
-     * @return the storageAccountId value
+     * @return the storageAccountName value
      */
-    public String storageAccountId() {
-        return this.storageAccountId;
+    public String storageAccountName() {
+        return this.storageAccountName;
     }
 
     /**
-     * Set the storageAccountId value.
+     * Set the storageAccountName value.
      *
-     * @param storageAccountId the storageAccountId value to set
+     * @param storageAccountName the storageAccountName value to set
      * @return the AssetInner object itself.
      */
-    public AssetInner withStorageAccountId(String storageAccountId) {
-        this.storageAccountId = storageAccountId;
+    public AssetInner withStorageAccountName(String storageAccountName) {
+        this.storageAccountName = storageAccountName;
         return this;
     }
 
@@ -190,37 +182,6 @@ public class AssetInner extends ProxyResourceInner {
      */
     public AssetStorageEncryptionFormat storageEncryptionFormat() {
         return this.storageEncryptionFormat;
-    }
-
-    /**
-     * Set the storageEncryptionFormat value.
-     *
-     * @param storageEncryptionFormat the storageEncryptionFormat value to set
-     * @return the AssetInner object itself.
-     */
-    public AssetInner withStorageEncryptionFormat(AssetStorageEncryptionFormat storageEncryptionFormat) {
-        this.storageEncryptionFormat = storageEncryptionFormat;
-        return this;
-    }
-
-    /**
-     * Get the storageEncryptionKey value.
-     *
-     * @return the storageEncryptionKey value
-     */
-    public String storageEncryptionKey() {
-        return this.storageEncryptionKey;
-    }
-
-    /**
-     * Set the storageEncryptionKey value.
-     *
-     * @param storageEncryptionKey the storageEncryptionKey value to set
-     * @return the AssetInner object itself.
-     */
-    public AssetInner withStorageEncryptionKey(String storageEncryptionKey) {
-        this.storageEncryptionKey = storageEncryptionKey;
-        return this;
     }
 
 }

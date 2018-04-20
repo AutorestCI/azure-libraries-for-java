@@ -23,7 +23,7 @@ public class StreamingLocatorInner extends ProxyResourceInner {
     /**
      * Asset Name.
      */
-    @JsonProperty(value = "properties.assetName")
+    @JsonProperty(value = "properties.assetName", required = true)
     private String assetName;
 
     /**
@@ -59,7 +59,7 @@ public class StreamingLocatorInner extends ProxyResourceInner {
      * 'Predefined_SecureStreaming' and
      * 'Predefined_SecureStreamingWithFairPlay'.
      */
-    @JsonProperty(value = "properties.streamingPolicyName")
+    @JsonProperty(value = "properties.streamingPolicyName", required = true)
     private String streamingPolicyName;
 
     /**

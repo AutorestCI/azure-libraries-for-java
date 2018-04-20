@@ -19,13 +19,7 @@ public enum AssetStorageEncryptionFormat {
     NONE("None"),
 
     /** The Asset is encrypted with Media Services client-side encryption. */
-    MEDIA_STORAGE_CLIENT_ENCRYPTION("MediaStorageClientEncryption"),
-
-    /** The Asset is encrypted with static Common Encryption. */
-    STATIC_COMMON_ENCRYPTION("StaticCommonEncryption"),
-
-    /** The Asset is encrypted with static envelope encryption. */
-    STATIC_ENVELOPE_ENCRYPTION("StaticEnvelopeEncryption");
+    MEDIA_STORAGE_CLIENT_ENCRYPTION("MediaStorageClientEncryption");
 
     /** The actual serialized value for a AssetStorageEncryptionFormat instance. */
     private String value;
