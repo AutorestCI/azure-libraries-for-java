@@ -19,7 +19,7 @@ public class LiveEventInput {
      * The streaming protocol for the Live Event. Possible values include:
      * 'FragmentedMP4', 'RTMP'.
      */
-    @JsonProperty(value = "streamingProtocol")
+    @JsonProperty(value = "streamingProtocol", required = true)
     private LiveEventInputProtocol streamingProtocol;
 
     /**

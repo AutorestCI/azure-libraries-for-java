@@ -29,14 +29,14 @@ public class LiveOutputInner extends ProxyResourceInner {
     /**
      * The asset name.
      */
-    @JsonProperty(value = "properties.assetName")
+    @JsonProperty(value = "properties.assetName", required = true)
     private String assetName;
 
     /**
      * ISO 8601 timespan duration of the archive window length. This is
      * duration that customer want to retain the recorded content.
      */
-    @JsonProperty(value = "properties.archiveWindowLength")
+    @JsonProperty(value = "properties.archiveWindowLength", required = true)
     private Period archiveWindowLength;
 
     /**

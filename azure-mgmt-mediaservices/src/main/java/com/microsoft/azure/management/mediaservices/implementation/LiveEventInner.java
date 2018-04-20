@@ -33,7 +33,7 @@ public class LiveEventInner extends TrackedResourceInner {
     /**
      * The Live Event input.
      */
-    @JsonProperty(value = "properties.input")
+    @JsonProperty(value = "properties.input", required = true)
     private LiveEventInput input;
 
     /**

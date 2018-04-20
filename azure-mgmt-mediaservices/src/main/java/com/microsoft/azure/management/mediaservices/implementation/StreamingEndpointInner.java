@@ -30,8 +30,8 @@ public class StreamingEndpointInner extends TrackedResourceInner {
     /**
      * The number of scale units.
      */
-    @JsonProperty(value = "properties.scaleUnits")
-    private Integer scaleUnits;
+    @JsonProperty(value = "properties.scaleUnits", required = true)
+    private int scaleUnits;
 
     /**
      * AvailabilitySet name.
@@ -143,7 +143,7 @@ public class StreamingEndpointInner extends TrackedResourceInner {
      *
      * @return the scaleUnits value
      */
-    public Integer scaleUnits() {
+    public int scaleUnits() {
         return this.scaleUnits;
     }
 
@@ -153,7 +153,7 @@ public class StreamingEndpointInner extends TrackedResourceInner {
      * @param scaleUnits the scaleUnits value to set
      * @return the StreamingEndpointInner object itself.
      */
-    public StreamingEndpointInner withScaleUnits(Integer scaleUnits) {
+    public StreamingEndpointInner withScaleUnits(int scaleUnits) {
         this.scaleUnits = scaleUnits;
         return this;
     }
