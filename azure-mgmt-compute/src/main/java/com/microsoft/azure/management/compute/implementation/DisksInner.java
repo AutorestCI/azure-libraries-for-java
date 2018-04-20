@@ -8,9 +8,6 @@
 
 package com.microsoft.azure.management.compute.implementation;
 
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
-import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
@@ -44,7 +41,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Disks.
  */
-public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDelete<OperationStatusResponseInner>, InnerSupportsListing<DiskInner> {
+public class DisksInner {
     /** The Retrofit service to perform REST calls. */
     private DisksService service;
     /** The service client containing this operation class. */
@@ -131,43 +128,37 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiskInner object if successful.
      */
-    public DiskInner createOrUpdate(String resourceGroupName, String diskName, DiskInner disk) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).toBlocking().last().body();
+    public DiskInner createOrUpdate(DiskInner disk) {
+        return createOrUpdateWithServiceResponseAsync(disk).toBlocking().last().body();
     }
 
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DiskInner> createOrUpdateAsync(String resourceGroupName, String diskName, DiskInner disk, final ServiceCallback<DiskInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk), serviceCallback);
+    public ServiceFuture<DiskInner> createOrUpdateAsync(DiskInner disk, final ServiceCallback<DiskInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(disk), serviceCallback);
     }
 
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<DiskInner> createOrUpdateAsync(String resourceGroupName, String diskName, DiskInner disk) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
+    public Observable<DiskInner> createOrUpdateAsync(DiskInner disk) {
+        return createOrUpdateWithServiceResponseAsync(disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
             @Override
             public DiskInner call(ServiceResponse<DiskInner> response) {
                 return response.body();
@@ -178,71 +169,63 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<DiskInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskInner disk) {
+    public Observable<ServiceResponse<DiskInner>> createOrUpdateWithServiceResponseAsync(DiskInner disk) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         if (disk == null) {
             throw new IllegalArgumentException("Parameter disk is required and cannot be null.");
         }
         Validator.validate(disk);
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<DiskInner>() { }.getType());
     }
 
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiskInner object if successful.
      */
-    public DiskInner beginCreateOrUpdate(String resourceGroupName, String diskName, DiskInner disk) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).toBlocking().single().body();
+    public DiskInner beginCreateOrUpdate(DiskInner disk) {
+        return beginCreateOrUpdateWithServiceResponseAsync(disk).toBlocking().single().body();
     }
 
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DiskInner> beginCreateOrUpdateAsync(String resourceGroupName, String diskName, DiskInner disk, final ServiceCallback<DiskInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk), serviceCallback);
+    public ServiceFuture<DiskInner> beginCreateOrUpdateAsync(DiskInner disk, final ServiceCallback<DiskInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(disk), serviceCallback);
     }
 
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<DiskInner> beginCreateOrUpdateAsync(String resourceGroupName, String diskName, DiskInner disk) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
+    public Observable<DiskInner> beginCreateOrUpdateAsync(DiskInner disk) {
+        return beginCreateOrUpdateWithServiceResponseAsync(disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
             @Override
             public DiskInner call(ServiceResponse<DiskInner> response) {
                 return response.body();
@@ -253,28 +236,26 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Creates or updates a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Put disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<ServiceResponse<DiskInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskInner disk) {
+    public Observable<ServiceResponse<DiskInner>> beginCreateOrUpdateWithServiceResponseAsync(DiskInner disk) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         if (disk == null) {
             throw new IllegalArgumentException("Parameter disk is required and cannot be null.");
         }
         Validator.validate(disk);
         final String apiVersion = "2018-04-01";
-        return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginCreateOrUpdate(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DiskInner>>>() {
                 @Override
                 public Observable<ServiceResponse<DiskInner>> call(Response<ResponseBody> response) {
@@ -299,43 +280,37 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiskInner object if successful.
      */
-    public DiskInner update(String resourceGroupName, String diskName, DiskUpdateInner disk) {
-        return updateWithServiceResponseAsync(resourceGroupName, diskName, disk).toBlocking().last().body();
+    public DiskInner update(DiskUpdateInner disk) {
+        return updateWithServiceResponseAsync(disk).toBlocking().last().body();
     }
 
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DiskInner> updateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk, final ServiceCallback<DiskInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, diskName, disk), serviceCallback);
+    public ServiceFuture<DiskInner> updateAsync(DiskUpdateInner disk, final ServiceCallback<DiskInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(disk), serviceCallback);
     }
 
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<DiskInner> updateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
-        return updateWithServiceResponseAsync(resourceGroupName, diskName, disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
+    public Observable<DiskInner> updateAsync(DiskUpdateInner disk) {
+        return updateWithServiceResponseAsync(disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
             @Override
             public DiskInner call(ServiceResponse<DiskInner> response) {
                 return response.body();
@@ -346,71 +321,63 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<DiskInner>> updateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public Observable<ServiceResponse<DiskInner>> updateWithServiceResponseAsync(DiskUpdateInner disk) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         if (disk == null) {
             throw new IllegalArgumentException("Parameter disk is required and cannot be null.");
         }
         Validator.validate(disk);
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<DiskInner>() { }.getType());
     }
 
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiskInner object if successful.
      */
-    public DiskInner beginUpdate(String resourceGroupName, String diskName, DiskUpdateInner disk) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).toBlocking().single().body();
+    public DiskInner beginUpdate(DiskUpdateInner disk) {
+        return beginUpdateWithServiceResponseAsync(disk).toBlocking().single().body();
     }
 
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DiskInner> beginUpdateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk, final ServiceCallback<DiskInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk), serviceCallback);
+    public ServiceFuture<DiskInner> beginUpdateAsync(DiskUpdateInner disk, final ServiceCallback<DiskInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(disk), serviceCallback);
     }
 
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<DiskInner> beginUpdateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
+    public Observable<DiskInner> beginUpdateAsync(DiskUpdateInner disk) {
+        return beginUpdateWithServiceResponseAsync(disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
             @Override
             public DiskInner call(ServiceResponse<DiskInner> response) {
                 return response.body();
@@ -421,28 +388,26 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Updates (patches) a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param disk Disk object supplied in the body of the Patch disk operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<ServiceResponse<DiskInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public Observable<ServiceResponse<DiskInner>> beginUpdateWithServiceResponseAsync(DiskUpdateInner disk) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         if (disk == null) {
             throw new IllegalArgumentException("Parameter disk is required and cannot be null.");
         }
         Validator.validate(disk);
         final String apiVersion = "2018-04-01";
-        return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginUpdate(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, disk, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DiskInner>>>() {
                 @Override
                 public Observable<ServiceResponse<DiskInner>> call(Response<ResponseBody> response) {
@@ -467,40 +432,34 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Gets information about a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiskInner object if successful.
      */
-    public DiskInner getByResourceGroup(String resourceGroupName, String diskName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, diskName).toBlocking().single().body();
+    public DiskInner getByResourceGroup() {
+        return getByResourceGroupWithServiceResponseAsync().toBlocking().single().body();
     }
 
     /**
      * Gets information about a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DiskInner> getByResourceGroupAsync(String resourceGroupName, String diskName, final ServiceCallback<DiskInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(resourceGroupName, diskName), serviceCallback);
+    public ServiceFuture<DiskInner> getByResourceGroupAsync(final ServiceCallback<DiskInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getByResourceGroupWithServiceResponseAsync(), serviceCallback);
     }
 
     /**
      * Gets information about a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<DiskInner> getByResourceGroupAsync(String resourceGroupName, String diskName) {
-        return getByResourceGroupWithServiceResponseAsync(resourceGroupName, diskName).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
+    public Observable<DiskInner> getByResourceGroupAsync() {
+        return getByResourceGroupWithServiceResponseAsync().map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
             @Override
             public DiskInner call(ServiceResponse<DiskInner> response) {
                 return response.body();
@@ -511,23 +470,21 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Gets information about a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<ServiceResponse<DiskInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String diskName) {
+    public Observable<ServiceResponse<DiskInner>> getByResourceGroupWithServiceResponseAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.getByResourceGroup(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.getByResourceGroup(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DiskInner>>>() {
                 @Override
                 public Observable<ServiceResponse<DiskInner>> call(Response<ResponseBody> response) {
@@ -551,40 +508,34 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner delete(String resourceGroupName, String diskName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, diskName).toBlocking().last().body();
+    public OperationStatusResponseInner delete() {
+        return deleteWithServiceResponseAsync().toBlocking().last().body();
     }
 
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String diskName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, diskName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> deleteAsync(final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(), serviceCallback);
     }
 
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String diskName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, diskName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> deleteAsync() {
+        return deleteWithServiceResponseAsync().map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -595,63 +546,55 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> deleteWithServiceResponseAsync(String resourceGroupName, String diskName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> deleteWithServiceResponseAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
 
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner beginDelete(String resourceGroupName, String diskName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, diskName).toBlocking().single().body();
+    public OperationStatusResponseInner beginDelete() {
+        return beginDeleteWithServiceResponseAsync().toBlocking().single().body();
     }
 
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String diskName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, diskName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> beginDeleteAsync(final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(), serviceCallback);
     }
 
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String diskName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, diskName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> beginDeleteAsync() {
+        return beginDeleteWithServiceResponseAsync().map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -662,23 +605,21 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Deletes a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String diskName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> beginDeleteWithServiceResponseAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.beginDelete(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginDelete(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
                 public Observable<ServiceResponse<OperationStatusResponseInner>> call(Response<ResponseBody> response) {
@@ -704,14 +645,13 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;DiskInner&gt; object if successful.
      */
-    public PagedList<DiskInner> listByResourceGroup(final String resourceGroupName) {
-        ServiceResponse<Page<DiskInner>> response = listByResourceGroupSinglePageAsync(resourceGroupName).toBlocking().single();
+    public PagedList<DiskInner> listByResourceGroup() {
+        ServiceResponse<Page<DiskInner>> response = listByResourceGroupSinglePageAsync().toBlocking().single();
         return new PagedList<DiskInner>(response.body()) {
             @Override
             public Page<DiskInner> nextPage(String nextPageLink) {
@@ -723,14 +663,13 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<DiskInner>> listByResourceGroupAsync(final String resourceGroupName, final ListOperationCallback<DiskInner> serviceCallback) {
+    public ServiceFuture<List<DiskInner>> listByResourceGroupAsync(final ListOperationCallback<DiskInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listByResourceGroupSinglePageAsync(resourceGroupName),
+            listByResourceGroupSinglePageAsync(),
             new Func1<String, Observable<ServiceResponse<Page<DiskInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<DiskInner>>> call(String nextPageLink) {
@@ -743,12 +682,11 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;DiskInner&gt; object
      */
-    public Observable<Page<DiskInner>> listByResourceGroupAsync(final String resourceGroupName) {
-        return listByResourceGroupWithServiceResponseAsync(resourceGroupName)
+    public Observable<Page<DiskInner>> listByResourceGroupAsync() {
+        return listByResourceGroupWithServiceResponseAsync()
             .map(new Func1<ServiceResponse<Page<DiskInner>>, Page<DiskInner>>() {
                 @Override
                 public Page<DiskInner> call(ServiceResponse<Page<DiskInner>> response) {
@@ -760,12 +698,11 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;DiskInner&gt; object
      */
-    public Observable<ServiceResponse<Page<DiskInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName) {
-        return listByResourceGroupSinglePageAsync(resourceGroupName)
+    public Observable<ServiceResponse<Page<DiskInner>>> listByResourceGroupWithServiceResponseAsync() {
+        return listByResourceGroupSinglePageAsync()
             .concatMap(new Func1<ServiceResponse<Page<DiskInner>>, Observable<ServiceResponse<Page<DiskInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<DiskInner>>> call(ServiceResponse<Page<DiskInner>> page) {
@@ -781,19 +718,18 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a resource group.
      *
-    ServiceResponse<PageImpl1<DiskInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;DiskInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<DiskInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName) {
+    public Observable<ServiceResponse<Page<DiskInner>>> listByResourceGroupSinglePageAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.listByResourceGroup(this.client.subscriptionId(), resourceGroupName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.listByResourceGroup(this.client.subscriptionId(), this.client.resourceGroupName(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DiskInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<DiskInner>>> call(Response<ResponseBody> response) {
@@ -922,43 +858,37 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AccessUriInner object if successful.
      */
-    public AccessUriInner grantAccess(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
-        return grantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).toBlocking().last().body();
+    public AccessUriInner grantAccess(GrantAccessDataInner grantAccessData) {
+        return grantAccessWithServiceResponseAsync(grantAccessData).toBlocking().last().body();
     }
 
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AccessUriInner> grantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
-        return ServiceFuture.fromResponse(grantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData), serviceCallback);
+    public ServiceFuture<AccessUriInner> grantAccessAsync(GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
+        return ServiceFuture.fromResponse(grantAccessWithServiceResponseAsync(grantAccessData), serviceCallback);
     }
 
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<AccessUriInner> grantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
-        return grantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
+    public Observable<AccessUriInner> grantAccessAsync(GrantAccessDataInner grantAccessData) {
+        return grantAccessWithServiceResponseAsync(grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
             @Override
             public AccessUriInner call(ServiceResponse<AccessUriInner> response) {
                 return response.body();
@@ -969,71 +899,63 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<AccessUriInner>> grantAccessWithServiceResponseAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public Observable<ServiceResponse<AccessUriInner>> grantAccessWithServiceResponseAsync(GrantAccessDataInner grantAccessData) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         if (grantAccessData == null) {
             throw new IllegalArgumentException("Parameter grantAccessData is required and cannot be null.");
         }
         Validator.validate(grantAccessData);
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.grantAccess(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.grantAccess(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<AccessUriInner>() { }.getType());
     }
 
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AccessUriInner object if successful.
      */
-    public AccessUriInner beginGrantAccess(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
-        return beginGrantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).toBlocking().single().body();
+    public AccessUriInner beginGrantAccess(GrantAccessDataInner grantAccessData) {
+        return beginGrantAccessWithServiceResponseAsync(grantAccessData).toBlocking().single().body();
     }
 
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginGrantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData), serviceCallback);
+    public ServiceFuture<AccessUriInner> beginGrantAccessAsync(GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginGrantAccessWithServiceResponseAsync(grantAccessData), serviceCallback);
     }
 
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AccessUriInner object
      */
-    public Observable<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
-        return beginGrantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
+    public Observable<AccessUriInner> beginGrantAccessAsync(GrantAccessDataInner grantAccessData) {
+        return beginGrantAccessWithServiceResponseAsync(grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
             @Override
             public AccessUriInner call(ServiceResponse<AccessUriInner> response) {
                 return response.body();
@@ -1044,28 +966,26 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Grants access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param grantAccessData Access data object supplied in the body of the get disk access operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AccessUriInner object
      */
-    public Observable<ServiceResponse<AccessUriInner>> beginGrantAccessWithServiceResponseAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public Observable<ServiceResponse<AccessUriInner>> beginGrantAccessWithServiceResponseAsync(GrantAccessDataInner grantAccessData) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         if (grantAccessData == null) {
             throw new IllegalArgumentException("Parameter grantAccessData is required and cannot be null.");
         }
         Validator.validate(grantAccessData);
         final String apiVersion = "2018-04-01";
-        return service.beginGrantAccess(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginGrantAccess(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, grantAccessData, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<AccessUriInner>>>() {
                 @Override
                 public Observable<ServiceResponse<AccessUriInner>> call(Response<ResponseBody> response) {
@@ -1090,40 +1010,34 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner revokeAccess(String resourceGroupName, String diskName) {
-        return revokeAccessWithServiceResponseAsync(resourceGroupName, diskName).toBlocking().last().body();
+    public OperationStatusResponseInner revokeAccess() {
+        return revokeAccessWithServiceResponseAsync().toBlocking().last().body();
     }
 
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> revokeAccessAsync(String resourceGroupName, String diskName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(revokeAccessWithServiceResponseAsync(resourceGroupName, diskName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> revokeAccessAsync(final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(revokeAccessWithServiceResponseAsync(), serviceCallback);
     }
 
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<OperationStatusResponseInner> revokeAccessAsync(String resourceGroupName, String diskName) {
-        return revokeAccessWithServiceResponseAsync(resourceGroupName, diskName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> revokeAccessAsync() {
+        return revokeAccessWithServiceResponseAsync().map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -1134,63 +1048,55 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> revokeAccessWithServiceResponseAsync(String resourceGroupName, String diskName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> revokeAccessWithServiceResponseAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        Observable<Response<ResponseBody>> observable = service.revokeAccess(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.revokeAccess(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
     }
 
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner beginRevokeAccess(String resourceGroupName, String diskName) {
-        return beginRevokeAccessWithServiceResponseAsync(resourceGroupName, diskName).toBlocking().single().body();
+    public OperationStatusResponseInner beginRevokeAccess() {
+        return beginRevokeAccessWithServiceResponseAsync().toBlocking().single().body();
     }
 
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> beginRevokeAccessAsync(String resourceGroupName, String diskName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginRevokeAccessWithServiceResponseAsync(resourceGroupName, diskName), serviceCallback);
+    public ServiceFuture<OperationStatusResponseInner> beginRevokeAccessAsync(final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginRevokeAccessWithServiceResponseAsync(), serviceCallback);
     }
 
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<OperationStatusResponseInner> beginRevokeAccessAsync(String resourceGroupName, String diskName) {
-        return beginRevokeAccessWithServiceResponseAsync(resourceGroupName, diskName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<OperationStatusResponseInner> beginRevokeAccessAsync() {
+        return beginRevokeAccessWithServiceResponseAsync().map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
             @Override
             public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
                 return response.body();
@@ -1201,23 +1107,21 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Revokes access to a disk.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param diskName The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the OperationStatusResponseInner object
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> beginRevokeAccessWithServiceResponseAsync(String resourceGroupName, String diskName) {
+    public Observable<ServiceResponse<OperationStatusResponseInner>> beginRevokeAccessWithServiceResponseAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (resourceGroupName == null) {
-            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
         }
-        if (diskName == null) {
-            throw new IllegalArgumentException("Parameter diskName is required and cannot be null.");
+        if (this.client.diskName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.diskName() is required and cannot be null.");
         }
         final String apiVersion = "2018-04-01";
-        return service.beginRevokeAccess(this.client.subscriptionId(), resourceGroupName, diskName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginRevokeAccess(this.client.subscriptionId(), this.client.resourceGroupName(), this.client.diskName(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
                 @Override
                 public Observable<ServiceResponse<OperationStatusResponseInner>> call(Response<ResponseBody> response) {

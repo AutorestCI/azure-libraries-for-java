@@ -27,14 +27,13 @@ import com.microsoft.azure.Resource;
 @JsonFlatten
 public class ContainerServiceInner extends Resource {
     /**
-     * the current deployment or provisioning state, which only appears in the
-     * response.
+     * The provisioningState property.
      */
     @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
     /**
-     * Properties of the orchestrator.
+     * The orchestratorProfile property.
      */
     @JsonProperty(value = "properties.orchestratorProfile")
     private ContainerServiceOrchestratorProfile orchestratorProfile;
