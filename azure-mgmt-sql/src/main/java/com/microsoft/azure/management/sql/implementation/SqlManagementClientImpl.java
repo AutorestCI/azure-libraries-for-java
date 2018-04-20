@@ -706,6 +706,19 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The ShortTermRetentionPoliciesInner object to access its operations.
+     */
+    private ShortTermRetentionPoliciesInner shortTermRetentionPolicies;
+
+    /**
+     * Gets the ShortTermRetentionPoliciesInner object to access its operations.
+     * @return the ShortTermRetentionPoliciesInner object.
+     */
+    public ShortTermRetentionPoliciesInner shortTermRetentionPolicies() {
+        return this.shortTermRetentionPolicies;
+    }
+
+    /**
      * Initializes an instance of SqlManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -784,6 +797,7 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.elasticPoolOperations = new ElasticPoolOperationsInner(restClient().retrofit(), this);
         this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
         this.instanceFailoverGroups = new InstanceFailoverGroupsInner(restClient().retrofit(), this);
+        this.shortTermRetentionPolicies = new ShortTermRetentionPoliciesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
