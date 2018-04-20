@@ -37,12 +37,12 @@ import com.microsoft.rest.serializer.JsonFlatten;
 @JsonFlatten
 public class JobCreateParametersInner {
     /**
-     * Priority associated with the job.
-     * Priority associated with the job. Possible values include: 'low',
-     * 'normal', 'high'.
+     * Scheduling priority associated with the job.
+     * Scheduling priority  associated with the job. Possible values include:
+     * 'low', 'normal', 'high'.
      */
-    @JsonProperty(value = "properties.priority")
-    private JobPriority priority;
+    @JsonProperty(value = "properties.schedulingPriority")
+    private JobPriority schedulingPriority;
 
     /**
      * Specifies the Id of the cluster on which this job will run.
@@ -178,22 +178,22 @@ public class JobCreateParametersInner {
     private JobBasePropertiesConstraints constraints;
 
     /**
-     * Get the priority value.
+     * Get the schedulingPriority value.
      *
-     * @return the priority value
+     * @return the schedulingPriority value
      */
-    public JobPriority priority() {
-        return this.priority;
+    public JobPriority schedulingPriority() {
+        return this.schedulingPriority;
     }
 
     /**
-     * Set the priority value.
+     * Set the schedulingPriority value.
      *
-     * @param priority the priority value to set
+     * @param schedulingPriority the schedulingPriority value to set
      * @return the JobCreateParametersInner object itself.
      */
-    public JobCreateParametersInner withPriority(JobPriority priority) {
-        this.priority = priority;
+    public JobCreateParametersInner withSchedulingPriority(JobPriority schedulingPriority) {
+        this.schedulingPriority = schedulingPriority;
         return this;
     }
 

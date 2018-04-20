@@ -8,8 +8,8 @@
 
 package com.microsoft.azure.management.batchai.implementation;
 
-import com.microsoft.azure.management.batchai.ProvisioningState;
 import org.joda.time.DateTime;
+import com.microsoft.azure.management.batchai.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.Resource;
@@ -19,6 +19,12 @@ import com.microsoft.azure.Resource;
  */
 @JsonFlatten
 public class WorkspaceInner extends Resource {
+    /**
+     * Time when the Workspace was created.
+     */
+    @JsonProperty(value = "properties.creationTime", access = JsonProperty.Access.WRITE_ONLY)
+    private DateTime creationTime;
+
     /**
      * The provisioned state of the workspace. Possible values include:
      * 'creating', 'succeeded', 'failed', 'deleting'.
@@ -32,6 +38,15 @@ public class WorkspaceInner extends Resource {
      */
     @JsonProperty(value = "properties.provisioningStateTransitionTime", access = JsonProperty.Access.WRITE_ONLY)
     private DateTime provisioningStateTransitionTime;
+
+    /**
+     * Get the creationTime value.
+     *
+     * @return the creationTime value
+     */
+    public DateTime creationTime() {
+        return this.creationTime;
+    }
 
     /**
      * Get the provisioningState value.
