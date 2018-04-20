@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.compute.implementation;
 
+import java.util.UUID;
 import com.microsoft.azure.SubResource;
 import com.microsoft.azure.management.compute.VirtualMachineScaleSetNetworkConfigurationDnsSettings;
 import java.util.List;
@@ -24,7 +25,7 @@ public class VirtualMachineScaleSetUpdateNetworkConfigurationInner extends SubRe
      * The network configuration name.
      */
     @JsonProperty(value = "name")
-    private String name;
+    private UUID name;
 
     /**
      * Whether this is a primary NIC on a virtual machine.
@@ -68,7 +69,7 @@ public class VirtualMachineScaleSetUpdateNetworkConfigurationInner extends SubRe
      *
      * @return the name value
      */
-    public String name() {
+    public UUID name() {
         return this.name;
     }
 
@@ -78,7 +79,7 @@ public class VirtualMachineScaleSetUpdateNetworkConfigurationInner extends SubRe
      * @param name the name value to set
      * @return the VirtualMachineScaleSetUpdateNetworkConfigurationInner object itself.
      */
-    public VirtualMachineScaleSetUpdateNetworkConfigurationInner withName(String name) {
+    public VirtualMachineScaleSetUpdateNetworkConfigurationInner withName(UUID name) {
         this.name = name;
         return this;
     }

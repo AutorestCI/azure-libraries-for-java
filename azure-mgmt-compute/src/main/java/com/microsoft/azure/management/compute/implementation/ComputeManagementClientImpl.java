@@ -51,6 +51,52 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
+    /** The name of the resource group. */
+    private String resourceGroupName;
+
+    /**
+     * Gets The name of the resource group.
+     *
+     * @return the resourceGroupName value.
+     */
+    public String resourceGroupName() {
+        return this.resourceGroupName;
+    }
+
+    /**
+     * Sets The name of the resource group.
+     *
+     * @param resourceGroupName the resourceGroupName value.
+     * @return the service client itself
+     */
+    public ComputeManagementClientImpl withResourceGroupName(String resourceGroupName) {
+        this.resourceGroupName = resourceGroupName;
+        return this;
+    }
+
+    /** The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters. */
+    private String diskName;
+
+    /**
+     * Gets The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
+     *
+     * @return the diskName value.
+     */
+    public String diskName() {
+        return this.diskName;
+    }
+
+    /**
+     * Sets The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
+     *
+     * @param diskName the diskName value.
+     * @return the service client itself
+     */
+    public ComputeManagementClientImpl withDiskName(String diskName) {
+        this.diskName = diskName;
+        return this;
+    }
+
     /** Gets or sets the preferred language for the response. */
     private String acceptLanguage;
 

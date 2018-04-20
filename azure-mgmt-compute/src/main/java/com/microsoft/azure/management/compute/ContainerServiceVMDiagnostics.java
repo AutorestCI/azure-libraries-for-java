@@ -21,7 +21,7 @@ public class ContainerServiceVMDiagnostics {
     private boolean enabled;
 
     /**
-     * The URI of the storage account where diagnostics are stored.
+     * The storageUri property.
      */
     @JsonProperty(value = "storageUri", access = JsonProperty.Access.WRITE_ONLY)
     private String storageUri;
