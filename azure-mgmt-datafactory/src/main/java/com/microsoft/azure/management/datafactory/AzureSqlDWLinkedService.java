@@ -22,10 +22,12 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class AzureSqlDWLinkedService extends LinkedServiceInner {
     /**
-     * The connection string.
+     * The connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The ID of the service principal used to authenticate against Azure SQL
@@ -61,7 +63,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
@@ -71,7 +73,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the AzureSqlDWLinkedService object itself.
      */
-    public AzureSqlDWLinkedService withConnectionString(SecretBase connectionString) {
+    public AzureSqlDWLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }
