@@ -472,19 +472,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The ManagedInstancesInner object to access its operations.
-     */
-    private ManagedInstancesInner managedInstances;
-
-    /**
-     * Gets the ManagedInstancesInner object to access its operations.
-     * @return the ManagedInstancesInner object.
-     */
-    public ManagedInstancesInner managedInstances() {
-        return this.managedInstances;
-    }
-
-    /**
      * The OperationsInner object to access its operations.
      */
     private OperationsInner operations;
@@ -602,19 +589,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The ManagedDatabasesInner object to access its operations.
-     */
-    private ManagedDatabasesInner managedDatabases;
-
-    /**
-     * Gets the ManagedDatabasesInner object to access its operations.
-     * @return the ManagedDatabasesInner object.
-     */
-    public ManagedDatabasesInner managedDatabases() {
-        return this.managedDatabases;
-    }
-
-    /**
      * The ServerAutomaticTuningsInner object to access its operations.
      */
     private ServerAutomaticTuningsInner serverAutomaticTunings;
@@ -693,19 +667,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The InstanceFailoverGroupsInner object to access its operations.
-     */
-    private InstanceFailoverGroupsInner instanceFailoverGroups;
-
-    /**
-     * Gets the InstanceFailoverGroupsInner object to access its operations.
-     * @return the InstanceFailoverGroupsInner object.
-     */
-    public InstanceFailoverGroupsInner instanceFailoverGroups() {
-        return this.instanceFailoverGroups;
-    }
-
-    /**
      * Initializes an instance of SqlManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -766,7 +727,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.databaseAutomaticTunings = new DatabaseAutomaticTuningsInner(restClient().retrofit(), this);
         this.encryptionProtectors = new EncryptionProtectorsInner(restClient().retrofit(), this);
         this.failoverGroups = new FailoverGroupsInner(restClient().retrofit(), this);
-        this.managedInstances = new ManagedInstancesInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.serverKeys = new ServerKeysInner(restClient().retrofit(), this);
         this.syncAgents = new SyncAgentsInner(restClient().retrofit(), this);
@@ -776,14 +736,12 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.virtualNetworkRules = new VirtualNetworkRulesInner(restClient().retrofit(), this);
         this.longTermRetentionBackups = new LongTermRetentionBackupsInner(restClient().retrofit(), this);
         this.backupLongTermRetentionPolicies = new BackupLongTermRetentionPoliciesInner(restClient().retrofit(), this);
-        this.managedDatabases = new ManagedDatabasesInner(restClient().retrofit(), this);
         this.serverAutomaticTunings = new ServerAutomaticTuningsInner(restClient().retrofit(), this);
         this.serverDnsAliases = new ServerDnsAliasesInner(restClient().retrofit(), this);
         this.restorePoints = new RestorePointsInner(restClient().retrofit(), this);
         this.databaseOperations = new DatabaseOperationsInner(restClient().retrofit(), this);
         this.elasticPoolOperations = new ElasticPoolOperationsInner(restClient().retrofit(), this);
         this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
-        this.instanceFailoverGroups = new InstanceFailoverGroupsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
