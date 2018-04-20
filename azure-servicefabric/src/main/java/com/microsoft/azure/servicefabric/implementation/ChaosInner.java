@@ -23,16 +23,15 @@ public class ChaosInner {
     private ChaosParametersInner chaosParameters;
 
     /**
-     * Current status of the Chaos run.
-     * . Possible values include: 'Invalid', 'Running', 'Stopped'.
+     * Current status of the Chaos run. Possible values include: 'Invalid',
+     * 'Running', 'Stopped'.
      */
     @JsonProperty(value = "Status")
     private ChaosStatus status;
 
     /**
-     * Current status of the schedule.
-     * . Possible values include: 'Invalid', 'Stopped', 'Active', 'Expired',
-     * 'Pending'.
+     * Current status of the schedule. Possible values include: 'Invalid',
+     * 'Stopped', 'Active', 'Expired', 'Pending'.
      */
     @JsonProperty(value = "ScheduleStatus")
     private ChaosScheduleStatus scheduleStatus;

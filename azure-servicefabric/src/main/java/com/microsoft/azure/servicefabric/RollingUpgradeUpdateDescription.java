@@ -48,8 +48,7 @@ public class RollingUpgradeUpdateDescription {
      * Invalid indicates the failure action is invalid. Rollback specifies that
      * the upgrade will start rolling back automatically.
      * Manual indicates that the upgrade will switch to UnmonitoredManual
-     * upgrade mode.
-     * . Possible values include: 'Invalid', 'Rollback', 'Manual'.
+     * upgrade mode. Possible values include: 'Invalid', 'Rollback', 'Manual'.
      */
     @JsonProperty(value = "FailureAction")
     private FailureAction failureAction;

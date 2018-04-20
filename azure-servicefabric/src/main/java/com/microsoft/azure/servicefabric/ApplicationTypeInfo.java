@@ -36,9 +36,8 @@ public class ApplicationTypeInfo {
     private List<ApplicationParameter> defaultParameterList;
 
     /**
-     * The status of the application type.
-     * . Possible values include: 'Invalid', 'Provisioning', 'Available',
-     * 'Unprovisioning', 'Failed'.
+     * The status of the application type. Possible values include: 'Invalid',
+     * 'Provisioning', 'Available', 'Unprovisioning', 'Failed'.
      */
     @JsonProperty(value = "Status")
     private ApplicationTypeStatus status;
@@ -51,9 +50,8 @@ public class ApplicationTypeInfo {
     private String statusDetails;
 
     /**
-     * The mechanism used to define a Service Fabric application type.
-     * . Possible values include: 'Invalid', 'ServiceFabricApplicationPackage',
-     * 'Compose'.
+     * The mechanism used to define a Service Fabric application type. Possible
+     * values include: 'Invalid', 'ServiceFabricApplicationPackage', 'Compose'.
      */
     @JsonProperty(value = "ApplicationTypeDefinitionKind")
     private ApplicationTypeDefinitionKind applicationTypeDefinitionKind;

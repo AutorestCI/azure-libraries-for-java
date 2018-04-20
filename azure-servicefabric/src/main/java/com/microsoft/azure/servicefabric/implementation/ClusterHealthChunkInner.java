@@ -25,9 +25,8 @@ public class ClusterHealthChunkInner {
      * The health evaluation of the entity reflects all events reported on the
      * entity and its children (if any).
      * The aggregation is done by applying the desired cluster health policy
-     * and the application health policies.
-     * . Possible values include: 'Invalid', 'Ok', 'Warning', 'Error',
-     * 'Unknown'.
+     * and the application health policies. Possible values include: 'Invalid',
+     * 'Ok', 'Warning', 'Error', 'Unknown'.
      */
     @JsonProperty(value = "HealthState")
     private HealthState healthState;

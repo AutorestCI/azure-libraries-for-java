@@ -42,9 +42,8 @@ public class DeployedApplicationInfoInner {
 
     /**
      * The status of the application deployed on the node. Following are the
-     * possible values.
-     * . Possible values include: 'Invalid', 'Downloading', 'Activating',
-     * 'Active', 'Upgrading', 'Deactivating'.
+     * possible values. Possible values include: 'Invalid', 'Downloading',
+     * 'Activating', 'Active', 'Upgrading', 'Deactivating'.
      */
     @JsonProperty(value = "Status")
     private DeployedApplicationStatus status;

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class RestoreProgressInfoInner {
     /**
      * Represents the current state of the partition restore operation.
-     * . Possible values include: 'Invalid', 'Accepted', 'RestoreInProgress',
+     * Possible values include: 'Invalid', 'Accepted', 'RestoreInProgress',
      * 'Success', 'Failure', 'Timeout'.
      */
     @JsonProperty(value = "RestoreState")

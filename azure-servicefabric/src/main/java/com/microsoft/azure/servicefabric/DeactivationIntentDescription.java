@@ -16,8 +16,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DeactivationIntentDescription {
     /**
      * Describes the intent or reason for deactivating the node. The possible
-     * values are following.
-     * . Possible values include: 'Pause', 'Restart', 'RemoveData'.
+     * values are following. Possible values include: 'Pause', 'Restart',
+     * 'RemoveData'.
      */
     @JsonProperty(value = "DeactivationIntent")
     private DeactivationIntent deactivationIntent;

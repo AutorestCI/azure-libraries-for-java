@@ -21,9 +21,8 @@ public class BackupSuspensionInfo {
     private Boolean isSuspended;
 
     /**
-     * Specifies the scope at which the backup suspension was applied.
-     * . Possible values include: 'Invalid', 'Partition', 'Service',
-     * 'Application'.
+     * Specifies the scope at which the backup suspension was applied. Possible
+     * values include: 'Invalid', 'Partition', 'Service', 'Application'.
      */
     @JsonProperty(value = "SuspensionInheritedFrom")
     private BackupSuspensionScope suspensionInheritedFrom;

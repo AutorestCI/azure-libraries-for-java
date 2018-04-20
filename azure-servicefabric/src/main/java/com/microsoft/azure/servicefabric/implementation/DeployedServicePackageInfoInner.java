@@ -29,9 +29,8 @@ public class DeployedServicePackageInfoInner {
 
     /**
      * Specifies the status of a deployed application or service package on a
-     * Service Fabric node.
-     * . Possible values include: 'Invalid', 'Downloading', 'Activating',
-     * 'Active', 'Upgrading', 'Deactivating'.
+     * Service Fabric node. Possible values include: 'Invalid', 'Downloading',
+     * 'Activating', 'Active', 'Upgrading', 'Deactivating'.
      */
     @JsonProperty(value = "Status")
     private DeploymentStatus status;

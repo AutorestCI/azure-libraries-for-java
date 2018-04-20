@@ -51,9 +51,8 @@ public class ApplicationInfoInner {
     private String typeVersion;
 
     /**
-     * The status of the application.
-     * . Possible values include: 'Invalid', 'Ready', 'Upgrading', 'Creating',
-     * 'Deleting', 'Failed'.
+     * The status of the application. Possible values include: 'Invalid',
+     * 'Ready', 'Upgrading', 'Creating', 'Deleting', 'Failed'.
      */
     @JsonProperty(value = "Status")
     private ApplicationStatus status;
@@ -74,9 +73,9 @@ public class ApplicationInfoInner {
     private HealthState healthState;
 
     /**
-     * The mechanism used to define a Service Fabric application.
-     * . Possible values include: 'Invalid',
-     * 'ServiceFabricApplicationDescription', 'Compose'.
+     * The mechanism used to define a Service Fabric application. Possible
+     * values include: 'Invalid', 'ServiceFabricApplicationDescription',
+     * 'Compose'.
      */
     @JsonProperty(value = "ApplicationDefinitionKind")
     private ApplicationDefinitionKind applicationDefinitionKind;

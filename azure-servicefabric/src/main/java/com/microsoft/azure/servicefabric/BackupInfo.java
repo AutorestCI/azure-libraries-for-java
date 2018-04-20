@@ -55,8 +55,8 @@ public class BackupInfo {
     private String backupLocation;
 
     /**
-     * Describes the type of backup, whether its full or incremental.
-     * . Possible values include: 'Invalid', 'Full', 'Incremental'.
+     * Describes the type of backup, whether its full or incremental. Possible
+     * values include: 'Invalid', 'Full', 'Incremental'.
      */
     @JsonProperty(value = "BackupType")
     private BackupType backupType;

@@ -22,8 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class TimeBasedBackupScheduleDescription extends BackupScheduleDescription {
     /**
      * Describes the frequency with which to run the time based backup
-     * schedule.
-     * . Possible values include: 'Invalid', 'Daily', 'Weekly'.
+     * schedule. Possible values include: 'Invalid', 'Daily', 'Weekly'.
      */
     @JsonProperty(value = "ScheduleFrequencyType", required = true)
     private BackupScheduleFrequencyType scheduleFrequencyType;

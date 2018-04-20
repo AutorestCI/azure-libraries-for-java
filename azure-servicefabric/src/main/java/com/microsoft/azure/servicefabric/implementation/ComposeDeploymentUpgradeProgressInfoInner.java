@@ -36,12 +36,11 @@ public class ComposeDeploymentUpgradeProgressInfoInner {
     private String applicationName;
 
     /**
-     * The state of the compose deployment upgrade.
-     * . Possible values include: 'Invalid', 'ProvisioningTarget',
-     * 'RollingForwardInProgress', 'RollingForwardPending',
-     * 'UnprovisioningCurrent', 'RollingForwardCompleted',
-     * 'RollingBackInProgress', 'UnprovisioningTarget', 'RollingBackCompleted',
-     * 'Failed'.
+     * The state of the compose deployment upgrade. Possible values include:
+     * 'Invalid', 'ProvisioningTarget', 'RollingForwardInProgress',
+     * 'RollingForwardPending', 'UnprovisioningCurrent',
+     * 'RollingForwardCompleted', 'RollingBackInProgress',
+     * 'UnprovisioningTarget', 'RollingBackCompleted', 'Failed'.
      */
     @JsonProperty(value = "UpgradeState")
     private ComposeDeploymentUpgradeState upgradeState;
