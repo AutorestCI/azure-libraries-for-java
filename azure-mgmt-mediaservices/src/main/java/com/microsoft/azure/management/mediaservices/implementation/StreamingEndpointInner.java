@@ -30,7 +30,7 @@ public class StreamingEndpointInner extends TrackedResourceInner {
     /**
      * The number of scale units.
      */
-    @JsonProperty(value = "properties.scaleUnits", required = true)
+    @JsonProperty(value = "properties.scaleUnits")
     private int scaleUnits;
 
     /**
