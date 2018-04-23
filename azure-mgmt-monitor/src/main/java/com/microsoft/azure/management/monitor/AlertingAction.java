@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.monitor;
 
-import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -22,7 +21,7 @@ public class AlertingAction extends Action {
     /**
      * Severity of the alert. Possible values include: '0', '1', '2', '3', '4'.
      */
-    @JsonProperty(value = "severity")
+    @JsonProperty(value = "severity", required = true)
     private AlertSeverity severity;
 
     /**
@@ -32,10 +31,10 @@ public class AlertingAction extends Action {
     private AzNsActionGroup aznsAction;
 
     /**
-     * Time untill alert should not be fired in ISO8601 format.
+     * time (in minutes) for which Alerts should be throttled.
      */
-    @JsonProperty(value = "throttleTillDate")
-    private DateTime throttleTillDate;
+    @JsonProperty(value = "throttlingInMin")
+    private Integer throttlingInMin;
 
     /**
      * The trigger condition that results in the alert rule being.
@@ -84,22 +83,22 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Get the throttleTillDate value.
+     * Get the throttlingInMin value.
      *
-     * @return the throttleTillDate value
+     * @return the throttlingInMin value
      */
-    public DateTime throttleTillDate() {
-        return this.throttleTillDate;
+    public Integer throttlingInMin() {
+        return this.throttlingInMin;
     }
 
     /**
-     * Set the throttleTillDate value.
+     * Set the throttlingInMin value.
      *
-     * @param throttleTillDate the throttleTillDate value to set
+     * @param throttlingInMin the throttlingInMin value to set
      * @return the AlertingAction object itself.
      */
-    public AlertingAction withThrottleTillDate(DateTime throttleTillDate) {
-        this.throttleTillDate = throttleTillDate;
+    public AlertingAction withThrottlingInMin(Integer throttlingInMin) {
+        this.throttlingInMin = throttlingInMin;
         return this;
     }
 

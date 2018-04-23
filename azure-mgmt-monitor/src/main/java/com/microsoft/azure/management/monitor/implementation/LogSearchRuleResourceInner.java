@@ -14,7 +14,6 @@ import com.microsoft.azure.management.monitor.ProvisioningState;
 import com.microsoft.azure.management.monitor.Source;
 import com.microsoft.azure.management.monitor.Schedule;
 import com.microsoft.azure.management.monitor.Action;
-import com.microsoft.azure.management.monitor.Sku1;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.Resource;
@@ -34,7 +33,7 @@ public class LogSearchRuleResourceInner extends Resource {
      * The flag which indicates whether the Log Search rule is enabled. Value
      * should be true or false. Possible values include: 'true', 'false'.
      */
-    @JsonProperty(value = "properties.Enabled")
+    @JsonProperty(value = "properties.enabled")
     private Enabled enabled;
 
     /**
@@ -67,12 +66,6 @@ public class LogSearchRuleResourceInner extends Resource {
      */
     @JsonProperty(value = "properties.action", required = true)
     private Action action;
-
-    /**
-     * Sku of the Log Search Rule.
-     */
-    @JsonProperty(value = "sku")
-    private Sku1 sku;
 
     /**
      * Get the description value.
@@ -189,26 +182,6 @@ public class LogSearchRuleResourceInner extends Resource {
      */
     public LogSearchRuleResourceInner withAction(Action action) {
         this.action = action;
-        return this;
-    }
-
-    /**
-     * Get the sku value.
-     *
-     * @return the sku value
-     */
-    public Sku1 sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku value.
-     *
-     * @param sku the sku value to set
-     * @return the LogSearchRuleResourceInner object itself.
-     */
-    public LogSearchRuleResourceInner withSku(Sku1 sku) {
-        this.sku = sku;
         return this;
     }
 
