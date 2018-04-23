@@ -33,9 +33,9 @@ public class SignalRResourceInner extends TrackedResourceInner {
     private String hostNamePrefix;
 
     /**
-     * Provisioning state of the resource. Possible values include:
-     * 'Succeeded', 'Failed', 'Canceled', 'Creating', 'Updating', 'Deleting',
-     * 'Moving'.
+     * Provisioning state of the resource. Possible values include: 'Unknown',
+     * 'Succeeded', 'Failed', 'Canceled', 'Running', 'Creating', 'Updating',
+     * 'Deleting', 'Moving'.
      */
     @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
