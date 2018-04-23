@@ -37,7 +37,7 @@ public class OperationsInner {
     /** The Retrofit service to perform REST calls. */
     private OperationsService service;
     /** The service client containing this operation class. */
-    private SignalrManagementClientImpl client;
+    private SignalRManagementClientImpl client;
 
     /**
      * Initializes an instance of OperationsInner.
@@ -45,7 +45,7 @@ public class OperationsInner {
      * @param retrofit the Retrofit instance built from a Retrofit Builder.
      * @param client the instance of the service client containing this operation class.
      */
-    public OperationsInner(Retrofit retrofit, SignalrManagementClientImpl client) {
+    public OperationsInner(Retrofit retrofit, SignalRManagementClientImpl client) {
         this.service = retrofit.create(OperationsService.class);
         this.client = client;
     }

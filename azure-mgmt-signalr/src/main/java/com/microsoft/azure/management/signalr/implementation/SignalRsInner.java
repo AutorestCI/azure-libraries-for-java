@@ -68,10 +68,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
      * used by Retrofit to perform actually REST calls.
      */
     interface SignalRsService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.SignalRs listOperations" })
-        @GET("providers/Microsoft.SignalRService/operations")
-        Observable<Response<ResponseBody>> listOperations(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.SignalRs checkNameAvailability" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.SignalRService/checkNameAvailability")
         Observable<Response<ResponseBody>> checkNameAvailability(@Path("subscriptionId") String subscriptionId, @Body NameAvailabilityParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -124,10 +120,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/SignalR/{resourceName}")
         Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Body SignalRUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.SignalRs listOperationsNext" })
-        @GET
-        Observable<Response<ResponseBody>> listOperationsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.SignalRs listNext" })
         @GET
         Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -136,110 +128,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         @GET
         Observable<Response<ResponseBody>> listByResourceGroupNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;OperationInner&gt; object if successful.
-     */
-    public PagedList<OperationInner> listOperations() {
-        ServiceResponse<Page<OperationInner>> response = listOperationsSinglePageAsync().toBlocking().single();
-        return new PagedList<OperationInner>(response.body()) {
-            @Override
-            public Page<OperationInner> nextPage(String nextPageLink) {
-                return listOperationsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<OperationInner>> listOperationsAsync(final ListOperationCallback<OperationInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listOperationsSinglePageAsync(),
-            new Func1<String, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(String nextPageLink) {
-                    return listOperationsNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<Page<OperationInner>> listOperationsAsync() {
-        return listOperationsWithServiceResponseAsync()
-            .map(new Func1<ServiceResponse<Page<OperationInner>>, Page<OperationInner>>() {
-                @Override
-                public Page<OperationInner> call(ServiceResponse<Page<OperationInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsWithServiceResponseAsync() {
-        return listOperationsSinglePageAsync()
-            .concatMap(new Func1<ServiceResponse<Page<OperationInner>>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(ServiceResponse<Page<OperationInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listOperationsNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;OperationInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsSinglePageAsync() {
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listOperations(this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<OperationInner>> result = listOperationsDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<OperationInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<OperationInner>> listOperationsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<OperationInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<OperationInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
     }
 
     /**
@@ -1885,117 +1773,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         return this.client.restClient().responseBuilderFactory().<SignalRResourceInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<SignalRResourceInner>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;OperationInner&gt; object if successful.
-     */
-    public PagedList<OperationInner> listOperationsNext(final String nextPageLink) {
-        ServiceResponse<Page<OperationInner>> response = listOperationsNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<OperationInner>(response.body()) {
-            @Override
-            public Page<OperationInner> nextPage(String nextPageLink) {
-                return listOperationsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<OperationInner>> listOperationsNextAsync(final String nextPageLink, final ServiceFuture<List<OperationInner>> serviceFuture, final ListOperationCallback<OperationInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listOperationsNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(String nextPageLink) {
-                    return listOperationsNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<Page<OperationInner>> listOperationsNextAsync(final String nextPageLink) {
-        return listOperationsNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<OperationInner>>, Page<OperationInner>>() {
-                @Override
-                public Page<OperationInner> call(ServiceResponse<Page<OperationInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;OperationInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsNextWithServiceResponseAsync(final String nextPageLink) {
-        return listOperationsNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<OperationInner>>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(ServiceResponse<Page<OperationInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listOperationsNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Lists all of the available REST API operations of the Microsoft.SignalRService provider.
-     *
-    ServiceResponse<PageImpl<OperationInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;OperationInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<OperationInner>>> listOperationsNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listOperationsNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<OperationInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<OperationInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<OperationInner>> result = listOperationsNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<OperationInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<OperationInner>> listOperationsNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<OperationInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<OperationInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

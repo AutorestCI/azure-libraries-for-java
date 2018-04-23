@@ -26,7 +26,7 @@ public class ResourceSku {
      * 'Free', 'Basic', 'Premium'.
      */
     @JsonProperty(value = "tier")
-    private SignalrSkuTier tier;
+    private SignalRSkuTier tier;
 
     /**
      * Optional, string. When the name field is the combination of tier and
@@ -75,7 +75,7 @@ public class ResourceSku {
      *
      * @return the tier value
      */
-    public SignalrSkuTier tier() {
+    public SignalRSkuTier tier() {
         return this.tier;
     }
 
@@ -85,7 +85,7 @@ public class ResourceSku {
      * @param tier the tier value to set
      * @return the ResourceSku object itself.
      */
-    public ResourceSku withTier(SignalrSkuTier tier) {
+    public ResourceSku withTier(SignalRSkuTier tier) {
         this.tier = tier;
         return this;
     }
