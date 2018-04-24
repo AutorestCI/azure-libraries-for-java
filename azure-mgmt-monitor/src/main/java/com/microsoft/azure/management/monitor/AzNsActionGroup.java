@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class AzNsActionGroup {
     /**
-     * azns notification group reference.
+     * Azure Group reference.
      */
     @JsonProperty(value = "actionGroup")
     private List<String> actionGroup;
