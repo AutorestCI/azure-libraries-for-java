@@ -22,10 +22,11 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class GreenplumLinkedService extends LinkedServiceInner {
     /**
-     * An ODBC connection string.
+     * An ODBC connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString")
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -40,7 +41,7 @@ public class GreenplumLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
@@ -50,7 +51,7 @@ public class GreenplumLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the GreenplumLinkedService object itself.
      */
-    public GreenplumLinkedService withConnectionString(SecretBase connectionString) {
+    public GreenplumLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }

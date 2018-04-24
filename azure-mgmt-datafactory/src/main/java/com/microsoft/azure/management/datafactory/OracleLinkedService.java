@@ -22,10 +22,11 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class OracleLinkedService extends LinkedServiceInner {
     /**
-     * The connection string.
+     * The connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -40,7 +41,7 @@ public class OracleLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
@@ -50,7 +51,7 @@ public class OracleLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the OracleLinkedService object itself.
      */
-    public OracleLinkedService withConnectionString(SecretBase connectionString) {
+    public OracleLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }

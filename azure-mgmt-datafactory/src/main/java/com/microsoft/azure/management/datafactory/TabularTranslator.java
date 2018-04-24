@@ -19,7 +19,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("TabularTranslator")
 public class TabularTranslator extends CopyTranslator {
     /**
-     * Column mappings. Type: string (or Expression with resultType string).
+     * Column mappings. Example: "UserId: MyUserId, Group: MyGroup, Name:
+     * MyName" Type: string (or Expression with resultType string).
      */
     @JsonProperty(value = "columnMappings")
     private Object columnMappings;
