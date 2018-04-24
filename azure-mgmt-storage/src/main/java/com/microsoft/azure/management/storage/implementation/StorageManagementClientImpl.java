@@ -28,11 +28,11 @@ public class StorageManagementClientImpl extends AzureServiceClient {
         return this.azureClient;
     }
 
-    /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+    /** Subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
     private String subscriptionId;
 
     /**
-     * Gets Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+     * Gets Subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
      *
      * @return the subscriptionId value.
      */
@@ -41,7 +41,7 @@ public class StorageManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * Sets Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+     * Sets Subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the service client itself
@@ -51,11 +51,11 @@ public class StorageManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
-    /** Client Api Version. */
+    /** The version of the service to call. */
     private String apiVersion;
 
     /**
-     * Gets Client Api Version.
+     * Gets The version of the service to call.
      *
      * @return the apiVersion value.
      */
@@ -185,6 +185,19 @@ public class StorageManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The BlobContainersInner object to access its operations.
+     */
+    private BlobContainersInner blobContainers;
+
+    /**
+     * Gets the BlobContainersInner object to access its operations.
+     * @return the BlobContainersInner object.
+     */
+    public BlobContainersInner blobContainers() {
+        return this.blobContainers;
+    }
+
+    /**
      * Initializes an instance of StorageManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -215,7 +228,7 @@ public class StorageManagementClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
-        this.apiVersion = "2017-10-01";
+        this.apiVersion = "2018-02-01";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
@@ -223,6 +236,7 @@ public class StorageManagementClientImpl extends AzureServiceClient {
         this.skus = new SkusInner(restClient().retrofit(), this);
         this.storageAccounts = new StorageAccountsInner(restClient().retrofit(), this);
         this.usages = new UsagesInner(restClient().retrofit(), this);
+        this.blobContainers = new BlobContainersInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
@@ -233,6 +247,6 @@ public class StorageManagementClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "StorageManagementClient", "2017-10-01");
+        return String.format("%s (%s, %s)", super.userAgent(), "StorageManagementClient", "2018-02-01");
     }
 }
