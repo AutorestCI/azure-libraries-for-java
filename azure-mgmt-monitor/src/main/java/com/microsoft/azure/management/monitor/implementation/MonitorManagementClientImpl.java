@@ -342,6 +342,19 @@ public class MonitorManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The ScheduledQueryRulesInner object to access its operations.
+     */
+    private ScheduledQueryRulesInner scheduledQueryRules;
+
+    /**
+     * Gets the ScheduledQueryRulesInner object to access its operations.
+     * @return the ScheduledQueryRulesInner object.
+     */
+    public ScheduledQueryRulesInner scheduledQueryRules() {
+        return this.scheduledQueryRules;
+    }
+
+    /**
      * Initializes an instance of MonitorManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -392,6 +405,7 @@ public class MonitorManagementClientImpl extends AzureServiceClient {
         this.metricBaselines = new MetricBaselinesInner(restClient().retrofit(), this);
         this.metricAlerts = new MetricAlertsInner(restClient().retrofit(), this);
         this.metricAlertsStatus = new MetricAlertsStatusInner(restClient().retrofit(), this);
+        this.scheduledQueryRules = new ScheduledQueryRulesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 

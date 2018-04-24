@@ -10,10 +10,18 @@ package com.microsoft.azure.management.monitor;
 
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 /**
  * An alert action.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "odata.type")
+@JsonTypeName("Action")
+@JsonSubTypes({
+    @JsonSubTypes.Type(name = "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.Microsoft.AppInsights.Nexus.DataContracts.Resources.ScheduledQueryRules.AlertingAction", value = AlertingAction.class)
+})
 public class Action {
     /**
      * the id of the action group to use.

@@ -73,6 +73,26 @@ public class MetricTrigger {
     private double threshold;
 
     /**
+     * Evaluation operation for Metric -'GreaterThan' or 'LessThan' or 'Equal'.
+     * Possible values include: 'GreaterThan', 'LessThan', 'Equal'.
+     */
+    @JsonProperty(value = "thresholdOperator")
+    private ConditionalOperator thresholdOperator;
+
+    /**
+     * Metric Trigger Type - 'Consecutive' or 'Total'. Possible values include:
+     * 'Consecutive', 'Total'.
+     */
+    @JsonProperty(value = "metricTriggerType")
+    private MetricTriggerType metricTriggerType;
+
+    /**
+     * Evaluation of metric on a particular column.
+     */
+    @JsonProperty(value = "metricColumn")
+    private String metricColumn;
+
+    /**
      * Get the metricName value.
      *
      * @return the metricName value
@@ -229,6 +249,66 @@ public class MetricTrigger {
      */
     public MetricTrigger withThreshold(double threshold) {
         this.threshold = threshold;
+        return this;
+    }
+
+    /**
+     * Get the thresholdOperator value.
+     *
+     * @return the thresholdOperator value
+     */
+    public ConditionalOperator thresholdOperator() {
+        return this.thresholdOperator;
+    }
+
+    /**
+     * Set the thresholdOperator value.
+     *
+     * @param thresholdOperator the thresholdOperator value to set
+     * @return the MetricTrigger object itself.
+     */
+    public MetricTrigger withThresholdOperator(ConditionalOperator thresholdOperator) {
+        this.thresholdOperator = thresholdOperator;
+        return this;
+    }
+
+    /**
+     * Get the metricTriggerType value.
+     *
+     * @return the metricTriggerType value
+     */
+    public MetricTriggerType metricTriggerType() {
+        return this.metricTriggerType;
+    }
+
+    /**
+     * Set the metricTriggerType value.
+     *
+     * @param metricTriggerType the metricTriggerType value to set
+     * @return the MetricTrigger object itself.
+     */
+    public MetricTrigger withMetricTriggerType(MetricTriggerType metricTriggerType) {
+        this.metricTriggerType = metricTriggerType;
+        return this;
+    }
+
+    /**
+     * Get the metricColumn value.
+     *
+     * @return the metricColumn value
+     */
+    public String metricColumn() {
+        return this.metricColumn;
+    }
+
+    /**
+     * Set the metricColumn value.
+     *
+     * @param metricColumn the metricColumn value to set
+     * @return the MetricTrigger object itself.
+     */
+    public MetricTrigger withMetricColumn(String metricColumn) {
+        this.metricColumn = metricColumn;
         return this;
     }
 

@@ -8,62 +8,34 @@
 
 package com.microsoft.azure.management.monitor;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Collection;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
- * An alert status.
+ * Defines values for AlertStatus.
  */
-public class AlertStatus {
-    /**
-     * status value.
-     */
-    @JsonProperty(value = "value")
-    private String value;
+public final class AlertStatus extends ExpandableStringEnum<AlertStatus> {
+    /** Static value Active for AlertStatus. */
+    public static final AlertStatus ACTIVE = fromString("Active");
+
+    /** Static value Inactive for AlertStatus. */
+    public static final AlertStatus INACTIVE = fromString("Inactive");
 
     /**
-     * UTC time when the status was checked.
+     * Creates or finds a AlertStatus from its string representation.
+     * @param name a name to look for
+     * @return the corresponding AlertStatus
      */
-    @JsonProperty(value = "timestamp")
-    private String timestamp;
-
-    /**
-     * Get the value value.
-     *
-     * @return the value value
-     */
-    public String value() {
-        return this.value;
+    @JsonCreator
+    public static AlertStatus fromString(String name) {
+        return fromString(name, AlertStatus.class);
     }
 
     /**
-     * Set the value value.
-     *
-     * @param value the value value to set
-     * @return the AlertStatus object itself.
+     * @return known AlertStatus values
      */
-    public AlertStatus withValue(String value) {
-        this.value = value;
-        return this;
+    public static Collection<AlertStatus> values() {
+        return values(AlertStatus.class);
     }
-
-    /**
-     * Get the timestamp value.
-     *
-     * @return the timestamp value
-     */
-    public String timestamp() {
-        return this.timestamp;
-    }
-
-    /**
-     * Set the timestamp value.
-     *
-     * @param timestamp the timestamp value to set
-     * @return the AlertStatus object itself.
-     */
-    public AlertStatus withTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-        return this;
-    }
-
 }
