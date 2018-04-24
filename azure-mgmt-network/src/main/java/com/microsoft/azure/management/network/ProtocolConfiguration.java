@@ -15,28 +15,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ProtocolConfiguration {
     /**
-     * The httpConfiguration property.
+     * The hTTPConfiguration property.
      */
-    @JsonProperty(value = "HttpConfiguration")
-    private HttpConfiguration httpConfiguration;
+    @JsonProperty(value = "HTTPConfiguration")
+    private HTTPConfiguration hTTPConfiguration;
 
     /**
-     * Get the httpConfiguration value.
+     * Get the hTTPConfiguration value.
      *
-     * @return the httpConfiguration value
+     * @return the hTTPConfiguration value
      */
-    public HttpConfiguration httpConfiguration() {
-        return this.httpConfiguration;
+    public HTTPConfiguration hTTPConfiguration() {
+        return this.hTTPConfiguration;
     }
 
     /**
-     * Set the httpConfiguration value.
+     * Set the hTTPConfiguration value.
      *
-     * @param httpConfiguration the httpConfiguration value to set
+     * @param hTTPConfiguration the hTTPConfiguration value to set
      * @return the ProtocolConfiguration object itself.
      */
-    public ProtocolConfiguration withHttpConfiguration(HttpConfiguration httpConfiguration) {
-        this.httpConfiguration = httpConfiguration;
+    public ProtocolConfiguration withHTTPConfiguration(HTTPConfiguration hTTPConfiguration) {
+        this.hTTPConfiguration = hTTPConfiguration;
         return this;
     }
 
