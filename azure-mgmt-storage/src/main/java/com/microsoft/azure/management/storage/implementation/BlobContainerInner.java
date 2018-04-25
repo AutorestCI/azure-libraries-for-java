@@ -18,14 +18,13 @@ import com.microsoft.azure.management.storage.ImmutabilityPolicyProperties;
 import com.microsoft.azure.management.storage.LegalHoldProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
-import com.microsoft.azure.management.storage.AzureEntityResource;
 
 /**
  * Properties of the blob container, including Id, resource name, resource
  * type, Etag.
  */
 @JsonFlatten
-public class BlobContainerInner extends AzureEntityResource {
+public class BlobContainerInner extends AzureEntityResourceInner {
     /**
      * Specifies whether data in the container may be accessed publicly and the
      * level of access. Possible values include: 'Container', 'Blob', 'None'.

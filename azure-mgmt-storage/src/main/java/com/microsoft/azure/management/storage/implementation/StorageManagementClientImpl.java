@@ -28,11 +28,11 @@ public class StorageManagementClientImpl extends AzureServiceClient {
         return this.azureClient;
     }
 
-    /** Subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+    /** The ID of the target subscription. */
     private String subscriptionId;
 
     /**
-     * Gets Subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -41,7 +41,7 @@ public class StorageManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * Sets Subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+     * Sets The ID of the target subscription.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the service client itself
@@ -51,11 +51,11 @@ public class StorageManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
-    /** The version of the service to call. */
+    /** The API version to use for this operation. */
     private String apiVersion;
 
     /**
-     * Gets The version of the service to call.
+     * Gets The API version to use for this operation.
      *
      * @return the apiVersion value.
      */
