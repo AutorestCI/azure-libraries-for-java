@@ -9,7 +9,7 @@
 package com.microsoft.azure.management.network.implementation;
 
 import com.microsoft.azure.management.network.Direction;
-import com.microsoft.azure.management.network.Protocol;
+import com.microsoft.azure.management.network.IpFlowProtocol;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -33,7 +33,7 @@ public class VerificationIPFlowParametersInner {
      * Protocol to be verified on. Possible values include: 'TCP', 'UDP'.
      */
     @JsonProperty(value = "protocol", required = true)
-    private Protocol protocol;
+    private IpFlowProtocol protocol;
 
     /**
      * The local port. Acceptable values are a single integer in the range
@@ -115,7 +115,7 @@ public class VerificationIPFlowParametersInner {
      *
      * @return the protocol value
      */
-    public Protocol protocol() {
+    public IpFlowProtocol protocol() {
         return this.protocol;
     }
 
@@ -125,7 +125,7 @@ public class VerificationIPFlowParametersInner {
      * @param protocol the protocol value to set
      * @return the VerificationIPFlowParametersInner object itself.
      */
-    public VerificationIPFlowParametersInner withProtocol(Protocol protocol) {
+    public VerificationIPFlowParametersInner withProtocol(IpFlowProtocol protocol) {
         this.protocol = protocol;
         return this;
     }
