@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * The properties to a new server by restoring from a backup.
+ * The properties used to create a new server by restoring from a backup.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "createMode")
 @JsonTypeName("PointInTimeRestore")

@@ -237,6 +237,19 @@ public class PostgreSQLManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The ServerSecurityAlertPoliciesInner object to access its operations.
+     */
+    private ServerSecurityAlertPoliciesInner serverSecurityAlertPolicies;
+
+    /**
+     * Gets the ServerSecurityAlertPoliciesInner object to access its operations.
+     * @return the ServerSecurityAlertPoliciesInner object.
+     */
+    public ServerSecurityAlertPoliciesInner serverSecurityAlertPolicies() {
+        return this.serverSecurityAlertPolicies;
+    }
+
+    /**
      * Initializes an instance of PostgreSQLManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -267,7 +280,7 @@ public class PostgreSQLManagementClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
-        this.apiVersion = "2017-12-01-preview";
+        this.apiVersion = "2017-12-01";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
@@ -279,6 +292,7 @@ public class PostgreSQLManagementClientImpl extends AzureServiceClient {
         this.locationBasedPerformanceTiers = new LocationBasedPerformanceTiersInner(restClient().retrofit(), this);
         this.checkNameAvailabilitys = new CheckNameAvailabilitysInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
+        this.serverSecurityAlertPolicies = new ServerSecurityAlertPoliciesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
@@ -289,6 +303,6 @@ public class PostgreSQLManagementClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "PostgreSQLManagementClient", "2017-12-01-preview");
+        return String.format("%s (%s, %s)", super.userAgent(), "PostgreSQLManagementClient", "2017-12-01");
     }
 }
