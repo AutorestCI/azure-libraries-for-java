@@ -224,19 +224,6 @@ public class PostgreSQLManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The OperationsInner object to access its operations.
-     */
-    private OperationsInner operations;
-
-    /**
-     * Gets the OperationsInner object to access its operations.
-     * @return the OperationsInner object.
-     */
-    public OperationsInner operations() {
-        return this.operations;
-    }
-
-    /**
      * The ServerSecurityAlertPoliciesInner object to access its operations.
      */
     private ServerSecurityAlertPoliciesInner serverSecurityAlertPolicies;
@@ -247,6 +234,19 @@ public class PostgreSQLManagementClientImpl extends AzureServiceClient {
      */
     public ServerSecurityAlertPoliciesInner serverSecurityAlertPolicies() {
         return this.serverSecurityAlertPolicies;
+    }
+
+    /**
+     * The OperationsInner object to access its operations.
+     */
+    private OperationsInner operations;
+
+    /**
+     * Gets the OperationsInner object to access its operations.
+     * @return the OperationsInner object.
+     */
+    public OperationsInner operations() {
+        return this.operations;
     }
 
     /**
@@ -291,8 +291,8 @@ public class PostgreSQLManagementClientImpl extends AzureServiceClient {
         this.logFiles = new LogFilesInner(restClient().retrofit(), this);
         this.locationBasedPerformanceTiers = new LocationBasedPerformanceTiersInner(restClient().retrofit(), this);
         this.checkNameAvailabilitys = new CheckNameAvailabilitysInner(restClient().retrofit(), this);
-        this.operations = new OperationsInner(restClient().retrofit(), this);
         this.serverSecurityAlertPolicies = new ServerSecurityAlertPoliciesInner(restClient().retrofit(), this);
+        this.operations = new OperationsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
