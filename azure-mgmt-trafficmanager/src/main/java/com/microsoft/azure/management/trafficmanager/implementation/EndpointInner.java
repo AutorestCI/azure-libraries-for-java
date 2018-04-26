@@ -11,6 +11,7 @@ package com.microsoft.azure.management.trafficmanager.implementation;
 import com.microsoft.azure.management.trafficmanager.EndpointStatus;
 import com.microsoft.azure.management.trafficmanager.EndpointMonitorStatus;
 import java.util.List;
+import com.microsoft.azure.management.trafficmanager.EndpointPropertiesCustomHeadersItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -27,8 +28,9 @@ public class EndpointInner extends ProxyResourceInner {
     private String targetResourceId;
 
     /**
-     * The fully-qualified DNS name of the endpoint. Traffic Manager returns
-     * this value in DNS responses to direct traffic to this endpoint.
+     * The fully-qualified DNS name or IP address of the endpoint. Traffic
+     * Manager returns this value in DNS responses to direct traffic to this
+     * endpoint.
      */
     @JsonProperty(value = "properties.target")
     private String target;
@@ -88,6 +90,12 @@ public class EndpointInner extends ProxyResourceInner {
      */
     @JsonProperty(value = "properties.geoMapping")
     private List<String> geoMapping;
+
+    /**
+     * List of custom headers.
+     */
+    @JsonProperty(value = "properties.customHeaders")
+    private List<EndpointPropertiesCustomHeadersItem> customHeaders;
 
     /**
      * Get the targetResourceId value.
@@ -266,6 +274,26 @@ public class EndpointInner extends ProxyResourceInner {
      */
     public EndpointInner withGeoMapping(List<String> geoMapping) {
         this.geoMapping = geoMapping;
+        return this;
+    }
+
+    /**
+     * Get the customHeaders value.
+     *
+     * @return the customHeaders value
+     */
+    public List<EndpointPropertiesCustomHeadersItem> customHeaders() {
+        return this.customHeaders;
+    }
+
+    /**
+     * Set the customHeaders value.
+     *
+     * @param customHeaders the customHeaders value to set
+     * @return the EndpointInner object itself.
+     */
+    public EndpointInner withCustomHeaders(List<EndpointPropertiesCustomHeadersItem> customHeaders) {
+        this.customHeaders = customHeaders;
         return this;
     }
 
