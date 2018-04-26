@@ -20,13 +20,12 @@ import com.microsoft.azure.management.storage.AccessTier;
 import com.microsoft.azure.management.storage.NetworkRuleSet;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
-import com.microsoft.azure.Resource;
 
 /**
  * The storage account.
  */
 @JsonFlatten
-public class StorageAccountInner extends Resource {
+public class StorageAccountInner extends TrackedResourceInner {
     /**
      * Gets the SKU.
      */
