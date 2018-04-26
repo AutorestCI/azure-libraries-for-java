@@ -252,7 +252,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.createOrUpdate(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NetworkWatcherInner>>>() {
                 @Override
@@ -337,7 +337,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.getByResourceGroup(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NetworkWatcherInner>>>() {
                 @Override
@@ -420,7 +420,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.delete(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
@@ -486,7 +486,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginDelete(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
@@ -571,7 +571,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         final Map<String, String> tags = null;
         TagsObject parameters = new TagsObject();
         parameters.withTags(null);
@@ -656,7 +656,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
         Validator.validate(tags);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         TagsObject parameters = new TagsObject();
         parameters.withTags(tags);
         return service.updateTags(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
@@ -739,7 +739,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<NetworkWatcherInner>>>>() {
                 @Override
@@ -814,7 +814,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.list(this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<NetworkWatcherInner>>>>() {
                 @Override
@@ -907,7 +907,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.getTopology(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<TopologyInner>>>() {
                 @Override
@@ -999,7 +999,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.verifyIPFlow(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<VerificationIPFlowResultInner>() { }.getType());
     }
@@ -1074,7 +1074,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginVerifyIPFlow(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VerificationIPFlowResultInner>>>() {
                 @Override
@@ -1167,7 +1167,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.getNextHop(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<NextHopResultInner>() { }.getType());
     }
@@ -1242,7 +1242,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginGetNextHop(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NextHopResultInner>>>() {
                 @Override
@@ -1334,7 +1334,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (targetResourceId == null) {
             throw new IllegalArgumentException("Parameter targetResourceId is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         SecurityGroupViewParameters parameters = new SecurityGroupViewParameters();
         parameters.withTargetResourceId(targetResourceId);
         Observable<Response<ResponseBody>> observable = service.getVMSecurityRules(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent());
@@ -1410,7 +1410,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (targetResourceId == null) {
             throw new IllegalArgumentException("Parameter targetResourceId is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         SecurityGroupViewParameters parameters = new SecurityGroupViewParameters();
         parameters.withTargetResourceId(targetResourceId);
         return service.beginGetVMSecurityRules(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
@@ -1505,7 +1505,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.getTroubleshooting(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<TroubleshootingResultInner>() { }.getType());
     }
@@ -1580,7 +1580,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginGetTroubleshooting(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<TroubleshootingResultInner>>>() {
                 @Override
@@ -1672,7 +1672,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (targetResourceId == null) {
             throw new IllegalArgumentException("Parameter targetResourceId is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         QueryTroubleshootingParameters parameters = new QueryTroubleshootingParameters();
         parameters.withTargetResourceId(targetResourceId);
         Observable<Response<ResponseBody>> observable = service.getTroubleshootingResult(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent());
@@ -1748,7 +1748,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (targetResourceId == null) {
             throw new IllegalArgumentException("Parameter targetResourceId is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         QueryTroubleshootingParameters parameters = new QueryTroubleshootingParameters();
         parameters.withTargetResourceId(targetResourceId);
         return service.beginGetTroubleshootingResult(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
@@ -1843,7 +1843,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.setFlowLogConfiguration(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<FlowLogInformationInner>() { }.getType());
     }
@@ -1918,7 +1918,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginSetFlowLogConfiguration(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<FlowLogInformationInner>>>() {
                 @Override
@@ -2010,7 +2010,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (targetResourceId == null) {
             throw new IllegalArgumentException("Parameter targetResourceId is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         FlowLogStatusParameters parameters = new FlowLogStatusParameters();
         parameters.withTargetResourceId(targetResourceId);
         Observable<Response<ResponseBody>> observable = service.getFlowLogStatus(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent());
@@ -2086,7 +2086,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
         if (targetResourceId == null) {
             throw new IllegalArgumentException("Parameter targetResourceId is required and cannot be null.");
         }
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         FlowLogStatusParameters parameters = new FlowLogStatusParameters();
         parameters.withTargetResourceId(targetResourceId);
         return service.beginGetFlowLogStatus(resourceGroupName, networkWatcherName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), parameters, this.client.userAgent())
@@ -2181,7 +2181,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.checkConnectivity(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<ConnectivityInformationInner>() { }.getType());
     }
@@ -2256,7 +2256,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginCheckConnectivity(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ConnectivityInformationInner>>>() {
                 @Override
@@ -2349,7 +2349,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.getAzureReachabilityReport(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<AzureReachabilityReportInner>() { }.getType());
     }
@@ -2424,7 +2424,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginGetAzureReachabilityReport(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<AzureReachabilityReportInner>>>() {
                 @Override
@@ -2517,7 +2517,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         Observable<Response<ResponseBody>> observable = service.listAvailableProviders(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<AvailableProvidersListInner>() { }.getType());
     }
@@ -2592,7 +2592,7 @@ public class NetworkWatchersInner implements InnerSupportsGet<NetworkWatcherInne
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2018-04-01";
+        final String apiVersion = "2018-05-01";
         return service.beginListAvailableProviders(resourceGroupName, networkWatcherName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<AvailableProvidersListInner>>>() {
                 @Override
