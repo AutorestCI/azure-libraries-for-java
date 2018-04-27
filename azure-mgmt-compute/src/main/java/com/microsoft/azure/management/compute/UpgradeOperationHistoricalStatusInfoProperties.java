@@ -47,6 +47,12 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     private ImageReferenceInner targetImageReference;
 
     /**
+     * Information about OS rollback if performed.
+     */
+    @JsonProperty(value = "rollbackInfo", access = JsonProperty.Access.WRITE_ONLY)
+    private RollbackStatusInfo rollbackInfo;
+
+    /**
      * Get the runningStatus value.
      *
      * @return the runningStatus value
@@ -89,6 +95,15 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
      */
     public ImageReferenceInner targetImageReference() {
         return this.targetImageReference;
+    }
+
+    /**
+     * Get the rollbackInfo value.
+     *
+     * @return the rollbackInfo value
+     */
+    public RollbackStatusInfo rollbackInfo() {
+        return this.rollbackInfo;
     }
 
 }
