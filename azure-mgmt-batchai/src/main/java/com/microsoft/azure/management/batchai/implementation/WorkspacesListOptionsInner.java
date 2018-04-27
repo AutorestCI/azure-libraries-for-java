@@ -11,9 +11,9 @@ package com.microsoft.azure.management.batchai.implementation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for listByResourceGroup operation.
+ * Additional parameters for list operation.
  */
-public class ClustersListByResourceGroupOptionsInner {
+public class WorkspacesListOptionsInner {
     /**
      * The maximum number of items to return in the response. A maximum of 1000
      * files can be returned.
@@ -34,9 +34,9 @@ public class ClustersListByResourceGroupOptionsInner {
      * Set the maxResults value.
      *
      * @param maxResults the maxResults value to set
-     * @return the ClustersListByResourceGroupOptionsInner object itself.
+     * @return the WorkspacesListOptionsInner object itself.
      */
-    public ClustersListByResourceGroupOptionsInner withMaxResults(Integer maxResults) {
+    public WorkspacesListOptionsInner withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
         return this;
     }

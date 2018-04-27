@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Additional parameters for listByResourceGroup operation.
  */
-public class ClustersListByResourceGroupOptionsInner {
+public class WorkspacesListByResourceGroupOptionsInner {
     /**
      * The maximum number of items to return in the response. A maximum of 1000
      * files can be returned.
@@ -34,9 +34,9 @@ public class ClustersListByResourceGroupOptionsInner {
      * Set the maxResults value.
      *
      * @param maxResults the maxResults value to set
-     * @return the ClustersListByResourceGroupOptionsInner object itself.
+     * @return the WorkspacesListByResourceGroupOptionsInner object itself.
      */
-    public ClustersListByResourceGroupOptionsInner withMaxResults(Integer maxResults) {
+    public WorkspacesListByResourceGroupOptionsInner withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
         return this;
     }
