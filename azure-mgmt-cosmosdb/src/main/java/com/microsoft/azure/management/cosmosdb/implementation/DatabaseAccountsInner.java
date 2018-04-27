@@ -121,19 +121,19 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts offlineRegion" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/offlineRegion")
-        Observable<Response<ResponseBody>> offlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("region") String region, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> offlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Query("region") String region, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts beginOfflineRegion" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/offlineRegion")
-        Observable<Response<ResponseBody>> beginOfflineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("region") String region, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginOfflineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Query("region") String region, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts onlineRegion" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/onlineRegion")
-        Observable<Response<ResponseBody>> onlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("region") String region, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> onlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Query("region") String region, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts beginOnlineRegion" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/onlineRegion")
-        Observable<Response<ResponseBody>> beginOnlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("region") String region, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginOnlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Query("region") String region, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts listReadOnlyKeys" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/readonlykeys")
@@ -1319,13 +1319,13 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
         if (accountName == null) {
             throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
         }
-        if (region == null) {
-            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
-        }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Observable<Response<ResponseBody>> observable = service.offlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, region, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        Observable<Response<ResponseBody>> observable = service.offlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), region, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
 
@@ -1394,13 +1394,13 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
         if (accountName == null) {
             throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
         }
-        if (region == null) {
-            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
-        }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.beginOfflineRegion(this.client.subscriptionId(), resourceGroupName, accountName, region, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        return service.beginOfflineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), region, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -1487,13 +1487,13 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
         if (accountName == null) {
             throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
         }
-        if (region == null) {
-            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
-        }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Observable<Response<ResponseBody>> observable = service.onlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, region, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        Observable<Response<ResponseBody>> observable = service.onlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), region, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
 
@@ -1562,13 +1562,13 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
         if (accountName == null) {
             throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
         }
-        if (region == null) {
-            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
-        }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.beginOnlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, region, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        return service.beginOnlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), region, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
