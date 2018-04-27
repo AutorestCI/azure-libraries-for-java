@@ -8,10 +8,11 @@
 
 package com.microsoft.azure.management.redis.implementation;
 
+import com.microsoft.azure.management.redis.DefaultName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Parameters body to pass for  name availability check.
+ * Parameters body to pass for resource name availability check.
  */
 public class CheckNameAvailabilityParametersInner {
     /**
@@ -21,10 +22,12 @@ public class CheckNameAvailabilityParametersInner {
     private String name;
 
     /**
-     * Resource type.
+     * Resource type to check name availability of, e.g.
+     * 'Microsoft.Cache/redis'. Possible values include:
+     * 'Microsoft.Cache/redis'.
      */
     @JsonProperty(value = "type")
-    private String type;
+    private DefaultName type;
 
     /**
      * Get the name value.
@@ -51,7 +54,7 @@ public class CheckNameAvailabilityParametersInner {
      *
      * @return the type value
      */
-    public String type() {
+    public DefaultName type() {
         return this.type;
     }
 
@@ -61,7 +64,7 @@ public class CheckNameAvailabilityParametersInner {
      * @param type the type value to set
      * @return the CheckNameAvailabilityParametersInner object itself.
      */
-    public CheckNameAvailabilityParametersInner withType(String type) {
+    public CheckNameAvailabilityParametersInner withType(DefaultName type) {
         this.type = type;
         return this;
     }
