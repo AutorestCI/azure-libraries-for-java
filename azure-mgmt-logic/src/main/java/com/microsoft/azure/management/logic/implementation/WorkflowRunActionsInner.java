@@ -20,11 +20,13 @@ import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 import retrofit2.Response;
@@ -64,6 +66,10 @@ public class WorkflowRunActionsInner {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowRunActions get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}")
         Observable<Response<ResponseBody>> get(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("runName") String runName, @Path("actionName") String actionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowRunActions listExpressionTraces" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/listExpressionTraces")
+        Observable<Response<ResponseBody>> listExpressionTraces(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("runName") String runName, @Path("actionName") String actionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowRunActions listNext" })
         @GET
@@ -434,6 +440,106 @@ public class WorkflowRunActionsInner {
     private ServiceResponse<WorkflowRunActionInner> getDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<WorkflowRunActionInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<WorkflowRunActionInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param runName The workflow run name.
+     * @param actionName The workflow action name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Map&lt;String, List&lt;ExpressionInner&gt;&gt; object if successful.
+     */
+    public Map<String, List<ExpressionInner>> listExpressionTraces(String resourceGroupName, String workflowName, String runName, String actionName) {
+        return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName).toBlocking().single().body();
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param runName The workflow run name.
+     * @param actionName The workflow action name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Map<String, List<ExpressionInner>>> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName, final ServiceCallback<Map<String, List<ExpressionInner>>> serviceCallback) {
+        return ServiceFuture.fromResponse(listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName), serviceCallback);
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param runName The workflow run name.
+     * @param actionName The workflow action name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Map&lt;String, List&lt;ExpressionInner&gt;&gt; object
+     */
+    public Observable<Map<String, List<ExpressionInner>>> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
+        return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName).map(new Func1<ServiceResponse<Map<String, List<ExpressionInner>>>, Map<String, List<ExpressionInner>>>() {
+            @Override
+            public Map<String, List<ExpressionInner>> call(ServiceResponse<Map<String, List<ExpressionInner>>> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param runName The workflow run name.
+     * @param actionName The workflow action name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Map&lt;String, List&lt;ExpressionInner&gt;&gt; object
+     */
+    public Observable<ServiceResponse<Map<String, List<ExpressionInner>>>> listExpressionTracesWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        if (runName == null) {
+            throw new IllegalArgumentException("Parameter runName is required and cannot be null.");
+        }
+        if (actionName == null) {
+            throw new IllegalArgumentException("Parameter actionName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listExpressionTraces(this.client.subscriptionId(), resourceGroupName, workflowName, runName, actionName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Map<String, List<ExpressionInner>>>>>() {
+                @Override
+                public Observable<ServiceResponse<Map<String, List<ExpressionInner>>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Map<String, List<ExpressionInner>>> clientResponse = listExpressionTracesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Map<String, List<ExpressionInner>>> listExpressionTracesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Map<String, List<ExpressionInner>>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Map<String, List<ExpressionInner>>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

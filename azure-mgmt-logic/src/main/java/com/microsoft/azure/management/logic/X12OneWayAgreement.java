@@ -11,7 +11,7 @@ package com.microsoft.azure.management.logic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The X12 oneway agreement.
+ * The X12 one-way agreement.
  */
 public class X12OneWayAgreement {
     /**

@@ -13,15 +13,18 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.logic.SetTriggerStateActionDefinition;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.RestException;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
+import com.microsoft.rest.Validator;
 import java.io.IOException;
 import java.util.List;
 import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -67,9 +70,21 @@ public class WorkflowTriggersInner {
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}")
         Observable<Response<ResponseBody>> get(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("triggerName") String triggerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowTriggers reset" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/reset")
+        Observable<Response<ResponseBody>> reset(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("triggerName") String triggerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowTriggers run" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/run")
         Observable<Response<ResponseBody>> run(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("triggerName") String triggerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowTriggers getSchemaJson" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/schemas/json")
+        Observable<Response<ResponseBody>> getSchemaJson(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("triggerName") String triggerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowTriggers setState" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/setState")
+        Observable<Response<ResponseBody>> setState(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("triggerName") String triggerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SetTriggerStateActionDefinition setState, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowTriggers listCallbackUrl" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/listCallbackUrl")
@@ -426,6 +441,98 @@ public class WorkflowTriggersInner {
     }
 
     /**
+     * Resets a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void reset(String resourceGroupName, String workflowName, String triggerName) {
+        resetWithServiceResponseAsync(resourceGroupName, workflowName, triggerName).toBlocking().single().body();
+    }
+
+    /**
+     * Resets a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> resetAsync(String resourceGroupName, String workflowName, String triggerName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(resetWithServiceResponseAsync(resourceGroupName, workflowName, triggerName), serviceCallback);
+    }
+
+    /**
+     * Resets a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> resetAsync(String resourceGroupName, String workflowName, String triggerName) {
+        return resetWithServiceResponseAsync(resourceGroupName, workflowName, triggerName).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Resets a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> resetWithServiceResponseAsync(String resourceGroupName, String workflowName, String triggerName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        if (triggerName == null) {
+            throw new IllegalArgumentException("Parameter triggerName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.reset(this.client.subscriptionId(), resourceGroupName, workflowName, triggerName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = resetDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> resetDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
      * Runs a workflow trigger.
      *
      * @param resourceGroupName The resource group name.
@@ -514,6 +621,201 @@ public class WorkflowTriggersInner {
     private ServiceResponse<Object> runDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.client.serializerAdapter())
                 .registerError(RestException.class)
+                .build(response);
+    }
+
+    /**
+     * Get the trigger schema as JSON.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the JsonSchemaInner object if successful.
+     */
+    public JsonSchemaInner getSchemaJson(String resourceGroupName, String workflowName, String triggerName) {
+        return getSchemaJsonWithServiceResponseAsync(resourceGroupName, workflowName, triggerName).toBlocking().single().body();
+    }
+
+    /**
+     * Get the trigger schema as JSON.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<JsonSchemaInner> getSchemaJsonAsync(String resourceGroupName, String workflowName, String triggerName, final ServiceCallback<JsonSchemaInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getSchemaJsonWithServiceResponseAsync(resourceGroupName, workflowName, triggerName), serviceCallback);
+    }
+
+    /**
+     * Get the trigger schema as JSON.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the JsonSchemaInner object
+     */
+    public Observable<JsonSchemaInner> getSchemaJsonAsync(String resourceGroupName, String workflowName, String triggerName) {
+        return getSchemaJsonWithServiceResponseAsync(resourceGroupName, workflowName, triggerName).map(new Func1<ServiceResponse<JsonSchemaInner>, JsonSchemaInner>() {
+            @Override
+            public JsonSchemaInner call(ServiceResponse<JsonSchemaInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Get the trigger schema as JSON.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the JsonSchemaInner object
+     */
+    public Observable<ServiceResponse<JsonSchemaInner>> getSchemaJsonWithServiceResponseAsync(String resourceGroupName, String workflowName, String triggerName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        if (triggerName == null) {
+            throw new IllegalArgumentException("Parameter triggerName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getSchemaJson(this.client.subscriptionId(), resourceGroupName, workflowName, triggerName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<JsonSchemaInner>>>() {
+                @Override
+                public Observable<ServiceResponse<JsonSchemaInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<JsonSchemaInner> clientResponse = getSchemaJsonDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<JsonSchemaInner> getSchemaJsonDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<JsonSchemaInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<JsonSchemaInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Sets the state of a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param source the WorkflowTriggerInner value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void setState(String resourceGroupName, String workflowName, String triggerName, WorkflowTriggerInner source) {
+        setStateWithServiceResponseAsync(resourceGroupName, workflowName, triggerName, source).toBlocking().single().body();
+    }
+
+    /**
+     * Sets the state of a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param source the WorkflowTriggerInner value
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> setStateAsync(String resourceGroupName, String workflowName, String triggerName, WorkflowTriggerInner source, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(setStateWithServiceResponseAsync(resourceGroupName, workflowName, triggerName, source), serviceCallback);
+    }
+
+    /**
+     * Sets the state of a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param source the WorkflowTriggerInner value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> setStateAsync(String resourceGroupName, String workflowName, String triggerName, WorkflowTriggerInner source) {
+        return setStateWithServiceResponseAsync(resourceGroupName, workflowName, triggerName, source).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Sets the state of a workflow trigger.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param triggerName The workflow trigger name.
+     * @param source the WorkflowTriggerInner value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> setStateWithServiceResponseAsync(String resourceGroupName, String workflowName, String triggerName, WorkflowTriggerInner source) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        if (triggerName == null) {
+            throw new IllegalArgumentException("Parameter triggerName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (source == null) {
+            throw new IllegalArgumentException("Parameter source is required and cannot be null.");
+        }
+        Validator.validate(source);
+        SetTriggerStateActionDefinition setState = new SetTriggerStateActionDefinition();
+        setState.withSource(source);
+        return service.setState(this.client.subscriptionId(), resourceGroupName, workflowName, triggerName, this.client.apiVersion(), this.client.acceptLanguage(), setState, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = setStateDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> setStateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
                 .build(response);
     }
 

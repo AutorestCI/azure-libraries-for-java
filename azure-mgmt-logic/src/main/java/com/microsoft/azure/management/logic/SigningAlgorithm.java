@@ -8,64 +8,46 @@
 
 package com.microsoft.azure.management.logic;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Collection;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for SigningAlgorithm.
  */
-public final class SigningAlgorithm {
+public final class SigningAlgorithm extends ExpandableStringEnum<SigningAlgorithm> {
     /** Static value NotSpecified for SigningAlgorithm. */
-    public static final SigningAlgorithm NOT_SPECIFIED = new SigningAlgorithm("NotSpecified");
+    public static final SigningAlgorithm NOT_SPECIFIED = fromString("NotSpecified");
 
     /** Static value Default for SigningAlgorithm. */
-    public static final SigningAlgorithm DEFAULT = new SigningAlgorithm("Default");
+    public static final SigningAlgorithm DEFAULT = fromString("Default");
 
     /** Static value SHA1 for SigningAlgorithm. */
-    public static final SigningAlgorithm SHA1 = new SigningAlgorithm("SHA1");
+    public static final SigningAlgorithm SHA1 = fromString("SHA1");
 
     /** Static value SHA2256 for SigningAlgorithm. */
-    public static final SigningAlgorithm SHA2256 = new SigningAlgorithm("SHA2256");
+    public static final SigningAlgorithm SHA2256 = fromString("SHA2256");
 
     /** Static value SHA2384 for SigningAlgorithm. */
-    public static final SigningAlgorithm SHA2384 = new SigningAlgorithm("SHA2384");
+    public static final SigningAlgorithm SHA2384 = fromString("SHA2384");
 
     /** Static value SHA2512 for SigningAlgorithm. */
-    public static final SigningAlgorithm SHA2512 = new SigningAlgorithm("SHA2512");
-
-    private String value;
+    public static final SigningAlgorithm SHA2512 = fromString("SHA2512");
 
     /**
-     * Creates a custom value for SigningAlgorithm.
-     * @param value the custom value
+     * Creates or finds a SigningAlgorithm from its string representation.
+     * @param name a name to look for
+     * @return the corresponding SigningAlgorithm
      */
-    public SigningAlgorithm(String value) {
-        this.value = value;
+    @JsonCreator
+    public static SigningAlgorithm fromString(String name) {
+        return fromString(name, SigningAlgorithm.class);
     }
 
-    @JsonValue
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof SigningAlgorithm)) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        SigningAlgorithm rhs = (SigningAlgorithm) obj;
-        if (value == null) {
-            return rhs.value == null;
-        } else {
-            return value.equals(rhs.value);
-        }
+    /**
+     * @return known SigningAlgorithm values
+     */
+    public static Collection<SigningAlgorithm> values() {
+        return values(SigningAlgorithm.class);
     }
 }
