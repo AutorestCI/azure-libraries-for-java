@@ -149,7 +149,7 @@ public class IntegrationAccountAssembliesInner {
                 @Override
                 public Observable<ServiceResponse<List<AssemblyDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<AssemblyDefinitionInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl2<AssemblyDefinitionInner>> result = listDelegate(response);
                         ServiceResponse<List<AssemblyDefinitionInner>> clientResponse = new ServiceResponse<List<AssemblyDefinitionInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
@@ -159,9 +159,9 @@ public class IntegrationAccountAssembliesInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<AssemblyDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<AssemblyDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<AssemblyDefinitionInner>>() { }.getType())
+    private ServiceResponse<PageImpl2<AssemblyDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl2<AssemblyDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl2<AssemblyDefinitionInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

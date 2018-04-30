@@ -151,7 +151,7 @@ public class WorkflowRunActionRepetitionsInner {
                 @Override
                 public Observable<ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<WorkflowRunActionRepetitionDefinitionInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl2<WorkflowRunActionRepetitionDefinitionInner>> result = listDelegate(response);
                         ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>> clientResponse = new ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
@@ -161,9 +161,9 @@ public class WorkflowRunActionRepetitionsInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<WorkflowRunActionRepetitionDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<WorkflowRunActionRepetitionDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<WorkflowRunActionRepetitionDefinitionInner>>() { }.getType())
+    private ServiceResponse<PageImpl2<WorkflowRunActionRepetitionDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl2<WorkflowRunActionRepetitionDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl2<WorkflowRunActionRepetitionDefinitionInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

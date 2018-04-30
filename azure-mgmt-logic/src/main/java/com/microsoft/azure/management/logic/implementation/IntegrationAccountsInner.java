@@ -1093,7 +1093,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
                 @Override
                 public Observable<ServiceResponse<List<KeyVaultKeyInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<KeyVaultKeyInner>> result = listKeyVaultKeysDelegate(response);
+                        ServiceResponse<PageImpl2<KeyVaultKeyInner>> result = listKeyVaultKeysDelegate(response);
                         ServiceResponse<List<KeyVaultKeyInner>> clientResponse = new ServiceResponse<List<KeyVaultKeyInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
@@ -1103,9 +1103,9 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
             });
     }
 
-    private ServiceResponse<PageImpl1<KeyVaultKeyInner>> listKeyVaultKeysDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<KeyVaultKeyInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<KeyVaultKeyInner>>() { }.getType())
+    private ServiceResponse<PageImpl2<KeyVaultKeyInner>> listKeyVaultKeysDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl2<KeyVaultKeyInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl2<KeyVaultKeyInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

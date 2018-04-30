@@ -144,7 +144,7 @@ public class IntegrationAccountBatchConfigurationsInner {
                 @Override
                 public Observable<ServiceResponse<List<BatchConfigurationInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<BatchConfigurationInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl2<BatchConfigurationInner>> result = listDelegate(response);
                         ServiceResponse<List<BatchConfigurationInner>> clientResponse = new ServiceResponse<List<BatchConfigurationInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
@@ -154,9 +154,9 @@ public class IntegrationAccountBatchConfigurationsInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<BatchConfigurationInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<BatchConfigurationInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<BatchConfigurationInner>>() { }.getType())
+    private ServiceResponse<PageImpl2<BatchConfigurationInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl2<BatchConfigurationInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl2<BatchConfigurationInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
