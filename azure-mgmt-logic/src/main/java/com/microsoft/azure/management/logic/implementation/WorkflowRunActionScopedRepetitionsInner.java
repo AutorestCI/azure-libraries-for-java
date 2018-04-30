@@ -15,7 +15,6 @@ import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
 import java.io.IOException;
-import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -72,9 +71,9 @@ public class WorkflowRunActionScopedRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object if successful.
+     * @return the WorkflowRunActionRepetitionDefinitionCollectionInner object if successful.
      */
-    public List<WorkflowRunActionRepetitionDefinitionInner> list(String resourceGroupName, String workflowName, String runName, String actionName) {
+    public WorkflowRunActionRepetitionDefinitionCollectionInner list(String resourceGroupName, String workflowName, String runName, String actionName) {
         return listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName).toBlocking().single().body();
     }
 
@@ -89,7 +88,7 @@ public class WorkflowRunActionScopedRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<WorkflowRunActionRepetitionDefinitionInner>> listAsync(String resourceGroupName, String workflowName, String runName, String actionName, final ServiceCallback<List<WorkflowRunActionRepetitionDefinitionInner>> serviceCallback) {
+    public ServiceFuture<WorkflowRunActionRepetitionDefinitionCollectionInner> listAsync(String resourceGroupName, String workflowName, String runName, String actionName, final ServiceCallback<WorkflowRunActionRepetitionDefinitionCollectionInner> serviceCallback) {
         return ServiceFuture.fromResponse(listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName), serviceCallback);
     }
 
@@ -101,12 +100,12 @@ public class WorkflowRunActionScopedRepetitionsInner {
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object
+     * @return the observable to the WorkflowRunActionRepetitionDefinitionCollectionInner object
      */
-    public Observable<List<WorkflowRunActionRepetitionDefinitionInner>> listAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
-        return listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName).map(new Func1<ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>, List<WorkflowRunActionRepetitionDefinitionInner>>() {
+    public Observable<WorkflowRunActionRepetitionDefinitionCollectionInner> listAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
+        return listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName).map(new Func1<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>, WorkflowRunActionRepetitionDefinitionCollectionInner>() {
             @Override
-            public List<WorkflowRunActionRepetitionDefinitionInner> call(ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>> response) {
+            public WorkflowRunActionRepetitionDefinitionCollectionInner call(ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner> response) {
                 return response.body();
             }
         });
@@ -120,9 +119,9 @@ public class WorkflowRunActionScopedRepetitionsInner {
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object
+     * @return the observable to the WorkflowRunActionRepetitionDefinitionCollectionInner object
      */
-    public Observable<ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>> listWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
+    public Observable<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>> listWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -142,11 +141,11 @@ public class WorkflowRunActionScopedRepetitionsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.list(this.client.subscriptionId(), resourceGroupName, workflowName, runName, actionName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>>>() {
                 @Override
-                public Observable<ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>> clientResponse = listDelegate(response);
+                        ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner> clientResponse = listDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -155,9 +154,9 @@ public class WorkflowRunActionScopedRepetitionsInner {
             });
     }
 
-    private ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<List<WorkflowRunActionRepetitionDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<List<WorkflowRunActionRepetitionDefinitionInner>>() { }.getType())
+    private ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<WorkflowRunActionRepetitionDefinitionCollectionInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<WorkflowRunActionRepetitionDefinitionCollectionInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

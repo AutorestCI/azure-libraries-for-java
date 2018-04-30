@@ -67,9 +67,9 @@ public class WorkflowRunOperationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the WorkflowRunPropertiesInner object if successful.
+     * @return the WorkflowRunInner object if successful.
      */
-    public WorkflowRunPropertiesInner get(String resourceGroupName, String workflowName, String runName, String operationId) {
+    public WorkflowRunInner get(String resourceGroupName, String workflowName, String runName, String operationId) {
         return getWithServiceResponseAsync(resourceGroupName, workflowName, runName, operationId).toBlocking().single().body();
     }
 
@@ -84,7 +84,7 @@ public class WorkflowRunOperationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<WorkflowRunPropertiesInner> getAsync(String resourceGroupName, String workflowName, String runName, String operationId, final ServiceCallback<WorkflowRunPropertiesInner> serviceCallback) {
+    public ServiceFuture<WorkflowRunInner> getAsync(String resourceGroupName, String workflowName, String runName, String operationId, final ServiceCallback<WorkflowRunInner> serviceCallback) {
         return ServiceFuture.fromResponse(getWithServiceResponseAsync(resourceGroupName, workflowName, runName, operationId), serviceCallback);
     }
 
@@ -96,12 +96,12 @@ public class WorkflowRunOperationsInner {
      * @param runName The workflow run name.
      * @param operationId The workflow operation id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the WorkflowRunPropertiesInner object
+     * @return the observable to the WorkflowRunInner object
      */
-    public Observable<WorkflowRunPropertiesInner> getAsync(String resourceGroupName, String workflowName, String runName, String operationId) {
-        return getWithServiceResponseAsync(resourceGroupName, workflowName, runName, operationId).map(new Func1<ServiceResponse<WorkflowRunPropertiesInner>, WorkflowRunPropertiesInner>() {
+    public Observable<WorkflowRunInner> getAsync(String resourceGroupName, String workflowName, String runName, String operationId) {
+        return getWithServiceResponseAsync(resourceGroupName, workflowName, runName, operationId).map(new Func1<ServiceResponse<WorkflowRunInner>, WorkflowRunInner>() {
             @Override
-            public WorkflowRunPropertiesInner call(ServiceResponse<WorkflowRunPropertiesInner> response) {
+            public WorkflowRunInner call(ServiceResponse<WorkflowRunInner> response) {
                 return response.body();
             }
         });
@@ -115,9 +115,9 @@ public class WorkflowRunOperationsInner {
      * @param runName The workflow run name.
      * @param operationId The workflow operation id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the WorkflowRunPropertiesInner object
+     * @return the observable to the WorkflowRunInner object
      */
-    public Observable<ServiceResponse<WorkflowRunPropertiesInner>> getWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String operationId) {
+    public Observable<ServiceResponse<WorkflowRunInner>> getWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String operationId) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -137,11 +137,11 @@ public class WorkflowRunOperationsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.get(this.client.subscriptionId(), resourceGroupName, workflowName, runName, operationId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<WorkflowRunPropertiesInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<WorkflowRunInner>>>() {
                 @Override
-                public Observable<ServiceResponse<WorkflowRunPropertiesInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<WorkflowRunInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<WorkflowRunPropertiesInner> clientResponse = getDelegate(response);
+                        ServiceResponse<WorkflowRunInner> clientResponse = getDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -150,9 +150,9 @@ public class WorkflowRunOperationsInner {
             });
     }
 
-    private ServiceResponse<WorkflowRunPropertiesInner> getDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<WorkflowRunPropertiesInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<WorkflowRunPropertiesInner>() { }.getType())
+    private ServiceResponse<WorkflowRunInner> getDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<WorkflowRunInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<WorkflowRunInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
