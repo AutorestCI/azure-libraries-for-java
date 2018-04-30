@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.logic;
 
-import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -32,13 +31,13 @@ public class WorkflowTriggerRecurrence {
      * The start time.
      */
     @JsonProperty(value = "startTime")
-    private DateTime startTime;
+    private String startTime;
 
     /**
      * The end time.
      */
     @JsonProperty(value = "endTime")
-    private DateTime endTime;
+    private String endTime;
 
     /**
      * The time zone.
@@ -97,7 +96,7 @@ public class WorkflowTriggerRecurrence {
      *
      * @return the startTime value
      */
-    public DateTime startTime() {
+    public String startTime() {
         return this.startTime;
     }
 
@@ -107,7 +106,7 @@ public class WorkflowTriggerRecurrence {
      * @param startTime the startTime value to set
      * @return the WorkflowTriggerRecurrence object itself.
      */
-    public WorkflowTriggerRecurrence withStartTime(DateTime startTime) {
+    public WorkflowTriggerRecurrence withStartTime(String startTime) {
         this.startTime = startTime;
         return this;
     }
@@ -117,7 +116,7 @@ public class WorkflowTriggerRecurrence {
      *
      * @return the endTime value
      */
-    public DateTime endTime() {
+    public String endTime() {
         return this.endTime;
     }
 
@@ -127,7 +126,7 @@ public class WorkflowTriggerRecurrence {
      * @param endTime the endTime value to set
      * @return the WorkflowTriggerRecurrence object itself.
      */
-    public WorkflowTriggerRecurrence withEndTime(DateTime endTime) {
+    public WorkflowTriggerRecurrence withEndTime(String endTime) {
         this.endTime = endTime;
         return this;
     }

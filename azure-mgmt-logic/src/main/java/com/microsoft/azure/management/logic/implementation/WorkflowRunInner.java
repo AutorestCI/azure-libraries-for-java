@@ -25,6 +25,12 @@ import com.microsoft.azure.SubResource;
 @JsonFlatten
 public class WorkflowRunInner extends SubResource {
     /**
+     * Gets the wait end time.
+     */
+    @JsonProperty(value = "properties.waitEndTime", access = JsonProperty.Access.WRITE_ONLY)
+    private DateTime waitEndTime;
+
+    /**
      * Gets the start time.
      */
     @JsonProperty(value = "properties.startTime", access = JsonProperty.Access.WRITE_ONLY)
@@ -103,6 +109,15 @@ public class WorkflowRunInner extends SubResource {
      */
     @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
+
+    /**
+     * Get the waitEndTime value.
+     *
+     * @return the waitEndTime value
+     */
+    public DateTime waitEndTime() {
+        return this.waitEndTime;
+    }
 
     /**
      * Get the startTime value.

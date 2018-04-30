@@ -22,6 +22,12 @@ public class KeyVaultKeyCollectionInner {
     private List<ListKeyVaultKeysDefinitionInner> value;
 
     /**
+     * The skip token.
+     */
+    @JsonProperty(value = "skipToken")
+    private String skipToken;
+
+    /**
      * Get the value value.
      *
      * @return the value value
@@ -38,6 +44,26 @@ public class KeyVaultKeyCollectionInner {
      */
     public KeyVaultKeyCollectionInner withValue(List<ListKeyVaultKeysDefinitionInner> value) {
         this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the skipToken value.
+     *
+     * @return the skipToken value
+     */
+    public String skipToken() {
+        return this.skipToken;
+    }
+
+    /**
+     * Set the skipToken value.
+     *
+     * @param skipToken the skipToken value to set
+     * @return the KeyVaultKeyCollectionInner object itself.
+     */
+    public KeyVaultKeyCollectionInner withSkipToken(String skipToken) {
+        this.skipToken = skipToken;
         return this;
     }
 
