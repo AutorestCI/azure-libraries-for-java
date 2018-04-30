@@ -10,11 +10,16 @@ package com.microsoft.azure.management.logic.implementation;
 
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
+import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.Page;
+import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
 import java.io.IOException;
+import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -22,6 +27,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import retrofit2.Response;
 import rx.functions.Func1;
 import rx.Observable;
@@ -64,6 +70,14 @@ public class WorkflowRunActionRepetitionsInner {
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/repetitions/{repetitionName}/listExpressionTraces")
         Observable<Response<ResponseBody>> listExpressionTraces(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("runName") String runName, @Path("actionName") String actionName, @Path("repetitionName") String repetitionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowRunActionRepetitions listNext" })
+        @GET
+        Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowRunActionRepetitions listExpressionTracesNext" })
+        @GET
+        Observable<Response<ResponseBody>> listExpressionTracesNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
     }
 
     /**
@@ -76,10 +90,16 @@ public class WorkflowRunActionRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the WorkflowRunActionRepetitionDefinitionCollectionInner object if successful.
+     * @return the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object if successful.
      */
-    public WorkflowRunActionRepetitionDefinitionCollectionInner list(String resourceGroupName, String workflowName, String runName, String actionName) {
-        return listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName).toBlocking().single().body();
+    public PagedList<WorkflowRunActionRepetitionDefinitionInner> list(final String resourceGroupName, final String workflowName, final String runName, final String actionName) {
+        ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>> response = listSinglePageAsync(resourceGroupName, workflowName, runName, actionName).toBlocking().single();
+        return new PagedList<WorkflowRunActionRepetitionDefinitionInner>(response.body()) {
+            @Override
+            public Page<WorkflowRunActionRepetitionDefinitionInner> nextPage(String nextPageLink) {
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -93,8 +113,16 @@ public class WorkflowRunActionRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<WorkflowRunActionRepetitionDefinitionCollectionInner> listAsync(String resourceGroupName, String workflowName, String runName, String actionName, final ServiceCallback<WorkflowRunActionRepetitionDefinitionCollectionInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName), serviceCallback);
+    public ServiceFuture<List<WorkflowRunActionRepetitionDefinitionInner>> listAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName, final ListOperationCallback<WorkflowRunActionRepetitionDefinitionInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listSinglePageAsync(resourceGroupName, workflowName, runName, actionName),
+            new Func1<String, Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> call(String nextPageLink) {
+                    return listNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
     }
 
     /**
@@ -105,15 +133,16 @@ public class WorkflowRunActionRepetitionsInner {
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the WorkflowRunActionRepetitionDefinitionCollectionInner object
+     * @return the observable to the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object
      */
-    public Observable<WorkflowRunActionRepetitionDefinitionCollectionInner> listAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
-        return listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName).map(new Func1<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>, WorkflowRunActionRepetitionDefinitionCollectionInner>() {
-            @Override
-            public WorkflowRunActionRepetitionDefinitionCollectionInner call(ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<WorkflowRunActionRepetitionDefinitionInner>> listAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName) {
+        return listWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName)
+            .map(new Func1<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>, Page<WorkflowRunActionRepetitionDefinitionInner>>() {
+                @Override
+                public Page<WorkflowRunActionRepetitionDefinitionInner> call(ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>> response) {
+                    return response.body();
+                }
+            });
     }
 
     /**
@@ -124,9 +153,33 @@ public class WorkflowRunActionRepetitionsInner {
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the WorkflowRunActionRepetitionDefinitionCollectionInner object
+     * @return the observable to the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object
      */
-    public Observable<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>> listWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String actionName) {
+    public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> listWithServiceResponseAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName) {
+        return listSinglePageAsync(resourceGroupName, workflowName, runName, actionName)
+            .concatMap(new Func1<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>, Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> call(ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Get all of a workflow run action repetitions.
+     *
+    ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> * @param resourceGroupName The resource group name.
+    ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> * @param workflowName The workflow name.
+    ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> * @param runName The workflow run name.
+    ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> * @param actionName The workflow action name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> listSinglePageAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -146,12 +199,12 @@ public class WorkflowRunActionRepetitionsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.list(this.client.subscriptionId(), resourceGroupName, workflowName, runName, actionName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner> clientResponse = listDelegate(response);
-                        return Observable.just(clientResponse);
+                        ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> result = listDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -159,9 +212,9 @@ public class WorkflowRunActionRepetitionsInner {
             });
     }
 
-    private ServiceResponse<WorkflowRunActionRepetitionDefinitionCollectionInner> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<WorkflowRunActionRepetitionDefinitionCollectionInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<WorkflowRunActionRepetitionDefinitionCollectionInner>() { }.getType())
+    private ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<WorkflowRunActionRepetitionDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<WorkflowRunActionRepetitionDefinitionInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -284,10 +337,16 @@ public class WorkflowRunActionRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ExpressionTracesInner object if successful.
+     * @return the PagedList&lt;ExpressionRootInner&gt; object if successful.
      */
-    public ExpressionTracesInner listExpressionTraces(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
-        return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName).toBlocking().single().body();
+    public PagedList<ExpressionRootInner> listExpressionTraces(final String resourceGroupName, final String workflowName, final String runName, final String actionName, final String repetitionName) {
+        ServiceResponse<Page<ExpressionRootInner>> response = listExpressionTracesSinglePageAsync(resourceGroupName, workflowName, runName, actionName, repetitionName).toBlocking().single();
+        return new PagedList<ExpressionRootInner>(response.body()) {
+            @Override
+            public Page<ExpressionRootInner> nextPage(String nextPageLink) {
+                return listExpressionTracesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -302,8 +361,16 @@ public class WorkflowRunActionRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ExpressionTracesInner> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName, final ServiceCallback<ExpressionTracesInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName), serviceCallback);
+    public ServiceFuture<List<ExpressionRootInner>> listExpressionTracesAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName, final String repetitionName, final ListOperationCallback<ExpressionRootInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listExpressionTracesSinglePageAsync(resourceGroupName, workflowName, runName, actionName, repetitionName),
+            new Func1<String, Observable<ServiceResponse<Page<ExpressionRootInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ExpressionRootInner>>> call(String nextPageLink) {
+                    return listExpressionTracesNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
     }
 
     /**
@@ -315,15 +382,16 @@ public class WorkflowRunActionRepetitionsInner {
      * @param actionName The workflow action name.
      * @param repetitionName The workflow repetition.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ExpressionTracesInner object
+     * @return the observable to the PagedList&lt;ExpressionRootInner&gt; object
      */
-    public Observable<ExpressionTracesInner> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
-        return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName).map(new Func1<ServiceResponse<ExpressionTracesInner>, ExpressionTracesInner>() {
-            @Override
-            public ExpressionTracesInner call(ServiceResponse<ExpressionTracesInner> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<ExpressionRootInner>> listExpressionTracesAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName, final String repetitionName) {
+        return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName)
+            .map(new Func1<ServiceResponse<Page<ExpressionRootInner>>, Page<ExpressionRootInner>>() {
+                @Override
+                public Page<ExpressionRootInner> call(ServiceResponse<Page<ExpressionRootInner>> response) {
+                    return response.body();
+                }
+            });
     }
 
     /**
@@ -335,9 +403,34 @@ public class WorkflowRunActionRepetitionsInner {
      * @param actionName The workflow action name.
      * @param repetitionName The workflow repetition.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ExpressionTracesInner object
+     * @return the observable to the PagedList&lt;ExpressionRootInner&gt; object
      */
-    public Observable<ServiceResponse<ExpressionTracesInner>> listExpressionTracesWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
+    public Observable<ServiceResponse<Page<ExpressionRootInner>>> listExpressionTracesWithServiceResponseAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName, final String repetitionName) {
+        return listExpressionTracesSinglePageAsync(resourceGroupName, workflowName, runName, actionName, repetitionName)
+            .concatMap(new Func1<ServiceResponse<Page<ExpressionRootInner>>, Observable<ServiceResponse<Page<ExpressionRootInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ExpressionRootInner>>> call(ServiceResponse<Page<ExpressionRootInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listExpressionTracesNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+    ServiceResponse<PageImpl<ExpressionRootInner>> * @param resourceGroupName The resource group name.
+    ServiceResponse<PageImpl<ExpressionRootInner>> * @param workflowName The workflow name.
+    ServiceResponse<PageImpl<ExpressionRootInner>> * @param runName The workflow run name.
+    ServiceResponse<PageImpl<ExpressionRootInner>> * @param actionName The workflow action name.
+    ServiceResponse<PageImpl<ExpressionRootInner>> * @param repetitionName The workflow repetition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;ExpressionRootInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<ExpressionRootInner>>> listExpressionTracesSinglePageAsync(final String resourceGroupName, final String workflowName, final String runName, final String actionName, final String repetitionName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -360,12 +453,12 @@ public class WorkflowRunActionRepetitionsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listExpressionTraces(this.client.subscriptionId(), resourceGroupName, workflowName, runName, actionName, repetitionName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ExpressionTracesInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ExpressionRootInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<ExpressionTracesInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ExpressionRootInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<ExpressionTracesInner> clientResponse = listExpressionTracesDelegate(response);
-                        return Observable.just(clientResponse);
+                        ServiceResponse<PageImpl<ExpressionRootInner>> result = listExpressionTracesDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ExpressionRootInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -373,9 +466,231 @@ public class WorkflowRunActionRepetitionsInner {
             });
     }
 
-    private ServiceResponse<ExpressionTracesInner> listExpressionTracesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ExpressionTracesInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<ExpressionTracesInner>() { }.getType())
+    private ServiceResponse<PageImpl<ExpressionRootInner>> listExpressionTracesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ExpressionRootInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ExpressionRootInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Get all of a workflow run action repetitions.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object if successful.
+     */
+    public PagedList<WorkflowRunActionRepetitionDefinitionInner> listNext(final String nextPageLink) {
+        ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<WorkflowRunActionRepetitionDefinitionInner>(response.body()) {
+            @Override
+            public Page<WorkflowRunActionRepetitionDefinitionInner> nextPage(String nextPageLink) {
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Get all of a workflow run action repetitions.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<WorkflowRunActionRepetitionDefinitionInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<WorkflowRunActionRepetitionDefinitionInner>> serviceFuture, final ListOperationCallback<WorkflowRunActionRepetitionDefinitionInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> call(String nextPageLink) {
+                    return listNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Get all of a workflow run action repetitions.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object
+     */
+    public Observable<Page<WorkflowRunActionRepetitionDefinitionInner>> listNextAsync(final String nextPageLink) {
+        return listNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>, Page<WorkflowRunActionRepetitionDefinitionInner>>() {
+                @Override
+                public Page<WorkflowRunActionRepetitionDefinitionInner> call(ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Get all of a workflow run action repetitions.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
+        return listNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>, Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> call(ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Get all of a workflow run action repetitions.
+     *
+    ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;WorkflowRunActionRepetitionDefinitionInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> listNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.listNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> result = listNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<WorkflowRunActionRepetitionDefinitionInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<WorkflowRunActionRepetitionDefinitionInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<WorkflowRunActionRepetitionDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<WorkflowRunActionRepetitionDefinitionInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;ExpressionRootInner&gt; object if successful.
+     */
+    public PagedList<ExpressionRootInner> listExpressionTracesNext(final String nextPageLink) {
+        ServiceResponse<Page<ExpressionRootInner>> response = listExpressionTracesNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<ExpressionRootInner>(response.body()) {
+            @Override
+            public Page<ExpressionRootInner> nextPage(String nextPageLink) {
+                return listExpressionTracesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<ExpressionRootInner>> listExpressionTracesNextAsync(final String nextPageLink, final ServiceFuture<List<ExpressionRootInner>> serviceFuture, final ListOperationCallback<ExpressionRootInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listExpressionTracesNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<ExpressionRootInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ExpressionRootInner>>> call(String nextPageLink) {
+                    return listExpressionTracesNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ExpressionRootInner&gt; object
+     */
+    public Observable<Page<ExpressionRootInner>> listExpressionTracesNextAsync(final String nextPageLink) {
+        return listExpressionTracesNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<ExpressionRootInner>>, Page<ExpressionRootInner>>() {
+                @Override
+                public Page<ExpressionRootInner> call(ServiceResponse<Page<ExpressionRootInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ExpressionRootInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<ExpressionRootInner>>> listExpressionTracesNextWithServiceResponseAsync(final String nextPageLink) {
+        return listExpressionTracesNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<ExpressionRootInner>>, Observable<ServiceResponse<Page<ExpressionRootInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ExpressionRootInner>>> call(ServiceResponse<Page<ExpressionRootInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listExpressionTracesNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Lists a workflow run expression trace.
+     *
+    ServiceResponse<PageImpl<ExpressionRootInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;ExpressionRootInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<ExpressionRootInner>>> listExpressionTracesNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.listExpressionTracesNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ExpressionRootInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ExpressionRootInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<ExpressionRootInner>> result = listExpressionTracesNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ExpressionRootInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<ExpressionRootInner>> listExpressionTracesNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ExpressionRootInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ExpressionRootInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
