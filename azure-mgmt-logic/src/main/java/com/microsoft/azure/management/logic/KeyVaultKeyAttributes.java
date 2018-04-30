@@ -18,7 +18,7 @@ public class KeyVaultKeyAttributes {
      * Whether the key is enabled or not.
      */
     @JsonProperty(value = "enabled")
-    private String enabled;
+    private Boolean enabled;
 
     /**
      * When the key was created.
@@ -37,7 +37,7 @@ public class KeyVaultKeyAttributes {
      *
      * @return the enabled value
      */
-    public String enabled() {
+    public Boolean enabled() {
         return this.enabled;
     }
 
@@ -47,7 +47,7 @@ public class KeyVaultKeyAttributes {
      * @param enabled the enabled value to set
      * @return the KeyVaultKeyAttributes object itself.
      */
-    public KeyVaultKeyAttributes withEnabled(String enabled) {
+    public KeyVaultKeyAttributes withEnabled(Boolean enabled) {
         this.enabled = enabled;
         return this;
     }
