@@ -9,6 +9,7 @@
 package com.microsoft.azure.management.logic.implementation;
 
 import java.util.List;
+import com.microsoft.azure.management.logic.KeyVaultKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -19,7 +20,7 @@ public class KeyVaultKeyCollectionInner {
      * The key vault keys.
      */
     @JsonProperty(value = "value")
-    private List<ListKeyVaultKeysDefinitionInner> value;
+    private List<KeyVaultKey> value;
 
     /**
      * The skip token.
@@ -32,7 +33,7 @@ public class KeyVaultKeyCollectionInner {
      *
      * @return the value value
      */
-    public List<ListKeyVaultKeysDefinitionInner> value() {
+    public List<KeyVaultKey> value() {
         return this.value;
     }
 
@@ -42,7 +43,7 @@ public class KeyVaultKeyCollectionInner {
      * @param value the value value to set
      * @return the KeyVaultKeyCollectionInner object itself.
      */
-    public KeyVaultKeyCollectionInner withValue(List<ListKeyVaultKeysDefinitionInner> value) {
+    public KeyVaultKeyCollectionInner withValue(List<KeyVaultKey> value) {
         this.value = value;
         return this;
     }
