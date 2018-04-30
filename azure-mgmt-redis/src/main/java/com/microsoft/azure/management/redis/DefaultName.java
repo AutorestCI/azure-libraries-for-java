@@ -8,31 +8,43 @@
 
 package com.microsoft.azure.management.redis;
 
-import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.microsoft.rest.ExpandableStringEnum;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * Defines values for DefaultName.
  */
-public final class DefaultName extends ExpandableStringEnum<DefaultName> {
-    /** Static value Microsoft.Cache/redis for DefaultName. */
-    public static final DefaultName MICROSOFT_CACHEREDIS = fromString("Microsoft.Cache/redis");
+public enum DefaultName {
+    /** Enum value Microsoft.Cache/redis. */
+    MICROSOFT_CACHEREDIS("Microsoft.Cache/redis");
 
-    /**
-     * Creates or finds a DefaultName from its string representation.
-     * @param name a name to look for
-     * @return the corresponding DefaultName
-     */
-    @JsonCreator
-    public static DefaultName fromString(String name) {
-        return fromString(name, DefaultName.class);
+    /** The actual serialized value for a DefaultName instance. */
+    private String value;
+
+    DefaultName(String value) {
+        this.value = value;
     }
 
     /**
-     * @return known DefaultName values
+     * Parses a serialized value to a DefaultName instance.
+     *
+     * @param value the serialized value to parse.
+     * @return the parsed DefaultName object, or null if unable to parse.
      */
-    public static Collection<DefaultName> values() {
-        return values(DefaultName.class);
+    @JsonCreator
+    public static DefaultName fromString(String value) {
+        DefaultName[] items = DefaultName.values();
+        for (DefaultName item : items) {
+            if (item.toString().equalsIgnoreCase(value)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    @JsonValue
+    @Override
+    public String toString() {
+        return this.value;
     }
 }
