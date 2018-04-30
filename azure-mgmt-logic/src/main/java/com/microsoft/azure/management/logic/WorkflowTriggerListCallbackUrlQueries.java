@@ -39,6 +39,12 @@ public class WorkflowTriggerListCallbackUrlQueries {
     private String sig;
 
     /**
+     * The SAS timestamp.
+     */
+    @JsonProperty(value = "se")
+    private String se;
+
+    /**
      * Get the apiVersion value.
      *
      * @return the apiVersion value
@@ -115,6 +121,26 @@ public class WorkflowTriggerListCallbackUrlQueries {
      */
     public WorkflowTriggerListCallbackUrlQueries withSig(String sig) {
         this.sig = sig;
+        return this;
+    }
+
+    /**
+     * Get the se value.
+     *
+     * @return the se value
+     */
+    public String se() {
+        return this.se;
+    }
+
+    /**
+     * Set the se value.
+     *
+     * @param se the se value to set
+     * @return the WorkflowTriggerListCallbackUrlQueries object itself.
+     */
+    public WorkflowTriggerListCallbackUrlQueries withSe(String se) {
+        this.se = se;
         return this;
     }
 

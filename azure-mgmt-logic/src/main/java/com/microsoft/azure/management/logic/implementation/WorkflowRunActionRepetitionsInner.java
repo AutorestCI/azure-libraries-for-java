@@ -16,7 +16,6 @@ import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -286,9 +285,9 @@ public class WorkflowRunActionRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the Map&lt;String, List&lt;ExpressionInner&gt;&gt; object if successful.
+     * @return the ExpressionTracesInner object if successful.
      */
-    public Map<String, List<ExpressionInner>> listExpressionTraces(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
+    public ExpressionTracesInner listExpressionTraces(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
         return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName).toBlocking().single().body();
     }
 
@@ -304,7 +303,7 @@ public class WorkflowRunActionRepetitionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Map<String, List<ExpressionInner>>> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName, final ServiceCallback<Map<String, List<ExpressionInner>>> serviceCallback) {
+    public ServiceFuture<ExpressionTracesInner> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName, final ServiceCallback<ExpressionTracesInner> serviceCallback) {
         return ServiceFuture.fromResponse(listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName), serviceCallback);
     }
 
@@ -317,12 +316,12 @@ public class WorkflowRunActionRepetitionsInner {
      * @param actionName The workflow action name.
      * @param repetitionName The workflow repetition.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Map&lt;String, List&lt;ExpressionInner&gt;&gt; object
+     * @return the observable to the ExpressionTracesInner object
      */
-    public Observable<Map<String, List<ExpressionInner>>> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
-        return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName).map(new Func1<ServiceResponse<Map<String, List<ExpressionInner>>>, Map<String, List<ExpressionInner>>>() {
+    public Observable<ExpressionTracesInner> listExpressionTracesAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
+        return listExpressionTracesWithServiceResponseAsync(resourceGroupName, workflowName, runName, actionName, repetitionName).map(new Func1<ServiceResponse<ExpressionTracesInner>, ExpressionTracesInner>() {
             @Override
-            public Map<String, List<ExpressionInner>> call(ServiceResponse<Map<String, List<ExpressionInner>>> response) {
+            public ExpressionTracesInner call(ServiceResponse<ExpressionTracesInner> response) {
                 return response.body();
             }
         });
@@ -337,9 +336,9 @@ public class WorkflowRunActionRepetitionsInner {
      * @param actionName The workflow action name.
      * @param repetitionName The workflow repetition.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Map&lt;String, List&lt;ExpressionInner&gt;&gt; object
+     * @return the observable to the ExpressionTracesInner object
      */
-    public Observable<ServiceResponse<Map<String, List<ExpressionInner>>>> listExpressionTracesWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
+    public Observable<ServiceResponse<ExpressionTracesInner>> listExpressionTracesWithServiceResponseAsync(String resourceGroupName, String workflowName, String runName, String actionName, String repetitionName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -362,11 +361,11 @@ public class WorkflowRunActionRepetitionsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listExpressionTraces(this.client.subscriptionId(), resourceGroupName, workflowName, runName, actionName, repetitionName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Map<String, List<ExpressionInner>>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ExpressionTracesInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Map<String, List<ExpressionInner>>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ExpressionTracesInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Map<String, List<ExpressionInner>>> clientResponse = listExpressionTracesDelegate(response);
+                        ServiceResponse<ExpressionTracesInner> clientResponse = listExpressionTracesDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -375,9 +374,9 @@ public class WorkflowRunActionRepetitionsInner {
             });
     }
 
-    private ServiceResponse<Map<String, List<ExpressionInner>>> listExpressionTracesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Map<String, List<ExpressionInner>>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Map<String, List<ExpressionInner>>>() { }.getType())
+    private ServiceResponse<ExpressionTracesInner> listExpressionTracesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ExpressionTracesInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ExpressionTracesInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
