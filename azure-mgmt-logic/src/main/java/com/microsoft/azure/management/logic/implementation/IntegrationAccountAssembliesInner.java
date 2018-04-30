@@ -10,11 +10,7 @@ package com.microsoft.azure.management.logic.implementation;
 
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
-import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
-import com.microsoft.azure.ListOperationCallback;
-import com.microsoft.azure.Page;
-import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -31,7 +27,6 @@ import retrofit2.http.Path;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 import retrofit2.Response;
 import rx.functions.Func1;
 import rx.Observable;
@@ -82,10 +77,6 @@ public class IntegrationAccountAssembliesInner {
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/assemblies/{assemblyArtifactName}/listContentCallbackUrl")
         Observable<Response<ResponseBody>> listContentCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Path("assemblyArtifactName") String assemblyArtifactName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccountAssemblies listNext" })
-        @GET
-        Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
     }
 
     /**
@@ -96,16 +87,10 @@ public class IntegrationAccountAssembliesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;AssemblyDefinitionInner&gt; object if successful.
+     * @return the List&lt;AssemblyDefinitionInner&gt; object if successful.
      */
-    public PagedList<AssemblyDefinitionInner> list(final String resourceGroupName, final String integrationAccountName) {
-        ServiceResponse<Page<AssemblyDefinitionInner>> response = listSinglePageAsync(resourceGroupName, integrationAccountName).toBlocking().single();
-        return new PagedList<AssemblyDefinitionInner>(response.body()) {
-            @Override
-            public Page<AssemblyDefinitionInner> nextPage(String nextPageLink) {
-                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
+    public List<AssemblyDefinitionInner> list(String resourceGroupName, String integrationAccountName) {
+        return listWithServiceResponseAsync(resourceGroupName, integrationAccountName).toBlocking().single().body();
     }
 
     /**
@@ -117,16 +102,8 @@ public class IntegrationAccountAssembliesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<AssemblyDefinitionInner>> listAsync(final String resourceGroupName, final String integrationAccountName, final ListOperationCallback<AssemblyDefinitionInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(resourceGroupName, integrationAccountName),
-            new Func1<String, Observable<ServiceResponse<Page<AssemblyDefinitionInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> call(String nextPageLink) {
-                    return listNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
+    public ServiceFuture<List<AssemblyDefinitionInner>> listAsync(String resourceGroupName, String integrationAccountName, final ServiceCallback<List<AssemblyDefinitionInner>> serviceCallback) {
+        return ServiceFuture.fromResponse(listWithServiceResponseAsync(resourceGroupName, integrationAccountName), serviceCallback);
     }
 
     /**
@@ -135,16 +112,15 @@ public class IntegrationAccountAssembliesInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AssemblyDefinitionInner&gt; object
+     * @return the observable to the List&lt;AssemblyDefinitionInner&gt; object
      */
-    public Observable<Page<AssemblyDefinitionInner>> listAsync(final String resourceGroupName, final String integrationAccountName) {
-        return listWithServiceResponseAsync(resourceGroupName, integrationAccountName)
-            .map(new Func1<ServiceResponse<Page<AssemblyDefinitionInner>>, Page<AssemblyDefinitionInner>>() {
-                @Override
-                public Page<AssemblyDefinitionInner> call(ServiceResponse<Page<AssemblyDefinitionInner>> response) {
-                    return response.body();
-                }
-            });
+    public Observable<List<AssemblyDefinitionInner>> listAsync(String resourceGroupName, String integrationAccountName) {
+        return listWithServiceResponseAsync(resourceGroupName, integrationAccountName).map(new Func1<ServiceResponse<List<AssemblyDefinitionInner>>, List<AssemblyDefinitionInner>>() {
+            @Override
+            public List<AssemblyDefinitionInner> call(ServiceResponse<List<AssemblyDefinitionInner>> response) {
+                return response.body();
+            }
+        });
     }
 
     /**
@@ -153,31 +129,9 @@ public class IntegrationAccountAssembliesInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AssemblyDefinitionInner&gt; object
+     * @return the observable to the List&lt;AssemblyDefinitionInner&gt; object
      */
-    public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> listWithServiceResponseAsync(final String resourceGroupName, final String integrationAccountName) {
-        return listSinglePageAsync(resourceGroupName, integrationAccountName)
-            .concatMap(new Func1<ServiceResponse<Page<AssemblyDefinitionInner>>, Observable<ServiceResponse<Page<AssemblyDefinitionInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> call(ServiceResponse<Page<AssemblyDefinitionInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * List the assemblies for an integration account.
-     *
-    ServiceResponse<PageImpl<AssemblyDefinitionInner>> * @param resourceGroupName The resource group name.
-    ServiceResponse<PageImpl<AssemblyDefinitionInner>> * @param integrationAccountName The integration account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;AssemblyDefinitionInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> listSinglePageAsync(final String resourceGroupName, final String integrationAccountName) {
+    public Observable<ServiceResponse<List<AssemblyDefinitionInner>>> listWithServiceResponseAsync(String resourceGroupName, String integrationAccountName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -191,12 +145,13 @@ public class IntegrationAccountAssembliesInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.list(this.client.subscriptionId(), resourceGroupName, integrationAccountName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AssemblyDefinitionInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<AssemblyDefinitionInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<AssemblyDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<AssemblyDefinitionInner>> result = listDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<AssemblyDefinitionInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl1<AssemblyDefinitionInner>> result = listDelegate(response);
+                        ServiceResponse<List<AssemblyDefinitionInner>> clientResponse = new ServiceResponse<List<AssemblyDefinitionInner>>(result.body().items(), result.response());
+                        return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -204,9 +159,9 @@ public class IntegrationAccountAssembliesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<AssemblyDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AssemblyDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<AssemblyDefinitionInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<AssemblyDefinitionInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<AssemblyDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<AssemblyDefinitionInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -588,117 +543,6 @@ public class IntegrationAccountAssembliesInner {
     private ServiceResponse<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<WorkflowTriggerCallbackUrlInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<WorkflowTriggerCallbackUrlInner>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * List the assemblies for an integration account.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;AssemblyDefinitionInner&gt; object if successful.
-     */
-    public PagedList<AssemblyDefinitionInner> listNext(final String nextPageLink) {
-        ServiceResponse<Page<AssemblyDefinitionInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<AssemblyDefinitionInner>(response.body()) {
-            @Override
-            public Page<AssemblyDefinitionInner> nextPage(String nextPageLink) {
-                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * List the assemblies for an integration account.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<AssemblyDefinitionInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<AssemblyDefinitionInner>> serviceFuture, final ListOperationCallback<AssemblyDefinitionInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<AssemblyDefinitionInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> call(String nextPageLink) {
-                    return listNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * List the assemblies for an integration account.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AssemblyDefinitionInner&gt; object
-     */
-    public Observable<Page<AssemblyDefinitionInner>> listNextAsync(final String nextPageLink) {
-        return listNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<AssemblyDefinitionInner>>, Page<AssemblyDefinitionInner>>() {
-                @Override
-                public Page<AssemblyDefinitionInner> call(ServiceResponse<Page<AssemblyDefinitionInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * List the assemblies for an integration account.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AssemblyDefinitionInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
-        return listNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<AssemblyDefinitionInner>>, Observable<ServiceResponse<Page<AssemblyDefinitionInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> call(ServiceResponse<Page<AssemblyDefinitionInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * List the assemblies for an integration account.
-     *
-    ServiceResponse<PageImpl<AssemblyDefinitionInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;AssemblyDefinitionInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> listNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AssemblyDefinitionInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AssemblyDefinitionInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<AssemblyDefinitionInner>> result = listNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<AssemblyDefinitionInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<AssemblyDefinitionInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AssemblyDefinitionInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<AssemblyDefinitionInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

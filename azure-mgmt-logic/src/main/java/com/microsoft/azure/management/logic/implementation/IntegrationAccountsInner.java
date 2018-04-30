@@ -116,10 +116,6 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
         @GET
         Observable<Response<ResponseBody>> listByResourceGroupNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listKeyVaultKeysNext" })
-        @GET
-        Observable<Response<ResponseBody>> listKeyVaultKeysNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
     }
 
     /**
@@ -1028,16 +1024,10 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;KeyVaultKeyInner&gt; object if successful.
+     * @return the List&lt;KeyVaultKeyInner&gt; object if successful.
      */
-    public PagedList<KeyVaultKeyInner> listKeyVaultKeys(final String resourceGroupName, final String integrationAccountName, final ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
-        ServiceResponse<Page<KeyVaultKeyInner>> response = listKeyVaultKeysSinglePageAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys).toBlocking().single();
-        return new PagedList<KeyVaultKeyInner>(response.body()) {
-            @Override
-            public Page<KeyVaultKeyInner> nextPage(String nextPageLink) {
-                return listKeyVaultKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
+    public List<KeyVaultKeyInner> listKeyVaultKeys(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+        return listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys).toBlocking().single().body();
     }
 
     /**
@@ -1050,16 +1040,8 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(final String resourceGroupName, final String integrationAccountName, final ListKeyVaultKeysDefinitionInner listKeyVaultKeys, final ListOperationCallback<KeyVaultKeyInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listKeyVaultKeysSinglePageAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys),
-            new Func1<String, Observable<ServiceResponse<Page<KeyVaultKeyInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> call(String nextPageLink) {
-                    return listKeyVaultKeysNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
+    public ServiceFuture<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys, final ServiceCallback<List<KeyVaultKeyInner>> serviceCallback) {
+        return ServiceFuture.fromResponse(listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys), serviceCallback);
     }
 
     /**
@@ -1069,16 +1051,15 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @param integrationAccountName The integration account name.
      * @param listKeyVaultKeys The key vault parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;KeyVaultKeyInner&gt; object
+     * @return the observable to the List&lt;KeyVaultKeyInner&gt; object
      */
-    public Observable<Page<KeyVaultKeyInner>> listKeyVaultKeysAsync(final String resourceGroupName, final String integrationAccountName, final ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
-        return listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys)
-            .map(new Func1<ServiceResponse<Page<KeyVaultKeyInner>>, Page<KeyVaultKeyInner>>() {
-                @Override
-                public Page<KeyVaultKeyInner> call(ServiceResponse<Page<KeyVaultKeyInner>> response) {
-                    return response.body();
-                }
-            });
+    public Observable<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+        return listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys).map(new Func1<ServiceResponse<List<KeyVaultKeyInner>>, List<KeyVaultKeyInner>>() {
+            @Override
+            public List<KeyVaultKeyInner> call(ServiceResponse<List<KeyVaultKeyInner>> response) {
+                return response.body();
+            }
+        });
     }
 
     /**
@@ -1088,32 +1069,9 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @param integrationAccountName The integration account name.
      * @param listKeyVaultKeys The key vault parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;KeyVaultKeyInner&gt; object
+     * @return the observable to the List&lt;KeyVaultKeyInner&gt; object
      */
-    public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> listKeyVaultKeysWithServiceResponseAsync(final String resourceGroupName, final String integrationAccountName, final ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
-        return listKeyVaultKeysSinglePageAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys)
-            .concatMap(new Func1<ServiceResponse<Page<KeyVaultKeyInner>>, Observable<ServiceResponse<Page<KeyVaultKeyInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> call(ServiceResponse<Page<KeyVaultKeyInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listKeyVaultKeysNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     *
-    ServiceResponse<PageImpl<KeyVaultKeyInner>> * @param resourceGroupName The resource group name.
-    ServiceResponse<PageImpl<KeyVaultKeyInner>> * @param integrationAccountName The integration account name.
-    ServiceResponse<PageImpl<KeyVaultKeyInner>> * @param listKeyVaultKeys The key vault parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;KeyVaultKeyInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> listKeyVaultKeysSinglePageAsync(final String resourceGroupName, final String integrationAccountName, final ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+    public Observable<ServiceResponse<List<KeyVaultKeyInner>>> listKeyVaultKeysWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1131,12 +1089,13 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
         }
         Validator.validate(listKeyVaultKeys);
         return service.listKeyVaultKeys(this.client.subscriptionId(), resourceGroupName, integrationAccountName, this.client.apiVersion(), listKeyVaultKeys, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyVaultKeyInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<KeyVaultKeyInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<KeyVaultKeyInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<KeyVaultKeyInner>> result = listKeyVaultKeysDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<KeyVaultKeyInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl1<KeyVaultKeyInner>> result = listKeyVaultKeysDelegate(response);
+                        ServiceResponse<List<KeyVaultKeyInner>> clientResponse = new ServiceResponse<List<KeyVaultKeyInner>>(result.body().items(), result.response());
+                        return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -1144,9 +1103,9 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
             });
     }
 
-    private ServiceResponse<PageImpl<KeyVaultKeyInner>> listKeyVaultKeysDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<KeyVaultKeyInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<KeyVaultKeyInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<KeyVaultKeyInner>> listKeyVaultKeysDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<KeyVaultKeyInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<KeyVaultKeyInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1636,117 +1595,6 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
     private ServiceResponse<PageImpl<IntegrationAccountInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<IntegrationAccountInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<IntegrationAccountInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;KeyVaultKeyInner&gt; object if successful.
-     */
-    public PagedList<KeyVaultKeyInner> listKeyVaultKeysNext(final String nextPageLink) {
-        ServiceResponse<Page<KeyVaultKeyInner>> response = listKeyVaultKeysNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<KeyVaultKeyInner>(response.body()) {
-            @Override
-            public Page<KeyVaultKeyInner> nextPage(String nextPageLink) {
-                return listKeyVaultKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<KeyVaultKeyInner>> listKeyVaultKeysNextAsync(final String nextPageLink, final ServiceFuture<List<KeyVaultKeyInner>> serviceFuture, final ListOperationCallback<KeyVaultKeyInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listKeyVaultKeysNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<KeyVaultKeyInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> call(String nextPageLink) {
-                    return listKeyVaultKeysNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;KeyVaultKeyInner&gt; object
-     */
-    public Observable<Page<KeyVaultKeyInner>> listKeyVaultKeysNextAsync(final String nextPageLink) {
-        return listKeyVaultKeysNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<KeyVaultKeyInner>>, Page<KeyVaultKeyInner>>() {
-                @Override
-                public Page<KeyVaultKeyInner> call(ServiceResponse<Page<KeyVaultKeyInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;KeyVaultKeyInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> listKeyVaultKeysNextWithServiceResponseAsync(final String nextPageLink) {
-        return listKeyVaultKeysNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<KeyVaultKeyInner>>, Observable<ServiceResponse<Page<KeyVaultKeyInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> call(ServiceResponse<Page<KeyVaultKeyInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listKeyVaultKeysNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the integration account's Key Vault keys.
-     *
-    ServiceResponse<PageImpl<KeyVaultKeyInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;KeyVaultKeyInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> listKeyVaultKeysNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listKeyVaultKeysNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyVaultKeyInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<KeyVaultKeyInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<KeyVaultKeyInner>> result = listKeyVaultKeysNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<KeyVaultKeyInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<KeyVaultKeyInner>> listKeyVaultKeysNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<KeyVaultKeyInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<KeyVaultKeyInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
