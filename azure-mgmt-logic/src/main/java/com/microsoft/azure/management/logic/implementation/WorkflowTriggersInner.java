@@ -820,7 +820,7 @@ public class WorkflowTriggersInner {
     }
 
     /**
-     * Gets the callback URL for a workflow trigger.
+     * Get the callback URL for a workflow trigger.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -835,7 +835,7 @@ public class WorkflowTriggersInner {
     }
 
     /**
-     * Gets the callback URL for a workflow trigger.
+     * Get the callback URL for a workflow trigger.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -849,7 +849,7 @@ public class WorkflowTriggersInner {
     }
 
     /**
-     * Gets the callback URL for a workflow trigger.
+     * Get the callback URL for a workflow trigger.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -867,7 +867,7 @@ public class WorkflowTriggersInner {
     }
 
     /**
-     * Gets the callback URL for a workflow trigger.
+     * Get the callback URL for a workflow trigger.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.

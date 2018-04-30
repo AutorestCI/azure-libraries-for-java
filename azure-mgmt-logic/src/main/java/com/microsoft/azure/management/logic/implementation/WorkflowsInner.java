@@ -1299,7 +1299,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
     }
 
     /**
-     * Lists workflow callback Url.
+     * Get the workflow callback Url.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -1314,7 +1314,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
     }
 
     /**
-     * Lists workflow callback Url.
+     * Get the workflow callback Url.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -1328,7 +1328,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
     }
 
     /**
-     * Lists workflow callback Url.
+     * Get the workflow callback Url.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -1346,7 +1346,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
     }
 
     /**
-     * Lists workflow callback Url.
+     * Get the workflow callback Url.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -1483,7 +1483,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
-     * @param move The workflow id to move.
+     * @param move The workflow to move.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
@@ -1497,7 +1497,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
-     * @param move The workflow id to move.
+     * @param move The workflow to move.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
@@ -1511,7 +1511,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
-     * @param move The workflow id to move.
+     * @param move The workflow to move.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
@@ -1529,7 +1529,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
-     * @param move The workflow id to move.
+     * @param move The workflow to move.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */

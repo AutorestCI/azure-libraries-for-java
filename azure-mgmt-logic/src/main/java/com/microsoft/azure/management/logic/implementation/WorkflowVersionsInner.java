@@ -417,7 +417,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -433,7 +433,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -448,7 +448,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -467,7 +467,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -511,7 +511,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -528,7 +528,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -544,7 +544,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.
@@ -564,7 +564,7 @@ public class WorkflowVersionsInner {
     }
 
     /**
-     * Lists the callback URL for a trigger of a workflow version.
+     * Get the callback url for a trigger of a workflow version.
      *
      * @param resourceGroupName The resource group name.
      * @param workflowName The workflow name.

@@ -628,7 +628,7 @@ public class SchemasInner {
     }
 
     /**
-     * List content callback url.
+     * Get the content callback url.
      *
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
@@ -644,7 +644,7 @@ public class SchemasInner {
     }
 
     /**
-     * List content callback url.
+     * Get the content callback url.
      *
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
@@ -659,7 +659,7 @@ public class SchemasInner {
     }
 
     /**
-     * List content callback url.
+     * Get the content callback url.
      *
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
@@ -678,7 +678,7 @@ public class SchemasInner {
     }
 
     /**
-     * List content callback url.
+     * Get the content callback url.
      *
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
