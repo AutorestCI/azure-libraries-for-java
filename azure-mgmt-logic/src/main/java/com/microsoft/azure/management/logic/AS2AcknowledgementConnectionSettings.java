@@ -11,7 +11,7 @@ package com.microsoft.azure.management.logic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The AS2 agreement acknowledegment connection settings.
+ * The AS2 agreement acknowledgement connection settings.
  */
 public class AS2AcknowledgementConnectionSettings {
     /**
