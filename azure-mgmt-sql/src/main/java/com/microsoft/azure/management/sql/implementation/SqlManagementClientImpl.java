@@ -693,6 +693,19 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The DatabaseVulnerabilityAssessmentScansInner object to access its operations.
+     */
+    private DatabaseVulnerabilityAssessmentScansInner databaseVulnerabilityAssessmentScans;
+
+    /**
+     * Gets the DatabaseVulnerabilityAssessmentScansInner object to access its operations.
+     * @return the DatabaseVulnerabilityAssessmentScansInner object.
+     */
+    public DatabaseVulnerabilityAssessmentScansInner databaseVulnerabilityAssessmentScans() {
+        return this.databaseVulnerabilityAssessmentScans;
+    }
+
+    /**
      * The InstanceFailoverGroupsInner object to access its operations.
      */
     private InstanceFailoverGroupsInner instanceFailoverGroups;
@@ -796,6 +809,7 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.databaseOperations = new DatabaseOperationsInner(restClient().retrofit(), this);
         this.elasticPoolOperations = new ElasticPoolOperationsInner(restClient().retrofit(), this);
         this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
+        this.databaseVulnerabilityAssessmentScans = new DatabaseVulnerabilityAssessmentScansInner(restClient().retrofit(), this);
         this.instanceFailoverGroups = new InstanceFailoverGroupsInner(restClient().retrofit(), this);
         this.shortTermRetentionPolicies = new ShortTermRetentionPoliciesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
