@@ -65,7 +65,7 @@ public class EventHubsInner {
     interface EventHubsService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.eventhub.EventHubs listByNamespace" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs")
-        Observable<Response<ResponseBody>> listByNamespace(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listByNamespace(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Query("$skip") Integer skip, @Query("$top") Integer top, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.eventhub.EventHubs createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}")
@@ -197,8 +197,8 @@ public class EventHubsInner {
     /**
      * Gets all the Event Hubs in a Namespace.
      *
-    ServiceResponse<PageImpl<EventhubInner>> * @param resourceGroupName Name of the resource group within the azure subscription.
-    ServiceResponse<PageImpl<EventhubInner>> * @param namespaceName The Namespace name
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;EventhubInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -215,7 +215,135 @@ public class EventHubsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listByNamespace(resourceGroupName, namespaceName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        final Integer skip = null;
+        final Integer top = null;
+        return service.listByNamespace(resourceGroupName, namespaceName, this.client.subscriptionId(), this.client.apiVersion(), skip, top, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EventhubInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EventhubInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<EventhubInner>> result = listByNamespaceDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<EventhubInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Gets all the Event Hubs in a Namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @param skip Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls.
+     * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;EventhubInner&gt; object if successful.
+     */
+    public PagedList<EventhubInner> listByNamespace(final String resourceGroupName, final String namespaceName, final Integer skip, final Integer top) {
+        ServiceResponse<Page<EventhubInner>> response = listByNamespaceSinglePageAsync(resourceGroupName, namespaceName, skip, top).toBlocking().single();
+        return new PagedList<EventhubInner>(response.body()) {
+            @Override
+            public Page<EventhubInner> nextPage(String nextPageLink) {
+                return listByNamespaceNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets all the Event Hubs in a Namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @param skip Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls.
+     * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<EventhubInner>> listByNamespaceAsync(final String resourceGroupName, final String namespaceName, final Integer skip, final Integer top, final ListOperationCallback<EventhubInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listByNamespaceSinglePageAsync(resourceGroupName, namespaceName, skip, top),
+            new Func1<String, Observable<ServiceResponse<Page<EventhubInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EventhubInner>>> call(String nextPageLink) {
+                    return listByNamespaceNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets all the Event Hubs in a Namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @param skip Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls.
+     * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EventhubInner&gt; object
+     */
+    public Observable<Page<EventhubInner>> listByNamespaceAsync(final String resourceGroupName, final String namespaceName, final Integer skip, final Integer top) {
+        return listByNamespaceWithServiceResponseAsync(resourceGroupName, namespaceName, skip, top)
+            .map(new Func1<ServiceResponse<Page<EventhubInner>>, Page<EventhubInner>>() {
+                @Override
+                public Page<EventhubInner> call(ServiceResponse<Page<EventhubInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets all the Event Hubs in a Namespace.
+     *
+     * @param resourceGroupName Name of the resource group within the azure subscription.
+     * @param namespaceName The Namespace name
+     * @param skip Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls.
+     * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EventhubInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<EventhubInner>>> listByNamespaceWithServiceResponseAsync(final String resourceGroupName, final String namespaceName, final Integer skip, final Integer top) {
+        return listByNamespaceSinglePageAsync(resourceGroupName, namespaceName, skip, top)
+            .concatMap(new Func1<ServiceResponse<Page<EventhubInner>>, Observable<ServiceResponse<Page<EventhubInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EventhubInner>>> call(ServiceResponse<Page<EventhubInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listByNamespaceNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets all the Event Hubs in a Namespace.
+     *
+    ServiceResponse<PageImpl<EventhubInner>> * @param resourceGroupName Name of the resource group within the azure subscription.
+    ServiceResponse<PageImpl<EventhubInner>> * @param namespaceName The Namespace name
+    ServiceResponse<PageImpl<EventhubInner>> * @param skip Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls.
+    ServiceResponse<PageImpl<EventhubInner>> * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;EventhubInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<EventhubInner>>> listByNamespaceSinglePageAsync(final String resourceGroupName, final String namespaceName, final Integer skip, final Integer top) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (namespaceName == null) {
+            throw new IllegalArgumentException("Parameter namespaceName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listByNamespace(resourceGroupName, namespaceName, this.client.subscriptionId(), this.client.apiVersion(), skip, top, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EventhubInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EventhubInner>>> call(Response<ResponseBody> response) {
