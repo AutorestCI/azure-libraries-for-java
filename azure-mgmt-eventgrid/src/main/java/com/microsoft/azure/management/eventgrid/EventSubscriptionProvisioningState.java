@@ -34,6 +34,9 @@ public final class EventSubscriptionProvisioningState extends ExpandableStringEn
     /** Static value Failed for EventSubscriptionProvisioningState. */
     public static final EventSubscriptionProvisioningState FAILED = fromString("Failed");
 
+    /** Static value AwaitingManualAction for EventSubscriptionProvisioningState. */
+    public static final EventSubscriptionProvisioningState AWAITING_MANUAL_ACTION = fromString("AwaitingManualAction");
+
     /**
      * Creates or finds a EventSubscriptionProvisioningState from its string representation.
      * @param name a name to look for

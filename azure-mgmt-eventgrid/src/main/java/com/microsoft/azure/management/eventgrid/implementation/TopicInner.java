@@ -9,6 +9,8 @@
 package com.microsoft.azure.management.eventgrid.implementation;
 
 import com.microsoft.azure.management.eventgrid.TopicProvisioningState;
+import com.microsoft.azure.management.eventgrid.InputSchema;
+import com.microsoft.azure.management.eventgrid.InputSchemaMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -31,6 +33,23 @@ public class TopicInner extends TrackedResourceInner {
     private String endpoint;
 
     /**
+     * This determines the format that Event Grid should expect for incoming
+     * events published to the topic. Possible values include:
+     * 'EventGridSchema', 'CustomEventSchema', 'CloudEventV01Schema'.
+     */
+    @JsonProperty(value = "properties.inputSchema")
+    private InputSchema inputSchema;
+
+    /**
+     * This enables publishing using custom event schemas. An
+     * InputSchemaMapping can be specified to map various properties of a
+     * source schema to various required properties of the EventGridEvent
+     * schema.
+     */
+    @JsonProperty(value = "properties.inputSchemaMapping")
+    private InputSchemaMapping inputSchemaMapping;
+
+    /**
      * Get the provisioningState value.
      *
      * @return the provisioningState value
@@ -46,6 +65,46 @@ public class TopicInner extends TrackedResourceInner {
      */
     public String endpoint() {
         return this.endpoint;
+    }
+
+    /**
+     * Get the inputSchema value.
+     *
+     * @return the inputSchema value
+     */
+    public InputSchema inputSchema() {
+        return this.inputSchema;
+    }
+
+    /**
+     * Set the inputSchema value.
+     *
+     * @param inputSchema the inputSchema value to set
+     * @return the TopicInner object itself.
+     */
+    public TopicInner withInputSchema(InputSchema inputSchema) {
+        this.inputSchema = inputSchema;
+        return this;
+    }
+
+    /**
+     * Get the inputSchemaMapping value.
+     *
+     * @return the inputSchemaMapping value
+     */
+    public InputSchemaMapping inputSchemaMapping() {
+        return this.inputSchemaMapping;
+    }
+
+    /**
+     * Set the inputSchemaMapping value.
+     *
+     * @param inputSchemaMapping the inputSchemaMapping value to set
+     * @return the TopicInner object itself.
+     */
+    public TopicInner withInputSchemaMapping(InputSchemaMapping inputSchemaMapping) {
+        this.inputSchemaMapping = inputSchemaMapping;
+        return this;
     }
 
 }

@@ -554,7 +554,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
@@ -570,7 +570,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -585,7 +585,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
@@ -604,7 +604,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
@@ -632,7 +632,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
@@ -648,7 +648,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -663,7 +663,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the EventSubscriptionInner object
@@ -682,7 +682,7 @@ public class EventSubscriptionsInner implements InnerSupportsDelete<Void>, Inner
      * Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic.
-     * @param eventSubscriptionName Name of the event subscription to be created
+     * @param eventSubscriptionName Name of the event subscription to be updated
      * @param eventSubscriptionUpdateParameters Updated event subscription information
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the EventSubscriptionInner object
