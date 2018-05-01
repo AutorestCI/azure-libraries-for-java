@@ -104,9 +104,9 @@ public class AddsservicesInner {
         @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/metricmetadata/{metricName}")
         Observable<Response<ResponseBody>> getMetricMetadata(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Addsservices listMetricMetadataForGroup" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Addsservices getMetricMetadataForGroup" })
         @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/metricmetadata/{metricName}/groups/{groupName}")
-        Observable<Response<ResponseBody>> listMetricMetadataForGroup(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Path("groupName") String groupName, @Query("groupKey") String groupKey, @Query("fromDate") DateTime fromDate, @Query("toDate") DateTime toDate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> getMetricMetadataForGroup(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Path("groupName") String groupName, @Query("groupKey") String groupKey, @Query("fromDate") DateTime fromDate, @Query("toDate") DateTime toDate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Addsservices getReplicationStatus" })
         @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/replicationstatus")
@@ -1415,8 +1415,8 @@ public class AddsservicesInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the MetricSetsInner object if successful.
      */
-    public MetricSetsInner listMetricMetadataForGroup(String serviceName, String metricName, String groupName) {
-        return listMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName).toBlocking().single().body();
+    public MetricSetsInner getMetricMetadataForGroup(String serviceName, String metricName, String groupName) {
+        return getMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName).toBlocking().single().body();
     }
 
     /**
@@ -1429,8 +1429,8 @@ public class AddsservicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<MetricSetsInner> listMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName, final ServiceCallback<MetricSetsInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName), serviceCallback);
+    public ServiceFuture<MetricSetsInner> getMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName, final ServiceCallback<MetricSetsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName), serviceCallback);
     }
 
     /**
@@ -1442,8 +1442,8 @@ public class AddsservicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<MetricSetsInner> listMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName) {
-        return listMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
+    public Observable<MetricSetsInner> getMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName) {
+        return getMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
             @Override
             public MetricSetsInner call(ServiceResponse<MetricSetsInner> response) {
                 return response.body();
@@ -1460,7 +1460,7 @@ public class AddsservicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<ServiceResponse<MetricSetsInner>> listMetricMetadataForGroupWithServiceResponseAsync(String serviceName, String metricName, String groupName) {
+    public Observable<ServiceResponse<MetricSetsInner>> getMetricMetadataForGroupWithServiceResponseAsync(String serviceName, String metricName, String groupName) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1476,12 +1476,12 @@ public class AddsservicesInner {
         final String groupKey = null;
         final DateTime fromDate = null;
         final DateTime toDate = null;
-        return service.listMetricMetadataForGroup(serviceName, metricName, groupName, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.getMetricMetadataForGroup(serviceName, metricName, groupName, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MetricSetsInner>>>() {
                 @Override
                 public Observable<ServiceResponse<MetricSetsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<MetricSetsInner> clientResponse = listMetricMetadataForGroupDelegate(response);
+                        ServiceResponse<MetricSetsInner> clientResponse = getMetricMetadataForGroupDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1504,8 +1504,8 @@ public class AddsservicesInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the MetricSetsInner object if successful.
      */
-    public MetricSetsInner listMetricMetadataForGroup(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate) {
-        return listMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName, groupKey, fromDate, toDate).toBlocking().single().body();
+    public MetricSetsInner getMetricMetadataForGroup(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate) {
+        return getMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName, groupKey, fromDate, toDate).toBlocking().single().body();
     }
 
     /**
@@ -1521,8 +1521,8 @@ public class AddsservicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<MetricSetsInner> listMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate, final ServiceCallback<MetricSetsInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName, groupKey, fromDate, toDate), serviceCallback);
+    public ServiceFuture<MetricSetsInner> getMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate, final ServiceCallback<MetricSetsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName, groupKey, fromDate, toDate), serviceCallback);
     }
 
     /**
@@ -1537,8 +1537,8 @@ public class AddsservicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<MetricSetsInner> listMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate) {
-        return listMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName, groupKey, fromDate, toDate).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
+    public Observable<MetricSetsInner> getMetricMetadataForGroupAsync(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate) {
+        return getMetricMetadataForGroupWithServiceResponseAsync(serviceName, metricName, groupName, groupKey, fromDate, toDate).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
             @Override
             public MetricSetsInner call(ServiceResponse<MetricSetsInner> response) {
                 return response.body();
@@ -1558,7 +1558,7 @@ public class AddsservicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<ServiceResponse<MetricSetsInner>> listMetricMetadataForGroupWithServiceResponseAsync(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate) {
+    public Observable<ServiceResponse<MetricSetsInner>> getMetricMetadataForGroupWithServiceResponseAsync(String serviceName, String metricName, String groupName, String groupKey, DateTime fromDate, DateTime toDate) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1571,12 +1571,12 @@ public class AddsservicesInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listMetricMetadataForGroup(serviceName, metricName, groupName, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.getMetricMetadataForGroup(serviceName, metricName, groupName, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MetricSetsInner>>>() {
                 @Override
                 public Observable<ServiceResponse<MetricSetsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<MetricSetsInner> clientResponse = listMetricMetadataForGroupDelegate(response);
+                        ServiceResponse<MetricSetsInner> clientResponse = getMetricMetadataForGroupDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1585,7 +1585,7 @@ public class AddsservicesInner {
             });
     }
 
-    private ServiceResponse<MetricSetsInner> listMetricMetadataForGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<MetricSetsInner> getMetricMetadataForGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<MetricSetsInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<MetricSetsInner>() { }.getType())
                 .registerError(CloudException.class)
