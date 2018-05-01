@@ -17,7 +17,7 @@ public class RegionForOnlineOffline {
     /**
      * Cosmos DB region, with spaces between words and each word capitalized.
      */
-    @JsonProperty(value = "region", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "region", required = true)
     private String region;
 
     /**
@@ -27,6 +27,17 @@ public class RegionForOnlineOffline {
      */
     public String region() {
         return this.region;
+    }
+
+    /**
+     * Set the region value.
+     *
+     * @param region the region value to set
+     * @return the RegionForOnlineOffline object itself.
+     */
+    public RegionForOnlineOffline withRegion(String region) {
+        this.region = region;
+        return this;
     }
 
 }
