@@ -1424,9 +1424,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the MergedExportErrorsInner object if successful.
+     * @return the List&lt;ExportErrorInner&gt; object if successful.
      */
-    public MergedExportErrorsInner listExportErrorsV2(String serviceName, String errorBucket) {
+    public List<ExportErrorInner> listExportErrorsV2(String serviceName, String errorBucket) {
         return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket).toBlocking().single().body();
     }
 
@@ -1439,7 +1439,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<MergedExportErrorsInner> listExportErrorsV2Async(String serviceName, String errorBucket, final ServiceCallback<MergedExportErrorsInner> serviceCallback) {
+    public ServiceFuture<List<ExportErrorInner>> listExportErrorsV2Async(String serviceName, String errorBucket, final ServiceCallback<List<ExportErrorInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket), serviceCallback);
     }
 
@@ -1449,12 +1449,12 @@ public class ServicesInner {
      * @param serviceName The name of the service.
      * @param errorBucket The error category to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the MergedExportErrorsInner object
+     * @return the observable to the List&lt;ExportErrorInner&gt; object
      */
-    public Observable<MergedExportErrorsInner> listExportErrorsV2Async(String serviceName, String errorBucket) {
-        return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket).map(new Func1<ServiceResponse<MergedExportErrorsInner>, MergedExportErrorsInner>() {
+    public Observable<List<ExportErrorInner>> listExportErrorsV2Async(String serviceName, String errorBucket) {
+        return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket).map(new Func1<ServiceResponse<List<ExportErrorInner>>, List<ExportErrorInner>>() {
             @Override
-            public MergedExportErrorsInner call(ServiceResponse<MergedExportErrorsInner> response) {
+            public List<ExportErrorInner> call(ServiceResponse<List<ExportErrorInner>> response) {
                 return response.body();
             }
         });
@@ -1466,9 +1466,9 @@ public class ServicesInner {
      * @param serviceName The name of the service.
      * @param errorBucket The error category to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the MergedExportErrorsInner object
+     * @return the observable to the List&lt;ExportErrorInner&gt; object
      */
-    public Observable<ServiceResponse<MergedExportErrorsInner>> listExportErrorsV2WithServiceResponseAsync(String serviceName, String errorBucket) {
+    public Observable<ServiceResponse<List<ExportErrorInner>>> listExportErrorsV2WithServiceResponseAsync(String serviceName, String errorBucket) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1480,11 +1480,12 @@ public class ServicesInner {
         }
         final String nextLink = null;
         return service.listExportErrorsV2(serviceName, errorBucket, nextLink, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MergedExportErrorsInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ExportErrorInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<MergedExportErrorsInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<ExportErrorInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<MergedExportErrorsInner> clientResponse = listExportErrorsV2Delegate(response);
+                        ServiceResponse<PageImpl1<ExportErrorInner>> result = listExportErrorsV2Delegate(response);
+                        ServiceResponse<List<ExportErrorInner>> clientResponse = new ServiceResponse<List<ExportErrorInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1502,9 +1503,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the MergedExportErrorsInner object if successful.
+     * @return the List&lt;ExportErrorInner&gt; object if successful.
      */
-    public MergedExportErrorsInner listExportErrorsV2(String serviceName, String errorBucket, String nextLink) {
+    public List<ExportErrorInner> listExportErrorsV2(String serviceName, String errorBucket, String nextLink) {
         return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket, nextLink).toBlocking().single().body();
     }
 
@@ -1518,7 +1519,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<MergedExportErrorsInner> listExportErrorsV2Async(String serviceName, String errorBucket, String nextLink, final ServiceCallback<MergedExportErrorsInner> serviceCallback) {
+    public ServiceFuture<List<ExportErrorInner>> listExportErrorsV2Async(String serviceName, String errorBucket, String nextLink, final ServiceCallback<List<ExportErrorInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket, nextLink), serviceCallback);
     }
 
@@ -1529,12 +1530,12 @@ public class ServicesInner {
      * @param errorBucket The error category to query for.
      * @param nextLink The next link to get next step of data.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the MergedExportErrorsInner object
+     * @return the observable to the List&lt;ExportErrorInner&gt; object
      */
-    public Observable<MergedExportErrorsInner> listExportErrorsV2Async(String serviceName, String errorBucket, String nextLink) {
-        return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket, nextLink).map(new Func1<ServiceResponse<MergedExportErrorsInner>, MergedExportErrorsInner>() {
+    public Observable<List<ExportErrorInner>> listExportErrorsV2Async(String serviceName, String errorBucket, String nextLink) {
+        return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket, nextLink).map(new Func1<ServiceResponse<List<ExportErrorInner>>, List<ExportErrorInner>>() {
             @Override
-            public MergedExportErrorsInner call(ServiceResponse<MergedExportErrorsInner> response) {
+            public List<ExportErrorInner> call(ServiceResponse<List<ExportErrorInner>> response) {
                 return response.body();
             }
         });
@@ -1547,9 +1548,9 @@ public class ServicesInner {
      * @param errorBucket The error category to query for.
      * @param nextLink The next link to get next step of data.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the MergedExportErrorsInner object
+     * @return the observable to the List&lt;ExportErrorInner&gt; object
      */
-    public Observable<ServiceResponse<MergedExportErrorsInner>> listExportErrorsV2WithServiceResponseAsync(String serviceName, String errorBucket, String nextLink) {
+    public Observable<ServiceResponse<List<ExportErrorInner>>> listExportErrorsV2WithServiceResponseAsync(String serviceName, String errorBucket, String nextLink) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1560,11 +1561,12 @@ public class ServicesInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listExportErrorsV2(serviceName, errorBucket, nextLink, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MergedExportErrorsInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ExportErrorInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<MergedExportErrorsInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<ExportErrorInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<MergedExportErrorsInner> clientResponse = listExportErrorsV2Delegate(response);
+                        ServiceResponse<PageImpl1<ExportErrorInner>> result = listExportErrorsV2Delegate(response);
+                        ServiceResponse<List<ExportErrorInner>> clientResponse = new ServiceResponse<List<ExportErrorInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1573,9 +1575,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<MergedExportErrorsInner> listExportErrorsV2Delegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<MergedExportErrorsInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<MergedExportErrorsInner>() { }.getType())
+    private ServiceResponse<PageImpl1<ExportErrorInner>> listExportErrorsV2Delegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<ExportErrorInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<ExportErrorInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
