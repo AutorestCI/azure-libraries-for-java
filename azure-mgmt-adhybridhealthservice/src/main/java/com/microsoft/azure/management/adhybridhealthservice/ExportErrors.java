@@ -9,7 +9,6 @@
 package com.microsoft.azure.management.adhybridhealthservice;
 
 import java.util.List;
-import com.microsoft.azure.management.adhybridhealthservice.implementation.ExportErrorInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -20,14 +19,14 @@ public class ExportErrors {
      * The value returned by the operation.
      */
     @JsonProperty(value = "value")
-    private List<ExportErrorInner> value;
+    private List<ExportError> value;
 
     /**
      * Get the value value.
      *
      * @return the value value
      */
-    public List<ExportErrorInner> value() {
+    public List<ExportError> value() {
         return this.value;
     }
 
@@ -37,7 +36,7 @@ public class ExportErrors {
      * @param value the value value to set
      * @return the ExportErrors object itself.
      */
-    public ExportErrors withValue(List<ExportErrorInner> value) {
+    public ExportErrors withValue(List<ExportError> value) {
         this.value = value;
         return this;
     }
