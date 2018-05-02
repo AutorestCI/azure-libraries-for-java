@@ -172,6 +172,19 @@ public class TrafficManagerManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The HeatMapsInner object to access its operations.
+     */
+    private HeatMapsInner heatMaps;
+
+    /**
+     * Gets the HeatMapsInner object to access its operations.
+     * @return the HeatMapsInner object.
+     */
+    public HeatMapsInner heatMaps() {
+        return this.heatMaps;
+    }
+
+    /**
      * Initializes an instance of TrafficManagerManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -202,13 +215,14 @@ public class TrafficManagerManagementClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
-        this.apiVersion = "2017-05-01";
+        this.apiVersion = "2018-03-01";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
         this.endpoints = new EndpointsInner(restClient().retrofit(), this);
         this.profiles = new ProfilesInner(restClient().retrofit(), this);
         this.geographicHierarchies = new GeographicHierarchiesInner(restClient().retrofit(), this);
+        this.heatMaps = new HeatMapsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
@@ -219,6 +233,6 @@ public class TrafficManagerManagementClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "TrafficManagerManagementClient", "2017-05-01");
+        return String.format("%s (%s, %s)", super.userAgent(), "TrafficManagerManagementClient", "2018-03-01");
     }
 }

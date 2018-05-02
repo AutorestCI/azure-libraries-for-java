@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.trafficmanager;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -65,6 +66,18 @@ public class MonitorConfig {
      */
     @JsonProperty(value = "toleratedNumberOfFailures")
     private Long toleratedNumberOfFailures;
+
+    /**
+     * List of custom headers.
+     */
+    @JsonProperty(value = "customHeaders")
+    private List<MonitorConfigCustomHeadersItem> customHeaders;
+
+    /**
+     * List of expected status code ranges.
+     */
+    @JsonProperty(value = "expectedStatusCodeRanges")
+    private List<MonitorConfigExpectedStatusCodeRangesItem> expectedStatusCodeRanges;
 
     /**
      * Get the profileMonitorStatus value.
@@ -203,6 +216,46 @@ public class MonitorConfig {
      */
     public MonitorConfig withToleratedNumberOfFailures(Long toleratedNumberOfFailures) {
         this.toleratedNumberOfFailures = toleratedNumberOfFailures;
+        return this;
+    }
+
+    /**
+     * Get the customHeaders value.
+     *
+     * @return the customHeaders value
+     */
+    public List<MonitorConfigCustomHeadersItem> customHeaders() {
+        return this.customHeaders;
+    }
+
+    /**
+     * Set the customHeaders value.
+     *
+     * @param customHeaders the customHeaders value to set
+     * @return the MonitorConfig object itself.
+     */
+    public MonitorConfig withCustomHeaders(List<MonitorConfigCustomHeadersItem> customHeaders) {
+        this.customHeaders = customHeaders;
+        return this;
+    }
+
+    /**
+     * Get the expectedStatusCodeRanges value.
+     *
+     * @return the expectedStatusCodeRanges value
+     */
+    public List<MonitorConfigExpectedStatusCodeRangesItem> expectedStatusCodeRanges() {
+        return this.expectedStatusCodeRanges;
+    }
+
+    /**
+     * Set the expectedStatusCodeRanges value.
+     *
+     * @param expectedStatusCodeRanges the expectedStatusCodeRanges value to set
+     * @return the MonitorConfig object itself.
+     */
+    public MonitorConfig withExpectedStatusCodeRanges(List<MonitorConfigExpectedStatusCodeRangesItem> expectedStatusCodeRanges) {
+        this.expectedStatusCodeRanges = expectedStatusCodeRanges;
         return this;
     }
 

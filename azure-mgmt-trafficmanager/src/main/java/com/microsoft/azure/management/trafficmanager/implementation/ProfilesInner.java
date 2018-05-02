@@ -8,14 +8,14 @@
 
 package com.microsoft.azure.management.trafficmanager.implementation;
 
-import com.microsoft.azure.Page;
-import com.microsoft.azure.PagedList;
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.Page;
+import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -41,7 +41,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Profiles.
  */
-public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerSupportsGet<ProfileInner>, InnerSupportsDelete<DeleteOperationResultInner> {
+public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSupportsDelete<DeleteOperationResultInner>, InnerSupportsListing<ProfileInner> {
     /** The Retrofit service to perform REST calls. */
     private ProfilesService service;
     /** The service client containing this operation class. */
@@ -174,10 +174,7 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
      * Lists all Traffic Manager profiles within a resource group.
      *
      * @param resourceGroupName The name of the resource group containing the Traffic Manager profiles to be listed.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ProfileInner&gt; object if successful.
+     * @return the PagedList<ProfileInner> object if successful.
      */
     public PagedList<ProfileInner> listByResourceGroup(String resourceGroupName) {
         PageImpl<ProfileInner> page = new PageImpl<>();
@@ -196,7 +193,6 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
      *
      * @param resourceGroupName The name of the resource group containing the Traffic Manager profiles to be listed.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
     public ServiceFuture<List<ProfileInner>> listByResourceGroupAsync(String resourceGroupName, final ServiceCallback<List<ProfileInner>> serviceCallback) {
@@ -207,7 +203,6 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
      * Lists all Traffic Manager profiles within a resource group.
      *
      * @param resourceGroupName The name of the resource group containing the Traffic Manager profiles to be listed.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;ProfileInner&gt; object
      */
     public Observable<Page<ProfileInner>> listByResourceGroupAsync(String resourceGroupName) {
@@ -225,7 +220,6 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
      * Lists all Traffic Manager profiles within a resource group.
      *
      * @param resourceGroupName The name of the resource group containing the Traffic Manager profiles to be listed.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;ProfileInner&gt; object
      */
     public Observable<ServiceResponse<List<ProfileInner>>> listByResourceGroupWithServiceResponseAsync(String resourceGroupName) {
@@ -263,10 +257,7 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
     /**
      * Lists all Traffic Manager profiles within a subscription.
      *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ProfileInner&gt; object if successful.
+     * @return the PagedList<ProfileInner> object if successful.
      */
     public PagedList<ProfileInner> list() {
         PageImpl<ProfileInner> page = new PageImpl<>();
@@ -284,7 +275,6 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
      * Lists all Traffic Manager profiles within a subscription.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
     public ServiceFuture<List<ProfileInner>> listAsync(final ServiceCallback<List<ProfileInner>> serviceCallback) {
@@ -294,7 +284,6 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
     /**
      * Lists all Traffic Manager profiles within a subscription.
      *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;ProfileInner&gt; object
      */
     public Observable<Page<ProfileInner>> listAsync() {
@@ -311,7 +300,6 @@ public class ProfilesInner implements InnerSupportsListing<ProfileInner>, InnerS
     /**
      * Lists all Traffic Manager profiles within a subscription.
      *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;ProfileInner&gt; object
      */
     public Observable<ServiceResponse<List<ProfileInner>>> listWithServiceResponseAsync() {
