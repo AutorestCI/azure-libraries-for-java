@@ -1239,9 +1239,9 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the GlobalConfigurationInner object if successful.
+     * @return the List&lt;GlobalConfigurationInner&gt; object if successful.
      */
-    public GlobalConfigurationInner listGlobalConfiguration(String serviceName, String serviceMemberId) {
+    public List<GlobalConfigurationInner> listGlobalConfiguration(String serviceName, String serviceMemberId) {
         return listGlobalConfigurationWithServiceResponseAsync(serviceName, serviceMemberId).toBlocking().single().body();
     }
 
@@ -1254,7 +1254,7 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<GlobalConfigurationInner> listGlobalConfigurationAsync(String serviceName, String serviceMemberId, final ServiceCallback<GlobalConfigurationInner> serviceCallback) {
+    public ServiceFuture<List<GlobalConfigurationInner>> listGlobalConfigurationAsync(String serviceName, String serviceMemberId, final ServiceCallback<List<GlobalConfigurationInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listGlobalConfigurationWithServiceResponseAsync(serviceName, serviceMemberId), serviceCallback);
     }
 
@@ -1264,12 +1264,12 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the GlobalConfigurationInner object
+     * @return the observable to the List&lt;GlobalConfigurationInner&gt; object
      */
-    public Observable<GlobalConfigurationInner> listGlobalConfigurationAsync(String serviceName, String serviceMemberId) {
-        return listGlobalConfigurationWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<GlobalConfigurationInner>, GlobalConfigurationInner>() {
+    public Observable<List<GlobalConfigurationInner>> listGlobalConfigurationAsync(String serviceName, String serviceMemberId) {
+        return listGlobalConfigurationWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<List<GlobalConfigurationInner>>, List<GlobalConfigurationInner>>() {
             @Override
-            public GlobalConfigurationInner call(ServiceResponse<GlobalConfigurationInner> response) {
+            public List<GlobalConfigurationInner> call(ServiceResponse<List<GlobalConfigurationInner>> response) {
                 return response.body();
             }
         });
@@ -1281,9 +1281,9 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the GlobalConfigurationInner object
+     * @return the observable to the List&lt;GlobalConfigurationInner&gt; object
      */
-    public Observable<ServiceResponse<GlobalConfigurationInner>> listGlobalConfigurationWithServiceResponseAsync(String serviceName, String serviceMemberId) {
+    public Observable<ServiceResponse<List<GlobalConfigurationInner>>> listGlobalConfigurationWithServiceResponseAsync(String serviceName, String serviceMemberId) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1294,11 +1294,12 @@ public class ServicemembersInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listGlobalConfiguration(serviceName, serviceMemberId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<GlobalConfigurationInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<GlobalConfigurationInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<GlobalConfigurationInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<GlobalConfigurationInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<GlobalConfigurationInner> clientResponse = listGlobalConfigurationDelegate(response);
+                        ServiceResponse<PageImpl1<GlobalConfigurationInner>> result = listGlobalConfigurationDelegate(response);
+                        ServiceResponse<List<GlobalConfigurationInner>> clientResponse = new ServiceResponse<List<GlobalConfigurationInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1307,9 +1308,9 @@ public class ServicemembersInner {
             });
     }
 
-    private ServiceResponse<GlobalConfigurationInner> listGlobalConfigurationDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<GlobalConfigurationInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<GlobalConfigurationInner>() { }.getType())
+    private ServiceResponse<PageImpl1<GlobalConfigurationInner>> listGlobalConfigurationDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<GlobalConfigurationInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<GlobalConfigurationInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
