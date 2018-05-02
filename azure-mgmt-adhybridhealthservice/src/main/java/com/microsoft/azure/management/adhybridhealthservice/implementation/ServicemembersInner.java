@@ -99,9 +99,9 @@ public class ServicemembersInner {
         @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/servicemembers/{serviceMemberId}/globalconfiguration")
         Observable<Response<ResponseBody>> listGlobalConfiguration(@Path("serviceName") String serviceName, @Path("serviceMemberId") String serviceMemberId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Servicemembers getMetrics" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Servicemembers listMetrics" })
         @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/servicemembers/{serviceMemberId}/metrics/{metricName}/groups/{groupName}")
-        Observable<Response<ResponseBody>> getMetrics(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Path("groupName") String groupName, @Path("serviceMemberId") UUID serviceMemberId, @Query("groupKey") String groupKey, @Query("fromDate") DateTime fromDate, @Query("toDate") DateTime toDate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listMetrics(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Path("groupName") String groupName, @Path("serviceMemberId") UUID serviceMemberId, @Query("groupKey") String groupKey, @Query("fromDate") DateTime fromDate, @Query("toDate") DateTime toDate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Servicemembers getServiceConfiguration" })
         @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/servicemembers/{serviceMemberId}/serviceconfiguration")
@@ -705,9 +705,9 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ConnectorInner&gt; object if successful.
+     * @return the ConnectorsInner object if successful.
      */
-    public List<ConnectorInner> listConnectors(String serviceName, UUID serviceMemberId) {
+    public ConnectorsInner listConnectors(String serviceName, UUID serviceMemberId) {
         return listConnectorsWithServiceResponseAsync(serviceName, serviceMemberId).toBlocking().single().body();
     }
 
@@ -720,7 +720,7 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ConnectorInner>> listConnectorsAsync(String serviceName, UUID serviceMemberId, final ServiceCallback<List<ConnectorInner>> serviceCallback) {
+    public ServiceFuture<ConnectorsInner> listConnectorsAsync(String serviceName, UUID serviceMemberId, final ServiceCallback<ConnectorsInner> serviceCallback) {
         return ServiceFuture.fromResponse(listConnectorsWithServiceResponseAsync(serviceName, serviceMemberId), serviceCallback);
     }
 
@@ -730,12 +730,12 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ConnectorInner&gt; object
+     * @return the observable to the ConnectorsInner object
      */
-    public Observable<List<ConnectorInner>> listConnectorsAsync(String serviceName, UUID serviceMemberId) {
-        return listConnectorsWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<List<ConnectorInner>>, List<ConnectorInner>>() {
+    public Observable<ConnectorsInner> listConnectorsAsync(String serviceName, UUID serviceMemberId) {
+        return listConnectorsWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<ConnectorsInner>, ConnectorsInner>() {
             @Override
-            public List<ConnectorInner> call(ServiceResponse<List<ConnectorInner>> response) {
+            public ConnectorsInner call(ServiceResponse<ConnectorsInner> response) {
                 return response.body();
             }
         });
@@ -747,9 +747,9 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ConnectorInner&gt; object
+     * @return the observable to the ConnectorsInner object
      */
-    public Observable<ServiceResponse<List<ConnectorInner>>> listConnectorsWithServiceResponseAsync(String serviceName, UUID serviceMemberId) {
+    public Observable<ServiceResponse<ConnectorsInner>> listConnectorsWithServiceResponseAsync(String serviceName, UUID serviceMemberId) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -760,12 +760,11 @@ public class ServicemembersInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listConnectors(serviceName, serviceMemberId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ConnectorInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ConnectorsInner>>>() {
                 @Override
-                public Observable<ServiceResponse<List<ConnectorInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ConnectorsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ConnectorInner>> result = listConnectorsDelegate(response);
-                        ServiceResponse<List<ConnectorInner>> clientResponse = new ServiceResponse<List<ConnectorInner>>(result.body().items(), result.response());
+                        ServiceResponse<ConnectorsInner> clientResponse = listConnectorsDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -774,9 +773,9 @@ public class ServicemembersInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<ConnectorInner>> listConnectorsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ConnectorInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ConnectorInner>>() { }.getType())
+    private ServiceResponse<ConnectorsInner> listConnectorsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ConnectorsInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ConnectorsInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1299,8 +1298,7 @@ public class ServicemembersInner {
                 @Override
                 public Observable<ServiceResponse<GlobalConfigurationInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<GlobalConfigurationInner> result = listGlobalConfigurationDelegate(response);
-                        ServiceResponse<GlobalConfigurationInner> clientResponse = new ServiceResponse<GlobalConfigurationInner>(result.body().items(), result.response());
+                        ServiceResponse<GlobalConfigurationInner> clientResponse = listGlobalConfigurationDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1328,8 +1326,8 @@ public class ServicemembersInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the MetricSetsInner object if successful.
      */
-    public MetricSetsInner getMetrics(String serviceName, String metricName, String groupName, UUID serviceMemberId) {
-        return getMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId).toBlocking().single().body();
+    public MetricSetsInner listMetrics(String serviceName, String metricName, String groupName, UUID serviceMemberId) {
+        return listMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId).toBlocking().single().body();
     }
 
     /**
@@ -1343,8 +1341,8 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<MetricSetsInner> getMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, final ServiceCallback<MetricSetsInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId), serviceCallback);
+    public ServiceFuture<MetricSetsInner> listMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, final ServiceCallback<MetricSetsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId), serviceCallback);
     }
 
     /**
@@ -1357,8 +1355,8 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<MetricSetsInner> getMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId) {
-        return getMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
+    public Observable<MetricSetsInner> listMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId) {
+        return listMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
             @Override
             public MetricSetsInner call(ServiceResponse<MetricSetsInner> response) {
                 return response.body();
@@ -1376,7 +1374,7 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<ServiceResponse<MetricSetsInner>> getMetricsWithServiceResponseAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId) {
+    public Observable<ServiceResponse<MetricSetsInner>> listMetricsWithServiceResponseAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1395,12 +1393,12 @@ public class ServicemembersInner {
         final String groupKey = null;
         final DateTime fromDate = null;
         final DateTime toDate = null;
-        return service.getMetrics(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.listMetrics(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MetricSetsInner>>>() {
                 @Override
                 public Observable<ServiceResponse<MetricSetsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<MetricSetsInner> clientResponse = getMetricsDelegate(response);
+                        ServiceResponse<MetricSetsInner> clientResponse = listMetricsDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1424,8 +1422,8 @@ public class ServicemembersInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the MetricSetsInner object if successful.
      */
-    public MetricSetsInner getMetrics(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate) {
-        return getMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate).toBlocking().single().body();
+    public MetricSetsInner listMetrics(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate) {
+        return listMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate).toBlocking().single().body();
     }
 
     /**
@@ -1442,8 +1440,8 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<MetricSetsInner> getMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate, final ServiceCallback<MetricSetsInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate), serviceCallback);
+    public ServiceFuture<MetricSetsInner> listMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate, final ServiceCallback<MetricSetsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate), serviceCallback);
     }
 
     /**
@@ -1459,8 +1457,8 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<MetricSetsInner> getMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate) {
-        return getMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
+    public Observable<MetricSetsInner> listMetricsAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate) {
+        return listMetricsWithServiceResponseAsync(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate).map(new Func1<ServiceResponse<MetricSetsInner>, MetricSetsInner>() {
             @Override
             public MetricSetsInner call(ServiceResponse<MetricSetsInner> response) {
                 return response.body();
@@ -1481,7 +1479,7 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the MetricSetsInner object
      */
-    public Observable<ServiceResponse<MetricSetsInner>> getMetricsWithServiceResponseAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate) {
+    public Observable<ServiceResponse<MetricSetsInner>> listMetricsWithServiceResponseAsync(String serviceName, String metricName, String groupName, UUID serviceMemberId, String groupKey, DateTime fromDate, DateTime toDate) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1497,12 +1495,12 @@ public class ServicemembersInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.getMetrics(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.listMetrics(serviceName, metricName, groupName, serviceMemberId, groupKey, fromDate, toDate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MetricSetsInner>>>() {
                 @Override
                 public Observable<ServiceResponse<MetricSetsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<MetricSetsInner> clientResponse = getMetricsDelegate(response);
+                        ServiceResponse<MetricSetsInner> clientResponse = listMetricsDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1511,7 +1509,7 @@ public class ServicemembersInner {
             });
     }
 
-    private ServiceResponse<MetricSetsInner> getMetricsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<MetricSetsInner> listMetricsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<MetricSetsInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<MetricSetsInner>() { }.getType())
                 .registerError(CloudException.class)
