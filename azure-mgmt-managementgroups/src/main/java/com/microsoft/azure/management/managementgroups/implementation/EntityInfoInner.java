@@ -8,40 +8,38 @@
 
 package com.microsoft.azure.management.managementgroups.implementation;
 
-import java.util.List;
-import com.microsoft.azure.management.managementgroups.ManagementGroupDetails;
-import com.microsoft.azure.management.managementgroups.ManagementGroupChildInfo;
+import com.microsoft.azure.management.managementgroups.EntityParentGroupInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
 /**
- * The management group details.
+ * The entity.
  */
 @JsonFlatten
-public class ManagementGroupInner {
+public class EntityInfoInner {
     /**
-     * The fully qualified ID for the management group.  For example,
+     * The fully qualified ID for the entity.  For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /**
-     * The type of the resource.  For example,
+     * The type of the resource. For example,
      * /providers/Microsoft.Management/managementGroups.
      */
     @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
 
     /**
-     * The name of the management group. For example,
+     * The name of the entity. For example,
      * 00000000-0000-0000-0000-000000000000.
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     /**
-     * The AAD Tenant ID associated with the management group. For example,
+     * The AAD Tenant ID associated with the entity. For example,
      * 00000000-0000-0000-0000-000000000000.
      */
     @JsonProperty(value = "properties.tenantId")
@@ -54,22 +52,17 @@ public class ManagementGroupInner {
     private String displayName;
 
     /**
-     * The role definitions associated with the management group.
+     * Parent.
      */
-    @JsonProperty(value = "properties.roles")
-    private List<String> roles;
+    @JsonProperty(value = "properties.parent")
+    private EntityParentGroupInfo parent;
 
     /**
-     * Details.
+     * Permissions.
+     * Possible values include: 'noaccess', 'view', 'edit', 'delete'.
      */
-    @JsonProperty(value = "properties.details")
-    private ManagementGroupDetails details;
-
-    /**
-     * The list of children.
-     */
-    @JsonProperty(value = "properties.children")
-    private List<ManagementGroupChildInfo> children;
+    @JsonProperty(value = "properties.permissions")
+    private String permissions;
 
     /**
      * Get the id value.
@@ -111,9 +104,9 @@ public class ManagementGroupInner {
      * Set the tenantId value.
      *
      * @param tenantId the tenantId value to set
-     * @return the ManagementGroupInner object itself.
+     * @return the EntityInfoInner object itself.
      */
-    public ManagementGroupInner withTenantId(String tenantId) {
+    public EntityInfoInner withTenantId(String tenantId) {
         this.tenantId = tenantId;
         return this;
     }
@@ -131,70 +124,50 @@ public class ManagementGroupInner {
      * Set the displayName value.
      *
      * @param displayName the displayName value to set
-     * @return the ManagementGroupInner object itself.
+     * @return the EntityInfoInner object itself.
      */
-    public ManagementGroupInner withDisplayName(String displayName) {
+    public EntityInfoInner withDisplayName(String displayName) {
         this.displayName = displayName;
         return this;
     }
 
     /**
-     * Get the roles value.
+     * Get the parent value.
      *
-     * @return the roles value
+     * @return the parent value
      */
-    public List<String> roles() {
-        return this.roles;
+    public EntityParentGroupInfo parent() {
+        return this.parent;
     }
 
     /**
-     * Set the roles value.
+     * Set the parent value.
      *
-     * @param roles the roles value to set
-     * @return the ManagementGroupInner object itself.
+     * @param parent the parent value to set
+     * @return the EntityInfoInner object itself.
      */
-    public ManagementGroupInner withRoles(List<String> roles) {
-        this.roles = roles;
+    public EntityInfoInner withParent(EntityParentGroupInfo parent) {
+        this.parent = parent;
         return this;
     }
 
     /**
-     * Get the details value.
+     * Get the permissions value.
      *
-     * @return the details value
+     * @return the permissions value
      */
-    public ManagementGroupDetails details() {
-        return this.details;
+    public String permissions() {
+        return this.permissions;
     }
 
     /**
-     * Set the details value.
+     * Set the permissions value.
      *
-     * @param details the details value to set
-     * @return the ManagementGroupInner object itself.
+     * @param permissions the permissions value to set
+     * @return the EntityInfoInner object itself.
      */
-    public ManagementGroupInner withDetails(ManagementGroupDetails details) {
-        this.details = details;
-        return this;
-    }
-
-    /**
-     * Get the children value.
-     *
-     * @return the children value
-     */
-    public List<ManagementGroupChildInfo> children() {
-        return this.children;
-    }
-
-    /**
-     * Set the children value.
-     *
-     * @param children the children value to set
-     * @return the ManagementGroupInner object itself.
-     */
-    public ManagementGroupInner withChildren(List<ManagementGroupChildInfo> children) {
-        this.children = children;
+    public EntityInfoInner withPermissions(String permissions) {
+        this.permissions = permissions;
         return this;
     }
 

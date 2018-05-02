@@ -8,25 +8,116 @@
 
 package com.microsoft.azure.management.managementgroups.implementation;
 
+import java.util.List;
+import com.microsoft.azure.management.managementgroups.CreateManagementGroupDetails;
+import com.microsoft.azure.management.managementgroups.CreateManagementGroupChildInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.rest.serializer.JsonFlatten;
 
 /**
  * Management group creation parameters.
  */
+@JsonFlatten
 public class CreateManagementGroupRequestInner {
     /**
-     * The friendly name of the management group.
+     * The fully qualified ID for the management group.  For example,
+     * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
      */
-    @JsonProperty(value = "displayName")
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
+    /**
+     * The type of the resource.  For example,
+     * /providers/Microsoft.Management/managementGroups.
+     */
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
+    private String type;
+
+    /**
+     * The name of the management group. For example,
+     * 00000000-0000-0000-0000-000000000000.
+     */
+    @JsonProperty(value = "name")
+    private String name;
+
+    /**
+     * The AAD Tenant ID associated with the management group. For example,
+     * 00000000-0000-0000-0000-000000000000.
+     */
+    @JsonProperty(value = "properties.tenantId", access = JsonProperty.Access.WRITE_ONLY)
+    private String tenantId;
+
+    /**
+     * The friendly name of the management group. If no value is passed then
+     * this  field will be set to the groupId.
+     */
+    @JsonProperty(value = "properties.displayName")
     private String displayName;
 
     /**
-     * (Optional) The fully qualified ID for the parent management group.  For
-     * example,
-     * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
+     * The roles definitions associated with the management group.
      */
-    @JsonProperty(value = "parentId")
-    private String parentId;
+    @JsonProperty(value = "properties.roles", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> roles;
+
+    /**
+     * Details.
+     */
+    @JsonProperty(value = "properties.details")
+    private CreateManagementGroupDetails details;
+
+    /**
+     * The list of children.
+     */
+    @JsonProperty(value = "properties.children", access = JsonProperty.Access.WRITE_ONLY)
+    private List<CreateManagementGroupChildInfo> children;
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the type value.
+     *
+     * @return the type value
+     */
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name value.
+     *
+     * @return the name value
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Set the name value.
+     *
+     * @param name the name value to set
+     * @return the CreateManagementGroupRequestInner object itself.
+     */
+    public CreateManagementGroupRequestInner withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the tenantId value.
+     *
+     * @return the tenantId value
+     */
+    public String tenantId() {
+        return this.tenantId;
+    }
 
     /**
      * Get the displayName value.
@@ -49,23 +140,41 @@ public class CreateManagementGroupRequestInner {
     }
 
     /**
-     * Get the parentId value.
+     * Get the roles value.
      *
-     * @return the parentId value
+     * @return the roles value
      */
-    public String parentId() {
-        return this.parentId;
+    public List<String> roles() {
+        return this.roles;
     }
 
     /**
-     * Set the parentId value.
+     * Get the details value.
      *
-     * @param parentId the parentId value to set
+     * @return the details value
+     */
+    public CreateManagementGroupDetails details() {
+        return this.details;
+    }
+
+    /**
+     * Set the details value.
+     *
+     * @param details the details value to set
      * @return the CreateManagementGroupRequestInner object itself.
      */
-    public CreateManagementGroupRequestInner withParentId(String parentId) {
-        this.parentId = parentId;
+    public CreateManagementGroupRequestInner withDetails(CreateManagementGroupDetails details) {
+        this.details = details;
         return this;
+    }
+
+    /**
+     * Get the children value.
+     *
+     * @return the children value
+     */
+    public List<CreateManagementGroupChildInfo> children() {
+        return this.children;
     }
 
 }

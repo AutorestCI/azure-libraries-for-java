@@ -12,9 +12,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The child information of a management group.
+ * The child information of a management group used during creation.
  */
-public class ManagementGroupChildInfo {
+public class CreateManagementGroupChildInfo {
     /**
      * The type of child resource.
      * The fully qualified resource type which includes provider namespace
@@ -22,7 +22,7 @@ public class ManagementGroupChildInfo {
      * include: '/providers/Microsoft.Management/managementGroups',
      * '/subscriptions'.
      */
-    @JsonProperty(value = "type")
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
 
     /**
@@ -30,32 +30,32 @@ public class ManagementGroupChildInfo {
      * subscription).  For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
      */
-    @JsonProperty(value = "id")
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /**
      * The name of the child entity.
      */
-    @JsonProperty(value = "name")
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     /**
      * The friendly name of the child resource.
      */
-    @JsonProperty(value = "displayName")
+    @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
 
     /**
      * The roles definitions associated with the management group.
      */
-    @JsonProperty(value = "roles")
+    @JsonProperty(value = "roles", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> roles;
 
     /**
      * The list of children.
      */
-    @JsonProperty(value = "children")
-    private List<ManagementGroupChildInfo> children;
+    @JsonProperty(value = "children", access = JsonProperty.Access.WRITE_ONLY)
+    private List<CreateManagementGroupChildInfo> children;
 
     /**
      * Get the type value.
@@ -64,17 +64,6 @@ public class ManagementGroupChildInfo {
      */
     public String type() {
         return this.type;
-    }
-
-    /**
-     * Set the type value.
-     *
-     * @param type the type value to set
-     * @return the ManagementGroupChildInfo object itself.
-     */
-    public ManagementGroupChildInfo withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**
@@ -87,34 +76,12 @@ public class ManagementGroupChildInfo {
     }
 
     /**
-     * Set the id value.
-     *
-     * @param id the id value to set
-     * @return the ManagementGroupChildInfo object itself.
-     */
-    public ManagementGroupChildInfo withId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
      * Get the name value.
      *
      * @return the name value
      */
     public String name() {
         return this.name;
-    }
-
-    /**
-     * Set the name value.
-     *
-     * @param name the name value to set
-     * @return the ManagementGroupChildInfo object itself.
-     */
-    public ManagementGroupChildInfo withName(String name) {
-        this.name = name;
-        return this;
     }
 
     /**
@@ -127,17 +94,6 @@ public class ManagementGroupChildInfo {
     }
 
     /**
-     * Set the displayName value.
-     *
-     * @param displayName the displayName value to set
-     * @return the ManagementGroupChildInfo object itself.
-     */
-    public ManagementGroupChildInfo withDisplayName(String displayName) {
-        this.displayName = displayName;
-        return this;
-    }
-
-    /**
      * Get the roles value.
      *
      * @return the roles value
@@ -147,34 +103,12 @@ public class ManagementGroupChildInfo {
     }
 
     /**
-     * Set the roles value.
-     *
-     * @param roles the roles value to set
-     * @return the ManagementGroupChildInfo object itself.
-     */
-    public ManagementGroupChildInfo withRoles(List<String> roles) {
-        this.roles = roles;
-        return this;
-    }
-
-    /**
      * Get the children value.
      *
      * @return the children value
      */
-    public List<ManagementGroupChildInfo> children() {
+    public List<CreateManagementGroupChildInfo> children() {
         return this.children;
-    }
-
-    /**
-     * Set the children value.
-     *
-     * @param children the children value to set
-     * @return the ManagementGroupChildInfo object itself.
-     */
-    public ManagementGroupChildInfo withChildren(List<ManagementGroupChildInfo> children) {
-        this.children = children;
-        return this;
     }
 
 }
