@@ -110,16 +110,16 @@ public class ADHybridHealthServiceImpl extends AzureServiceClient {
     }
 
     /**
-     * The AddsservicesInner object to access its operations.
+     * The AddsServicesInner object to access its operations.
      */
-    private AddsservicesInner addsservices;
+    private AddsServicesInner addsServices;
 
     /**
-     * Gets the AddsservicesInner object to access its operations.
-     * @return the AddsservicesInner object.
+     * Gets the AddsServicesInner object to access its operations.
+     * @return the AddsServicesInner object.
      */
-    public AddsservicesInner addsservices() {
-        return this.addsservices;
+    public AddsServicesInner addsServices() {
+        return this.addsServices;
     }
 
     /**
@@ -162,29 +162,29 @@ public class ADHybridHealthServiceImpl extends AzureServiceClient {
     }
 
     /**
-     * The AddsservicemembersInner object to access its operations.
+     * The AddsServicemembersInner object to access its operations.
      */
-    private AddsservicemembersInner addsservicemembers;
+    private AddsServicemembersInner addsServicemembers;
 
     /**
-     * Gets the AddsservicemembersInner object to access its operations.
-     * @return the AddsservicemembersInner object.
+     * Gets the AddsServicemembersInner object to access its operations.
+     * @return the AddsServicemembersInner object.
      */
-    public AddsservicemembersInner addsservicemembers() {
-        return this.addsservicemembers;
+    public AddsServicemembersInner addsServicemembers() {
+        return this.addsServicemembers;
     }
 
     /**
-     * The AddomainservicemembersInner object to access its operations.
+     * The AdDomainServiceMembersInner object to access its operations.
      */
-    private AddomainservicemembersInner addomainservicemembers;
+    private AdDomainServiceMembersInner adDomainServiceMembers;
 
     /**
-     * Gets the AddomainservicemembersInner object to access its operations.
-     * @return the AddomainservicemembersInner object.
+     * Gets the AdDomainServiceMembersInner object to access its operations.
+     * @return the AdDomainServiceMembersInner object.
      */
-    public AddomainservicemembersInner addomainservicemembers() {
-        return this.addomainservicemembers;
+    public AdDomainServiceMembersInner adDomainServiceMembers() {
+        return this.adDomainServiceMembers;
     }
 
     /**
@@ -214,29 +214,16 @@ public class ADHybridHealthServiceImpl extends AzureServiceClient {
     }
 
     /**
-     * The ServicemembersInner object to access its operations.
+     * The ServiceMembersInner object to access its operations.
      */
-    private ServicemembersInner servicemembers;
+    private ServiceMembersInner serviceMembers;
 
     /**
-     * Gets the ServicemembersInner object to access its operations.
-     * @return the ServicemembersInner object.
+     * Gets the ServiceMembersInner object to access its operations.
+     * @return the ServiceMembersInner object.
      */
-    public ServicemembersInner servicemembers() {
-        return this.servicemembers;
-    }
-
-    /**
-     * The ServimembersInner object to access its operations.
-     */
-    private ServimembersInner servimembers;
-
-    /**
-     * Gets the ServimembersInner object to access its operations.
-     * @return the ServimembersInner object.
-     */
-    public ServimembersInner servimembers() {
-        return this.servimembers;
+    public ServiceMembersInner serviceMembers() {
+        return this.serviceMembers;
     }
 
     /**
@@ -274,16 +261,15 @@ public class ADHybridHealthServiceImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
-        this.addsservices = new AddsservicesInner(restClient().retrofit(), this);
+        this.addsServices = new AddsServicesInner(restClient().retrofit(), this);
         this.alerts = new AlertsInner(restClient().retrofit(), this);
         this.configurations = new ConfigurationsInner(restClient().retrofit(), this);
         this.dimensions = new DimensionsInner(restClient().retrofit(), this);
-        this.addsservicemembers = new AddsservicemembersInner(restClient().retrofit(), this);
-        this.addomainservicemembers = new AddomainservicemembersInner(restClient().retrofit(), this);
+        this.addsServicemembers = new AddsServicemembersInner(restClient().retrofit(), this);
+        this.adDomainServiceMembers = new AdDomainServiceMembersInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.services = new ServicesInner(restClient().retrofit(), this);
-        this.servicemembers = new ServicemembersInner(restClient().retrofit(), this);
-        this.servimembers = new ServimembersInner(restClient().retrofit(), this);
+        this.serviceMembers = new ServiceMembersInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 

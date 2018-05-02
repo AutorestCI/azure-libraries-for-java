@@ -21,6 +21,7 @@ import com.microsoft.rest.ServiceResponse;
 import com.microsoft.rest.Validator;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import okhttp3.ResponseBody;
 import org.joda.time.DateTime;
 import retrofit2.http.Body;
@@ -39,150 +40,118 @@ import rx.Observable;
 
 /**
  * An instance of this class provides access to all the operations defined
- * in Services.
+ * in AddsServices.
  */
-public class ServicesInner {
+public class AddsServicesInner {
     /** The Retrofit service to perform REST calls. */
-    private ServicesService service;
+    private AddsServicesService service;
     /** The service client containing this operation class. */
     private ADHybridHealthServiceImpl client;
 
     /**
-     * Initializes an instance of ServicesInner.
+     * Initializes an instance of AddsServicesInner.
      *
      * @param retrofit the Retrofit instance built from a Retrofit Builder.
      * @param client the instance of the service client containing this operation class.
      */
-    public ServicesInner(Retrofit retrofit, ADHybridHealthServiceImpl client) {
-        this.service = retrofit.create(ServicesService.class);
+    public AddsServicesInner(Retrofit retrofit, ADHybridHealthServiceImpl client) {
+        this.service = retrofit.create(AddsServicesService.class);
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for Services to be
+     * The interface defining all the services for AddsServices to be
      * used by Retrofit to perform actually REST calls.
      */
-    interface ServicesService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services list" })
-        @GET("providers/Microsoft.ADHybridHealthService/services")
+    interface AddsServicesService {
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices list" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices")
         Observable<Response<ResponseBody>> list(@Query("$filter") String filter, @Query("serviceType") String serviceType, @Query("skipCount") Integer skipCount, @Query("takeCount") Integer takeCount, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services add" })
-        @POST("providers/Microsoft.ADHybridHealthService/services")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices add" })
+        @POST("providers/Microsoft.ADHybridHealthService/addsservices")
         Observable<Response<ResponseBody>> add(@Query("api-version") String apiVersion, @Body ServiceInner service, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listPremium" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/premiumCheck")
-        Observable<Response<ResponseBody>> listPremium(@Query("$filter") String filter, @Query("serviceType") String serviceType, @Query("skipCount") Integer skipCount, @Query("takeCount") Integer takeCount, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services get" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices get" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}")
         Observable<Response<ResponseBody>> get(@Path("serviceName") String serviceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services delete" })
-        @HTTP(path = "providers/Microsoft.ADHybridHealthService/services/{serviceName}", method = "DELETE", hasBody = true)
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices delete" })
+        @HTTP(path = "providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> delete(@Path("serviceName") String serviceName, @Query("confirm") Boolean confirm, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services update" })
-        @PATCH("providers/Microsoft.ADHybridHealthService/services/{serviceName}")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices update" })
+        @PATCH("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}")
         Observable<Response<ResponseBody>> update(@Path("serviceName") String serviceName, @Body ServiceInner service, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listAlerts" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/alerts")
-        Observable<Response<ResponseBody>> listAlerts(@Path("serviceName") String serviceName, @Query("$filter") String filter, @Query("state") String state, @Query("from") DateTime from, @Query("to") DateTime to, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices getForestSummary" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/forestsummary")
+        Observable<Response<ResponseBody>> getForestSummary(@Path("serviceName") String serviceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services getFeatureAvailibility" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/checkServiceFeatureAvailibility/{featureName}")
-        Observable<Response<ResponseBody>> getFeatureAvailibility(@Path("serviceName") String serviceName, @Path("featureName") String featureName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listExportErrors" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/exporterrors/counts")
-        Observable<Response<ResponseBody>> listExportErrors(@Path("serviceName") String serviceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listExportErrorsV2" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/exporterrors/listV2")
-        Observable<Response<ResponseBody>> listExportErrorsV2(@Path("serviceName") String serviceName, @Query("errorBucket") String errorBucket, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listExportStatus" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/exportstatus")
-        Observable<Response<ResponseBody>> listExportStatus(@Path("serviceName") String serviceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services addAlertFeedback" })
-        @POST("providers/Microsoft.ADHybridHealthService/services/{serviceName}/feedbacktype/alerts/feedback")
-        Observable<Response<ResponseBody>> addAlertFeedback(@Path("serviceName") String serviceName, @Body AlertFeedbackInner alertFeedback, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listAlertFeedback" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/feedbacktype/alerts/{shortName}/alertfeedback")
-        Observable<Response<ResponseBody>> listAlertFeedback(@Path("serviceName") String serviceName, @Path("shortName") String shortName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listMetricsAverage" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/metrics/{metricName}/groups/{groupName}/average")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listMetricsAverage" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/metrics/{metricName}/groups/{groupName}/average")
         Observable<Response<ResponseBody>> listMetricsAverage(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Path("groupName") String groupName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listMetricsSum" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/metrics/{metricName}/groups/{groupName}/sum")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listMetricsSum" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/metrics/{metricName}/groups/{groupName}/sum")
         Observable<Response<ResponseBody>> listMetricsSum(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Path("groupName") String groupName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listMetricMetadata" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/metricmetadata")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listMetricMetadata" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/metricmetadata")
         Observable<Response<ResponseBody>> listMetricMetadata(@Path("serviceName") String serviceName, @Query("$filter") String filter, @Query("perfCounter") Boolean perfCounter, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services getMetricMetadata" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/metricmetadata/{metricName}")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices getMetricMetadata" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/metricmetadata/{metricName}")
         Observable<Response<ResponseBody>> getMetricMetadata(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services getMetricMetadataForGroup" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/metricmetadata/{metricName}/groups/{groupName}")
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices getMetricMetadataForGroup" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/metricmetadata/{metricName}/groups/{groupName}")
         Observable<Response<ResponseBody>> getMetricMetadataForGroup(@Path("serviceName") String serviceName, @Path("metricName") String metricName, @Path("groupName") String groupName, @Query("groupKey") String groupKey, @Query("fromDate") DateTime fromDate, @Query("toDate") DateTime toDate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services updateMonitoringConfiguration" })
-        @PATCH("providers/Microsoft.ADHybridHealthService/services/{serviceName}/monitoringconfiguration")
-        Observable<Response<ResponseBody>> updateMonitoringConfiguration(@Path("serviceName") String serviceName, @Body ItemInner configurationSetting, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices getReplicationStatus" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/replicationstatus")
+        Observable<Response<ResponseBody>> getReplicationStatus(@Path("serviceName") String serviceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listMonitoringConfigurations" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/monitoringconfigurations")
-        Observable<Response<ResponseBody>> listMonitoringConfigurations(@Path("serviceName") String serviceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices getReplicationSummary" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/replicationsummary")
+        Observable<Response<ResponseBody>> getReplicationSummary(@Path("serviceName") String serviceName, @Query("$filter") String filter, @Query("isGroupbySite") boolean isGroupbySite, @Query("query") String query, @Query("nextPartitionKey") String nextPartitionKey, @Query("nextRowKey") String nextRowKey, @Query("takeCount") Integer takeCount, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listUserBadPasswordReport" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/reports/badpassword/details/user")
-        Observable<Response<ResponseBody>> listUserBadPasswordReport(@Path("serviceName") String serviceName, @Query("dataSource") String dataSource, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listServerAlerts" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/servicemembers/{serviceMemberId}/alerts")
+        Observable<Response<ResponseBody>> listServerAlerts(@Path("serviceMemberId") UUID serviceMemberId, @Path("serviceName") String serviceName, @Query("$filter") String filter, @Query("state") String state, @Query("from") DateTime from, @Query("to") DateTime to, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services getTenantWhitelisting" })
-        @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/TenantWhitelisting/{featureName}")
-        Observable<Response<ResponseBody>> getTenantWhitelisting(@Path("serviceName") String serviceName, @Path("featureName") String featureName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listPremiumServices" })
+        @GET("providers/Microsoft.ADHybridHealthService/addsservices/premiumCheck")
+        Observable<Response<ResponseBody>> listPremiumServices(@Query("$filter") String filter, @Query("serviceType") String serviceType, @Query("skipCount") Integer skipCount, @Query("takeCount") Integer takeCount, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listNext" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listNext" })
         @GET
         Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listPremiumNext" })
-        @GET
-        Observable<Response<ResponseBody>> listPremiumNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listAlertsNext" })
-        @GET
-        Observable<Response<ResponseBody>> listAlertsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listExportStatusNext" })
-        @GET
-        Observable<Response<ResponseBody>> listExportStatusNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listMetricsAverageNext" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listMetricsAverageNext" })
         @GET
         Observable<Response<ResponseBody>> listMetricsAverageNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listMetricsSumNext" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listMetricsSumNext" })
         @GET
         Observable<Response<ResponseBody>> listMetricsSumNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listMetricMetadataNext" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listMetricMetadataNext" })
         @GET
         Observable<Response<ResponseBody>> listMetricMetadataNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listServerAlertsNext" })
+        @GET
+        Observable<Response<ResponseBody>> listServerAlertsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.AddsServices listPremiumServicesNext" })
+        @GET
+        Observable<Response<ResponseBody>> listPremiumServicesNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
@@ -200,7 +169,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -219,7 +188,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ServiceInner&gt; object
@@ -235,7 +204,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ServiceInner&gt; object
@@ -255,7 +224,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
@@ -283,7 +252,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param filter The service property filter to apply.
      * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
@@ -305,7 +274,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param filter The service property filter to apply.
      * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
@@ -328,7 +297,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param filter The service property filter to apply.
      * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
@@ -348,7 +317,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param filter The service property filter to apply.
      * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
@@ -372,7 +341,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
     ServiceResponse<PageImpl<ServiceInner>> * @param filter The service property filter to apply.
     ServiceResponse<PageImpl<ServiceInner>> * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
@@ -484,232 +453,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
-     */
-    public PagedList<ServiceInner> listPremium() {
-        ServiceResponse<Page<ServiceInner>> response = listPremiumSinglePageAsync().toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
-            @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
-                return listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ServiceInner>> listPremiumAsync(final ListOperationCallback<ServiceInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listPremiumSinglePageAsync(),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
-                    return listPremiumNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
-     */
-    public Observable<Page<ServiceInner>> listPremiumAsync() {
-        return listPremiumWithServiceResponseAsync()
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
-                @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumWithServiceResponseAsync() {
-        return listPremiumSinglePageAsync()
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listPremiumNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumSinglePageAsync() {
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        final String filter = null;
-        final String serviceType = null;
-        final Integer skipCount = null;
-        final Integer takeCount = null;
-        return service.listPremium(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param filter The service property filter to apply.
-     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
-     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
-     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
-     */
-    public PagedList<ServiceInner> listPremium(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
-        ServiceResponse<Page<ServiceInner>> response = listPremiumSinglePageAsync(filter, serviceType, skipCount, takeCount).toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
-            @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
-                return listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param filter The service property filter to apply.
-     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
-     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
-     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ServiceInner>> listPremiumAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount, final ListOperationCallback<ServiceInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listPremiumSinglePageAsync(filter, serviceType, skipCount, takeCount),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
-                    return listPremiumNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param filter The service property filter to apply.
-     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
-     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
-     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
-     */
-    public Observable<Page<ServiceInner>> listPremiumAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
-        return listPremiumWithServiceResponseAsync(filter, serviceType, skipCount, takeCount)
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
-                @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param filter The service property filter to apply.
-     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
-     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
-     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumWithServiceResponseAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
-        return listPremiumSinglePageAsync(filter, serviceType, skipCount, takeCount)
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listPremiumNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-    ServiceResponse<PageImpl<ServiceInner>> * @param filter The service property filter to apply.
-    ServiceResponse<PageImpl<ServiceInner>> * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
-    ServiceResponse<PageImpl<ServiceInner>> * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
-    ServiceResponse<PageImpl<ServiceInner>> * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumSinglePageAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listPremium(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<ServiceInner>> listPremiumDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the details of a service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     * Gets the details of an Active Directory Domain Service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -722,7 +466,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of a service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     * Gets the details of an Active Directory Domain Service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -734,7 +478,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of a service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     * Gets the details of an Active Directory Domain Service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -750,7 +494,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of a service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     * Gets the details of an Active Directory Domain Service for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -785,7 +529,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -797,7 +541,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -809,7 +553,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -825,7 +569,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -854,7 +598,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param confirm Indicates if the service will be permanently deleted or disabled. True indicates that the service will be permanently deleted and False indicates that the service will be marked disabled and then deleted after 30 days, if it is not re-registered.
@@ -867,7 +611,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param confirm Indicates if the service will be permanently deleted or disabled. True indicates that the service will be permanently deleted and False indicates that the service will be marked disabled and then deleted after 30 days, if it is not re-registered.
@@ -880,7 +624,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param confirm Indicates if the service will be permanently deleted or disabled. True indicates that the service will be permanently deleted and False indicates that the service will be marked disabled and then deleted after 30 days, if it is not re-registered.
@@ -897,7 +641,7 @@ public class ServicesInner {
     }
 
     /**
-     * Deletes a service which is onboarded to Azure Active Directory Connect Health.
+     * Deletes an Active Directory Domain Service which is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param confirm Indicates if the service will be permanently deleted or disabled. True indicates that the service will be permanently deleted and False indicates that the service will be marked disabled and then deleted after 30 days, if it is not re-registered.
@@ -933,7 +677,7 @@ public class ServicesInner {
     }
 
     /**
-     * Updates the service properties of an onboarded service.
+     * Updates an Active Directory Domain Service properties of an onboarded service.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param service The service object.
@@ -947,7 +691,7 @@ public class ServicesInner {
     }
 
     /**
-     * Updates the service properties of an onboarded service.
+     * Updates an Active Directory Domain Service properties of an onboarded service.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param service The service object.
@@ -960,7 +704,7 @@ public class ServicesInner {
     }
 
     /**
-     * Updates the service properties of an onboarded service.
+     * Updates an Active Directory Domain Service properties of an onboarded service.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param service The service object.
@@ -977,7 +721,7 @@ public class ServicesInner {
     }
 
     /**
-     * Updates the service properties of an onboarded service.
+     * Updates an Active Directory Domain Service properties of an onboarded service.
      *
      * @param serviceName The name of the service which needs to be deleted.
      * @param service The service object.
@@ -1017,314 +761,66 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the alerts for a given service.
+     * Gets the forest summary for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;AlertInner&gt; object if successful.
+     * @return the ForestSummaryInner object if successful.
      */
-    public PagedList<AlertInner> listAlerts(final String serviceName) {
-        ServiceResponse<Page<AlertInner>> response = listAlertsSinglePageAsync(serviceName).toBlocking().single();
-        return new PagedList<AlertInner>(response.body()) {
-            @Override
-            public Page<AlertInner> nextPage(String nextPageLink) {
-                return listAlertsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
+    public ForestSummaryInner getForestSummary(String serviceName) {
+        return getForestSummaryWithServiceResponseAsync(serviceName).toBlocking().single().body();
     }
 
     /**
-     * Gets the alerts for a given service.
+     * Gets the forest summary for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<AlertInner>> listAlertsAsync(final String serviceName, final ListOperationCallback<AlertInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listAlertsSinglePageAsync(serviceName),
-            new Func1<String, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(String nextPageLink) {
-                    return listAlertsNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
+    public ServiceFuture<ForestSummaryInner> getForestSummaryAsync(String serviceName, final ServiceCallback<ForestSummaryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getForestSummaryWithServiceResponseAsync(serviceName), serviceCallback);
     }
 
     /**
-     * Gets the alerts for a given service.
+     * Gets the forest summary for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AlertInner&gt; object
+     * @return the observable to the ForestSummaryInner object
      */
-    public Observable<Page<AlertInner>> listAlertsAsync(final String serviceName) {
-        return listAlertsWithServiceResponseAsync(serviceName)
-            .map(new Func1<ServiceResponse<Page<AlertInner>>, Page<AlertInner>>() {
-                @Override
-                public Page<AlertInner> call(ServiceResponse<Page<AlertInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AlertInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<AlertInner>>> listAlertsWithServiceResponseAsync(final String serviceName) {
-        return listAlertsSinglePageAsync(serviceName)
-            .concatMap(new Func1<ServiceResponse<Page<AlertInner>>, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(ServiceResponse<Page<AlertInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listAlertsNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;AlertInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<AlertInner>>> listAlertsSinglePageAsync(final String serviceName) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        final String filter = null;
-        final String state = null;
-        final DateTime from = null;
-        final DateTime to = null;
-        return service.listAlerts(serviceName, filter, state, from, to, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<AlertInner>> result = listAlertsDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<AlertInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param serviceName The name of the service.
-     * @param filter The alert property filter to apply.
-     * @param state The alert state to query for.
-     * @param from The start date to query for.
-     * @param to The end date till when to query for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;AlertInner&gt; object if successful.
-     */
-    public PagedList<AlertInner> listAlerts(final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
-        ServiceResponse<Page<AlertInner>> response = listAlertsSinglePageAsync(serviceName, filter, state, from, to).toBlocking().single();
-        return new PagedList<AlertInner>(response.body()) {
+    public Observable<ForestSummaryInner> getForestSummaryAsync(String serviceName) {
+        return getForestSummaryWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<ForestSummaryInner>, ForestSummaryInner>() {
             @Override
-            public Page<AlertInner> nextPage(String nextPageLink) {
-                return listAlertsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param serviceName The name of the service.
-     * @param filter The alert property filter to apply.
-     * @param state The alert state to query for.
-     * @param from The start date to query for.
-     * @param to The end date till when to query for.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<AlertInner>> listAlertsAsync(final String serviceName, final String filter, final String state, final DateTime from, final DateTime to, final ListOperationCallback<AlertInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listAlertsSinglePageAsync(serviceName, filter, state, from, to),
-            new Func1<String, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(String nextPageLink) {
-                    return listAlertsNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param serviceName The name of the service.
-     * @param filter The alert property filter to apply.
-     * @param state The alert state to query for.
-     * @param from The start date to query for.
-     * @param to The end date till when to query for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AlertInner&gt; object
-     */
-    public Observable<Page<AlertInner>> listAlertsAsync(final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
-        return listAlertsWithServiceResponseAsync(serviceName, filter, state, from, to)
-            .map(new Func1<ServiceResponse<Page<AlertInner>>, Page<AlertInner>>() {
-                @Override
-                public Page<AlertInner> call(ServiceResponse<Page<AlertInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param serviceName The name of the service.
-     * @param filter The alert property filter to apply.
-     * @param state The alert state to query for.
-     * @param from The start date to query for.
-     * @param to The end date till when to query for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AlertInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<AlertInner>>> listAlertsWithServiceResponseAsync(final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
-        return listAlertsSinglePageAsync(serviceName, filter, state, from, to)
-            .concatMap(new Func1<ServiceResponse<Page<AlertInner>>, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(ServiceResponse<Page<AlertInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listAlertsNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-    ServiceResponse<PageImpl<AlertInner>> * @param serviceName The name of the service.
-    ServiceResponse<PageImpl<AlertInner>> * @param filter The alert property filter to apply.
-    ServiceResponse<PageImpl<AlertInner>> * @param state The alert state to query for.
-    ServiceResponse<PageImpl<AlertInner>> * @param from The start date to query for.
-    ServiceResponse<PageImpl<AlertInner>> * @param to The end date till when to query for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;AlertInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<AlertInner>>> listAlertsSinglePageAsync(final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listAlerts(serviceName, filter, state, from, to, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<AlertInner>> result = listAlertsDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<AlertInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<AlertInner>> listAlertsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AlertInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<AlertInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Checks if the service has all the pre-requisites met to use a feature.
-     *
-     * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the boolean object if successful.
-     */
-    public boolean getFeatureAvailibility(String serviceName, String featureName) {
-        return getFeatureAvailibilityWithServiceResponseAsync(serviceName, featureName).toBlocking().single().body();
-    }
-
-    /**
-     * Checks if the service has all the pre-requisites met to use a feature.
-     *
-     * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<Boolean> getFeatureAvailibilityAsync(String serviceName, String featureName, final ServiceCallback<Boolean> serviceCallback) {
-        return ServiceFuture.fromResponse(getFeatureAvailibilityWithServiceResponseAsync(serviceName, featureName), serviceCallback);
-    }
-
-    /**
-     * Checks if the service has all the pre-requisites met to use a feature.
-     *
-     * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
-     */
-    public Observable<Boolean> getFeatureAvailibilityAsync(String serviceName, String featureName) {
-        return getFeatureAvailibilityWithServiceResponseAsync(serviceName, featureName).map(new Func1<ServiceResponse<Boolean>, Boolean>() {
-            @Override
-            public Boolean call(ServiceResponse<Boolean> response) {
+            public ForestSummaryInner call(ServiceResponse<ForestSummaryInner> response) {
                 return response.body();
             }
         });
     }
 
     /**
-     * Checks if the service has all the pre-requisites met to use a feature.
+     * Gets the forest summary for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
+     * @return the observable to the ForestSummaryInner object
      */
-    public Observable<ServiceResponse<Boolean>> getFeatureAvailibilityWithServiceResponseAsync(String serviceName, String featureName) {
+    public Observable<ServiceResponse<ForestSummaryInner>> getForestSummaryWithServiceResponseAsync(String serviceName) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (featureName == null) {
-            throw new IllegalArgumentException("Parameter featureName is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.getFeatureAvailibility(serviceName, featureName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Boolean>>>() {
+        return service.getForestSummary(serviceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ForestSummaryInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Boolean>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ForestSummaryInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Boolean> clientResponse = getFeatureAvailibilityDelegate(response);
+                        ServiceResponse<ForestSummaryInner> clientResponse = getForestSummaryDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1333,450 +829,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<Boolean> getFeatureAvailibilityDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Boolean, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Boolean>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the count of latest AAD export errors.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ErrorCountInner&gt; object if successful.
-     */
-    public List<ErrorCountInner> listExportErrors(String serviceName) {
-        return listExportErrorsWithServiceResponseAsync(serviceName).toBlocking().single().body();
-    }
-
-    /**
-     * Gets the count of latest AAD export errors.
-     *
-     * @param serviceName The name of the service.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ErrorCountInner>> listExportErrorsAsync(String serviceName, final ServiceCallback<List<ErrorCountInner>> serviceCallback) {
-        return ServiceFuture.fromResponse(listExportErrorsWithServiceResponseAsync(serviceName), serviceCallback);
-    }
-
-    /**
-     * Gets the count of latest AAD export errors.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ErrorCountInner&gt; object
-     */
-    public Observable<List<ErrorCountInner>> listExportErrorsAsync(String serviceName) {
-        return listExportErrorsWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<List<ErrorCountInner>>, List<ErrorCountInner>>() {
-            @Override
-            public List<ErrorCountInner> call(ServiceResponse<List<ErrorCountInner>> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Gets the count of latest AAD export errors.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ErrorCountInner&gt; object
-     */
-    public Observable<ServiceResponse<List<ErrorCountInner>>> listExportErrorsWithServiceResponseAsync(String serviceName) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listExportErrors(serviceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ErrorCountInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<List<ErrorCountInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl1<ErrorCountInner>> result = listExportErrorsDelegate(response);
-                        ServiceResponse<List<ErrorCountInner>> clientResponse = new ServiceResponse<List<ErrorCountInner>>(result.body().items(), result.response());
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl1<ErrorCountInner>> listExportErrorsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ErrorCountInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ErrorCountInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the categorized export errors.
-     *
-     * @param serviceName The name of the service.
-     * @param errorBucket The error category to query for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ExportErrorInner&gt; object if successful.
-     */
-    public List<ExportErrorInner> listExportErrorsV2(String serviceName, String errorBucket) {
-        return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket).toBlocking().single().body();
-    }
-
-    /**
-     * Gets the categorized export errors.
-     *
-     * @param serviceName The name of the service.
-     * @param errorBucket The error category to query for.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ExportErrorInner>> listExportErrorsV2Async(String serviceName, String errorBucket, final ServiceCallback<List<ExportErrorInner>> serviceCallback) {
-        return ServiceFuture.fromResponse(listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket), serviceCallback);
-    }
-
-    /**
-     * Gets the categorized export errors.
-     *
-     * @param serviceName The name of the service.
-     * @param errorBucket The error category to query for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ExportErrorInner&gt; object
-     */
-    public Observable<List<ExportErrorInner>> listExportErrorsV2Async(String serviceName, String errorBucket) {
-        return listExportErrorsV2WithServiceResponseAsync(serviceName, errorBucket).map(new Func1<ServiceResponse<List<ExportErrorInner>>, List<ExportErrorInner>>() {
-            @Override
-            public List<ExportErrorInner> call(ServiceResponse<List<ExportErrorInner>> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Gets the categorized export errors.
-     *
-     * @param serviceName The name of the service.
-     * @param errorBucket The error category to query for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ExportErrorInner&gt; object
-     */
-    public Observable<ServiceResponse<List<ExportErrorInner>>> listExportErrorsV2WithServiceResponseAsync(String serviceName, String errorBucket) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (errorBucket == null) {
-            throw new IllegalArgumentException("Parameter errorBucket is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listExportErrorsV2(serviceName, errorBucket, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ExportErrorInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<List<ExportErrorInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl1<ExportErrorInner>> result = listExportErrorsV2Delegate(response);
-                        ServiceResponse<List<ExportErrorInner>> clientResponse = new ServiceResponse<List<ExportErrorInner>>(result.body().items(), result.response());
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl1<ExportErrorInner>> listExportErrorsV2Delegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ExportErrorInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ExportErrorInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ExportStatusInner&gt; object if successful.
-     */
-    public PagedList<ExportStatusInner> listExportStatus(final String serviceName) {
-        ServiceResponse<Page<ExportStatusInner>> response = listExportStatusSinglePageAsync(serviceName).toBlocking().single();
-        return new PagedList<ExportStatusInner>(response.body()) {
-            @Override
-            public Page<ExportStatusInner> nextPage(String nextPageLink) {
-                return listExportStatusNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param serviceName The name of the service.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ExportStatusInner>> listExportStatusAsync(final String serviceName, final ListOperationCallback<ExportStatusInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listExportStatusSinglePageAsync(serviceName),
-            new Func1<String, Observable<ServiceResponse<Page<ExportStatusInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ExportStatusInner>>> call(String nextPageLink) {
-                    return listExportStatusNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ExportStatusInner&gt; object
-     */
-    public Observable<Page<ExportStatusInner>> listExportStatusAsync(final String serviceName) {
-        return listExportStatusWithServiceResponseAsync(serviceName)
-            .map(new Func1<ServiceResponse<Page<ExportStatusInner>>, Page<ExportStatusInner>>() {
-                @Override
-                public Page<ExportStatusInner> call(ServiceResponse<Page<ExportStatusInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ExportStatusInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<ExportStatusInner>>> listExportStatusWithServiceResponseAsync(final String serviceName) {
-        return listExportStatusSinglePageAsync(serviceName)
-            .concatMap(new Func1<ServiceResponse<Page<ExportStatusInner>>, Observable<ServiceResponse<Page<ExportStatusInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ExportStatusInner>>> call(ServiceResponse<Page<ExportStatusInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listExportStatusNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the export status.
-     *
-    ServiceResponse<PageImpl<ExportStatusInner>> * @param serviceName The name of the service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ExportStatusInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ExportStatusInner>>> listExportStatusSinglePageAsync(final String serviceName) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listExportStatus(serviceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ExportStatusInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ExportStatusInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<ExportStatusInner>> result = listExportStatusDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ExportStatusInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<ExportStatusInner>> listExportStatusDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ExportStatusInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ExportStatusInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Adds an alert feedback submitted by customer.
-     *
-     * @param serviceName The name of the service.
-     * @param alertFeedback The alert feedback.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the AlertFeedbackInner object if successful.
-     */
-    public AlertFeedbackInner addAlertFeedback(String serviceName, AlertFeedbackInner alertFeedback) {
-        return addAlertFeedbackWithServiceResponseAsync(serviceName, alertFeedback).toBlocking().single().body();
-    }
-
-    /**
-     * Adds an alert feedback submitted by customer.
-     *
-     * @param serviceName The name of the service.
-     * @param alertFeedback The alert feedback.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<AlertFeedbackInner> addAlertFeedbackAsync(String serviceName, AlertFeedbackInner alertFeedback, final ServiceCallback<AlertFeedbackInner> serviceCallback) {
-        return ServiceFuture.fromResponse(addAlertFeedbackWithServiceResponseAsync(serviceName, alertFeedback), serviceCallback);
-    }
-
-    /**
-     * Adds an alert feedback submitted by customer.
-     *
-     * @param serviceName The name of the service.
-     * @param alertFeedback The alert feedback.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AlertFeedbackInner object
-     */
-    public Observable<AlertFeedbackInner> addAlertFeedbackAsync(String serviceName, AlertFeedbackInner alertFeedback) {
-        return addAlertFeedbackWithServiceResponseAsync(serviceName, alertFeedback).map(new Func1<ServiceResponse<AlertFeedbackInner>, AlertFeedbackInner>() {
-            @Override
-            public AlertFeedbackInner call(ServiceResponse<AlertFeedbackInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Adds an alert feedback submitted by customer.
-     *
-     * @param serviceName The name of the service.
-     * @param alertFeedback The alert feedback.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AlertFeedbackInner object
-     */
-    public Observable<ServiceResponse<AlertFeedbackInner>> addAlertFeedbackWithServiceResponseAsync(String serviceName, AlertFeedbackInner alertFeedback) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (alertFeedback == null) {
-            throw new IllegalArgumentException("Parameter alertFeedback is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        Validator.validate(alertFeedback);
-        return service.addAlertFeedback(serviceName, alertFeedback, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<AlertFeedbackInner>>>() {
-                @Override
-                public Observable<ServiceResponse<AlertFeedbackInner>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<AlertFeedbackInner> clientResponse = addAlertFeedbackDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<AlertFeedbackInner> addAlertFeedbackDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<AlertFeedbackInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<AlertFeedbackInner>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets a list of all alert feedback for a given tenant and alert type.
-     *
-     * @param serviceName The name of the service.
-     * @param shortName The name of the alert.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;AlertFeedbackInner&gt; object if successful.
-     */
-    public List<AlertFeedbackInner> listAlertFeedback(String serviceName, String shortName) {
-        return listAlertFeedbackWithServiceResponseAsync(serviceName, shortName).toBlocking().single().body();
-    }
-
-    /**
-     * Gets a list of all alert feedback for a given tenant and alert type.
-     *
-     * @param serviceName The name of the service.
-     * @param shortName The name of the alert.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<AlertFeedbackInner>> listAlertFeedbackAsync(String serviceName, String shortName, final ServiceCallback<List<AlertFeedbackInner>> serviceCallback) {
-        return ServiceFuture.fromResponse(listAlertFeedbackWithServiceResponseAsync(serviceName, shortName), serviceCallback);
-    }
-
-    /**
-     * Gets a list of all alert feedback for a given tenant and alert type.
-     *
-     * @param serviceName The name of the service.
-     * @param shortName The name of the alert.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;AlertFeedbackInner&gt; object
-     */
-    public Observable<List<AlertFeedbackInner>> listAlertFeedbackAsync(String serviceName, String shortName) {
-        return listAlertFeedbackWithServiceResponseAsync(serviceName, shortName).map(new Func1<ServiceResponse<List<AlertFeedbackInner>>, List<AlertFeedbackInner>>() {
-            @Override
-            public List<AlertFeedbackInner> call(ServiceResponse<List<AlertFeedbackInner>> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Gets a list of all alert feedback for a given tenant and alert type.
-     *
-     * @param serviceName The name of the service.
-     * @param shortName The name of the alert.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;AlertFeedbackInner&gt; object
-     */
-    public Observable<ServiceResponse<List<AlertFeedbackInner>>> listAlertFeedbackWithServiceResponseAsync(String serviceName, String shortName) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (shortName == null) {
-            throw new IllegalArgumentException("Parameter shortName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        return service.listAlertFeedback(serviceName, shortName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<AlertFeedbackInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<List<AlertFeedbackInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl1<AlertFeedbackInner>> result = listAlertFeedbackDelegate(response);
-                        ServiceResponse<List<AlertFeedbackInner>> clientResponse = new ServiceResponse<List<AlertFeedbackInner>>(result.body().items(), result.response());
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl1<AlertFeedbackInner>> listAlertFeedbackDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<AlertFeedbackInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<AlertFeedbackInner>>() { }.getType())
+    private ServiceResponse<ForestSummaryInner> getForestSummaryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ForestSummaryInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ForestSummaryInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -2267,7 +1322,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the service related metrics information.
+     * Gets the service related metric information.
      *
      * @param serviceName The name of the service.
      * @param metricName The metric name
@@ -2281,7 +1336,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the service related metrics information.
+     * Gets the service related metric information.
      *
      * @param serviceName The name of the service.
      * @param metricName The metric name
@@ -2294,7 +1349,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the service related metrics information.
+     * Gets the service related metric information.
      *
      * @param serviceName The name of the service.
      * @param metricName The metric name
@@ -2311,7 +1366,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the service related metrics information.
+     * Gets the service related metric information.
      *
      * @param serviceName The name of the service.
      * @param metricName The metric name
@@ -2538,73 +1593,66 @@ public class ServicesInner {
     }
 
     /**
-     * Updates the service level monitoring configuration.
+     * Gets Replication status for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the ReplicationStatusInner object if successful.
      */
-    public void updateMonitoringConfiguration(String serviceName, ItemInner configurationSetting) {
-        updateMonitoringConfigurationWithServiceResponseAsync(serviceName, configurationSetting).toBlocking().single().body();
+    public ReplicationStatusInner getReplicationStatus(String serviceName) {
+        return getReplicationStatusWithServiceResponseAsync(serviceName).toBlocking().single().body();
     }
 
     /**
-     * Updates the service level monitoring configuration.
+     * Gets Replication status for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> updateMonitoringConfigurationAsync(String serviceName, ItemInner configurationSetting, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(updateMonitoringConfigurationWithServiceResponseAsync(serviceName, configurationSetting), serviceCallback);
+    public ServiceFuture<ReplicationStatusInner> getReplicationStatusAsync(String serviceName, final ServiceCallback<ReplicationStatusInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getReplicationStatusWithServiceResponseAsync(serviceName), serviceCallback);
     }
 
     /**
-     * Updates the service level monitoring configuration.
+     * Gets Replication status for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the ReplicationStatusInner object
      */
-    public Observable<Void> updateMonitoringConfigurationAsync(String serviceName, ItemInner configurationSetting) {
-        return updateMonitoringConfigurationWithServiceResponseAsync(serviceName, configurationSetting).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<ReplicationStatusInner> getReplicationStatusAsync(String serviceName) {
+        return getReplicationStatusWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<ReplicationStatusInner>, ReplicationStatusInner>() {
             @Override
-            public Void call(ServiceResponse<Void> response) {
+            public ReplicationStatusInner call(ServiceResponse<ReplicationStatusInner> response) {
                 return response.body();
             }
         });
     }
 
     /**
-     * Updates the service level monitoring configuration.
+     * Gets Replication status for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the ReplicationStatusInner object
      */
-    public Observable<ServiceResponse<Void>> updateMonitoringConfigurationWithServiceResponseAsync(String serviceName, ItemInner configurationSetting) {
+    public Observable<ServiceResponse<ReplicationStatusInner>> getReplicationStatusWithServiceResponseAsync(String serviceName) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (configurationSetting == null) {
-            throw new IllegalArgumentException("Parameter configurationSetting is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Validator.validate(configurationSetting);
-        return service.updateMonitoringConfiguration(serviceName, configurationSetting, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+        return service.getReplicationStatus(serviceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ReplicationStatusInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ReplicationStatusInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = updateMonitoringConfigurationDelegate(response);
+                        ServiceResponse<ReplicationStatusInner> clientResponse = getReplicationStatusDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2613,75 +1661,95 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<Void> updateMonitoringConfigurationDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+    private ServiceResponse<ReplicationStatusInner> getReplicationStatusDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ReplicationStatusInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ReplicationStatusInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
 
     /**
-     * Gets the service level monitoring configurations.
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ItemInner&gt; object if successful.
+     * @return the ReplicationSummaryInner object if successful.
      */
-    public List<ItemInner> listMonitoringConfigurations(String serviceName) {
-        return listMonitoringConfigurationsWithServiceResponseAsync(serviceName).toBlocking().single().body();
+    public ReplicationSummaryInner getReplicationSummary(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey).toBlocking().single().body();
     }
 
     /**
-     * Gets the service level monitoring configurations.
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ItemInner>> listMonitoringConfigurationsAsync(String serviceName, final ServiceCallback<List<ItemInner>> serviceCallback) {
-        return ServiceFuture.fromResponse(listMonitoringConfigurationsWithServiceResponseAsync(serviceName), serviceCallback);
+    public ServiceFuture<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, final ServiceCallback<ReplicationSummaryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey), serviceCallback);
     }
 
     /**
-     * Gets the service level monitoring configurations.
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ItemInner&gt; object
+     * @return the observable to the ReplicationSummaryInner object
      */
-    public Observable<List<ItemInner>> listMonitoringConfigurationsAsync(String serviceName) {
-        return listMonitoringConfigurationsWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<List<ItemInner>>, List<ItemInner>>() {
+    public Observable<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey).map(new Func1<ServiceResponse<ReplicationSummaryInner>, ReplicationSummaryInner>() {
             @Override
-            public List<ItemInner> call(ServiceResponse<List<ItemInner>> response) {
+            public ReplicationSummaryInner call(ServiceResponse<ReplicationSummaryInner> response) {
                 return response.body();
             }
         });
     }
 
     /**
-     * Gets the service level monitoring configurations.
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
      *
      * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ItemInner&gt; object
+     * @return the observable to the ReplicationSummaryInner object
      */
-    public Observable<ServiceResponse<List<ItemInner>>> listMonitoringConfigurationsWithServiceResponseAsync(String serviceName) {
+    public Observable<ServiceResponse<ReplicationSummaryInner>> getReplicationSummaryWithServiceResponseAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
+        }
+        if (query == null) {
+            throw new IllegalArgumentException("Parameter query is required and cannot be null.");
+        }
+        if (nextPartitionKey == null) {
+            throw new IllegalArgumentException("Parameter nextPartitionKey is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listMonitoringConfigurations(serviceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ItemInner>>>>() {
+        final String filter = null;
+        final String nextRowKey = null;
+        final Integer takeCount = null;
+        return service.getReplicationSummary(serviceName, filter, isGroupbySite, query, nextPartitionKey, nextRowKey, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ReplicationSummaryInner>>>() {
                 @Override
-                public Observable<ServiceResponse<List<ItemInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ReplicationSummaryInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ItemInner>> result = listMonitoringConfigurationsDelegate(response);
-                        ServiceResponse<List<ItemInner>> clientResponse = new ServiceResponse<List<ItemInner>>(result.body().items(), result.response());
+                        ServiceResponse<ReplicationSummaryInner> clientResponse = getReplicationSummaryDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2690,77 +1758,222 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<ItemInner>> listMonitoringConfigurationsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ItemInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ItemInner>>() { }.getType())
+    /**
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
+     * @param filter The server property filter to apply.
+     * @param nextRowKey The next row key to query for.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the ReplicationSummaryInner object if successful.
+     */
+    public ReplicationSummaryInner getReplicationSummary(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey, filter, nextRowKey, takeCount).toBlocking().single().body();
+    }
+
+    /**
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
+     * @param filter The server property filter to apply.
+     * @param nextRowKey The next row key to query for.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount, final ServiceCallback<ReplicationSummaryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey, filter, nextRowKey, takeCount), serviceCallback);
+    }
+
+    /**
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
+     * @param filter The server property filter to apply.
+     * @param nextRowKey The next row key to query for.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ReplicationSummaryInner object
+     */
+    public Observable<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey, filter, nextRowKey, takeCount).map(new Func1<ServiceResponse<ReplicationSummaryInner>, ReplicationSummaryInner>() {
+            @Override
+            public ReplicationSummaryInner call(ServiceResponse<ReplicationSummaryInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Gets complete domain controller list along with replication details for a given Active Directory Domain Service, that is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param serviceName The name of the service.
+     * @param isGroupbySite Indicates if the result should be grouped by site or not.
+     * @param query The custom query.
+     * @param nextPartitionKey The next partition key to query for.
+     * @param filter The server property filter to apply.
+     * @param nextRowKey The next row key to query for.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ReplicationSummaryInner object
+     */
+    public Observable<ServiceResponse<ReplicationSummaryInner>> getReplicationSummaryWithServiceResponseAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount) {
+        if (serviceName == null) {
+            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
+        }
+        if (query == null) {
+            throw new IllegalArgumentException("Parameter query is required and cannot be null.");
+        }
+        if (nextPartitionKey == null) {
+            throw new IllegalArgumentException("Parameter nextPartitionKey is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getReplicationSummary(serviceName, filter, isGroupbySite, query, nextPartitionKey, nextRowKey, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ReplicationSummaryInner>>>() {
+                @Override
+                public Observable<ServiceResponse<ReplicationSummaryInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<ReplicationSummaryInner> clientResponse = getReplicationSummaryDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<ReplicationSummaryInner> getReplicationSummaryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ReplicationSummaryInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ReplicationSummaryInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ErrorReportUsersEntryInner&gt; object if successful.
+     * @return the PagedList&lt;AlertInner&gt; object if successful.
      */
-    public List<ErrorReportUsersEntryInner> listUserBadPasswordReport(String serviceName) {
-        return listUserBadPasswordReportWithServiceResponseAsync(serviceName).toBlocking().single().body();
+    public PagedList<AlertInner> listServerAlerts(final UUID serviceMemberId, final String serviceName) {
+        ServiceResponse<Page<AlertInner>> response = listServerAlertsSinglePageAsync(serviceMemberId, serviceName).toBlocking().single();
+        return new PagedList<AlertInner>(response.body()) {
+            @Override
+            public Page<AlertInner> nextPage(String nextPageLink) {
+                return listServerAlertsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ErrorReportUsersEntryInner>> listUserBadPasswordReportAsync(String serviceName, final ServiceCallback<List<ErrorReportUsersEntryInner>> serviceCallback) {
-        return ServiceFuture.fromResponse(listUserBadPasswordReportWithServiceResponseAsync(serviceName), serviceCallback);
+    public ServiceFuture<List<AlertInner>> listServerAlertsAsync(final UUID serviceMemberId, final String serviceName, final ListOperationCallback<AlertInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listServerAlertsSinglePageAsync(serviceMemberId, serviceName),
+            new Func1<String, Observable<ServiceResponse<Page<AlertInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<AlertInner>>> call(String nextPageLink) {
+                    return listServerAlertsNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ErrorReportUsersEntryInner&gt; object
+     * @return the observable to the PagedList&lt;AlertInner&gt; object
      */
-    public Observable<List<ErrorReportUsersEntryInner>> listUserBadPasswordReportAsync(String serviceName) {
-        return listUserBadPasswordReportWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<List<ErrorReportUsersEntryInner>>, List<ErrorReportUsersEntryInner>>() {
-            @Override
-            public List<ErrorReportUsersEntryInner> call(ServiceResponse<List<ErrorReportUsersEntryInner>> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<AlertInner>> listServerAlertsAsync(final UUID serviceMemberId, final String serviceName) {
+        return listServerAlertsWithServiceResponseAsync(serviceMemberId, serviceName)
+            .map(new Func1<ServiceResponse<Page<AlertInner>>, Page<AlertInner>>() {
+                @Override
+                public Page<AlertInner> call(ServiceResponse<Page<AlertInner>> response) {
+                    return response.body();
+                }
+            });
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ErrorReportUsersEntryInner&gt; object
+     * @return the observable to the PagedList&lt;AlertInner&gt; object
      */
-    public Observable<ServiceResponse<List<ErrorReportUsersEntryInner>>> listUserBadPasswordReportWithServiceResponseAsync(String serviceName) {
+    public Observable<ServiceResponse<Page<AlertInner>>> listServerAlertsWithServiceResponseAsync(final UUID serviceMemberId, final String serviceName) {
+        return listServerAlertsSinglePageAsync(serviceMemberId, serviceName)
+            .concatMap(new Func1<ServiceResponse<Page<AlertInner>>, Observable<ServiceResponse<Page<AlertInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<AlertInner>>> call(ServiceResponse<Page<AlertInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listServerAlertsNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
+     *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceName The name of the service.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;AlertInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<AlertInner>>> listServerAlertsSinglePageAsync(final UUID serviceMemberId, final String serviceName) {
+        if (serviceMemberId == null) {
+            throw new IllegalArgumentException("Parameter serviceMemberId is required and cannot be null.");
+        }
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final String dataSource = null;
-        return service.listUserBadPasswordReport(serviceName, dataSource, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ErrorReportUsersEntryInner>>>>() {
+        final String filter = null;
+        final String state = null;
+        final DateTime from = null;
+        final DateTime to = null;
+        return service.listServerAlerts(serviceMemberId, serviceName, filter, state, from, to, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AlertInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<List<ErrorReportUsersEntryInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<AlertInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ErrorReportUsersEntryInner>> result = listUserBadPasswordReportDelegate(response);
-                        ServiceResponse<List<ErrorReportUsersEntryInner>> clientResponse = new ServiceResponse<List<ErrorReportUsersEntryInner>>(result.body().items(), result.response());
-                        return Observable.just(clientResponse);
+                        ServiceResponse<PageImpl<AlertInner>> result = listServerAlertsDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<AlertInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -2769,72 +1982,131 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
-     * @param dataSource The source of data, if its test data or customer data.
+     * @param filter The alert property filter to apply.
+     * @param state The alert state to query for.
+     * @param from The start date to query for.
+     * @param to The end date till when to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ErrorReportUsersEntryInner&gt; object if successful.
+     * @return the PagedList&lt;AlertInner&gt; object if successful.
      */
-    public List<ErrorReportUsersEntryInner> listUserBadPasswordReport(String serviceName, String dataSource) {
-        return listUserBadPasswordReportWithServiceResponseAsync(serviceName, dataSource).toBlocking().single().body();
+    public PagedList<AlertInner> listServerAlerts(final UUID serviceMemberId, final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
+        ServiceResponse<Page<AlertInner>> response = listServerAlertsSinglePageAsync(serviceMemberId, serviceName, filter, state, from, to).toBlocking().single();
+        return new PagedList<AlertInner>(response.body()) {
+            @Override
+            public Page<AlertInner> nextPage(String nextPageLink) {
+                return listServerAlertsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
-     * @param dataSource The source of data, if its test data or customer data.
+     * @param filter The alert property filter to apply.
+     * @param state The alert state to query for.
+     * @param from The start date to query for.
+     * @param to The end date till when to query for.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ErrorReportUsersEntryInner>> listUserBadPasswordReportAsync(String serviceName, String dataSource, final ServiceCallback<List<ErrorReportUsersEntryInner>> serviceCallback) {
-        return ServiceFuture.fromResponse(listUserBadPasswordReportWithServiceResponseAsync(serviceName, dataSource), serviceCallback);
+    public ServiceFuture<List<AlertInner>> listServerAlertsAsync(final UUID serviceMemberId, final String serviceName, final String filter, final String state, final DateTime from, final DateTime to, final ListOperationCallback<AlertInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listServerAlertsSinglePageAsync(serviceMemberId, serviceName, filter, state, from, to),
+            new Func1<String, Observable<ServiceResponse<Page<AlertInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<AlertInner>>> call(String nextPageLink) {
+                    return listServerAlertsNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
-     * @param dataSource The source of data, if its test data or customer data.
+     * @param filter The alert property filter to apply.
+     * @param state The alert state to query for.
+     * @param from The start date to query for.
+     * @param to The end date till when to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ErrorReportUsersEntryInner&gt; object
+     * @return the observable to the PagedList&lt;AlertInner&gt; object
      */
-    public Observable<List<ErrorReportUsersEntryInner>> listUserBadPasswordReportAsync(String serviceName, String dataSource) {
-        return listUserBadPasswordReportWithServiceResponseAsync(serviceName, dataSource).map(new Func1<ServiceResponse<List<ErrorReportUsersEntryInner>>, List<ErrorReportUsersEntryInner>>() {
-            @Override
-            public List<ErrorReportUsersEntryInner> call(ServiceResponse<List<ErrorReportUsersEntryInner>> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<AlertInner>> listServerAlertsAsync(final UUID serviceMemberId, final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
+        return listServerAlertsWithServiceResponseAsync(serviceMemberId, serviceName, filter, state, from, to)
+            .map(new Func1<ServiceResponse<Page<AlertInner>>, Page<AlertInner>>() {
+                @Override
+                public Page<AlertInner> call(ServiceResponse<Page<AlertInner>> response) {
+                    return response.body();
+                }
+            });
     }
 
     /**
-     * Gets the bad password login attempt report for an user.
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
+     * @param serviceMemberId The server Id for which the laert details needs to be queried.
      * @param serviceName The name of the service.
-     * @param dataSource The source of data, if its test data or customer data.
+     * @param filter The alert property filter to apply.
+     * @param state The alert state to query for.
+     * @param from The start date to query for.
+     * @param to The end date till when to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ErrorReportUsersEntryInner&gt; object
+     * @return the observable to the PagedList&lt;AlertInner&gt; object
      */
-    public Observable<ServiceResponse<List<ErrorReportUsersEntryInner>>> listUserBadPasswordReportWithServiceResponseAsync(String serviceName, String dataSource) {
+    public Observable<ServiceResponse<Page<AlertInner>>> listServerAlertsWithServiceResponseAsync(final UUID serviceMemberId, final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
+        return listServerAlertsSinglePageAsync(serviceMemberId, serviceName, filter, state, from, to)
+            .concatMap(new Func1<ServiceResponse<Page<AlertInner>>, Observable<ServiceResponse<Page<AlertInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<AlertInner>>> call(ServiceResponse<Page<AlertInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listServerAlertsNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
+     *
+    ServiceResponse<PageImpl<AlertInner>> * @param serviceMemberId The server Id for which the laert details needs to be queried.
+    ServiceResponse<PageImpl<AlertInner>> * @param serviceName The name of the service.
+    ServiceResponse<PageImpl<AlertInner>> * @param filter The alert property filter to apply.
+    ServiceResponse<PageImpl<AlertInner>> * @param state The alert state to query for.
+    ServiceResponse<PageImpl<AlertInner>> * @param from The start date to query for.
+    ServiceResponse<PageImpl<AlertInner>> * @param to The end date till when to query for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;AlertInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<AlertInner>>> listServerAlertsSinglePageAsync(final UUID serviceMemberId, final String serviceName, final String filter, final String state, final DateTime from, final DateTime to) {
+        if (serviceMemberId == null) {
+            throw new IllegalArgumentException("Parameter serviceMemberId is required and cannot be null.");
+        }
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listUserBadPasswordReport(serviceName, dataSource, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ErrorReportUsersEntryInner>>>>() {
+        return service.listServerAlerts(serviceMemberId, serviceName, filter, state, from, to, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AlertInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<List<ErrorReportUsersEntryInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<AlertInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ErrorReportUsersEntryInner>> result = listUserBadPasswordReportDelegate(response);
-                        ServiceResponse<List<ErrorReportUsersEntryInner>> clientResponse = new ServiceResponse<List<ErrorReportUsersEntryInner>>(result.body().items(), result.response());
-                        return Observable.just(clientResponse);
+                        ServiceResponse<PageImpl<AlertInner>> result = listServerAlertsDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<AlertInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -2842,82 +2114,107 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<ErrorReportUsersEntryInner>> listUserBadPasswordReportDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ErrorReportUsersEntryInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ErrorReportUsersEntryInner>>() { }.getType())
+    private ServiceResponse<PageImpl<AlertInner>> listServerAlertsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<AlertInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<AlertInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
 
     /**
-     * Checks if the tenant, to which a service is registered, is whitelisted to use a feature.
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
-     * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the boolean object if successful.
+     * @return the PagedList&lt;ServiceInner&gt; object if successful.
      */
-    public boolean getTenantWhitelisting(String serviceName, String featureName) {
-        return getTenantWhitelistingWithServiceResponseAsync(serviceName, featureName).toBlocking().single().body();
+    public PagedList<ServiceInner> listPremiumServices() {
+        ServiceResponse<Page<ServiceInner>> response = listPremiumServicesSinglePageAsync().toBlocking().single();
+        return new PagedList<ServiceInner>(response.body()) {
+            @Override
+            public Page<ServiceInner> nextPage(String nextPageLink) {
+                return listPremiumServicesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
-     * Checks if the tenant, to which a service is registered, is whitelisted to use a feature.
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
-     * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Boolean> getTenantWhitelistingAsync(String serviceName, String featureName, final ServiceCallback<Boolean> serviceCallback) {
-        return ServiceFuture.fromResponse(getTenantWhitelistingWithServiceResponseAsync(serviceName, featureName), serviceCallback);
+    public ServiceFuture<List<ServiceInner>> listPremiumServicesAsync(final ListOperationCallback<ServiceInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listPremiumServicesSinglePageAsync(),
+            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                    return listPremiumServicesNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
     }
 
     /**
-     * Checks if the tenant, to which a service is registered, is whitelisted to use a feature.
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
-     * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
+     * @return the observable to the PagedList&lt;ServiceInner&gt; object
      */
-    public Observable<Boolean> getTenantWhitelistingAsync(String serviceName, String featureName) {
-        return getTenantWhitelistingWithServiceResponseAsync(serviceName, featureName).map(new Func1<ServiceResponse<Boolean>, Boolean>() {
-            @Override
-            public Boolean call(ServiceResponse<Boolean> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<ServiceInner>> listPremiumServicesAsync() {
+        return listPremiumServicesWithServiceResponseAsync()
+            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+                @Override
+                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                    return response.body();
+                }
+            });
     }
 
     /**
-     * Checks if the tenant, to which a service is registered, is whitelisted to use a feature.
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
-     * @param serviceName The name of the service.
-     * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
+     * @return the observable to the PagedList&lt;ServiceInner&gt; object
      */
-    public Observable<ServiceResponse<Boolean>> getTenantWhitelistingWithServiceResponseAsync(String serviceName, String featureName) {
-        if (serviceName == null) {
-            throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
-        }
-        if (featureName == null) {
-            throw new IllegalArgumentException("Parameter featureName is required and cannot be null.");
-        }
+    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumServicesWithServiceResponseAsync() {
+        return listPremiumServicesSinglePageAsync()
+            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listPremiumServicesNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumServicesSinglePageAsync() {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.getTenantWhitelisting(serviceName, featureName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Boolean>>>() {
+        final String filter = null;
+        final String serviceType = null;
+        final Integer skipCount = null;
+        final Integer takeCount = null;
+        return service.listPremiumServices(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Boolean>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Boolean> clientResponse = getTenantWhitelistingDelegate(response);
-                        return Observable.just(clientResponse);
+                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumServicesDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -2925,15 +2222,132 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<Boolean> getTenantWhitelistingDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Boolean, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Boolean>() { }.getType())
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param filter The service property filter to apply.
+     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
+     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     */
+    public PagedList<ServiceInner> listPremiumServices(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+        ServiceResponse<Page<ServiceInner>> response = listPremiumServicesSinglePageAsync(filter, serviceType, skipCount, takeCount).toBlocking().single();
+        return new PagedList<ServiceInner>(response.body()) {
+            @Override
+            public Page<ServiceInner> nextPage(String nextPageLink) {
+                return listPremiumServicesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param filter The service property filter to apply.
+     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
+     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<ServiceInner>> listPremiumServicesAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount, final ListOperationCallback<ServiceInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listPremiumServicesSinglePageAsync(filter, serviceType, skipCount, takeCount),
+            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                    return listPremiumServicesNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param filter The service property filter to apply.
+     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
+     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     */
+    public Observable<Page<ServiceInner>> listPremiumServicesAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+        return listPremiumServicesWithServiceResponseAsync(filter, serviceType, skipCount, takeCount)
+            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+                @Override
+                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param filter The service property filter to apply.
+     * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
+     * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
+     * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumServicesWithServiceResponseAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+        return listPremiumServicesSinglePageAsync(filter, serviceType, skipCount, takeCount)
+            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listPremiumServicesNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+    ServiceResponse<PageImpl<ServiceInner>> * @param filter The service property filter to apply.
+    ServiceResponse<PageImpl<ServiceInner>> * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
+    ServiceResponse<PageImpl<ServiceInner>> * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
+    ServiceResponse<PageImpl<ServiceInner>> * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumServicesSinglePageAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listPremiumServices(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumServicesDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<ServiceInner>> listPremiumServicesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2952,7 +2366,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
@@ -2973,7 +2387,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2990,7 +2404,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -3011,7 +2425,7 @@ public class ServicesInner {
     }
 
     /**
-     * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
+     * Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
     ServiceResponse<PageImpl<ServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -3039,339 +2453,6 @@ public class ServicesInner {
     private ServiceResponse<PageImpl<ServiceInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
-     */
-    public PagedList<ServiceInner> listPremiumNext(final String nextPageLink) {
-        ServiceResponse<Page<ServiceInner>> response = listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
-            @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
-                return listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ServiceInner>> listPremiumNextAsync(final String nextPageLink, final ServiceFuture<List<ServiceInner>> serviceFuture, final ListOperationCallback<ServiceInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listPremiumNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
-                    return listPremiumNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
-     */
-    public Observable<Page<ServiceInner>> listPremiumNextAsync(final String nextPageLink) {
-        return listPremiumNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
-                @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumNextWithServiceResponseAsync(final String nextPageLink) {
-        return listPremiumNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listPremiumNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
-     *
-    ServiceResponse<PageImpl<ServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listPremiumNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<ServiceInner>> listPremiumNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;AlertInner&gt; object if successful.
-     */
-    public PagedList<AlertInner> listAlertsNext(final String nextPageLink) {
-        ServiceResponse<Page<AlertInner>> response = listAlertsNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<AlertInner>(response.body()) {
-            @Override
-            public Page<AlertInner> nextPage(String nextPageLink) {
-                return listAlertsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<AlertInner>> listAlertsNextAsync(final String nextPageLink, final ServiceFuture<List<AlertInner>> serviceFuture, final ListOperationCallback<AlertInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listAlertsNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(String nextPageLink) {
-                    return listAlertsNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AlertInner&gt; object
-     */
-    public Observable<Page<AlertInner>> listAlertsNextAsync(final String nextPageLink) {
-        return listAlertsNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<AlertInner>>, Page<AlertInner>>() {
-                @Override
-                public Page<AlertInner> call(ServiceResponse<Page<AlertInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;AlertInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<AlertInner>>> listAlertsNextWithServiceResponseAsync(final String nextPageLink) {
-        return listAlertsNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<AlertInner>>, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(ServiceResponse<Page<AlertInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listAlertsNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the alerts for a given service.
-     *
-    ServiceResponse<PageImpl<AlertInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;AlertInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<AlertInner>>> listAlertsNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listAlertsNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AlertInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<AlertInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<AlertInner>> result = listAlertsNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<AlertInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<AlertInner>> listAlertsNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AlertInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<AlertInner>>() { }.getType())
-                .registerError(CloudException.class)
-                .build(response);
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ExportStatusInner&gt; object if successful.
-     */
-    public PagedList<ExportStatusInner> listExportStatusNext(final String nextPageLink) {
-        ServiceResponse<Page<ExportStatusInner>> response = listExportStatusNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<ExportStatusInner>(response.body()) {
-            @Override
-            public Page<ExportStatusInner> nextPage(String nextPageLink) {
-                return listExportStatusNextSinglePageAsync(nextPageLink).toBlocking().single().body();
-            }
-        };
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<List<ExportStatusInner>> listExportStatusNextAsync(final String nextPageLink, final ServiceFuture<List<ExportStatusInner>> serviceFuture, final ListOperationCallback<ExportStatusInner> serviceCallback) {
-        return AzureServiceFuture.fromPageResponse(
-            listExportStatusNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<ExportStatusInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ExportStatusInner>>> call(String nextPageLink) {
-                    return listExportStatusNextSinglePageAsync(nextPageLink);
-                }
-            },
-            serviceCallback);
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ExportStatusInner&gt; object
-     */
-    public Observable<Page<ExportStatusInner>> listExportStatusNextAsync(final String nextPageLink) {
-        return listExportStatusNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<ExportStatusInner>>, Page<ExportStatusInner>>() {
-                @Override
-                public Page<ExportStatusInner> call(ServiceResponse<Page<ExportStatusInner>> response) {
-                    return response.body();
-                }
-            });
-    }
-
-    /**
-     * Gets the export status.
-     *
-     * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ExportStatusInner&gt; object
-     */
-    public Observable<ServiceResponse<Page<ExportStatusInner>>> listExportStatusNextWithServiceResponseAsync(final String nextPageLink) {
-        return listExportStatusNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<ExportStatusInner>>, Observable<ServiceResponse<Page<ExportStatusInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ExportStatusInner>>> call(ServiceResponse<Page<ExportStatusInner>> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
-                    }
-                    return Observable.just(page).concatWith(listExportStatusNextWithServiceResponseAsync(nextPageLink));
-                }
-            });
-    }
-
-    /**
-     * Gets the export status.
-     *
-    ServiceResponse<PageImpl<ExportStatusInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ExportStatusInner&gt; object wrapped in {@link ServiceResponse} if successful.
-     */
-    public Observable<ServiceResponse<Page<ExportStatusInner>>> listExportStatusNextSinglePageAsync(final String nextPageLink) {
-        if (nextPageLink == null) {
-            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
-        }
-        String nextUrl = String.format("%s", nextPageLink);
-        return service.listExportStatusNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ExportStatusInner>>>>() {
-                @Override
-                public Observable<ServiceResponse<Page<ExportStatusInner>>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<PageImpl<ExportStatusInner>> result = listExportStatusNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ExportStatusInner>>(result.body(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<PageImpl<ExportStatusInner>> listExportStatusNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ExportStatusInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ExportStatusInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -3705,6 +2786,228 @@ public class ServicesInner {
     private ServiceResponse<PageImpl<MetricMetadataInner>> listMetricMetadataNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<MetricMetadataInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<MetricMetadataInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;AlertInner&gt; object if successful.
+     */
+    public PagedList<AlertInner> listServerAlertsNext(final String nextPageLink) {
+        ServiceResponse<Page<AlertInner>> response = listServerAlertsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<AlertInner>(response.body()) {
+            @Override
+            public Page<AlertInner> nextPage(String nextPageLink) {
+                return listServerAlertsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<AlertInner>> listServerAlertsNextAsync(final String nextPageLink, final ServiceFuture<List<AlertInner>> serviceFuture, final ListOperationCallback<AlertInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listServerAlertsNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<AlertInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<AlertInner>>> call(String nextPageLink) {
+                    return listServerAlertsNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;AlertInner&gt; object
+     */
+    public Observable<Page<AlertInner>> listServerAlertsNextAsync(final String nextPageLink) {
+        return listServerAlertsNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<AlertInner>>, Page<AlertInner>>() {
+                @Override
+                public Page<AlertInner> call(ServiceResponse<Page<AlertInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;AlertInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<AlertInner>>> listServerAlertsNextWithServiceResponseAsync(final String nextPageLink) {
+        return listServerAlertsNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<AlertInner>>, Observable<ServiceResponse<Page<AlertInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<AlertInner>>> call(ServiceResponse<Page<AlertInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listServerAlertsNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
+     *
+    ServiceResponse<PageImpl<AlertInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;AlertInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<AlertInner>>> listServerAlertsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.listServerAlertsNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AlertInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<AlertInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<AlertInner>> result = listServerAlertsNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<AlertInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<AlertInner>> listServerAlertsNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<AlertInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<AlertInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     */
+    public PagedList<ServiceInner> listPremiumServicesNext(final String nextPageLink) {
+        ServiceResponse<Page<ServiceInner>> response = listPremiumServicesNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<ServiceInner>(response.body()) {
+            @Override
+            public Page<ServiceInner> nextPage(String nextPageLink) {
+                return listPremiumServicesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<ServiceInner>> listPremiumServicesNextAsync(final String nextPageLink, final ServiceFuture<List<ServiceInner>> serviceFuture, final ListOperationCallback<ServiceInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listPremiumServicesNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                    return listPremiumServicesNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     */
+    public Observable<Page<ServiceInner>> listPremiumServicesNextAsync(final String nextPageLink) {
+        return listPremiumServicesNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+                @Override
+                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumServicesNextWithServiceResponseAsync(final String nextPageLink) {
+        return listPremiumServicesNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listPremiumServicesNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets the details of Active Directory Domain Services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
+     *
+    ServiceResponse<PageImpl<ServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumServicesNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.listPremiumServicesNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumServicesNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<ServiceInner>> listPremiumServicesNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
