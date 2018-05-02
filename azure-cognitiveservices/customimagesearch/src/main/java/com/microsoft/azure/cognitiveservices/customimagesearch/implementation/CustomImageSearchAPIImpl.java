@@ -98,16 +98,16 @@ public class CustomImageSearchAPIImpl extends AzureServiceClient {
     }
 
     /**
-     * The CustomsInner object to access its operations.
+     * The CustomInstancesInner object to access its operations.
      */
-    private CustomsInner customs;
+    private CustomInstancesInner customInstances;
 
     /**
-     * Gets the CustomsInner object to access its operations.
-     * @return the CustomsInner object.
+     * Gets the CustomInstancesInner object to access its operations.
+     * @return the CustomInstancesInner object.
      */
-    public CustomsInner customs() {
-        return this.customs;
+    public CustomInstancesInner customInstances() {
+        return this.customInstances;
     }
 
     /**
@@ -144,7 +144,7 @@ public class CustomImageSearchAPIImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
-        this.customs = new CustomsInner(restClient().retrofit(), this);
+        this.customInstances = new CustomInstancesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
