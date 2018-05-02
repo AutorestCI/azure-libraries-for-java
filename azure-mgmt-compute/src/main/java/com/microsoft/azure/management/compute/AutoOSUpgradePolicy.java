@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class AutoOSUpgradePolicy {
     /**
-     * whether OS image rollback feature should be disabled.
+     * Whether OS image rollback feature should be disabled. Default value is
+     * false.
      */
     @JsonProperty(value = "disableAutoRollback")
     private Boolean disableAutoRollback;
