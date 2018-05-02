@@ -27,6 +27,12 @@ public class ErrorDetails {
     private String message;
 
     /**
+     * A human-readable representation of the error's details.
+     */
+    @JsonProperty(value = "details")
+    private String details;
+
+    /**
      * Get the code value.
      *
      * @return the code value
@@ -63,6 +69,26 @@ public class ErrorDetails {
      */
     public ErrorDetails withMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    /**
+     * Get the details value.
+     *
+     * @return the details value
+     */
+    public String details() {
+        return this.details;
+    }
+
+    /**
+     * Set the details value.
+     *
+     * @param details the details value to set
+     * @return the ErrorDetails object itself.
+     */
+    public ErrorDetails withDetails(String details) {
+        this.details = details;
         return this;
     }
 

@@ -68,19 +68,27 @@ public class ManagementGroupsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroups get" })
         @GET("providers/Microsoft.Management/managementGroups/{groupId}")
-        Observable<Response<ResponseBody>> get(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Query("$expand") String expand, @Query("$recurse") Boolean recurse, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> get(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Query("$expand") String expand, @Query("$recurse") Boolean recurse, @Query("$filter") String filter, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroups createOrUpdate" })
         @PUT("providers/Microsoft.Management/managementGroups/{groupId}")
-        Observable<Response<ResponseBody>> createOrUpdate(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Body CreateManagementGroupRequestInner createManagementGroupRequest, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> createOrUpdate(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Header("Cache-Control") String cacheControl, @Body CreateManagementGroupRequestInner createManagementGroupRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroups beginCreateOrUpdate" })
+        @PUT("providers/Microsoft.Management/managementGroups/{groupId}")
+        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Header("Cache-Control") String cacheControl, @Body CreateManagementGroupRequestInner createManagementGroupRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroups update" })
         @PATCH("providers/Microsoft.Management/managementGroups/{groupId}")
-        Observable<Response<ResponseBody>> update(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Body CreateManagementGroupRequestInner createManagementGroupRequest, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Header("Cache-Control") String cacheControl, @Body PatchManagementGroupRequestInner patchGroupRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroups delete" })
         @HTTP(path = "providers/Microsoft.Management/managementGroups/{groupId}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> delete(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroups beginDelete" })
+        @HTTP(path = "providers/Microsoft.Management/managementGroups/{groupId}", method = "DELETE", hasBody = true)
+        Observable<Response<ResponseBody>> beginDelete(@Path("groupId") String groupId, @Query("api-version") String apiVersion, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroups listNext" })
         @GET
@@ -172,8 +180,7 @@ public class ManagementGroupsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String cacheControl = null;
-        final String skiptoken = null;
-        return service.list(this.client.apiVersion(), cacheControl, skiptoken, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.apiVersion(), cacheControl, this.client.skiptoken(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(Response<ResponseBody> response) {
@@ -191,15 +198,13 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
-     If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ManagementGroupInfoInner&gt; object if successful.
      */
-    public PagedList<ManagementGroupInfoInner> list(final String cacheControl, final String skiptoken) {
-        ServiceResponse<Page<ManagementGroupInfoInner>> response = listSinglePageAsync(cacheControl, skiptoken).toBlocking().single();
+    public PagedList<ManagementGroupInfoInner> list(final String cacheControl) {
+        ServiceResponse<Page<ManagementGroupInfoInner>> response = listSinglePageAsync(cacheControl).toBlocking().single();
         return new PagedList<ManagementGroupInfoInner>(response.body()) {
             @Override
             public Page<ManagementGroupInfoInner> nextPage(String nextPageLink) {
@@ -212,15 +217,13 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
-     If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ManagementGroupInfoInner>> listAsync(final String cacheControl, final String skiptoken, final ListOperationCallback<ManagementGroupInfoInner> serviceCallback) {
+    public ServiceFuture<List<ManagementGroupInfoInner>> listAsync(final String cacheControl, final ListOperationCallback<ManagementGroupInfoInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(cacheControl, skiptoken),
+            listSinglePageAsync(cacheControl),
             new Func1<String, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(String nextPageLink) {
@@ -234,13 +237,11 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
-     If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ManagementGroupInfoInner&gt; object
      */
-    public Observable<Page<ManagementGroupInfoInner>> listAsync(final String cacheControl, final String skiptoken) {
-        return listWithServiceResponseAsync(cacheControl, skiptoken)
+    public Observable<Page<ManagementGroupInfoInner>> listAsync(final String cacheControl) {
+        return listWithServiceResponseAsync(cacheControl)
             .map(new Func1<ServiceResponse<Page<ManagementGroupInfoInner>>, Page<ManagementGroupInfoInner>>() {
                 @Override
                 public Page<ManagementGroupInfoInner> call(ServiceResponse<Page<ManagementGroupInfoInner>> response) {
@@ -253,13 +254,11 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
-     If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ManagementGroupInfoInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listWithServiceResponseAsync(final String cacheControl, final String skiptoken) {
-        return listSinglePageAsync(cacheControl, skiptoken)
+    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listWithServiceResponseAsync(final String cacheControl) {
+        return listSinglePageAsync(cacheControl)
             .concatMap(new Func1<ServiceResponse<Page<ManagementGroupInfoInner>>, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(ServiceResponse<Page<ManagementGroupInfoInner>> page) {
@@ -276,16 +275,14 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
     ServiceResponse<PageImpl<ManagementGroupInfoInner>> * @param cacheControl Indicates that the request shouldn't utilize any caches.
-    ServiceResponse<PageImpl<ManagementGroupInfoInner>> * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
-     If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ManagementGroupInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listSinglePageAsync(final String cacheControl, final String skiptoken) {
+    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listSinglePageAsync(final String cacheControl) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.list(this.client.apiVersion(), cacheControl, skiptoken, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.apiVersion(), cacheControl, this.client.skiptoken(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(Response<ResponseBody> response) {
@@ -363,8 +360,9 @@ public class ManagementGroupsInner {
         }
         final String expand = null;
         final Boolean recurse = null;
+        final String filter = null;
         final String cacheControl = null;
-        return service.get(groupId, this.client.apiVersion(), expand, recurse, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.get(groupId, this.client.apiVersion(), expand, recurse, filter, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ManagementGroupInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ManagementGroupInner>> call(Response<ResponseBody> response) {
@@ -383,15 +381,16 @@ public class ManagementGroupsInner {
      *
      * @param groupId Management Group ID.
      * @param expand The $expand=children query string parameter allows clients to request inclusion of children in the response payload. Possible values include: 'children'
-     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload.
+     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload. Note that  $expand=children must be passed up if $recurse is set to true.
+     * @param filter A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType ne Subscription')
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ManagementGroupInner object if successful.
      */
-    public ManagementGroupInner get(String groupId, String expand, Boolean recurse, String cacheControl) {
-        return getWithServiceResponseAsync(groupId, expand, recurse, cacheControl).toBlocking().single().body();
+    public ManagementGroupInner get(String groupId, String expand, Boolean recurse, String filter, String cacheControl) {
+        return getWithServiceResponseAsync(groupId, expand, recurse, filter, cacheControl).toBlocking().single().body();
     }
 
     /**
@@ -399,14 +398,15 @@ public class ManagementGroupsInner {
      *
      * @param groupId Management Group ID.
      * @param expand The $expand=children query string parameter allows clients to request inclusion of children in the response payload. Possible values include: 'children'
-     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload.
+     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload. Note that  $expand=children must be passed up if $recurse is set to true.
+     * @param filter A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType ne Subscription')
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagementGroupInner> getAsync(String groupId, String expand, Boolean recurse, String cacheControl, final ServiceCallback<ManagementGroupInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getWithServiceResponseAsync(groupId, expand, recurse, cacheControl), serviceCallback);
+    public ServiceFuture<ManagementGroupInner> getAsync(String groupId, String expand, Boolean recurse, String filter, String cacheControl, final ServiceCallback<ManagementGroupInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getWithServiceResponseAsync(groupId, expand, recurse, filter, cacheControl), serviceCallback);
     }
 
     /**
@@ -414,13 +414,14 @@ public class ManagementGroupsInner {
      *
      * @param groupId Management Group ID.
      * @param expand The $expand=children query string parameter allows clients to request inclusion of children in the response payload. Possible values include: 'children'
-     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload.
+     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload. Note that  $expand=children must be passed up if $recurse is set to true.
+     * @param filter A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType ne Subscription')
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagementGroupInner object
      */
-    public Observable<ManagementGroupInner> getAsync(String groupId, String expand, Boolean recurse, String cacheControl) {
-        return getWithServiceResponseAsync(groupId, expand, recurse, cacheControl).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
+    public Observable<ManagementGroupInner> getAsync(String groupId, String expand, Boolean recurse, String filter, String cacheControl) {
+        return getWithServiceResponseAsync(groupId, expand, recurse, filter, cacheControl).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
             @Override
             public ManagementGroupInner call(ServiceResponse<ManagementGroupInner> response) {
                 return response.body();
@@ -433,19 +434,20 @@ public class ManagementGroupsInner {
      *
      * @param groupId Management Group ID.
      * @param expand The $expand=children query string parameter allows clients to request inclusion of children in the response payload. Possible values include: 'children'
-     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload.
+     * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload. Note that  $expand=children must be passed up if $recurse is set to true.
+     * @param filter A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType ne Subscription')
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagementGroupInner object
      */
-    public Observable<ServiceResponse<ManagementGroupInner>> getWithServiceResponseAsync(String groupId, String expand, Boolean recurse, String cacheControl) {
+    public Observable<ServiceResponse<ManagementGroupInner>> getWithServiceResponseAsync(String groupId, String expand, Boolean recurse, String filter, String cacheControl) {
         if (groupId == null) {
             throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.get(groupId, this.client.apiVersion(), expand, recurse, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.get(groupId, this.client.apiVersion(), expand, recurse, filter, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ManagementGroupInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ManagementGroupInner>> call(Response<ResponseBody> response) {
@@ -475,10 +477,10 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ManagementGroupInner object if successful.
+     * @return the Object object if successful.
      */
-    public ManagementGroupInner createOrUpdate(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
-        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest).toBlocking().single().body();
+    public Object createOrUpdate(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
+        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest).toBlocking().last().body();
     }
 
     /**
@@ -491,7 +493,7 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagementGroupInner> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, final ServiceCallback<ManagementGroupInner> serviceCallback) {
+    public ServiceFuture<Object> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest), serviceCallback);
     }
 
@@ -502,12 +504,12 @@ public class ManagementGroupsInner {
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ManagementGroupInner object
+     * @return the observable for the request
      */
-    public Observable<ManagementGroupInner> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
-        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
+    public Observable<Object> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
+        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest).map(new Func1<ServiceResponse<Object>, Object>() {
             @Override
-            public ManagementGroupInner call(ServiceResponse<ManagementGroupInner> response) {
+            public Object call(ServiceResponse<Object> response) {
                 return response.body();
             }
         });
@@ -520,9 +522,9 @@ public class ManagementGroupsInner {
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ManagementGroupInner object
+     * @return the observable for the request
      */
-    public Observable<ServiceResponse<ManagementGroupInner>> createOrUpdateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
+    public Observable<ServiceResponse<Object>> createOrUpdateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
         if (groupId == null) {
             throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
         }
@@ -534,20 +536,9 @@ public class ManagementGroupsInner {
         }
         Validator.validate(createManagementGroupRequest);
         final String cacheControl = null;
-        return service.createOrUpdate(groupId, this.client.apiVersion(), createManagementGroupRequest, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ManagementGroupInner>>>() {
-                @Override
-                public Observable<ServiceResponse<ManagementGroupInner>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<ManagementGroupInner> clientResponse = createOrUpdateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(groupId, this.client.apiVersion(), cacheControl, createManagementGroupRequest, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<Object>() { }.getType());
     }
-
     /**
      * Create or update a management group.
      If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
@@ -558,10 +549,10 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ManagementGroupInner object if successful.
+     * @return the Object object if successful.
      */
-    public ManagementGroupInner createOrUpdate(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
-        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).toBlocking().single().body();
+    public Object createOrUpdate(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
+        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).toBlocking().last().body();
     }
 
     /**
@@ -575,7 +566,7 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagementGroupInner> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl, final ServiceCallback<ManagementGroupInner> serviceCallback) {
+    public ServiceFuture<Object> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl), serviceCallback);
     }
 
@@ -587,12 +578,12 @@ public class ManagementGroupsInner {
      * @param createManagementGroupRequest Management group creation parameters.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ManagementGroupInner object
+     * @return the observable for the request
      */
-    public Observable<ManagementGroupInner> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
-        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
+    public Observable<Object> createOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
+        return createOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).map(new Func1<ServiceResponse<Object>, Object>() {
             @Override
-            public ManagementGroupInner call(ServiceResponse<ManagementGroupInner> response) {
+            public Object call(ServiceResponse<Object> response) {
                 return response.body();
             }
         });
@@ -606,9 +597,9 @@ public class ManagementGroupsInner {
      * @param createManagementGroupRequest Management group creation parameters.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ManagementGroupInner object
+     * @return the observable for the request
      */
-    public Observable<ServiceResponse<ManagementGroupInner>> createOrUpdateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
+    public Observable<ServiceResponse<Object>> createOrUpdateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
         if (groupId == null) {
             throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
         }
@@ -619,43 +610,28 @@ public class ManagementGroupsInner {
             throw new IllegalArgumentException("Parameter createManagementGroupRequest is required and cannot be null.");
         }
         Validator.validate(createManagementGroupRequest);
-        return service.createOrUpdate(groupId, this.client.apiVersion(), createManagementGroupRequest, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ManagementGroupInner>>>() {
-                @Override
-                public Observable<ServiceResponse<ManagementGroupInner>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<ManagementGroupInner> clientResponse = createOrUpdateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponse<ManagementGroupInner> createOrUpdateDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ManagementGroupInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<ManagementGroupInner>() { }.getType())
-                .registerError(ErrorResponseException.class)
-                .build(response);
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(groupId, this.client.apiVersion(), cacheControl, createManagementGroupRequest, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<Object>() { }.getType());
     }
 
     /**
-     * Update a management group.
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ManagementGroupInner object if successful.
+     * @return the Object object if successful.
      */
-    public ManagementGroupInner update(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
-        return updateWithServiceResponseAsync(groupId, createManagementGroupRequest).toBlocking().single().body();
+    public Object beginCreateOrUpdate(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
+        return beginCreateOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest).toBlocking().single().body();
     }
 
     /**
-     * Update a management group.
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -663,36 +639,38 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagementGroupInner> updateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, final ServiceCallback<ManagementGroupInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(groupId, createManagementGroupRequest), serviceCallback);
+    public ServiceFuture<Object> beginCreateOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest), serviceCallback);
     }
 
     /**
-     * Update a management group.
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ManagementGroupInner object
+     * @return the observable to the Object object
      */
-    public Observable<ManagementGroupInner> updateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
-        return updateWithServiceResponseAsync(groupId, createManagementGroupRequest).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
+    public Observable<Object> beginCreateOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
+        return beginCreateOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest).map(new Func1<ServiceResponse<Object>, Object>() {
             @Override
-            public ManagementGroupInner call(ServiceResponse<ManagementGroupInner> response) {
+            public Object call(ServiceResponse<Object> response) {
                 return response.body();
             }
         });
     }
 
     /**
-     * Update a management group.
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ManagementGroupInner object
+     * @return the observable to the Object object
      */
-    public Observable<ServiceResponse<ManagementGroupInner>> updateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
+    public Observable<ServiceResponse<Object>> beginCreateOrUpdateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest) {
         if (groupId == null) {
             throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
         }
@@ -704,7 +682,178 @@ public class ManagementGroupsInner {
         }
         Validator.validate(createManagementGroupRequest);
         final String cacheControl = null;
-        return service.update(groupId, this.client.apiVersion(), createManagementGroupRequest, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginCreateOrUpdate(groupId, this.client.apiVersion(), cacheControl, createManagementGroupRequest, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Object>>>() {
+                @Override
+                public Observable<ServiceResponse<Object>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Object> clientResponse = beginCreateOrUpdateDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     *
+     * @param groupId Management Group ID.
+     * @param createManagementGroupRequest Management group creation parameters.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    public Object beginCreateOrUpdate(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
+        return beginCreateOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).toBlocking().single().body();
+    }
+
+    /**
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     *
+     * @param groupId Management Group ID.
+     * @param createManagementGroupRequest Management group creation parameters.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Object> beginCreateOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl), serviceCallback);
+    }
+
+    /**
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     *
+     * @param groupId Management Group ID.
+     * @param createManagementGroupRequest Management group creation parameters.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<Object> beginCreateOrUpdateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
+        return beginCreateOrUpdateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).map(new Func1<ServiceResponse<Object>, Object>() {
+            @Override
+            public Object call(ServiceResponse<Object> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Create or update a management group.
+     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     *
+     * @param groupId Management Group ID.
+     * @param createManagementGroupRequest Management group creation parameters.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<ServiceResponse<Object>> beginCreateOrUpdateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
+        if (groupId == null) {
+            throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (createManagementGroupRequest == null) {
+            throw new IllegalArgumentException("Parameter createManagementGroupRequest is required and cannot be null.");
+        }
+        Validator.validate(createManagementGroupRequest);
+        return service.beginCreateOrUpdate(groupId, this.client.apiVersion(), cacheControl, createManagementGroupRequest, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Object>>>() {
+                @Override
+                public Observable<ServiceResponse<Object>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Object> clientResponse = beginCreateOrUpdateDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Object> beginCreateOrUpdateDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Object, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ManagementGroupInner>() { }.getType())
+                .register(202, new TypeToken<OperationResultsInner>() { }.getType())
+                .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * Update a management group.
+     *
+     * @param groupId Management Group ID.
+     * @param patchGroupRequest Management group patch parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the ManagementGroupInner object if successful.
+     */
+    public ManagementGroupInner update(String groupId, PatchManagementGroupRequestInner patchGroupRequest) {
+        return updateWithServiceResponseAsync(groupId, patchGroupRequest).toBlocking().single().body();
+    }
+
+    /**
+     * Update a management group.
+     *
+     * @param groupId Management Group ID.
+     * @param patchGroupRequest Management group patch parameters.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<ManagementGroupInner> updateAsync(String groupId, PatchManagementGroupRequestInner patchGroupRequest, final ServiceCallback<ManagementGroupInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(groupId, patchGroupRequest), serviceCallback);
+    }
+
+    /**
+     * Update a management group.
+     *
+     * @param groupId Management Group ID.
+     * @param patchGroupRequest Management group patch parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ManagementGroupInner object
+     */
+    public Observable<ManagementGroupInner> updateAsync(String groupId, PatchManagementGroupRequestInner patchGroupRequest) {
+        return updateWithServiceResponseAsync(groupId, patchGroupRequest).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
+            @Override
+            public ManagementGroupInner call(ServiceResponse<ManagementGroupInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Update a management group.
+     *
+     * @param groupId Management Group ID.
+     * @param patchGroupRequest Management group patch parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ManagementGroupInner object
+     */
+    public Observable<ServiceResponse<ManagementGroupInner>> updateWithServiceResponseAsync(String groupId, PatchManagementGroupRequestInner patchGroupRequest) {
+        if (groupId == null) {
+            throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (patchGroupRequest == null) {
+            throw new IllegalArgumentException("Parameter patchGroupRequest is required and cannot be null.");
+        }
+        Validator.validate(patchGroupRequest);
+        final String cacheControl = null;
+        return service.update(groupId, this.client.apiVersion(), cacheControl, patchGroupRequest, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ManagementGroupInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ManagementGroupInner>> call(Response<ResponseBody> response) {
@@ -722,42 +871,42 @@ public class ManagementGroupsInner {
      * Update a management group.
      *
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param patchGroupRequest Management group patch parameters.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ManagementGroupInner object if successful.
      */
-    public ManagementGroupInner update(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
-        return updateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).toBlocking().single().body();
+    public ManagementGroupInner update(String groupId, PatchManagementGroupRequestInner patchGroupRequest, String cacheControl) {
+        return updateWithServiceResponseAsync(groupId, patchGroupRequest, cacheControl).toBlocking().single().body();
     }
 
     /**
      * Update a management group.
      *
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param patchGroupRequest Management group patch parameters.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagementGroupInner> updateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl, final ServiceCallback<ManagementGroupInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl), serviceCallback);
+    public ServiceFuture<ManagementGroupInner> updateAsync(String groupId, PatchManagementGroupRequestInner patchGroupRequest, String cacheControl, final ServiceCallback<ManagementGroupInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(groupId, patchGroupRequest, cacheControl), serviceCallback);
     }
 
     /**
      * Update a management group.
      *
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param patchGroupRequest Management group patch parameters.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagementGroupInner object
      */
-    public Observable<ManagementGroupInner> updateAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
-        return updateWithServiceResponseAsync(groupId, createManagementGroupRequest, cacheControl).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
+    public Observable<ManagementGroupInner> updateAsync(String groupId, PatchManagementGroupRequestInner patchGroupRequest, String cacheControl) {
+        return updateWithServiceResponseAsync(groupId, patchGroupRequest, cacheControl).map(new Func1<ServiceResponse<ManagementGroupInner>, ManagementGroupInner>() {
             @Override
             public ManagementGroupInner call(ServiceResponse<ManagementGroupInner> response) {
                 return response.body();
@@ -769,23 +918,23 @@ public class ManagementGroupsInner {
      * Update a management group.
      *
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param patchGroupRequest Management group patch parameters.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagementGroupInner object
      */
-    public Observable<ServiceResponse<ManagementGroupInner>> updateWithServiceResponseAsync(String groupId, CreateManagementGroupRequestInner createManagementGroupRequest, String cacheControl) {
+    public Observable<ServiceResponse<ManagementGroupInner>> updateWithServiceResponseAsync(String groupId, PatchManagementGroupRequestInner patchGroupRequest, String cacheControl) {
         if (groupId == null) {
             throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (createManagementGroupRequest == null) {
-            throw new IllegalArgumentException("Parameter createManagementGroupRequest is required and cannot be null.");
+        if (patchGroupRequest == null) {
+            throw new IllegalArgumentException("Parameter patchGroupRequest is required and cannot be null.");
         }
-        Validator.validate(createManagementGroupRequest);
-        return service.update(groupId, this.client.apiVersion(), createManagementGroupRequest, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(patchGroupRequest);
+        return service.update(groupId, this.client.apiVersion(), cacheControl, patchGroupRequest, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ManagementGroupInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ManagementGroupInner>> call(Response<ResponseBody> response) {
@@ -814,9 +963,10 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the OperationResultsInner object if successful.
      */
-    public void delete(String groupId) {
-        deleteWithServiceResponseAsync(groupId).toBlocking().single().body();
+    public OperationResultsInner delete(String groupId) {
+        return deleteWithServiceResponseAsync(groupId).toBlocking().last().body();
     }
 
     /**
@@ -828,7 +978,7 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> deleteAsync(String groupId, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<OperationResultsInner> deleteAsync(String groupId, final ServiceCallback<OperationResultsInner> serviceCallback) {
         return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(groupId), serviceCallback);
     }
 
@@ -838,12 +988,12 @@ public class ManagementGroupsInner {
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable for the request
      */
-    public Observable<Void> deleteAsync(String groupId) {
-        return deleteWithServiceResponseAsync(groupId).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<OperationResultsInner> deleteAsync(String groupId) {
+        return deleteWithServiceResponseAsync(groupId).map(new Func1<ServiceResponse<OperationResultsInner>, OperationResultsInner>() {
             @Override
-            public Void call(ServiceResponse<Void> response) {
+            public OperationResultsInner call(ServiceResponse<OperationResultsInner> response) {
                 return response.body();
             }
         });
@@ -855,9 +1005,9 @@ public class ManagementGroupsInner {
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable for the request
      */
-    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String groupId) {
+    public Observable<ServiceResponse<OperationResultsInner>> deleteWithServiceResponseAsync(String groupId) {
         if (groupId == null) {
             throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
         }
@@ -865,12 +1015,142 @@ public class ManagementGroupsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String cacheControl = null;
-        return service.delete(groupId, this.client.apiVersion(), cacheControl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+        Observable<Response<ResponseBody>> observable = service.delete(groupId, this.client.apiVersion(), cacheControl, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationResultsInner>() { }.getType());
+    }
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the OperationResultsInner object if successful.
+     */
+    public OperationResultsInner delete(String groupId, String cacheControl) {
+        return deleteWithServiceResponseAsync(groupId, cacheControl).toBlocking().last().body();
+    }
+
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<OperationResultsInner> deleteAsync(String groupId, String cacheControl, final ServiceCallback<OperationResultsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(groupId, cacheControl), serviceCallback);
+    }
+
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<OperationResultsInner> deleteAsync(String groupId, String cacheControl) {
+        return deleteWithServiceResponseAsync(groupId, cacheControl).map(new Func1<ServiceResponse<OperationResultsInner>, OperationResultsInner>() {
+            @Override
+            public OperationResultsInner call(ServiceResponse<OperationResultsInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<OperationResultsInner>> deleteWithServiceResponseAsync(String groupId, String cacheControl) {
+        if (groupId == null) {
+            throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Observable<Response<ResponseBody>> observable = service.delete(groupId, this.client.apiVersion(), cacheControl, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationResultsInner>() { }.getType());
+    }
+
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the OperationResultsInner object if successful.
+     */
+    public OperationResultsInner beginDelete(String groupId) {
+        return beginDeleteWithServiceResponseAsync(groupId).toBlocking().single().body();
+    }
+
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<OperationResultsInner> beginDeleteAsync(String groupId, final ServiceCallback<OperationResultsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(groupId), serviceCallback);
+    }
+
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the OperationResultsInner object
+     */
+    public Observable<OperationResultsInner> beginDeleteAsync(String groupId) {
+        return beginDeleteWithServiceResponseAsync(groupId).map(new Func1<ServiceResponse<OperationResultsInner>, OperationResultsInner>() {
+            @Override
+            public OperationResultsInner call(ServiceResponse<OperationResultsInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Delete management group.
+     If a management group contains child resources, the request will fail.
+     *
+     * @param groupId Management Group ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the OperationResultsInner object
+     */
+    public Observable<ServiceResponse<OperationResultsInner>> beginDeleteWithServiceResponseAsync(String groupId) {
+        if (groupId == null) {
+            throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final String cacheControl = null;
+        return service.beginDelete(groupId, this.client.apiVersion(), cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationResultsInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<OperationResultsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = deleteDelegate(response);
+                        ServiceResponse<OperationResultsInner> clientResponse = beginDeleteDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -888,9 +1168,10 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the OperationResultsInner object if successful.
      */
-    public void delete(String groupId, String cacheControl) {
-        deleteWithServiceResponseAsync(groupId, cacheControl).toBlocking().single().body();
+    public OperationResultsInner beginDelete(String groupId, String cacheControl) {
+        return beginDeleteWithServiceResponseAsync(groupId, cacheControl).toBlocking().single().body();
     }
 
     /**
@@ -903,8 +1184,8 @@ public class ManagementGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> deleteAsync(String groupId, String cacheControl, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(groupId, cacheControl), serviceCallback);
+    public ServiceFuture<OperationResultsInner> beginDeleteAsync(String groupId, String cacheControl, final ServiceCallback<OperationResultsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(groupId, cacheControl), serviceCallback);
     }
 
     /**
@@ -914,12 +1195,12 @@ public class ManagementGroupsInner {
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the OperationResultsInner object
      */
-    public Observable<Void> deleteAsync(String groupId, String cacheControl) {
-        return deleteWithServiceResponseAsync(groupId, cacheControl).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<OperationResultsInner> beginDeleteAsync(String groupId, String cacheControl) {
+        return beginDeleteWithServiceResponseAsync(groupId, cacheControl).map(new Func1<ServiceResponse<OperationResultsInner>, OperationResultsInner>() {
             @Override
-            public Void call(ServiceResponse<Void> response) {
+            public OperationResultsInner call(ServiceResponse<OperationResultsInner> response) {
                 return response.body();
             }
         });
@@ -932,21 +1213,21 @@ public class ManagementGroupsInner {
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the OperationResultsInner object
      */
-    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String groupId, String cacheControl) {
+    public Observable<ServiceResponse<OperationResultsInner>> beginDeleteWithServiceResponseAsync(String groupId, String cacheControl) {
         if (groupId == null) {
             throw new IllegalArgumentException("Parameter groupId is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.delete(groupId, this.client.apiVersion(), cacheControl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+        return service.beginDelete(groupId, this.client.apiVersion(), cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationResultsInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<OperationResultsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = deleteDelegate(response);
+                        ServiceResponse<OperationResultsInner> clientResponse = beginDeleteDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -955,9 +1236,9 @@ public class ManagementGroupsInner {
             });
     }
 
-    private ServiceResponse<Void> deleteDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+    private ServiceResponse<OperationResultsInner> beginDeleteDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<OperationResultsInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(202, new TypeToken<OperationResultsInner>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
                 .registerError(ErrorResponseException.class)
                 .build(response);

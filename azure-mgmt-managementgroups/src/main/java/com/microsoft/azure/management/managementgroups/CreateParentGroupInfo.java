@@ -11,9 +11,9 @@ package com.microsoft.azure.management.managementgroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * (Optional) The ID of the parent management group.
+ * (Optional) The ID of the parent management group used during creation.
  */
-public class ParentGroupInfo {
+public class CreateParentGroupInfo {
     /**
      * The fully qualified ID for the parent management group.  For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
@@ -24,13 +24,13 @@ public class ParentGroupInfo {
     /**
      * The name of the parent management group.
      */
-    @JsonProperty(value = "name")
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     /**
      * The friendly name of the parent management group.
      */
-    @JsonProperty(value = "displayName")
+    @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
 
     /**
@@ -46,9 +46,9 @@ public class ParentGroupInfo {
      * Set the id value.
      *
      * @param id the id value to set
-     * @return the ParentGroupInfo object itself.
+     * @return the CreateParentGroupInfo object itself.
      */
-    public ParentGroupInfo withId(String id) {
+    public CreateParentGroupInfo withId(String id) {
         this.id = id;
         return this;
     }
@@ -63,34 +63,12 @@ public class ParentGroupInfo {
     }
 
     /**
-     * Set the name value.
-     *
-     * @param name the name value to set
-     * @return the ParentGroupInfo object itself.
-     */
-    public ParentGroupInfo withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
      * Get the displayName value.
      *
      * @return the displayName value
      */
     public String displayName() {
         return this.displayName;
-    }
-
-    /**
-     * Set the displayName value.
-     *
-     * @param displayName the displayName value to set
-     * @return the ParentGroupInfo object itself.
-     */
-    public ParentGroupInfo withDisplayName(String displayName) {
-        this.displayName = displayName;
-        return this;
     }
 
 }

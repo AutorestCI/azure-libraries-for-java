@@ -8,7 +8,7 @@
 
 package com.microsoft.azure.management.managementgroups.implementation;
 
-import com.microsoft.azure.management.managementgroups.OperationDisplay;
+import com.microsoft.azure.management.managementgroups.OperationDisplayProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -22,10 +22,10 @@ public class OperationInner {
     private String name;
 
     /**
-     * The object that represents the operation.
+     * Display.
      */
     @JsonProperty(value = "display")
-    private OperationDisplay display;
+    private OperationDisplayProperties display;
 
     /**
      * Get the name value.
@@ -41,7 +41,7 @@ public class OperationInner {
      *
      * @return the display value
      */
-    public OperationDisplay display() {
+    public OperationDisplayProperties display() {
         return this.display;
     }
 
@@ -51,7 +51,7 @@ public class OperationInner {
      * @param display the display value to set
      * @return the OperationInner object itself.
      */
-    public OperationInner withDisplay(OperationDisplay display) {
+    public OperationInner withDisplay(OperationDisplayProperties display) {
         this.display = display;
         return this;
     }
