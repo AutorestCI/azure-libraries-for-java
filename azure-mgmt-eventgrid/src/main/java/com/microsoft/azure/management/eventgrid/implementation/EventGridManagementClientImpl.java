@@ -215,7 +215,7 @@ public class EventGridManagementClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
-        this.apiVersion = "2018-01-01";
+        this.apiVersion = "2018-05-01-preview";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
@@ -233,6 +233,6 @@ public class EventGridManagementClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "EventGridManagementClient", "2018-01-01");
+        return String.format("%s (%s, %s)", super.userAgent(), "EventGridManagementClient", "2018-05-01-preview");
     }
 }

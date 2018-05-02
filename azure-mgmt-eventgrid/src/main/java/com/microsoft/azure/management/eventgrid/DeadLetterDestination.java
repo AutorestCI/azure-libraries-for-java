@@ -13,15 +13,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 /**
- * Information about the destination for an event subscription.
+ * Information about the dead letter destination for an event subscription. To
+ * configure a deadletter destination, do not directly instantiate an object of
+ * this class. Instead, instantiate an object of a derived class. Currently,
+ * StorageBlobDeadLetterDestination is the only class that derives from this
+ * class.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "endpointType")
-@JsonTypeName("EventSubscriptionDestination")
+@JsonTypeName("DeadLetterDestination")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "WebHook", value = WebHookEventSubscriptionDestination.class),
-    @JsonSubTypes.Type(name = "EventHub", value = EventHubEventSubscriptionDestination.class),
-    @JsonSubTypes.Type(name = "StorageQueue", value = StorageQueueEventSubscriptionDestination.class),
-    @JsonSubTypes.Type(name = "HybridConnection", value = HybridConnectionEventSubscriptionDestination.class)
+    @JsonSubTypes.Type(name = "StorageBlob", value = StorageBlobDeadLetterDestination.class)
 })
-public class EventSubscriptionDestination {
+public class DeadLetterDestination {
 }

@@ -12,6 +12,9 @@ import com.microsoft.azure.management.eventgrid.EventSubscriptionProvisioningSta
 import com.microsoft.azure.management.eventgrid.EventSubscriptionDestination;
 import com.microsoft.azure.management.eventgrid.EventSubscriptionFilter;
 import java.util.List;
+import com.microsoft.azure.management.eventgrid.EventDeliverySchema;
+import com.microsoft.azure.management.eventgrid.RetryPolicy;
+import com.microsoft.azure.management.eventgrid.DeadLetterDestination;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.Resource;
@@ -29,7 +32,8 @@ public class EventSubscriptionInner extends Resource {
 
     /**
      * Provisioning state of the event subscription. Possible values include:
-     * 'Creating', 'Updating', 'Deleting', 'Succeeded', 'Canceled', 'Failed'.
+     * 'Creating', 'Updating', 'Deleting', 'Succeeded', 'Canceled', 'Failed',
+     * 'AwaitingManualAction'.
      */
     @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private EventSubscriptionProvisioningState provisioningState;
@@ -52,6 +56,26 @@ public class EventSubscriptionInner extends Resource {
      */
     @JsonProperty(value = "properties.labels")
     private List<String> labels;
+
+    /**
+     * The event delivery schema for the event subscription. Possible values
+     * include: 'EventGridSchema', 'InputEventSchema', 'CloudEventV01Schema'.
+     */
+    @JsonProperty(value = "properties.eventDeliverySchema")
+    private EventDeliverySchema eventDeliverySchema;
+
+    /**
+     * The retry policy for events. This can be used to configure maximum
+     * number of delivery attempts and time to live for events.
+     */
+    @JsonProperty(value = "properties.retryPolicy")
+    private RetryPolicy retryPolicy;
+
+    /**
+     * The DeadLetter destination of the event subscription.
+     */
+    @JsonProperty(value = "properties.deadLetterDestination")
+    private DeadLetterDestination deadLetterDestination;
 
     /**
      * Get the topic value.
@@ -128,6 +152,66 @@ public class EventSubscriptionInner extends Resource {
      */
     public EventSubscriptionInner withLabels(List<String> labels) {
         this.labels = labels;
+        return this;
+    }
+
+    /**
+     * Get the eventDeliverySchema value.
+     *
+     * @return the eventDeliverySchema value
+     */
+    public EventDeliverySchema eventDeliverySchema() {
+        return this.eventDeliverySchema;
+    }
+
+    /**
+     * Set the eventDeliverySchema value.
+     *
+     * @param eventDeliverySchema the eventDeliverySchema value to set
+     * @return the EventSubscriptionInner object itself.
+     */
+    public EventSubscriptionInner withEventDeliverySchema(EventDeliverySchema eventDeliverySchema) {
+        this.eventDeliverySchema = eventDeliverySchema;
+        return this;
+    }
+
+    /**
+     * Get the retryPolicy value.
+     *
+     * @return the retryPolicy value
+     */
+    public RetryPolicy retryPolicy() {
+        return this.retryPolicy;
+    }
+
+    /**
+     * Set the retryPolicy value.
+     *
+     * @param retryPolicy the retryPolicy value to set
+     * @return the EventSubscriptionInner object itself.
+     */
+    public EventSubscriptionInner withRetryPolicy(RetryPolicy retryPolicy) {
+        this.retryPolicy = retryPolicy;
+        return this;
+    }
+
+    /**
+     * Get the deadLetterDestination value.
+     *
+     * @return the deadLetterDestination value
+     */
+    public DeadLetterDestination deadLetterDestination() {
+        return this.deadLetterDestination;
+    }
+
+    /**
+     * Set the deadLetterDestination value.
+     *
+     * @param deadLetterDestination the deadLetterDestination value to set
+     * @return the EventSubscriptionInner object itself.
+     */
+    public EventSubscriptionInner withDeadLetterDestination(DeadLetterDestination deadLetterDestination) {
+        this.deadLetterDestination = deadLetterDestination;
         return this;
     }
 
