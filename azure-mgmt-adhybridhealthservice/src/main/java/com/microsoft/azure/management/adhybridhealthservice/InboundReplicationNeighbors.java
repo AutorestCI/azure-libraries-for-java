@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class InboundReplicationNeighbors {
     /**
-     * The value property.
+     * The details of inbound replication neighbors.
      */
     @JsonProperty(value = "value")
     private List<InboundReplicationNeighbor> value;

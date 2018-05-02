@@ -1347,9 +1347,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ErrorCountsInner object if successful.
+     * @return the List&lt;ErrorCountInner&gt; object if successful.
      */
-    public ErrorCountsInner listExportErrors(String serviceName) {
+    public List<ErrorCountInner> listExportErrors(String serviceName) {
         return listExportErrorsWithServiceResponseAsync(serviceName).toBlocking().single().body();
     }
 
@@ -1361,7 +1361,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ErrorCountsInner> listExportErrorsAsync(String serviceName, final ServiceCallback<ErrorCountsInner> serviceCallback) {
+    public ServiceFuture<List<ErrorCountInner>> listExportErrorsAsync(String serviceName, final ServiceCallback<List<ErrorCountInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listExportErrorsWithServiceResponseAsync(serviceName), serviceCallback);
     }
 
@@ -1370,12 +1370,12 @@ public class ServicesInner {
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ErrorCountsInner object
+     * @return the observable to the List&lt;ErrorCountInner&gt; object
      */
-    public Observable<ErrorCountsInner> listExportErrorsAsync(String serviceName) {
-        return listExportErrorsWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<ErrorCountsInner>, ErrorCountsInner>() {
+    public Observable<List<ErrorCountInner>> listExportErrorsAsync(String serviceName) {
+        return listExportErrorsWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<List<ErrorCountInner>>, List<ErrorCountInner>>() {
             @Override
-            public ErrorCountsInner call(ServiceResponse<ErrorCountsInner> response) {
+            public List<ErrorCountInner> call(ServiceResponse<List<ErrorCountInner>> response) {
                 return response.body();
             }
         });
@@ -1386,9 +1386,9 @@ public class ServicesInner {
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ErrorCountsInner object
+     * @return the observable to the List&lt;ErrorCountInner&gt; object
      */
-    public Observable<ServiceResponse<ErrorCountsInner>> listExportErrorsWithServiceResponseAsync(String serviceName) {
+    public Observable<ServiceResponse<List<ErrorCountInner>>> listExportErrorsWithServiceResponseAsync(String serviceName) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1396,11 +1396,12 @@ public class ServicesInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listExportErrors(serviceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ErrorCountsInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ErrorCountInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<ErrorCountsInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<ErrorCountInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<ErrorCountsInner> clientResponse = listExportErrorsDelegate(response);
+                        ServiceResponse<PageImpl1<ErrorCountInner>> result = listExportErrorsDelegate(response);
+                        ServiceResponse<List<ErrorCountInner>> clientResponse = new ServiceResponse<List<ErrorCountInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1409,9 +1410,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<ErrorCountsInner> listExportErrorsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ErrorCountsInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<ErrorCountsInner>() { }.getType())
+    private ServiceResponse<PageImpl1<ErrorCountInner>> listExportErrorsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<ErrorCountInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<ErrorCountInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
