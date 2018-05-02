@@ -1036,9 +1036,9 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DataFreshnessDetailInner object if successful.
+     * @return the List&lt;ItemInner&gt; object if successful.
      */
-    public DataFreshnessDetailInner listDataFreshness(String serviceName, UUID serviceMemberId) {
+    public List<ItemInner> listDataFreshness(String serviceName, UUID serviceMemberId) {
         return listDataFreshnessWithServiceResponseAsync(serviceName, serviceMemberId).toBlocking().single().body();
     }
 
@@ -1051,7 +1051,7 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DataFreshnessDetailInner> listDataFreshnessAsync(String serviceName, UUID serviceMemberId, final ServiceCallback<DataFreshnessDetailInner> serviceCallback) {
+    public ServiceFuture<List<ItemInner>> listDataFreshnessAsync(String serviceName, UUID serviceMemberId, final ServiceCallback<List<ItemInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listDataFreshnessWithServiceResponseAsync(serviceName, serviceMemberId), serviceCallback);
     }
 
@@ -1061,12 +1061,12 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DataFreshnessDetailInner object
+     * @return the observable to the List&lt;ItemInner&gt; object
      */
-    public Observable<DataFreshnessDetailInner> listDataFreshnessAsync(String serviceName, UUID serviceMemberId) {
-        return listDataFreshnessWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<DataFreshnessDetailInner>, DataFreshnessDetailInner>() {
+    public Observable<List<ItemInner>> listDataFreshnessAsync(String serviceName, UUID serviceMemberId) {
+        return listDataFreshnessWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<List<ItemInner>>, List<ItemInner>>() {
             @Override
-            public DataFreshnessDetailInner call(ServiceResponse<DataFreshnessDetailInner> response) {
+            public List<ItemInner> call(ServiceResponse<List<ItemInner>> response) {
                 return response.body();
             }
         });
@@ -1078,9 +1078,9 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DataFreshnessDetailInner object
+     * @return the observable to the List&lt;ItemInner&gt; object
      */
-    public Observable<ServiceResponse<DataFreshnessDetailInner>> listDataFreshnessWithServiceResponseAsync(String serviceName, UUID serviceMemberId) {
+    public Observable<ServiceResponse<List<ItemInner>>> listDataFreshnessWithServiceResponseAsync(String serviceName, UUID serviceMemberId) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1091,11 +1091,12 @@ public class ServicemembersInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listDataFreshness(serviceName, serviceMemberId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DataFreshnessDetailInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ItemInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<DataFreshnessDetailInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<ItemInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<DataFreshnessDetailInner> clientResponse = listDataFreshnessDelegate(response);
+                        ServiceResponse<PageImpl1<ItemInner>> result = listDataFreshnessDelegate(response);
+                        ServiceResponse<List<ItemInner>> clientResponse = new ServiceResponse<List<ItemInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1104,9 +1105,9 @@ public class ServicemembersInner {
             });
     }
 
-    private ServiceResponse<DataFreshnessDetailInner> listDataFreshnessDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<DataFreshnessDetailInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<DataFreshnessDetailInner>() { }.getType())
+    private ServiceResponse<PageImpl1<ItemInner>> listDataFreshnessDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<ItemInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<ItemInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
