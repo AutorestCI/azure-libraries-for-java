@@ -788,9 +788,9 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;String&gt; object if successful.
+     * @return the List&lt;CredentialInner&gt; object if successful.
      */
-    public List<String> listCredentials(String serviceName, UUID serviceMemberId) {
+    public List<CredentialInner> listCredentials(String serviceName, UUID serviceMemberId) {
         return listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId).toBlocking().single().body();
     }
 
@@ -803,7 +803,7 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<String>> listCredentialsAsync(String serviceName, UUID serviceMemberId, final ServiceCallback<List<String>> serviceCallback) {
+    public ServiceFuture<List<CredentialInner>> listCredentialsAsync(String serviceName, UUID serviceMemberId, final ServiceCallback<List<CredentialInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId), serviceCallback);
     }
 
@@ -813,12 +813,12 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;String&gt; object
+     * @return the observable to the List&lt;CredentialInner&gt; object
      */
-    public Observable<List<String>> listCredentialsAsync(String serviceName, UUID serviceMemberId) {
-        return listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<List<String>>, List<String>>() {
+    public Observable<List<CredentialInner>> listCredentialsAsync(String serviceName, UUID serviceMemberId) {
+        return listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId).map(new Func1<ServiceResponse<List<CredentialInner>>, List<CredentialInner>>() {
             @Override
-            public List<String> call(ServiceResponse<List<String>> response) {
+            public List<CredentialInner> call(ServiceResponse<List<CredentialInner>> response) {
                 return response.body();
             }
         });
@@ -830,9 +830,9 @@ public class ServicemembersInner {
      * @param serviceName The name of the service.
      * @param serviceMemberId The server Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;String&gt; object
+     * @return the observable to the List&lt;CredentialInner&gt; object
      */
-    public Observable<ServiceResponse<List<String>>> listCredentialsWithServiceResponseAsync(String serviceName, UUID serviceMemberId) {
+    public Observable<ServiceResponse<List<CredentialInner>>> listCredentialsWithServiceResponseAsync(String serviceName, UUID serviceMemberId) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -844,12 +844,12 @@ public class ServicemembersInner {
         }
         final String filter = null;
         return service.listCredentials(serviceName, serviceMemberId, filter, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<String>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<CredentialInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<List<String>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<CredentialInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<String>> result = listCredentialsDelegate(response);
-                        ServiceResponse<List<String>> clientResponse = new ServiceResponse<List<String>>(result.body().items(), result.response());
+                        ServiceResponse<PageImpl1<CredentialInner>> result = listCredentialsDelegate(response);
+                        ServiceResponse<List<CredentialInner>> clientResponse = new ServiceResponse<List<CredentialInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -867,9 +867,9 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;String&gt; object if successful.
+     * @return the List&lt;CredentialInner&gt; object if successful.
      */
-    public List<String> listCredentials(String serviceName, UUID serviceMemberId, String filter) {
+    public List<CredentialInner> listCredentials(String serviceName, UUID serviceMemberId, String filter) {
         return listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId, filter).toBlocking().single().body();
     }
 
@@ -883,7 +883,7 @@ public class ServicemembersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<String>> listCredentialsAsync(String serviceName, UUID serviceMemberId, String filter, final ServiceCallback<List<String>> serviceCallback) {
+    public ServiceFuture<List<CredentialInner>> listCredentialsAsync(String serviceName, UUID serviceMemberId, String filter, final ServiceCallback<List<CredentialInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId, filter), serviceCallback);
     }
 
@@ -894,12 +894,12 @@ public class ServicemembersInner {
      * @param serviceMemberId The server Id.
      * @param filter The property filter to apply.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;String&gt; object
+     * @return the observable to the List&lt;CredentialInner&gt; object
      */
-    public Observable<List<String>> listCredentialsAsync(String serviceName, UUID serviceMemberId, String filter) {
-        return listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId, filter).map(new Func1<ServiceResponse<List<String>>, List<String>>() {
+    public Observable<List<CredentialInner>> listCredentialsAsync(String serviceName, UUID serviceMemberId, String filter) {
+        return listCredentialsWithServiceResponseAsync(serviceName, serviceMemberId, filter).map(new Func1<ServiceResponse<List<CredentialInner>>, List<CredentialInner>>() {
             @Override
-            public List<String> call(ServiceResponse<List<String>> response) {
+            public List<CredentialInner> call(ServiceResponse<List<CredentialInner>> response) {
                 return response.body();
             }
         });
@@ -912,9 +912,9 @@ public class ServicemembersInner {
      * @param serviceMemberId The server Id.
      * @param filter The property filter to apply.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;String&gt; object
+     * @return the observable to the List&lt;CredentialInner&gt; object
      */
-    public Observable<ServiceResponse<List<String>>> listCredentialsWithServiceResponseAsync(String serviceName, UUID serviceMemberId, String filter) {
+    public Observable<ServiceResponse<List<CredentialInner>>> listCredentialsWithServiceResponseAsync(String serviceName, UUID serviceMemberId, String filter) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -925,12 +925,12 @@ public class ServicemembersInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listCredentials(serviceName, serviceMemberId, filter, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<String>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<CredentialInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<List<String>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<CredentialInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<String>> result = listCredentialsDelegate(response);
-                        ServiceResponse<List<String>> clientResponse = new ServiceResponse<List<String>>(result.body().items(), result.response());
+                        ServiceResponse<PageImpl1<CredentialInner>> result = listCredentialsDelegate(response);
+                        ServiceResponse<List<CredentialInner>> clientResponse = new ServiceResponse<List<CredentialInner>>(result.body().items(), result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -939,9 +939,9 @@ public class ServicemembersInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<String>> listCredentialsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<String>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<String>>() { }.getType())
+    private ServiceResponse<PageImpl1<CredentialInner>> listCredentialsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<CredentialInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<CredentialInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
