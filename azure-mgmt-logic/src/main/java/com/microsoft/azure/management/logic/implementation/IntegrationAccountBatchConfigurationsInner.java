@@ -66,7 +66,7 @@ public class IntegrationAccountBatchConfigurationsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccountBatchConfigurations createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/batchConfigurations/{batchConfigurationName}")
-        Observable<Response<ResponseBody>> createOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Path("batchConfigurationName") String batchConfigurationName, @Body BatchConfigurationInner assemblyArtifact, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> createOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Path("batchConfigurationName") String batchConfigurationName, @Body BatchConfigurationInner batchConfiguration, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccountBatchConfigurations delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/batchConfigurations/{batchConfigurationName}", method = "DELETE", hasBody = true)
@@ -260,14 +260,14 @@ public class IntegrationAccountBatchConfigurationsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param assemblyArtifact The assembly artifact.
+     * @param batchConfiguration The batch configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the BatchConfigurationInner object if successful.
      */
-    public BatchConfigurationInner createOrUpdate(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner assemblyArtifact) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName, assemblyArtifact).toBlocking().single().body();
+    public BatchConfigurationInner createOrUpdate(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName, batchConfiguration).toBlocking().single().body();
     }
 
     /**
@@ -276,13 +276,13 @@ public class IntegrationAccountBatchConfigurationsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param assemblyArtifact The assembly artifact.
+     * @param batchConfiguration The batch configuration.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<BatchConfigurationInner> createOrUpdateAsync(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner assemblyArtifact, final ServiceCallback<BatchConfigurationInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName, assemblyArtifact), serviceCallback);
+    public ServiceFuture<BatchConfigurationInner> createOrUpdateAsync(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration, final ServiceCallback<BatchConfigurationInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName, batchConfiguration), serviceCallback);
     }
 
     /**
@@ -291,12 +291,12 @@ public class IntegrationAccountBatchConfigurationsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param assemblyArtifact The assembly artifact.
+     * @param batchConfiguration The batch configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the BatchConfigurationInner object
      */
-    public Observable<BatchConfigurationInner> createOrUpdateAsync(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner assemblyArtifact) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName, assemblyArtifact).map(new Func1<ServiceResponse<BatchConfigurationInner>, BatchConfigurationInner>() {
+    public Observable<BatchConfigurationInner> createOrUpdateAsync(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, integrationAccountName, batchConfigurationName, batchConfiguration).map(new Func1<ServiceResponse<BatchConfigurationInner>, BatchConfigurationInner>() {
             @Override
             public BatchConfigurationInner call(ServiceResponse<BatchConfigurationInner> response) {
                 return response.body();
@@ -310,11 +310,11 @@ public class IntegrationAccountBatchConfigurationsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param assemblyArtifact The assembly artifact.
+     * @param batchConfiguration The batch configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the BatchConfigurationInner object
      */
-    public Observable<ServiceResponse<BatchConfigurationInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner assemblyArtifact) {
+    public Observable<ServiceResponse<BatchConfigurationInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -327,14 +327,14 @@ public class IntegrationAccountBatchConfigurationsInner {
         if (batchConfigurationName == null) {
             throw new IllegalArgumentException("Parameter batchConfigurationName is required and cannot be null.");
         }
-        if (assemblyArtifact == null) {
-            throw new IllegalArgumentException("Parameter assemblyArtifact is required and cannot be null.");
+        if (batchConfiguration == null) {
+            throw new IllegalArgumentException("Parameter batchConfiguration is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Validator.validate(assemblyArtifact);
-        return service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, integrationAccountName, batchConfigurationName, assemblyArtifact, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(batchConfiguration);
+        return service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, integrationAccountName, batchConfigurationName, batchConfiguration, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<BatchConfigurationInner>>>() {
                 @Override
                 public Observable<ServiceResponse<BatchConfigurationInner>> call(Response<ResponseBody> response) {
