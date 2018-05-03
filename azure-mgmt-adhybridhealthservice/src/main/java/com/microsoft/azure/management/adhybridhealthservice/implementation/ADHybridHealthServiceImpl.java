@@ -162,16 +162,16 @@ public class ADHybridHealthServiceImpl extends AzureServiceClient {
     }
 
     /**
-     * The AddsServicemembersInner object to access its operations.
+     * The AddsServiceMembersInner object to access its operations.
      */
-    private AddsServicemembersInner addsServicemembers;
+    private AddsServiceMembersInner addsServiceMembers;
 
     /**
-     * Gets the AddsServicemembersInner object to access its operations.
-     * @return the AddsServicemembersInner object.
+     * Gets the AddsServiceMembersInner object to access its operations.
+     * @return the AddsServiceMembersInner object.
      */
-    public AddsServicemembersInner addsServicemembers() {
-        return this.addsServicemembers;
+    public AddsServiceMembersInner addsServiceMembers() {
+        return this.addsServiceMembers;
     }
 
     /**
@@ -265,7 +265,7 @@ public class ADHybridHealthServiceImpl extends AzureServiceClient {
         this.alerts = new AlertsInner(restClient().retrofit(), this);
         this.configurations = new ConfigurationsInner(restClient().retrofit(), this);
         this.dimensions = new DimensionsInner(restClient().retrofit(), this);
-        this.addsServicemembers = new AddsServicemembersInner(restClient().retrofit(), this);
+        this.addsServiceMembers = new AddsServiceMembersInner(restClient().retrofit(), this);
         this.adDomainServiceMembers = new AdDomainServiceMembersInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.services = new ServicesInner(restClient().retrofit(), this);
