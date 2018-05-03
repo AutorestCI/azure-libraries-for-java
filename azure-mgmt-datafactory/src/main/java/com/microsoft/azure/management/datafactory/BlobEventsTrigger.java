@@ -22,26 +22,26 @@ import com.microsoft.rest.serializer.JsonFlatten;
 @JsonFlatten
 public class BlobEventsTrigger extends MultiplePipelineTrigger {
     /**
-     * path to container, folder, blob, or file extension for which events can
+     * Path to container, folder, blob, or file extension for which events can
      * trigger the pipeline.
      */
     @JsonProperty(value = "typeProperties.blobPath", required = true)
     private String blobPath;
 
     /**
-     * the type of events for which we want to trigger the pipeline.
+     * The type of events that cause this trigger to fire.
      */
     @JsonProperty(value = "typeProperties.events", required = true)
     private List<BlobEventTypes> events;
 
     /**
-     * the resource id of the Storage Account.
+     * The ARM resource ID of the Storage Account.
      */
     @JsonProperty(value = "typeProperties.scope", required = true)
     private String scope;
 
     /**
-     * the max number of parallel events to handle when it is triggered.
+     * The max number of parallel events to handle when triggered.
      */
     @JsonProperty(value = "typeProperties.maxConcurrency", required = true)
     private int maxConcurrency;
