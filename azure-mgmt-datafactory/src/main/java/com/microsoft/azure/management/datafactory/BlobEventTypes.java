@@ -16,11 +16,11 @@ import com.microsoft.rest.ExpandableStringEnum;
  * Defines values for BlobEventTypes.
  */
 public final class BlobEventTypes extends ExpandableStringEnum<BlobEventTypes> {
-    /** Static value blobCreated for BlobEventTypes. */
-    public static final BlobEventTypes BLOB_CREATED = fromString("blobCreated");
+    /** Static value Microsoft.Storage.BlobCreated for BlobEventTypes. */
+    public static final BlobEventTypes MICROSOFT_STORAGE_BLOB_CREATED = fromString("Microsoft.Storage.BlobCreated");
 
-    /** Static value blobDeleted for BlobEventTypes. */
-    public static final BlobEventTypes BLOB_DELETED = fromString("blobDeleted");
+    /** Static value Microsoft.Storage.BlobDeleted for BlobEventTypes. */
+    public static final BlobEventTypes MICROSOFT_STORAGE_BLOB_DELETED = fromString("Microsoft.Storage.BlobDeleted");
 
     /**
      * Creates or finds a BlobEventTypes from its string representation.
