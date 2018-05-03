@@ -69,8 +69,8 @@ public class ServicePropertiesInner {
     /**
      * The date and time, in UTC, when the service was last disabled.
      */
-    @JsonProperty(value = "lastDisable")
-    private DateTime lastDisable;
+    @JsonProperty(value = "lastDisabled")
+    private DateTime lastDisabled;
 
     /**
      * The date or time , in UTC, when the service properties were last
@@ -105,6 +105,13 @@ public class ServicePropertiesInner {
      */
     @JsonProperty(value = "notificationEmailEnabledForGlobalAdmins")
     private Boolean notificationEmailEnabledForGlobalAdmins;
+
+    /**
+     * Indicates if email notification is enabled for global administrators of
+     * the tenant.
+     */
+    @JsonProperty(value = "notificationEmailsEnabledForGlobalAdmins")
+    private Boolean notificationEmailsEnabledForGlobalAdmins;
 
     /**
      * The list of emails to whom service notifications will be sent.
@@ -324,22 +331,22 @@ public class ServicePropertiesInner {
     }
 
     /**
-     * Get the lastDisable value.
+     * Get the lastDisabled value.
      *
-     * @return the lastDisable value
+     * @return the lastDisabled value
      */
-    public DateTime lastDisable() {
-        return this.lastDisable;
+    public DateTime lastDisabled() {
+        return this.lastDisabled;
     }
 
     /**
-     * Set the lastDisable value.
+     * Set the lastDisabled value.
      *
-     * @param lastDisable the lastDisable value to set
+     * @param lastDisabled the lastDisabled value to set
      * @return the ServicePropertiesInner object itself.
      */
-    public ServicePropertiesInner withLastDisable(DateTime lastDisable) {
-        this.lastDisable = lastDisable;
+    public ServicePropertiesInner withLastDisabled(DateTime lastDisabled) {
+        this.lastDisabled = lastDisabled;
         return this;
     }
 
@@ -440,6 +447,26 @@ public class ServicePropertiesInner {
      */
     public ServicePropertiesInner withNotificationEmailEnabledForGlobalAdmins(Boolean notificationEmailEnabledForGlobalAdmins) {
         this.notificationEmailEnabledForGlobalAdmins = notificationEmailEnabledForGlobalAdmins;
+        return this;
+    }
+
+    /**
+     * Get the notificationEmailsEnabledForGlobalAdmins value.
+     *
+     * @return the notificationEmailsEnabledForGlobalAdmins value
+     */
+    public Boolean notificationEmailsEnabledForGlobalAdmins() {
+        return this.notificationEmailsEnabledForGlobalAdmins;
+    }
+
+    /**
+     * Set the notificationEmailsEnabledForGlobalAdmins value.
+     *
+     * @param notificationEmailsEnabledForGlobalAdmins the notificationEmailsEnabledForGlobalAdmins value to set
+     * @return the ServicePropertiesInner object itself.
+     */
+    public ServicePropertiesInner withNotificationEmailsEnabledForGlobalAdmins(Boolean notificationEmailsEnabledForGlobalAdmins) {
+        this.notificationEmailsEnabledForGlobalAdmins = notificationEmailsEnabledForGlobalAdmins;
         return this;
     }
 
