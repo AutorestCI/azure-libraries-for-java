@@ -69,8 +69,8 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
      */
     interface SignalRsService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.SignalRs checkNameAvailability" })
-        @POST("subscriptions/{subscriptionId}/providers/Microsoft.SignalRService/checkNameAvailability")
-        Observable<Response<ResponseBody>> checkNameAvailability(@Path("subscriptionId") String subscriptionId, @Body NameAvailabilityParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        @POST("subscriptions/{subscriptionId}/providers/Microsoft.SignalRService/locations/{location}/checkNameAvailability")
+        Observable<Response<ResponseBody>> checkNameAvailability(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body NameAvailabilityParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.signalr.SignalRs list" })
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.SignalRService/SignalR")
@@ -133,34 +133,37 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the NameAvailabilityInner object if successful.
      */
-    public NameAvailabilityInner checkNameAvailability() {
-        return checkNameAvailabilityWithServiceResponseAsync().toBlocking().single().body();
+    public NameAvailabilityInner checkNameAvailability(String location) {
+        return checkNameAvailabilityWithServiceResponseAsync(location).toBlocking().single().body();
     }
 
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<NameAvailabilityInner> checkNameAvailabilityAsync(final ServiceCallback<NameAvailabilityInner> serviceCallback) {
-        return ServiceFuture.fromResponse(checkNameAvailabilityWithServiceResponseAsync(), serviceCallback);
+    public ServiceFuture<NameAvailabilityInner> checkNameAvailabilityAsync(String location, final ServiceCallback<NameAvailabilityInner> serviceCallback) {
+        return ServiceFuture.fromResponse(checkNameAvailabilityWithServiceResponseAsync(location), serviceCallback);
     }
 
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the NameAvailabilityInner object
      */
-    public Observable<NameAvailabilityInner> checkNameAvailabilityAsync() {
-        return checkNameAvailabilityWithServiceResponseAsync().map(new Func1<ServiceResponse<NameAvailabilityInner>, NameAvailabilityInner>() {
+    public Observable<NameAvailabilityInner> checkNameAvailabilityAsync(String location) {
+        return checkNameAvailabilityWithServiceResponseAsync(location).map(new Func1<ServiceResponse<NameAvailabilityInner>, NameAvailabilityInner>() {
             @Override
             public NameAvailabilityInner call(ServiceResponse<NameAvailabilityInner> response) {
                 return response.body();
@@ -171,18 +174,19 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the NameAvailabilityInner object
      */
-    public Observable<ServiceResponse<NameAvailabilityInner>> checkNameAvailabilityWithServiceResponseAsync() {
+    public Observable<ServiceResponse<NameAvailabilityInner>> checkNameAvailabilityWithServiceResponseAsync(String location) {
+        if (location == null) {
+            throw new IllegalArgumentException("Parameter location is required and cannot be null.");
+        }
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         final NameAvailabilityParametersInner parameters = null;
-        return service.checkNameAvailability(this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.checkNameAvailability(location, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NameAvailabilityInner>>>() {
                 @Override
                 public Observable<ServiceResponse<NameAvailabilityInner>> call(Response<ResponseBody> response) {
@@ -199,37 +203,40 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @param parameters Parameters supplied to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the NameAvailabilityInner object if successful.
      */
-    public NameAvailabilityInner checkNameAvailability(NameAvailabilityParametersInner parameters) {
-        return checkNameAvailabilityWithServiceResponseAsync(parameters).toBlocking().single().body();
+    public NameAvailabilityInner checkNameAvailability(String location, NameAvailabilityParametersInner parameters) {
+        return checkNameAvailabilityWithServiceResponseAsync(location, parameters).toBlocking().single().body();
     }
 
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @param parameters Parameters supplied to the operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<NameAvailabilityInner> checkNameAvailabilityAsync(NameAvailabilityParametersInner parameters, final ServiceCallback<NameAvailabilityInner> serviceCallback) {
-        return ServiceFuture.fromResponse(checkNameAvailabilityWithServiceResponseAsync(parameters), serviceCallback);
+    public ServiceFuture<NameAvailabilityInner> checkNameAvailabilityAsync(String location, NameAvailabilityParametersInner parameters, final ServiceCallback<NameAvailabilityInner> serviceCallback) {
+        return ServiceFuture.fromResponse(checkNameAvailabilityWithServiceResponseAsync(location, parameters), serviceCallback);
     }
 
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @param parameters Parameters supplied to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the NameAvailabilityInner object
      */
-    public Observable<NameAvailabilityInner> checkNameAvailabilityAsync(NameAvailabilityParametersInner parameters) {
-        return checkNameAvailabilityWithServiceResponseAsync(parameters).map(new Func1<ServiceResponse<NameAvailabilityInner>, NameAvailabilityInner>() {
+    public Observable<NameAvailabilityInner> checkNameAvailabilityAsync(String location, NameAvailabilityParametersInner parameters) {
+        return checkNameAvailabilityWithServiceResponseAsync(location, parameters).map(new Func1<ServiceResponse<NameAvailabilityInner>, NameAvailabilityInner>() {
             @Override
             public NameAvailabilityInner call(ServiceResponse<NameAvailabilityInner> response) {
                 return response.body();
@@ -240,19 +247,20 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
     /**
      * Checks that the SignalR name is valid and is not already in use.
      *
+     * @param location the region
      * @param parameters Parameters supplied to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the NameAvailabilityInner object
      */
-    public Observable<ServiceResponse<NameAvailabilityInner>> checkNameAvailabilityWithServiceResponseAsync(NameAvailabilityParametersInner parameters) {
+    public Observable<ServiceResponse<NameAvailabilityInner>> checkNameAvailabilityWithServiceResponseAsync(String location, NameAvailabilityParametersInner parameters) {
+        if (location == null) {
+            throw new IllegalArgumentException("Parameter location is required and cannot be null.");
+        }
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         Validator.validate(parameters);
-        return service.checkNameAvailability(this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.checkNameAvailability(location, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NameAvailabilityInner>>>() {
                 @Override
                 public Observable<ServiceResponse<NameAvailabilityInner>> call(Response<ResponseBody> response) {
@@ -355,9 +363,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
     public Observable<ServiceResponse<Page<SignalRResourceInner>>> listSinglePageAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.list(this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
@@ -471,9 +476,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         return service.listByResourceGroup(this.client.subscriptionId(), resourceGroupName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SignalRResourceInner>>>>() {
                 @Override
@@ -556,9 +558,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listKeys(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRKeysInner>>>() {
@@ -643,9 +642,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         final KeyType keyType = null;
         RegenerateKeyParameters parameters = new RegenerateKeyParameters();
         parameters.withKeyType(null);
@@ -718,9 +714,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         RegenerateKeyParameters parameters = null;
         if (keyType != null) {
             parameters = new RegenerateKeyParameters();
@@ -791,9 +784,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final KeyType keyType = null;
         RegenerateKeyParameters parameters = new RegenerateKeyParameters();
@@ -877,9 +867,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         RegenerateKeyParameters parameters = null;
         if (keyType != null) {
@@ -969,9 +956,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         return service.getByResourceGroup(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SignalRResourceInner>>>() {
                 @Override
@@ -1055,9 +1039,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         final SignalRCreateParametersInner parameters = null;
         Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
@@ -1128,9 +1109,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         Validator.validate(parameters);
         Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
@@ -1197,9 +1175,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final SignalRCreateParametersInner parameters = null;
         return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
@@ -1281,9 +1256,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         Validator.validate(parameters);
         return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
@@ -1369,9 +1341,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
@@ -1436,9 +1405,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.beginDelete(this.client.subscriptionId(), resourceGroupName, resourceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
@@ -1524,9 +1490,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         final SignalRUpdateParametersInner parameters = null;
         Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
@@ -1597,9 +1560,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
         }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
         Validator.validate(parameters);
         Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<SignalRResourceInner>() { }.getType());
@@ -1666,9 +1626,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final SignalRUpdateParametersInner parameters = null;
         return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
@@ -1750,9 +1707,6 @@ public class SignalRsInner implements InnerSupportsGet<SignalRResourceInner>, In
         }
         if (resourceName == null) {
             throw new IllegalArgumentException("Parameter resourceName is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         Validator.validate(parameters);
         return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, resourceName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
