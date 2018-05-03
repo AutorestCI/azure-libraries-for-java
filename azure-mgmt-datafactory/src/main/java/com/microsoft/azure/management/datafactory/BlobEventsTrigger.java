@@ -41,12 +41,6 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     private String scope;
 
     /**
-     * The max number of parallel events to handle when triggered.
-     */
-    @JsonProperty(value = "typeProperties.maxConcurrency", required = true)
-    private int maxConcurrency;
-
-    /**
      * Get the blobPath value.
      *
      * @return the blobPath value
@@ -103,26 +97,6 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
      */
     public BlobEventsTrigger withScope(String scope) {
         this.scope = scope;
-        return this;
-    }
-
-    /**
-     * Get the maxConcurrency value.
-     *
-     * @return the maxConcurrency value
-     */
-    public int maxConcurrency() {
-        return this.maxConcurrency;
-    }
-
-    /**
-     * Set the maxConcurrency value.
-     *
-     * @param maxConcurrency the maxConcurrency value to set
-     * @return the BlobEventsTrigger object itself.
-     */
-    public BlobEventsTrigger withMaxConcurrency(int maxConcurrency) {
-        this.maxConcurrency = maxConcurrency;
         return this;
     }
 
