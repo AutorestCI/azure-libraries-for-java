@@ -1674,14 +1674,13 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ReplicationSummaryInner object if successful.
      */
-    public ReplicationSummaryInner getReplicationSummary(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey) {
-        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey).toBlocking().single().body();
+    public ReplicationSummaryInner getReplicationSummary(String serviceName, boolean isGroupbySite, String query) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query).toBlocking().single().body();
     }
 
     /**
@@ -1690,13 +1689,12 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, final ServiceCallback<ReplicationSummaryInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey), serviceCallback);
+    public ServiceFuture<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, final ServiceCallback<ReplicationSummaryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query), serviceCallback);
     }
 
     /**
@@ -1705,12 +1703,11 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ReplicationSummaryInner object
      */
-    public Observable<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey) {
-        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey).map(new Func1<ServiceResponse<ReplicationSummaryInner>, ReplicationSummaryInner>() {
+    public Observable<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query).map(new Func1<ServiceResponse<ReplicationSummaryInner>, ReplicationSummaryInner>() {
             @Override
             public ReplicationSummaryInner call(ServiceResponse<ReplicationSummaryInner> response) {
                 return response.body();
@@ -1724,25 +1721,22 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ReplicationSummaryInner object
      */
-    public Observable<ServiceResponse<ReplicationSummaryInner>> getReplicationSummaryWithServiceResponseAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey) {
+    public Observable<ServiceResponse<ReplicationSummaryInner>> getReplicationSummaryWithServiceResponseAsync(String serviceName, boolean isGroupbySite, String query) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
         if (query == null) {
             throw new IllegalArgumentException("Parameter query is required and cannot be null.");
         }
-        if (nextPartitionKey == null) {
-            throw new IllegalArgumentException("Parameter nextPartitionKey is required and cannot be null.");
-        }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
+        final String nextPartitionKey = "";
+        final String nextRowKey = "";
         final String filter = null;
-        final String nextRowKey = null;
         final Integer takeCount = null;
         return service.getReplicationSummary(serviceName, filter, isGroupbySite, query, nextPartitionKey, nextRowKey, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ReplicationSummaryInner>>>() {
@@ -1764,17 +1758,15 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @param filter The server property filter to apply.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ReplicationSummaryInner object if successful.
      */
-    public ReplicationSummaryInner getReplicationSummary(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount) {
-        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey, filter, nextRowKey, takeCount).toBlocking().single().body();
+    public ReplicationSummaryInner getReplicationSummary(String serviceName, boolean isGroupbySite, String query, String filter, Integer takeCount) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, filter, takeCount).toBlocking().single().body();
     }
 
     /**
@@ -1783,16 +1775,14 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @param filter The server property filter to apply.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount, final ServiceCallback<ReplicationSummaryInner> serviceCallback) {
-        return ServiceFuture.fromResponse(getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey, filter, nextRowKey, takeCount), serviceCallback);
+    public ServiceFuture<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String filter, Integer takeCount, final ServiceCallback<ReplicationSummaryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, filter, takeCount), serviceCallback);
     }
 
     /**
@@ -1801,15 +1791,13 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @param filter The server property filter to apply.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ReplicationSummaryInner object
      */
-    public Observable<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount) {
-        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, nextPartitionKey, filter, nextRowKey, takeCount).map(new Func1<ServiceResponse<ReplicationSummaryInner>, ReplicationSummaryInner>() {
+    public Observable<ReplicationSummaryInner> getReplicationSummaryAsync(String serviceName, boolean isGroupbySite, String query, String filter, Integer takeCount) {
+        return getReplicationSummaryWithServiceResponseAsync(serviceName, isGroupbySite, query, filter, takeCount).map(new Func1<ServiceResponse<ReplicationSummaryInner>, ReplicationSummaryInner>() {
             @Override
             public ReplicationSummaryInner call(ServiceResponse<ReplicationSummaryInner> response) {
                 return response.body();
@@ -1823,26 +1811,23 @@ public class AddsServicesInner {
      * @param serviceName The name of the service.
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
      * @param filter The server property filter to apply.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ReplicationSummaryInner object
      */
-    public Observable<ServiceResponse<ReplicationSummaryInner>> getReplicationSummaryWithServiceResponseAsync(String serviceName, boolean isGroupbySite, String query, String nextPartitionKey, String filter, String nextRowKey, Integer takeCount) {
+    public Observable<ServiceResponse<ReplicationSummaryInner>> getReplicationSummaryWithServiceResponseAsync(String serviceName, boolean isGroupbySite, String query, String filter, Integer takeCount) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
         if (query == null) {
             throw new IllegalArgumentException("Parameter query is required and cannot be null.");
         }
-        if (nextPartitionKey == null) {
-            throw new IllegalArgumentException("Parameter nextPartitionKey is required and cannot be null.");
-        }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
+        final String nextPartitionKey = "";
+        final String nextRowKey = "";
         return service.getReplicationSummary(serviceName, filter, isGroupbySite, query, nextPartitionKey, nextRowKey, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ReplicationSummaryInner>>>() {
                 @Override

@@ -162,10 +162,10 @@ public class AdDomainServiceMembersInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
+        final String nextPartitionKey = "";
+        final String nextRowKey = "";
         final String filter = null;
         final String query = null;
-        final String nextPartitionKey = null;
-        final String nextRowKey = null;
         final Integer takeCount = null;
         return service.list(serviceName, filter, isGroupbySite, query, nextPartitionKey, nextRowKey, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AddsServiceMemberInner>>>>() {
@@ -188,16 +188,14 @@ public class AdDomainServiceMembersInner {
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param filter The server property filter to apply.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;AddsServiceMemberInner&gt; object if successful.
      */
-    public PagedList<AddsServiceMemberInner> list(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final String nextPartitionKey, final String nextRowKey, final Integer takeCount) {
-        ServiceResponse<Page<AddsServiceMemberInner>> response = listSinglePageAsync(serviceName, isGroupbySite, filter, query, nextPartitionKey, nextRowKey, takeCount).toBlocking().single();
+    public PagedList<AddsServiceMemberInner> list(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final Integer takeCount) {
+        ServiceResponse<Page<AddsServiceMemberInner>> response = listSinglePageAsync(serviceName, isGroupbySite, filter, query, takeCount).toBlocking().single();
         return new PagedList<AddsServiceMemberInner>(response.body()) {
             @Override
             public Page<AddsServiceMemberInner> nextPage(String nextPageLink) {
@@ -213,16 +211,14 @@ public class AdDomainServiceMembersInner {
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param filter The server property filter to apply.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<AddsServiceMemberInner>> listAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final String nextPartitionKey, final String nextRowKey, final Integer takeCount, final ListOperationCallback<AddsServiceMemberInner> serviceCallback) {
+    public ServiceFuture<List<AddsServiceMemberInner>> listAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final Integer takeCount, final ListOperationCallback<AddsServiceMemberInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(serviceName, isGroupbySite, filter, query, nextPartitionKey, nextRowKey, takeCount),
+            listSinglePageAsync(serviceName, isGroupbySite, filter, query, takeCount),
             new Func1<String, Observable<ServiceResponse<Page<AddsServiceMemberInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<AddsServiceMemberInner>>> call(String nextPageLink) {
@@ -239,14 +235,12 @@ public class AdDomainServiceMembersInner {
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param filter The server property filter to apply.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;AddsServiceMemberInner&gt; object
      */
-    public Observable<Page<AddsServiceMemberInner>> listAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final String nextPartitionKey, final String nextRowKey, final Integer takeCount) {
-        return listWithServiceResponseAsync(serviceName, isGroupbySite, filter, query, nextPartitionKey, nextRowKey, takeCount)
+    public Observable<Page<AddsServiceMemberInner>> listAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final Integer takeCount) {
+        return listWithServiceResponseAsync(serviceName, isGroupbySite, filter, query, takeCount)
             .map(new Func1<ServiceResponse<Page<AddsServiceMemberInner>>, Page<AddsServiceMemberInner>>() {
                 @Override
                 public Page<AddsServiceMemberInner> call(ServiceResponse<Page<AddsServiceMemberInner>> response) {
@@ -262,14 +256,12 @@ public class AdDomainServiceMembersInner {
      * @param isGroupbySite Indicates if the result should be grouped by site or not.
      * @param filter The server property filter to apply.
      * @param query The custom query.
-     * @param nextPartitionKey The next partition key to query for.
-     * @param nextRowKey The next row key to query for.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;AddsServiceMemberInner&gt; object
      */
-    public Observable<ServiceResponse<Page<AddsServiceMemberInner>>> listWithServiceResponseAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final String nextPartitionKey, final String nextRowKey, final Integer takeCount) {
-        return listSinglePageAsync(serviceName, isGroupbySite, filter, query, nextPartitionKey, nextRowKey, takeCount)
+    public Observable<ServiceResponse<Page<AddsServiceMemberInner>>> listWithServiceResponseAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final Integer takeCount) {
+        return listSinglePageAsync(serviceName, isGroupbySite, filter, query, takeCount)
             .concatMap(new Func1<ServiceResponse<Page<AddsServiceMemberInner>>, Observable<ServiceResponse<Page<AddsServiceMemberInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<AddsServiceMemberInner>>> call(ServiceResponse<Page<AddsServiceMemberInner>> page) {
@@ -289,19 +281,19 @@ public class AdDomainServiceMembersInner {
     ServiceResponse<PageImpl<AddsServiceMemberInner>> * @param isGroupbySite Indicates if the result should be grouped by site or not.
     ServiceResponse<PageImpl<AddsServiceMemberInner>> * @param filter The server property filter to apply.
     ServiceResponse<PageImpl<AddsServiceMemberInner>> * @param query The custom query.
-    ServiceResponse<PageImpl<AddsServiceMemberInner>> * @param nextPartitionKey The next partition key to query for.
-    ServiceResponse<PageImpl<AddsServiceMemberInner>> * @param nextRowKey The next row key to query for.
     ServiceResponse<PageImpl<AddsServiceMemberInner>> * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;AddsServiceMemberInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<AddsServiceMemberInner>>> listSinglePageAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final String nextPartitionKey, final String nextRowKey, final Integer takeCount) {
+    public Observable<ServiceResponse<Page<AddsServiceMemberInner>>> listSinglePageAsync(final String serviceName, final boolean isGroupbySite, final String filter, final String query, final Integer takeCount) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
+        final String nextPartitionKey = "";
+        final String nextRowKey = "";
         return service.list(serviceName, filter, isGroupbySite, query, nextPartitionKey, nextRowKey, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<AddsServiceMemberInner>>>>() {
                 @Override
