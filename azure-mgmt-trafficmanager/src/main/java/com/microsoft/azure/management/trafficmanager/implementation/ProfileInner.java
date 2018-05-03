@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.trafficmanager.implementation;
 
-import com.microsoft.azure.Resource;
 import com.microsoft.azure.management.trafficmanager.ProfileStatus;
 import com.microsoft.azure.management.trafficmanager.TrafficRoutingMethod;
 import com.microsoft.azure.management.trafficmanager.DnsConfig;
@@ -21,7 +20,7 @@ import com.microsoft.rest.serializer.JsonFlatten;
  * Class representing a Traffic Manager profile.
  */
 @JsonFlatten
-public class ProfileInner extends Resource {
+public class ProfileInner extends TrackedResourceInner {
     /**
      * The status of the Traffic Manager profile. Possible values include:
      * 'Enabled', 'Disabled'.
