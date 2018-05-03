@@ -107,8 +107,8 @@ public class AlertInner {
     /**
      * The monitoring role type for which the alert was raised.
      */
-    @JsonProperty(value = "monitoringRoleType")
-    private String monitoringRoleType;
+    @JsonProperty(value = "monitorRoleType")
+    private String monitorRoleType;
 
     /**
      * The active alert properties.
@@ -401,22 +401,22 @@ public class AlertInner {
     }
 
     /**
-     * Get the monitoringRoleType value.
+     * Get the monitorRoleType value.
      *
-     * @return the monitoringRoleType value
+     * @return the monitorRoleType value
      */
-    public String monitoringRoleType() {
-        return this.monitoringRoleType;
+    public String monitorRoleType() {
+        return this.monitorRoleType;
     }
 
     /**
-     * Set the monitoringRoleType value.
+     * Set the monitorRoleType value.
      *
-     * @param monitoringRoleType the monitoringRoleType value to set
+     * @param monitorRoleType the monitorRoleType value to set
      * @return the AlertInner object itself.
      */
-    public AlertInner withMonitoringRoleType(String monitoringRoleType) {
-        this.monitoringRoleType = monitoringRoleType;
+    public AlertInner withMonitorRoleType(String monitorRoleType) {
+        this.monitorRoleType = monitorRoleType;
         return this;
     }
 

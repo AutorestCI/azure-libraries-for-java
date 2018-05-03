@@ -37,8 +37,8 @@ public class ForestSummaryInner {
      * The number of domain controllers that are monitored by Azure Active
      * Directory Connect Health.
      */
-    @JsonProperty(value = "moniteredDcCount")
-    private Integer moniteredDcCount;
+    @JsonProperty(value = "monitoredDcCount")
+    private Integer monitoredDcCount;
 
     /**
      * The total domain controllers.
@@ -119,22 +119,22 @@ public class ForestSummaryInner {
     }
 
     /**
-     * Get the moniteredDcCount value.
+     * Get the monitoredDcCount value.
      *
-     * @return the moniteredDcCount value
+     * @return the monitoredDcCount value
      */
-    public Integer moniteredDcCount() {
-        return this.moniteredDcCount;
+    public Integer monitoredDcCount() {
+        return this.monitoredDcCount;
     }
 
     /**
-     * Set the moniteredDcCount value.
+     * Set the monitoredDcCount value.
      *
-     * @param moniteredDcCount the moniteredDcCount value to set
+     * @param monitoredDcCount the monitoredDcCount value to set
      * @return the ForestSummaryInner object itself.
      */
-    public ForestSummaryInner withMoniteredDcCount(Integer moniteredDcCount) {
-        this.moniteredDcCount = moniteredDcCount;
+    public ForestSummaryInner withMonitoredDcCount(Integer monitoredDcCount) {
+        this.monitoredDcCount = monitoredDcCount;
         return this;
     }
 

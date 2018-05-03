@@ -19,8 +19,8 @@ public class MetricMetadataInner {
     /**
      * The name of the class which retrieve and process the metric.
      */
-    @JsonProperty(value = "metricsPRocessorClassName")
-    private String metricsPRocessorClassName;
+    @JsonProperty(value = "metricsProcessorClassName")
+    private String metricsProcessorClassName;
 
     /**
      * The metric name.
@@ -84,22 +84,22 @@ public class MetricMetadataInner {
     private Boolean isDevOps;
 
     /**
-     * Get the metricsPRocessorClassName value.
+     * Get the metricsProcessorClassName value.
      *
-     * @return the metricsPRocessorClassName value
+     * @return the metricsProcessorClassName value
      */
-    public String metricsPRocessorClassName() {
-        return this.metricsPRocessorClassName;
+    public String metricsProcessorClassName() {
+        return this.metricsProcessorClassName;
     }
 
     /**
-     * Set the metricsPRocessorClassName value.
+     * Set the metricsProcessorClassName value.
      *
-     * @param metricsPRocessorClassName the metricsPRocessorClassName value to set
+     * @param metricsProcessorClassName the metricsProcessorClassName value to set
      * @return the MetricMetadataInner object itself.
      */
-    public MetricMetadataInner withMetricsPRocessorClassName(String metricsPRocessorClassName) {
-        this.metricsPRocessorClassName = metricsPRocessorClassName;
+    public MetricMetadataInner withMetricsProcessorClassName(String metricsProcessorClassName) {
+        this.metricsProcessorClassName = metricsProcessorClassName;
         return this;
     }
 

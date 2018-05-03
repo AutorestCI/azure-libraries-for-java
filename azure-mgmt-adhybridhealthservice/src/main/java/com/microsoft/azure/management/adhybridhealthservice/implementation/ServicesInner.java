@@ -69,7 +69,7 @@ public class ServicesInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services add" })
         @POST("providers/Microsoft.ADHybridHealthService/services")
-        Observable<Response<ResponseBody>> add(@Query("api-version") String apiVersion, @Body ServiceInner service, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> add(@Query("api-version") String apiVersion, @Body ServicePropertiesInner service, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listPremium" })
         @GET("providers/Microsoft.ADHybridHealthService/services/premiumCheck")
@@ -85,7 +85,7 @@ public class ServicesInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services update" })
         @PATCH("providers/Microsoft.ADHybridHealthService/services/{serviceName}")
-        Observable<Response<ResponseBody>> update(@Path("serviceName") String serviceName, @Body ServiceInner service, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("serviceName") String serviceName, @Body ServicePropertiesInner service, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.adhybridhealthservice.Services listAlerts" })
         @GET("providers/Microsoft.ADHybridHealthService/services/{serviceName}/alerts")
@@ -187,13 +187,13 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object if successful.
      */
-    public PagedList<ServiceInner> list() {
-        ServiceResponse<Page<ServiceInner>> response = listSinglePageAsync().toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
+    public PagedList<ServicePropertiesInner> list() {
+        ServiceResponse<Page<ServicePropertiesInner>> response = listSinglePageAsync().toBlocking().single();
+        return new PagedList<ServicePropertiesInner>(response.body()) {
             @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
+            public Page<ServicePropertiesInner> nextPage(String nextPageLink) {
                 return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -206,12 +206,12 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ServiceInner>> listAsync(final ListOperationCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<List<ServicePropertiesInner>> listAsync(final ListOperationCallback<ServicePropertiesInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listSinglePageAsync(),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(String nextPageLink) {
                     return listNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -222,13 +222,13 @@ public class ServicesInner {
      * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<Page<ServiceInner>> listAsync() {
+    public Observable<Page<ServicePropertiesInner>> listAsync() {
         return listWithServiceResponseAsync()
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+            .map(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Page<ServicePropertiesInner>>() {
                 @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                public Page<ServicePropertiesInner> call(ServiceResponse<Page<ServicePropertiesInner>> response) {
                     return response.body();
                 }
             });
@@ -238,13 +238,13 @@ public class ServicesInner {
      * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listWithServiceResponseAsync() {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listWithServiceResponseAsync() {
         return listSinglePageAsync()
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(ServiceResponse<Page<ServicePropertiesInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -258,9 +258,9 @@ public class ServicesInner {
      * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listSinglePageAsync() {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listSinglePageAsync() {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
@@ -269,12 +269,12 @@ public class ServicesInner {
         final Integer skipCount = null;
         final Integer takeCount = null;
         return service.list(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<ServicePropertiesInner>> result = listDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServicePropertiesInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -292,13 +292,13 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object if successful.
      */
-    public PagedList<ServiceInner> list(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
-        ServiceResponse<Page<ServiceInner>> response = listSinglePageAsync(filter, serviceType, skipCount, takeCount).toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
+    public PagedList<ServicePropertiesInner> list(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+        ServiceResponse<Page<ServicePropertiesInner>> response = listSinglePageAsync(filter, serviceType, skipCount, takeCount).toBlocking().single();
+        return new PagedList<ServicePropertiesInner>(response.body()) {
             @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
+            public Page<ServicePropertiesInner> nextPage(String nextPageLink) {
                 return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -315,12 +315,12 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ServiceInner>> listAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount, final ListOperationCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<List<ServicePropertiesInner>> listAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount, final ListOperationCallback<ServicePropertiesInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listSinglePageAsync(filter, serviceType, skipCount, takeCount),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(String nextPageLink) {
                     return listNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -335,13 +335,13 @@ public class ServicesInner {
      * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<Page<ServiceInner>> listAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+    public Observable<Page<ServicePropertiesInner>> listAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
         return listWithServiceResponseAsync(filter, serviceType, skipCount, takeCount)
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+            .map(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Page<ServicePropertiesInner>>() {
                 @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                public Page<ServicePropertiesInner> call(ServiceResponse<Page<ServicePropertiesInner>> response) {
                     return response.body();
                 }
             });
@@ -355,13 +355,13 @@ public class ServicesInner {
      * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listWithServiceResponseAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listWithServiceResponseAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
         return listSinglePageAsync(filter, serviceType, skipCount, takeCount)
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(ServiceResponse<Page<ServicePropertiesInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -374,24 +374,24 @@ public class ServicesInner {
     /**
      * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
-    ServiceResponse<PageImpl<ServiceInner>> * @param filter The service property filter to apply.
-    ServiceResponse<PageImpl<ServiceInner>> * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
-    ServiceResponse<PageImpl<ServiceInner>> * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
-    ServiceResponse<PageImpl<ServiceInner>> * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param filter The service property filter to apply.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listSinglePageAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listSinglePageAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.list(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<ServicePropertiesInner>> result = listDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServicePropertiesInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -399,9 +399,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<ServiceInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ServicePropertiesInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ServicePropertiesInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ServicePropertiesInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -413,9 +413,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ServiceInner object if successful.
+     * @return the ServicePropertiesInner object if successful.
      */
-    public ServiceInner add(ServiceInner service) {
+    public ServicePropertiesInner add(ServicePropertiesInner service) {
         return addWithServiceResponseAsync(service).toBlocking().single().body();
     }
 
@@ -427,7 +427,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServiceInner> addAsync(ServiceInner service, final ServiceCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<ServicePropertiesInner> addAsync(ServicePropertiesInner service, final ServiceCallback<ServicePropertiesInner> serviceCallback) {
         return ServiceFuture.fromResponse(addWithServiceResponseAsync(service), serviceCallback);
     }
 
@@ -436,12 +436,12 @@ public class ServicesInner {
      *
      * @param service The service object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ServiceInner object
+     * @return the observable to the ServicePropertiesInner object
      */
-    public Observable<ServiceInner> addAsync(ServiceInner service) {
-        return addWithServiceResponseAsync(service).map(new Func1<ServiceResponse<ServiceInner>, ServiceInner>() {
+    public Observable<ServicePropertiesInner> addAsync(ServicePropertiesInner service) {
+        return addWithServiceResponseAsync(service).map(new Func1<ServiceResponse<ServicePropertiesInner>, ServicePropertiesInner>() {
             @Override
-            public ServiceInner call(ServiceResponse<ServiceInner> response) {
+            public ServicePropertiesInner call(ServiceResponse<ServicePropertiesInner> response) {
                 return response.body();
             }
         });
@@ -452,9 +452,9 @@ public class ServicesInner {
      *
      * @param service The service object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ServiceInner object
+     * @return the observable to the ServicePropertiesInner object
      */
-    public Observable<ServiceResponse<ServiceInner>> addWithServiceResponseAsync(ServiceInner service) {
+    public Observable<ServiceResponse<ServicePropertiesInner>> addWithServiceResponseAsync(ServicePropertiesInner service) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
@@ -463,11 +463,11 @@ public class ServicesInner {
         }
         Validator.validate(service);
         return service.add(this.client.apiVersion(), service, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ServiceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ServicePropertiesInner>>>() {
                 @Override
-                public Observable<ServiceResponse<ServiceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ServicePropertiesInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<ServiceInner> clientResponse = addDelegate(response);
+                        ServiceResponse<ServicePropertiesInner> clientResponse = addDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -476,9 +476,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<ServiceInner> addDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ServiceInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<ServiceInner>() { }.getType())
+    private ServiceResponse<ServicePropertiesInner> addDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ServicePropertiesInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ServicePropertiesInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -489,13 +489,13 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object if successful.
      */
-    public PagedList<ServiceInner> listPremium() {
-        ServiceResponse<Page<ServiceInner>> response = listPremiumSinglePageAsync().toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
+    public PagedList<ServicePropertiesInner> listPremium() {
+        ServiceResponse<Page<ServicePropertiesInner>> response = listPremiumSinglePageAsync().toBlocking().single();
+        return new PagedList<ServicePropertiesInner>(response.body()) {
             @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
+            public Page<ServicePropertiesInner> nextPage(String nextPageLink) {
                 return listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -508,12 +508,12 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ServiceInner>> listPremiumAsync(final ListOperationCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<List<ServicePropertiesInner>> listPremiumAsync(final ListOperationCallback<ServicePropertiesInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listPremiumSinglePageAsync(),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(String nextPageLink) {
                     return listPremiumNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -524,13 +524,13 @@ public class ServicesInner {
      * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<Page<ServiceInner>> listPremiumAsync() {
+    public Observable<Page<ServicePropertiesInner>> listPremiumAsync() {
         return listPremiumWithServiceResponseAsync()
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+            .map(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Page<ServicePropertiesInner>>() {
                 @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                public Page<ServicePropertiesInner> call(ServiceResponse<Page<ServicePropertiesInner>> response) {
                     return response.body();
                 }
             });
@@ -540,13 +540,13 @@ public class ServicesInner {
      * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumWithServiceResponseAsync() {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listPremiumWithServiceResponseAsync() {
         return listPremiumSinglePageAsync()
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(ServiceResponse<Page<ServicePropertiesInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -560,9 +560,9 @@ public class ServicesInner {
      * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumSinglePageAsync() {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listPremiumSinglePageAsync() {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
@@ -571,12 +571,12 @@ public class ServicesInner {
         final Integer skipCount = null;
         final Integer takeCount = null;
         return service.listPremium(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<ServicePropertiesInner>> result = listPremiumDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServicePropertiesInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -594,13 +594,13 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object if successful.
      */
-    public PagedList<ServiceInner> listPremium(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
-        ServiceResponse<Page<ServiceInner>> response = listPremiumSinglePageAsync(filter, serviceType, skipCount, takeCount).toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
+    public PagedList<ServicePropertiesInner> listPremium(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+        ServiceResponse<Page<ServicePropertiesInner>> response = listPremiumSinglePageAsync(filter, serviceType, skipCount, takeCount).toBlocking().single();
+        return new PagedList<ServicePropertiesInner>(response.body()) {
             @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
+            public Page<ServicePropertiesInner> nextPage(String nextPageLink) {
                 return listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -617,12 +617,12 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ServiceInner>> listPremiumAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount, final ListOperationCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<List<ServicePropertiesInner>> listPremiumAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount, final ListOperationCallback<ServicePropertiesInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listPremiumSinglePageAsync(filter, serviceType, skipCount, takeCount),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(String nextPageLink) {
                     return listPremiumNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -637,13 +637,13 @@ public class ServicesInner {
      * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<Page<ServiceInner>> listPremiumAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+    public Observable<Page<ServicePropertiesInner>> listPremiumAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
         return listPremiumWithServiceResponseAsync(filter, serviceType, skipCount, takeCount)
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+            .map(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Page<ServicePropertiesInner>>() {
                 @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                public Page<ServicePropertiesInner> call(ServiceResponse<Page<ServicePropertiesInner>> response) {
                     return response.body();
                 }
             });
@@ -657,13 +657,13 @@ public class ServicesInner {
      * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
      * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumWithServiceResponseAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listPremiumWithServiceResponseAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
         return listPremiumSinglePageAsync(filter, serviceType, skipCount, takeCount)
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(ServiceResponse<Page<ServicePropertiesInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -676,24 +676,24 @@ public class ServicesInner {
     /**
      * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
-    ServiceResponse<PageImpl<ServiceInner>> * @param filter The service property filter to apply.
-    ServiceResponse<PageImpl<ServiceInner>> * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
-    ServiceResponse<PageImpl<ServiceInner>> * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
-    ServiceResponse<PageImpl<ServiceInner>> * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param filter The service property filter to apply.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param serviceType The service type for the services onboarded to Azure Active Directory Connect Health. Depending on whether the service is monitoring, ADFS, Sync or ADDS roles, the service type can either be AdFederationService or AadSyncService or AdDomainService.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param skipCount The skip count, which specifies the number of elements that can be bypassed from a sequence and then return the remaining elements.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param takeCount The take count , which specifies the number of elements that can be returned from a sequence.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumSinglePageAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listPremiumSinglePageAsync(final String filter, final String serviceType, final Integer skipCount, final Integer takeCount) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listPremium(filter, serviceType, skipCount, takeCount, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<ServicePropertiesInner>> result = listPremiumDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServicePropertiesInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -701,9 +701,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<ServiceInner>> listPremiumDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ServicePropertiesInner>> listPremiumDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ServicePropertiesInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ServicePropertiesInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -715,9 +715,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ServiceInner object if successful.
+     * @return the ServicePropertiesInner object if successful.
      */
-    public ServiceInner get(String serviceName) {
+    public ServicePropertiesInner get(String serviceName) {
         return getWithServiceResponseAsync(serviceName).toBlocking().single().body();
     }
 
@@ -729,7 +729,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServiceInner> getAsync(String serviceName, final ServiceCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<ServicePropertiesInner> getAsync(String serviceName, final ServiceCallback<ServicePropertiesInner> serviceCallback) {
         return ServiceFuture.fromResponse(getWithServiceResponseAsync(serviceName), serviceCallback);
     }
 
@@ -738,12 +738,12 @@ public class ServicesInner {
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ServiceInner object
+     * @return the observable to the ServicePropertiesInner object
      */
-    public Observable<ServiceInner> getAsync(String serviceName) {
-        return getWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<ServiceInner>, ServiceInner>() {
+    public Observable<ServicePropertiesInner> getAsync(String serviceName) {
+        return getWithServiceResponseAsync(serviceName).map(new Func1<ServiceResponse<ServicePropertiesInner>, ServicePropertiesInner>() {
             @Override
-            public ServiceInner call(ServiceResponse<ServiceInner> response) {
+            public ServicePropertiesInner call(ServiceResponse<ServicePropertiesInner> response) {
                 return response.body();
             }
         });
@@ -754,9 +754,9 @@ public class ServicesInner {
      *
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ServiceInner object
+     * @return the observable to the ServicePropertiesInner object
      */
-    public Observable<ServiceResponse<ServiceInner>> getWithServiceResponseAsync(String serviceName) {
+    public Observable<ServiceResponse<ServicePropertiesInner>> getWithServiceResponseAsync(String serviceName) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -764,11 +764,11 @@ public class ServicesInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.get(serviceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ServiceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ServicePropertiesInner>>>() {
                 @Override
-                public Observable<ServiceResponse<ServiceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ServicePropertiesInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<ServiceInner> clientResponse = getDelegate(response);
+                        ServiceResponse<ServicePropertiesInner> clientResponse = getDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -777,9 +777,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<ServiceInner> getDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ServiceInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<ServiceInner>() { }.getType())
+    private ServiceResponse<ServicePropertiesInner> getDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ServicePropertiesInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ServicePropertiesInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -940,9 +940,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ServiceInner object if successful.
+     * @return the ServicePropertiesInner object if successful.
      */
-    public ServiceInner update(String serviceName, ServiceInner service) {
+    public ServicePropertiesInner update(String serviceName, ServicePropertiesInner service) {
         return updateWithServiceResponseAsync(serviceName, service).toBlocking().single().body();
     }
 
@@ -955,7 +955,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServiceInner> updateAsync(String serviceName, ServiceInner service, final ServiceCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<ServicePropertiesInner> updateAsync(String serviceName, ServicePropertiesInner service, final ServiceCallback<ServicePropertiesInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(serviceName, service), serviceCallback);
     }
 
@@ -965,12 +965,12 @@ public class ServicesInner {
      * @param serviceName The name of the service which needs to be deleted.
      * @param service The service object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ServiceInner object
+     * @return the observable to the ServicePropertiesInner object
      */
-    public Observable<ServiceInner> updateAsync(String serviceName, ServiceInner service) {
-        return updateWithServiceResponseAsync(serviceName, service).map(new Func1<ServiceResponse<ServiceInner>, ServiceInner>() {
+    public Observable<ServicePropertiesInner> updateAsync(String serviceName, ServicePropertiesInner service) {
+        return updateWithServiceResponseAsync(serviceName, service).map(new Func1<ServiceResponse<ServicePropertiesInner>, ServicePropertiesInner>() {
             @Override
-            public ServiceInner call(ServiceResponse<ServiceInner> response) {
+            public ServicePropertiesInner call(ServiceResponse<ServicePropertiesInner> response) {
                 return response.body();
             }
         });
@@ -982,9 +982,9 @@ public class ServicesInner {
      * @param serviceName The name of the service which needs to be deleted.
      * @param service The service object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ServiceInner object
+     * @return the observable to the ServicePropertiesInner object
      */
-    public Observable<ServiceResponse<ServiceInner>> updateWithServiceResponseAsync(String serviceName, ServiceInner service) {
+    public Observable<ServiceResponse<ServicePropertiesInner>> updateWithServiceResponseAsync(String serviceName, ServicePropertiesInner service) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -996,11 +996,11 @@ public class ServicesInner {
         }
         Validator.validate(service);
         return service.update(serviceName, service, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ServiceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ServicePropertiesInner>>>() {
                 @Override
-                public Observable<ServiceResponse<ServiceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ServicePropertiesInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<ServiceInner> clientResponse = updateDelegate(response);
+                        ServiceResponse<ServicePropertiesInner> clientResponse = updateDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1009,9 +1009,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<ServiceInner> updateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<ServiceInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<ServiceInner>() { }.getType())
+    private ServiceResponse<ServicePropertiesInner> updateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ServicePropertiesInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ServicePropertiesInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -2939,13 +2939,13 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object if successful.
      */
-    public PagedList<ServiceInner> listNext(final String nextPageLink) {
-        ServiceResponse<Page<ServiceInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
+    public PagedList<ServicePropertiesInner> listNext(final String nextPageLink) {
+        ServiceResponse<Page<ServicePropertiesInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<ServicePropertiesInner>(response.body()) {
             @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
+            public Page<ServicePropertiesInner> nextPage(String nextPageLink) {
                 return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -2960,12 +2960,12 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ServiceInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<ServiceInner>> serviceFuture, final ListOperationCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<List<ServicePropertiesInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<ServicePropertiesInner>> serviceFuture, final ListOperationCallback<ServicePropertiesInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(String nextPageLink) {
                     return listNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -2977,13 +2977,13 @@ public class ServicesInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<Page<ServiceInner>> listNextAsync(final String nextPageLink) {
+    public Observable<Page<ServicePropertiesInner>> listNextAsync(final String nextPageLink) {
         return listNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+            .map(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Page<ServicePropertiesInner>>() {
                 @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                public Page<ServicePropertiesInner> call(ServiceResponse<Page<ServicePropertiesInner>> response) {
                     return response.body();
                 }
             });
@@ -2994,13 +2994,13 @@ public class ServicesInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
         return listNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(ServiceResponse<Page<ServicePropertiesInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -3013,22 +3013,22 @@ public class ServicesInner {
     /**
      * Gets the details of services, for a tenant, that are onboarded to Azure Active Directory Connect Health.
      *
-    ServiceResponse<PageImpl<ServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listNextSinglePageAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listNextSinglePageAsync(final String nextPageLink) {
         if (nextPageLink == null) {
             throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
         }
         String nextUrl = String.format("%s", nextPageLink);
         return service.listNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<ServicePropertiesInner>> result = listNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServicePropertiesInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -3036,9 +3036,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<ServiceInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ServicePropertiesInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ServicePropertiesInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ServicePropertiesInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -3050,13 +3050,13 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the PagedList&lt;ServiceInner&gt; object if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object if successful.
      */
-    public PagedList<ServiceInner> listPremiumNext(final String nextPageLink) {
-        ServiceResponse<Page<ServiceInner>> response = listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single();
-        return new PagedList<ServiceInner>(response.body()) {
+    public PagedList<ServicePropertiesInner> listPremiumNext(final String nextPageLink) {
+        ServiceResponse<Page<ServicePropertiesInner>> response = listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<ServicePropertiesInner>(response.body()) {
             @Override
-            public Page<ServiceInner> nextPage(String nextPageLink) {
+            public Page<ServicePropertiesInner> nextPage(String nextPageLink) {
                 return listPremiumNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
@@ -3071,12 +3071,12 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ServiceInner>> listPremiumNextAsync(final String nextPageLink, final ServiceFuture<List<ServiceInner>> serviceFuture, final ListOperationCallback<ServiceInner> serviceCallback) {
+    public ServiceFuture<List<ServicePropertiesInner>> listPremiumNextAsync(final String nextPageLink, final ServiceFuture<List<ServicePropertiesInner>> serviceFuture, final ListOperationCallback<ServicePropertiesInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listPremiumNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            new Func1<String, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(String nextPageLink) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(String nextPageLink) {
                     return listPremiumNextSinglePageAsync(nextPageLink);
                 }
             },
@@ -3088,13 +3088,13 @@ public class ServicesInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<Page<ServiceInner>> listPremiumNextAsync(final String nextPageLink) {
+    public Observable<Page<ServicePropertiesInner>> listPremiumNextAsync(final String nextPageLink) {
         return listPremiumNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponse<Page<ServiceInner>>, Page<ServiceInner>>() {
+            .map(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Page<ServicePropertiesInner>>() {
                 @Override
-                public Page<ServiceInner> call(ServiceResponse<Page<ServiceInner>> response) {
+                public Page<ServicePropertiesInner> call(ServiceResponse<Page<ServicePropertiesInner>> response) {
                     return response.body();
                 }
             });
@@ -3105,13 +3105,13 @@ public class ServicesInner {
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the PagedList&lt;ServiceInner&gt; object
+     * @return the observable to the PagedList&lt;ServicePropertiesInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumNextWithServiceResponseAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listPremiumNextWithServiceResponseAsync(final String nextPageLink) {
         return listPremiumNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponse<Page<ServiceInner>>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .concatMap(new Func1<ServiceResponse<Page<ServicePropertiesInner>>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(ServiceResponse<Page<ServiceInner>> page) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(ServiceResponse<Page<ServicePropertiesInner>> page) {
                     String nextPageLink = page.body().nextPageLink();
                     if (nextPageLink == null) {
                         return Observable.just(page);
@@ -3124,22 +3124,22 @@ public class ServicesInner {
     /**
      * Gets the details of services for a tenant having Azure AD Premium license and is onboarded to Azure Active Directory Connect Health.
      *
-    ServiceResponse<PageImpl<ServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<ServicePropertiesInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the PagedList&lt;ServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     * @return the PagedList&lt;ServicePropertiesInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ServiceInner>>> listPremiumNextSinglePageAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<ServicePropertiesInner>>> listPremiumNextSinglePageAsync(final String nextPageLink) {
         if (nextPageLink == null) {
             throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
         }
         String nextUrl = String.format("%s", nextPageLink);
         return service.listPremiumNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServiceInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ServicePropertiesInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<Page<ServiceInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Page<ServicePropertiesInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ServiceInner>> result = listPremiumNextDelegate(response);
-                        return Observable.just(new ServiceResponse<Page<ServiceInner>>(result.body(), result.response()));
+                        ServiceResponse<PageImpl<ServicePropertiesInner>> result = listPremiumNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ServicePropertiesInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
                     }
@@ -3147,9 +3147,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<ServiceInner>> listPremiumNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ServicePropertiesInner>> listPremiumNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ServicePropertiesInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ServicePropertiesInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

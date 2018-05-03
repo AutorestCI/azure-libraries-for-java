@@ -45,7 +45,7 @@ public class TenantInner {
      * The time in minutues after which an alert will be autosupressed.
      */
     @JsonProperty(value = "alertSuppressionTimeInMins")
-    private DateTime alertSuppressionTimeInMins;
+    private Integer alertSuppressionTimeInMins;
 
     /**
      * Indicates if the tenant data can be seen by Microsoft through Azure
@@ -86,7 +86,7 @@ public class TenantInner {
      * Directory Connect Health.
      */
     @JsonProperty(value = "disabledReason")
-    private String disabledReason;
+    private Integer disabledReason;
 
     /**
      * The list of golbal administrators for the tenant.
@@ -113,6 +113,13 @@ public class TenantInner {
      */
     @JsonProperty(value = "lastVerified")
     private DateTime lastVerified;
+
+    /**
+     * Indicates if the tenant is allowed to  onboard to Azure Active Directory
+     * Connect Health.
+     */
+    @JsonProperty(value = "onboardingAllowed")
+    private Boolean onboardingAllowed;
 
     /**
      * Indicates if the tenant is already onboarded to Azure Active Directory
@@ -232,7 +239,7 @@ public class TenantInner {
      *
      * @return the alertSuppressionTimeInMins value
      */
-    public DateTime alertSuppressionTimeInMins() {
+    public Integer alertSuppressionTimeInMins() {
         return this.alertSuppressionTimeInMins;
     }
 
@@ -242,7 +249,7 @@ public class TenantInner {
      * @param alertSuppressionTimeInMins the alertSuppressionTimeInMins value to set
      * @return the TenantInner object itself.
      */
-    public TenantInner withAlertSuppressionTimeInMins(DateTime alertSuppressionTimeInMins) {
+    public TenantInner withAlertSuppressionTimeInMins(Integer alertSuppressionTimeInMins) {
         this.alertSuppressionTimeInMins = alertSuppressionTimeInMins;
         return this;
     }
@@ -352,7 +359,7 @@ public class TenantInner {
      *
      * @return the disabledReason value
      */
-    public String disabledReason() {
+    public Integer disabledReason() {
         return this.disabledReason;
     }
 
@@ -362,7 +369,7 @@ public class TenantInner {
      * @param disabledReason the disabledReason value to set
      * @return the TenantInner object itself.
      */
-    public TenantInner withDisabledReason(String disabledReason) {
+    public TenantInner withDisabledReason(Integer disabledReason) {
         this.disabledReason = disabledReason;
         return this;
     }
@@ -444,6 +451,26 @@ public class TenantInner {
      */
     public TenantInner withLastVerified(DateTime lastVerified) {
         this.lastVerified = lastVerified;
+        return this;
+    }
+
+    /**
+     * Get the onboardingAllowed value.
+     *
+     * @return the onboardingAllowed value
+     */
+    public Boolean onboardingAllowed() {
+        return this.onboardingAllowed;
+    }
+
+    /**
+     * Set the onboardingAllowed value.
+     *
+     * @param onboardingAllowed the onboardingAllowed value to set
+     * @return the TenantInner object itself.
+     */
+    public TenantInner withOnboardingAllowed(Boolean onboardingAllowed) {
+        this.onboardingAllowed = onboardingAllowed;
         return this;
     }
 
