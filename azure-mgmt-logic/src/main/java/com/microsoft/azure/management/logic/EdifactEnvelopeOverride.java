@@ -11,7 +11,7 @@ package com.microsoft.azure.management.logic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The Edifact enevlope override settings.
+ * The Edifact envelope override settings.
  */
 public class EdifactEnvelopeOverride {
     /**

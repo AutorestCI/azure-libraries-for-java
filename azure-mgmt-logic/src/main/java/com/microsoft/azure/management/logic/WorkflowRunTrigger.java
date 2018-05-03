@@ -46,6 +46,12 @@ public class WorkflowRunTrigger {
     private ContentLink outputsLink;
 
     /**
+     * Gets the scheduled time.
+     */
+    @JsonProperty(value = "scheduledTime", access = JsonProperty.Access.WRITE_ONLY)
+    private DateTime scheduledTime;
+
+    /**
      * Gets the start time.
      */
     @JsonProperty(value = "startTime", access = JsonProperty.Access.WRITE_ONLY)
@@ -138,6 +144,15 @@ public class WorkflowRunTrigger {
      */
     public ContentLink outputsLink() {
         return this.outputsLink;
+    }
+
+    /**
+     * Get the scheduledTime value.
+     *
+     * @return the scheduledTime value
+     */
+    public DateTime scheduledTime() {
+        return this.scheduledTime;
     }
 
     /**

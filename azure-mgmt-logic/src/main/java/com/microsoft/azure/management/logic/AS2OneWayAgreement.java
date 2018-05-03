@@ -11,7 +11,7 @@ package com.microsoft.azure.management.logic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The integration account AS2 oneway agreement.
+ * The integration account AS2 one-way agreement.
  */
 public class AS2OneWayAgreement {
     /**

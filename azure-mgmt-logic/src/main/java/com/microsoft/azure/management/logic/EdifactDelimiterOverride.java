@@ -27,7 +27,7 @@ public class EdifactDelimiterOverride {
     private String messageVersion;
 
     /**
-     * The message releaseversion.
+     * The message release.
      */
     @JsonProperty(value = "messageRelease")
     private String messageRelease;

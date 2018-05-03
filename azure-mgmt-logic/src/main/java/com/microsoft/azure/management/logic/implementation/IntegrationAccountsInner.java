@@ -10,11 +10,14 @@ package com.microsoft.azure.management.logic.implementation;
 
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
+import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.logic.KeyType;
+import com.microsoft.azure.management.logic.RegenerateActionParameter;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -43,7 +46,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in IntegrationAccounts.
  */
-public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAccountInner>, InnerSupportsDelete<Void> {
+public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAccountInner>, InnerSupportsDelete<Void>, InnerSupportsListing<IntegrationAccountInner> {
     /** The Retrofit service to perform REST calls. */
     private IntegrationAccountsService service;
     /** The service client containing this operation class. */
@@ -65,9 +68,9 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * used by Retrofit to perform actually REST calls.
      */
     interface IntegrationAccountsService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listBySubscription" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts list" })
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.Logic/integrationAccounts")
-        Observable<Response<ResponseBody>> listBySubscription(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Query("$top") Integer top, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> list(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Query("$top") Integer top, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts")
@@ -93,9 +96,21 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/listCallbackUrl")
         Observable<Response<ResponseBody>> getCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body GetCallbackUrlParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listBySubscriptionNext" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listKeyVaultKeys" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/listKeyVaultKeys")
+        Observable<Response<ResponseBody>> listKeyVaultKeys(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body ListKeyVaultKeysDefinitionInner listKeyVaultKeys, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts logTrackingEvents" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/logTrackingEvents")
+        Observable<Response<ResponseBody>> logTrackingEvents(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body TrackingEventsDefinitionInner logTrackingEvents, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts regenerateAccessKey" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/regenerateAccessKey")
+        Observable<Response<ResponseBody>> regenerateAccessKey(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body RegenerateActionParameter regenerateAccessKey, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listNext" })
         @GET
-        Observable<Response<ResponseBody>> listBySubscriptionNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listByResourceGroupNext" })
         @GET
@@ -111,12 +126,12 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;IntegrationAccountInner&gt; object if successful.
      */
-    public PagedList<IntegrationAccountInner> listBySubscription() {
-        ServiceResponse<Page<IntegrationAccountInner>> response = listBySubscriptionSinglePageAsync().toBlocking().single();
+    public PagedList<IntegrationAccountInner> list() {
+        ServiceResponse<Page<IntegrationAccountInner>> response = listSinglePageAsync().toBlocking().single();
         return new PagedList<IntegrationAccountInner>(response.body()) {
             @Override
             public Page<IntegrationAccountInner> nextPage(String nextPageLink) {
-                return listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
     }
@@ -128,13 +143,13 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<IntegrationAccountInner>> listBySubscriptionAsync(final ListOperationCallback<IntegrationAccountInner> serviceCallback) {
+    public ServiceFuture<List<IntegrationAccountInner>> listAsync(final ListOperationCallback<IntegrationAccountInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listBySubscriptionSinglePageAsync(),
+            listSinglePageAsync(),
             new Func1<String, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(String nextPageLink) {
-                    return listBySubscriptionNextSinglePageAsync(nextPageLink);
+                    return listNextSinglePageAsync(nextPageLink);
                 }
             },
             serviceCallback);
@@ -146,8 +161,8 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;IntegrationAccountInner&gt; object
      */
-    public Observable<Page<IntegrationAccountInner>> listBySubscriptionAsync() {
-        return listBySubscriptionWithServiceResponseAsync()
+    public Observable<Page<IntegrationAccountInner>> listAsync() {
+        return listWithServiceResponseAsync()
             .map(new Func1<ServiceResponse<Page<IntegrationAccountInner>>, Page<IntegrationAccountInner>>() {
                 @Override
                 public Page<IntegrationAccountInner> call(ServiceResponse<Page<IntegrationAccountInner>> response) {
@@ -162,8 +177,8 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;IntegrationAccountInner&gt; object
      */
-    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listBySubscriptionWithServiceResponseAsync() {
-        return listBySubscriptionSinglePageAsync()
+    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listWithServiceResponseAsync() {
+        return listSinglePageAsync()
             .concatMap(new Func1<ServiceResponse<Page<IntegrationAccountInner>>, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(ServiceResponse<Page<IntegrationAccountInner>> page) {
@@ -171,7 +186,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
                     if (nextPageLink == null) {
                         return Observable.just(page);
                     }
-                    return Observable.just(page).concatWith(listBySubscriptionNextWithServiceResponseAsync(nextPageLink));
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
                 }
             });
     }
@@ -182,7 +197,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;IntegrationAccountInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listBySubscriptionSinglePageAsync() {
+    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listSinglePageAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -190,12 +205,12 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final Integer top = null;
-        return service.listBySubscription(this.client.subscriptionId(), this.client.apiVersion(), top, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.subscriptionId(), this.client.apiVersion(), top, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<IntegrationAccountInner>> result = listBySubscriptionDelegate(response);
+                        ServiceResponse<PageImpl<IntegrationAccountInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<IntegrationAccountInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -213,12 +228,12 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;IntegrationAccountInner&gt; object if successful.
      */
-    public PagedList<IntegrationAccountInner> listBySubscription(final Integer top) {
-        ServiceResponse<Page<IntegrationAccountInner>> response = listBySubscriptionSinglePageAsync(top).toBlocking().single();
+    public PagedList<IntegrationAccountInner> list(final Integer top) {
+        ServiceResponse<Page<IntegrationAccountInner>> response = listSinglePageAsync(top).toBlocking().single();
         return new PagedList<IntegrationAccountInner>(response.body()) {
             @Override
             public Page<IntegrationAccountInner> nextPage(String nextPageLink) {
-                return listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
     }
@@ -231,13 +246,13 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<IntegrationAccountInner>> listBySubscriptionAsync(final Integer top, final ListOperationCallback<IntegrationAccountInner> serviceCallback) {
+    public ServiceFuture<List<IntegrationAccountInner>> listAsync(final Integer top, final ListOperationCallback<IntegrationAccountInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listBySubscriptionSinglePageAsync(top),
+            listSinglePageAsync(top),
             new Func1<String, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(String nextPageLink) {
-                    return listBySubscriptionNextSinglePageAsync(nextPageLink);
+                    return listNextSinglePageAsync(nextPageLink);
                 }
             },
             serviceCallback);
@@ -250,8 +265,8 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;IntegrationAccountInner&gt; object
      */
-    public Observable<Page<IntegrationAccountInner>> listBySubscriptionAsync(final Integer top) {
-        return listBySubscriptionWithServiceResponseAsync(top)
+    public Observable<Page<IntegrationAccountInner>> listAsync(final Integer top) {
+        return listWithServiceResponseAsync(top)
             .map(new Func1<ServiceResponse<Page<IntegrationAccountInner>>, Page<IntegrationAccountInner>>() {
                 @Override
                 public Page<IntegrationAccountInner> call(ServiceResponse<Page<IntegrationAccountInner>> response) {
@@ -267,8 +282,8 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;IntegrationAccountInner&gt; object
      */
-    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listBySubscriptionWithServiceResponseAsync(final Integer top) {
-        return listBySubscriptionSinglePageAsync(top)
+    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listWithServiceResponseAsync(final Integer top) {
+        return listSinglePageAsync(top)
             .concatMap(new Func1<ServiceResponse<Page<IntegrationAccountInner>>, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(ServiceResponse<Page<IntegrationAccountInner>> page) {
@@ -276,7 +291,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
                     if (nextPageLink == null) {
                         return Observable.just(page);
                     }
-                    return Observable.just(page).concatWith(listBySubscriptionNextWithServiceResponseAsync(nextPageLink));
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
                 }
             });
     }
@@ -288,19 +303,19 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;IntegrationAccountInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listBySubscriptionSinglePageAsync(final Integer top) {
+    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listSinglePageAsync(final Integer top) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listBySubscription(this.client.subscriptionId(), this.client.apiVersion(), top, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.subscriptionId(), this.client.apiVersion(), top, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<IntegrationAccountInner>> result = listBySubscriptionDelegate(response);
+                        ServiceResponse<PageImpl<IntegrationAccountInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<IntegrationAccountInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -309,7 +324,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
             });
     }
 
-    private ServiceResponse<PageImpl<IntegrationAccountInner>> listBySubscriptionDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<PageImpl<IntegrationAccountInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<IntegrationAccountInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<IntegrationAccountInner>>() { }.getType())
                 .registerError(CloudException.class)
@@ -1001,6 +1016,368 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
     }
 
     /**
+     * Gets the integration account's Key Vault keys.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param listKeyVaultKeys The key vault parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the List&lt;KeyVaultKeyInner&gt; object if successful.
+     */
+    public List<KeyVaultKeyInner> listKeyVaultKeys(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+        return listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys).toBlocking().single().body();
+    }
+
+    /**
+     * Gets the integration account's Key Vault keys.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param listKeyVaultKeys The key vault parameters.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys, final ServiceCallback<List<KeyVaultKeyInner>> serviceCallback) {
+        return ServiceFuture.fromResponse(listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys), serviceCallback);
+    }
+
+    /**
+     * Gets the integration account's Key Vault keys.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param listKeyVaultKeys The key vault parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the List&lt;KeyVaultKeyInner&gt; object
+     */
+    public Observable<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+        return listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys).map(new Func1<ServiceResponse<List<KeyVaultKeyInner>>, List<KeyVaultKeyInner>>() {
+            @Override
+            public List<KeyVaultKeyInner> call(ServiceResponse<List<KeyVaultKeyInner>> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Gets the integration account's Key Vault keys.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param listKeyVaultKeys The key vault parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the List&lt;KeyVaultKeyInner&gt; object
+     */
+    public Observable<ServiceResponse<List<KeyVaultKeyInner>>> listKeyVaultKeysWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (integrationAccountName == null) {
+            throw new IllegalArgumentException("Parameter integrationAccountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (listKeyVaultKeys == null) {
+            throw new IllegalArgumentException("Parameter listKeyVaultKeys is required and cannot be null.");
+        }
+        Validator.validate(listKeyVaultKeys);
+        return service.listKeyVaultKeys(this.client.subscriptionId(), resourceGroupName, integrationAccountName, this.client.apiVersion(), listKeyVaultKeys, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<KeyVaultKeyInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<List<KeyVaultKeyInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl2<KeyVaultKeyInner>> result = listKeyVaultKeysDelegate(response);
+                        ServiceResponse<List<KeyVaultKeyInner>> clientResponse = new ServiceResponse<List<KeyVaultKeyInner>>(result.body().items(), result.response());
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl2<KeyVaultKeyInner>> listKeyVaultKeysDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl2<KeyVaultKeyInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl2<KeyVaultKeyInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Logs the integration account's tracking events.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param logTrackingEvents The callback URL parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void logTrackingEvents(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents) {
+        logTrackingEventsWithServiceResponseAsync(resourceGroupName, integrationAccountName, logTrackingEvents).toBlocking().single().body();
+    }
+
+    /**
+     * Logs the integration account's tracking events.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param logTrackingEvents The callback URL parameters.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> logTrackingEventsAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(logTrackingEventsWithServiceResponseAsync(resourceGroupName, integrationAccountName, logTrackingEvents), serviceCallback);
+    }
+
+    /**
+     * Logs the integration account's tracking events.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param logTrackingEvents The callback URL parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> logTrackingEventsAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents) {
+        return logTrackingEventsWithServiceResponseAsync(resourceGroupName, integrationAccountName, logTrackingEvents).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Logs the integration account's tracking events.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param logTrackingEvents The callback URL parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> logTrackingEventsWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (integrationAccountName == null) {
+            throw new IllegalArgumentException("Parameter integrationAccountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (logTrackingEvents == null) {
+            throw new IllegalArgumentException("Parameter logTrackingEvents is required and cannot be null.");
+        }
+        Validator.validate(logTrackingEvents);
+        return service.logTrackingEvents(this.client.subscriptionId(), resourceGroupName, integrationAccountName, this.client.apiVersion(), logTrackingEvents, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = logTrackingEventsDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> logTrackingEventsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the IntegrationAccountInner object if successful.
+     */
+    public IntegrationAccountInner regenerateAccessKey(String resourceGroupName, String integrationAccountName) {
+        return regenerateAccessKeyWithServiceResponseAsync(resourceGroupName, integrationAccountName).toBlocking().single().body();
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<IntegrationAccountInner> regenerateAccessKeyAsync(String resourceGroupName, String integrationAccountName, final ServiceCallback<IntegrationAccountInner> serviceCallback) {
+        return ServiceFuture.fromResponse(regenerateAccessKeyWithServiceResponseAsync(resourceGroupName, integrationAccountName), serviceCallback);
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationAccountInner object
+     */
+    public Observable<IntegrationAccountInner> regenerateAccessKeyAsync(String resourceGroupName, String integrationAccountName) {
+        return regenerateAccessKeyWithServiceResponseAsync(resourceGroupName, integrationAccountName).map(new Func1<ServiceResponse<IntegrationAccountInner>, IntegrationAccountInner>() {
+            @Override
+            public IntegrationAccountInner call(ServiceResponse<IntegrationAccountInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationAccountInner object
+     */
+    public Observable<ServiceResponse<IntegrationAccountInner>> regenerateAccessKeyWithServiceResponseAsync(String resourceGroupName, String integrationAccountName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (integrationAccountName == null) {
+            throw new IllegalArgumentException("Parameter integrationAccountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final KeyType keyType = null;
+        RegenerateActionParameter regenerateAccessKey = new RegenerateActionParameter();
+        regenerateAccessKey.withKeyType(null);
+        return service.regenerateAccessKey(this.client.subscriptionId(), resourceGroupName, integrationAccountName, this.client.apiVersion(), this.client.acceptLanguage(), regenerateAccessKey, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationAccountInner>>>() {
+                @Override
+                public Observable<ServiceResponse<IntegrationAccountInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<IntegrationAccountInner> clientResponse = regenerateAccessKeyDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param keyType The key type. Possible values include: 'NotSpecified', 'Primary', 'Secondary'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the IntegrationAccountInner object if successful.
+     */
+    public IntegrationAccountInner regenerateAccessKey(String resourceGroupName, String integrationAccountName, KeyType keyType) {
+        return regenerateAccessKeyWithServiceResponseAsync(resourceGroupName, integrationAccountName, keyType).toBlocking().single().body();
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param keyType The key type. Possible values include: 'NotSpecified', 'Primary', 'Secondary'
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<IntegrationAccountInner> regenerateAccessKeyAsync(String resourceGroupName, String integrationAccountName, KeyType keyType, final ServiceCallback<IntegrationAccountInner> serviceCallback) {
+        return ServiceFuture.fromResponse(regenerateAccessKeyWithServiceResponseAsync(resourceGroupName, integrationAccountName, keyType), serviceCallback);
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param keyType The key type. Possible values include: 'NotSpecified', 'Primary', 'Secondary'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationAccountInner object
+     */
+    public Observable<IntegrationAccountInner> regenerateAccessKeyAsync(String resourceGroupName, String integrationAccountName, KeyType keyType) {
+        return regenerateAccessKeyWithServiceResponseAsync(resourceGroupName, integrationAccountName, keyType).map(new Func1<ServiceResponse<IntegrationAccountInner>, IntegrationAccountInner>() {
+            @Override
+            public IntegrationAccountInner call(ServiceResponse<IntegrationAccountInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Regenerates the integration account access key.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param keyType The key type. Possible values include: 'NotSpecified', 'Primary', 'Secondary'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationAccountInner object
+     */
+    public Observable<ServiceResponse<IntegrationAccountInner>> regenerateAccessKeyWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, KeyType keyType) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (integrationAccountName == null) {
+            throw new IllegalArgumentException("Parameter integrationAccountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        RegenerateActionParameter regenerateAccessKey = new RegenerateActionParameter();
+        regenerateAccessKey.withKeyType(keyType);
+        return service.regenerateAccessKey(this.client.subscriptionId(), resourceGroupName, integrationAccountName, this.client.apiVersion(), this.client.acceptLanguage(), regenerateAccessKey, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationAccountInner>>>() {
+                @Override
+                public Observable<ServiceResponse<IntegrationAccountInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<IntegrationAccountInner> clientResponse = regenerateAccessKeyDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<IntegrationAccountInner> regenerateAccessKeyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<IntegrationAccountInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<IntegrationAccountInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
      * Gets a list of integration accounts by subscription.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
@@ -1009,12 +1386,12 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;IntegrationAccountInner&gt; object if successful.
      */
-    public PagedList<IntegrationAccountInner> listBySubscriptionNext(final String nextPageLink) {
-        ServiceResponse<Page<IntegrationAccountInner>> response = listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single();
+    public PagedList<IntegrationAccountInner> listNext(final String nextPageLink) {
+        ServiceResponse<Page<IntegrationAccountInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
         return new PagedList<IntegrationAccountInner>(response.body()) {
             @Override
             public Page<IntegrationAccountInner> nextPage(String nextPageLink) {
-                return listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
     }
@@ -1028,13 +1405,13 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<IntegrationAccountInner>> listBySubscriptionNextAsync(final String nextPageLink, final ServiceFuture<List<IntegrationAccountInner>> serviceFuture, final ListOperationCallback<IntegrationAccountInner> serviceCallback) {
+    public ServiceFuture<List<IntegrationAccountInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<IntegrationAccountInner>> serviceFuture, final ListOperationCallback<IntegrationAccountInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listBySubscriptionNextSinglePageAsync(nextPageLink),
+            listNextSinglePageAsync(nextPageLink),
             new Func1<String, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(String nextPageLink) {
-                    return listBySubscriptionNextSinglePageAsync(nextPageLink);
+                    return listNextSinglePageAsync(nextPageLink);
                 }
             },
             serviceCallback);
@@ -1047,8 +1424,8 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;IntegrationAccountInner&gt; object
      */
-    public Observable<Page<IntegrationAccountInner>> listBySubscriptionNextAsync(final String nextPageLink) {
-        return listBySubscriptionNextWithServiceResponseAsync(nextPageLink)
+    public Observable<Page<IntegrationAccountInner>> listNextAsync(final String nextPageLink) {
+        return listNextWithServiceResponseAsync(nextPageLink)
             .map(new Func1<ServiceResponse<Page<IntegrationAccountInner>>, Page<IntegrationAccountInner>>() {
                 @Override
                 public Page<IntegrationAccountInner> call(ServiceResponse<Page<IntegrationAccountInner>> response) {
@@ -1064,8 +1441,8 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;IntegrationAccountInner&gt; object
      */
-    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listBySubscriptionNextWithServiceResponseAsync(final String nextPageLink) {
-        return listBySubscriptionNextSinglePageAsync(nextPageLink)
+    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
+        return listNextSinglePageAsync(nextPageLink)
             .concatMap(new Func1<ServiceResponse<Page<IntegrationAccountInner>>, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(ServiceResponse<Page<IntegrationAccountInner>> page) {
@@ -1073,7 +1450,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
                     if (nextPageLink == null) {
                         return Observable.just(page);
                     }
-                    return Observable.just(page).concatWith(listBySubscriptionNextWithServiceResponseAsync(nextPageLink));
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
                 }
             });
     }
@@ -1085,17 +1462,17 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;IntegrationAccountInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listBySubscriptionNextSinglePageAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<IntegrationAccountInner>>> listNextSinglePageAsync(final String nextPageLink) {
         if (nextPageLink == null) {
             throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
         }
         String nextUrl = String.format("%s", nextPageLink);
-        return service.listBySubscriptionNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.listNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<IntegrationAccountInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<IntegrationAccountInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<IntegrationAccountInner>> result = listBySubscriptionNextDelegate(response);
+                        ServiceResponse<PageImpl<IntegrationAccountInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<IntegrationAccountInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1104,7 +1481,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
             });
     }
 
-    private ServiceResponse<PageImpl<IntegrationAccountInner>> listBySubscriptionNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<PageImpl<IntegrationAccountInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<IntegrationAccountInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<IntegrationAccountInner>>() { }.getType())
                 .registerError(CloudException.class)

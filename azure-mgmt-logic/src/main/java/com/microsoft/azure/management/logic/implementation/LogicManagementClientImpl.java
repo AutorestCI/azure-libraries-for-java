@@ -232,6 +232,45 @@ public class LogicManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The WorkflowRunActionRepetitionsInner object to access its operations.
+     */
+    private WorkflowRunActionRepetitionsInner workflowRunActionRepetitions;
+
+    /**
+     * Gets the WorkflowRunActionRepetitionsInner object to access its operations.
+     * @return the WorkflowRunActionRepetitionsInner object.
+     */
+    public WorkflowRunActionRepetitionsInner workflowRunActionRepetitions() {
+        return this.workflowRunActionRepetitions;
+    }
+
+    /**
+     * The WorkflowRunActionScopedRepetitionsInner object to access its operations.
+     */
+    private WorkflowRunActionScopedRepetitionsInner workflowRunActionScopedRepetitions;
+
+    /**
+     * Gets the WorkflowRunActionScopedRepetitionsInner object to access its operations.
+     * @return the WorkflowRunActionScopedRepetitionsInner object.
+     */
+    public WorkflowRunActionScopedRepetitionsInner workflowRunActionScopedRepetitions() {
+        return this.workflowRunActionScopedRepetitions;
+    }
+
+    /**
+     * The WorkflowRunOperationsInner object to access its operations.
+     */
+    private WorkflowRunOperationsInner workflowRunOperations;
+
+    /**
+     * Gets the WorkflowRunOperationsInner object to access its operations.
+     * @return the WorkflowRunOperationsInner object.
+     */
+    public WorkflowRunOperationsInner workflowRunOperations() {
+        return this.workflowRunOperations;
+    }
+
+    /**
      * The IntegrationAccountsInner object to access its operations.
      */
     private IntegrationAccountsInner integrationAccounts;
@@ -242,6 +281,32 @@ public class LogicManagementClientImpl extends AzureServiceClient {
      */
     public IntegrationAccountsInner integrationAccounts() {
         return this.integrationAccounts;
+    }
+
+    /**
+     * The IntegrationAccountAssembliesInner object to access its operations.
+     */
+    private IntegrationAccountAssembliesInner integrationAccountAssemblies;
+
+    /**
+     * Gets the IntegrationAccountAssembliesInner object to access its operations.
+     * @return the IntegrationAccountAssembliesInner object.
+     */
+    public IntegrationAccountAssembliesInner integrationAccountAssemblies() {
+        return this.integrationAccountAssemblies;
+    }
+
+    /**
+     * The IntegrationAccountBatchConfigurationsInner object to access its operations.
+     */
+    private IntegrationAccountBatchConfigurationsInner integrationAccountBatchConfigurations;
+
+    /**
+     * Gets the IntegrationAccountBatchConfigurationsInner object to access its operations.
+     * @return the IntegrationAccountBatchConfigurationsInner object.
+     */
+    public IntegrationAccountBatchConfigurationsInner integrationAccountBatchConfigurations() {
+        return this.integrationAccountBatchConfigurations;
     }
 
     /**
@@ -363,7 +428,12 @@ public class LogicManagementClientImpl extends AzureServiceClient {
         this.workflowTriggerHistories = new WorkflowTriggerHistoriesInner(restClient().retrofit(), this);
         this.workflowRuns = new WorkflowRunsInner(restClient().retrofit(), this);
         this.workflowRunActions = new WorkflowRunActionsInner(restClient().retrofit(), this);
+        this.workflowRunActionRepetitions = new WorkflowRunActionRepetitionsInner(restClient().retrofit(), this);
+        this.workflowRunActionScopedRepetitions = new WorkflowRunActionScopedRepetitionsInner(restClient().retrofit(), this);
+        this.workflowRunOperations = new WorkflowRunOperationsInner(restClient().retrofit(), this);
         this.integrationAccounts = new IntegrationAccountsInner(restClient().retrofit(), this);
+        this.integrationAccountAssemblies = new IntegrationAccountAssembliesInner(restClient().retrofit(), this);
+        this.integrationAccountBatchConfigurations = new IntegrationAccountBatchConfigurationsInner(restClient().retrofit(), this);
         this.schemas = new SchemasInner(restClient().retrofit(), this);
         this.maps = new MapsInner(restClient().retrofit(), this);
         this.partners = new PartnersInner(restClient().retrofit(), this);

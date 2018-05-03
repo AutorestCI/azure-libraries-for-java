@@ -11,7 +11,7 @@ package com.microsoft.azure.management.logic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Error reponse indicates Logic service is not able to process the incoming
+ * Error response indicates Logic service is not able to process the incoming
  * request. The error property contains the error details.
  */
 public class ErrorResponse {

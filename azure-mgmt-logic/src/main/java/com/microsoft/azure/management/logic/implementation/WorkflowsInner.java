@@ -10,6 +10,7 @@ package com.microsoft.azure.management.logic.implementation;
 
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
+import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
@@ -46,7 +47,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Workflows.
  */
-public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSupportsDelete<Void> {
+public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSupportsDelete<Void>, InnerSupportsListing<WorkflowInner> {
     /** The Retrofit service to perform REST calls. */
     private WorkflowsService service;
     /** The service client containing this operation class. */
@@ -68,9 +69,9 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * used by Retrofit to perform actually REST calls.
      */
     interface WorkflowsService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listBySubscription" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows list" })
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.Logic/workflows")
-        Observable<Response<ResponseBody>> listBySubscription(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Query("$top") Integer top, @Query("$filter") String filter, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> list(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Query("$top") Integer top, @Query("$filter") String filter, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows")
@@ -104,21 +105,33 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/generateUpgradedDefinition")
         Observable<Response<ResponseBody>> generateUpgradedDefinition(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body GenerateUpgradedDefinitionParameters parameters, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listCallbackUrl" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/listCallbackUrl")
+        Observable<Response<ResponseBody>> listCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Body GetCallbackUrlParametersInner listCallbackUrl, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listSwagger" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/listSwagger")
         Observable<Response<ResponseBody>> listSwagger(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows move" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/move")
+        Observable<Response<ResponseBody>> move(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Body WorkflowInner move, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows regenerateAccessKey" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/regenerateAccessKey")
         Observable<Response<ResponseBody>> regenerateAccessKey(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body RegenerateActionParameter keyType, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows validateWorkflow" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/validate")
+        Observable<Response<ResponseBody>> validateWorkflow(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Body WorkflowInner validate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows validate" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/locations/{location}/workflows/{workflowName}/validate")
         Observable<Response<ResponseBody>> validate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("location") String location, @Path("workflowName") String workflowName, @Query("api-version") String apiVersion, @Body WorkflowInner workflow, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listBySubscriptionNext" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listNext" })
         @GET
-        Observable<Response<ResponseBody>> listBySubscriptionNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listByResourceGroupNext" })
         @GET
@@ -134,12 +147,12 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;WorkflowInner&gt; object if successful.
      */
-    public PagedList<WorkflowInner> listBySubscription() {
-        ServiceResponse<Page<WorkflowInner>> response = listBySubscriptionSinglePageAsync().toBlocking().single();
+    public PagedList<WorkflowInner> list() {
+        ServiceResponse<Page<WorkflowInner>> response = listSinglePageAsync().toBlocking().single();
         return new PagedList<WorkflowInner>(response.body()) {
             @Override
             public Page<WorkflowInner> nextPage(String nextPageLink) {
-                return listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
     }
@@ -151,13 +164,13 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<WorkflowInner>> listBySubscriptionAsync(final ListOperationCallback<WorkflowInner> serviceCallback) {
+    public ServiceFuture<List<WorkflowInner>> listAsync(final ListOperationCallback<WorkflowInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listBySubscriptionSinglePageAsync(),
+            listSinglePageAsync(),
             new Func1<String, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(String nextPageLink) {
-                    return listBySubscriptionNextSinglePageAsync(nextPageLink);
+                    return listNextSinglePageAsync(nextPageLink);
                 }
             },
             serviceCallback);
@@ -169,8 +182,8 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkflowInner&gt; object
      */
-    public Observable<Page<WorkflowInner>> listBySubscriptionAsync() {
-        return listBySubscriptionWithServiceResponseAsync()
+    public Observable<Page<WorkflowInner>> listAsync() {
+        return listWithServiceResponseAsync()
             .map(new Func1<ServiceResponse<Page<WorkflowInner>>, Page<WorkflowInner>>() {
                 @Override
                 public Page<WorkflowInner> call(ServiceResponse<Page<WorkflowInner>> response) {
@@ -185,8 +198,8 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkflowInner&gt; object
      */
-    public Observable<ServiceResponse<Page<WorkflowInner>>> listBySubscriptionWithServiceResponseAsync() {
-        return listBySubscriptionSinglePageAsync()
+    public Observable<ServiceResponse<Page<WorkflowInner>>> listWithServiceResponseAsync() {
+        return listSinglePageAsync()
             .concatMap(new Func1<ServiceResponse<Page<WorkflowInner>>, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(ServiceResponse<Page<WorkflowInner>> page) {
@@ -194,7 +207,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
                     if (nextPageLink == null) {
                         return Observable.just(page);
                     }
-                    return Observable.just(page).concatWith(listBySubscriptionNextWithServiceResponseAsync(nextPageLink));
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
                 }
             });
     }
@@ -205,7 +218,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;WorkflowInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<WorkflowInner>>> listBySubscriptionSinglePageAsync() {
+    public Observable<ServiceResponse<Page<WorkflowInner>>> listSinglePageAsync() {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -214,12 +227,12 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
         }
         final Integer top = null;
         final String filter = null;
-        return service.listBySubscription(this.client.subscriptionId(), this.client.apiVersion(), top, filter, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.subscriptionId(), this.client.apiVersion(), top, filter, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<WorkflowInner>> result = listBySubscriptionDelegate(response);
+                        ServiceResponse<PageImpl<WorkflowInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<WorkflowInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -238,12 +251,12 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;WorkflowInner&gt; object if successful.
      */
-    public PagedList<WorkflowInner> listBySubscription(final Integer top, final String filter) {
-        ServiceResponse<Page<WorkflowInner>> response = listBySubscriptionSinglePageAsync(top, filter).toBlocking().single();
+    public PagedList<WorkflowInner> list(final Integer top, final String filter) {
+        ServiceResponse<Page<WorkflowInner>> response = listSinglePageAsync(top, filter).toBlocking().single();
         return new PagedList<WorkflowInner>(response.body()) {
             @Override
             public Page<WorkflowInner> nextPage(String nextPageLink) {
-                return listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
     }
@@ -257,13 +270,13 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<WorkflowInner>> listBySubscriptionAsync(final Integer top, final String filter, final ListOperationCallback<WorkflowInner> serviceCallback) {
+    public ServiceFuture<List<WorkflowInner>> listAsync(final Integer top, final String filter, final ListOperationCallback<WorkflowInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listBySubscriptionSinglePageAsync(top, filter),
+            listSinglePageAsync(top, filter),
             new Func1<String, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(String nextPageLink) {
-                    return listBySubscriptionNextSinglePageAsync(nextPageLink);
+                    return listNextSinglePageAsync(nextPageLink);
                 }
             },
             serviceCallback);
@@ -277,8 +290,8 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkflowInner&gt; object
      */
-    public Observable<Page<WorkflowInner>> listBySubscriptionAsync(final Integer top, final String filter) {
-        return listBySubscriptionWithServiceResponseAsync(top, filter)
+    public Observable<Page<WorkflowInner>> listAsync(final Integer top, final String filter) {
+        return listWithServiceResponseAsync(top, filter)
             .map(new Func1<ServiceResponse<Page<WorkflowInner>>, Page<WorkflowInner>>() {
                 @Override
                 public Page<WorkflowInner> call(ServiceResponse<Page<WorkflowInner>> response) {
@@ -295,8 +308,8 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkflowInner&gt; object
      */
-    public Observable<ServiceResponse<Page<WorkflowInner>>> listBySubscriptionWithServiceResponseAsync(final Integer top, final String filter) {
-        return listBySubscriptionSinglePageAsync(top, filter)
+    public Observable<ServiceResponse<Page<WorkflowInner>>> listWithServiceResponseAsync(final Integer top, final String filter) {
+        return listSinglePageAsync(top, filter)
             .concatMap(new Func1<ServiceResponse<Page<WorkflowInner>>, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(ServiceResponse<Page<WorkflowInner>> page) {
@@ -304,7 +317,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
                     if (nextPageLink == null) {
                         return Observable.just(page);
                     }
-                    return Observable.just(page).concatWith(listBySubscriptionNextWithServiceResponseAsync(nextPageLink));
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
                 }
             });
     }
@@ -317,19 +330,19 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;WorkflowInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<WorkflowInner>>> listBySubscriptionSinglePageAsync(final Integer top, final String filter) {
+    public Observable<ServiceResponse<Page<WorkflowInner>>> listSinglePageAsync(final Integer top, final String filter) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listBySubscription(this.client.subscriptionId(), this.client.apiVersion(), top, filter, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.subscriptionId(), this.client.apiVersion(), top, filter, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<WorkflowInner>> result = listBySubscriptionDelegate(response);
+                        ServiceResponse<PageImpl<WorkflowInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<WorkflowInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -338,7 +351,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
             });
     }
 
-    private ServiceResponse<PageImpl<WorkflowInner>> listBySubscriptionDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<PageImpl<WorkflowInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<WorkflowInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<WorkflowInner>>() { }.getType())
                 .registerError(CloudException.class)
@@ -1286,6 +1299,100 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
     }
 
     /**
+     * Get the workflow callback Url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param listCallbackUrl Which callback url to list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the WorkflowTriggerCallbackUrlInner object if successful.
+     */
+    public WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl) {
+        return listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, listCallbackUrl).toBlocking().single().body();
+    }
+
+    /**
+     * Get the workflow callback Url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param listCallbackUrl Which callback url to list.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, listCallbackUrl), serviceCallback);
+    }
+
+    /**
+     * Get the workflow callback Url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param listCallbackUrl Which callback url to list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the WorkflowTriggerCallbackUrlInner object
+     */
+    public Observable<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl) {
+        return listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, listCallbackUrl).map(new Func1<ServiceResponse<WorkflowTriggerCallbackUrlInner>, WorkflowTriggerCallbackUrlInner>() {
+            @Override
+            public WorkflowTriggerCallbackUrlInner call(ServiceResponse<WorkflowTriggerCallbackUrlInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Get the workflow callback Url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param listCallbackUrl Which callback url to list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the WorkflowTriggerCallbackUrlInner object
+     */
+    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithServiceResponseAsync(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        if (listCallbackUrl == null) {
+            throw new IllegalArgumentException("Parameter listCallbackUrl is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Validator.validate(listCallbackUrl);
+        return service.listCallbackUrl(this.client.subscriptionId(), resourceGroupName, workflowName, listCallbackUrl, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>>>() {
+                @Override
+                public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<WorkflowTriggerCallbackUrlInner> clientResponse = listCallbackUrlDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<WorkflowTriggerCallbackUrlInner> listCallbackUrlDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<WorkflowTriggerCallbackUrlInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<WorkflowTriggerCallbackUrlInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
      * Gets an OpenAPI definition for the workflow.
      *
      * @param resourceGroupName The resource group name.
@@ -1367,6 +1474,100 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
     private ServiceResponse<Object> listSwaggerDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<Object, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Object>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Moves an existing workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param move The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void move(String resourceGroupName, String workflowName, WorkflowInner move) {
+        moveWithServiceResponseAsync(resourceGroupName, workflowName, move).toBlocking().single().body();
+    }
+
+    /**
+     * Moves an existing workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param move The workflow to move.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> moveAsync(String resourceGroupName, String workflowName, WorkflowInner move, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(moveWithServiceResponseAsync(resourceGroupName, workflowName, move), serviceCallback);
+    }
+
+    /**
+     * Moves an existing workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param move The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> moveAsync(String resourceGroupName, String workflowName, WorkflowInner move) {
+        return moveWithServiceResponseAsync(resourceGroupName, workflowName, move).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Moves an existing workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param move The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> moveWithServiceResponseAsync(String resourceGroupName, String workflowName, WorkflowInner move) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        if (move == null) {
+            throw new IllegalArgumentException("Parameter move is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Validator.validate(move);
+        return service.move(this.client.subscriptionId(), resourceGroupName, workflowName, move, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = moveDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> moveDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1544,6 +1745,99 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
     }
 
     /**
+     * Validates the workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param validate The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void validateWorkflow(String resourceGroupName, String workflowName, WorkflowInner validate) {
+        validateWorkflowWithServiceResponseAsync(resourceGroupName, workflowName, validate).toBlocking().single().body();
+    }
+
+    /**
+     * Validates the workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param validate The workflow.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> validateWorkflowAsync(String resourceGroupName, String workflowName, WorkflowInner validate, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(validateWorkflowWithServiceResponseAsync(resourceGroupName, workflowName, validate), serviceCallback);
+    }
+
+    /**
+     * Validates the workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param validate The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> validateWorkflowAsync(String resourceGroupName, String workflowName, WorkflowInner validate) {
+        return validateWorkflowWithServiceResponseAsync(resourceGroupName, workflowName, validate).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Validates the workflow.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param workflowName The workflow name.
+     * @param validate The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> validateWorkflowWithServiceResponseAsync(String resourceGroupName, String workflowName, WorkflowInner validate) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        if (validate == null) {
+            throw new IllegalArgumentException("Parameter validate is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Validator.validate(validate);
+        return service.validateWorkflow(this.client.subscriptionId(), resourceGroupName, workflowName, validate, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = validateWorkflowDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> validateWorkflowDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
      * Validates the workflow definition.
      *
      * @param resourceGroupName The resource group name.
@@ -1652,12 +1946,12 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;WorkflowInner&gt; object if successful.
      */
-    public PagedList<WorkflowInner> listBySubscriptionNext(final String nextPageLink) {
-        ServiceResponse<Page<WorkflowInner>> response = listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single();
+    public PagedList<WorkflowInner> listNext(final String nextPageLink) {
+        ServiceResponse<Page<WorkflowInner>> response = listNextSinglePageAsync(nextPageLink).toBlocking().single();
         return new PagedList<WorkflowInner>(response.body()) {
             @Override
             public Page<WorkflowInner> nextPage(String nextPageLink) {
-                return listBySubscriptionNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+                return listNextSinglePageAsync(nextPageLink).toBlocking().single().body();
             }
         };
     }
@@ -1671,13 +1965,13 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<WorkflowInner>> listBySubscriptionNextAsync(final String nextPageLink, final ServiceFuture<List<WorkflowInner>> serviceFuture, final ListOperationCallback<WorkflowInner> serviceCallback) {
+    public ServiceFuture<List<WorkflowInner>> listNextAsync(final String nextPageLink, final ServiceFuture<List<WorkflowInner>> serviceFuture, final ListOperationCallback<WorkflowInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listBySubscriptionNextSinglePageAsync(nextPageLink),
+            listNextSinglePageAsync(nextPageLink),
             new Func1<String, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(String nextPageLink) {
-                    return listBySubscriptionNextSinglePageAsync(nextPageLink);
+                    return listNextSinglePageAsync(nextPageLink);
                 }
             },
             serviceCallback);
@@ -1690,8 +1984,8 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkflowInner&gt; object
      */
-    public Observable<Page<WorkflowInner>> listBySubscriptionNextAsync(final String nextPageLink) {
-        return listBySubscriptionNextWithServiceResponseAsync(nextPageLink)
+    public Observable<Page<WorkflowInner>> listNextAsync(final String nextPageLink) {
+        return listNextWithServiceResponseAsync(nextPageLink)
             .map(new Func1<ServiceResponse<Page<WorkflowInner>>, Page<WorkflowInner>>() {
                 @Override
                 public Page<WorkflowInner> call(ServiceResponse<Page<WorkflowInner>> response) {
@@ -1707,8 +2001,8 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkflowInner&gt; object
      */
-    public Observable<ServiceResponse<Page<WorkflowInner>>> listBySubscriptionNextWithServiceResponseAsync(final String nextPageLink) {
-        return listBySubscriptionNextSinglePageAsync(nextPageLink)
+    public Observable<ServiceResponse<Page<WorkflowInner>>> listNextWithServiceResponseAsync(final String nextPageLink) {
+        return listNextSinglePageAsync(nextPageLink)
             .concatMap(new Func1<ServiceResponse<Page<WorkflowInner>>, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(ServiceResponse<Page<WorkflowInner>> page) {
@@ -1716,7 +2010,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
                     if (nextPageLink == null) {
                         return Observable.just(page);
                     }
-                    return Observable.just(page).concatWith(listBySubscriptionNextWithServiceResponseAsync(nextPageLink));
+                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink));
                 }
             });
     }
@@ -1728,17 +2022,17 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;WorkflowInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<WorkflowInner>>> listBySubscriptionNextSinglePageAsync(final String nextPageLink) {
+    public Observable<ServiceResponse<Page<WorkflowInner>>> listNextSinglePageAsync(final String nextPageLink) {
         if (nextPageLink == null) {
             throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
         }
         String nextUrl = String.format("%s", nextPageLink);
-        return service.listBySubscriptionNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.listNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<WorkflowInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<WorkflowInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<WorkflowInner>> result = listBySubscriptionNextDelegate(response);
+                        ServiceResponse<PageImpl<WorkflowInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<WorkflowInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1747,7 +2041,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
             });
     }
 
-    private ServiceResponse<PageImpl<WorkflowInner>> listBySubscriptionNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<PageImpl<WorkflowInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<WorkflowInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<WorkflowInner>>() { }.getType())
                 .registerError(CloudException.class)

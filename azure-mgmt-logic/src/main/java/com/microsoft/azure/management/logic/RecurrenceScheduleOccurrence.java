@@ -11,7 +11,7 @@ package com.microsoft.azure.management.logic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The recurrence schedule occurence.
+ * The recurrence schedule occurrence.
  */
 public class RecurrenceScheduleOccurrence {
     /**

@@ -28,6 +28,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.HTTP;
 import retrofit2.http.Path;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -76,6 +77,10 @@ public class SchemasInner {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Schemas delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/schemas/{schemaName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> delete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Path("schemaName") String schemaName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Schemas listContentCallbackUrl" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/schemas/{schemaName}/listContentCallbackUrl")
+        Observable<Response<ResponseBody>> listContentCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Path("schemaName") String schemaName, @Query("api-version") String apiVersion, @Body GetCallbackUrlParametersInner listContentCallbackUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Schemas listByIntegrationAccountsNext" })
         @GET
@@ -618,6 +623,107 @@ public class SchemasInner {
         return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Get the content callback url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param schemaName The integration account schema name.
+     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the WorkflowTriggerCallbackUrlInner object if successful.
+     */
+    public WorkflowTriggerCallbackUrlInner listContentCallbackUrl(String resourceGroupName, String integrationAccountName, String schemaName, GetCallbackUrlParametersInner listContentCallbackUrl) {
+        return listContentCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, schemaName, listContentCallbackUrl).toBlocking().single().body();
+    }
+
+    /**
+     * Get the content callback url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param schemaName The integration account schema name.
+     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlAsync(String resourceGroupName, String integrationAccountName, String schemaName, GetCallbackUrlParametersInner listContentCallbackUrl, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listContentCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, schemaName, listContentCallbackUrl), serviceCallback);
+    }
+
+    /**
+     * Get the content callback url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param schemaName The integration account schema name.
+     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the WorkflowTriggerCallbackUrlInner object
+     */
+    public Observable<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlAsync(String resourceGroupName, String integrationAccountName, String schemaName, GetCallbackUrlParametersInner listContentCallbackUrl) {
+        return listContentCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, schemaName, listContentCallbackUrl).map(new Func1<ServiceResponse<WorkflowTriggerCallbackUrlInner>, WorkflowTriggerCallbackUrlInner>() {
+            @Override
+            public WorkflowTriggerCallbackUrlInner call(ServiceResponse<WorkflowTriggerCallbackUrlInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Get the content callback url.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param integrationAccountName The integration account name.
+     * @param schemaName The integration account schema name.
+     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the WorkflowTriggerCallbackUrlInner object
+     */
+    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listContentCallbackUrlWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, String schemaName, GetCallbackUrlParametersInner listContentCallbackUrl) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (integrationAccountName == null) {
+            throw new IllegalArgumentException("Parameter integrationAccountName is required and cannot be null.");
+        }
+        if (schemaName == null) {
+            throw new IllegalArgumentException("Parameter schemaName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (listContentCallbackUrl == null) {
+            throw new IllegalArgumentException("Parameter listContentCallbackUrl is required and cannot be null.");
+        }
+        Validator.validate(listContentCallbackUrl);
+        return service.listContentCallbackUrl(this.client.subscriptionId(), resourceGroupName, integrationAccountName, schemaName, this.client.apiVersion(), listContentCallbackUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>>>() {
+                @Override
+                public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<WorkflowTriggerCallbackUrlInner> clientResponse = listContentCallbackUrlDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<WorkflowTriggerCallbackUrlInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<WorkflowTriggerCallbackUrlInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
