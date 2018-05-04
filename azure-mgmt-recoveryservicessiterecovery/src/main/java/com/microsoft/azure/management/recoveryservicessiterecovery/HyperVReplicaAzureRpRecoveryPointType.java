@@ -8,49 +8,37 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for HyperVReplicaAzureRpRecoveryPointType.
  */
-public enum HyperVReplicaAzureRpRecoveryPointType {
-    /** Enum value Latest. */
-    LATEST("Latest"),
+public final class HyperVReplicaAzureRpRecoveryPointType extends ExpandableStringEnum<HyperVReplicaAzureRpRecoveryPointType> {
+    /** Static value Latest for HyperVReplicaAzureRpRecoveryPointType. */
+    public static final HyperVReplicaAzureRpRecoveryPointType LATEST = fromString("Latest");
 
-    /** Enum value LatestApplicationConsistent. */
-    LATEST_APPLICATION_CONSISTENT("LatestApplicationConsistent"),
+    /** Static value LatestApplicationConsistent for HyperVReplicaAzureRpRecoveryPointType. */
+    public static final HyperVReplicaAzureRpRecoveryPointType LATEST_APPLICATION_CONSISTENT = fromString("LatestApplicationConsistent");
 
-    /** Enum value LatestProcessed. */
-    LATEST_PROCESSED("LatestProcessed");
+    /** Static value LatestProcessed for HyperVReplicaAzureRpRecoveryPointType. */
+    public static final HyperVReplicaAzureRpRecoveryPointType LATEST_PROCESSED = fromString("LatestProcessed");
 
-    /** The actual serialized value for a HyperVReplicaAzureRpRecoveryPointType instance. */
-    private String value;
-
-    HyperVReplicaAzureRpRecoveryPointType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a HyperVReplicaAzureRpRecoveryPointType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding HyperVReplicaAzureRpRecoveryPointType
+     */
+    @JsonCreator
+    public static HyperVReplicaAzureRpRecoveryPointType fromString(String name) {
+        return fromString(name, HyperVReplicaAzureRpRecoveryPointType.class);
     }
 
     /**
-     * Parses a serialized value to a HyperVReplicaAzureRpRecoveryPointType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed HyperVReplicaAzureRpRecoveryPointType object, or null if unable to parse.
+     * @return known HyperVReplicaAzureRpRecoveryPointType values
      */
-    @JsonCreator
-    public static HyperVReplicaAzureRpRecoveryPointType fromString(String value) {
-        HyperVReplicaAzureRpRecoveryPointType[] items = HyperVReplicaAzureRpRecoveryPointType.values();
-        for (HyperVReplicaAzureRpRecoveryPointType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<HyperVReplicaAzureRpRecoveryPointType> values() {
+        return values(HyperVReplicaAzureRpRecoveryPointType.class);
     }
 }

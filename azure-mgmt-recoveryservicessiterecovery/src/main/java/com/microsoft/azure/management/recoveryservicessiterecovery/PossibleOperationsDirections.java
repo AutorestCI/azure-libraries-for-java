@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for PossibleOperationsDirections.
  */
-public enum PossibleOperationsDirections {
-    /** Enum value PrimaryToRecovery. */
-    PRIMARY_TO_RECOVERY("PrimaryToRecovery"),
+public final class PossibleOperationsDirections extends ExpandableStringEnum<PossibleOperationsDirections> {
+    /** Static value PrimaryToRecovery for PossibleOperationsDirections. */
+    public static final PossibleOperationsDirections PRIMARY_TO_RECOVERY = fromString("PrimaryToRecovery");
 
-    /** Enum value RecoveryToPrimary. */
-    RECOVERY_TO_PRIMARY("RecoveryToPrimary");
+    /** Static value RecoveryToPrimary for PossibleOperationsDirections. */
+    public static final PossibleOperationsDirections RECOVERY_TO_PRIMARY = fromString("RecoveryToPrimary");
 
-    /** The actual serialized value for a PossibleOperationsDirections instance. */
-    private String value;
-
-    PossibleOperationsDirections(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a PossibleOperationsDirections from its string representation.
+     * @param name a name to look for
+     * @return the corresponding PossibleOperationsDirections
+     */
+    @JsonCreator
+    public static PossibleOperationsDirections fromString(String name) {
+        return fromString(name, PossibleOperationsDirections.class);
     }
 
     /**
-     * Parses a serialized value to a PossibleOperationsDirections instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed PossibleOperationsDirections object, or null if unable to parse.
+     * @return known PossibleOperationsDirections values
      */
-    @JsonCreator
-    public static PossibleOperationsDirections fromString(String value) {
-        PossibleOperationsDirections[] items = PossibleOperationsDirections.values();
-        for (PossibleOperationsDirections item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<PossibleOperationsDirections> values() {
+        return values(PossibleOperationsDirections.class);
     }
 }

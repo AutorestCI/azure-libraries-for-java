@@ -8,49 +8,37 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for RecoveryPointType.
  */
-public enum RecoveryPointType {
-    /** Enum value LatestTime. */
-    LATEST_TIME("LatestTime"),
+public final class RecoveryPointType extends ExpandableStringEnum<RecoveryPointType> {
+    /** Static value LatestTime for RecoveryPointType. */
+    public static final RecoveryPointType LATEST_TIME = fromString("LatestTime");
 
-    /** Enum value LatestTag. */
-    LATEST_TAG("LatestTag"),
+    /** Static value LatestTag for RecoveryPointType. */
+    public static final RecoveryPointType LATEST_TAG = fromString("LatestTag");
 
-    /** Enum value Custom. */
-    CUSTOM("Custom");
+    /** Static value Custom for RecoveryPointType. */
+    public static final RecoveryPointType CUSTOM = fromString("Custom");
 
-    /** The actual serialized value for a RecoveryPointType instance. */
-    private String value;
-
-    RecoveryPointType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a RecoveryPointType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding RecoveryPointType
+     */
+    @JsonCreator
+    public static RecoveryPointType fromString(String name) {
+        return fromString(name, RecoveryPointType.class);
     }
 
     /**
-     * Parses a serialized value to a RecoveryPointType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed RecoveryPointType object, or null if unable to parse.
+     * @return known RecoveryPointType values
      */
-    @JsonCreator
-    public static RecoveryPointType fromString(String value) {
-        RecoveryPointType[] items = RecoveryPointType.values();
-        for (RecoveryPointType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<RecoveryPointType> values() {
+        return values(RecoveryPointType.class);
     }
 }

@@ -8,49 +8,37 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for FailoverDeploymentModel.
  */
-public enum FailoverDeploymentModel {
-    /** Enum value NotApplicable. */
-    NOT_APPLICABLE("NotApplicable"),
+public final class FailoverDeploymentModel extends ExpandableStringEnum<FailoverDeploymentModel> {
+    /** Static value NotApplicable for FailoverDeploymentModel. */
+    public static final FailoverDeploymentModel NOT_APPLICABLE = fromString("NotApplicable");
 
-    /** Enum value Classic. */
-    CLASSIC("Classic"),
+    /** Static value Classic for FailoverDeploymentModel. */
+    public static final FailoverDeploymentModel CLASSIC = fromString("Classic");
 
-    /** Enum value ResourceManager. */
-    RESOURCE_MANAGER("ResourceManager");
+    /** Static value ResourceManager for FailoverDeploymentModel. */
+    public static final FailoverDeploymentModel RESOURCE_MANAGER = fromString("ResourceManager");
 
-    /** The actual serialized value for a FailoverDeploymentModel instance. */
-    private String value;
-
-    FailoverDeploymentModel(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a FailoverDeploymentModel from its string representation.
+     * @param name a name to look for
+     * @return the corresponding FailoverDeploymentModel
+     */
+    @JsonCreator
+    public static FailoverDeploymentModel fromString(String name) {
+        return fromString(name, FailoverDeploymentModel.class);
     }
 
     /**
-     * Parses a serialized value to a FailoverDeploymentModel instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed FailoverDeploymentModel object, or null if unable to parse.
+     * @return known FailoverDeploymentModel values
      */
-    @JsonCreator
-    public static FailoverDeploymentModel fromString(String value) {
-        FailoverDeploymentModel[] items = FailoverDeploymentModel.values();
-        for (FailoverDeploymentModel item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<FailoverDeploymentModel> values() {
+        return values(FailoverDeploymentModel.class);
     }
 }

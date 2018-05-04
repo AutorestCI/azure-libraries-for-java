@@ -8,49 +8,37 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for RpInMageRecoveryPointType.
  */
-public enum RpInMageRecoveryPointType {
-    /** Enum value LatestTime. */
-    LATEST_TIME("LatestTime"),
+public final class RpInMageRecoveryPointType extends ExpandableStringEnum<RpInMageRecoveryPointType> {
+    /** Static value LatestTime for RpInMageRecoveryPointType. */
+    public static final RpInMageRecoveryPointType LATEST_TIME = fromString("LatestTime");
 
-    /** Enum value LatestTag. */
-    LATEST_TAG("LatestTag"),
+    /** Static value LatestTag for RpInMageRecoveryPointType. */
+    public static final RpInMageRecoveryPointType LATEST_TAG = fromString("LatestTag");
 
-    /** Enum value Custom. */
-    CUSTOM("Custom");
+    /** Static value Custom for RpInMageRecoveryPointType. */
+    public static final RpInMageRecoveryPointType CUSTOM = fromString("Custom");
 
-    /** The actual serialized value for a RpInMageRecoveryPointType instance. */
-    private String value;
-
-    RpInMageRecoveryPointType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a RpInMageRecoveryPointType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding RpInMageRecoveryPointType
+     */
+    @JsonCreator
+    public static RpInMageRecoveryPointType fromString(String name) {
+        return fromString(name, RpInMageRecoveryPointType.class);
     }
 
     /**
-     * Parses a serialized value to a RpInMageRecoveryPointType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed RpInMageRecoveryPointType object, or null if unable to parse.
+     * @return known RpInMageRecoveryPointType values
      */
-    @JsonCreator
-    public static RpInMageRecoveryPointType fromString(String value) {
-        RpInMageRecoveryPointType[] items = RpInMageRecoveryPointType.values();
-        for (RpInMageRecoveryPointType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<RpInMageRecoveryPointType> values() {
+        return values(RpInMageRecoveryPointType.class);
     }
 }

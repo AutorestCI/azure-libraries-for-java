@@ -8,52 +8,40 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for InMageV2RpRecoveryPointType.
  */
-public enum InMageV2RpRecoveryPointType {
-    /** Enum value Latest. */
-    LATEST("Latest"),
+public final class InMageV2RpRecoveryPointType extends ExpandableStringEnum<InMageV2RpRecoveryPointType> {
+    /** Static value Latest for InMageV2RpRecoveryPointType. */
+    public static final InMageV2RpRecoveryPointType LATEST = fromString("Latest");
 
-    /** Enum value LatestApplicationConsistent. */
-    LATEST_APPLICATION_CONSISTENT("LatestApplicationConsistent"),
+    /** Static value LatestApplicationConsistent for InMageV2RpRecoveryPointType. */
+    public static final InMageV2RpRecoveryPointType LATEST_APPLICATION_CONSISTENT = fromString("LatestApplicationConsistent");
 
-    /** Enum value LatestCrashConsistent. */
-    LATEST_CRASH_CONSISTENT("LatestCrashConsistent"),
+    /** Static value LatestCrashConsistent for InMageV2RpRecoveryPointType. */
+    public static final InMageV2RpRecoveryPointType LATEST_CRASH_CONSISTENT = fromString("LatestCrashConsistent");
 
-    /** Enum value LatestProcessed. */
-    LATEST_PROCESSED("LatestProcessed");
+    /** Static value LatestProcessed for InMageV2RpRecoveryPointType. */
+    public static final InMageV2RpRecoveryPointType LATEST_PROCESSED = fromString("LatestProcessed");
 
-    /** The actual serialized value for a InMageV2RpRecoveryPointType instance. */
-    private String value;
-
-    InMageV2RpRecoveryPointType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a InMageV2RpRecoveryPointType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding InMageV2RpRecoveryPointType
+     */
+    @JsonCreator
+    public static InMageV2RpRecoveryPointType fromString(String name) {
+        return fromString(name, InMageV2RpRecoveryPointType.class);
     }
 
     /**
-     * Parses a serialized value to a InMageV2RpRecoveryPointType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed InMageV2RpRecoveryPointType object, or null if unable to parse.
+     * @return known InMageV2RpRecoveryPointType values
      */
-    @JsonCreator
-    public static InMageV2RpRecoveryPointType fromString(String value) {
-        InMageV2RpRecoveryPointType[] items = InMageV2RpRecoveryPointType.values();
-        for (InMageV2RpRecoveryPointType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<InMageV2RpRecoveryPointType> values() {
+        return values(InMageV2RpRecoveryPointType.class);
     }
 }

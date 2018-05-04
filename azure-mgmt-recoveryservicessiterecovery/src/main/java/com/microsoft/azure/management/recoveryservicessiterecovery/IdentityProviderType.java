@@ -8,43 +8,31 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for IdentityProviderType.
  */
-public enum IdentityProviderType {
-    /** Enum value RecoveryServicesActiveDirectory. */
-    RECOVERY_SERVICES_ACTIVE_DIRECTORY("RecoveryServicesActiveDirectory");
+public final class IdentityProviderType extends ExpandableStringEnum<IdentityProviderType> {
+    /** Static value RecoveryServicesActiveDirectory for IdentityProviderType. */
+    public static final IdentityProviderType RECOVERY_SERVICES_ACTIVE_DIRECTORY = fromString("RecoveryServicesActiveDirectory");
 
-    /** The actual serialized value for a IdentityProviderType instance. */
-    private String value;
-
-    IdentityProviderType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a IdentityProviderType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding IdentityProviderType
+     */
+    @JsonCreator
+    public static IdentityProviderType fromString(String name) {
+        return fromString(name, IdentityProviderType.class);
     }
 
     /**
-     * Parses a serialized value to a IdentityProviderType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed IdentityProviderType object, or null if unable to parse.
+     * @return known IdentityProviderType values
      */
-    @JsonCreator
-    public static IdentityProviderType fromString(String value) {
-        IdentityProviderType[] items = IdentityProviderType.values();
-        for (IdentityProviderType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<IdentityProviderType> values() {
+        return values(IdentityProviderType.class);
     }
 }

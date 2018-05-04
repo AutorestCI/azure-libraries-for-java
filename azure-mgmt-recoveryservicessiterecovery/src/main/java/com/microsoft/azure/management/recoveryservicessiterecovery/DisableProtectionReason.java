@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for DisableProtectionReason.
  */
-public enum DisableProtectionReason {
-    /** Enum value NotSpecified. */
-    NOT_SPECIFIED("NotSpecified"),
+public final class DisableProtectionReason extends ExpandableStringEnum<DisableProtectionReason> {
+    /** Static value NotSpecified for DisableProtectionReason. */
+    public static final DisableProtectionReason NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Enum value MigrationComplete. */
-    MIGRATION_COMPLETE("MigrationComplete");
+    /** Static value MigrationComplete for DisableProtectionReason. */
+    public static final DisableProtectionReason MIGRATION_COMPLETE = fromString("MigrationComplete");
 
-    /** The actual serialized value for a DisableProtectionReason instance. */
-    private String value;
-
-    DisableProtectionReason(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a DisableProtectionReason from its string representation.
+     * @param name a name to look for
+     * @return the corresponding DisableProtectionReason
+     */
+    @JsonCreator
+    public static DisableProtectionReason fromString(String name) {
+        return fromString(name, DisableProtectionReason.class);
     }
 
     /**
-     * Parses a serialized value to a DisableProtectionReason instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed DisableProtectionReason object, or null if unable to parse.
+     * @return known DisableProtectionReason values
      */
-    @JsonCreator
-    public static DisableProtectionReason fromString(String value) {
-        DisableProtectionReason[] items = DisableProtectionReason.values();
-        for (DisableProtectionReason item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<DisableProtectionReason> values() {
+        return values(DisableProtectionReason.class);
     }
 }

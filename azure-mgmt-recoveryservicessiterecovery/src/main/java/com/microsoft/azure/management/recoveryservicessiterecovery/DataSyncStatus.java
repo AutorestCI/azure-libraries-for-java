@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for DataSyncStatus.
  */
-public enum DataSyncStatus {
-    /** Enum value ForDownTime. */
-    FOR_DOWN_TIME("ForDownTime"),
+public final class DataSyncStatus extends ExpandableStringEnum<DataSyncStatus> {
+    /** Static value ForDownTime for DataSyncStatus. */
+    public static final DataSyncStatus FOR_DOWN_TIME = fromString("ForDownTime");
 
-    /** Enum value ForSynchronization. */
-    FOR_SYNCHRONIZATION("ForSynchronization");
+    /** Static value ForSynchronization for DataSyncStatus. */
+    public static final DataSyncStatus FOR_SYNCHRONIZATION = fromString("ForSynchronization");
 
-    /** The actual serialized value for a DataSyncStatus instance. */
-    private String value;
-
-    DataSyncStatus(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a DataSyncStatus from its string representation.
+     * @param name a name to look for
+     * @return the corresponding DataSyncStatus
+     */
+    @JsonCreator
+    public static DataSyncStatus fromString(String name) {
+        return fromString(name, DataSyncStatus.class);
     }
 
     /**
-     * Parses a serialized value to a DataSyncStatus instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed DataSyncStatus object, or null if unable to parse.
+     * @return known DataSyncStatus values
      */
-    @JsonCreator
-    public static DataSyncStatus fromString(String value) {
-        DataSyncStatus[] items = DataSyncStatus.values();
-        for (DataSyncStatus item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<DataSyncStatus> values() {
+        return values(DataSyncStatus.class);
     }
 }

@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for SourceSiteOperations.
  */
-public enum SourceSiteOperations {
-    /** Enum value Required. */
-    REQUIRED("Required"),
+public final class SourceSiteOperations extends ExpandableStringEnum<SourceSiteOperations> {
+    /** Static value Required for SourceSiteOperations. */
+    public static final SourceSiteOperations REQUIRED = fromString("Required");
 
-    /** Enum value NotRequired. */
-    NOT_REQUIRED("NotRequired");
+    /** Static value NotRequired for SourceSiteOperations. */
+    public static final SourceSiteOperations NOT_REQUIRED = fromString("NotRequired");
 
-    /** The actual serialized value for a SourceSiteOperations instance. */
-    private String value;
-
-    SourceSiteOperations(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a SourceSiteOperations from its string representation.
+     * @param name a name to look for
+     * @return the corresponding SourceSiteOperations
+     */
+    @JsonCreator
+    public static SourceSiteOperations fromString(String name) {
+        return fromString(name, SourceSiteOperations.class);
     }
 
     /**
-     * Parses a serialized value to a SourceSiteOperations instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed SourceSiteOperations object, or null if unable to parse.
+     * @return known SourceSiteOperations values
      */
-    @JsonCreator
-    public static SourceSiteOperations fromString(String value) {
-        SourceSiteOperations[] items = SourceSiteOperations.values();
-        for (SourceSiteOperations item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<SourceSiteOperations> values() {
+        return values(SourceSiteOperations.class);
     }
 }

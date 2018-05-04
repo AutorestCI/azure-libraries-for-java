@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery.implementation;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -37,13 +36,13 @@ public class JobQueryParameterInner {
      * The type of objects.
      */
     @JsonProperty(value = "affectedObjectTypes")
-    private List<String> affectedObjectTypes;
+    private String affectedObjectTypes;
 
     /**
      * The states of the job to be filtered can be in.
      */
     @JsonProperty(value = "jobStatus")
-    private List<String> jobStatus;
+    private String jobStatus;
 
     /**
      * Get the startTime value.
@@ -110,7 +109,7 @@ public class JobQueryParameterInner {
      *
      * @return the affectedObjectTypes value
      */
-    public List<String> affectedObjectTypes() {
+    public String affectedObjectTypes() {
         return this.affectedObjectTypes;
     }
 
@@ -120,7 +119,7 @@ public class JobQueryParameterInner {
      * @param affectedObjectTypes the affectedObjectTypes value to set
      * @return the JobQueryParameterInner object itself.
      */
-    public JobQueryParameterInner withAffectedObjectTypes(List<String> affectedObjectTypes) {
+    public JobQueryParameterInner withAffectedObjectTypes(String affectedObjectTypes) {
         this.affectedObjectTypes = affectedObjectTypes;
         return this;
     }
@@ -130,7 +129,7 @@ public class JobQueryParameterInner {
      *
      * @return the jobStatus value
      */
-    public List<String> jobStatus() {
+    public String jobStatus() {
         return this.jobStatus;
     }
 
@@ -140,7 +139,7 @@ public class JobQueryParameterInner {
      * @param jobStatus the jobStatus value to set
      * @return the JobQueryParameterInner object itself.
      */
-    public JobQueryParameterInner withJobStatus(List<String> jobStatus) {
+    public JobQueryParameterInner withJobStatus(String jobStatus) {
         this.jobStatus = jobStatus;
         return this;
     }

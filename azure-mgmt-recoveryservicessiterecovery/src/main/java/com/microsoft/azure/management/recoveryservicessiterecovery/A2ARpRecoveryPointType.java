@@ -8,52 +8,40 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for A2ARpRecoveryPointType.
  */
-public enum A2ARpRecoveryPointType {
-    /** Enum value Latest. */
-    LATEST("Latest"),
+public final class A2ARpRecoveryPointType extends ExpandableStringEnum<A2ARpRecoveryPointType> {
+    /** Static value Latest for A2ARpRecoveryPointType. */
+    public static final A2ARpRecoveryPointType LATEST = fromString("Latest");
 
-    /** Enum value LatestApplicationConsistent. */
-    LATEST_APPLICATION_CONSISTENT("LatestApplicationConsistent"),
+    /** Static value LatestApplicationConsistent for A2ARpRecoveryPointType. */
+    public static final A2ARpRecoveryPointType LATEST_APPLICATION_CONSISTENT = fromString("LatestApplicationConsistent");
 
-    /** Enum value LatestCrashConsistent. */
-    LATEST_CRASH_CONSISTENT("LatestCrashConsistent"),
+    /** Static value LatestCrashConsistent for A2ARpRecoveryPointType. */
+    public static final A2ARpRecoveryPointType LATEST_CRASH_CONSISTENT = fromString("LatestCrashConsistent");
 
-    /** Enum value LatestProcessed. */
-    LATEST_PROCESSED("LatestProcessed");
+    /** Static value LatestProcessed for A2ARpRecoveryPointType. */
+    public static final A2ARpRecoveryPointType LATEST_PROCESSED = fromString("LatestProcessed");
 
-    /** The actual serialized value for a A2ARpRecoveryPointType instance. */
-    private String value;
-
-    A2ARpRecoveryPointType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a A2ARpRecoveryPointType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding A2ARpRecoveryPointType
+     */
+    @JsonCreator
+    public static A2ARpRecoveryPointType fromString(String name) {
+        return fromString(name, A2ARpRecoveryPointType.class);
     }
 
     /**
-     * Parses a serialized value to a A2ARpRecoveryPointType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed A2ARpRecoveryPointType object, or null if unable to parse.
+     * @return known A2ARpRecoveryPointType values
      */
-    @JsonCreator
-    public static A2ARpRecoveryPointType fromString(String value) {
-        A2ARpRecoveryPointType[] items = A2ARpRecoveryPointType.values();
-        for (A2ARpRecoveryPointType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<A2ARpRecoveryPointType> values() {
+        return values(A2ARpRecoveryPointType.class);
     }
 }

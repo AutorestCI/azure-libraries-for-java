@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for MultiVmSyncPointOption.
  */
-public enum MultiVmSyncPointOption {
-    /** Enum value UseMultiVmSyncRecoveryPoint. */
-    USE_MULTI_VM_SYNC_RECOVERY_POINT("UseMultiVmSyncRecoveryPoint"),
+public final class MultiVmSyncPointOption extends ExpandableStringEnum<MultiVmSyncPointOption> {
+    /** Static value UseMultiVmSyncRecoveryPoint for MultiVmSyncPointOption. */
+    public static final MultiVmSyncPointOption USE_MULTI_VM_SYNC_RECOVERY_POINT = fromString("UseMultiVmSyncRecoveryPoint");
 
-    /** Enum value UsePerVmRecoveryPoint. */
-    USE_PER_VM_RECOVERY_POINT("UsePerVmRecoveryPoint");
+    /** Static value UsePerVmRecoveryPoint for MultiVmSyncPointOption. */
+    public static final MultiVmSyncPointOption USE_PER_VM_RECOVERY_POINT = fromString("UsePerVmRecoveryPoint");
 
-    /** The actual serialized value for a MultiVmSyncPointOption instance. */
-    private String value;
-
-    MultiVmSyncPointOption(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a MultiVmSyncPointOption from its string representation.
+     * @param name a name to look for
+     * @return the corresponding MultiVmSyncPointOption
+     */
+    @JsonCreator
+    public static MultiVmSyncPointOption fromString(String name) {
+        return fromString(name, MultiVmSyncPointOption.class);
     }
 
     /**
-     * Parses a serialized value to a MultiVmSyncPointOption instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed MultiVmSyncPointOption object, or null if unable to parse.
+     * @return known MultiVmSyncPointOption values
      */
-    @JsonCreator
-    public static MultiVmSyncPointOption fromString(String value) {
-        MultiVmSyncPointOption[] items = MultiVmSyncPointOption.values();
-        for (MultiVmSyncPointOption item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<MultiVmSyncPointOption> values() {
+        return values(MultiVmSyncPointOption.class);
     }
 }

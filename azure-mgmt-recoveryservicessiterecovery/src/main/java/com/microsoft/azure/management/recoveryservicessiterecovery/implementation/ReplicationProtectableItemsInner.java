@@ -59,7 +59,7 @@ public class ReplicationProtectableItemsInner {
     interface ReplicationProtectableItemsService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.recoveryservicessiterecovery.ReplicationProtectableItems listByReplicationProtectionContainers" })
         @GET("Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectableItems")
-        Observable<Response<ResponseBody>> listByReplicationProtectionContainers(@Path("resourceName") String resourceName, @Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Path("fabricName") String fabricName, @Path("protectionContainerName") String protectionContainerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listByReplicationProtectionContainers(@Path("resourceName") String resourceName, @Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Path("fabricName") String fabricName, @Path("protectionContainerName") String protectionContainerName, @Query("api-version") String apiVersion, @Query("$filter") String filter, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.recoveryservicessiterecovery.ReplicationProtectableItems get" })
         @GET("Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectableItems/{protectableItemName}")
@@ -160,8 +160,8 @@ public class ReplicationProtectableItemsInner {
      * Gets the list of protectable items.
      * Lists the protectable items in a protection container.
      *
-    ServiceResponse<PageImpl<ProtectableItemInner>> * @param fabricName Fabric name.
-    ServiceResponse<PageImpl<ProtectableItemInner>> * @param protectionContainerName Protection container name.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ProtectableItemInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -184,7 +184,140 @@ public class ReplicationProtectableItemsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.listByReplicationProtectionContainers(this.client.resourceName(), this.client.resourceGroupName(), this.client.subscriptionId(), fabricName, protectionContainerName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        final String filter = null;
+        return service.listByReplicationProtectionContainers(this.client.resourceName(), this.client.resourceGroupName(), this.client.subscriptionId(), fabricName, protectionContainerName, this.client.apiVersion(), filter, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ProtectableItemInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ProtectableItemInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<ProtectableItemInner>> result = listByReplicationProtectionContainersDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<ProtectableItemInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Gets the list of protectable items.
+     * Lists the protectable items in a protection container.
+     *
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param filter OData filter options.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;ProtectableItemInner&gt; object if successful.
+     */
+    public PagedList<ProtectableItemInner> listByReplicationProtectionContainers(final String fabricName, final String protectionContainerName, final String filter) {
+        ServiceResponse<Page<ProtectableItemInner>> response = listByReplicationProtectionContainersSinglePageAsync(fabricName, protectionContainerName, filter).toBlocking().single();
+        return new PagedList<ProtectableItemInner>(response.body()) {
+            @Override
+            public Page<ProtectableItemInner> nextPage(String nextPageLink) {
+                return listByReplicationProtectionContainersNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets the list of protectable items.
+     * Lists the protectable items in a protection container.
+     *
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param filter OData filter options.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<ProtectableItemInner>> listByReplicationProtectionContainersAsync(final String fabricName, final String protectionContainerName, final String filter, final ListOperationCallback<ProtectableItemInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listByReplicationProtectionContainersSinglePageAsync(fabricName, protectionContainerName, filter),
+            new Func1<String, Observable<ServiceResponse<Page<ProtectableItemInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ProtectableItemInner>>> call(String nextPageLink) {
+                    return listByReplicationProtectionContainersNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets the list of protectable items.
+     * Lists the protectable items in a protection container.
+     *
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param filter OData filter options.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ProtectableItemInner&gt; object
+     */
+    public Observable<Page<ProtectableItemInner>> listByReplicationProtectionContainersAsync(final String fabricName, final String protectionContainerName, final String filter) {
+        return listByReplicationProtectionContainersWithServiceResponseAsync(fabricName, protectionContainerName, filter)
+            .map(new Func1<ServiceResponse<Page<ProtectableItemInner>>, Page<ProtectableItemInner>>() {
+                @Override
+                public Page<ProtectableItemInner> call(ServiceResponse<Page<ProtectableItemInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets the list of protectable items.
+     * Lists the protectable items in a protection container.
+     *
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param filter OData filter options.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;ProtectableItemInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<ProtectableItemInner>>> listByReplicationProtectionContainersWithServiceResponseAsync(final String fabricName, final String protectionContainerName, final String filter) {
+        return listByReplicationProtectionContainersSinglePageAsync(fabricName, protectionContainerName, filter)
+            .concatMap(new Func1<ServiceResponse<Page<ProtectableItemInner>>, Observable<ServiceResponse<Page<ProtectableItemInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<ProtectableItemInner>>> call(ServiceResponse<Page<ProtectableItemInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listByReplicationProtectionContainersNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets the list of protectable items.
+     * Lists the protectable items in a protection container.
+     *
+    ServiceResponse<PageImpl<ProtectableItemInner>> * @param fabricName Fabric name.
+    ServiceResponse<PageImpl<ProtectableItemInner>> * @param protectionContainerName Protection container name.
+    ServiceResponse<PageImpl<ProtectableItemInner>> * @param filter OData filter options.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;ProtectableItemInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<ProtectableItemInner>>> listByReplicationProtectionContainersSinglePageAsync(final String fabricName, final String protectionContainerName, final String filter) {
+        if (this.client.resourceName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceName() is required and cannot be null.");
+        }
+        if (this.client.resourceGroupName() == null) {
+            throw new IllegalArgumentException("Parameter this.client.resourceGroupName() is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (fabricName == null) {
+            throw new IllegalArgumentException("Parameter fabricName is required and cannot be null.");
+        }
+        if (protectionContainerName == null) {
+            throw new IllegalArgumentException("Parameter protectionContainerName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listByReplicationProtectionContainers(this.client.resourceName(), this.client.resourceGroupName(), this.client.subscriptionId(), fabricName, protectionContainerName, this.client.apiVersion(), filter, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ProtectableItemInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ProtectableItemInner>>> call(Response<ResponseBody> response) {

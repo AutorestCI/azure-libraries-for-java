@@ -8,52 +8,40 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for Severity.
  */
-public enum Severity {
-    /** Enum value NONE. */
-    NONE("NONE"),
+public final class Severity extends ExpandableStringEnum<Severity> {
+    /** Static value NONE for Severity. */
+    public static final Severity NONE = fromString("NONE");
 
-    /** Enum value Warning. */
-    WARNING("Warning"),
+    /** Static value Warning for Severity. */
+    public static final Severity WARNING = fromString("Warning");
 
-    /** Enum value Error. */
-    ERROR("Error"),
+    /** Static value Error for Severity. */
+    public static final Severity ERROR = fromString("Error");
 
-    /** Enum value Info. */
-    INFO("Info");
+    /** Static value Info for Severity. */
+    public static final Severity INFO = fromString("Info");
 
-    /** The actual serialized value for a Severity instance. */
-    private String value;
-
-    Severity(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a Severity from its string representation.
+     * @param name a name to look for
+     * @return the corresponding Severity
+     */
+    @JsonCreator
+    public static Severity fromString(String name) {
+        return fromString(name, Severity.class);
     }
 
     /**
-     * Parses a serialized value to a Severity instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed Severity object, or null if unable to parse.
+     * @return known Severity values
      */
-    @JsonCreator
-    public static Severity fromString(String value) {
-        Severity[] items = Severity.values();
-        for (Severity item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<Severity> values() {
+        return values(Severity.class);
     }
 }
