@@ -1852,7 +1852,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
@@ -1872,7 +1872,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1893,7 +1893,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;AlertInner&gt; object
@@ -1911,7 +1911,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;AlertInner&gt; object
@@ -1933,7 +1933,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;AlertInner&gt; object wrapped in {@link ServiceResponse} if successful.
@@ -1969,7 +1969,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @param filter The alert property filter to apply.
      * @param state The alert state to query for.
@@ -1993,7 +1993,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @param filter The alert property filter to apply.
      * @param state The alert state to query for.
@@ -2018,7 +2018,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @param filter The alert property filter to apply.
      * @param state The alert state to query for.
@@ -2040,7 +2040,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-     * @param serviceMemberId The server Id for which the laert details needs to be queried.
+     * @param serviceMemberId The server Id for which the alert details needs to be queried.
      * @param serviceName The name of the service.
      * @param filter The alert property filter to apply.
      * @param state The alert state to query for.
@@ -2066,7 +2066,7 @@ public class AddsServicesInner {
     /**
      * Gets the details of an alert for a given Active Directory Domain Controller service and server combination.
      *
-    ServiceResponse<PageImpl<AlertInner>> * @param serviceMemberId The server Id for which the laert details needs to be queried.
+    ServiceResponse<PageImpl<AlertInner>> * @param serviceMemberId The server Id for which the alert details needs to be queried.
     ServiceResponse<PageImpl<AlertInner>> * @param serviceName The name of the service.
     ServiceResponse<PageImpl<AlertInner>> * @param filter The alert property filter to apply.
     ServiceResponse<PageImpl<AlertInner>> * @param state The alert state to query for.

@@ -51,6 +51,12 @@ public class RunStep {
     private Integer operationType;
 
     /**
+     * The operation timeout.
+     */
+    @JsonProperty(value = "timeout")
+    private Integer timeout;
+
+    /**
      * Get the batchSize value.
      *
      * @return the batchSize value
@@ -167,6 +173,26 @@ public class RunStep {
      */
     public RunStep withOperationType(Integer operationType) {
         this.operationType = operationType;
+        return this;
+    }
+
+    /**
+     * Get the timeout value.
+     *
+     * @return the timeout value
+     */
+    public Integer timeout() {
+        return this.timeout;
+    }
+
+    /**
+     * Set the timeout value.
+     *
+     * @param timeout the timeout value to set
+     * @return the RunStep object itself.
+     */
+    public RunStep withTimeout(Integer timeout) {
+        this.timeout = timeout;
         return this;
     }
 

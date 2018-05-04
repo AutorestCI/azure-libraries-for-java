@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.adhybridhealthservice.implementation;
 
-import com.microsoft.azure.management.adhybridhealthservice.ServiceType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -22,11 +21,10 @@ public class ServiceConfigurationInner {
     private String version;
 
     /**
-     * The service type of the server. Possible values include: 'Undefined',
-     * 'AadConnectSync', 'DirSync'.
+     * The service type of the server.
      */
     @JsonProperty(value = "serviceType")
-    private ServiceType serviceType;
+    private Integer serviceType;
 
     /**
      * The service account.
@@ -95,7 +93,7 @@ public class ServiceConfigurationInner {
      *
      * @return the serviceType value
      */
-    public ServiceType serviceType() {
+    public Integer serviceType() {
         return this.serviceType;
     }
 
@@ -105,7 +103,7 @@ public class ServiceConfigurationInner {
      * @param serviceType the serviceType value to set
      * @return the ServiceConfigurationInner object itself.
      */
-    public ServiceConfigurationInner withServiceType(ServiceType serviceType) {
+    public ServiceConfigurationInner withServiceType(Integer serviceType) {
         this.serviceType = serviceType;
         return this;
     }
