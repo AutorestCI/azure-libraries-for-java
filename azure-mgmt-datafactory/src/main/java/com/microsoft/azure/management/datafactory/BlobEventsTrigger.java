@@ -22,8 +22,9 @@ import com.microsoft.rest.serializer.JsonFlatten;
 @JsonFlatten
 public class BlobEventsTrigger extends MultiplePipelineTrigger {
     /**
-     * Path to container, folder, blob, or file extension for which events can
-     * trigger the pipeline.
+     * Expression to determine if trigger should fire. For example,
+     * @startswith('/records/blobs/december/') will only fire the trigger for
+     * blobs in the december folder under the records container.
      */
     @JsonProperty(value = "typeProperties.blobPath", required = true)
     private String blobPath;
