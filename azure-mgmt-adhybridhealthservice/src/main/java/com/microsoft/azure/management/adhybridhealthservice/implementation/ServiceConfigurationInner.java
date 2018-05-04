@@ -59,8 +59,8 @@ public class ServiceConfigurationInner {
     /**
      * The SQL database.
      */
-    @JsonProperty(value = "sqlDatabase")
-    private String sqlDatabase;
+    @JsonProperty(value = "sqlDatabaseName")
+    private String sqlDatabaseName;
 
     /**
      * The SQL database size.
@@ -209,22 +209,22 @@ public class ServiceConfigurationInner {
     }
 
     /**
-     * Get the sqlDatabase value.
+     * Get the sqlDatabaseName value.
      *
-     * @return the sqlDatabase value
+     * @return the sqlDatabaseName value
      */
-    public String sqlDatabase() {
-        return this.sqlDatabase;
+    public String sqlDatabaseName() {
+        return this.sqlDatabaseName;
     }
 
     /**
-     * Set the sqlDatabase value.
+     * Set the sqlDatabaseName value.
      *
-     * @param sqlDatabase the sqlDatabase value to set
+     * @param sqlDatabaseName the sqlDatabaseName value to set
      * @return the ServiceConfigurationInner object itself.
      */
-    public ServiceConfigurationInner withSqlDatabase(String sqlDatabase) {
-        this.sqlDatabase = sqlDatabase;
+    public ServiceConfigurationInner withSqlDatabaseName(String sqlDatabaseName) {
+        this.sqlDatabaseName = sqlDatabaseName;
         return this;
     }
 
