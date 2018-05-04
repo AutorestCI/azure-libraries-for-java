@@ -2541,7 +2541,7 @@ public class ServicesInner {
      * Updates the service level monitoring configuration.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
+     * @param configurationSetting The monitoring configuration to update
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
@@ -2554,7 +2554,7 @@ public class ServicesInner {
      * Updates the service level monitoring configuration.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
+     * @param configurationSetting The monitoring configuration to update
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
@@ -2567,7 +2567,7 @@ public class ServicesInner {
      * Updates the service level monitoring configuration.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
+     * @param configurationSetting The monitoring configuration to update
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
@@ -2584,7 +2584,7 @@ public class ServicesInner {
      * Updates the service level monitoring configuration.
      *
      * @param serviceName The name of the service.
-     * @param configurationSetting The mnitoring configuration to update
+     * @param configurationSetting The monitoring configuration to update
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */

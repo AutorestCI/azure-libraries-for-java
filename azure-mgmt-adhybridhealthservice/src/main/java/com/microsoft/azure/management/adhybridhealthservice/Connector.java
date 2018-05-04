@@ -86,7 +86,7 @@ public class Connector {
      * The run profiles of the connector.
      */
     @JsonProperty(value = "runProfiles")
-    private List<RunProfiles> runProfiles;
+    private List<RunProfile> runProfiles;
 
     /**
      * The class inclusion list of the connector.
@@ -325,7 +325,7 @@ public class Connector {
      *
      * @return the runProfiles value
      */
-    public List<RunProfiles> runProfiles() {
+    public List<RunProfile> runProfiles() {
         return this.runProfiles;
     }
 
@@ -335,7 +335,7 @@ public class Connector {
      * @param runProfiles the runProfiles value to set
      * @return the Connector object itself.
      */
-    public Connector withRunProfiles(List<RunProfiles> runProfiles) {
+    public Connector withRunProfiles(List<RunProfile> runProfiles) {
         this.runProfiles = runProfiles;
         return this;
     }

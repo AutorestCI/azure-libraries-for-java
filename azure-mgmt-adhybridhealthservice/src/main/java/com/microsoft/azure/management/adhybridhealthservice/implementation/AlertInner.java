@@ -114,13 +114,13 @@ public class AlertInner {
      * The active alert properties.
      */
     @JsonProperty(value = "activeAlertProperties")
-    private Object activeAlertProperties;
+    private List<ItemInner> activeAlertProperties;
 
     /**
-     * The active alert properties.
+     * The resolved alert properties.
      */
     @JsonProperty(value = "resolvedAlertProperties")
-    private Object resolvedAlertProperties;
+    private List<ItemInner> resolvedAlertProperties;
 
     /**
      * The tenant Id.
@@ -425,7 +425,7 @@ public class AlertInner {
      *
      * @return the activeAlertProperties value
      */
-    public Object activeAlertProperties() {
+    public List<ItemInner> activeAlertProperties() {
         return this.activeAlertProperties;
     }
 
@@ -435,7 +435,7 @@ public class AlertInner {
      * @param activeAlertProperties the activeAlertProperties value to set
      * @return the AlertInner object itself.
      */
-    public AlertInner withActiveAlertProperties(Object activeAlertProperties) {
+    public AlertInner withActiveAlertProperties(List<ItemInner> activeAlertProperties) {
         this.activeAlertProperties = activeAlertProperties;
         return this;
     }
@@ -445,7 +445,7 @@ public class AlertInner {
      *
      * @return the resolvedAlertProperties value
      */
-    public Object resolvedAlertProperties() {
+    public List<ItemInner> resolvedAlertProperties() {
         return this.resolvedAlertProperties;
     }
 
@@ -455,7 +455,7 @@ public class AlertInner {
      * @param resolvedAlertProperties the resolvedAlertProperties value to set
      * @return the AlertInner object itself.
      */
-    public AlertInner withResolvedAlertProperties(Object resolvedAlertProperties) {
+    public AlertInner withResolvedAlertProperties(List<ItemInner> resolvedAlertProperties) {
         this.resolvedAlertProperties = resolvedAlertProperties;
         return this;
     }

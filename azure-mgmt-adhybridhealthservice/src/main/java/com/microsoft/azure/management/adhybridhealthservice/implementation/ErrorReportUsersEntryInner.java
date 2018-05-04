@@ -36,8 +36,8 @@ public class ErrorReportUsersEntryInner {
     /**
      * The list of unique IP addresses.
      */
-    @JsonProperty(value = "uniqueIdAddresses")
-    private String uniqueIdAddresses;
+    @JsonProperty(value = "uniqueIpAddresses")
+    private String uniqueIpAddresses;
 
     /**
      * The total count of specific error events.
@@ -106,22 +106,22 @@ public class ErrorReportUsersEntryInner {
     }
 
     /**
-     * Get the uniqueIdAddresses value.
+     * Get the uniqueIpAddresses value.
      *
-     * @return the uniqueIdAddresses value
+     * @return the uniqueIpAddresses value
      */
-    public String uniqueIdAddresses() {
-        return this.uniqueIdAddresses;
+    public String uniqueIpAddresses() {
+        return this.uniqueIpAddresses;
     }
 
     /**
-     * Set the uniqueIdAddresses value.
+     * Set the uniqueIpAddresses value.
      *
-     * @param uniqueIdAddresses the uniqueIdAddresses value to set
+     * @param uniqueIpAddresses the uniqueIpAddresses value to set
      * @return the ErrorReportUsersEntryInner object itself.
      */
-    public ErrorReportUsersEntryInner withUniqueIdAddresses(String uniqueIdAddresses) {
-        this.uniqueIdAddresses = uniqueIdAddresses;
+    public ErrorReportUsersEntryInner withUniqueIpAddresses(String uniqueIpAddresses) {
+        this.uniqueIpAddresses = uniqueIpAddresses;
         return this;
     }
 

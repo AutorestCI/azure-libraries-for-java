@@ -126,6 +126,24 @@ public class MergedExportErrorInner {
     private UUID serviceMemberId;
 
     /**
+     * The merged entity Id.
+     */
+    @JsonProperty(value = "mergedEntityId")
+    private UUID mergedEntityId;
+
+    /**
+     * The date and time, in UTC, when the error was created.
+     */
+    @JsonProperty(value = "createdDate")
+    private DateTime createdDate;
+
+    /**
+     * The export error status.
+     */
+    @JsonProperty(value = "exportErrorStatus")
+    private Integer exportErrorStatus;
+
+    /**
      * Get the incomingObjectDisplayName value.
      *
      * @return the incomingObjectDisplayName value
@@ -482,6 +500,66 @@ public class MergedExportErrorInner {
      */
     public MergedExportErrorInner withServiceMemberId(UUID serviceMemberId) {
         this.serviceMemberId = serviceMemberId;
+        return this;
+    }
+
+    /**
+     * Get the mergedEntityId value.
+     *
+     * @return the mergedEntityId value
+     */
+    public UUID mergedEntityId() {
+        return this.mergedEntityId;
+    }
+
+    /**
+     * Set the mergedEntityId value.
+     *
+     * @param mergedEntityId the mergedEntityId value to set
+     * @return the MergedExportErrorInner object itself.
+     */
+    public MergedExportErrorInner withMergedEntityId(UUID mergedEntityId) {
+        this.mergedEntityId = mergedEntityId;
+        return this;
+    }
+
+    /**
+     * Get the createdDate value.
+     *
+     * @return the createdDate value
+     */
+    public DateTime createdDate() {
+        return this.createdDate;
+    }
+
+    /**
+     * Set the createdDate value.
+     *
+     * @param createdDate the createdDate value to set
+     * @return the MergedExportErrorInner object itself.
+     */
+    public MergedExportErrorInner withCreatedDate(DateTime createdDate) {
+        this.createdDate = createdDate;
+        return this;
+    }
+
+    /**
+     * Get the exportErrorStatus value.
+     *
+     * @return the exportErrorStatus value
+     */
+    public Integer exportErrorStatus() {
+        return this.exportErrorStatus;
+    }
+
+    /**
+     * Set the exportErrorStatus value.
+     *
+     * @param exportErrorStatus the exportErrorStatus value to set
+     * @return the MergedExportErrorInner object itself.
+     */
+    public MergedExportErrorInner withExportErrorStatus(Integer exportErrorStatus) {
+        this.exportErrorStatus = exportErrorStatus;
         return this;
     }
 

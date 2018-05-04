@@ -11,6 +11,7 @@ package com.microsoft.azure.management.adhybridhealthservice.implementation;
 import java.util.List;
 import org.joda.time.DateTime;
 import com.microsoft.azure.management.adhybridhealthservice.ServerDisabledReason;
+import com.microsoft.azure.management.adhybridhealthservice.Hotfix;
 import com.microsoft.azure.management.adhybridhealthservice.MonitoringLevel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -107,7 +108,7 @@ public class AddsServiceMemberInner {
      * The server specific configuration related dimensions.
      */
     @JsonProperty(value = "dimensions")
-    private Object dimensions;
+    private List<ItemInner> dimensions;
 
     /**
      * Indicates if the server is disabled or not.
@@ -126,7 +127,7 @@ public class AddsServiceMemberInner {
      * The list of installed QFEs for the server.
      */
     @JsonProperty(value = "installedQfe")
-    private Object installedQfe;
+    private List<Hotfix> installedQfe;
 
     /**
      * The date and time , in UTC, when the server was last disabled.
@@ -170,14 +171,14 @@ public class AddsServiceMemberInner {
      * activities are monitored by Azure Active Directory Connect Health.
      */
     @JsonProperty(value = "monitoringConfigurationsComputed")
-    private Object monitoringConfigurationsComputed;
+    private List<ItemInner> monitoringConfigurationsComputed;
 
     /**
      * The customized monitoring configuration of the server which determines
      * what activities are monitored by Azure Active Directory Connect Health.
      */
     @JsonProperty(value = "monitoringConfigurationsCustomized")
-    private Object monitoringConfigurationsCustomized;
+    private List<ItemInner> monitoringConfigurationsCustomized;
 
     /**
      * The name of the operating system installed in the machine.
@@ -195,13 +196,13 @@ public class AddsServiceMemberInner {
      * Server specific properties.
      */
     @JsonProperty(value = "properties")
-    private Object properties;
+    private List<ItemInner> properties;
 
     /**
      * The list of recommended hotfixes for the server.
      */
     @JsonProperty(value = "recommendedQfes")
-    private Object recommendedQfes;
+    private List<Hotfix> recommendedQfes;
 
     /**
      * The total count of alerts that are resolved for this server.
@@ -513,7 +514,7 @@ public class AddsServiceMemberInner {
      *
      * @return the dimensions value
      */
-    public Object dimensions() {
+    public List<ItemInner> dimensions() {
         return this.dimensions;
     }
 
@@ -523,7 +524,7 @@ public class AddsServiceMemberInner {
      * @param dimensions the dimensions value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withDimensions(Object dimensions) {
+    public AddsServiceMemberInner withDimensions(List<ItemInner> dimensions) {
         this.dimensions = dimensions;
         return this;
     }
@@ -573,7 +574,7 @@ public class AddsServiceMemberInner {
      *
      * @return the installedQfe value
      */
-    public Object installedQfe() {
+    public List<Hotfix> installedQfe() {
         return this.installedQfe;
     }
 
@@ -583,7 +584,7 @@ public class AddsServiceMemberInner {
      * @param installedQfe the installedQfe value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withInstalledQfe(Object installedQfe) {
+    public AddsServiceMemberInner withInstalledQfe(List<Hotfix> installedQfe) {
         this.installedQfe = installedQfe;
         return this;
     }
@@ -713,7 +714,7 @@ public class AddsServiceMemberInner {
      *
      * @return the monitoringConfigurationsComputed value
      */
-    public Object monitoringConfigurationsComputed() {
+    public List<ItemInner> monitoringConfigurationsComputed() {
         return this.monitoringConfigurationsComputed;
     }
 
@@ -723,7 +724,7 @@ public class AddsServiceMemberInner {
      * @param monitoringConfigurationsComputed the monitoringConfigurationsComputed value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withMonitoringConfigurationsComputed(Object monitoringConfigurationsComputed) {
+    public AddsServiceMemberInner withMonitoringConfigurationsComputed(List<ItemInner> monitoringConfigurationsComputed) {
         this.monitoringConfigurationsComputed = monitoringConfigurationsComputed;
         return this;
     }
@@ -733,7 +734,7 @@ public class AddsServiceMemberInner {
      *
      * @return the monitoringConfigurationsCustomized value
      */
-    public Object monitoringConfigurationsCustomized() {
+    public List<ItemInner> monitoringConfigurationsCustomized() {
         return this.monitoringConfigurationsCustomized;
     }
 
@@ -743,7 +744,7 @@ public class AddsServiceMemberInner {
      * @param monitoringConfigurationsCustomized the monitoringConfigurationsCustomized value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withMonitoringConfigurationsCustomized(Object monitoringConfigurationsCustomized) {
+    public AddsServiceMemberInner withMonitoringConfigurationsCustomized(List<ItemInner> monitoringConfigurationsCustomized) {
         this.monitoringConfigurationsCustomized = monitoringConfigurationsCustomized;
         return this;
     }
@@ -793,7 +794,7 @@ public class AddsServiceMemberInner {
      *
      * @return the properties value
      */
-    public Object properties() {
+    public List<ItemInner> properties() {
         return this.properties;
     }
 
@@ -803,7 +804,7 @@ public class AddsServiceMemberInner {
      * @param properties the properties value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withProperties(Object properties) {
+    public AddsServiceMemberInner withProperties(List<ItemInner> properties) {
         this.properties = properties;
         return this;
     }
@@ -813,7 +814,7 @@ public class AddsServiceMemberInner {
      *
      * @return the recommendedQfes value
      */
-    public Object recommendedQfes() {
+    public List<Hotfix> recommendedQfes() {
         return this.recommendedQfes;
     }
 
@@ -823,7 +824,7 @@ public class AddsServiceMemberInner {
      * @param recommendedQfes the recommendedQfes value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withRecommendedQfes(Object recommendedQfes) {
+    public AddsServiceMemberInner withRecommendedQfes(List<Hotfix> recommendedQfes) {
         this.recommendedQfes = recommendedQfes;
         return this;
     }

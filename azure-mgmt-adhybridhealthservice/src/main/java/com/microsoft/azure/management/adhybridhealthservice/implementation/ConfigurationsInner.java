@@ -365,7 +365,6 @@ public class ConfigurationsInner {
     private ServiceResponse<TenantInner> addDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<TenantInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<TenantInner>() { }.getType())
-                .register(403, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -435,8 +434,6 @@ public class ConfigurationsInner {
     private ServiceResponse<TenantInner> getDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<TenantInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<TenantInner>() { }.getType())
-                .register(400, new TypeToken<Void>() { }.getType())
-                .register(403, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -514,8 +511,6 @@ public class ConfigurationsInner {
     private ServiceResponse<TenantInner> updateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<TenantInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<TenantInner>() { }.getType())
-                .register(400, new TypeToken<Void>() { }.getType())
-                .register(403, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
