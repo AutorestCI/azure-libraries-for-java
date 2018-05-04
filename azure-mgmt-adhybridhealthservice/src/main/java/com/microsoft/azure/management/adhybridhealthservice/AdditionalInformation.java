@@ -33,6 +33,12 @@ public class AdditionalInformation {
     private Object properties;
 
     /**
+     * Indicates if properties are present or not.
+     */
+    @JsonProperty(value = "hasProperties")
+    private Boolean hasProperties;
+
+    /**
      * Get the titleName value.
      *
      * @return the titleName value
@@ -89,6 +95,26 @@ public class AdditionalInformation {
      */
     public AdditionalInformation withProperties(Object properties) {
         this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the hasProperties value.
+     *
+     * @return the hasProperties value
+     */
+    public Boolean hasProperties() {
+        return this.hasProperties;
+    }
+
+    /**
+     * Set the hasProperties value.
+     *
+     * @param hasProperties the hasProperties value to set
+     * @return the AdditionalInformation object itself.
+     */
+    public AdditionalInformation withHasProperties(Boolean hasProperties) {
+        this.hasProperties = hasProperties;
         return this;
     }
 

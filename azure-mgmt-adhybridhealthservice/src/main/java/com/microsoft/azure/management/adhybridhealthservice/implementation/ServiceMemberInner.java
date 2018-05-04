@@ -8,115 +8,694 @@
 
 package com.microsoft.azure.management.adhybridhealthservice.implementation;
 
-import java.util.List;
-import com.microsoft.azure.management.adhybridhealthservice.ServiceMemberProperties;
+import org.joda.time.DateTime;
+import com.microsoft.azure.management.adhybridhealthservice.ServerDisabledReason;
+import com.microsoft.azure.management.adhybridhealthservice.MonitoringLevel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The details of the server for a given onboarded service.
+ * The server properties for a given service.
  */
 public class ServiceMemberInner {
     /**
-     * The page-continuation token to use with a paged version of this API.
+     * The id of the server.
      */
-    @JsonProperty(value = "continuationToken")
-    private String continuationToken;
+    @JsonProperty(value = "serviceMemberId")
+    private String serviceMemberId;
 
     /**
-     * The total number of servers onboarded for a given service.
+     * The service id to whom this server belongs.
      */
-    @JsonProperty(value = "totalCount")
-    private Integer totalCount;
+    @JsonProperty(value = "serviceId")
+    private String serviceId;
 
     /**
-     * The link used to get the next page of the operation.
+     * The tenant id to whom this server belongs.
      */
-    @JsonProperty(value = "nextLink")
-    private String nextLink;
+    @JsonProperty(value = "tenantId")
+    private String tenantId;
 
     /**
-     * The server properties.
+     * The total number of alerts that are currently active for the server.
      */
-    @JsonProperty(value = "value")
-    private List<ServiceMemberProperties> value;
+    @JsonProperty(value = "activeAlerts")
+    private Integer activeAlerts;
 
     /**
-     * Get the continuationToken value.
+     * The additional information, if any, for the server.
+     */
+    @JsonProperty(value = "additionalInformation")
+    private String additionalInformation;
+
+    /**
+     * The date time , in UTC, when the server was onboaraded to Azure Active
+     * Directory Connect Health.
+     */
+    @JsonProperty(value = "createdDate")
+    private DateTime createdDate;
+
+    /**
+     * The server specific configuration related dimensions.
+     */
+    @JsonProperty(value = "dimensions")
+    private Object dimensions;
+
+    /**
+     * Indicates if the server is disabled or not.
+     */
+    @JsonProperty(value = "disabled")
+    private Boolean disabled;
+
+    /**
+     * The reason for disabling the server. Possible values include: 'None',
+     * 'GdprStopCollection', 'DeletedFromPortal', 'DisabledDueToInactivity'.
+     */
+    @JsonProperty(value = "disabledReason")
+    private ServerDisabledReason disabledReason;
+
+    /**
+     * The list of installed QFEs for the server.
+     */
+    @JsonProperty(value = "installedQfes")
+    private Object installedQfes;
+
+    /**
+     * The date and time , in UTC, when the server was last disabled.
+     */
+    @JsonProperty(value = "lastDisabled")
+    private DateTime lastDisabled;
+
+    /**
+     * The date and time, in UTC, when the server was last rebooted.
+     */
+    @JsonProperty(value = "lastReboot")
+    private DateTime lastReboot;
+
+    /**
+     * The date and time, in UTC, when the server's data monitoring
+     * configuration was last changed.
+     */
+    @JsonProperty(value = "lastServerReportedMonitoringLevelChange")
+    private DateTime lastServerReportedMonitoringLevelChange;
+
+    /**
+     * The date and time, in UTC, when the server proeprties were last updated.
+     */
+    @JsonProperty(value = "lastUpdated")
+    private DateTime lastUpdated;
+
+    /**
+     * The id of the machine.
+     */
+    @JsonProperty(value = "machineId")
+    private String machineId;
+
+    /**
+     * The name of the server.
+     */
+    @JsonProperty(value = "machineName")
+    private String machineName;
+
+    /**
+     * The monitoring configuration of the server which determines what
+     * activities are monitored by Azure Active Directory Connect Health.
+     */
+    @JsonProperty(value = "monitoringConfigurationsComputed")
+    private Object monitoringConfigurationsComputed;
+
+    /**
+     * The customized monitoring configuration of the server which determines
+     * what activities are monitored by Azure Active Directory Connect Health.
+     */
+    @JsonProperty(value = "monitoringConfigurationsCustomized")
+    private Object monitoringConfigurationsCustomized;
+
+    /**
+     * The name of the operating system installed in the machine.
+     */
+    @JsonProperty(value = "osName")
+    private String osName;
+
+    /**
+     * The version of the operating system installed in the machine.
+     */
+    @JsonProperty(value = "osVersion")
+    private String osVersion;
+
+    /**
+     * Server specific properties.
+     */
+    @JsonProperty(value = "properties")
+    private Object properties;
+
+    /**
+     * The list of recommended hotfixes for the server.
+     */
+    @JsonProperty(value = "recommendedQfes")
+    private Object recommendedQfes;
+
+    /**
+     * The total count of alerts that are resolved for this server.
+     */
+    @JsonProperty(value = "resolvedAlerts")
+    private Integer resolvedAlerts;
+
+    /**
+     * The service role that is being monitored in the server.
+     */
+    @JsonProperty(value = "role")
+    private String role;
+
+    /**
+     * The monitoring level reported by the server. Possible values include:
+     * 'Partial', 'Full', 'Off'.
+     */
+    @JsonProperty(value = "serverReportedMonitoringLevel")
+    private MonitoringLevel serverReportedMonitoringLevel;
+
+    /**
+     * The health status of the server.
+     */
+    @JsonProperty(value = "status")
+    private String status;
+
+    /**
+     * Get the serviceMemberId value.
      *
-     * @return the continuationToken value
+     * @return the serviceMemberId value
      */
-    public String continuationToken() {
-        return this.continuationToken;
+    public String serviceMemberId() {
+        return this.serviceMemberId;
     }
 
     /**
-     * Set the continuationToken value.
+     * Set the serviceMemberId value.
      *
-     * @param continuationToken the continuationToken value to set
+     * @param serviceMemberId the serviceMemberId value to set
      * @return the ServiceMemberInner object itself.
      */
-    public ServiceMemberInner withContinuationToken(String continuationToken) {
-        this.continuationToken = continuationToken;
+    public ServiceMemberInner withServiceMemberId(String serviceMemberId) {
+        this.serviceMemberId = serviceMemberId;
         return this;
     }
 
     /**
-     * Get the totalCount value.
+     * Get the serviceId value.
      *
-     * @return the totalCount value
+     * @return the serviceId value
      */
-    public Integer totalCount() {
-        return this.totalCount;
+    public String serviceId() {
+        return this.serviceId;
     }
 
     /**
-     * Set the totalCount value.
+     * Set the serviceId value.
      *
-     * @param totalCount the totalCount value to set
+     * @param serviceId the serviceId value to set
      * @return the ServiceMemberInner object itself.
      */
-    public ServiceMemberInner withTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    public ServiceMemberInner withServiceId(String serviceId) {
+        this.serviceId = serviceId;
         return this;
     }
 
     /**
-     * Get the nextLink value.
+     * Get the tenantId value.
      *
-     * @return the nextLink value
+     * @return the tenantId value
      */
-    public String nextLink() {
-        return this.nextLink;
+    public String tenantId() {
+        return this.tenantId;
     }
 
     /**
-     * Set the nextLink value.
+     * Set the tenantId value.
      *
-     * @param nextLink the nextLink value to set
+     * @param tenantId the tenantId value to set
      * @return the ServiceMemberInner object itself.
      */
-    public ServiceMemberInner withNextLink(String nextLink) {
-        this.nextLink = nextLink;
+    public ServiceMemberInner withTenantId(String tenantId) {
+        this.tenantId = tenantId;
         return this;
     }
 
     /**
-     * Get the value value.
+     * Get the activeAlerts value.
      *
-     * @return the value value
+     * @return the activeAlerts value
      */
-    public List<ServiceMemberProperties> value() {
-        return this.value;
+    public Integer activeAlerts() {
+        return this.activeAlerts;
     }
 
     /**
-     * Set the value value.
+     * Set the activeAlerts value.
      *
-     * @param value the value value to set
+     * @param activeAlerts the activeAlerts value to set
      * @return the ServiceMemberInner object itself.
      */
-    public ServiceMemberInner withValue(List<ServiceMemberProperties> value) {
-        this.value = value;
+    public ServiceMemberInner withActiveAlerts(Integer activeAlerts) {
+        this.activeAlerts = activeAlerts;
+        return this;
+    }
+
+    /**
+     * Get the additionalInformation value.
+     *
+     * @return the additionalInformation value
+     */
+    public String additionalInformation() {
+        return this.additionalInformation;
+    }
+
+    /**
+     * Set the additionalInformation value.
+     *
+     * @param additionalInformation the additionalInformation value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
+        return this;
+    }
+
+    /**
+     * Get the createdDate value.
+     *
+     * @return the createdDate value
+     */
+    public DateTime createdDate() {
+        return this.createdDate;
+    }
+
+    /**
+     * Set the createdDate value.
+     *
+     * @param createdDate the createdDate value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withCreatedDate(DateTime createdDate) {
+        this.createdDate = createdDate;
+        return this;
+    }
+
+    /**
+     * Get the dimensions value.
+     *
+     * @return the dimensions value
+     */
+    public Object dimensions() {
+        return this.dimensions;
+    }
+
+    /**
+     * Set the dimensions value.
+     *
+     * @param dimensions the dimensions value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withDimensions(Object dimensions) {
+        this.dimensions = dimensions;
+        return this;
+    }
+
+    /**
+     * Get the disabled value.
+     *
+     * @return the disabled value
+     */
+    public Boolean disabled() {
+        return this.disabled;
+    }
+
+    /**
+     * Set the disabled value.
+     *
+     * @param disabled the disabled value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withDisabled(Boolean disabled) {
+        this.disabled = disabled;
+        return this;
+    }
+
+    /**
+     * Get the disabledReason value.
+     *
+     * @return the disabledReason value
+     */
+    public ServerDisabledReason disabledReason() {
+        return this.disabledReason;
+    }
+
+    /**
+     * Set the disabledReason value.
+     *
+     * @param disabledReason the disabledReason value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withDisabledReason(ServerDisabledReason disabledReason) {
+        this.disabledReason = disabledReason;
+        return this;
+    }
+
+    /**
+     * Get the installedQfes value.
+     *
+     * @return the installedQfes value
+     */
+    public Object installedQfes() {
+        return this.installedQfes;
+    }
+
+    /**
+     * Set the installedQfes value.
+     *
+     * @param installedQfes the installedQfes value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withInstalledQfes(Object installedQfes) {
+        this.installedQfes = installedQfes;
+        return this;
+    }
+
+    /**
+     * Get the lastDisabled value.
+     *
+     * @return the lastDisabled value
+     */
+    public DateTime lastDisabled() {
+        return this.lastDisabled;
+    }
+
+    /**
+     * Set the lastDisabled value.
+     *
+     * @param lastDisabled the lastDisabled value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withLastDisabled(DateTime lastDisabled) {
+        this.lastDisabled = lastDisabled;
+        return this;
+    }
+
+    /**
+     * Get the lastReboot value.
+     *
+     * @return the lastReboot value
+     */
+    public DateTime lastReboot() {
+        return this.lastReboot;
+    }
+
+    /**
+     * Set the lastReboot value.
+     *
+     * @param lastReboot the lastReboot value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withLastReboot(DateTime lastReboot) {
+        this.lastReboot = lastReboot;
+        return this;
+    }
+
+    /**
+     * Get the lastServerReportedMonitoringLevelChange value.
+     *
+     * @return the lastServerReportedMonitoringLevelChange value
+     */
+    public DateTime lastServerReportedMonitoringLevelChange() {
+        return this.lastServerReportedMonitoringLevelChange;
+    }
+
+    /**
+     * Set the lastServerReportedMonitoringLevelChange value.
+     *
+     * @param lastServerReportedMonitoringLevelChange the lastServerReportedMonitoringLevelChange value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withLastServerReportedMonitoringLevelChange(DateTime lastServerReportedMonitoringLevelChange) {
+        this.lastServerReportedMonitoringLevelChange = lastServerReportedMonitoringLevelChange;
+        return this;
+    }
+
+    /**
+     * Get the lastUpdated value.
+     *
+     * @return the lastUpdated value
+     */
+    public DateTime lastUpdated() {
+        return this.lastUpdated;
+    }
+
+    /**
+     * Set the lastUpdated value.
+     *
+     * @param lastUpdated the lastUpdated value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withLastUpdated(DateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+        return this;
+    }
+
+    /**
+     * Get the machineId value.
+     *
+     * @return the machineId value
+     */
+    public String machineId() {
+        return this.machineId;
+    }
+
+    /**
+     * Set the machineId value.
+     *
+     * @param machineId the machineId value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withMachineId(String machineId) {
+        this.machineId = machineId;
+        return this;
+    }
+
+    /**
+     * Get the machineName value.
+     *
+     * @return the machineName value
+     */
+    public String machineName() {
+        return this.machineName;
+    }
+
+    /**
+     * Set the machineName value.
+     *
+     * @param machineName the machineName value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withMachineName(String machineName) {
+        this.machineName = machineName;
+        return this;
+    }
+
+    /**
+     * Get the monitoringConfigurationsComputed value.
+     *
+     * @return the monitoringConfigurationsComputed value
+     */
+    public Object monitoringConfigurationsComputed() {
+        return this.monitoringConfigurationsComputed;
+    }
+
+    /**
+     * Set the monitoringConfigurationsComputed value.
+     *
+     * @param monitoringConfigurationsComputed the monitoringConfigurationsComputed value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withMonitoringConfigurationsComputed(Object monitoringConfigurationsComputed) {
+        this.monitoringConfigurationsComputed = monitoringConfigurationsComputed;
+        return this;
+    }
+
+    /**
+     * Get the monitoringConfigurationsCustomized value.
+     *
+     * @return the monitoringConfigurationsCustomized value
+     */
+    public Object monitoringConfigurationsCustomized() {
+        return this.monitoringConfigurationsCustomized;
+    }
+
+    /**
+     * Set the monitoringConfigurationsCustomized value.
+     *
+     * @param monitoringConfigurationsCustomized the monitoringConfigurationsCustomized value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withMonitoringConfigurationsCustomized(Object monitoringConfigurationsCustomized) {
+        this.monitoringConfigurationsCustomized = monitoringConfigurationsCustomized;
+        return this;
+    }
+
+    /**
+     * Get the osName value.
+     *
+     * @return the osName value
+     */
+    public String osName() {
+        return this.osName;
+    }
+
+    /**
+     * Set the osName value.
+     *
+     * @param osName the osName value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withOsName(String osName) {
+        this.osName = osName;
+        return this;
+    }
+
+    /**
+     * Get the osVersion value.
+     *
+     * @return the osVersion value
+     */
+    public String osVersion() {
+        return this.osVersion;
+    }
+
+    /**
+     * Set the osVersion value.
+     *
+     * @param osVersion the osVersion value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withOsVersion(String osVersion) {
+        this.osVersion = osVersion;
+        return this;
+    }
+
+    /**
+     * Get the properties value.
+     *
+     * @return the properties value
+     */
+    public Object properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties value.
+     *
+     * @param properties the properties value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withProperties(Object properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the recommendedQfes value.
+     *
+     * @return the recommendedQfes value
+     */
+    public Object recommendedQfes() {
+        return this.recommendedQfes;
+    }
+
+    /**
+     * Set the recommendedQfes value.
+     *
+     * @param recommendedQfes the recommendedQfes value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withRecommendedQfes(Object recommendedQfes) {
+        this.recommendedQfes = recommendedQfes;
+        return this;
+    }
+
+    /**
+     * Get the resolvedAlerts value.
+     *
+     * @return the resolvedAlerts value
+     */
+    public Integer resolvedAlerts() {
+        return this.resolvedAlerts;
+    }
+
+    /**
+     * Set the resolvedAlerts value.
+     *
+     * @param resolvedAlerts the resolvedAlerts value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withResolvedAlerts(Integer resolvedAlerts) {
+        this.resolvedAlerts = resolvedAlerts;
+        return this;
+    }
+
+    /**
+     * Get the role value.
+     *
+     * @return the role value
+     */
+    public String role() {
+        return this.role;
+    }
+
+    /**
+     * Set the role value.
+     *
+     * @param role the role value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withRole(String role) {
+        this.role = role;
+        return this;
+    }
+
+    /**
+     * Get the serverReportedMonitoringLevel value.
+     *
+     * @return the serverReportedMonitoringLevel value
+     */
+    public MonitoringLevel serverReportedMonitoringLevel() {
+        return this.serverReportedMonitoringLevel;
+    }
+
+    /**
+     * Set the serverReportedMonitoringLevel value.
+     *
+     * @param serverReportedMonitoringLevel the serverReportedMonitoringLevel value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withServerReportedMonitoringLevel(MonitoringLevel serverReportedMonitoringLevel) {
+        this.serverReportedMonitoringLevel = serverReportedMonitoringLevel;
+        return this;
+    }
+
+    /**
+     * Get the status value.
+     *
+     * @return the status value
+     */
+    public String status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status value.
+     *
+     * @param status the status value to set
+     * @return the ServiceMemberInner object itself.
+     */
+    public ServiceMemberInner withStatus(String status) {
+        this.status = status;
         return this;
     }
 

@@ -78,8 +78,8 @@ public class AssociatedObject {
     /**
      * The time of the error.
      */
-    @JsonProperty(value = "timeOccured")
-    private DateTime timeOccured;
+    @JsonProperty(value = "timeOccurred")
+    private DateTime timeOccurred;
 
     /**
      * The UPN.
@@ -288,22 +288,22 @@ public class AssociatedObject {
     }
 
     /**
-     * Get the timeOccured value.
+     * Get the timeOccurred value.
      *
-     * @return the timeOccured value
+     * @return the timeOccurred value
      */
-    public DateTime timeOccured() {
-        return this.timeOccured;
+    public DateTime timeOccurred() {
+        return this.timeOccurred;
     }
 
     /**
-     * Set the timeOccured value.
+     * Set the timeOccurred value.
      *
-     * @param timeOccured the timeOccured value to set
+     * @param timeOccurred the timeOccurred value to set
      * @return the AssociatedObject object itself.
      */
-    public AssociatedObject withTimeOccured(DateTime timeOccured) {
-        this.timeOccured = timeOccured;
+    public AssociatedObject withTimeOccurred(DateTime timeOccurred) {
+        this.timeOccurred = timeOccurred;
         return this;
     }
 

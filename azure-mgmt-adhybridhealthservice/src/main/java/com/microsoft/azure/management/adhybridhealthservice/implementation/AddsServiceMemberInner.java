@@ -10,7 +10,6 @@ package com.microsoft.azure.management.adhybridhealthservice.implementation;
 
 import java.util.List;
 import org.joda.time.DateTime;
-import com.microsoft.azure.management.adhybridhealthservice.ServerDisabledReason;
 import com.microsoft.azure.management.adhybridhealthservice.Hotfix;
 import com.microsoft.azure.management.adhybridhealthservice.MonitoringLevel;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -117,11 +116,10 @@ public class AddsServiceMemberInner {
     private Boolean disabled;
 
     /**
-     * The reason for disabling the server. Possible values include: 'None',
-     * 'GdprStopCollection', 'DeletedFromPortal', 'DisabledDueToInactivity'.
+     * The reason for disabling the server.
      */
     @JsonProperty(value = "disabledReason")
-    private ServerDisabledReason disabledReason;
+    private Integer disabledReason;
 
     /**
      * The list of installed QFEs for the server.
@@ -554,7 +552,7 @@ public class AddsServiceMemberInner {
      *
      * @return the disabledReason value
      */
-    public ServerDisabledReason disabledReason() {
+    public Integer disabledReason() {
         return this.disabledReason;
     }
 
@@ -564,7 +562,7 @@ public class AddsServiceMemberInner {
      * @param disabledReason the disabledReason value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withDisabledReason(ServerDisabledReason disabledReason) {
+    public AddsServiceMemberInner withDisabledReason(Integer disabledReason) {
         this.disabledReason = disabledReason;
         return this;
     }

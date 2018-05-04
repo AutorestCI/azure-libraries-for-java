@@ -45,13 +45,10 @@ public class RunStep {
     private String partitionId;
 
     /**
-     * The run step operation types. Possible values include: 'Undefined',
-     * 'FullImport', 'DeltaImport', 'FullSynchornization',
-     * 'DeltaSynchronization', 'ApplyRules', 'Export', 'FullExport',
-     * 'FullImportReevaluateRules'.
+     * The run step operation types.
      */
-    @JsonProperty(value = "runStepOperationType")
-    private RunStepOperationType runStepOperationType;
+    @JsonProperty(value = "operationType")
+    private Integer operationType;
 
     /**
      * Get the batchSize value.
@@ -154,22 +151,22 @@ public class RunStep {
     }
 
     /**
-     * Get the runStepOperationType value.
+     * Get the operationType value.
      *
-     * @return the runStepOperationType value
+     * @return the operationType value
      */
-    public RunStepOperationType runStepOperationType() {
-        return this.runStepOperationType;
+    public Integer operationType() {
+        return this.operationType;
     }
 
     /**
-     * Set the runStepOperationType value.
+     * Set the operationType value.
      *
-     * @param runStepOperationType the runStepOperationType value to set
+     * @param operationType the operationType value to set
      * @return the RunStep object itself.
      */
-    public RunStep withRunStepOperationType(RunStepOperationType runStepOperationType) {
-        this.runStepOperationType = runStepOperationType;
+    public RunStep withOperationType(Integer operationType) {
+        this.operationType = operationType;
         return this;
     }
 

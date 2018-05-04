@@ -19,6 +19,12 @@ public class Connector {
     /**
      * The connector Id.
      */
+    @JsonProperty(value = "connectorId")
+    private String connectorId;
+
+    /**
+     * The connector Id.
+     */
     @JsonProperty(value = "id")
     private String id;
 
@@ -99,6 +105,26 @@ public class Connector {
      */
     @JsonProperty(value = "attributesIncluded")
     private List<String> attributesIncluded;
+
+    /**
+     * Get the connectorId value.
+     *
+     * @return the connectorId value
+     */
+    public String connectorId() {
+        return this.connectorId;
+    }
+
+    /**
+     * Set the connectorId value.
+     *
+     * @param connectorId the connectorId value to set
+     * @return the Connector object itself.
+     */
+    public Connector withConnectorId(String connectorId) {
+        this.connectorId = connectorId;
+        return this;
+    }
 
     /**
      * Get the id value.
