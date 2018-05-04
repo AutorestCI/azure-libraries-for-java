@@ -1265,9 +1265,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the boolean object if successful.
+     * @return the ResultInner object if successful.
      */
-    public boolean getFeatureAvailibility(String serviceName, String featureName) {
+    public ResultInner getFeatureAvailibility(String serviceName, String featureName) {
         return getFeatureAvailibilityWithServiceResponseAsync(serviceName, featureName).toBlocking().single().body();
     }
 
@@ -1280,7 +1280,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Boolean> getFeatureAvailibilityAsync(String serviceName, String featureName, final ServiceCallback<Boolean> serviceCallback) {
+    public ServiceFuture<ResultInner> getFeatureAvailibilityAsync(String serviceName, String featureName, final ServiceCallback<ResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(getFeatureAvailibilityWithServiceResponseAsync(serviceName, featureName), serviceCallback);
     }
 
@@ -1290,12 +1290,12 @@ public class ServicesInner {
      * @param serviceName The name of the service.
      * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
+     * @return the observable to the ResultInner object
      */
-    public Observable<Boolean> getFeatureAvailibilityAsync(String serviceName, String featureName) {
-        return getFeatureAvailibilityWithServiceResponseAsync(serviceName, featureName).map(new Func1<ServiceResponse<Boolean>, Boolean>() {
+    public Observable<ResultInner> getFeatureAvailibilityAsync(String serviceName, String featureName) {
+        return getFeatureAvailibilityWithServiceResponseAsync(serviceName, featureName).map(new Func1<ServiceResponse<ResultInner>, ResultInner>() {
             @Override
-            public Boolean call(ServiceResponse<Boolean> response) {
+            public ResultInner call(ServiceResponse<ResultInner> response) {
                 return response.body();
             }
         });
@@ -1307,9 +1307,9 @@ public class ServicesInner {
      * @param serviceName The name of the service.
      * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
+     * @return the observable to the ResultInner object
      */
-    public Observable<ServiceResponse<Boolean>> getFeatureAvailibilityWithServiceResponseAsync(String serviceName, String featureName) {
+    public Observable<ServiceResponse<ResultInner>> getFeatureAvailibilityWithServiceResponseAsync(String serviceName, String featureName) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -1320,11 +1320,11 @@ public class ServicesInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.getFeatureAvailibility(serviceName, featureName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Boolean>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ResultInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Boolean>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ResultInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Boolean> clientResponse = getFeatureAvailibilityDelegate(response);
+                        ServiceResponse<ResultInner> clientResponse = getFeatureAvailibilityDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1333,9 +1333,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<Boolean> getFeatureAvailibilityDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Boolean, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Boolean>() { }.getType())
+    private ServiceResponse<ResultInner> getFeatureAvailibilityDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ResultInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ResultInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -2857,9 +2857,9 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the boolean object if successful.
+     * @return the ResultInner object if successful.
      */
-    public boolean getTenantWhitelisting(String serviceName, String featureName) {
+    public ResultInner getTenantWhitelisting(String serviceName, String featureName) {
         return getTenantWhitelistingWithServiceResponseAsync(serviceName, featureName).toBlocking().single().body();
     }
 
@@ -2872,7 +2872,7 @@ public class ServicesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Boolean> getTenantWhitelistingAsync(String serviceName, String featureName, final ServiceCallback<Boolean> serviceCallback) {
+    public ServiceFuture<ResultInner> getTenantWhitelistingAsync(String serviceName, String featureName, final ServiceCallback<ResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(getTenantWhitelistingWithServiceResponseAsync(serviceName, featureName), serviceCallback);
     }
 
@@ -2882,12 +2882,12 @@ public class ServicesInner {
      * @param serviceName The name of the service.
      * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
+     * @return the observable to the ResultInner object
      */
-    public Observable<Boolean> getTenantWhitelistingAsync(String serviceName, String featureName) {
-        return getTenantWhitelistingWithServiceResponseAsync(serviceName, featureName).map(new Func1<ServiceResponse<Boolean>, Boolean>() {
+    public Observable<ResultInner> getTenantWhitelistingAsync(String serviceName, String featureName) {
+        return getTenantWhitelistingWithServiceResponseAsync(serviceName, featureName).map(new Func1<ServiceResponse<ResultInner>, ResultInner>() {
             @Override
-            public Boolean call(ServiceResponse<Boolean> response) {
+            public ResultInner call(ServiceResponse<ResultInner> response) {
                 return response.body();
             }
         });
@@ -2899,9 +2899,9 @@ public class ServicesInner {
      * @param serviceName The name of the service.
      * @param featureName The name of the feature.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Boolean object
+     * @return the observable to the ResultInner object
      */
-    public Observable<ServiceResponse<Boolean>> getTenantWhitelistingWithServiceResponseAsync(String serviceName, String featureName) {
+    public Observable<ServiceResponse<ResultInner>> getTenantWhitelistingWithServiceResponseAsync(String serviceName, String featureName) {
         if (serviceName == null) {
             throw new IllegalArgumentException("Parameter serviceName is required and cannot be null.");
         }
@@ -2912,11 +2912,11 @@ public class ServicesInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.getTenantWhitelisting(serviceName, featureName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Boolean>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ResultInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Boolean>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<ResultInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Boolean> clientResponse = getTenantWhitelistingDelegate(response);
+                        ServiceResponse<ResultInner> clientResponse = getTenantWhitelistingDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2925,9 +2925,9 @@ public class ServicesInner {
             });
     }
 
-    private ServiceResponse<Boolean> getTenantWhitelistingDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Boolean, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Boolean>() { }.getType())
+    private ServiceResponse<ResultInner> getTenantWhitelistingDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<ResultInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<ResultInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

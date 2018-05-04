@@ -74,8 +74,8 @@ public class ServiceMemberProperties {
     /**
      * The list of installed QFEs for the server.
      */
-    @JsonProperty(value = "installedQfe")
-    private Object installedQfe;
+    @JsonProperty(value = "installedQfes")
+    private Object installedQfes;
 
     /**
      * The date and time , in UTC, when the server was last disabled.
@@ -358,22 +358,22 @@ public class ServiceMemberProperties {
     }
 
     /**
-     * Get the installedQfe value.
+     * Get the installedQfes value.
      *
-     * @return the installedQfe value
+     * @return the installedQfes value
      */
-    public Object installedQfe() {
-        return this.installedQfe;
+    public Object installedQfes() {
+        return this.installedQfes;
     }
 
     /**
-     * Set the installedQfe value.
+     * Set the installedQfes value.
      *
-     * @param installedQfe the installedQfe value to set
+     * @param installedQfes the installedQfes value to set
      * @return the ServiceMemberProperties object itself.
      */
-    public ServiceMemberProperties withInstalledQfe(Object installedQfe) {
-        this.installedQfe = installedQfe;
+    public ServiceMemberProperties withInstalledQfes(Object installedQfes) {
+        this.installedQfes = installedQfes;
         return this;
     }
 

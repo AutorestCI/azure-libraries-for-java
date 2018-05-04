@@ -18,6 +18,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MergedExportErrorInner {
     /**
+     * The error Id.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
      * The incoming object display name.
      */
     @JsonProperty(value = "incomingObjectDisplayName")
@@ -142,6 +148,26 @@ public class MergedExportErrorInner {
      */
     @JsonProperty(value = "exportErrorStatus")
     private Integer exportErrorStatus;
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id value.
+     *
+     * @param id the id value to set
+     * @return the MergedExportErrorInner object itself.
+     */
+    public MergedExportErrorInner withId(String id) {
+        this.id = id;
+        return this;
+    }
 
     /**
      * Get the incomingObjectDisplayName value.

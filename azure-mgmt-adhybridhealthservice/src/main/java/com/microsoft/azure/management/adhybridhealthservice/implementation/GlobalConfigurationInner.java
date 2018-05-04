@@ -36,8 +36,8 @@ public class GlobalConfigurationInner {
     /**
      * The number of saved password events.
      */
-    @JsonProperty(value = "numSavedPwdEvents")
-    private Integer numSavedPwdEvents;
+    @JsonProperty(value = "numSavedPwdEvent")
+    private Integer numSavedPwdEvent;
 
     /**
      * The list of additional feature sets.
@@ -106,22 +106,22 @@ public class GlobalConfigurationInner {
     }
 
     /**
-     * Get the numSavedPwdEvents value.
+     * Get the numSavedPwdEvent value.
      *
-     * @return the numSavedPwdEvents value
+     * @return the numSavedPwdEvent value
      */
-    public Integer numSavedPwdEvents() {
-        return this.numSavedPwdEvents;
+    public Integer numSavedPwdEvent() {
+        return this.numSavedPwdEvent;
     }
 
     /**
-     * Set the numSavedPwdEvents value.
+     * Set the numSavedPwdEvent value.
      *
-     * @param numSavedPwdEvents the numSavedPwdEvents value to set
+     * @param numSavedPwdEvent the numSavedPwdEvent value to set
      * @return the GlobalConfigurationInner object itself.
      */
-    public GlobalConfigurationInner withNumSavedPwdEvents(Integer numSavedPwdEvents) {
-        this.numSavedPwdEvents = numSavedPwdEvents;
+    public GlobalConfigurationInner withNumSavedPwdEvent(Integer numSavedPwdEvent) {
+        this.numSavedPwdEvent = numSavedPwdEvent;
         return this;
     }
 

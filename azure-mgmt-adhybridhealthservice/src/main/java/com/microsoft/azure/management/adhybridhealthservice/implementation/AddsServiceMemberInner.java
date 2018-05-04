@@ -126,8 +126,8 @@ public class AddsServiceMemberInner {
     /**
      * The list of installed QFEs for the server.
      */
-    @JsonProperty(value = "installedQfe")
-    private List<Hotfix> installedQfe;
+    @JsonProperty(value = "installedQfes")
+    private List<Hotfix> installedQfes;
 
     /**
      * The date and time , in UTC, when the server was last disabled.
@@ -570,22 +570,22 @@ public class AddsServiceMemberInner {
     }
 
     /**
-     * Get the installedQfe value.
+     * Get the installedQfes value.
      *
-     * @return the installedQfe value
+     * @return the installedQfes value
      */
-    public List<Hotfix> installedQfe() {
-        return this.installedQfe;
+    public List<Hotfix> installedQfes() {
+        return this.installedQfes;
     }
 
     /**
-     * Set the installedQfe value.
+     * Set the installedQfes value.
      *
-     * @param installedQfe the installedQfe value to set
+     * @param installedQfes the installedQfes value to set
      * @return the AddsServiceMemberInner object itself.
      */
-    public AddsServiceMemberInner withInstalledQfe(List<Hotfix> installedQfe) {
-        this.installedQfe = installedQfe;
+    public AddsServiceMemberInner withInstalledQfes(List<Hotfix> installedQfes) {
+        this.installedQfes = installedQfes;
         return this;
     }
 
