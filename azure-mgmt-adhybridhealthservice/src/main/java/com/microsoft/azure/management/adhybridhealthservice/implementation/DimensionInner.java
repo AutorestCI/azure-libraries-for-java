@@ -20,8 +20,8 @@ public class DimensionInner {
      * The health status for the domain controller. Possible values include:
      * 'Healthy', 'Warning', 'Error', 'NotMonitored', 'Missing'.
      */
-    @JsonProperty(value = "status")
-    private HealthStatus status;
+    @JsonProperty(value = "health")
+    private HealthStatus health;
 
     /**
      * List of service specific configuration properties.
@@ -76,22 +76,22 @@ public class DimensionInner {
     private String type;
 
     /**
-     * Get the status value.
+     * Get the health value.
      *
-     * @return the status value
+     * @return the health value
      */
-    public HealthStatus status() {
-        return this.status;
+    public HealthStatus health() {
+        return this.health;
     }
 
     /**
-     * Set the status value.
+     * Set the health value.
      *
-     * @param status the status value to set
+     * @param health the health value to set
      * @return the DimensionInner object itself.
      */
-    public DimensionInner withStatus(HealthStatus status) {
-        this.status = status;
+    public DimensionInner withHealth(HealthStatus health) {
+        this.health = health;
         return this;
     }
 

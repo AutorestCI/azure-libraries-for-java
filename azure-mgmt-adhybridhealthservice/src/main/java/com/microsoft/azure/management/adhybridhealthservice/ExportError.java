@@ -54,8 +54,8 @@ public class ExportError {
     /**
      * The server error detail.
      */
-    @JsonProperty(value = "servverErrorDetail")
-    private String servverErrorDetail;
+    @JsonProperty(value = "serverErrorDetail")
+    private String serverErrorDetail;
 
     /**
      * The date and time when the export error first occured.
@@ -358,22 +358,22 @@ public class ExportError {
     }
 
     /**
-     * Get the servverErrorDetail value.
+     * Get the serverErrorDetail value.
      *
-     * @return the servverErrorDetail value
+     * @return the serverErrorDetail value
      */
-    public String servverErrorDetail() {
-        return this.servverErrorDetail;
+    public String serverErrorDetail() {
+        return this.serverErrorDetail;
     }
 
     /**
-     * Set the servverErrorDetail value.
+     * Set the serverErrorDetail value.
      *
-     * @param servverErrorDetail the servverErrorDetail value to set
+     * @param serverErrorDetail the serverErrorDetail value to set
      * @return the ExportError object itself.
      */
-    public ExportError withServverErrorDetail(String servverErrorDetail) {
-        this.servverErrorDetail = servverErrorDetail;
+    public ExportError withServerErrorDetail(String serverErrorDetail) {
+        this.serverErrorDetail = serverErrorDetail;
         return this;
     }
 

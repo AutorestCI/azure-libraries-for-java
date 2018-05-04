@@ -296,7 +296,6 @@ public class ConfigurationsInner {
     private ServiceResponse<PageImpl<ItemInner>> listAddsConfigurationsDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<ItemInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ItemInner>>() { }.getType())
-                .register(400, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -437,6 +436,7 @@ public class ConfigurationsInner {
         return this.client.restClient().responseBuilderFactory().<TenantInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<TenantInner>() { }.getType())
                 .register(400, new TypeToken<Void>() { }.getType())
+                .register(403, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -514,7 +514,8 @@ public class ConfigurationsInner {
     private ServiceResponse<TenantInner> updateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<TenantInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<TenantInner>() { }.getType())
-                .register(404, new TypeToken<Void>() { }.getType())
+                .register(400, new TypeToken<Void>() { }.getType())
+                .register(403, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -626,7 +627,6 @@ public class ConfigurationsInner {
     private ServiceResponse<PageImpl<ItemInner>> listAddsConfigurationsNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<ItemInner>, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<ItemInner>>() { }.getType())
-                .register(400, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

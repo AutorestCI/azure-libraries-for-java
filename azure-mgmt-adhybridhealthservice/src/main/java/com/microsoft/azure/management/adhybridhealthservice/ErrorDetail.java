@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.adhybridhealthservice;
 
+import com.microsoft.azure.management.adhybridhealthservice.implementation.MergedExportErrorInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -43,7 +44,7 @@ public class ErrorDetail {
      * The object with sync error.
      */
     @JsonProperty(value = "objectWithSyncError")
-    private MergedExportError objectWithSyncError;
+    private MergedExportErrorInner objectWithSyncError;
 
     /**
      * Get the description value.
@@ -130,7 +131,7 @@ public class ErrorDetail {
      *
      * @return the objectWithSyncError value
      */
-    public MergedExportError objectWithSyncError() {
+    public MergedExportErrorInner objectWithSyncError() {
         return this.objectWithSyncError;
     }
 
@@ -140,7 +141,7 @@ public class ErrorDetail {
      * @param objectWithSyncError the objectWithSyncError value to set
      * @return the ErrorDetail object itself.
      */
-    public ErrorDetail withObjectWithSyncError(MergedExportError objectWithSyncError) {
+    public ErrorDetail withObjectWithSyncError(MergedExportErrorInner objectWithSyncError) {
         this.objectWithSyncError = objectWithSyncError;
         return this;
     }

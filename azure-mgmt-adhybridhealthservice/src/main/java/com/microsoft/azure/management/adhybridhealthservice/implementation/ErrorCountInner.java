@@ -29,8 +29,8 @@ public class ErrorCountInner {
     /**
      * Indicates if the error count is truncated or not.
      */
-    @JsonProperty(value = "trucated")
-    private Boolean trucated;
+    @JsonProperty(value = "truncated")
+    private Boolean truncated;
 
     /**
      * Get the errorBucket value.
@@ -73,22 +73,22 @@ public class ErrorCountInner {
     }
 
     /**
-     * Get the trucated value.
+     * Get the truncated value.
      *
-     * @return the trucated value
+     * @return the truncated value
      */
-    public Boolean trucated() {
-        return this.trucated;
+    public Boolean truncated() {
+        return this.truncated;
     }
 
     /**
-     * Set the trucated value.
+     * Set the truncated value.
      *
-     * @param trucated the trucated value to set
+     * @param truncated the truncated value to set
      * @return the ErrorCountInner object itself.
      */
-    public ErrorCountInner withTrucated(Boolean trucated) {
-        this.trucated = trucated;
+    public ErrorCountInner withTruncated(Boolean truncated) {
+        this.truncated = truncated;
         return this;
     }
 

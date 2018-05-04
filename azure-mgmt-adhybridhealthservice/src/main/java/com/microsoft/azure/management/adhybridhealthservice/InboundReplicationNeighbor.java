@@ -25,7 +25,7 @@ public class InboundReplicationNeighbor {
      * The number of consecutive faulire counts.
      */
     @JsonProperty(value = "consecutiveFailureCount")
-    private String consecutiveFailureCount;
+    private Integer consecutiveFailureCount;
 
     /**
      * The naming context.
@@ -34,11 +34,10 @@ public class InboundReplicationNeighbor {
     private String namingContext;
 
     /**
-     * The health status for the domain controller. Possible values include:
-     * 'Healthy', 'Warning', 'Error', 'NotMonitored', 'Missing'.
+     * The health status for the domain controller.
      */
     @JsonProperty(value = "status")
-    private HealthStatus status;
+    private Integer status;
 
     /**
      * The last time a sync was attempted on the domain controller.
@@ -119,7 +118,7 @@ public class InboundReplicationNeighbor {
      *
      * @return the consecutiveFailureCount value
      */
-    public String consecutiveFailureCount() {
+    public Integer consecutiveFailureCount() {
         return this.consecutiveFailureCount;
     }
 
@@ -129,7 +128,7 @@ public class InboundReplicationNeighbor {
      * @param consecutiveFailureCount the consecutiveFailureCount value to set
      * @return the InboundReplicationNeighbor object itself.
      */
-    public InboundReplicationNeighbor withConsecutiveFailureCount(String consecutiveFailureCount) {
+    public InboundReplicationNeighbor withConsecutiveFailureCount(Integer consecutiveFailureCount) {
         this.consecutiveFailureCount = consecutiveFailureCount;
         return this;
     }
@@ -159,7 +158,7 @@ public class InboundReplicationNeighbor {
      *
      * @return the status value
      */
-    public HealthStatus status() {
+    public Integer status() {
         return this.status;
     }
 
@@ -169,7 +168,7 @@ public class InboundReplicationNeighbor {
      * @param status the status value to set
      * @return the InboundReplicationNeighbor object itself.
      */
-    public InboundReplicationNeighbor withStatus(HealthStatus status) {
+    public InboundReplicationNeighbor withStatus(Integer status) {
         this.status = status;
         return this;
     }

@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.adhybridhealthservice.implementation;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -42,7 +43,7 @@ public class GlobalConfigurationInner {
      * The list of additional feature sets.
      */
     @JsonProperty(value = "featureSet")
-    private Object featureSet;
+    private List<ItemInner> featureSet;
 
     /**
      * Get the version value.
@@ -129,7 +130,7 @@ public class GlobalConfigurationInner {
      *
      * @return the featureSet value
      */
-    public Object featureSet() {
+    public List<ItemInner> featureSet() {
         return this.featureSet;
     }
 
@@ -139,7 +140,7 @@ public class GlobalConfigurationInner {
      * @param featureSet the featureSet value to set
      * @return the GlobalConfigurationInner object itself.
      */
-    public GlobalConfigurationInner withFeatureSet(Object featureSet) {
+    public GlobalConfigurationInner withFeatureSet(List<ItemInner> featureSet) {
         this.featureSet = featureSet;
         return this;
     }

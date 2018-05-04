@@ -9,7 +9,6 @@
 package com.microsoft.azure.management.adhybridhealthservice;
 
 import org.joda.time.DateTime;
-import java.util.UUID;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -36,11 +35,10 @@ public class ReplicationSummary {
     private String domain;
 
     /**
-     * The health status for a domain controller. Possible values include:
-     * 'Healthy', 'Warning', 'Error', 'NotMonitored', 'Missing'.
+     * The health status for a domain controller.
      */
     @JsonProperty(value = "status")
-    private HealthStatus status;
+    private Integer status;
 
     /**
      * The last time when a sync was attempted for a given domain controller.
@@ -54,18 +52,6 @@ public class ReplicationSummary {
      */
     @JsonProperty(value = "lastSuccessfulSync")
     private DateTime lastSuccessfulSync;
-
-    /**
-     * The service Id.
-     */
-    @JsonProperty(value = "serviceId")
-    private UUID serviceId;
-
-    /**
-     * The serviceMemberId.
-     */
-    @JsonProperty(value = "serviceMemberId")
-    private UUID serviceMemberId;
 
     /**
      * List of individual domain controller neighbor's inbound replication
@@ -139,7 +125,7 @@ public class ReplicationSummary {
      *
      * @return the status value
      */
-    public HealthStatus status() {
+    public Integer status() {
         return this.status;
     }
 
@@ -149,7 +135,7 @@ public class ReplicationSummary {
      * @param status the status value to set
      * @return the ReplicationSummary object itself.
      */
-    public ReplicationSummary withStatus(HealthStatus status) {
+    public ReplicationSummary withStatus(Integer status) {
         this.status = status;
         return this;
     }
@@ -191,46 +177,6 @@ public class ReplicationSummary {
      */
     public ReplicationSummary withLastSuccessfulSync(DateTime lastSuccessfulSync) {
         this.lastSuccessfulSync = lastSuccessfulSync;
-        return this;
-    }
-
-    /**
-     * Get the serviceId value.
-     *
-     * @return the serviceId value
-     */
-    public UUID serviceId() {
-        return this.serviceId;
-    }
-
-    /**
-     * Set the serviceId value.
-     *
-     * @param serviceId the serviceId value to set
-     * @return the ReplicationSummary object itself.
-     */
-    public ReplicationSummary withServiceId(UUID serviceId) {
-        this.serviceId = serviceId;
-        return this;
-    }
-
-    /**
-     * Get the serviceMemberId value.
-     *
-     * @return the serviceMemberId value
-     */
-    public UUID serviceMemberId() {
-        return this.serviceMemberId;
-    }
-
-    /**
-     * Set the serviceMemberId value.
-     *
-     * @param serviceMemberId the serviceMemberId value to set
-     * @return the ReplicationSummary object itself.
-     */
-    public ReplicationSummary withServiceMemberId(UUID serviceMemberId) {
-        this.serviceMemberId = serviceMemberId;
         return this;
     }
 
