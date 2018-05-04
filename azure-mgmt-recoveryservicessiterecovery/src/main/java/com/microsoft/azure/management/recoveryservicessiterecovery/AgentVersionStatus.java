@@ -8,55 +8,43 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for AgentVersionStatus.
  */
-public enum AgentVersionStatus {
-    /** Enum value Supported. */
-    SUPPORTED("Supported"),
+public final class AgentVersionStatus extends ExpandableStringEnum<AgentVersionStatus> {
+    /** Static value Supported for AgentVersionStatus. */
+    public static final AgentVersionStatus SUPPORTED = fromString("Supported");
 
-    /** Enum value NotSupported. */
-    NOT_SUPPORTED("NotSupported"),
+    /** Static value NotSupported for AgentVersionStatus. */
+    public static final AgentVersionStatus NOT_SUPPORTED = fromString("NotSupported");
 
-    /** Enum value Deprecated. */
-    DEPRECATED("Deprecated"),
+    /** Static value Deprecated for AgentVersionStatus. */
+    public static final AgentVersionStatus DEPRECATED = fromString("Deprecated");
 
-    /** Enum value UpdateRequired. */
-    UPDATE_REQUIRED("UpdateRequired"),
+    /** Static value UpdateRequired for AgentVersionStatus. */
+    public static final AgentVersionStatus UPDATE_REQUIRED = fromString("UpdateRequired");
 
-    /** Enum value SecurityUpdateRequired. */
-    SECURITY_UPDATE_REQUIRED("SecurityUpdateRequired");
+    /** Static value SecurityUpdateRequired for AgentVersionStatus. */
+    public static final AgentVersionStatus SECURITY_UPDATE_REQUIRED = fromString("SecurityUpdateRequired");
 
-    /** The actual serialized value for a AgentVersionStatus instance. */
-    private String value;
-
-    AgentVersionStatus(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a AgentVersionStatus from its string representation.
+     * @param name a name to look for
+     * @return the corresponding AgentVersionStatus
+     */
+    @JsonCreator
+    public static AgentVersionStatus fromString(String name) {
+        return fromString(name, AgentVersionStatus.class);
     }
 
     /**
-     * Parses a serialized value to a AgentVersionStatus instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed AgentVersionStatus object, or null if unable to parse.
+     * @return known AgentVersionStatus values
      */
-    @JsonCreator
-    public static AgentVersionStatus fromString(String value) {
-        AgentVersionStatus[] items = AgentVersionStatus.values();
-        for (AgentVersionStatus item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<AgentVersionStatus> values() {
+        return values(AgentVersionStatus.class);
     }
 }

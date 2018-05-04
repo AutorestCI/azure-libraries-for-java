@@ -8,49 +8,37 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for PresenceStatus.
  */
-public enum PresenceStatus {
-    /** Enum value Unknown. */
-    UNKNOWN("Unknown"),
+public final class PresenceStatus extends ExpandableStringEnum<PresenceStatus> {
+    /** Static value Unknown for PresenceStatus. */
+    public static final PresenceStatus UNKNOWN = fromString("Unknown");
 
-    /** Enum value Present. */
-    PRESENT("Present"),
+    /** Static value Present for PresenceStatus. */
+    public static final PresenceStatus PRESENT = fromString("Present");
 
-    /** Enum value NotPresent. */
-    NOT_PRESENT("NotPresent");
+    /** Static value NotPresent for PresenceStatus. */
+    public static final PresenceStatus NOT_PRESENT = fromString("NotPresent");
 
-    /** The actual serialized value for a PresenceStatus instance. */
-    private String value;
-
-    PresenceStatus(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a PresenceStatus from its string representation.
+     * @param name a name to look for
+     * @return the corresponding PresenceStatus
+     */
+    @JsonCreator
+    public static PresenceStatus fromString(String name) {
+        return fromString(name, PresenceStatus.class);
     }
 
     /**
-     * Parses a serialized value to a PresenceStatus instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed PresenceStatus object, or null if unable to parse.
+     * @return known PresenceStatus values
      */
-    @JsonCreator
-    public static PresenceStatus fromString(String value) {
-        PresenceStatus[] items = PresenceStatus.values();
-        for (PresenceStatus item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<PresenceStatus> values() {
+        return values(PresenceStatus.class);
     }
 }

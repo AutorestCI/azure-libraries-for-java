@@ -8,49 +8,37 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for LicenseType.
  */
-public enum LicenseType {
-    /** Enum value NotSpecified. */
-    NOT_SPECIFIED("NotSpecified"),
+public final class LicenseType extends ExpandableStringEnum<LicenseType> {
+    /** Static value NotSpecified for LicenseType. */
+    public static final LicenseType NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Enum value NoLicenseType. */
-    NO_LICENSE_TYPE("NoLicenseType"),
+    /** Static value NoLicenseType for LicenseType. */
+    public static final LicenseType NO_LICENSE_TYPE = fromString("NoLicenseType");
 
-    /** Enum value WindowsServer. */
-    WINDOWS_SERVER("WindowsServer");
+    /** Static value WindowsServer for LicenseType. */
+    public static final LicenseType WINDOWS_SERVER = fromString("WindowsServer");
 
-    /** The actual serialized value for a LicenseType instance. */
-    private String value;
-
-    LicenseType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a LicenseType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding LicenseType
+     */
+    @JsonCreator
+    public static LicenseType fromString(String name) {
+        return fromString(name, LicenseType.class);
     }
 
     /**
-     * Parses a serialized value to a LicenseType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed LicenseType object, or null if unable to parse.
+     * @return known LicenseType values
      */
-    @JsonCreator
-    public static LicenseType fromString(String value) {
-        LicenseType[] items = LicenseType.values();
-        for (LicenseType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<LicenseType> values() {
+        return values(LicenseType.class);
     }
 }

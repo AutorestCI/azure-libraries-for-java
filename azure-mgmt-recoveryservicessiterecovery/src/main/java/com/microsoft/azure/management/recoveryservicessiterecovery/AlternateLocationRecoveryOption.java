@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for AlternateLocationRecoveryOption.
  */
-public enum AlternateLocationRecoveryOption {
-    /** Enum value CreateVmIfNotFound. */
-    CREATE_VM_IF_NOT_FOUND("CreateVmIfNotFound"),
+public final class AlternateLocationRecoveryOption extends ExpandableStringEnum<AlternateLocationRecoveryOption> {
+    /** Static value CreateVmIfNotFound for AlternateLocationRecoveryOption. */
+    public static final AlternateLocationRecoveryOption CREATE_VM_IF_NOT_FOUND = fromString("CreateVmIfNotFound");
 
-    /** Enum value NoAction. */
-    NO_ACTION("NoAction");
+    /** Static value NoAction for AlternateLocationRecoveryOption. */
+    public static final AlternateLocationRecoveryOption NO_ACTION = fromString("NoAction");
 
-    /** The actual serialized value for a AlternateLocationRecoveryOption instance. */
-    private String value;
-
-    AlternateLocationRecoveryOption(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a AlternateLocationRecoveryOption from its string representation.
+     * @param name a name to look for
+     * @return the corresponding AlternateLocationRecoveryOption
+     */
+    @JsonCreator
+    public static AlternateLocationRecoveryOption fromString(String name) {
+        return fromString(name, AlternateLocationRecoveryOption.class);
     }
 
     /**
-     * Parses a serialized value to a AlternateLocationRecoveryOption instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed AlternateLocationRecoveryOption object, or null if unable to parse.
+     * @return known AlternateLocationRecoveryOption values
      */
-    @JsonCreator
-    public static AlternateLocationRecoveryOption fromString(String value) {
-        AlternateLocationRecoveryOption[] items = AlternateLocationRecoveryOption.values();
-        for (AlternateLocationRecoveryOption item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<AlternateLocationRecoveryOption> values() {
+        return values(AlternateLocationRecoveryOption.class);
     }
 }

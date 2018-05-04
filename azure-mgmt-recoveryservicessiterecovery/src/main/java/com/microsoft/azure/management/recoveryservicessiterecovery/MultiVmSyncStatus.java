@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for MultiVmSyncStatus.
  */
-public enum MultiVmSyncStatus {
-    /** Enum value Enabled. */
-    ENABLED("Enabled"),
+public final class MultiVmSyncStatus extends ExpandableStringEnum<MultiVmSyncStatus> {
+    /** Static value Enabled for MultiVmSyncStatus. */
+    public static final MultiVmSyncStatus ENABLED = fromString("Enabled");
 
-    /** Enum value Disabled. */
-    DISABLED("Disabled");
+    /** Static value Disabled for MultiVmSyncStatus. */
+    public static final MultiVmSyncStatus DISABLED = fromString("Disabled");
 
-    /** The actual serialized value for a MultiVmSyncStatus instance. */
-    private String value;
-
-    MultiVmSyncStatus(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a MultiVmSyncStatus from its string representation.
+     * @param name a name to look for
+     * @return the corresponding MultiVmSyncStatus
+     */
+    @JsonCreator
+    public static MultiVmSyncStatus fromString(String name) {
+        return fromString(name, MultiVmSyncStatus.class);
     }
 
     /**
-     * Parses a serialized value to a MultiVmSyncStatus instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed MultiVmSyncStatus object, or null if unable to parse.
+     * @return known MultiVmSyncStatus values
      */
-    @JsonCreator
-    public static MultiVmSyncStatus fromString(String value) {
-        MultiVmSyncStatus[] items = MultiVmSyncStatus.values();
-        for (MultiVmSyncStatus item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<MultiVmSyncStatus> values() {
+        return values(MultiVmSyncStatus.class);
     }
 }

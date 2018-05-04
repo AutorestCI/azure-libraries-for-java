@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for MultiVmGroupCreateOption.
  */
-public enum MultiVmGroupCreateOption {
-    /** Enum value AutoCreated. */
-    AUTO_CREATED("AutoCreated"),
+public final class MultiVmGroupCreateOption extends ExpandableStringEnum<MultiVmGroupCreateOption> {
+    /** Static value AutoCreated for MultiVmGroupCreateOption. */
+    public static final MultiVmGroupCreateOption AUTO_CREATED = fromString("AutoCreated");
 
-    /** Enum value UserSpecified. */
-    USER_SPECIFIED("UserSpecified");
+    /** Static value UserSpecified for MultiVmGroupCreateOption. */
+    public static final MultiVmGroupCreateOption USER_SPECIFIED = fromString("UserSpecified");
 
-    /** The actual serialized value for a MultiVmGroupCreateOption instance. */
-    private String value;
-
-    MultiVmGroupCreateOption(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a MultiVmGroupCreateOption from its string representation.
+     * @param name a name to look for
+     * @return the corresponding MultiVmGroupCreateOption
+     */
+    @JsonCreator
+    public static MultiVmGroupCreateOption fromString(String name) {
+        return fromString(name, MultiVmGroupCreateOption.class);
     }
 
     /**
-     * Parses a serialized value to a MultiVmGroupCreateOption instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed MultiVmGroupCreateOption object, or null if unable to parse.
+     * @return known MultiVmGroupCreateOption values
      */
-    @JsonCreator
-    public static MultiVmGroupCreateOption fromString(String value) {
-        MultiVmGroupCreateOption[] items = MultiVmGroupCreateOption.values();
-        for (MultiVmGroupCreateOption item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<MultiVmGroupCreateOption> values() {
+        return values(MultiVmGroupCreateOption.class);
     }
 }

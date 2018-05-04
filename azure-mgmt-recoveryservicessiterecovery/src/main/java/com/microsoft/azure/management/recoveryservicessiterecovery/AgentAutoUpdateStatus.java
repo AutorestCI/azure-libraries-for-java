@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for AgentAutoUpdateStatus.
  */
-public enum AgentAutoUpdateStatus {
-    /** Enum value Disabled. */
-    DISABLED("Disabled"),
+public final class AgentAutoUpdateStatus extends ExpandableStringEnum<AgentAutoUpdateStatus> {
+    /** Static value Disabled for AgentAutoUpdateStatus. */
+    public static final AgentAutoUpdateStatus DISABLED = fromString("Disabled");
 
-    /** Enum value Enabled. */
-    ENABLED("Enabled");
+    /** Static value Enabled for AgentAutoUpdateStatus. */
+    public static final AgentAutoUpdateStatus ENABLED = fromString("Enabled");
 
-    /** The actual serialized value for a AgentAutoUpdateStatus instance. */
-    private String value;
-
-    AgentAutoUpdateStatus(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a AgentAutoUpdateStatus from its string representation.
+     * @param name a name to look for
+     * @return the corresponding AgentAutoUpdateStatus
+     */
+    @JsonCreator
+    public static AgentAutoUpdateStatus fromString(String name) {
+        return fromString(name, AgentAutoUpdateStatus.class);
     }
 
     /**
-     * Parses a serialized value to a AgentAutoUpdateStatus instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed AgentAutoUpdateStatus object, or null if unable to parse.
+     * @return known AgentAutoUpdateStatus values
      */
-    @JsonCreator
-    public static AgentAutoUpdateStatus fromString(String value) {
-        AgentAutoUpdateStatus[] items = AgentAutoUpdateStatus.values();
-        for (AgentAutoUpdateStatus item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<AgentAutoUpdateStatus> values() {
+        return values(AgentAutoUpdateStatus.class);
     }
 }

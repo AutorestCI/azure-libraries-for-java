@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for RecoveryPointSyncType.
  */
-public enum RecoveryPointSyncType {
-    /** Enum value MultiVmSyncRecoveryPoint. */
-    MULTI_VM_SYNC_RECOVERY_POINT("MultiVmSyncRecoveryPoint"),
+public final class RecoveryPointSyncType extends ExpandableStringEnum<RecoveryPointSyncType> {
+    /** Static value MultiVmSyncRecoveryPoint for RecoveryPointSyncType. */
+    public static final RecoveryPointSyncType MULTI_VM_SYNC_RECOVERY_POINT = fromString("MultiVmSyncRecoveryPoint");
 
-    /** Enum value PerVmRecoveryPoint. */
-    PER_VM_RECOVERY_POINT("PerVmRecoveryPoint");
+    /** Static value PerVmRecoveryPoint for RecoveryPointSyncType. */
+    public static final RecoveryPointSyncType PER_VM_RECOVERY_POINT = fromString("PerVmRecoveryPoint");
 
-    /** The actual serialized value for a RecoveryPointSyncType instance. */
-    private String value;
-
-    RecoveryPointSyncType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a RecoveryPointSyncType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding RecoveryPointSyncType
+     */
+    @JsonCreator
+    public static RecoveryPointSyncType fromString(String name) {
+        return fromString(name, RecoveryPointSyncType.class);
     }
 
     /**
-     * Parses a serialized value to a RecoveryPointSyncType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed RecoveryPointSyncType object, or null if unable to parse.
+     * @return known RecoveryPointSyncType values
      */
-    @JsonCreator
-    public static RecoveryPointSyncType fromString(String value) {
-        RecoveryPointSyncType[] items = RecoveryPointSyncType.values();
-        for (RecoveryPointSyncType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<RecoveryPointSyncType> values() {
+        return values(RecoveryPointSyncType.class);
     }
 }

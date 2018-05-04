@@ -8,61 +8,49 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for HealthErrorCategory.
  */
-public enum HealthErrorCategory {
-    /** Enum value None. */
-    NONE("None"),
+public final class HealthErrorCategory extends ExpandableStringEnum<HealthErrorCategory> {
+    /** Static value None for HealthErrorCategory. */
+    public static final HealthErrorCategory NONE = fromString("None");
 
-    /** Enum value Replication. */
-    REPLICATION("Replication"),
+    /** Static value Replication for HealthErrorCategory. */
+    public static final HealthErrorCategory REPLICATION = fromString("Replication");
 
-    /** Enum value TestFailover. */
-    TEST_FAILOVER("TestFailover"),
+    /** Static value TestFailover for HealthErrorCategory. */
+    public static final HealthErrorCategory TEST_FAILOVER = fromString("TestFailover");
 
-    /** Enum value Configuration. */
-    CONFIGURATION("Configuration"),
+    /** Static value Configuration for HealthErrorCategory. */
+    public static final HealthErrorCategory CONFIGURATION = fromString("Configuration");
 
-    /** Enum value FabricInfrastructure. */
-    FABRIC_INFRASTRUCTURE("FabricInfrastructure"),
+    /** Static value FabricInfrastructure for HealthErrorCategory. */
+    public static final HealthErrorCategory FABRIC_INFRASTRUCTURE = fromString("FabricInfrastructure");
 
-    /** Enum value VersionExpiry. */
-    VERSION_EXPIRY("VersionExpiry"),
+    /** Static value VersionExpiry for HealthErrorCategory. */
+    public static final HealthErrorCategory VERSION_EXPIRY = fromString("VersionExpiry");
 
-    /** Enum value AgentAutoUpdate. */
-    AGENT_AUTO_UPDATE("AgentAutoUpdate");
+    /** Static value AgentAutoUpdate for HealthErrorCategory. */
+    public static final HealthErrorCategory AGENT_AUTO_UPDATE = fromString("AgentAutoUpdate");
 
-    /** The actual serialized value for a HealthErrorCategory instance. */
-    private String value;
-
-    HealthErrorCategory(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a HealthErrorCategory from its string representation.
+     * @param name a name to look for
+     * @return the corresponding HealthErrorCategory
+     */
+    @JsonCreator
+    public static HealthErrorCategory fromString(String name) {
+        return fromString(name, HealthErrorCategory.class);
     }
 
     /**
-     * Parses a serialized value to a HealthErrorCategory instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed HealthErrorCategory object, or null if unable to parse.
+     * @return known HealthErrorCategory values
      */
-    @JsonCreator
-    public static HealthErrorCategory fromString(String value) {
-        HealthErrorCategory[] items = HealthErrorCategory.values();
-        for (HealthErrorCategory item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<HealthErrorCategory> values() {
+        return values(HealthErrorCategory.class);
     }
 }

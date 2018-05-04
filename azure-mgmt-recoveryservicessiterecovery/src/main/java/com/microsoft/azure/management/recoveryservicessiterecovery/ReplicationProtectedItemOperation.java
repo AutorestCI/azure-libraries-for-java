@@ -8,79 +8,67 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for ReplicationProtectedItemOperation.
  */
-public enum ReplicationProtectedItemOperation {
-    /** Enum value ReverseReplicate. */
-    REVERSE_REPLICATE("ReverseReplicate"),
+public final class ReplicationProtectedItemOperation extends ExpandableStringEnum<ReplicationProtectedItemOperation> {
+    /** Static value ReverseReplicate for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation REVERSE_REPLICATE = fromString("ReverseReplicate");
 
-    /** Enum value Commit. */
-    COMMIT("Commit"),
+    /** Static value Commit for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation COMMIT = fromString("Commit");
 
-    /** Enum value PlannedFailover. */
-    PLANNED_FAILOVER("PlannedFailover"),
+    /** Static value PlannedFailover for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation PLANNED_FAILOVER = fromString("PlannedFailover");
 
-    /** Enum value UnplannedFailover. */
-    UNPLANNED_FAILOVER("UnplannedFailover"),
+    /** Static value UnplannedFailover for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation UNPLANNED_FAILOVER = fromString("UnplannedFailover");
 
-    /** Enum value DisableProtection. */
-    DISABLE_PROTECTION("DisableProtection"),
+    /** Static value DisableProtection for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation DISABLE_PROTECTION = fromString("DisableProtection");
 
-    /** Enum value TestFailover. */
-    TEST_FAILOVER("TestFailover"),
+    /** Static value TestFailover for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation TEST_FAILOVER = fromString("TestFailover");
 
-    /** Enum value TestFailoverCleanup. */
-    TEST_FAILOVER_CLEANUP("TestFailoverCleanup"),
+    /** Static value TestFailoverCleanup for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation TEST_FAILOVER_CLEANUP = fromString("TestFailoverCleanup");
 
-    /** Enum value Failback. */
-    FAILBACK("Failback"),
+    /** Static value Failback for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation FAILBACK = fromString("Failback");
 
-    /** Enum value FinalizeFailback. */
-    FINALIZE_FAILBACK("FinalizeFailback"),
+    /** Static value FinalizeFailback for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation FINALIZE_FAILBACK = fromString("FinalizeFailback");
 
-    /** Enum value ChangePit. */
-    CHANGE_PIT("ChangePit"),
+    /** Static value ChangePit for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation CHANGE_PIT = fromString("ChangePit");
 
-    /** Enum value RepairReplication. */
-    REPAIR_REPLICATION("RepairReplication"),
+    /** Static value RepairReplication for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation REPAIR_REPLICATION = fromString("RepairReplication");
 
-    /** Enum value SwitchProtection. */
-    SWITCH_PROTECTION("SwitchProtection"),
+    /** Static value SwitchProtection for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation SWITCH_PROTECTION = fromString("SwitchProtection");
 
-    /** Enum value CompleteMigration. */
-    COMPLETE_MIGRATION("CompleteMigration");
+    /** Static value CompleteMigration for ReplicationProtectedItemOperation. */
+    public static final ReplicationProtectedItemOperation COMPLETE_MIGRATION = fromString("CompleteMigration");
 
-    /** The actual serialized value for a ReplicationProtectedItemOperation instance. */
-    private String value;
-
-    ReplicationProtectedItemOperation(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a ReplicationProtectedItemOperation from its string representation.
+     * @param name a name to look for
+     * @return the corresponding ReplicationProtectedItemOperation
+     */
+    @JsonCreator
+    public static ReplicationProtectedItemOperation fromString(String name) {
+        return fromString(name, ReplicationProtectedItemOperation.class);
     }
 
     /**
-     * Parses a serialized value to a ReplicationProtectedItemOperation instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed ReplicationProtectedItemOperation object, or null if unable to parse.
+     * @return known ReplicationProtectedItemOperation values
      */
-    @JsonCreator
-    public static ReplicationProtectedItemOperation fromString(String value) {
-        ReplicationProtectedItemOperation[] items = ReplicationProtectedItemOperation.values();
-        for (ReplicationProtectedItemOperation item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<ReplicationProtectedItemOperation> values() {
+        return values(ReplicationProtectedItemOperation.class);
     }
 }

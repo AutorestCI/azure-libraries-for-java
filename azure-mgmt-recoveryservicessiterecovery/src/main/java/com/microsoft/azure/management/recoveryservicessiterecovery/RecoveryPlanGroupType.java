@@ -8,49 +8,37 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for RecoveryPlanGroupType.
  */
-public enum RecoveryPlanGroupType {
-    /** Enum value Shutdown. */
-    SHUTDOWN("Shutdown"),
+public final class RecoveryPlanGroupType extends ExpandableStringEnum<RecoveryPlanGroupType> {
+    /** Static value Shutdown for RecoveryPlanGroupType. */
+    public static final RecoveryPlanGroupType SHUTDOWN = fromString("Shutdown");
 
-    /** Enum value Boot. */
-    BOOT("Boot"),
+    /** Static value Boot for RecoveryPlanGroupType. */
+    public static final RecoveryPlanGroupType BOOT = fromString("Boot");
 
-    /** Enum value Failover. */
-    FAILOVER("Failover");
+    /** Static value Failover for RecoveryPlanGroupType. */
+    public static final RecoveryPlanGroupType FAILOVER = fromString("Failover");
 
-    /** The actual serialized value for a RecoveryPlanGroupType instance. */
-    private String value;
-
-    RecoveryPlanGroupType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a RecoveryPlanGroupType from its string representation.
+     * @param name a name to look for
+     * @return the corresponding RecoveryPlanGroupType
+     */
+    @JsonCreator
+    public static RecoveryPlanGroupType fromString(String name) {
+        return fromString(name, RecoveryPlanGroupType.class);
     }
 
     /**
-     * Parses a serialized value to a RecoveryPlanGroupType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed RecoveryPlanGroupType object, or null if unable to parse.
+     * @return known RecoveryPlanGroupType values
      */
-    @JsonCreator
-    public static RecoveryPlanGroupType fromString(String value) {
-        RecoveryPlanGroupType[] items = RecoveryPlanGroupType.values();
-        for (RecoveryPlanGroupType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<RecoveryPlanGroupType> values() {
+        return values(RecoveryPlanGroupType.class);
     }
 }

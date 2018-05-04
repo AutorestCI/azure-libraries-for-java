@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for SetMultiVmSyncStatus.
  */
-public enum SetMultiVmSyncStatus {
-    /** Enum value Enable. */
-    ENABLE("Enable"),
+public final class SetMultiVmSyncStatus extends ExpandableStringEnum<SetMultiVmSyncStatus> {
+    /** Static value Enable for SetMultiVmSyncStatus. */
+    public static final SetMultiVmSyncStatus ENABLE = fromString("Enable");
 
-    /** Enum value Disable. */
-    DISABLE("Disable");
+    /** Static value Disable for SetMultiVmSyncStatus. */
+    public static final SetMultiVmSyncStatus DISABLE = fromString("Disable");
 
-    /** The actual serialized value for a SetMultiVmSyncStatus instance. */
-    private String value;
-
-    SetMultiVmSyncStatus(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a SetMultiVmSyncStatus from its string representation.
+     * @param name a name to look for
+     * @return the corresponding SetMultiVmSyncStatus
+     */
+    @JsonCreator
+    public static SetMultiVmSyncStatus fromString(String name) {
+        return fromString(name, SetMultiVmSyncStatus.class);
     }
 
     /**
-     * Parses a serialized value to a SetMultiVmSyncStatus instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed SetMultiVmSyncStatus object, or null if unable to parse.
+     * @return known SetMultiVmSyncStatus values
      */
-    @JsonCreator
-    public static SetMultiVmSyncStatus fromString(String value) {
-        SetMultiVmSyncStatus[] items = SetMultiVmSyncStatus.values();
-        for (SetMultiVmSyncStatus item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<SetMultiVmSyncStatus> values() {
+        return values(SetMultiVmSyncStatus.class);
     }
 }

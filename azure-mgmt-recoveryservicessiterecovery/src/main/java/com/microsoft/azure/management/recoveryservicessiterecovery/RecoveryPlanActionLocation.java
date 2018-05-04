@@ -8,46 +8,34 @@
 
 package com.microsoft.azure.management.recoveryservicessiterecovery;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for RecoveryPlanActionLocation.
  */
-public enum RecoveryPlanActionLocation {
-    /** Enum value Primary. */
-    PRIMARY("Primary"),
+public final class RecoveryPlanActionLocation extends ExpandableStringEnum<RecoveryPlanActionLocation> {
+    /** Static value Primary for RecoveryPlanActionLocation. */
+    public static final RecoveryPlanActionLocation PRIMARY = fromString("Primary");
 
-    /** Enum value Recovery. */
-    RECOVERY("Recovery");
+    /** Static value Recovery for RecoveryPlanActionLocation. */
+    public static final RecoveryPlanActionLocation RECOVERY = fromString("Recovery");
 
-    /** The actual serialized value for a RecoveryPlanActionLocation instance. */
-    private String value;
-
-    RecoveryPlanActionLocation(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a RecoveryPlanActionLocation from its string representation.
+     * @param name a name to look for
+     * @return the corresponding RecoveryPlanActionLocation
+     */
+    @JsonCreator
+    public static RecoveryPlanActionLocation fromString(String name) {
+        return fromString(name, RecoveryPlanActionLocation.class);
     }
 
     /**
-     * Parses a serialized value to a RecoveryPlanActionLocation instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed RecoveryPlanActionLocation object, or null if unable to parse.
+     * @return known RecoveryPlanActionLocation values
      */
-    @JsonCreator
-    public static RecoveryPlanActionLocation fromString(String value) {
-        RecoveryPlanActionLocation[] items = RecoveryPlanActionLocation.values();
-        for (RecoveryPlanActionLocation item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<RecoveryPlanActionLocation> values() {
+        return values(RecoveryPlanActionLocation.class);
     }
 }
