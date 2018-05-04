@@ -35618,6 +35618,8 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
     private ServiceResponse<SiteSourceControlInner> getSourceControlDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<SiteSourceControlInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<SiteSourceControlInner>() { }.getType())
+                .register(201, new TypeToken<SiteSourceControlInner>() { }.getType())
+                .register(202, new TypeToken<SiteSourceControlInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -35794,6 +35796,7 @@ public class WebAppsInner implements InnerSupportsGet<SiteInner>, InnerSupportsD
         return this.client.restClient().responseBuilderFactory().<SiteSourceControlInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<SiteSourceControlInner>() { }.getType())
                 .register(201, new TypeToken<SiteSourceControlInner>() { }.getType())
+                .register(202, new TypeToken<SiteSourceControlInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
