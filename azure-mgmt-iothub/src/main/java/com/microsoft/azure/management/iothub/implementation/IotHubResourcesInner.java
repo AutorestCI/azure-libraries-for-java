@@ -17,8 +17,12 @@ import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.iothub.ErrorDetailsInnerException;
+import com.microsoft.azure.management.iothub.ExportDevicesRequest;
+import com.microsoft.azure.management.iothub.ImportDevicesRequest;
 import com.microsoft.azure.management.iothub.OperationInputs;
 import com.microsoft.azure.management.iothub.TagsResource;
+import com.microsoft.azure.management.iothub.TestAllRoutesInput;
+import com.microsoft.azure.management.iothub.TestRouteInput;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -142,9 +146,21 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/quotaMetrics")
         Observable<Response<ResponseBody>> getQuotaMetrics(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources getEndpointHealth" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{iotHubName}/routingEndpointsHealth")
+        Observable<Response<ResponseBody>> getEndpointHealth(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("iotHubName") String iotHubName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources checkNameAvailability" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.Devices/checkNameAvailability")
         Observable<Response<ResponseBody>> checkNameAvailability(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body OperationInputs operationInputs, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources testAllRoutes" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{iotHubName}/routing/routes/$testall")
+        Observable<Response<ResponseBody>> testAllRoutes(@Path("iotHubName") String iotHubName, @Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Body TestAllRoutesInput input, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources testRoute" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{iotHubName}/routing/routes/$testnew")
+        Observable<Response<ResponseBody>> testRoute(@Path("iotHubName") String iotHubName, @Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Body TestRouteInput input, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources listKeys" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/listkeys")
@@ -156,11 +172,11 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources exportDevices" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/exportDevices")
-        Observable<Response<ResponseBody>> exportDevices(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Query("api-version") String apiVersion, @Body ExportDevicesRequestInner exportDevicesParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> exportDevices(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Query("api-version") String apiVersion, @Body ExportDevicesRequest exportDevicesParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources importDevices" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/importDevices")
-        Observable<Response<ResponseBody>> importDevices(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Query("api-version") String apiVersion, @Body ImportDevicesRequestInner importDevicesParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> importDevices(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Query("api-version") String apiVersion, @Body ImportDevicesRequest importDevicesParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources listNext" })
         @GET
@@ -185,6 +201,10 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources getQuotaMetricsNext" })
         @GET
         Observable<Response<ResponseBody>> getQuotaMetricsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources getEndpointHealthNext" })
+        @GET
+        Observable<Response<ResponseBody>> getEndpointHealthNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.iothub.IotHubResources listKeysNext" })
         @GET
@@ -2398,6 +2418,134 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
     }
 
     /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param resourceGroupName the String value
+     * @param iotHubName the String value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorDetailsInnerException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;EndpointHealthDataInner&gt; object if successful.
+     */
+    public PagedList<EndpointHealthDataInner> getEndpointHealth(final String resourceGroupName, final String iotHubName) {
+        ServiceResponse<Page<EndpointHealthDataInner>> response = getEndpointHealthSinglePageAsync(resourceGroupName, iotHubName).toBlocking().single();
+        return new PagedList<EndpointHealthDataInner>(response.body()) {
+            @Override
+            public Page<EndpointHealthDataInner> nextPage(String nextPageLink) {
+                return getEndpointHealthNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param resourceGroupName the String value
+     * @param iotHubName the String value
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<EndpointHealthDataInner>> getEndpointHealthAsync(final String resourceGroupName, final String iotHubName, final ListOperationCallback<EndpointHealthDataInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            getEndpointHealthSinglePageAsync(resourceGroupName, iotHubName),
+            new Func1<String, Observable<ServiceResponse<Page<EndpointHealthDataInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> call(String nextPageLink) {
+                    return getEndpointHealthNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param resourceGroupName the String value
+     * @param iotHubName the String value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EndpointHealthDataInner&gt; object
+     */
+    public Observable<Page<EndpointHealthDataInner>> getEndpointHealthAsync(final String resourceGroupName, final String iotHubName) {
+        return getEndpointHealthWithServiceResponseAsync(resourceGroupName, iotHubName)
+            .map(new Func1<ServiceResponse<Page<EndpointHealthDataInner>>, Page<EndpointHealthDataInner>>() {
+                @Override
+                public Page<EndpointHealthDataInner> call(ServiceResponse<Page<EndpointHealthDataInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param resourceGroupName the String value
+     * @param iotHubName the String value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EndpointHealthDataInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> getEndpointHealthWithServiceResponseAsync(final String resourceGroupName, final String iotHubName) {
+        return getEndpointHealthSinglePageAsync(resourceGroupName, iotHubName)
+            .concatMap(new Func1<ServiceResponse<Page<EndpointHealthDataInner>>, Observable<ServiceResponse<Page<EndpointHealthDataInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> call(ServiceResponse<Page<EndpointHealthDataInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(getEndpointHealthNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+    ServiceResponse<PageImpl<EndpointHealthDataInner>> * @param resourceGroupName the String value
+    ServiceResponse<PageImpl<EndpointHealthDataInner>> * @param iotHubName the String value
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;EndpointHealthDataInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> getEndpointHealthSinglePageAsync(final String resourceGroupName, final String iotHubName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (iotHubName == null) {
+            throw new IllegalArgumentException("Parameter iotHubName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getEndpointHealth(this.client.subscriptionId(), resourceGroupName, iotHubName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EndpointHealthDataInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<EndpointHealthDataInner>> result = getEndpointHealthDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<EndpointHealthDataInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<EndpointHealthDataInner>> getEndpointHealthDelegate(Response<ResponseBody> response) throws ErrorDetailsInnerException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<EndpointHealthDataInner>, ErrorDetailsInnerException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<EndpointHealthDataInner>>() { }.getType())
+                .registerError(ErrorDetailsInnerException.class)
+                .build(response);
+    }
+
+    /**
      * Check if an IoT hub name is available.
      * Check if an IoT hub name is available.
      *
@@ -2478,6 +2626,202 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
     private ServiceResponse<IotHubNameAvailabilityInfoInner> checkNameAvailabilityDelegate(Response<ResponseBody> response) throws ErrorDetailsInnerException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<IotHubNameAvailabilityInfoInner, ErrorDetailsInnerException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<IotHubNameAvailabilityInfoInner>() { }.getType())
+                .registerError(ErrorDetailsInnerException.class)
+                .build(response);
+    }
+
+    /**
+     * Test all routes.
+     * Test all routes configured in this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Input for testing all routes
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorDetailsInnerException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the TestAllRoutesResultInner object if successful.
+     */
+    public TestAllRoutesResultInner testAllRoutes(String iotHubName, String resourceGroupName, TestAllRoutesInput input) {
+        return testAllRoutesWithServiceResponseAsync(iotHubName, resourceGroupName, input).toBlocking().single().body();
+    }
+
+    /**
+     * Test all routes.
+     * Test all routes configured in this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Input for testing all routes
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<TestAllRoutesResultInner> testAllRoutesAsync(String iotHubName, String resourceGroupName, TestAllRoutesInput input, final ServiceCallback<TestAllRoutesResultInner> serviceCallback) {
+        return ServiceFuture.fromResponse(testAllRoutesWithServiceResponseAsync(iotHubName, resourceGroupName, input), serviceCallback);
+    }
+
+    /**
+     * Test all routes.
+     * Test all routes configured in this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Input for testing all routes
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the TestAllRoutesResultInner object
+     */
+    public Observable<TestAllRoutesResultInner> testAllRoutesAsync(String iotHubName, String resourceGroupName, TestAllRoutesInput input) {
+        return testAllRoutesWithServiceResponseAsync(iotHubName, resourceGroupName, input).map(new Func1<ServiceResponse<TestAllRoutesResultInner>, TestAllRoutesResultInner>() {
+            @Override
+            public TestAllRoutesResultInner call(ServiceResponse<TestAllRoutesResultInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Test all routes.
+     * Test all routes configured in this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Input for testing all routes
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the TestAllRoutesResultInner object
+     */
+    public Observable<ServiceResponse<TestAllRoutesResultInner>> testAllRoutesWithServiceResponseAsync(String iotHubName, String resourceGroupName, TestAllRoutesInput input) {
+        if (iotHubName == null) {
+            throw new IllegalArgumentException("Parameter iotHubName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (input == null) {
+            throw new IllegalArgumentException("Parameter input is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Validator.validate(input);
+        return service.testAllRoutes(iotHubName, this.client.subscriptionId(), resourceGroupName, input, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<TestAllRoutesResultInner>>>() {
+                @Override
+                public Observable<ServiceResponse<TestAllRoutesResultInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<TestAllRoutesResultInner> clientResponse = testAllRoutesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<TestAllRoutesResultInner> testAllRoutesDelegate(Response<ResponseBody> response) throws ErrorDetailsInnerException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<TestAllRoutesResultInner, ErrorDetailsInnerException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<TestAllRoutesResultInner>() { }.getType())
+                .registerError(ErrorDetailsInnerException.class)
+                .build(response);
+    }
+
+    /**
+     * Test the new route.
+     * Test the new route for this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Route that needs to be tested
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorDetailsInnerException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the TestRouteResultInner object if successful.
+     */
+    public TestRouteResultInner testRoute(String iotHubName, String resourceGroupName, TestRouteInput input) {
+        return testRouteWithServiceResponseAsync(iotHubName, resourceGroupName, input).toBlocking().single().body();
+    }
+
+    /**
+     * Test the new route.
+     * Test the new route for this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Route that needs to be tested
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<TestRouteResultInner> testRouteAsync(String iotHubName, String resourceGroupName, TestRouteInput input, final ServiceCallback<TestRouteResultInner> serviceCallback) {
+        return ServiceFuture.fromResponse(testRouteWithServiceResponseAsync(iotHubName, resourceGroupName, input), serviceCallback);
+    }
+
+    /**
+     * Test the new route.
+     * Test the new route for this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Route that needs to be tested
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the TestRouteResultInner object
+     */
+    public Observable<TestRouteResultInner> testRouteAsync(String iotHubName, String resourceGroupName, TestRouteInput input) {
+        return testRouteWithServiceResponseAsync(iotHubName, resourceGroupName, input).map(new Func1<ServiceResponse<TestRouteResultInner>, TestRouteResultInner>() {
+            @Override
+            public TestRouteResultInner call(ServiceResponse<TestRouteResultInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Test the new route.
+     * Test the new route for this Iot Hub.
+     *
+     * @param iotHubName IotHub to be tested
+     * @param resourceGroupName resource group which Iot Hub belongs to
+     * @param input Route that needs to be tested
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the TestRouteResultInner object
+     */
+    public Observable<ServiceResponse<TestRouteResultInner>> testRouteWithServiceResponseAsync(String iotHubName, String resourceGroupName, TestRouteInput input) {
+        if (iotHubName == null) {
+            throw new IllegalArgumentException("Parameter iotHubName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (input == null) {
+            throw new IllegalArgumentException("Parameter input is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Validator.validate(input);
+        return service.testRoute(iotHubName, this.client.subscriptionId(), resourceGroupName, input, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<TestRouteResultInner>>>() {
+                @Override
+                public Observable<ServiceResponse<TestRouteResultInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<TestRouteResultInner> clientResponse = testRouteDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<TestRouteResultInner> testRouteDelegate(Response<ResponseBody> response) throws ErrorDetailsInnerException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<TestRouteResultInner, ErrorDetailsInnerException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<TestRouteResultInner>() { }.getType())
                 .registerError(ErrorDetailsInnerException.class)
                 .build(response);
     }
@@ -2719,7 +3063,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the JobResponseInner object if successful.
      */
-    public JobResponseInner exportDevices(String resourceGroupName, String resourceName, ExportDevicesRequestInner exportDevicesParameters) {
+    public JobResponseInner exportDevices(String resourceGroupName, String resourceName, ExportDevicesRequest exportDevicesParameters) {
         return exportDevicesWithServiceResponseAsync(resourceGroupName, resourceName, exportDevicesParameters).toBlocking().single().body();
     }
 
@@ -2734,7 +3078,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<JobResponseInner> exportDevicesAsync(String resourceGroupName, String resourceName, ExportDevicesRequestInner exportDevicesParameters, final ServiceCallback<JobResponseInner> serviceCallback) {
+    public ServiceFuture<JobResponseInner> exportDevicesAsync(String resourceGroupName, String resourceName, ExportDevicesRequest exportDevicesParameters, final ServiceCallback<JobResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(exportDevicesWithServiceResponseAsync(resourceGroupName, resourceName, exportDevicesParameters), serviceCallback);
     }
 
@@ -2748,7 +3092,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the JobResponseInner object
      */
-    public Observable<JobResponseInner> exportDevicesAsync(String resourceGroupName, String resourceName, ExportDevicesRequestInner exportDevicesParameters) {
+    public Observable<JobResponseInner> exportDevicesAsync(String resourceGroupName, String resourceName, ExportDevicesRequest exportDevicesParameters) {
         return exportDevicesWithServiceResponseAsync(resourceGroupName, resourceName, exportDevicesParameters).map(new Func1<ServiceResponse<JobResponseInner>, JobResponseInner>() {
             @Override
             public JobResponseInner call(ServiceResponse<JobResponseInner> response) {
@@ -2767,7 +3111,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the JobResponseInner object
      */
-    public Observable<ServiceResponse<JobResponseInner>> exportDevicesWithServiceResponseAsync(String resourceGroupName, String resourceName, ExportDevicesRequestInner exportDevicesParameters) {
+    public Observable<ServiceResponse<JobResponseInner>> exportDevicesWithServiceResponseAsync(String resourceGroupName, String resourceName, ExportDevicesRequest exportDevicesParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -2817,7 +3161,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the JobResponseInner object if successful.
      */
-    public JobResponseInner importDevices(String resourceGroupName, String resourceName, ImportDevicesRequestInner importDevicesParameters) {
+    public JobResponseInner importDevices(String resourceGroupName, String resourceName, ImportDevicesRequest importDevicesParameters) {
         return importDevicesWithServiceResponseAsync(resourceGroupName, resourceName, importDevicesParameters).toBlocking().single().body();
     }
 
@@ -2832,7 +3176,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<JobResponseInner> importDevicesAsync(String resourceGroupName, String resourceName, ImportDevicesRequestInner importDevicesParameters, final ServiceCallback<JobResponseInner> serviceCallback) {
+    public ServiceFuture<JobResponseInner> importDevicesAsync(String resourceGroupName, String resourceName, ImportDevicesRequest importDevicesParameters, final ServiceCallback<JobResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(importDevicesWithServiceResponseAsync(resourceGroupName, resourceName, importDevicesParameters), serviceCallback);
     }
 
@@ -2846,7 +3190,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the JobResponseInner object
      */
-    public Observable<JobResponseInner> importDevicesAsync(String resourceGroupName, String resourceName, ImportDevicesRequestInner importDevicesParameters) {
+    public Observable<JobResponseInner> importDevicesAsync(String resourceGroupName, String resourceName, ImportDevicesRequest importDevicesParameters) {
         return importDevicesWithServiceResponseAsync(resourceGroupName, resourceName, importDevicesParameters).map(new Func1<ServiceResponse<JobResponseInner>, JobResponseInner>() {
             @Override
             public JobResponseInner call(ServiceResponse<JobResponseInner> response) {
@@ -2865,7 +3209,7 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the JobResponseInner object
      */
-    public Observable<ServiceResponse<JobResponseInner>> importDevicesWithServiceResponseAsync(String resourceGroupName, String resourceName, ImportDevicesRequestInner importDevicesParameters) {
+    public Observable<ServiceResponse<JobResponseInner>> importDevicesWithServiceResponseAsync(String resourceGroupName, String resourceName, ImportDevicesRequest importDevicesParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -3595,6 +3939,122 @@ public class IotHubResourcesInner implements InnerSupportsGet<IotHubDescriptionI
     private ServiceResponse<PageImpl<IotHubQuotaMetricInfoInner>> getQuotaMetricsNextDelegate(Response<ResponseBody> response) throws ErrorDetailsInnerException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<IotHubQuotaMetricInfoInner>, ErrorDetailsInnerException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<IotHubQuotaMetricInfoInner>>() { }.getType())
+                .registerError(ErrorDetailsInnerException.class)
+                .build(response);
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorDetailsInnerException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;EndpointHealthDataInner&gt; object if successful.
+     */
+    public PagedList<EndpointHealthDataInner> getEndpointHealthNext(final String nextPageLink) {
+        ServiceResponse<Page<EndpointHealthDataInner>> response = getEndpointHealthNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<EndpointHealthDataInner>(response.body()) {
+            @Override
+            public Page<EndpointHealthDataInner> nextPage(String nextPageLink) {
+                return getEndpointHealthNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<EndpointHealthDataInner>> getEndpointHealthNextAsync(final String nextPageLink, final ServiceFuture<List<EndpointHealthDataInner>> serviceFuture, final ListOperationCallback<EndpointHealthDataInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            getEndpointHealthNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<EndpointHealthDataInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> call(String nextPageLink) {
+                    return getEndpointHealthNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EndpointHealthDataInner&gt; object
+     */
+    public Observable<Page<EndpointHealthDataInner>> getEndpointHealthNextAsync(final String nextPageLink) {
+        return getEndpointHealthNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<EndpointHealthDataInner>>, Page<EndpointHealthDataInner>>() {
+                @Override
+                public Page<EndpointHealthDataInner> call(ServiceResponse<Page<EndpointHealthDataInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EndpointHealthDataInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> getEndpointHealthNextWithServiceResponseAsync(final String nextPageLink) {
+        return getEndpointHealthNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<EndpointHealthDataInner>>, Observable<ServiceResponse<Page<EndpointHealthDataInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> call(ServiceResponse<Page<EndpointHealthDataInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(getEndpointHealthNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Get the health for routing endpoints.
+     * Get the health for routing endpoints.
+     *
+    ServiceResponse<PageImpl<EndpointHealthDataInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;EndpointHealthDataInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> getEndpointHealthNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getEndpointHealthNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EndpointHealthDataInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EndpointHealthDataInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<EndpointHealthDataInner>> result = getEndpointHealthNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<EndpointHealthDataInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<EndpointHealthDataInner>> getEndpointHealthNextDelegate(Response<ResponseBody> response) throws ErrorDetailsInnerException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<EndpointHealthDataInner>, ErrorDetailsInnerException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<EndpointHealthDataInner>>() { }.getType())
                 .registerError(ErrorDetailsInnerException.class)
                 .build(response);
     }
