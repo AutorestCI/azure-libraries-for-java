@@ -11,6 +11,7 @@ package com.microsoft.azure.management.managementgroups.implementation;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureClient;
 import com.microsoft.azure.AzureServiceClient;
+import com.microsoft.azure.management.managementgroups.CheckNameAvailabilityRequest;
 import com.microsoft.azure.management.managementgroups.ErrorResponseException;
 import com.microsoft.rest.credentials.ServiceClientCredentials;
 import com.microsoft.rest.RestClient;
@@ -292,7 +293,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
     interface ManagementGroupsAPIService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroupsAPI checkNameAvailability" })
         @POST("providers/Microsoft.Management/checkNameAvailability")
-        Observable<Response<ResponseBody>> checkNameAvailability(@Query("api-version") String apiVersion, @Body CheckNameAvailabilityRequestInner checkNameAvailabilityRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> checkNameAvailability(@Query("api-version") String apiVersion, @Body CheckNameAvailabilityRequest checkNameAvailabilityRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -305,7 +306,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CheckNameAvailabilityResultInner object if successful.
      */
-    public CheckNameAvailabilityResultInner checkNameAvailability(CheckNameAvailabilityRequestInner checkNameAvailabilityRequest) {
+    public CheckNameAvailabilityResultInner checkNameAvailability(CheckNameAvailabilityRequest checkNameAvailabilityRequest) {
         return checkNameAvailabilityWithServiceResponseAsync(checkNameAvailabilityRequest).toBlocking().single().body();
     }
 
@@ -317,7 +318,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CheckNameAvailabilityResultInner> checkNameAvailabilityAsync(CheckNameAvailabilityRequestInner checkNameAvailabilityRequest, final ServiceCallback<CheckNameAvailabilityResultInner> serviceCallback) {
+    public ServiceFuture<CheckNameAvailabilityResultInner> checkNameAvailabilityAsync(CheckNameAvailabilityRequest checkNameAvailabilityRequest, final ServiceCallback<CheckNameAvailabilityResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(checkNameAvailabilityWithServiceResponseAsync(checkNameAvailabilityRequest), serviceCallback);
     }
 
@@ -328,7 +329,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CheckNameAvailabilityResultInner object
      */
-    public Observable<CheckNameAvailabilityResultInner> checkNameAvailabilityAsync(CheckNameAvailabilityRequestInner checkNameAvailabilityRequest) {
+    public Observable<CheckNameAvailabilityResultInner> checkNameAvailabilityAsync(CheckNameAvailabilityRequest checkNameAvailabilityRequest) {
         return checkNameAvailabilityWithServiceResponseAsync(checkNameAvailabilityRequest).map(new Func1<ServiceResponse<CheckNameAvailabilityResultInner>, CheckNameAvailabilityResultInner>() {
             @Override
             public CheckNameAvailabilityResultInner call(ServiceResponse<CheckNameAvailabilityResultInner> response) {
@@ -344,7 +345,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CheckNameAvailabilityResultInner object
      */
-    public Observable<ServiceResponse<CheckNameAvailabilityResultInner>> checkNameAvailabilityWithServiceResponseAsync(CheckNameAvailabilityRequestInner checkNameAvailabilityRequest) {
+    public Observable<ServiceResponse<CheckNameAvailabilityResultInner>> checkNameAvailabilityWithServiceResponseAsync(CheckNameAvailabilityRequest checkNameAvailabilityRequest) {
         if (this.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
