@@ -13,7 +13,10 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.notificationhubs.CheckAvailabilityParameters;
 import com.microsoft.azure.management.notificationhubs.PolicykeyResource;
+import com.microsoft.azure.management.notificationhubs.SharedAccessAuthorizationRuleCreateOrUpdateParameters;
+import com.microsoft.azure.management.notificationhubs.SharedAccessAuthorizationRuleProperties;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -63,9 +66,9 @@ public class NotificationHubsInner {
      * used by Retrofit to perform actually REST calls.
      */
     interface NotificationHubsService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs checkAvailability" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs checkNotificationHubAvailability" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/checkNotificationHubAvailability")
-        Observable<Response<ResponseBody>> checkAvailability(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("subscriptionId") String subscriptionId, @Body CheckAvailabilityParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> checkNotificationHubAvailability(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("subscriptionId") String subscriptionId, @Body CheckAvailabilityParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
@@ -81,7 +84,7 @@ public class NotificationHubsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs createOrUpdateAuthorizationRule" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}")
-        Observable<Response<ResponseBody>> createOrUpdateAuthorizationRule(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("notificationHubName") String notificationHubName, @Path("authorizationRuleName") String authorizationRuleName, @Path("subscriptionId") String subscriptionId, @Body SharedAccessAuthorizationRuleCreateOrUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> createOrUpdateAuthorizationRule(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("notificationHubName") String notificationHubName, @Path("authorizationRuleName") String authorizationRuleName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SharedAccessAuthorizationRuleCreateOrUpdateParameters parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs deleteAuthorizationRule" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}", method = "DELETE", hasBody = true)
@@ -132,8 +135,8 @@ public class NotificationHubsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CheckAvailabilityResultInner object if successful.
      */
-    public CheckAvailabilityResultInner checkAvailability(String resourceGroupName, String namespaceName, CheckAvailabilityParametersInner parameters) {
-        return checkAvailabilityWithServiceResponseAsync(resourceGroupName, namespaceName, parameters).toBlocking().single().body();
+    public CheckAvailabilityResultInner checkNotificationHubAvailability(String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters) {
+        return checkNotificationHubAvailabilityWithServiceResponseAsync(resourceGroupName, namespaceName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -146,8 +149,8 @@ public class NotificationHubsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CheckAvailabilityResultInner> checkAvailabilityAsync(String resourceGroupName, String namespaceName, CheckAvailabilityParametersInner parameters, final ServiceCallback<CheckAvailabilityResultInner> serviceCallback) {
-        return ServiceFuture.fromResponse(checkAvailabilityWithServiceResponseAsync(resourceGroupName, namespaceName, parameters), serviceCallback);
+    public ServiceFuture<CheckAvailabilityResultInner> checkNotificationHubAvailabilityAsync(String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters, final ServiceCallback<CheckAvailabilityResultInner> serviceCallback) {
+        return ServiceFuture.fromResponse(checkNotificationHubAvailabilityWithServiceResponseAsync(resourceGroupName, namespaceName, parameters), serviceCallback);
     }
 
     /**
@@ -159,8 +162,8 @@ public class NotificationHubsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CheckAvailabilityResultInner object
      */
-    public Observable<CheckAvailabilityResultInner> checkAvailabilityAsync(String resourceGroupName, String namespaceName, CheckAvailabilityParametersInner parameters) {
-        return checkAvailabilityWithServiceResponseAsync(resourceGroupName, namespaceName, parameters).map(new Func1<ServiceResponse<CheckAvailabilityResultInner>, CheckAvailabilityResultInner>() {
+    public Observable<CheckAvailabilityResultInner> checkNotificationHubAvailabilityAsync(String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters) {
+        return checkNotificationHubAvailabilityWithServiceResponseAsync(resourceGroupName, namespaceName, parameters).map(new Func1<ServiceResponse<CheckAvailabilityResultInner>, CheckAvailabilityResultInner>() {
             @Override
             public CheckAvailabilityResultInner call(ServiceResponse<CheckAvailabilityResultInner> response) {
                 return response.body();
@@ -177,7 +180,7 @@ public class NotificationHubsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CheckAvailabilityResultInner object
      */
-    public Observable<ServiceResponse<CheckAvailabilityResultInner>> checkAvailabilityWithServiceResponseAsync(String resourceGroupName, String namespaceName, CheckAvailabilityParametersInner parameters) {
+    public Observable<ServiceResponse<CheckAvailabilityResultInner>> checkNotificationHubAvailabilityWithServiceResponseAsync(String resourceGroupName, String namespaceName, CheckAvailabilityParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -194,12 +197,12 @@ public class NotificationHubsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         Validator.validate(parameters);
-        return service.checkAvailability(resourceGroupName, namespaceName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.checkNotificationHubAvailability(resourceGroupName, namespaceName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CheckAvailabilityResultInner>>>() {
                 @Override
                 public Observable<ServiceResponse<CheckAvailabilityResultInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<CheckAvailabilityResultInner> clientResponse = checkAvailabilityDelegate(response);
+                        ServiceResponse<CheckAvailabilityResultInner> clientResponse = checkNotificationHubAvailabilityDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -208,7 +211,7 @@ public class NotificationHubsInner {
             });
     }
 
-    private ServiceResponse<CheckAvailabilityResultInner> checkAvailabilityDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<CheckAvailabilityResultInner> checkNotificationHubAvailabilityDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<CheckAvailabilityResultInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<CheckAvailabilityResultInner>() { }.getType())
                 .registerError(CloudException.class)
@@ -509,14 +512,14 @@ public class NotificationHubsInner {
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
      * @param authorizationRuleName Authorization Rule Name.
-     * @param parameters The shared access authorization rule.
+     * @param properties Properties of the Namespace AuthorizationRules.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SharedAccessAuthorizationRuleResourceInner object if successful.
      */
-    public SharedAccessAuthorizationRuleResourceInner createOrUpdateAuthorizationRule(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleCreateOrUpdateParametersInner parameters) {
-        return createOrUpdateAuthorizationRuleWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters).toBlocking().single().body();
+    public SharedAccessAuthorizationRuleResourceInner createOrUpdateAuthorizationRule(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleProperties properties) {
+        return createOrUpdateAuthorizationRuleWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, properties).toBlocking().single().body();
     }
 
     /**
@@ -526,13 +529,13 @@ public class NotificationHubsInner {
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
      * @param authorizationRuleName Authorization Rule Name.
-     * @param parameters The shared access authorization rule.
+     * @param properties Properties of the Namespace AuthorizationRules.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SharedAccessAuthorizationRuleResourceInner> createOrUpdateAuthorizationRuleAsync(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleCreateOrUpdateParametersInner parameters, final ServiceCallback<SharedAccessAuthorizationRuleResourceInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createOrUpdateAuthorizationRuleWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters), serviceCallback);
+    public ServiceFuture<SharedAccessAuthorizationRuleResourceInner> createOrUpdateAuthorizationRuleAsync(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleProperties properties, final ServiceCallback<SharedAccessAuthorizationRuleResourceInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateAuthorizationRuleWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, properties), serviceCallback);
     }
 
     /**
@@ -542,12 +545,12 @@ public class NotificationHubsInner {
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
      * @param authorizationRuleName Authorization Rule Name.
-     * @param parameters The shared access authorization rule.
+     * @param properties Properties of the Namespace AuthorizationRules.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SharedAccessAuthorizationRuleResourceInner object
      */
-    public Observable<SharedAccessAuthorizationRuleResourceInner> createOrUpdateAuthorizationRuleAsync(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleCreateOrUpdateParametersInner parameters) {
-        return createOrUpdateAuthorizationRuleWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, parameters).map(new Func1<ServiceResponse<SharedAccessAuthorizationRuleResourceInner>, SharedAccessAuthorizationRuleResourceInner>() {
+    public Observable<SharedAccessAuthorizationRuleResourceInner> createOrUpdateAuthorizationRuleAsync(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleProperties properties) {
+        return createOrUpdateAuthorizationRuleWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, properties).map(new Func1<ServiceResponse<SharedAccessAuthorizationRuleResourceInner>, SharedAccessAuthorizationRuleResourceInner>() {
             @Override
             public SharedAccessAuthorizationRuleResourceInner call(ServiceResponse<SharedAccessAuthorizationRuleResourceInner> response) {
                 return response.body();
@@ -562,11 +565,11 @@ public class NotificationHubsInner {
      * @param namespaceName The namespace name.
      * @param notificationHubName The notification hub name.
      * @param authorizationRuleName Authorization Rule Name.
-     * @param parameters The shared access authorization rule.
+     * @param properties Properties of the Namespace AuthorizationRules.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SharedAccessAuthorizationRuleResourceInner object
      */
-    public Observable<ServiceResponse<SharedAccessAuthorizationRuleResourceInner>> createOrUpdateAuthorizationRuleWithServiceResponseAsync(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleCreateOrUpdateParametersInner parameters) {
+    public Observable<ServiceResponse<SharedAccessAuthorizationRuleResourceInner>> createOrUpdateAuthorizationRuleWithServiceResponseAsync(String resourceGroupName, String namespaceName, String notificationHubName, String authorizationRuleName, SharedAccessAuthorizationRuleProperties properties) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -582,14 +585,16 @@ public class NotificationHubsInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (parameters == null) {
-            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
-        }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Validator.validate(parameters);
-        return service.createOrUpdateAuthorizationRule(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        if (properties == null) {
+            throw new IllegalArgumentException("Parameter properties is required and cannot be null.");
+        }
+        Validator.validate(properties);
+        SharedAccessAuthorizationRuleCreateOrUpdateParameters parameters = new SharedAccessAuthorizationRuleCreateOrUpdateParameters();
+        parameters.withProperties(properties);
+        return service.createOrUpdateAuthorizationRule(resourceGroupName, namespaceName, notificationHubName, authorizationRuleName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SharedAccessAuthorizationRuleResourceInner>>>() {
                 @Override
                 public Observable<ServiceResponse<SharedAccessAuthorizationRuleResourceInner>> call(Response<ResponseBody> response) {
@@ -704,8 +709,8 @@ public class NotificationHubsInner {
 
     private ServiceResponse<Void> deleteAuthorizationRuleDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
-                .register(204, new TypeToken<Void>() { }.getType())
                 .register(200, new TypeToken<Void>() { }.getType())
+                .register(204, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

@@ -10,20 +10,79 @@ package com.microsoft.azure.management.notificationhubs.implementation;
 
 import java.util.List;
 import com.microsoft.azure.management.notificationhubs.AccessRights;
+import com.microsoft.azure.management.notificationhubs.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Description of a Namespace AuthorizationRules.
  */
 @JsonFlatten
+@SkipParentValidation
 public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     /**
      * The rights associated with the rule.
      */
     @JsonProperty(value = "properties.rights")
     private List<AccessRights> rights;
+
+    /**
+     * A base64-encoded 256-bit primary key for signing and validating the SAS
+     * token.
+     */
+    @JsonProperty(value = "properties.primaryKey", access = JsonProperty.Access.WRITE_ONLY)
+    private String primaryKey;
+
+    /**
+     * A base64-encoded 256-bit primary key for signing and validating the SAS
+     * token.
+     */
+    @JsonProperty(value = "properties.secondaryKey", access = JsonProperty.Access.WRITE_ONLY)
+    private String secondaryKey;
+
+    /**
+     * A string that describes the authorization rule.
+     */
+    @JsonProperty(value = "properties.keyName", access = JsonProperty.Access.WRITE_ONLY)
+    private String keyName;
+
+    /**
+     * A string that describes the claim type.
+     */
+    @JsonProperty(value = "properties.claimType", access = JsonProperty.Access.WRITE_ONLY)
+    private String claimType;
+
+    /**
+     * A string that describes the claim value.
+     */
+    @JsonProperty(value = "properties.claimValue", access = JsonProperty.Access.WRITE_ONLY)
+    private String claimValue;
+
+    /**
+     * The last modified time for this rule.
+     */
+    @JsonProperty(value = "properties.modifiedTime", access = JsonProperty.Access.WRITE_ONLY)
+    private String modifiedTime;
+
+    /**
+     * The created time for this rule.
+     */
+    @JsonProperty(value = "properties.createdTime", access = JsonProperty.Access.WRITE_ONLY)
+    private String createdTime;
+
+    /**
+     * The revision number for the rule.
+     */
+    @JsonProperty(value = "properties.revision", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer revision;
+
+    /**
+     * The sku of the created namespace.
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
 
     /**
      * Get the rights value.
@@ -42,6 +101,98 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
      */
     public SharedAccessAuthorizationRuleResourceInner withRights(List<AccessRights> rights) {
         this.rights = rights;
+        return this;
+    }
+
+    /**
+     * Get the primaryKey value.
+     *
+     * @return the primaryKey value
+     */
+    public String primaryKey() {
+        return this.primaryKey;
+    }
+
+    /**
+     * Get the secondaryKey value.
+     *
+     * @return the secondaryKey value
+     */
+    public String secondaryKey() {
+        return this.secondaryKey;
+    }
+
+    /**
+     * Get the keyName value.
+     *
+     * @return the keyName value
+     */
+    public String keyName() {
+        return this.keyName;
+    }
+
+    /**
+     * Get the claimType value.
+     *
+     * @return the claimType value
+     */
+    public String claimType() {
+        return this.claimType;
+    }
+
+    /**
+     * Get the claimValue value.
+     *
+     * @return the claimValue value
+     */
+    public String claimValue() {
+        return this.claimValue;
+    }
+
+    /**
+     * Get the modifiedTime value.
+     *
+     * @return the modifiedTime value
+     */
+    public String modifiedTime() {
+        return this.modifiedTime;
+    }
+
+    /**
+     * Get the createdTime value.
+     *
+     * @return the createdTime value
+     */
+    public String createdTime() {
+        return this.createdTime;
+    }
+
+    /**
+     * Get the revision value.
+     *
+     * @return the revision value
+     */
+    public Integer revision() {
+        return this.revision;
+    }
+
+    /**
+     * Get the sku value.
+     *
+     * @return the sku value
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku value.
+     *
+     * @param sku the sku value to set
+     * @return the SharedAccessAuthorizationRuleResourceInner object itself.
+     */
+    public SharedAccessAuthorizationRuleResourceInner withSku(Sku sku) {
+        this.sku = sku;
         return this;
     }
 

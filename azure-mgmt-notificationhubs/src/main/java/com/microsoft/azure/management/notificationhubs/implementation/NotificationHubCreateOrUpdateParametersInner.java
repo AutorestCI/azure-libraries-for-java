@@ -16,14 +16,17 @@ import com.microsoft.azure.management.notificationhubs.GcmCredential;
 import com.microsoft.azure.management.notificationhubs.MpnsCredential;
 import com.microsoft.azure.management.notificationhubs.AdmCredential;
 import com.microsoft.azure.management.notificationhubs.BaiduCredential;
+import com.microsoft.azure.management.notificationhubs.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Parameters supplied to the CreateOrUpdate NotificationHub operation.
  */
 @JsonFlatten
+@SkipParentValidation
 public class NotificationHubCreateOrUpdateParametersInner extends Resource {
     /**
      * The NotificationHub name.
@@ -78,6 +81,12 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      */
     @JsonProperty(value = "properties.baiduCredential")
     private BaiduCredential baiduCredential;
+
+    /**
+     * The sku of the created namespace.
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
 
     /**
      * Get the notificationHubCreateOrUpdateParametersName value.
@@ -256,6 +265,26 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      */
     public NotificationHubCreateOrUpdateParametersInner withBaiduCredential(BaiduCredential baiduCredential) {
         this.baiduCredential = baiduCredential;
+        return this;
+    }
+
+    /**
+     * Get the sku value.
+     *
+     * @return the sku value
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku value.
+     *
+     * @param sku the sku value to set
+     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     */
+    public NotificationHubCreateOrUpdateParametersInner withSku(Sku sku) {
+        this.sku = sku;
         return this;
     }
 

@@ -133,6 +133,19 @@ public class NotificationHubsManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The OperationsInner object to access its operations.
+     */
+    private OperationsInner operations;
+
+    /**
+     * Gets the OperationsInner object to access its operations.
+     * @return the OperationsInner object.
+     */
+    public OperationsInner operations() {
+        return this.operations;
+    }
+
+    /**
      * The NamespacesInner object to access its operations.
      */
     private NamespacesInner namespaces;
@@ -146,19 +159,6 @@ public class NotificationHubsManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The NamesInner object to access its operations.
-     */
-    private NamesInner names;
-
-    /**
-     * Gets the NamesInner object to access its operations.
-     * @return the NamesInner object.
-     */
-    public NamesInner names() {
-        return this.names;
-    }
-
-    /**
      * The NotificationHubsInner object to access its operations.
      */
     private NotificationHubsInner notificationHubs;
@@ -169,19 +169,6 @@ public class NotificationHubsManagementClientImpl extends AzureServiceClient {
      */
     public NotificationHubsInner notificationHubs() {
         return this.notificationHubs;
-    }
-
-    /**
-     * The HubsInner object to access its operations.
-     */
-    private HubsInner hubs;
-
-    /**
-     * Gets the HubsInner object to access its operations.
-     * @return the HubsInner object.
-     */
-    public HubsInner hubs() {
-        return this.hubs;
     }
 
     /**
@@ -219,10 +206,9 @@ public class NotificationHubsManagementClientImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
+        this.operations = new OperationsInner(restClient().retrofit(), this);
         this.namespaces = new NamespacesInner(restClient().retrofit(), this);
-        this.names = new NamesInner(restClient().retrofit(), this);
         this.notificationHubs = new NotificationHubsInner(restClient().retrofit(), this);
-        this.hubs = new HubsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
