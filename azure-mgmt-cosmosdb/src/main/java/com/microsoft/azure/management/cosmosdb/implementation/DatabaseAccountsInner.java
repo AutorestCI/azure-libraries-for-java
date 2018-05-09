@@ -14,8 +14,11 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.cosmosdb.DatabaseAccountPatchParameters;
 import com.microsoft.azure.management.cosmosdb.DatabaseAccountRegenerateKeyParameters;
+import com.microsoft.azure.management.cosmosdb.ErrorResponseException;
 import com.microsoft.azure.management.cosmosdb.FailoverPolicies;
+import com.microsoft.azure.management.cosmosdb.FailoverPolicy;
 import com.microsoft.azure.management.cosmosdb.KeyKind;
 import com.microsoft.azure.management.cosmosdb.RegionForOnlineOffline;
 import com.microsoft.azure.Page;
@@ -74,11 +77,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts patch" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}")
-        Observable<Response<ResponseBody>> patch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParametersInner updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> patch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParameters updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts beginPatch" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}")
-        Observable<Response<ResponseBody>> beginPatch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParametersInner updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginPatch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParameters updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}")
@@ -263,7 +266,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DatabaseAccountInner object if successful.
      */
-    public DatabaseAccountInner patch(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public DatabaseAccountInner patch(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return patchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).toBlocking().last().body();
     }
 
@@ -277,7 +280,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
+    public ServiceFuture<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
         return ServiceFuture.fromResponse(patchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters), serviceCallback);
     }
 
@@ -290,7 +293,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return patchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).map(new Func1<ServiceResponse<DatabaseAccountInner>, DatabaseAccountInner>() {
             @Override
             public DatabaseAccountInner call(ServiceResponse<DatabaseAccountInner> response) {
@@ -308,7 +311,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<DatabaseAccountInner>> patchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<ServiceResponse<DatabaseAccountInner>> patchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -340,7 +343,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DatabaseAccountInner object if successful.
      */
-    public DatabaseAccountInner beginPatch(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public DatabaseAccountInner beginPatch(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return beginPatchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).toBlocking().single().body();
     }
 
@@ -354,7 +357,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
+    public ServiceFuture<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginPatchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters), serviceCallback);
     }
 
@@ -367,7 +370,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseAccountInner object
      */
-    public Observable<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return beginPatchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).map(new Func1<ServiceResponse<DatabaseAccountInner>, DatabaseAccountInner>() {
             @Override
             public DatabaseAccountInner call(ServiceResponse<DatabaseAccountInner> response) {
@@ -385,7 +388,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseAccountInner object
      */
-    public Observable<ServiceResponse<DatabaseAccountInner>> beginPatchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<ServiceResponse<DatabaseAccountInner>> beginPatchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -758,7 +761,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void failoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public void failoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         failoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).toBlocking().last().body();
     }
 
@@ -772,7 +775,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(failoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies), serviceCallback);
     }
 
@@ -785,7 +788,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         return failoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -803,7 +806,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<Void>> failoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<ServiceResponse<Void>> failoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -836,7 +839,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void beginFailoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public void beginFailoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         beginFailoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).toBlocking().single().body();
     }
 
@@ -850,7 +853,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(beginFailoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies), serviceCallback);
     }
 
@@ -863,7 +866,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         return beginFailoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -881,7 +884,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> beginFailoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<ServiceResponse<Void>> beginFailoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -983,7 +986,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<DatabaseAccountInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<DatabaseAccountInner>> result = listDelegate(response);
-                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(result.body().items(), result.response());
+                        List<DatabaseAccountInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1067,7 +1074,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<DatabaseAccountInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<DatabaseAccountInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(result.body().items(), result.response());
+                        List<DatabaseAccountInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1262,7 +1273,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @param accountName Cosmos DB database account name.
      * @param region Cosmos DB region, with spaces between words and each word capitalized.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void offlineRegion(String resourceGroupName, String accountName, String region) {
@@ -1339,7 +1350,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @param accountName Cosmos DB database account name.
      * @param region Cosmos DB region, with spaces between words and each word capitalized.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void beginOfflineRegion(String resourceGroupName, String accountName, String region) {
@@ -1419,11 +1430,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
             });
     }
 
-    private ServiceResponse<Void> beginOfflineRegionDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<Void> beginOfflineRegionDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ErrorResponseException.class)
                 .build(response);
     }
 
@@ -1434,7 +1445,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @param accountName Cosmos DB database account name.
      * @param region Cosmos DB region, with spaces between words and each word capitalized.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void onlineRegion(String resourceGroupName, String accountName, String region) {
@@ -1511,7 +1522,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @param accountName Cosmos DB database account name.
      * @param region Cosmos DB region, with spaces between words and each word capitalized.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void beginOnlineRegion(String resourceGroupName, String accountName, String region) {
@@ -1591,11 +1602,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
             });
     }
 
-    private ServiceResponse<Void> beginOnlineRegionDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<Void> beginOnlineRegionDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ErrorResponseException.class)
                 .build(response);
     }
 
@@ -2012,7 +2023,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<MetricInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<MetricInner>> result = listMetricsDelegate(response);
-                        ServiceResponse<List<MetricInner>> clientResponse = new ServiceResponse<List<MetricInner>>(result.body().items(), result.response());
+                        List<MetricInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<MetricInner>> clientResponse = new ServiceResponse<List<MetricInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2100,7 +2115,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<UsageInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<UsageInner>> result = listUsagesDelegate(response);
-                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(result.body().items(), result.response());
+                        List<UsageInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2184,7 +2203,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<UsageInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<UsageInner>> result = listUsagesDelegate(response);
-                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(result.body().items(), result.response());
+                        List<UsageInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2271,7 +2294,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<MetricDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<MetricDefinitionInner>> result = listMetricDefinitionsDelegate(response);
-                        ServiceResponse<List<MetricDefinitionInner>> clientResponse = new ServiceResponse<List<MetricDefinitionInner>>(result.body().items(), result.response());
+                        List<MetricDefinitionInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<MetricDefinitionInner>> clientResponse = new ServiceResponse<List<MetricDefinitionInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
