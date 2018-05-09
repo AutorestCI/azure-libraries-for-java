@@ -14,9 +14,13 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.cosmosdb.DatabaseAccountPatchParameters;
 import com.microsoft.azure.management.cosmosdb.DatabaseAccountRegenerateKeyParameters;
+import com.microsoft.azure.management.cosmosdb.ErrorResponseException;
 import com.microsoft.azure.management.cosmosdb.FailoverPolicies;
+import com.microsoft.azure.management.cosmosdb.FailoverPolicy;
 import com.microsoft.azure.management.cosmosdb.KeyKind;
+import com.microsoft.azure.management.cosmosdb.RegionForOnlineOffline;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -73,11 +77,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts patch" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}")
-        Observable<Response<ResponseBody>> patch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParametersInner updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> patch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParameters updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts beginPatch" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}")
-        Observable<Response<ResponseBody>> beginPatch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParametersInner updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginPatch(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Body DatabaseAccountPatchParameters updateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}")
@@ -118,6 +122,22 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts listConnectionStrings" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/listConnectionStrings")
         Observable<Response<ResponseBody>> listConnectionStrings(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts offlineRegion" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/offlineRegion")
+        Observable<Response<ResponseBody>> offlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body RegionForOnlineOffline regionParameterForOffline, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts beginOfflineRegion" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/offlineRegion")
+        Observable<Response<ResponseBody>> beginOfflineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body RegionForOnlineOffline regionParameterForOffline, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts onlineRegion" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/onlineRegion")
+        Observable<Response<ResponseBody>> onlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body RegionForOnlineOffline regionParameterForOnline, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts beginOnlineRegion" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/onlineRegion")
+        Observable<Response<ResponseBody>> beginOnlineRegion(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body RegionForOnlineOffline regionParameterForOnline, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.cosmosdb.DatabaseAccounts listReadOnlyKeys" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/readonlykeys")
@@ -246,7 +266,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DatabaseAccountInner object if successful.
      */
-    public DatabaseAccountInner patch(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public DatabaseAccountInner patch(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return patchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).toBlocking().last().body();
     }
 
@@ -260,7 +280,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
+    public ServiceFuture<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
         return ServiceFuture.fromResponse(patchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters), serviceCallback);
     }
 
@@ -273,7 +293,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<DatabaseAccountInner> patchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return patchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).map(new Func1<ServiceResponse<DatabaseAccountInner>, DatabaseAccountInner>() {
             @Override
             public DatabaseAccountInner call(ServiceResponse<DatabaseAccountInner> response) {
@@ -291,7 +311,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<DatabaseAccountInner>> patchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<ServiceResponse<DatabaseAccountInner>> patchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -323,7 +343,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DatabaseAccountInner object if successful.
      */
-    public DatabaseAccountInner beginPatch(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public DatabaseAccountInner beginPatch(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return beginPatchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).toBlocking().single().body();
     }
 
@@ -337,7 +357,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
+    public ServiceFuture<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters, final ServiceCallback<DatabaseAccountInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginPatchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters), serviceCallback);
     }
 
@@ -350,7 +370,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseAccountInner object
      */
-    public Observable<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<DatabaseAccountInner> beginPatchAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         return beginPatchWithServiceResponseAsync(resourceGroupName, accountName, updateParameters).map(new Func1<ServiceResponse<DatabaseAccountInner>, DatabaseAccountInner>() {
             @Override
             public DatabaseAccountInner call(ServiceResponse<DatabaseAccountInner> response) {
@@ -368,7 +388,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseAccountInner object
      */
-    public Observable<ServiceResponse<DatabaseAccountInner>> beginPatchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParametersInner updateParameters) {
+    public Observable<ServiceResponse<DatabaseAccountInner>> beginPatchWithServiceResponseAsync(String resourceGroupName, String accountName, DatabaseAccountPatchParameters updateParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -741,7 +761,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void failoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public void failoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         failoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).toBlocking().last().body();
     }
 
@@ -755,7 +775,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(failoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies), serviceCallback);
     }
 
@@ -768,7 +788,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<Void> failoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         return failoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -786,7 +806,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<Void>> failoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<ServiceResponse<Void>> failoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -819,7 +839,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void beginFailoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public void beginFailoverPriorityChange(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         beginFailoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).toBlocking().single().body();
     }
 
@@ -833,7 +853,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(beginFailoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies), serviceCallback);
     }
 
@@ -846,7 +866,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<Void> beginFailoverPriorityChangeAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         return beginFailoverPriorityChangeWithServiceResponseAsync(resourceGroupName, accountName, failoverPolicies).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -864,7 +884,7 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> beginFailoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicyInner> failoverPolicies) {
+    public Observable<ServiceResponse<Void>> beginFailoverPriorityChangeWithServiceResponseAsync(String resourceGroupName, String accountName, List<FailoverPolicy> failoverPolicies) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -966,7 +986,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<DatabaseAccountInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<DatabaseAccountInner>> result = listDelegate(response);
-                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(result.body().items(), result.response());
+                        List<DatabaseAccountInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1050,7 +1074,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<DatabaseAccountInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<DatabaseAccountInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(result.body().items(), result.response());
+                        List<DatabaseAccountInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<DatabaseAccountInner>> clientResponse = new ServiceResponse<List<DatabaseAccountInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1235,6 +1263,350 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
         return this.client.restClient().responseBuilderFactory().<DatabaseAccountListConnectionStringsResultInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<DatabaseAccountListConnectionStringsResultInner>() { }.getType())
                 .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void offlineRegion(String resourceGroupName, String accountName, String region) {
+        offlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).toBlocking().last().body();
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> offlineRegionAsync(String resourceGroupName, String accountName, String region, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(offlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region), serviceCallback);
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<Void> offlineRegionAsync(String resourceGroupName, String accountName, String region) {
+        return offlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<Void>> offlineRegionWithServiceResponseAsync(String resourceGroupName, String accountName, String region) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        RegionForOnlineOffline regionParameterForOffline = new RegionForOnlineOffline();
+        regionParameterForOffline.withRegion(region);
+        Observable<Response<ResponseBody>> observable = service.offlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), this.client.acceptLanguage(), regionParameterForOffline, this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void beginOfflineRegion(String resourceGroupName, String accountName, String region) {
+        beginOfflineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).toBlocking().single().body();
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> beginOfflineRegionAsync(String resourceGroupName, String accountName, String region, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(beginOfflineRegionWithServiceResponseAsync(resourceGroupName, accountName, region), serviceCallback);
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> beginOfflineRegionAsync(String resourceGroupName, String accountName, String region) {
+        return beginOfflineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Offline the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> beginOfflineRegionWithServiceResponseAsync(String resourceGroupName, String accountName, String region) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        RegionForOnlineOffline regionParameterForOffline = new RegionForOnlineOffline();
+        regionParameterForOffline.withRegion(region);
+        return service.beginOfflineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), this.client.acceptLanguage(), regionParameterForOffline, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = beginOfflineRegionDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> beginOfflineRegionDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
+                .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void onlineRegion(String resourceGroupName, String accountName, String region) {
+        onlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).toBlocking().last().body();
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> onlineRegionAsync(String resourceGroupName, String accountName, String region, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(onlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region), serviceCallback);
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<Void> onlineRegionAsync(String resourceGroupName, String accountName, String region) {
+        return onlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<Void>> onlineRegionWithServiceResponseAsync(String resourceGroupName, String accountName, String region) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        RegionForOnlineOffline regionParameterForOnline = new RegionForOnlineOffline();
+        regionParameterForOnline.withRegion(region);
+        Observable<Response<ResponseBody>> observable = service.onlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), this.client.acceptLanguage(), regionParameterForOnline, this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void beginOnlineRegion(String resourceGroupName, String accountName, String region) {
+        beginOnlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).toBlocking().single().body();
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> beginOnlineRegionAsync(String resourceGroupName, String accountName, String region, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(beginOnlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region), serviceCallback);
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> beginOnlineRegionAsync(String resourceGroupName, String accountName, String region) {
+        return beginOnlineRegionWithServiceResponseAsync(resourceGroupName, accountName, region).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Online the specified region for the specified Azure Cosmos DB database account.
+     *
+     * @param resourceGroupName Name of an Azure resource group.
+     * @param accountName Cosmos DB database account name.
+     * @param region Cosmos DB region, with spaces between words and each word capitalized.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> beginOnlineRegionWithServiceResponseAsync(String resourceGroupName, String accountName, String region) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        if (region == null) {
+            throw new IllegalArgumentException("Parameter region is required and cannot be null.");
+        }
+        RegionForOnlineOffline regionParameterForOnline = new RegionForOnlineOffline();
+        regionParameterForOnline.withRegion(region);
+        return service.beginOnlineRegion(this.client.subscriptionId(), resourceGroupName, accountName, this.client.apiVersion(), this.client.acceptLanguage(), regionParameterForOnline, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = beginOnlineRegionDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> beginOnlineRegionDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
+                .registerError(ErrorResponseException.class)
                 .build(response);
     }
 
@@ -1651,7 +2023,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<MetricInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<MetricInner>> result = listMetricsDelegate(response);
-                        ServiceResponse<List<MetricInner>> clientResponse = new ServiceResponse<List<MetricInner>>(result.body().items(), result.response());
+                        List<MetricInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<MetricInner>> clientResponse = new ServiceResponse<List<MetricInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1739,7 +2115,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<UsageInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<UsageInner>> result = listUsagesDelegate(response);
-                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(result.body().items(), result.response());
+                        List<UsageInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1823,7 +2203,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<UsageInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<UsageInner>> result = listUsagesDelegate(response);
-                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(result.body().items(), result.response());
+                        List<UsageInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<UsageInner>> clientResponse = new ServiceResponse<List<UsageInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1910,7 +2294,11 @@ public class DatabaseAccountsInner implements InnerSupportsGet<DatabaseAccountIn
                 public Observable<ServiceResponse<List<MetricDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<MetricDefinitionInner>> result = listMetricDefinitionsDelegate(response);
-                        ServiceResponse<List<MetricDefinitionInner>> clientResponse = new ServiceResponse<List<MetricDefinitionInner>>(result.body().items(), result.response());
+                        List<MetricDefinitionInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<MetricDefinitionInner>> clientResponse = new ServiceResponse<List<MetricDefinitionInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
