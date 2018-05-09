@@ -13,6 +13,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.resources.ResourcesMoveInfo;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -66,11 +67,11 @@ public class ResourcesInner {
     interface ResourcesService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.resources.Resources moveResources" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources")
-        Observable<Response<ResponseBody>> moveResources(@Path("sourceResourceGroupName") String sourceResourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ResourcesMoveInfoInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> moveResources(@Path("sourceResourceGroupName") String sourceResourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ResourcesMoveInfo parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.resources.Resources beginMoveResources" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources")
-        Observable<Response<ResponseBody>> beginMoveResources(@Path("sourceResourceGroupName") String sourceResourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ResourcesMoveInfoInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginMoveResources(@Path("sourceResourceGroupName") String sourceResourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ResourcesMoveInfo parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.resources.Resources list" })
         @GET("subscriptions/{subscriptionId}/resources")
@@ -156,7 +157,7 @@ public class ResourcesInner {
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void moveResources(String sourceResourceGroupName, ResourcesMoveInfoInner parameters) {
+    public void moveResources(String sourceResourceGroupName, ResourcesMoveInfo parameters) {
         moveResourcesWithServiceResponseAsync(sourceResourceGroupName, parameters).toBlocking().last().body();
     }
 
@@ -170,7 +171,7 @@ public class ResourcesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> moveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfoInner parameters, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> moveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfo parameters, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(moveResourcesWithServiceResponseAsync(sourceResourceGroupName, parameters), serviceCallback);
     }
 
@@ -183,7 +184,7 @@ public class ResourcesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<Void> moveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfoInner parameters) {
+    public Observable<Void> moveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfo parameters) {
         return moveResourcesWithServiceResponseAsync(sourceResourceGroupName, parameters).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -201,7 +202,7 @@ public class ResourcesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<Void>> moveResourcesWithServiceResponseAsync(String sourceResourceGroupName, ResourcesMoveInfoInner parameters) {
+    public Observable<ServiceResponse<Void>> moveResourcesWithServiceResponseAsync(String sourceResourceGroupName, ResourcesMoveInfo parameters) {
         if (sourceResourceGroupName == null) {
             throw new IllegalArgumentException("Parameter sourceResourceGroupName is required and cannot be null.");
         }
@@ -229,7 +230,7 @@ public class ResourcesInner {
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void beginMoveResources(String sourceResourceGroupName, ResourcesMoveInfoInner parameters) {
+    public void beginMoveResources(String sourceResourceGroupName, ResourcesMoveInfo parameters) {
         beginMoveResourcesWithServiceResponseAsync(sourceResourceGroupName, parameters).toBlocking().single().body();
     }
 
@@ -243,7 +244,7 @@ public class ResourcesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> beginMoveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfoInner parameters, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> beginMoveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfo parameters, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(beginMoveResourcesWithServiceResponseAsync(sourceResourceGroupName, parameters), serviceCallback);
     }
 
@@ -256,7 +257,7 @@ public class ResourcesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> beginMoveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfoInner parameters) {
+    public Observable<Void> beginMoveResourcesAsync(String sourceResourceGroupName, ResourcesMoveInfo parameters) {
         return beginMoveResourcesWithServiceResponseAsync(sourceResourceGroupName, parameters).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -274,7 +275,7 @@ public class ResourcesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> beginMoveResourcesWithServiceResponseAsync(String sourceResourceGroupName, ResourcesMoveInfoInner parameters) {
+    public Observable<ServiceResponse<Void>> beginMoveResourcesWithServiceResponseAsync(String sourceResourceGroupName, ResourcesMoveInfo parameters) {
         if (sourceResourceGroupName == null) {
             throw new IllegalArgumentException("Parameter sourceResourceGroupName is required and cannot be null.");
         }

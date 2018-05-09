@@ -12,11 +12,13 @@ import com.microsoft.azure.management.resources.Plan;
 import com.microsoft.azure.management.resources.Sku;
 import com.microsoft.azure.management.resources.Identity;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Resource information.
  */
+@SkipParentValidation
 public class GenericResourceInner extends Resource {
     /**
      * The plan of the resource.

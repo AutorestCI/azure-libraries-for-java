@@ -13,6 +13,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.resources.ExportTemplateRequest;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -94,7 +95,7 @@ public class ResourceGroupsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.resources.ResourceGroups exportTemplate" })
         @POST("subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/exportTemplate")
-        Observable<Response<ResponseBody>> exportTemplate(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ExportTemplateRequestInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> exportTemplate(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ExportTemplateRequest parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.resources.ResourceGroups list" })
         @GET("subscriptions/{subscriptionId}/resourcegroups")
@@ -847,7 +848,7 @@ public class ResourceGroupsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ResourceGroupExportResultInner object if successful.
      */
-    public ResourceGroupExportResultInner exportTemplate(String resourceGroupName, ExportTemplateRequestInner parameters) {
+    public ResourceGroupExportResultInner exportTemplate(String resourceGroupName, ExportTemplateRequest parameters) {
         return exportTemplateWithServiceResponseAsync(resourceGroupName, parameters).toBlocking().single().body();
     }
 
@@ -860,7 +861,7 @@ public class ResourceGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ResourceGroupExportResultInner> exportTemplateAsync(String resourceGroupName, ExportTemplateRequestInner parameters, final ServiceCallback<ResourceGroupExportResultInner> serviceCallback) {
+    public ServiceFuture<ResourceGroupExportResultInner> exportTemplateAsync(String resourceGroupName, ExportTemplateRequest parameters, final ServiceCallback<ResourceGroupExportResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(exportTemplateWithServiceResponseAsync(resourceGroupName, parameters), serviceCallback);
     }
 
@@ -872,7 +873,7 @@ public class ResourceGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ResourceGroupExportResultInner object
      */
-    public Observable<ResourceGroupExportResultInner> exportTemplateAsync(String resourceGroupName, ExportTemplateRequestInner parameters) {
+    public Observable<ResourceGroupExportResultInner> exportTemplateAsync(String resourceGroupName, ExportTemplateRequest parameters) {
         return exportTemplateWithServiceResponseAsync(resourceGroupName, parameters).map(new Func1<ServiceResponse<ResourceGroupExportResultInner>, ResourceGroupExportResultInner>() {
             @Override
             public ResourceGroupExportResultInner call(ServiceResponse<ResourceGroupExportResultInner> response) {
@@ -889,7 +890,7 @@ public class ResourceGroupsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ResourceGroupExportResultInner object
      */
-    public Observable<ServiceResponse<ResourceGroupExportResultInner>> exportTemplateWithServiceResponseAsync(String resourceGroupName, ExportTemplateRequestInner parameters) {
+    public Observable<ServiceResponse<ResourceGroupExportResultInner>> exportTemplateWithServiceResponseAsync(String resourceGroupName, ExportTemplateRequest parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

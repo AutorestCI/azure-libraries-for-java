@@ -159,6 +159,19 @@ public class PolicyClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The PolicySetDefinitionsInner object to access its operations.
+     */
+    private PolicySetDefinitionsInner policySetDefinitions;
+
+    /**
+     * Gets the PolicySetDefinitionsInner object to access its operations.
+     * @return the PolicySetDefinitionsInner object.
+     */
+    public PolicySetDefinitionsInner policySetDefinitions() {
+        return this.policySetDefinitions;
+    }
+
+    /**
      * Initializes an instance of PolicyClient client.
      *
      * @param credentials the management credentials for Azure
@@ -189,12 +202,13 @@ public class PolicyClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
-        this.apiVersion = "2016-04-01";
+        this.apiVersion = "2018-03-01";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
         this.policyAssignments = new PolicyAssignmentsInner(restClient().retrofit(), this);
         this.policyDefinitions = new PolicyDefinitionsInner(restClient().retrofit(), this);
+        this.policySetDefinitions = new PolicySetDefinitionsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
@@ -205,6 +219,6 @@ public class PolicyClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "PolicyClient", "2016-04-01");
+        return String.format("%s (%s, %s)", super.userAgent(), "PolicyClient", "2018-03-01");
     }
 }
