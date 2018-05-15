@@ -8,11 +8,91 @@
 
 package com.microsoft.azure.management.trafficmanager.implementation;
 
-import com.microsoft.azure.Resource;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * The resource model definition for a ARM proxy resource. It will have
  * everything other than required location and tags.
  */
-public class ProxyResourceInner extends Resource {
+public class ProxyResourceInner extends ProxyResource {
+    /**
+     * Fully qualified resource Id for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
+     * The name of the resource.
+     */
+    @JsonProperty(value = "name")
+    private String name;
+
+    /**
+     * The type of the resource. Ex- Microsoft.Network/trafficmanagerProfiles.
+     */
+    @JsonProperty(value = "type")
+    private String type;
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id value.
+     *
+     * @param id the id value to set
+     * @return the ProxyResourceInner object itself.
+     */
+    public ProxyResourceInner withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get the name value.
+     *
+     * @return the name value
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Set the name value.
+     *
+     * @param name the name value to set
+     * @return the ProxyResourceInner object itself.
+     */
+    public ProxyResourceInner withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the type value.
+     *
+     * @return the type value
+     */
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Set the type value.
+     *
+     * @param type the type value to set
+     * @return the ProxyResourceInner object itself.
+     */
+    public ProxyResourceInner withType(String type) {
+        this.type = type;
+        return this;
+    }
+
 }

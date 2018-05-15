@@ -14,6 +14,7 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.trafficmanager.CheckTrafficManagerRelativeDnsNameAvailabilityParameters;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -65,7 +66,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
     interface ProfilesService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.trafficmanager.Profiles checkTrafficManagerRelativeDnsNameAvailability" })
         @POST("providers/Microsoft.Network/checkTrafficManagerNameAvailability")
-        Observable<Response<ResponseBody>> checkTrafficManagerRelativeDnsNameAvailability(@Body CheckTrafficManagerRelativeDnsNameAvailabilityParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> checkTrafficManagerRelativeDnsNameAvailability(@Body CheckTrafficManagerRelativeDnsNameAvailabilityParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.trafficmanager.Profiles listByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficmanagerprofiles")
@@ -102,7 +103,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the TrafficManagerNameAvailabilityInner object if successful.
      */
-    public TrafficManagerNameAvailabilityInner checkTrafficManagerRelativeDnsNameAvailability(CheckTrafficManagerRelativeDnsNameAvailabilityParametersInner parameters) {
+    public TrafficManagerNameAvailabilityInner checkTrafficManagerRelativeDnsNameAvailability(CheckTrafficManagerRelativeDnsNameAvailabilityParameters parameters) {
         return checkTrafficManagerRelativeDnsNameAvailabilityWithServiceResponseAsync(parameters).toBlocking().single().body();
     }
 
@@ -114,7 +115,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<TrafficManagerNameAvailabilityInner> checkTrafficManagerRelativeDnsNameAvailabilityAsync(CheckTrafficManagerRelativeDnsNameAvailabilityParametersInner parameters, final ServiceCallback<TrafficManagerNameAvailabilityInner> serviceCallback) {
+    public ServiceFuture<TrafficManagerNameAvailabilityInner> checkTrafficManagerRelativeDnsNameAvailabilityAsync(CheckTrafficManagerRelativeDnsNameAvailabilityParameters parameters, final ServiceCallback<TrafficManagerNameAvailabilityInner> serviceCallback) {
         return ServiceFuture.fromResponse(checkTrafficManagerRelativeDnsNameAvailabilityWithServiceResponseAsync(parameters), serviceCallback);
     }
 
@@ -125,7 +126,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the TrafficManagerNameAvailabilityInner object
      */
-    public Observable<TrafficManagerNameAvailabilityInner> checkTrafficManagerRelativeDnsNameAvailabilityAsync(CheckTrafficManagerRelativeDnsNameAvailabilityParametersInner parameters) {
+    public Observable<TrafficManagerNameAvailabilityInner> checkTrafficManagerRelativeDnsNameAvailabilityAsync(CheckTrafficManagerRelativeDnsNameAvailabilityParameters parameters) {
         return checkTrafficManagerRelativeDnsNameAvailabilityWithServiceResponseAsync(parameters).map(new Func1<ServiceResponse<TrafficManagerNameAvailabilityInner>, TrafficManagerNameAvailabilityInner>() {
             @Override
             public TrafficManagerNameAvailabilityInner call(ServiceResponse<TrafficManagerNameAvailabilityInner> response) {
@@ -141,7 +142,7 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the TrafficManagerNameAvailabilityInner object
      */
-    public Observable<ServiceResponse<TrafficManagerNameAvailabilityInner>> checkTrafficManagerRelativeDnsNameAvailabilityWithServiceResponseAsync(CheckTrafficManagerRelativeDnsNameAvailabilityParametersInner parameters) {
+    public Observable<ServiceResponse<TrafficManagerNameAvailabilityInner>> checkTrafficManagerRelativeDnsNameAvailabilityWithServiceResponseAsync(CheckTrafficManagerRelativeDnsNameAvailabilityParameters parameters) {
         if (parameters == null) {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
@@ -238,7 +239,11 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
                 public Observable<ServiceResponse<List<ProfileInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ProfileInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<ProfileInner>> clientResponse = new ServiceResponse<List<ProfileInner>>(result.body().items(), result.response());
+                        List<ProfileInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ProfileInner>> clientResponse = new ServiceResponse<List<ProfileInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -315,7 +320,11 @@ public class ProfilesInner implements InnerSupportsGet<ProfileInner>, InnerSuppo
                 public Observable<ServiceResponse<List<ProfileInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ProfileInner>> result = listDelegate(response);
-                        ServiceResponse<List<ProfileInner>> clientResponse = new ServiceResponse<List<ProfileInner>>(result.body().items(), result.response());
+                        List<ProfileInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ProfileInner>> clientResponse = new ServiceResponse<List<ProfileInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
