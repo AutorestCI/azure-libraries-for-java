@@ -16,6 +16,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.compute.VirtualMachineScaleSetUpdate;
 import com.microsoft.azure.management.compute.VirtualMachineScaleSetVMInstanceIDs;
 import com.microsoft.azure.management.compute.VirtualMachineScaleSetVMInstanceRequiredIDs;
 import com.microsoft.azure.Page;
@@ -78,11 +79,11 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineScaleSets update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("vmScaleSetName") String vmScaleSetName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineScaleSetUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("vmScaleSetName") String vmScaleSetName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineScaleSetUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineScaleSets beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("vmScaleSetName") String vmScaleSetName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineScaleSetUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("vmScaleSetName") String vmScaleSetName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineScaleSetUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineScaleSets delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}", method = "DELETE", hasBody = true)
@@ -397,7 +398,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the VirtualMachineScaleSetInner object if successful.
      */
-    public VirtualMachineScaleSetInner update(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters) {
+    public VirtualMachineScaleSetInner update(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, vmScaleSetName, parameters).toBlocking().last().body();
     }
 
@@ -411,7 +412,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<VirtualMachineScaleSetInner> updateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters, final ServiceCallback<VirtualMachineScaleSetInner> serviceCallback) {
+    public ServiceFuture<VirtualMachineScaleSetInner> updateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters, final ServiceCallback<VirtualMachineScaleSetInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, vmScaleSetName, parameters), serviceCallback);
     }
 
@@ -424,7 +425,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<VirtualMachineScaleSetInner> updateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters) {
+    public Observable<VirtualMachineScaleSetInner> updateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, vmScaleSetName, parameters).map(new Func1<ServiceResponse<VirtualMachineScaleSetInner>, VirtualMachineScaleSetInner>() {
             @Override
             public VirtualMachineScaleSetInner call(ServiceResponse<VirtualMachineScaleSetInner> response) {
@@ -442,7 +443,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<VirtualMachineScaleSetInner>> updateWithServiceResponseAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters) {
+    public Observable<ServiceResponse<VirtualMachineScaleSetInner>> updateWithServiceResponseAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -472,7 +473,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the VirtualMachineScaleSetInner object if successful.
      */
-    public VirtualMachineScaleSetInner beginUpdate(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters) {
+    public VirtualMachineScaleSetInner beginUpdate(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, vmScaleSetName, parameters).toBlocking().single().body();
     }
 
@@ -486,7 +487,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<VirtualMachineScaleSetInner> beginUpdateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters, final ServiceCallback<VirtualMachineScaleSetInner> serviceCallback) {
+    public ServiceFuture<VirtualMachineScaleSetInner> beginUpdateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters, final ServiceCallback<VirtualMachineScaleSetInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, vmScaleSetName, parameters), serviceCallback);
     }
 
@@ -499,7 +500,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the VirtualMachineScaleSetInner object
      */
-    public Observable<VirtualMachineScaleSetInner> beginUpdateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters) {
+    public Observable<VirtualMachineScaleSetInner> beginUpdateAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, vmScaleSetName, parameters).map(new Func1<ServiceResponse<VirtualMachineScaleSetInner>, VirtualMachineScaleSetInner>() {
             @Override
             public VirtualMachineScaleSetInner call(ServiceResponse<VirtualMachineScaleSetInner> response) {
@@ -517,7 +518,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the VirtualMachineScaleSetInner object
      */
-    public Observable<ServiceResponse<VirtualMachineScaleSetInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdateInner parameters) {
+    public Observable<ServiceResponse<VirtualMachineScaleSetInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String vmScaleSetName, VirtualMachineScaleSetUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

@@ -120,7 +120,11 @@ public class VirtualMachineSizesInner {
                 public Observable<ServiceResponse<List<VirtualMachineSizeInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<VirtualMachineSizeInner>> result = listDelegate(response);
-                        ServiceResponse<List<VirtualMachineSizeInner>> clientResponse = new ServiceResponse<List<VirtualMachineSizeInner>>(result.body().items(), result.response());
+                        List<VirtualMachineSizeInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<VirtualMachineSizeInner>> clientResponse = new ServiceResponse<List<VirtualMachineSizeInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

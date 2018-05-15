@@ -13,6 +13,7 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.compute.AvailabilitySetUpdate;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -67,7 +68,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.AvailabilitySets update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("availabilitySetName") String availabilitySetName, @Path("subscriptionId") String subscriptionId, @Body AvailabilitySetUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("availabilitySetName") String availabilitySetName, @Path("subscriptionId") String subscriptionId, @Body AvailabilitySetUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.AvailabilitySets delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}", method = "DELETE", hasBody = true)
@@ -190,7 +191,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AvailabilitySetInner object if successful.
      */
-    public AvailabilitySetInner update(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdateInner parameters) {
+    public AvailabilitySetInner update(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, availabilitySetName, parameters).toBlocking().single().body();
     }
 
@@ -204,7 +205,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AvailabilitySetInner> updateAsync(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdateInner parameters, final ServiceCallback<AvailabilitySetInner> serviceCallback) {
+    public ServiceFuture<AvailabilitySetInner> updateAsync(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdate parameters, final ServiceCallback<AvailabilitySetInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, availabilitySetName, parameters), serviceCallback);
     }
 
@@ -217,7 +218,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AvailabilitySetInner object
      */
-    public Observable<AvailabilitySetInner> updateAsync(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdateInner parameters) {
+    public Observable<AvailabilitySetInner> updateAsync(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, availabilitySetName, parameters).map(new Func1<ServiceResponse<AvailabilitySetInner>, AvailabilitySetInner>() {
             @Override
             public AvailabilitySetInner call(ServiceResponse<AvailabilitySetInner> response) {
@@ -235,7 +236,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AvailabilitySetInner object
      */
-    public Observable<ServiceResponse<AvailabilitySetInner>> updateWithServiceResponseAsync(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdateInner parameters) {
+    public Observable<ServiceResponse<AvailabilitySetInner>> updateWithServiceResponseAsync(String resourceGroupName, String availabilitySetName, AvailabilitySetUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -506,7 +507,11 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
                 public Observable<ServiceResponse<List<AvailabilitySetInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<AvailabilitySetInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<AvailabilitySetInner>> clientResponse = new ServiceResponse<List<AvailabilitySetInner>>(result.body().items(), result.response());
+                        List<AvailabilitySetInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<AvailabilitySetInner>> clientResponse = new ServiceResponse<List<AvailabilitySetInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -591,7 +596,11 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
                 public Observable<ServiceResponse<List<VirtualMachineSizeInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<VirtualMachineSizeInner>> result = listAvailableSizesDelegate(response);
-                        ServiceResponse<List<VirtualMachineSizeInner>> clientResponse = new ServiceResponse<List<VirtualMachineSizeInner>>(result.body().items(), result.response());
+                        List<VirtualMachineSizeInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<VirtualMachineSizeInner>> clientResponse = new ServiceResponse<List<VirtualMachineSizeInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

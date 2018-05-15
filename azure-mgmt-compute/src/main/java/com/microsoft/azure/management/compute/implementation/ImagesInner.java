@@ -16,6 +16,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.compute.ImageUpdate;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -75,11 +76,11 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Images update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("imageName") String imageName, @Path("subscriptionId") String subscriptionId, @Body ImageUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("imageName") String imageName, @Path("subscriptionId") String subscriptionId, @Body ImageUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Images beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("imageName") String imageName, @Path("subscriptionId") String subscriptionId, @Body ImageUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("imageName") String imageName, @Path("subscriptionId") String subscriptionId, @Body ImageUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Images delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}", method = "DELETE", hasBody = true)
@@ -290,7 +291,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ImageInner object if successful.
      */
-    public ImageInner update(String resourceGroupName, String imageName, ImageUpdateInner parameters) {
+    public ImageInner update(String resourceGroupName, String imageName, ImageUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, imageName, parameters).toBlocking().last().body();
     }
 
@@ -304,7 +305,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ImageInner> updateAsync(String resourceGroupName, String imageName, ImageUpdateInner parameters, final ServiceCallback<ImageInner> serviceCallback) {
+    public ServiceFuture<ImageInner> updateAsync(String resourceGroupName, String imageName, ImageUpdate parameters, final ServiceCallback<ImageInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, imageName, parameters), serviceCallback);
     }
 
@@ -317,7 +318,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ImageInner> updateAsync(String resourceGroupName, String imageName, ImageUpdateInner parameters) {
+    public Observable<ImageInner> updateAsync(String resourceGroupName, String imageName, ImageUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, imageName, parameters).map(new Func1<ServiceResponse<ImageInner>, ImageInner>() {
             @Override
             public ImageInner call(ServiceResponse<ImageInner> response) {
@@ -335,7 +336,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ImageInner>> updateWithServiceResponseAsync(String resourceGroupName, String imageName, ImageUpdateInner parameters) {
+    public Observable<ServiceResponse<ImageInner>> updateWithServiceResponseAsync(String resourceGroupName, String imageName, ImageUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -365,7 +366,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ImageInner object if successful.
      */
-    public ImageInner beginUpdate(String resourceGroupName, String imageName, ImageUpdateInner parameters) {
+    public ImageInner beginUpdate(String resourceGroupName, String imageName, ImageUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, imageName, parameters).toBlocking().single().body();
     }
 
@@ -379,7 +380,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ImageInner> beginUpdateAsync(String resourceGroupName, String imageName, ImageUpdateInner parameters, final ServiceCallback<ImageInner> serviceCallback) {
+    public ServiceFuture<ImageInner> beginUpdateAsync(String resourceGroupName, String imageName, ImageUpdate parameters, final ServiceCallback<ImageInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, imageName, parameters), serviceCallback);
     }
 
@@ -392,7 +393,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImageInner object
      */
-    public Observable<ImageInner> beginUpdateAsync(String resourceGroupName, String imageName, ImageUpdateInner parameters) {
+    public Observable<ImageInner> beginUpdateAsync(String resourceGroupName, String imageName, ImageUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, imageName, parameters).map(new Func1<ServiceResponse<ImageInner>, ImageInner>() {
             @Override
             public ImageInner call(ServiceResponse<ImageInner> response) {
@@ -410,7 +411,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImageInner object
      */
-    public Observable<ServiceResponse<ImageInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String imageName, ImageUpdateInner parameters) {
+    public Observable<ServiceResponse<ImageInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String imageName, ImageUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
