@@ -41,6 +41,12 @@ public class UpgradePolicy {
     private Boolean automaticOSUpgrade;
 
     /**
+     * Configuration parameters used for performing automatic OS Upgrade.
+     */
+    @JsonProperty(value = "autoOSUpgradePolicy")
+    private AutoOSUpgradePolicy autoOSUpgradePolicy;
+
+    /**
      * Get the mode value.
      *
      * @return the mode value
@@ -97,6 +103,26 @@ public class UpgradePolicy {
      */
     public UpgradePolicy withAutomaticOSUpgrade(Boolean automaticOSUpgrade) {
         this.automaticOSUpgrade = automaticOSUpgrade;
+        return this;
+    }
+
+    /**
+     * Get the autoOSUpgradePolicy value.
+     *
+     * @return the autoOSUpgradePolicy value
+     */
+    public AutoOSUpgradePolicy autoOSUpgradePolicy() {
+        return this.autoOSUpgradePolicy;
+    }
+
+    /**
+     * Set the autoOSUpgradePolicy value.
+     *
+     * @param autoOSUpgradePolicy the autoOSUpgradePolicy value to set
+     * @return the UpgradePolicy object itself.
+     */
+    public UpgradePolicy withAutoOSUpgradePolicy(AutoOSUpgradePolicy autoOSUpgradePolicy) {
+        this.autoOSUpgradePolicy = autoOSUpgradePolicy;
         return this;
     }
 
