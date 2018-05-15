@@ -34,6 +34,9 @@ public final class HanaInstanceSizeNamesEnum extends ExpandableStringEnum<HanaIn
     /** Static value S192m for HanaInstanceSizeNamesEnum. */
     public static final HanaInstanceSizeNamesEnum S192M = fromString("S192m");
 
+    /** Static value S192xm for HanaInstanceSizeNamesEnum. */
+    public static final HanaInstanceSizeNamesEnum S192XM = fromString("S192xm");
+
     /** Static value S384 for HanaInstanceSizeNamesEnum. */
     public static final HanaInstanceSizeNamesEnum S384 = fromString("S384");
 
@@ -43,14 +46,26 @@ public final class HanaInstanceSizeNamesEnum extends ExpandableStringEnum<HanaIn
     /** Static value S384xm for HanaInstanceSizeNamesEnum. */
     public static final HanaInstanceSizeNamesEnum S384XM = fromString("S384xm");
 
-    /** Static value S576 for HanaInstanceSizeNamesEnum. */
-    public static final HanaInstanceSizeNamesEnum S576 = fromString("S576");
+    /** Static value S384xxm for HanaInstanceSizeNamesEnum. */
+    public static final HanaInstanceSizeNamesEnum S384XXM = fromString("S384xxm");
+
+    /** Static value S576m for HanaInstanceSizeNamesEnum. */
+    public static final HanaInstanceSizeNamesEnum S576M = fromString("S576m");
+
+    /** Static value S576xm for HanaInstanceSizeNamesEnum. */
+    public static final HanaInstanceSizeNamesEnum S576XM = fromString("S576xm");
 
     /** Static value S768 for HanaInstanceSizeNamesEnum. */
     public static final HanaInstanceSizeNamesEnum S768 = fromString("S768");
 
-    /** Static value S960 for HanaInstanceSizeNamesEnum. */
-    public static final HanaInstanceSizeNamesEnum S960 = fromString("S960");
+    /** Static value S768m for HanaInstanceSizeNamesEnum. */
+    public static final HanaInstanceSizeNamesEnum S768M = fromString("S768m");
+
+    /** Static value S768xm for HanaInstanceSizeNamesEnum. */
+    public static final HanaInstanceSizeNamesEnum S768XM = fromString("S768xm");
+
+    /** Static value S960m for HanaInstanceSizeNamesEnum. */
+    public static final HanaInstanceSizeNamesEnum S960M = fromString("S960m");
 
     /**
      * Creates or finds a HanaInstanceSizeNamesEnum from its string representation.
