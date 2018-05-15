@@ -10,12 +10,12 @@ package com.microsoft.azure.management.trafficmanager.implementation;
 
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.microsoft.azure.Resource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * The resource model definition for a ARM tracked top level resource.
  */
-public class TrackedResourceInner extends Resource {
+public class TrackedResourceInner extends ProxyResource {
     /**
      * Resource tags.
      */
@@ -27,6 +27,25 @@ public class TrackedResourceInner extends Resource {
      */
     @JsonProperty(value = "location")
     private String location;
+
+    /**
+     * Fully qualified resource Id for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
+     * The name of the resource.
+     */
+    @JsonProperty(value = "name")
+    private String name;
+
+    /**
+     * The type of the resource. Ex- Microsoft.Network/trafficmanagerProfiles.
+     */
+    @JsonProperty(value = "type")
+    private String type;
 
     /**
      * Get the tags value.
@@ -65,6 +84,66 @@ public class TrackedResourceInner extends Resource {
      */
     public TrackedResourceInner withLocation(String location) {
         this.location = location;
+        return this;
+    }
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id value.
+     *
+     * @param id the id value to set
+     * @return the TrackedResourceInner object itself.
+     */
+    public TrackedResourceInner withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get the name value.
+     *
+     * @return the name value
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Set the name value.
+     *
+     * @param name the name value to set
+     * @return the TrackedResourceInner object itself.
+     */
+    public TrackedResourceInner withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the type value.
+     *
+     * @return the type value
+     */
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Set the type value.
+     *
+     * @param type the type value to set
+     * @return the TrackedResourceInner object itself.
+     */
+    public TrackedResourceInner withType(String type) {
+        this.type = type;
         return this;
     }
 
