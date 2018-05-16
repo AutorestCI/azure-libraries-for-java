@@ -13,13 +13,14 @@ import com.microsoft.azure.management.compute.GalleryImageVersionStorageProfile;
 import com.microsoft.azure.management.compute.ReplicationStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.azure.Resource;
 
 /**
  * Specifies information about the gallery image version that you want to
  * create or update.
  */
 @JsonFlatten
-public class GalleryImageVersionInner {
+public class GalleryImageVersionInner extends Resource {
     /**
      * The publishingProfile property.
      */
