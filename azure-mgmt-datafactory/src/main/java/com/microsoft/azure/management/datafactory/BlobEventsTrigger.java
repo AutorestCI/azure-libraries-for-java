@@ -22,12 +22,22 @@ import com.microsoft.rest.serializer.JsonFlatten;
 @JsonFlatten
 public class BlobEventsTrigger extends MultiplePipelineTrigger {
     /**
-     * Expression to determine if trigger should fire. For example,
-     * @startswith('/records/blobs/december/') will only fire the trigger for
-     * blobs in the december folder under the records container.
+     * The blob path must begin with the pattern provided for trigger to fire.
+     * For example, '/records/blobs/december/' will only fire the trigger for
+     * blobs in the december folder under the records container. At least one
+     * of these must be provided: blobPathBeginsWith, blobPathEndsWith.
      */
-    @JsonProperty(value = "typeProperties.blobPath", required = true)
-    private String blobPath;
+    @JsonProperty(value = "typeProperties.blobPathBeginsWith")
+    private String blobPathBeginsWith;
+
+    /**
+     * The blob path must end with the pattern provided for trigger to fire.
+     * For example, 'december/boxes.csv' will only fire the trigger for blobs
+     * named boxes in a december folder. At least one of these must be
+     * provided: blobPathBeginsWith, blobPathEndsWith.
+     */
+    @JsonProperty(value = "typeProperties.blobPathEndsWith")
+    private String blobPathEndsWith;
 
     /**
      * The type of events that cause this trigger to fire.
@@ -42,22 +52,42 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     private String scope;
 
     /**
-     * Get the blobPath value.
+     * Get the blobPathBeginsWith value.
      *
-     * @return the blobPath value
+     * @return the blobPathBeginsWith value
      */
-    public String blobPath() {
-        return this.blobPath;
+    public String blobPathBeginsWith() {
+        return this.blobPathBeginsWith;
     }
 
     /**
-     * Set the blobPath value.
+     * Set the blobPathBeginsWith value.
      *
-     * @param blobPath the blobPath value to set
+     * @param blobPathBeginsWith the blobPathBeginsWith value to set
      * @return the BlobEventsTrigger object itself.
      */
-    public BlobEventsTrigger withBlobPath(String blobPath) {
-        this.blobPath = blobPath;
+    public BlobEventsTrigger withBlobPathBeginsWith(String blobPathBeginsWith) {
+        this.blobPathBeginsWith = blobPathBeginsWith;
+        return this;
+    }
+
+    /**
+     * Get the blobPathEndsWith value.
+     *
+     * @return the blobPathEndsWith value
+     */
+    public String blobPathEndsWith() {
+        return this.blobPathEndsWith;
+    }
+
+    /**
+     * Set the blobPathEndsWith value.
+     *
+     * @param blobPathEndsWith the blobPathEndsWith value to set
+     * @return the BlobEventsTrigger object itself.
+     */
+    public BlobEventsTrigger withBlobPathEndsWith(String blobPathEndsWith) {
+        this.blobPathEndsWith = blobPathEndsWith;
         return this;
     }
 
