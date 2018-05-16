@@ -12,12 +12,14 @@ import org.joda.time.DateTime;
 import com.microsoft.azure.management.batchai.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Describes Batch AI Workspace.
  */
 @JsonFlatten
+@SkipParentValidation
 public class WorkspaceInner extends Resource {
     /**
      * Time when the Workspace was created.

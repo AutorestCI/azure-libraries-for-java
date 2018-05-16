@@ -16,6 +16,9 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.batchai.WorkspaceCreateParameters;
+import com.microsoft.azure.management.batchai.WorkspacesListByResourceGroupOptions;
+import com.microsoft.azure.management.batchai.WorkspacesListOptions;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -74,11 +77,11 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.batchai.Workspaces create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BatchAI/workspaces/{workspaceName}")
-        Observable<Response<ResponseBody>> create(@Path("resourceGroupName") String resourceGroupName, @Path("workspaceName") String workspaceName, @Path("subscriptionId") String subscriptionId, @Body WorkspaceCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("resourceGroupName") String resourceGroupName, @Path("workspaceName") String workspaceName, @Path("subscriptionId") String subscriptionId, @Body WorkspaceCreateParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.batchai.Workspaces beginCreate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BatchAI/workspaces/{workspaceName}")
-        Observable<Response<ResponseBody>> beginCreate(@Path("resourceGroupName") String resourceGroupName, @Path("workspaceName") String workspaceName, @Path("subscriptionId") String subscriptionId, @Body WorkspaceCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreate(@Path("resourceGroupName") String resourceGroupName, @Path("workspaceName") String workspaceName, @Path("subscriptionId") String subscriptionId, @Body WorkspaceCreateParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.batchai.Workspaces delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BatchAI/workspaces/{workspaceName}", method = "DELETE", hasBody = true)
@@ -188,7 +191,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final WorkspacesListOptionsInner workspacesListOptions = null;
+        final WorkspacesListOptions workspacesListOptions = null;
         Integer maxResults = null;
         return service.list(this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), maxResults, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<WorkspaceInner>>>>() {
@@ -213,7 +216,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;WorkspaceInner&gt; object if successful.
      */
-    public PagedList<WorkspaceInner> list(final WorkspacesListOptionsInner workspacesListOptions) {
+    public PagedList<WorkspaceInner> list(final WorkspacesListOptions workspacesListOptions) {
         ServiceResponse<Page<WorkspaceInner>> response = listSinglePageAsync(workspacesListOptions).toBlocking().single();
         return new PagedList<WorkspaceInner>(response.body()) {
             @Override
@@ -231,7 +234,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<WorkspaceInner>> listAsync(final WorkspacesListOptionsInner workspacesListOptions, final ListOperationCallback<WorkspaceInner> serviceCallback) {
+    public ServiceFuture<List<WorkspaceInner>> listAsync(final WorkspacesListOptions workspacesListOptions, final ListOperationCallback<WorkspaceInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listSinglePageAsync(workspacesListOptions),
             new Func1<String, Observable<ServiceResponse<Page<WorkspaceInner>>>>() {
@@ -250,7 +253,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkspaceInner&gt; object
      */
-    public Observable<Page<WorkspaceInner>> listAsync(final WorkspacesListOptionsInner workspacesListOptions) {
+    public Observable<Page<WorkspaceInner>> listAsync(final WorkspacesListOptions workspacesListOptions) {
         return listWithServiceResponseAsync(workspacesListOptions)
             .map(new Func1<ServiceResponse<Page<WorkspaceInner>>, Page<WorkspaceInner>>() {
                 @Override
@@ -267,7 +270,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkspaceInner&gt; object
      */
-    public Observable<ServiceResponse<Page<WorkspaceInner>>> listWithServiceResponseAsync(final WorkspacesListOptionsInner workspacesListOptions) {
+    public Observable<ServiceResponse<Page<WorkspaceInner>>> listWithServiceResponseAsync(final WorkspacesListOptions workspacesListOptions) {
         return listSinglePageAsync(workspacesListOptions)
             .concatMap(new Func1<ServiceResponse<Page<WorkspaceInner>>, Observable<ServiceResponse<Page<WorkspaceInner>>>>() {
                 @Override
@@ -288,7 +291,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;WorkspaceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<WorkspaceInner>>> listSinglePageAsync(final WorkspacesListOptionsInner workspacesListOptions) {
+    public Observable<ServiceResponse<Page<WorkspaceInner>>> listSinglePageAsync(final WorkspacesListOptions workspacesListOptions) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -415,7 +418,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final WorkspacesListByResourceGroupOptionsInner workspacesListByResourceGroupOptions = null;
+        final WorkspacesListByResourceGroupOptions workspacesListByResourceGroupOptions = null;
         Integer maxResults = null;
         return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), maxResults, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<WorkspaceInner>>>>() {
@@ -441,7 +444,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;WorkspaceInner&gt; object if successful.
      */
-    public PagedList<WorkspaceInner> listByResourceGroup(final String resourceGroupName, final WorkspacesListByResourceGroupOptionsInner workspacesListByResourceGroupOptions) {
+    public PagedList<WorkspaceInner> listByResourceGroup(final String resourceGroupName, final WorkspacesListByResourceGroupOptions workspacesListByResourceGroupOptions) {
         ServiceResponse<Page<WorkspaceInner>> response = listByResourceGroupSinglePageAsync(resourceGroupName, workspacesListByResourceGroupOptions).toBlocking().single();
         return new PagedList<WorkspaceInner>(response.body()) {
             @Override
@@ -460,7 +463,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<WorkspaceInner>> listByResourceGroupAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptionsInner workspacesListByResourceGroupOptions, final ListOperationCallback<WorkspaceInner> serviceCallback) {
+    public ServiceFuture<List<WorkspaceInner>> listByResourceGroupAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptions workspacesListByResourceGroupOptions, final ListOperationCallback<WorkspaceInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listByResourceGroupSinglePageAsync(resourceGroupName, workspacesListByResourceGroupOptions),
             new Func1<String, Observable<ServiceResponse<Page<WorkspaceInner>>>>() {
@@ -480,7 +483,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkspaceInner&gt; object
      */
-    public Observable<Page<WorkspaceInner>> listByResourceGroupAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptionsInner workspacesListByResourceGroupOptions) {
+    public Observable<Page<WorkspaceInner>> listByResourceGroupAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptions workspacesListByResourceGroupOptions) {
         return listByResourceGroupWithServiceResponseAsync(resourceGroupName, workspacesListByResourceGroupOptions)
             .map(new Func1<ServiceResponse<Page<WorkspaceInner>>, Page<WorkspaceInner>>() {
                 @Override
@@ -498,7 +501,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;WorkspaceInner&gt; object
      */
-    public Observable<ServiceResponse<Page<WorkspaceInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptionsInner workspacesListByResourceGroupOptions) {
+    public Observable<ServiceResponse<Page<WorkspaceInner>>> listByResourceGroupWithServiceResponseAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptions workspacesListByResourceGroupOptions) {
         return listByResourceGroupSinglePageAsync(resourceGroupName, workspacesListByResourceGroupOptions)
             .concatMap(new Func1<ServiceResponse<Page<WorkspaceInner>>, Observable<ServiceResponse<Page<WorkspaceInner>>>>() {
                 @Override
@@ -520,7 +523,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;WorkspaceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<WorkspaceInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptionsInner workspacesListByResourceGroupOptions) {
+    public Observable<ServiceResponse<Page<WorkspaceInner>>> listByResourceGroupSinglePageAsync(final String resourceGroupName, final WorkspacesListByResourceGroupOptions workspacesListByResourceGroupOptions) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -567,7 +570,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the WorkspaceInner object if successful.
      */
-    public WorkspaceInner create(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters) {
+    public WorkspaceInner create(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters) {
         return createWithServiceResponseAsync(resourceGroupName, workspaceName, parameters).toBlocking().last().body();
     }
 
@@ -581,7 +584,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<WorkspaceInner> createAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters, final ServiceCallback<WorkspaceInner> serviceCallback) {
+    public ServiceFuture<WorkspaceInner> createAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters, final ServiceCallback<WorkspaceInner> serviceCallback) {
         return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, workspaceName, parameters), serviceCallback);
     }
 
@@ -594,7 +597,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<WorkspaceInner> createAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters) {
+    public Observable<WorkspaceInner> createAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters) {
         return createWithServiceResponseAsync(resourceGroupName, workspaceName, parameters).map(new Func1<ServiceResponse<WorkspaceInner>, WorkspaceInner>() {
             @Override
             public WorkspaceInner call(ServiceResponse<WorkspaceInner> response) {
@@ -612,7 +615,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<WorkspaceInner>> createWithServiceResponseAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters) {
+    public Observable<ServiceResponse<WorkspaceInner>> createWithServiceResponseAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -644,7 +647,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the WorkspaceInner object if successful.
      */
-    public WorkspaceInner beginCreate(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters) {
+    public WorkspaceInner beginCreate(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters) {
         return beginCreateWithServiceResponseAsync(resourceGroupName, workspaceName, parameters).toBlocking().single().body();
     }
 
@@ -658,7 +661,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<WorkspaceInner> beginCreateAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters, final ServiceCallback<WorkspaceInner> serviceCallback) {
+    public ServiceFuture<WorkspaceInner> beginCreateAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters, final ServiceCallback<WorkspaceInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(resourceGroupName, workspaceName, parameters), serviceCallback);
     }
 
@@ -671,7 +674,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkspaceInner object
      */
-    public Observable<WorkspaceInner> beginCreateAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters) {
+    public Observable<WorkspaceInner> beginCreateAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters) {
         return beginCreateWithServiceResponseAsync(resourceGroupName, workspaceName, parameters).map(new Func1<ServiceResponse<WorkspaceInner>, WorkspaceInner>() {
             @Override
             public WorkspaceInner call(ServiceResponse<WorkspaceInner> response) {
@@ -689,7 +692,7 @@ public class WorkspacesInner implements InnerSupportsGet<WorkspaceInner>, InnerS
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkspaceInner object
      */
-    public Observable<ServiceResponse<WorkspaceInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParametersInner parameters) {
+    public Observable<ServiceResponse<WorkspaceInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String workspaceName, WorkspaceCreateParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

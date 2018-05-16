@@ -22,12 +22,14 @@ import com.microsoft.azure.management.batchai.BatchAIError;
 import com.microsoft.azure.management.batchai.NodeStateCounts;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Contains information about a Cluster.
  */
 @JsonFlatten
+@SkipParentValidation
 public class ClusterInner extends Resource {
     /**
      * The size of the virtual machines in the cluster.

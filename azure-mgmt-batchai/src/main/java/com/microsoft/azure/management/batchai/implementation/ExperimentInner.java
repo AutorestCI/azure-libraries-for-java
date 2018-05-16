@@ -12,7 +12,7 @@ import org.joda.time.DateTime;
 import com.microsoft.azure.management.batchai.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
-import com.microsoft.azure.management.batchai.ProxyResource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * Contains information about the experiment.
