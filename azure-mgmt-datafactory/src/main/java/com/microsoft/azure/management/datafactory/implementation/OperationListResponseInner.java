@@ -9,7 +9,6 @@
 package com.microsoft.azure.management.datafactory.implementation;
 
 import java.util.List;
-import com.microsoft.azure.management.datafactory.Operation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -21,7 +20,7 @@ public class OperationListResponseInner {
      * provider.
      */
     @JsonProperty(value = "value")
-    private List<Operation> value;
+    private List<OperationInner> value;
 
     /**
      * The link to the next page of results, if any remaining results exist.
@@ -34,7 +33,7 @@ public class OperationListResponseInner {
      *
      * @return the value value
      */
-    public List<Operation> value() {
+    public List<OperationInner> value() {
         return this.value;
     }
 
@@ -44,7 +43,7 @@ public class OperationListResponseInner {
      * @param value the value value to set
      * @return the OperationListResponseInner object itself.
      */
-    public OperationListResponseInner withValue(List<Operation> value) {
+    public OperationListResponseInner withValue(List<OperationInner> value) {
         this.value = value;
         return this;
     }

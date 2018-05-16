@@ -22,6 +22,24 @@ public class DatasetResourceInner extends SubResource {
     private DatasetInner properties;
 
     /**
+     * The resource name.
+     */
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    private String name;
+
+    /**
+     * The resource type.
+     */
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
+    private String type;
+
+    /**
+     * Etag identifies change in the resource.
+     */
+    @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
+    private String etag;
+
+    /**
      * Get the properties value.
      *
      * @return the properties value
@@ -39,6 +57,33 @@ public class DatasetResourceInner extends SubResource {
     public DatasetResourceInner withProperties(DatasetInner properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the name value.
+     *
+     * @return the name value
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type value.
+     *
+     * @return the type value
+     */
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the etag value.
+     *
+     * @return the etag value
+     */
+    public String etag() {
+        return this.etag;
     }
 
 }

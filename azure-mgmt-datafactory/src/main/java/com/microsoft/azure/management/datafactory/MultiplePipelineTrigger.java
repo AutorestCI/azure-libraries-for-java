@@ -22,6 +22,7 @@ import com.microsoft.azure.management.datafactory.implementation.TriggerInner;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("MultiplePipelineTrigger")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "BlobEventsTrigger", value = BlobEventsTrigger.class),
     @JsonSubTypes.Type(name = "BlobTrigger", value = BlobTrigger.class),
     @JsonSubTypes.Type(name = "ScheduleTrigger", value = ScheduleTrigger.class)
 })

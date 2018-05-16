@@ -16,6 +16,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.datafactory.ErrorResponseException;
+import com.microsoft.azure.management.datafactory.FactoryUpdateParameters;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -80,7 +81,7 @@ public class FactoriesInner implements InnerSupportsGet<FactoryInner>, InnerSupp
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.Factories update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Query("api-version") String apiVersion, @Body FactoryUpdateParametersInner factoryUpdateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Query("api-version") String apiVersion, @Body FactoryUpdateParameters factoryUpdateParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.Factories getByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}")
@@ -431,7 +432,7 @@ public class FactoriesInner implements InnerSupportsGet<FactoryInner>, InnerSupp
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the FactoryInner object if successful.
      */
-    public FactoryInner update(String resourceGroupName, String factoryName, FactoryUpdateParametersInner factoryUpdateParameters) {
+    public FactoryInner update(String resourceGroupName, String factoryName, FactoryUpdateParameters factoryUpdateParameters) {
         return updateWithServiceResponseAsync(resourceGroupName, factoryName, factoryUpdateParameters).toBlocking().single().body();
     }
 
@@ -445,7 +446,7 @@ public class FactoriesInner implements InnerSupportsGet<FactoryInner>, InnerSupp
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<FactoryInner> updateAsync(String resourceGroupName, String factoryName, FactoryUpdateParametersInner factoryUpdateParameters, final ServiceCallback<FactoryInner> serviceCallback) {
+    public ServiceFuture<FactoryInner> updateAsync(String resourceGroupName, String factoryName, FactoryUpdateParameters factoryUpdateParameters, final ServiceCallback<FactoryInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, factoryName, factoryUpdateParameters), serviceCallback);
     }
 
@@ -458,7 +459,7 @@ public class FactoriesInner implements InnerSupportsGet<FactoryInner>, InnerSupp
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the FactoryInner object
      */
-    public Observable<FactoryInner> updateAsync(String resourceGroupName, String factoryName, FactoryUpdateParametersInner factoryUpdateParameters) {
+    public Observable<FactoryInner> updateAsync(String resourceGroupName, String factoryName, FactoryUpdateParameters factoryUpdateParameters) {
         return updateWithServiceResponseAsync(resourceGroupName, factoryName, factoryUpdateParameters).map(new Func1<ServiceResponse<FactoryInner>, FactoryInner>() {
             @Override
             public FactoryInner call(ServiceResponse<FactoryInner> response) {
@@ -476,7 +477,7 @@ public class FactoriesInner implements InnerSupportsGet<FactoryInner>, InnerSupp
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the FactoryInner object
      */
-    public Observable<ServiceResponse<FactoryInner>> updateWithServiceResponseAsync(String resourceGroupName, String factoryName, FactoryUpdateParametersInner factoryUpdateParameters) {
+    public Observable<ServiceResponse<FactoryInner>> updateWithServiceResponseAsync(String resourceGroupName, String factoryName, FactoryUpdateParameters factoryUpdateParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

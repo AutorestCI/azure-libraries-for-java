@@ -13,12 +13,14 @@ import com.microsoft.azure.management.datafactory.FactoryIdentity;
 import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Factory resource type.
  */
 @JsonFlatten
+@SkipParentValidation
 public class FactoryInner extends Resource {
     /**
      * Unmatched properties from the message are deserialized this collection.
