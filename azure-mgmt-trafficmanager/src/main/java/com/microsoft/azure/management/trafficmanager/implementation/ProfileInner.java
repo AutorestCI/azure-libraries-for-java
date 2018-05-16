@@ -13,6 +13,7 @@ import com.microsoft.azure.management.trafficmanager.TrafficRoutingMethod;
 import com.microsoft.azure.management.trafficmanager.DnsConfig;
 import com.microsoft.azure.management.trafficmanager.MonitorConfig;
 import java.util.List;
+import com.microsoft.azure.management.trafficmanager.TrafficViewEnrollmentStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -52,6 +53,15 @@ public class ProfileInner extends TrackedResourceInner {
      */
     @JsonProperty(value = "properties.endpoints")
     private List<EndpointInner> endpoints;
+
+    /**
+     * Indicates whether Traffic View is 'Enabled' or 'Disabled' for the
+     * Traffic Manager profile. Null, indicates 'Disabled'. Enabling this
+     * feature will increase the cost of the Traffic Manage profile. Possible
+     * values include: 'Enabled', 'Disabled'.
+     */
+    @JsonProperty(value = "properties.trafficViewEnrollmentStatus")
+    private TrafficViewEnrollmentStatus trafficViewEnrollmentStatus;
 
     /**
      * Get the profileStatus value.
@@ -150,6 +160,26 @@ public class ProfileInner extends TrackedResourceInner {
      */
     public ProfileInner withEndpoints(List<EndpointInner> endpoints) {
         this.endpoints = endpoints;
+        return this;
+    }
+
+    /**
+     * Get the trafficViewEnrollmentStatus value.
+     *
+     * @return the trafficViewEnrollmentStatus value
+     */
+    public TrafficViewEnrollmentStatus trafficViewEnrollmentStatus() {
+        return this.trafficViewEnrollmentStatus;
+    }
+
+    /**
+     * Set the trafficViewEnrollmentStatus value.
+     *
+     * @param trafficViewEnrollmentStatus the trafficViewEnrollmentStatus value to set
+     * @return the ProfileInner object itself.
+     */
+    public ProfileInner withTrafficViewEnrollmentStatus(TrafficViewEnrollmentStatus trafficViewEnrollmentStatus) {
+        this.trafficViewEnrollmentStatus = trafficViewEnrollmentStatus;
         return this;
     }
 
