@@ -15,12 +15,14 @@ import java.util.List;
 import com.microsoft.azure.management.network.ApplicationGatewayWebApplicationFirewallConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Application gateway resource.
  */
 @JsonFlatten
+@SkipParentValidation
 public class ApplicationGatewayInner extends Resource {
     /**
      * SKU of the application gateway resource.
@@ -143,6 +145,12 @@ public class ApplicationGatewayInner extends Resource {
      */
     @JsonProperty(value = "etag")
     private String etag;
+
+    /**
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
 
     /**
      * Get the sku value.
@@ -530,6 +538,26 @@ public class ApplicationGatewayInner extends Resource {
      */
     public ApplicationGatewayInner withEtag(String etag) {
         this.etag = etag;
+        return this;
+    }
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id value.
+     *
+     * @param id the id value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withId(String id) {
+        this.id = id;
         return this;
     }
 

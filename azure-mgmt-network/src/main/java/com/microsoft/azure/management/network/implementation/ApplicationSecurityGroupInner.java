@@ -10,12 +10,14 @@ package com.microsoft.azure.management.network.implementation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * An application security group in a resource group.
  */
 @JsonFlatten
+@SkipParentValidation
 public class ApplicationSecurityGroupInner extends Resource {
     /**
      * The resource GUID property of the application security group resource.
@@ -37,6 +39,12 @@ public class ApplicationSecurityGroupInner extends Resource {
      */
     @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
+
+    /**
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
 
     /**
      * Get the resourceGuid value.
@@ -63,6 +71,26 @@ public class ApplicationSecurityGroupInner extends Resource {
      */
     public String etag() {
         return this.etag;
+    }
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id value.
+     *
+     * @param id the id value to set
+     * @return the ApplicationSecurityGroupInner object itself.
+     */
+    public ApplicationSecurityGroupInner withId(String id) {
+        this.id = id;
+        return this;
     }
 
 }
