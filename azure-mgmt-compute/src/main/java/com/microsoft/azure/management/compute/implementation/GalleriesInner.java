@@ -63,11 +63,11 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
     interface GalleriesService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Galleries createOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}")
-        Observable<Response<ResponseBody>> createOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Query("api-version") String apiVersion, @Body GalleryInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> createOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Query("api-version") String apiVersion, @Body GalleryInner gallery, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Galleries beginCreateOrUpdate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}")
-        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Query("api-version") String apiVersion, @Body GalleryInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Query("api-version") String apiVersion, @Body GalleryInner gallery, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Galleries getByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}")
@@ -96,14 +96,14 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the GalleryInner object if successful.
      */
-    public GalleryInner createOrUpdate(String resourceGroupName, String galleryName, GalleryInner parameters) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, parameters).toBlocking().last().body();
+    public GalleryInner createOrUpdate(String resourceGroupName, String galleryName, GalleryInner gallery) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, gallery).toBlocking().last().body();
     }
 
     /**
@@ -111,13 +111,13 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<GalleryInner> createOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner parameters, final ServiceCallback<GalleryInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, parameters), serviceCallback);
+    public ServiceFuture<GalleryInner> createOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner gallery, final ServiceCallback<GalleryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, gallery), serviceCallback);
     }
 
     /**
@@ -125,12 +125,12 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<GalleryInner> createOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner parameters) {
-        return createOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, parameters).map(new Func1<ServiceResponse<GalleryInner>, GalleryInner>() {
+    public Observable<GalleryInner> createOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner gallery) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, gallery).map(new Func1<ServiceResponse<GalleryInner>, GalleryInner>() {
             @Override
             public GalleryInner call(ServiceResponse<GalleryInner> response) {
                 return response.body();
@@ -143,11 +143,11 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<GalleryInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String galleryName, GalleryInner parameters) {
+    public Observable<ServiceResponse<GalleryInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String galleryName, GalleryInner gallery) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -157,12 +157,12 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
         if (galleryName == null) {
             throw new IllegalArgumentException("Parameter galleryName is required and cannot be null.");
         }
-        if (parameters == null) {
-            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        if (gallery == null) {
+            throw new IllegalArgumentException("Parameter gallery is required and cannot be null.");
         }
-        Validator.validate(parameters);
+        Validator.validate(gallery);
         final String apiVersion = "2018-06-01";
-        Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, parameters, this.client.acceptLanguage(), this.client.userAgent());
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, gallery, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<GalleryInner>() { }.getType());
     }
 
@@ -171,14 +171,14 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the GalleryInner object if successful.
      */
-    public GalleryInner beginCreateOrUpdate(String resourceGroupName, String galleryName, GalleryInner parameters) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, parameters).toBlocking().single().body();
+    public GalleryInner beginCreateOrUpdate(String resourceGroupName, String galleryName, GalleryInner gallery) {
+        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, gallery).toBlocking().single().body();
     }
 
     /**
@@ -186,13 +186,13 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<GalleryInner> beginCreateOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner parameters, final ServiceCallback<GalleryInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, parameters), serviceCallback);
+    public ServiceFuture<GalleryInner> beginCreateOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner gallery, final ServiceCallback<GalleryInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, gallery), serviceCallback);
     }
 
     /**
@@ -200,12 +200,12 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryInner object
      */
-    public Observable<GalleryInner> beginCreateOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner parameters) {
-        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, parameters).map(new Func1<ServiceResponse<GalleryInner>, GalleryInner>() {
+    public Observable<GalleryInner> beginCreateOrUpdateAsync(String resourceGroupName, String galleryName, GalleryInner gallery) {
+        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, galleryName, gallery).map(new Func1<ServiceResponse<GalleryInner>, GalleryInner>() {
             @Override
             public GalleryInner call(ServiceResponse<GalleryInner> response) {
                 return response.body();
@@ -218,11 +218,11 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
-     * @param parameters Parameters supplied to the create or update gallery operation.
+     * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryInner object
      */
-    public Observable<ServiceResponse<GalleryInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String galleryName, GalleryInner parameters) {
+    public Observable<ServiceResponse<GalleryInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String galleryName, GalleryInner gallery) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -232,12 +232,12 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
         if (galleryName == null) {
             throw new IllegalArgumentException("Parameter galleryName is required and cannot be null.");
         }
-        if (parameters == null) {
-            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        if (gallery == null) {
+            throw new IllegalArgumentException("Parameter gallery is required and cannot be null.");
         }
-        Validator.validate(parameters);
+        Validator.validate(gallery);
         final String apiVersion = "2018-06-01";
-        return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, parameters, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, gallery, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<GalleryInner>>>() {
                 @Override
                 public Observable<ServiceResponse<GalleryInner>> call(Response<ResponseBody> response) {
