@@ -117,6 +117,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param parameters The policy set definition properties.
@@ -131,6 +132,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param parameters The policy set definition properties.
@@ -144,6 +146,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param parameters The policy set definition properties.
@@ -161,6 +164,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param parameters The policy set definition properties.
@@ -177,9 +181,11 @@ public class PolicySetDefinitionsInner {
         if (parameters == null) {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         Validator.validate(parameters);
-        final String apiVersion = "2017-06-01-preview";
-        return service.createOrUpdate(policySetDefinitionName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.createOrUpdate(policySetDefinitionName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<PolicySetDefinitionInner>>>() {
                 @Override
                 public Observable<ServiceResponse<PolicySetDefinitionInner>> call(Response<ResponseBody> response) {
@@ -203,6 +209,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -215,6 +222,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -227,6 +235,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -243,6 +252,7 @@ public class PolicySetDefinitionsInner {
 
     /**
      * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -255,8 +265,10 @@ public class PolicySetDefinitionsInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-06-01-preview";
-        return service.delete(policySetDefinitionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.delete(policySetDefinitionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -279,7 +291,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -292,7 +305,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -304,7 +318,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -320,7 +335,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given subscription with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -333,8 +349,10 @@ public class PolicySetDefinitionsInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-06-01-preview";
-        return service.get(policySetDefinitionName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.get(policySetDefinitionName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<PolicySetDefinitionInner>>>() {
                 @Override
                 public Observable<ServiceResponse<PolicySetDefinitionInner>> call(Response<ResponseBody> response) {
@@ -356,7 +374,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the built in policy set definition.
+     * Retrieves a built in policy set definition.
+     * This operation retrieves the built-in policy set definition with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -369,7 +388,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the built in policy set definition.
+     * Retrieves a built in policy set definition.
+     * This operation retrieves the built-in policy set definition with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -381,7 +401,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the built in policy set definition.
+     * Retrieves a built in policy set definition.
+     * This operation retrieves the built-in policy set definition with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -397,7 +418,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the built in policy set definition.
+     * Retrieves a built in policy set definition.
+     * This operation retrieves the built-in policy set definition with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -407,8 +429,10 @@ public class PolicySetDefinitionsInner {
         if (policySetDefinitionName == null) {
             throw new IllegalArgumentException("Parameter policySetDefinitionName is required and cannot be null.");
         }
-        final String apiVersion = "2017-06-01-preview";
-        return service.getBuiltIn(policySetDefinitionName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getBuiltIn(policySetDefinitionName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<PolicySetDefinitionInner>>>() {
                 @Override
                 public Observable<ServiceResponse<PolicySetDefinitionInner>> call(Response<ResponseBody> response) {
@@ -430,7 +454,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
@@ -448,7 +473,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -467,7 +493,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;PolicySetDefinitionInner&gt; object
@@ -483,7 +510,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;PolicySetDefinitionInner&gt; object
@@ -503,7 +531,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;PolicySetDefinitionInner&gt; object wrapped in {@link ServiceResponse} if successful.
@@ -512,8 +541,10 @@ public class PolicySetDefinitionsInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-06-01-preview";
-        return service.list(this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.list(this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<PolicySetDefinitionInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<PolicySetDefinitionInner>>> call(Response<ResponseBody> response) {
@@ -535,7 +566,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
@@ -553,7 +585,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -572,7 +605,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;PolicySetDefinitionInner&gt; object
@@ -588,7 +622,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;PolicySetDefinitionInner&gt; object
@@ -608,14 +643,17 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;PolicySetDefinitionInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
     public Observable<ServiceResponse<Page<PolicySetDefinitionInner>>> listBuiltInSinglePageAsync() {
-        final String apiVersion = "2017-06-01-preview";
-        return service.listBuiltIn(apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listBuiltIn(this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<PolicySetDefinitionInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<PolicySetDefinitionInner>>> call(Response<ResponseBody> response) {
@@ -629,7 +667,7 @@ public class PolicySetDefinitionsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<PolicySetDefinitionInner>> listBuiltInDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException {
+    private ServiceResponse<PageImpl<PolicySetDefinitionInner>> listBuiltInDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<PolicySetDefinitionInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<PolicySetDefinitionInner>>() { }.getType())
                 .registerError(ErrorResponseException.class)
@@ -637,7 +675,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Creates or updates a policy set definition at management group level.
+     * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param managementGroupId The ID of the management group.
@@ -652,7 +691,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Creates or updates a policy set definition at management group level.
+     * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param managementGroupId The ID of the management group.
@@ -666,7 +706,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Creates or updates a policy set definition at management group level.
+     * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param managementGroupId The ID of the management group.
@@ -684,7 +725,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Creates or updates a policy set definition at management group level.
+     * Creates or updates a policy set definition.
+     * This operation creates or updates a policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to create.
      * @param managementGroupId The ID of the management group.
@@ -702,9 +744,11 @@ public class PolicySetDefinitionsInner {
         if (parameters == null) {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
         Validator.validate(parameters);
-        final String apiVersion = "2017-06-01-preview";
-        return service.createOrUpdateAtManagementGroup(policySetDefinitionName, managementGroupId, parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.createOrUpdateAtManagementGroup(policySetDefinitionName, managementGroupId, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<PolicySetDefinitionInner>>>() {
                 @Override
                 public Observable<ServiceResponse<PolicySetDefinitionInner>> call(Response<ResponseBody> response) {
@@ -727,7 +771,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Deletes a policy set definition at management group level.
+     * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @param managementGroupId The ID of the management group.
@@ -740,7 +785,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Deletes a policy set definition at management group level.
+     * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @param managementGroupId The ID of the management group.
@@ -753,7 +799,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Deletes a policy set definition at management group level.
+     * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @param managementGroupId The ID of the management group.
@@ -770,7 +817,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Deletes a policy set definition at management group level.
+     * Deletes a policy set definition.
+     * This operation deletes the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to delete.
      * @param managementGroupId The ID of the management group.
@@ -784,8 +832,10 @@ public class PolicySetDefinitionsInner {
         if (managementGroupId == null) {
             throw new IllegalArgumentException("Parameter managementGroupId is required and cannot be null.");
         }
-        final String apiVersion = "2017-06-01-preview";
-        return service.deleteAtManagementGroup(policySetDefinitionName, managementGroupId, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.deleteAtManagementGroup(policySetDefinitionName, managementGroupId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
@@ -808,7 +858,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition at management group level.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @param managementGroupId The ID of the management group.
@@ -822,7 +873,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition at management group level.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @param managementGroupId The ID of the management group.
@@ -835,7 +887,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition at management group level.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @param managementGroupId The ID of the management group.
@@ -852,7 +905,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets the policy set definition at management group level.
+     * Retrieves a policy set definition.
+     * This operation retrieves the policy set definition in the given management group with the given name.
      *
      * @param policySetDefinitionName The name of the policy set definition to get.
      * @param managementGroupId The ID of the management group.
@@ -866,8 +920,10 @@ public class PolicySetDefinitionsInner {
         if (managementGroupId == null) {
             throw new IllegalArgumentException("Parameter managementGroupId is required and cannot be null.");
         }
-        final String apiVersion = "2017-06-01-preview";
-        return service.getAtManagementGroup(policySetDefinitionName, managementGroupId, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.getAtManagementGroup(policySetDefinitionName, managementGroupId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<PolicySetDefinitionInner>>>() {
                 @Override
                 public Observable<ServiceResponse<PolicySetDefinitionInner>> call(Response<ResponseBody> response) {
@@ -889,7 +945,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param managementGroupId The ID of the management group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -908,7 +965,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param managementGroupId The ID of the management group.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -928,7 +986,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param managementGroupId The ID of the management group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -945,7 +1004,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param managementGroupId The ID of the management group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -966,7 +1026,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
     ServiceResponse<PageImpl<PolicySetDefinitionInner>> * @param managementGroupId The ID of the management group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -976,8 +1037,10 @@ public class PolicySetDefinitionsInner {
         if (managementGroupId == null) {
             throw new IllegalArgumentException("Parameter managementGroupId is required and cannot be null.");
         }
-        final String apiVersion = "2017-06-01-preview";
-        return service.listByManagementGroup(managementGroupId, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listByManagementGroup(managementGroupId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<PolicySetDefinitionInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<PolicySetDefinitionInner>>> call(Response<ResponseBody> response) {
@@ -999,7 +1062,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1018,7 +1082,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
@@ -1039,7 +1104,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1056,7 +1122,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1077,7 +1144,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription.
+     * Retrieves the policy set definitions for a subscription.
+     * This operation retrieves a list of all the policy set definitions in the given subscription.
      *
     ServiceResponse<PageImpl<PolicySetDefinitionInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1110,7 +1178,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1129,7 +1198,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
@@ -1150,7 +1220,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1167,7 +1238,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1188,7 +1260,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the built in policy set definitions.
+     * Retrieves built-in policy set definitions.
+     * This operation retrieves a list of all the built-in policy set definitions.
      *
     ServiceResponse<PageImpl<PolicySetDefinitionInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1221,7 +1294,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1240,7 +1314,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
@@ -1261,7 +1336,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1278,7 +1354,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1299,7 +1376,8 @@ public class PolicySetDefinitionsInner {
     }
 
     /**
-     * Gets all the policy set definitions for a subscription at management group.
+     * Retrieves all policy set definitions in management group.
+     * This operation retrieves a list of all the a policy set definition in the given management group.
      *
     ServiceResponse<PageImpl<PolicySetDefinitionInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
