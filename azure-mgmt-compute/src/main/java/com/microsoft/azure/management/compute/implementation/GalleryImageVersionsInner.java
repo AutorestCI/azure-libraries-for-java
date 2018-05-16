@@ -71,6 +71,10 @@ public class GalleryImageVersionsInner {
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}/versions/{galleryImageVersionName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> delete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Path("galleryImageName") String galleryImageName, @Path("galleryImageVersionName") String galleryImageVersionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.GalleryImageVersions beginDelete" })
+        @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}/versions/{galleryImageVersionName}", method = "DELETE", hasBody = true)
+        Observable<Response<ResponseBody>> beginDelete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Path("galleryImageName") String galleryImageName, @Path("galleryImageVersionName") String galleryImageVersionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.GalleryImageVersions listGalleryImageVersionsInGalleryImage" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}/versions")
         Observable<Response<ResponseBody>> listGalleryImageVersionsInGalleryImage(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Path("galleryImageName") String galleryImageName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -479,7 +483,7 @@ public class GalleryImageVersionsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void delete(String resourceGroupName, String galleryName, String galleryImageName, String galleryImageVersionName) {
-        deleteWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName, galleryImageVersionName).toBlocking().single().body();
+        deleteWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName, galleryImageVersionName).toBlocking().last().body();
     }
 
     /**
@@ -505,7 +509,7 @@ public class GalleryImageVersionsInner {
      * @param galleryImageName The name of the gallery image.
      * @param galleryImageVersionName The name of the gallery image version.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable for the request
      */
     public Observable<Void> deleteAsync(String resourceGroupName, String galleryName, String galleryImageName, String galleryImageVersionName) {
         return deleteWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName, galleryImageVersionName).map(new Func1<ServiceResponse<Void>, Void>() {
@@ -524,7 +528,7 @@ public class GalleryImageVersionsInner {
      * @param galleryImageName The name of the gallery image.
      * @param galleryImageVersionName The name of the gallery image version.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable for the request
      */
     public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String galleryName, String galleryImageName, String galleryImageVersionName) {
         if (this.client.subscriptionId() == null) {
@@ -543,12 +547,92 @@ public class GalleryImageVersionsInner {
             throw new IllegalArgumentException("Parameter galleryImageVersionName is required and cannot be null.");
         }
         final String apiVersion = "2018-06-01";
-        return service.delete(this.client.subscriptionId(), resourceGroupName, galleryName, galleryImageName, galleryImageVersionName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), resourceGroupName, galleryName, galleryImageName, galleryImageVersionName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
+    }
+
+    /**
+     * Delete a gallery image version.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param galleryName The name of the gallery.
+     * @param galleryImageName The name of the gallery image.
+     * @param galleryImageVersionName The name of the gallery image version.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void beginDelete(String resourceGroupName, String galleryName, String galleryImageName, String galleryImageVersionName) {
+        beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName, galleryImageVersionName).toBlocking().single().body();
+    }
+
+    /**
+     * Delete a gallery image version.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param galleryName The name of the gallery.
+     * @param galleryImageName The name of the gallery image.
+     * @param galleryImageVersionName The name of the gallery image version.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> beginDeleteAsync(String resourceGroupName, String galleryName, String galleryImageName, String galleryImageVersionName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName, galleryImageVersionName), serviceCallback);
+    }
+
+    /**
+     * Delete a gallery image version.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param galleryName The name of the gallery.
+     * @param galleryImageName The name of the gallery image.
+     * @param galleryImageVersionName The name of the gallery image version.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> beginDeleteAsync(String resourceGroupName, String galleryName, String galleryImageName, String galleryImageVersionName) {
+        return beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName, galleryImageVersionName).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Delete a gallery image version.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param galleryName The name of the gallery.
+     * @param galleryImageName The name of the gallery image.
+     * @param galleryImageVersionName The name of the gallery image version.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String galleryName, String galleryImageName, String galleryImageVersionName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (galleryName == null) {
+            throw new IllegalArgumentException("Parameter galleryName is required and cannot be null.");
+        }
+        if (galleryImageName == null) {
+            throw new IllegalArgumentException("Parameter galleryImageName is required and cannot be null.");
+        }
+        if (galleryImageVersionName == null) {
+            throw new IllegalArgumentException("Parameter galleryImageVersionName is required and cannot be null.");
+        }
+        final String apiVersion = "2018-06-01";
+        return service.beginDelete(this.client.subscriptionId(), resourceGroupName, galleryName, galleryImageName, galleryImageVersionName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
                 public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = deleteDelegate(response);
+                        ServiceResponse<Void> clientResponse = beginDeleteDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -557,7 +641,7 @@ public class GalleryImageVersionsInner {
             });
     }
 
-    private ServiceResponse<Void> deleteDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<Void> beginDeleteDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
                 .register(202, new TypeToken<Void>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
