@@ -11,7 +11,7 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Certificate details.
+ * Describes the certificate details.
  */
 public class CertificateDescription {
     /**

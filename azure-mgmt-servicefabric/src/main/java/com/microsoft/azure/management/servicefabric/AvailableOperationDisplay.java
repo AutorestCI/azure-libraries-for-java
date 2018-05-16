@@ -11,23 +11,23 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Operation supported by ServiceFabric resource provider.
+ * Operation supported by Service Fabric resource provider.
  */
 public class AvailableOperationDisplay {
     /**
-     * Provider name.
+     * The name of the provider.
      */
     @JsonProperty(value = "provider")
     private String provider;
 
     /**
-     * Resource name.
+     * The resource on which the operation is performed.
      */
     @JsonProperty(value = "resource")
     private String resource;
 
     /**
-     * Operation name.
+     * The operation that can be performed.
      */
     @JsonProperty(value = "operation")
     private String operation;

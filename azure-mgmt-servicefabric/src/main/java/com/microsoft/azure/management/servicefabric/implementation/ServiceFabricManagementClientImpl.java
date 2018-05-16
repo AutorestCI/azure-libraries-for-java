@@ -51,18 +51,6 @@ public class ServiceFabricManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
-    /** The version of the ServiceFabric resouce provider api. */
-    private String apiVersion;
-
-    /**
-     * Gets The version of the ServiceFabric resouce provider api.
-     *
-     * @return the apiVersion value.
-     */
-    public String apiVersion() {
-        return this.apiVersion;
-    }
-
     /** Gets or sets the preferred language for the response. */
     private String acceptLanguage;
 
@@ -172,6 +160,58 @@ public class ServiceFabricManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The ApplicationTypesInner object to access its operations.
+     */
+    private ApplicationTypesInner applicationTypes;
+
+    /**
+     * Gets the ApplicationTypesInner object to access its operations.
+     * @return the ApplicationTypesInner object.
+     */
+    public ApplicationTypesInner applicationTypes() {
+        return this.applicationTypes;
+    }
+
+    /**
+     * The ApplicationTypeVersionsInner object to access its operations.
+     */
+    private ApplicationTypeVersionsInner applicationTypeVersions;
+
+    /**
+     * Gets the ApplicationTypeVersionsInner object to access its operations.
+     * @return the ApplicationTypeVersionsInner object.
+     */
+    public ApplicationTypeVersionsInner applicationTypeVersions() {
+        return this.applicationTypeVersions;
+    }
+
+    /**
+     * The ApplicationsInner object to access its operations.
+     */
+    private ApplicationsInner applications;
+
+    /**
+     * Gets the ApplicationsInner object to access its operations.
+     * @return the ApplicationsInner object.
+     */
+    public ApplicationsInner applications() {
+        return this.applications;
+    }
+
+    /**
+     * The ServicesInner object to access its operations.
+     */
+    private ServicesInner services;
+
+    /**
+     * Gets the ServicesInner object to access its operations.
+     * @return the ServicesInner object.
+     */
+    public ServicesInner services() {
+        return this.services;
+    }
+
+    /**
      * Initializes an instance of ServiceFabricManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -202,13 +242,16 @@ public class ServiceFabricManagementClientImpl extends AzureServiceClient {
     }
 
     protected void initialize() {
-        this.apiVersion = "2016-09-01";
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
         this.clusters = new ClustersInner(restClient().retrofit(), this);
         this.clusterVersions = new ClusterVersionsInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
+        this.applicationTypes = new ApplicationTypesInner(restClient().retrofit(), this);
+        this.applicationTypeVersions = new ApplicationTypeVersionsInner(restClient().retrofit(), this);
+        this.applications = new ApplicationsInner(restClient().retrofit(), this);
+        this.services = new ServicesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
@@ -219,6 +262,6 @@ public class ServiceFabricManagementClientImpl extends AzureServiceClient {
      */
     @Override
     public String userAgent() {
-        return String.format("%s (%s, %s)", super.userAgent(), "ServiceFabricManagementClient", "2016-09-01");
+        return String.format("%s (%s)", super.userAgent(), "ServiceFabricManagementClient");
     }
 }

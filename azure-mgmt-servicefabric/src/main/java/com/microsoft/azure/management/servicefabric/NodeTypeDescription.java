@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class NodeTypeDescription {
     /**
-     * Name of the node type.
+     * The name of the node type.
      */
     @JsonProperty(value = "name", required = true)
     private String name;
@@ -31,8 +31,8 @@ public class NodeTypeDescription {
 
     /**
      * The capacity tags applied to the nodes in the node type, the cluster
-     * resource manager uses these tags to understand how much of a resource a
-     * node has.
+     * resource manager uses these tags to understand how much resource a node
+     * has.
      */
     @JsonProperty(value = "capacities")
     private Map<String, String> capacities;
@@ -50,38 +50,51 @@ public class NodeTypeDescription {
     private int httpGatewayEndpointPort;
 
     /**
-     * Nodetype durability Level. Possible values include: 'Bronze', 'Silver',
-     * 'Gold'.
+     * The durability level of the node type. Learn about
+     * [DurabilityLevel](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-capacity).
+     *
+     * - Bronze - No privileges. This is the default.
+     * - Silver - The infrastructure jobs can be paused for a duration of 10
+     * minutes per UD.
+     * - Gold - The infrastructure jobs can be paused for a duration of 2 hours
+     * per UD. Gold durability can be enabled only on full node VM skus like
+     * D15_V2, G5 etc.
+     * . Possible values include: 'Bronze', 'Silver', 'Gold'.
      */
     @JsonProperty(value = "durabilityLevel")
     private String durabilityLevel;
 
     /**
-     * Ports used by applications.
+     * The range of ports from which cluster assigned port to Service Fabric
+     * applications.
      */
     @JsonProperty(value = "applicationPorts")
     private EndpointRangeDescription applicationPorts;
 
     /**
-     * System assgined application ports.
+     * The range of empheral ports that nodes in this node type should be
+     * configured with.
      */
     @JsonProperty(value = "ephemeralPorts")
     private EndpointRangeDescription ephemeralPorts;
 
     /**
-     * Mark this as the primary node type.
+     * The node type on which system services will run. Only one node type
+     * should be marked as primary. Primary node type cannot be deleted or
+     * changed for existing clusters.
      */
     @JsonProperty(value = "isPrimary", required = true)
     private boolean isPrimary;
 
     /**
-     * The number of node instances in the node type.
+     * The number of nodes in the node type. This count should match the
+     * capacity property in the corresponding VirtualMachineScaleSet resource.
      */
     @JsonProperty(value = "vmInstanceCount", required = true)
     private int vmInstanceCount;
 
     /**
-     * Endpoint used by reverse proxy.
+     * The endpoint used by reverse proxy.
      */
     @JsonProperty(value = "reverseProxyEndpointPort")
     private Integer reverseProxyEndpointPort;

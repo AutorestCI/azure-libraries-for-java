@@ -6,5 +6,6 @@
 
 /**
  * This package contains the classes for ServiceFabricManagementClient.
+ * Service Fabric Management Client.
  */
 package com.microsoft.azure.management.servicefabric;

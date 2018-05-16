@@ -11,11 +11,11 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The detail of the ServiceFabric runtime version result.
+ * The detail of the Service Fabric runtime version result.
  */
 public class ClusterVersionDetails {
     /**
-     * The ServiceFabric runtime version of the cluster.
+     * The Service Fabric runtime version of the cluster.
      */
     @JsonProperty(value = "codeVersion")
     private String codeVersion;
@@ -27,7 +27,8 @@ public class ClusterVersionDetails {
     private String supportExpiryUtc;
 
     /**
-     * Cluster operating system. Possible values include: 'Windows', 'Linux'.
+     * Indicates if this version is for Windows or Linux operating system.
+     * Possible values include: 'Windows', 'Linux'.
      */
     @JsonProperty(value = "environment")
     private String environment;

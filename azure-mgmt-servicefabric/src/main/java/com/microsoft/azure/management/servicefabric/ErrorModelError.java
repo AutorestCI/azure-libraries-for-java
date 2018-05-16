@@ -11,7 +11,7 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The error detail.
+ * The error details.
  */
 public class ErrorModelError {
     /**
