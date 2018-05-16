@@ -121,16 +121,16 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The GallerysInner object to access its operations.
+     * The GalleriesInner object to access its operations.
      */
-    private GallerysInner gallerys;
+    private GalleriesInner galleries;
 
     /**
-     * Gets the GallerysInner object to access its operations.
-     * @return the GallerysInner object.
+     * Gets the GalleriesInner object to access its operations.
+     * @return the GalleriesInner object.
      */
-    public GallerysInner gallerys() {
-        return this.gallerys;
+    public GalleriesInner galleries() {
+        return this.galleries;
     }
 
     /**
@@ -440,7 +440,7 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
-        this.gallerys = new GallerysInner(restClient().retrofit(), this);
+        this.galleries = new GalleriesInner(restClient().retrofit(), this);
         this.galleryImages = new GalleryImagesInner(restClient().retrofit(), this);
         this.galleryImageVersions = new GalleryImageVersionsInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
