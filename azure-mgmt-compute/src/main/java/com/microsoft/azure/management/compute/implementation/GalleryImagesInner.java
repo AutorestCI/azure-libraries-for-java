@@ -75,9 +75,9 @@ public class GalleryImagesInner {
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> beginDelete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Path("galleryImageName") String galleryImageName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.GalleryImages listGalleryImagesInGallery" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.GalleryImages listGalleryImagesByGallery" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images")
-        Observable<Response<ResponseBody>> listGalleryImagesInGallery(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listGalleryImagesByGallery(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -528,8 +528,8 @@ public class GalleryImagesInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the GalleryImageListInner object if successful.
      */
-    public GalleryImageListInner listGalleryImagesInGallery(String resourceGroupName, String galleryName) {
-        return listGalleryImagesInGalleryWithServiceResponseAsync(resourceGroupName, galleryName).toBlocking().single().body();
+    public GalleryImageListInner listGalleryImagesByGallery(String resourceGroupName, String galleryName) {
+        return listGalleryImagesByGalleryWithServiceResponseAsync(resourceGroupName, galleryName).toBlocking().single().body();
     }
 
     /**
@@ -541,8 +541,8 @@ public class GalleryImagesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<GalleryImageListInner> listGalleryImagesInGalleryAsync(String resourceGroupName, String galleryName, final ServiceCallback<GalleryImageListInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listGalleryImagesInGalleryWithServiceResponseAsync(resourceGroupName, galleryName), serviceCallback);
+    public ServiceFuture<GalleryImageListInner> listGalleryImagesByGalleryAsync(String resourceGroupName, String galleryName, final ServiceCallback<GalleryImageListInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listGalleryImagesByGalleryWithServiceResponseAsync(resourceGroupName, galleryName), serviceCallback);
     }
 
     /**
@@ -553,8 +553,8 @@ public class GalleryImagesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryImageListInner object
      */
-    public Observable<GalleryImageListInner> listGalleryImagesInGalleryAsync(String resourceGroupName, String galleryName) {
-        return listGalleryImagesInGalleryWithServiceResponseAsync(resourceGroupName, galleryName).map(new Func1<ServiceResponse<GalleryImageListInner>, GalleryImageListInner>() {
+    public Observable<GalleryImageListInner> listGalleryImagesByGalleryAsync(String resourceGroupName, String galleryName) {
+        return listGalleryImagesByGalleryWithServiceResponseAsync(resourceGroupName, galleryName).map(new Func1<ServiceResponse<GalleryImageListInner>, GalleryImageListInner>() {
             @Override
             public GalleryImageListInner call(ServiceResponse<GalleryImageListInner> response) {
                 return response.body();
@@ -570,7 +570,7 @@ public class GalleryImagesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryImageListInner object
      */
-    public Observable<ServiceResponse<GalleryImageListInner>> listGalleryImagesInGalleryWithServiceResponseAsync(String resourceGroupName, String galleryName) {
+    public Observable<ServiceResponse<GalleryImageListInner>> listGalleryImagesByGalleryWithServiceResponseAsync(String resourceGroupName, String galleryName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -581,12 +581,12 @@ public class GalleryImagesInner {
             throw new IllegalArgumentException("Parameter galleryName is required and cannot be null.");
         }
         final String apiVersion = "2018-06-01";
-        return service.listGalleryImagesInGallery(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.listGalleryImagesByGallery(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<GalleryImageListInner>>>() {
                 @Override
                 public Observable<ServiceResponse<GalleryImageListInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<GalleryImageListInner> clientResponse = listGalleryImagesInGalleryDelegate(response);
+                        ServiceResponse<GalleryImageListInner> clientResponse = listGalleryImagesByGalleryDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -595,7 +595,7 @@ public class GalleryImagesInner {
             });
     }
 
-    private ServiceResponse<GalleryImageListInner> listGalleryImagesInGalleryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<GalleryImageListInner> listGalleryImagesByGalleryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<GalleryImageListInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<GalleryImageListInner>() { }.getType())
                 .registerError(CloudException.class)

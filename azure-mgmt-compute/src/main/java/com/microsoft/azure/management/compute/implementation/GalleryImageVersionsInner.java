@@ -75,9 +75,9 @@ public class GalleryImageVersionsInner {
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}/versions/{galleryImageVersionName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> beginDelete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Path("galleryImageName") String galleryImageName, @Path("galleryImageVersionName") String galleryImageVersionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.GalleryImageVersions listGalleryImageVersionsInGalleryImage" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.GalleryImageVersions listGalleryImageVersionsByGalleryImage" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}/versions")
-        Observable<Response<ResponseBody>> listGalleryImageVersionsInGalleryImage(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Path("galleryImageName") String galleryImageName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listGalleryImageVersionsByGalleryImage(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("galleryName") String galleryName, @Path("galleryImageName") String galleryImageName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -660,8 +660,8 @@ public class GalleryImageVersionsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the GalleryImageVersionListInner object if successful.
      */
-    public GalleryImageVersionListInner listGalleryImageVersionsInGalleryImage(String resourceGroupName, String galleryName, String galleryImageName) {
-        return listGalleryImageVersionsInGalleryImageWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName).toBlocking().single().body();
+    public GalleryImageVersionListInner listGalleryImageVersionsByGalleryImage(String resourceGroupName, String galleryName, String galleryImageName) {
+        return listGalleryImageVersionsByGalleryImageWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName).toBlocking().single().body();
     }
 
     /**
@@ -674,8 +674,8 @@ public class GalleryImageVersionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<GalleryImageVersionListInner> listGalleryImageVersionsInGalleryImageAsync(String resourceGroupName, String galleryName, String galleryImageName, final ServiceCallback<GalleryImageVersionListInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listGalleryImageVersionsInGalleryImageWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName), serviceCallback);
+    public ServiceFuture<GalleryImageVersionListInner> listGalleryImageVersionsByGalleryImageAsync(String resourceGroupName, String galleryName, String galleryImageName, final ServiceCallback<GalleryImageVersionListInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listGalleryImageVersionsByGalleryImageWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName), serviceCallback);
     }
 
     /**
@@ -687,8 +687,8 @@ public class GalleryImageVersionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryImageVersionListInner object
      */
-    public Observable<GalleryImageVersionListInner> listGalleryImageVersionsInGalleryImageAsync(String resourceGroupName, String galleryName, String galleryImageName) {
-        return listGalleryImageVersionsInGalleryImageWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName).map(new Func1<ServiceResponse<GalleryImageVersionListInner>, GalleryImageVersionListInner>() {
+    public Observable<GalleryImageVersionListInner> listGalleryImageVersionsByGalleryImageAsync(String resourceGroupName, String galleryName, String galleryImageName) {
+        return listGalleryImageVersionsByGalleryImageWithServiceResponseAsync(resourceGroupName, galleryName, galleryImageName).map(new Func1<ServiceResponse<GalleryImageVersionListInner>, GalleryImageVersionListInner>() {
             @Override
             public GalleryImageVersionListInner call(ServiceResponse<GalleryImageVersionListInner> response) {
                 return response.body();
@@ -705,7 +705,7 @@ public class GalleryImageVersionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryImageVersionListInner object
      */
-    public Observable<ServiceResponse<GalleryImageVersionListInner>> listGalleryImageVersionsInGalleryImageWithServiceResponseAsync(String resourceGroupName, String galleryName, String galleryImageName) {
+    public Observable<ServiceResponse<GalleryImageVersionListInner>> listGalleryImageVersionsByGalleryImageWithServiceResponseAsync(String resourceGroupName, String galleryName, String galleryImageName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -719,12 +719,12 @@ public class GalleryImageVersionsInner {
             throw new IllegalArgumentException("Parameter galleryImageName is required and cannot be null.");
         }
         final String apiVersion = "2018-06-01";
-        return service.listGalleryImageVersionsInGalleryImage(this.client.subscriptionId(), resourceGroupName, galleryName, galleryImageName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.listGalleryImageVersionsByGalleryImage(this.client.subscriptionId(), resourceGroupName, galleryName, galleryImageName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<GalleryImageVersionListInner>>>() {
                 @Override
                 public Observable<ServiceResponse<GalleryImageVersionListInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<GalleryImageVersionListInner> clientResponse = listGalleryImageVersionsInGalleryImageDelegate(response);
+                        ServiceResponse<GalleryImageVersionListInner> clientResponse = listGalleryImageVersionsByGalleryImageDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -733,7 +733,7 @@ public class GalleryImageVersionsInner {
             });
     }
 
-    private ServiceResponse<GalleryImageVersionListInner> listGalleryImageVersionsInGalleryImageDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<GalleryImageVersionListInner> listGalleryImageVersionsByGalleryImageDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<GalleryImageVersionListInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<GalleryImageVersionListInner>() { }.getType())
                 .registerError(CloudException.class)
