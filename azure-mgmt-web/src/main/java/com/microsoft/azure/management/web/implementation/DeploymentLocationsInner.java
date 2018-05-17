@@ -9,7 +9,6 @@
 package com.microsoft.azure.management.web.implementation;
 
 import java.util.List;
-import com.microsoft.azure.management.web.AppServiceEnvironment;
 import com.microsoft.azure.management.web.HostingEnvironmentDeploymentInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -29,7 +28,7 @@ public class DeploymentLocationsInner {
      * environments.
      */
     @JsonProperty(value = "hostingEnvironments")
-    private List<AppServiceEnvironment> hostingEnvironments;
+    private List<AppServiceEnvironmentInner> hostingEnvironments;
 
     /**
      * Available App Service Environments with basic information.
@@ -62,7 +61,7 @@ public class DeploymentLocationsInner {
      *
      * @return the hostingEnvironments value
      */
-    public List<AppServiceEnvironment> hostingEnvironments() {
+    public List<AppServiceEnvironmentInner> hostingEnvironments() {
         return this.hostingEnvironments;
     }
 
@@ -72,7 +71,7 @@ public class DeploymentLocationsInner {
      * @param hostingEnvironments the hostingEnvironments value to set
      * @return the DeploymentLocationsInner object itself.
      */
-    public DeploymentLocationsInner withHostingEnvironments(List<AppServiceEnvironment> hostingEnvironments) {
+    public DeploymentLocationsInner withHostingEnvironments(List<AppServiceEnvironmentInner> hostingEnvironments) {
         this.hostingEnvironments = hostingEnvironments;
         return this;
     }

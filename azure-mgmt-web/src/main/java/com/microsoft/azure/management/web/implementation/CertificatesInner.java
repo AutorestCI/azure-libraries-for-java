@@ -16,6 +16,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.web.CertificatePatchResource;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -87,7 +88,7 @@ public class CertificatesInner implements InnerSupportsGet<CertificateInner>, In
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.Certificates update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/certificates/{name}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body CertificatePatchResourceInner certificateEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body CertificatePatchResource certificateEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.Certificates listNext" })
         @GET
@@ -611,7 +612,7 @@ public class CertificatesInner implements InnerSupportsGet<CertificateInner>, In
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CertificateInner object if successful.
      */
-    public CertificateInner update(String resourceGroupName, String name, CertificatePatchResourceInner certificateEnvelope) {
+    public CertificateInner update(String resourceGroupName, String name, CertificatePatchResource certificateEnvelope) {
         return updateWithServiceResponseAsync(resourceGroupName, name, certificateEnvelope).toBlocking().single().body();
     }
 
@@ -626,7 +627,7 @@ public class CertificatesInner implements InnerSupportsGet<CertificateInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CertificateInner> updateAsync(String resourceGroupName, String name, CertificatePatchResourceInner certificateEnvelope, final ServiceCallback<CertificateInner> serviceCallback) {
+    public ServiceFuture<CertificateInner> updateAsync(String resourceGroupName, String name, CertificatePatchResource certificateEnvelope, final ServiceCallback<CertificateInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, name, certificateEnvelope), serviceCallback);
     }
 
@@ -640,7 +641,7 @@ public class CertificatesInner implements InnerSupportsGet<CertificateInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CertificateInner object
      */
-    public Observable<CertificateInner> updateAsync(String resourceGroupName, String name, CertificatePatchResourceInner certificateEnvelope) {
+    public Observable<CertificateInner> updateAsync(String resourceGroupName, String name, CertificatePatchResource certificateEnvelope) {
         return updateWithServiceResponseAsync(resourceGroupName, name, certificateEnvelope).map(new Func1<ServiceResponse<CertificateInner>, CertificateInner>() {
             @Override
             public CertificateInner call(ServiceResponse<CertificateInner> response) {
@@ -659,7 +660,7 @@ public class CertificatesInner implements InnerSupportsGet<CertificateInner>, In
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CertificateInner object
      */
-    public Observable<ServiceResponse<CertificateInner>> updateWithServiceResponseAsync(String resourceGroupName, String name, CertificatePatchResourceInner certificateEnvelope) {
+    public Observable<ServiceResponse<CertificateInner>> updateWithServiceResponseAsync(String resourceGroupName, String name, CertificatePatchResource certificateEnvelope) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
