@@ -15,8 +15,11 @@ import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.web.CheckNameResourceTypes;
+import com.microsoft.azure.management.web.CsmMoveResourceEnvelope;
 import com.microsoft.azure.management.web.ResourceNameAvailabilityRequest;
 import com.microsoft.azure.management.web.SkuName;
+import com.microsoft.azure.management.web.ValidateRequest;
+import com.microsoft.azure.management.web.VnetParameters;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.credentials.ServiceClientCredentials;
@@ -463,19 +466,19 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebSiteManagementClient verifyHostingEnvironmentVnet" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.Web/verifyHostingEnvironmentVnet")
-        Observable<Response<ResponseBody>> verifyHostingEnvironmentVnet(@Path("subscriptionId") String subscriptionId, @Body VnetParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> verifyHostingEnvironmentVnet(@Path("subscriptionId") String subscriptionId, @Body VnetParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebSiteManagementClient move" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/moveResources")
-        Observable<Response<ResponseBody>> move(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body CsmMoveResourceEnvelopeInner moveResourceEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> move(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body CsmMoveResourceEnvelope moveResourceEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebSiteManagementClient validate" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/validate")
-        Observable<Response<ResponseBody>> validate(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ValidateRequestInner validateRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> validate(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body ValidateRequest validateRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebSiteManagementClient validateMove" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/validateMoveResources")
-        Observable<Response<ResponseBody>> validateMove(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body CsmMoveResourceEnvelopeInner moveResourceEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> validateMove(@Path("resourceGroupName") String resourceGroupName, @Path("subscriptionId") String subscriptionId, @Body CsmMoveResourceEnvelope moveResourceEnvelope, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.WebSiteManagementClient listSourceControlsNext" })
         @GET
@@ -1814,7 +1817,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the VnetValidationFailureDetailsInner object if successful.
      */
-    public VnetValidationFailureDetailsInner verifyHostingEnvironmentVnet(VnetParametersInner parameters) {
+    public VnetValidationFailureDetailsInner verifyHostingEnvironmentVnet(VnetParameters parameters) {
         return verifyHostingEnvironmentVnetWithServiceResponseAsync(parameters).toBlocking().single().body();
     }
 
@@ -1827,7 +1830,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<VnetValidationFailureDetailsInner> verifyHostingEnvironmentVnetAsync(VnetParametersInner parameters, final ServiceCallback<VnetValidationFailureDetailsInner> serviceCallback) {
+    public ServiceFuture<VnetValidationFailureDetailsInner> verifyHostingEnvironmentVnetAsync(VnetParameters parameters, final ServiceCallback<VnetValidationFailureDetailsInner> serviceCallback) {
         return ServiceFuture.fromResponse(verifyHostingEnvironmentVnetWithServiceResponseAsync(parameters), serviceCallback);
     }
 
@@ -1839,7 +1842,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the VnetValidationFailureDetailsInner object
      */
-    public Observable<VnetValidationFailureDetailsInner> verifyHostingEnvironmentVnetAsync(VnetParametersInner parameters) {
+    public Observable<VnetValidationFailureDetailsInner> verifyHostingEnvironmentVnetAsync(VnetParameters parameters) {
         return verifyHostingEnvironmentVnetWithServiceResponseAsync(parameters).map(new Func1<ServiceResponse<VnetValidationFailureDetailsInner>, VnetValidationFailureDetailsInner>() {
             @Override
             public VnetValidationFailureDetailsInner call(ServiceResponse<VnetValidationFailureDetailsInner> response) {
@@ -1856,7 +1859,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the VnetValidationFailureDetailsInner object
      */
-    public Observable<ServiceResponse<VnetValidationFailureDetailsInner>> verifyHostingEnvironmentVnetWithServiceResponseAsync(VnetParametersInner parameters) {
+    public Observable<ServiceResponse<VnetValidationFailureDetailsInner>> verifyHostingEnvironmentVnetWithServiceResponseAsync(VnetParameters parameters) {
         if (this.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.subscriptionId() is required and cannot be null.");
         }
@@ -1896,7 +1899,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void move(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope) {
+    public void move(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope) {
         moveWithServiceResponseAsync(resourceGroupName, moveResourceEnvelope).toBlocking().single().body();
     }
 
@@ -1910,7 +1913,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> moveAsync(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> moveAsync(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(moveWithServiceResponseAsync(resourceGroupName, moveResourceEnvelope), serviceCallback);
     }
 
@@ -1923,7 +1926,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> moveAsync(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope) {
+    public Observable<Void> moveAsync(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope) {
         return moveWithServiceResponseAsync(resourceGroupName, moveResourceEnvelope).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -1941,7 +1944,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> moveWithServiceResponseAsync(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope) {
+    public Observable<ServiceResponse<Void>> moveWithServiceResponseAsync(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1985,7 +1988,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ValidateResponseInner object if successful.
      */
-    public ValidateResponseInner validate(String resourceGroupName, ValidateRequestInner validateRequest) {
+    public ValidateResponseInner validate(String resourceGroupName, ValidateRequest validateRequest) {
         return validateWithServiceResponseAsync(resourceGroupName, validateRequest).toBlocking().single().body();
     }
 
@@ -1999,7 +2002,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ValidateResponseInner> validateAsync(String resourceGroupName, ValidateRequestInner validateRequest, final ServiceCallback<ValidateResponseInner> serviceCallback) {
+    public ServiceFuture<ValidateResponseInner> validateAsync(String resourceGroupName, ValidateRequest validateRequest, final ServiceCallback<ValidateResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(validateWithServiceResponseAsync(resourceGroupName, validateRequest), serviceCallback);
     }
 
@@ -2012,7 +2015,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ValidateResponseInner object
      */
-    public Observable<ValidateResponseInner> validateAsync(String resourceGroupName, ValidateRequestInner validateRequest) {
+    public Observable<ValidateResponseInner> validateAsync(String resourceGroupName, ValidateRequest validateRequest) {
         return validateWithServiceResponseAsync(resourceGroupName, validateRequest).map(new Func1<ServiceResponse<ValidateResponseInner>, ValidateResponseInner>() {
             @Override
             public ValidateResponseInner call(ServiceResponse<ValidateResponseInner> response) {
@@ -2030,7 +2033,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ValidateResponseInner object
      */
-    public Observable<ServiceResponse<ValidateResponseInner>> validateWithServiceResponseAsync(String resourceGroupName, ValidateRequestInner validateRequest) {
+    public Observable<ServiceResponse<ValidateResponseInner>> validateWithServiceResponseAsync(String resourceGroupName, ValidateRequest validateRequest) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -2073,7 +2076,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void validateMove(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope) {
+    public void validateMove(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope) {
         validateMoveWithServiceResponseAsync(resourceGroupName, moveResourceEnvelope).toBlocking().single().body();
     }
 
@@ -2087,7 +2090,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> validateMoveAsync(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> validateMoveAsync(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(validateMoveWithServiceResponseAsync(resourceGroupName, moveResourceEnvelope), serviceCallback);
     }
 
@@ -2100,7 +2103,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> validateMoveAsync(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope) {
+    public Observable<Void> validateMoveAsync(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope) {
         return validateMoveWithServiceResponseAsync(resourceGroupName, moveResourceEnvelope).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -2118,7 +2121,7 @@ public class WebSiteManagementClientImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> validateMoveWithServiceResponseAsync(String resourceGroupName, CsmMoveResourceEnvelopeInner moveResourceEnvelope) {
+    public Observable<ServiceResponse<Void>> validateMoveWithServiceResponseAsync(String resourceGroupName, CsmMoveResourceEnvelope moveResourceEnvelope) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

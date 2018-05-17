@@ -67,6 +67,12 @@ public class PremierAddOnInner extends Resource {
     private String marketplaceOffer;
 
     /**
+     * Kind of resource.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
+
+    /**
      * Get the sku value.
      *
      * @return the sku value
@@ -223,6 +229,26 @@ public class PremierAddOnInner extends Resource {
      */
     public PremierAddOnInner withMarketplaceOffer(String marketplaceOffer) {
         this.marketplaceOffer = marketplaceOffer;
+        return this;
+    }
+
+    /**
+     * Get the kind value.
+     *
+     * @return the kind value
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind value.
+     *
+     * @param kind the kind value to set
+     * @return the PremierAddOnInner object itself.
+     */
+    public PremierAddOnInner withKind(String kind) {
+        this.kind = kind;
         return this;
     }
 

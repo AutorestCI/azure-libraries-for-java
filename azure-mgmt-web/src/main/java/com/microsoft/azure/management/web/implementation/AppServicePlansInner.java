@@ -16,6 +16,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.web.AppServicePlanPatchResource;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -92,7 +93,7 @@ public class AppServicePlansInner implements InnerSupportsGet<AppServicePlanInne
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServicePlans update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body AppServicePlanPatchResourceInner appServicePlan, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body AppServicePlanPatchResource appServicePlan, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServicePlans listCapabilities" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/capabilities")
@@ -927,7 +928,7 @@ public class AppServicePlansInner implements InnerSupportsGet<AppServicePlanInne
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AppServicePlanInner object if successful.
      */
-    public AppServicePlanInner update(String resourceGroupName, String name, AppServicePlanPatchResourceInner appServicePlan) {
+    public AppServicePlanInner update(String resourceGroupName, String name, AppServicePlanPatchResource appServicePlan) {
         return updateWithServiceResponseAsync(resourceGroupName, name, appServicePlan).toBlocking().single().body();
     }
 
@@ -942,7 +943,7 @@ public class AppServicePlansInner implements InnerSupportsGet<AppServicePlanInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AppServicePlanInner> updateAsync(String resourceGroupName, String name, AppServicePlanPatchResourceInner appServicePlan, final ServiceCallback<AppServicePlanInner> serviceCallback) {
+    public ServiceFuture<AppServicePlanInner> updateAsync(String resourceGroupName, String name, AppServicePlanPatchResource appServicePlan, final ServiceCallback<AppServicePlanInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, name, appServicePlan), serviceCallback);
     }
 
@@ -956,7 +957,7 @@ public class AppServicePlansInner implements InnerSupportsGet<AppServicePlanInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AppServicePlanInner object
      */
-    public Observable<AppServicePlanInner> updateAsync(String resourceGroupName, String name, AppServicePlanPatchResourceInner appServicePlan) {
+    public Observable<AppServicePlanInner> updateAsync(String resourceGroupName, String name, AppServicePlanPatchResource appServicePlan) {
         return updateWithServiceResponseAsync(resourceGroupName, name, appServicePlan).map(new Func1<ServiceResponse<AppServicePlanInner>, AppServicePlanInner>() {
             @Override
             public AppServicePlanInner call(ServiceResponse<AppServicePlanInner> response) {
@@ -975,7 +976,7 @@ public class AppServicePlansInner implements InnerSupportsGet<AppServicePlanInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AppServicePlanInner object
      */
-    public Observable<ServiceResponse<AppServicePlanInner>> updateWithServiceResponseAsync(String resourceGroupName, String name, AppServicePlanPatchResourceInner appServicePlan) {
+    public Observable<ServiceResponse<AppServicePlanInner>> updateWithServiceResponseAsync(String resourceGroupName, String name, AppServicePlanPatchResource appServicePlan) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

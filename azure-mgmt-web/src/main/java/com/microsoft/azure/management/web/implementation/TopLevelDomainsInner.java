@@ -13,6 +13,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.web.TopLevelDomainAgreementOption;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -70,7 +71,7 @@ public class TopLevelDomainsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.TopLevelDomains listAgreements" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/topLevelDomains/{name}/listAgreements")
-        Observable<Response<ResponseBody>> listAgreements(@Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body TopLevelDomainAgreementOptionInner agreementOption, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listAgreements(@Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body TopLevelDomainAgreementOption agreementOption, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.TopLevelDomains listNext" })
         @GET
@@ -284,7 +285,7 @@ public class TopLevelDomainsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;TldLegalAgreementInner&gt; object if successful.
      */
-    public PagedList<TldLegalAgreementInner> listAgreements(final String name, final TopLevelDomainAgreementOptionInner agreementOption) {
+    public PagedList<TldLegalAgreementInner> listAgreements(final String name, final TopLevelDomainAgreementOption agreementOption) {
         ServiceResponse<Page<TldLegalAgreementInner>> response = listAgreementsSinglePageAsync(name, agreementOption).toBlocking().single();
         return new PagedList<TldLegalAgreementInner>(response.body()) {
             @Override
@@ -304,7 +305,7 @@ public class TopLevelDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<TldLegalAgreementInner>> listAgreementsAsync(final String name, final TopLevelDomainAgreementOptionInner agreementOption, final ListOperationCallback<TldLegalAgreementInner> serviceCallback) {
+    public ServiceFuture<List<TldLegalAgreementInner>> listAgreementsAsync(final String name, final TopLevelDomainAgreementOption agreementOption, final ListOperationCallback<TldLegalAgreementInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listAgreementsSinglePageAsync(name, agreementOption),
             new Func1<String, Observable<ServiceResponse<Page<TldLegalAgreementInner>>>>() {
@@ -325,7 +326,7 @@ public class TopLevelDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;TldLegalAgreementInner&gt; object
      */
-    public Observable<Page<TldLegalAgreementInner>> listAgreementsAsync(final String name, final TopLevelDomainAgreementOptionInner agreementOption) {
+    public Observable<Page<TldLegalAgreementInner>> listAgreementsAsync(final String name, final TopLevelDomainAgreementOption agreementOption) {
         return listAgreementsWithServiceResponseAsync(name, agreementOption)
             .map(new Func1<ServiceResponse<Page<TldLegalAgreementInner>>, Page<TldLegalAgreementInner>>() {
                 @Override
@@ -344,7 +345,7 @@ public class TopLevelDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;TldLegalAgreementInner&gt; object
      */
-    public Observable<ServiceResponse<Page<TldLegalAgreementInner>>> listAgreementsWithServiceResponseAsync(final String name, final TopLevelDomainAgreementOptionInner agreementOption) {
+    public Observable<ServiceResponse<Page<TldLegalAgreementInner>>> listAgreementsWithServiceResponseAsync(final String name, final TopLevelDomainAgreementOption agreementOption) {
         return listAgreementsSinglePageAsync(name, agreementOption)
             .concatMap(new Func1<ServiceResponse<Page<TldLegalAgreementInner>>, Observable<ServiceResponse<Page<TldLegalAgreementInner>>>>() {
                 @Override
@@ -367,7 +368,7 @@ public class TopLevelDomainsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;TldLegalAgreementInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<TldLegalAgreementInner>>> listAgreementsSinglePageAsync(final String name, final TopLevelDomainAgreementOptionInner agreementOption) {
+    public Observable<ServiceResponse<Page<TldLegalAgreementInner>>> listAgreementsSinglePageAsync(final String name, final TopLevelDomainAgreementOption agreementOption) {
         if (name == null) {
             throw new IllegalArgumentException("Parameter name is required and cannot be null.");
         }

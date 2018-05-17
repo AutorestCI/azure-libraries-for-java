@@ -16,6 +16,8 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.web.DomainPatchResource;
+import com.microsoft.azure.management.web.DomainRecommendationSearchParameters;
 import com.microsoft.azure.management.web.ErrorResponseException;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
@@ -81,7 +83,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.Domains listRecommendations" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/listDomainRecommendations")
-        Observable<Response<ResponseBody>> listRecommendations(@Path("subscriptionId") String subscriptionId, @Body DomainRecommendationSearchParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listRecommendations(@Path("subscriptionId") String subscriptionId, @Body DomainRecommendationSearchParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.Domains listByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains")
@@ -105,7 +107,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.Domains update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("domainName") String domainName, @Path("subscriptionId") String subscriptionId, @Body DomainPatchResourceInner domain, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("domainName") String domainName, @Path("subscriptionId") String subscriptionId, @Body DomainPatchResource domain, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.Domains listOwnershipIdentifiers" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers")
@@ -493,7 +495,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;NameIdentifierInner&gt; object if successful.
      */
-    public PagedList<NameIdentifierInner> listRecommendations(final DomainRecommendationSearchParametersInner parameters) {
+    public PagedList<NameIdentifierInner> listRecommendations(final DomainRecommendationSearchParameters parameters) {
         ServiceResponse<Page<NameIdentifierInner>> response = listRecommendationsSinglePageAsync(parameters).toBlocking().single();
         return new PagedList<NameIdentifierInner>(response.body()) {
             @Override
@@ -512,7 +514,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<NameIdentifierInner>> listRecommendationsAsync(final DomainRecommendationSearchParametersInner parameters, final ListOperationCallback<NameIdentifierInner> serviceCallback) {
+    public ServiceFuture<List<NameIdentifierInner>> listRecommendationsAsync(final DomainRecommendationSearchParameters parameters, final ListOperationCallback<NameIdentifierInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
             listRecommendationsSinglePageAsync(parameters),
             new Func1<String, Observable<ServiceResponse<Page<NameIdentifierInner>>>>() {
@@ -532,7 +534,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;NameIdentifierInner&gt; object
      */
-    public Observable<Page<NameIdentifierInner>> listRecommendationsAsync(final DomainRecommendationSearchParametersInner parameters) {
+    public Observable<Page<NameIdentifierInner>> listRecommendationsAsync(final DomainRecommendationSearchParameters parameters) {
         return listRecommendationsWithServiceResponseAsync(parameters)
             .map(new Func1<ServiceResponse<Page<NameIdentifierInner>>, Page<NameIdentifierInner>>() {
                 @Override
@@ -550,7 +552,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;NameIdentifierInner&gt; object
      */
-    public Observable<ServiceResponse<Page<NameIdentifierInner>>> listRecommendationsWithServiceResponseAsync(final DomainRecommendationSearchParametersInner parameters) {
+    public Observable<ServiceResponse<Page<NameIdentifierInner>>> listRecommendationsWithServiceResponseAsync(final DomainRecommendationSearchParameters parameters) {
         return listRecommendationsSinglePageAsync(parameters)
             .concatMap(new Func1<ServiceResponse<Page<NameIdentifierInner>>, Observable<ServiceResponse<Page<NameIdentifierInner>>>>() {
                 @Override
@@ -572,7 +574,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;NameIdentifierInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<NameIdentifierInner>>> listRecommendationsSinglePageAsync(final DomainRecommendationSearchParametersInner parameters) {
+    public Observable<ServiceResponse<Page<NameIdentifierInner>>> listRecommendationsSinglePageAsync(final DomainRecommendationSearchParameters parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1169,7 +1171,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DomainInner object if successful.
      */
-    public DomainInner update(String resourceGroupName, String domainName, DomainPatchResourceInner domain) {
+    public DomainInner update(String resourceGroupName, String domainName, DomainPatchResource domain) {
         return updateWithServiceResponseAsync(resourceGroupName, domainName, domain).toBlocking().single().body();
     }
 
@@ -1184,7 +1186,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DomainInner> updateAsync(String resourceGroupName, String domainName, DomainPatchResourceInner domain, final ServiceCallback<DomainInner> serviceCallback) {
+    public ServiceFuture<DomainInner> updateAsync(String resourceGroupName, String domainName, DomainPatchResource domain, final ServiceCallback<DomainInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, domainName, domain), serviceCallback);
     }
 
@@ -1198,7 +1200,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DomainInner object
      */
-    public Observable<DomainInner> updateAsync(String resourceGroupName, String domainName, DomainPatchResourceInner domain) {
+    public Observable<DomainInner> updateAsync(String resourceGroupName, String domainName, DomainPatchResource domain) {
         return updateWithServiceResponseAsync(resourceGroupName, domainName, domain).map(new Func1<ServiceResponse<DomainInner>, DomainInner>() {
             @Override
             public DomainInner call(ServiceResponse<DomainInner> response) {
@@ -1217,7 +1219,7 @@ public class DomainsInner implements InnerSupportsGet<DomainInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DomainInner object
      */
-    public Observable<ServiceResponse<DomainInner>> updateWithServiceResponseAsync(String resourceGroupName, String domainName, DomainPatchResourceInner domain) {
+    public Observable<ServiceResponse<DomainInner>> updateWithServiceResponseAsync(String resourceGroupName, String domainName, DomainPatchResource domain) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

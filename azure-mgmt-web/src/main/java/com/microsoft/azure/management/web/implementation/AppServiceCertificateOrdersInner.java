@@ -16,6 +16,11 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.web.AppServiceCertificateOrderPatchResource;
+import com.microsoft.azure.management.web.AppServiceCertificatePatchResource;
+import com.microsoft.azure.management.web.ReissueCertificateOrderRequest;
+import com.microsoft.azure.management.web.RenewCertificateOrderRequest;
+import com.microsoft.azure.management.web.SiteSealRequest;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -96,7 +101,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body AppServiceCertificateOrderPatchResourceInner certificateDistinguishedName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body AppServiceCertificateOrderPatchResource certificateDistinguishedName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders listCertificates" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates")
@@ -120,15 +125,15 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders updateCertificate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates/{name}")
-        Observable<Response<ResponseBody>> updateCertificate(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body AppServiceCertificatePatchResourceInner keyVaultCertificate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> updateCertificate(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("name") String name, @Path("subscriptionId") String subscriptionId, @Body AppServiceCertificatePatchResource keyVaultCertificate, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders reissue" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/reissue")
-        Observable<Response<ResponseBody>> reissue(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body ReissueCertificateOrderRequestInner reissueCertificateOrderRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> reissue(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body ReissueCertificateOrderRequest reissueCertificateOrderRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders renew" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/renew")
-        Observable<Response<ResponseBody>> renew(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body RenewCertificateOrderRequestInner renewCertificateOrderRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> renew(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body RenewCertificateOrderRequest renewCertificateOrderRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders resendEmail" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/resendEmail")
@@ -140,7 +145,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders retrieveSiteSeal" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/retrieveSiteSeal")
-        Observable<Response<ResponseBody>> retrieveSiteSeal(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body SiteSealRequestInner siteSealRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> retrieveSiteSeal(@Path("resourceGroupName") String resourceGroupName, @Path("certificateOrderName") String certificateOrderName, @Path("subscriptionId") String subscriptionId, @Body SiteSealRequest siteSealRequest, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.web.AppServiceCertificateOrders verifyDomainOwnership" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/verifyDomainOwnership")
@@ -841,7 +846,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AppServiceCertificateOrderInner object if successful.
      */
-    public AppServiceCertificateOrderInner update(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResourceInner certificateDistinguishedName) {
+    public AppServiceCertificateOrderInner update(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResource certificateDistinguishedName) {
         return updateWithServiceResponseAsync(resourceGroupName, certificateOrderName, certificateDistinguishedName).toBlocking().single().body();
     }
 
@@ -856,7 +861,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AppServiceCertificateOrderInner> updateAsync(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResourceInner certificateDistinguishedName, final ServiceCallback<AppServiceCertificateOrderInner> serviceCallback) {
+    public ServiceFuture<AppServiceCertificateOrderInner> updateAsync(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResource certificateDistinguishedName, final ServiceCallback<AppServiceCertificateOrderInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, certificateOrderName, certificateDistinguishedName), serviceCallback);
     }
 
@@ -870,7 +875,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AppServiceCertificateOrderInner object
      */
-    public Observable<AppServiceCertificateOrderInner> updateAsync(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResourceInner certificateDistinguishedName) {
+    public Observable<AppServiceCertificateOrderInner> updateAsync(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResource certificateDistinguishedName) {
         return updateWithServiceResponseAsync(resourceGroupName, certificateOrderName, certificateDistinguishedName).map(new Func1<ServiceResponse<AppServiceCertificateOrderInner>, AppServiceCertificateOrderInner>() {
             @Override
             public AppServiceCertificateOrderInner call(ServiceResponse<AppServiceCertificateOrderInner> response) {
@@ -889,7 +894,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AppServiceCertificateOrderInner object
      */
-    public Observable<ServiceResponse<AppServiceCertificateOrderInner>> updateWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResourceInner certificateDistinguishedName) {
+    public Observable<ServiceResponse<AppServiceCertificateOrderInner>> updateWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, AppServiceCertificateOrderPatchResource certificateDistinguishedName) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1445,7 +1450,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AppServiceCertificateResourceInner object if successful.
      */
-    public AppServiceCertificateResourceInner updateCertificate(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResourceInner keyVaultCertificate) {
+    public AppServiceCertificateResourceInner updateCertificate(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResource keyVaultCertificate) {
         return updateCertificateWithServiceResponseAsync(resourceGroupName, certificateOrderName, name, keyVaultCertificate).toBlocking().single().body();
     }
 
@@ -1461,7 +1466,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AppServiceCertificateResourceInner> updateCertificateAsync(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResourceInner keyVaultCertificate, final ServiceCallback<AppServiceCertificateResourceInner> serviceCallback) {
+    public ServiceFuture<AppServiceCertificateResourceInner> updateCertificateAsync(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResource keyVaultCertificate, final ServiceCallback<AppServiceCertificateResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateCertificateWithServiceResponseAsync(resourceGroupName, certificateOrderName, name, keyVaultCertificate), serviceCallback);
     }
 
@@ -1476,7 +1481,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AppServiceCertificateResourceInner object
      */
-    public Observable<AppServiceCertificateResourceInner> updateCertificateAsync(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResourceInner keyVaultCertificate) {
+    public Observable<AppServiceCertificateResourceInner> updateCertificateAsync(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResource keyVaultCertificate) {
         return updateCertificateWithServiceResponseAsync(resourceGroupName, certificateOrderName, name, keyVaultCertificate).map(new Func1<ServiceResponse<AppServiceCertificateResourceInner>, AppServiceCertificateResourceInner>() {
             @Override
             public AppServiceCertificateResourceInner call(ServiceResponse<AppServiceCertificateResourceInner> response) {
@@ -1496,7 +1501,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AppServiceCertificateResourceInner object
      */
-    public Observable<ServiceResponse<AppServiceCertificateResourceInner>> updateCertificateWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResourceInner keyVaultCertificate) {
+    public Observable<ServiceResponse<AppServiceCertificateResourceInner>> updateCertificateWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, String name, AppServiceCertificatePatchResource keyVaultCertificate) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1547,7 +1552,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void reissue(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequestInner reissueCertificateOrderRequest) {
+    public void reissue(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequest reissueCertificateOrderRequest) {
         reissueWithServiceResponseAsync(resourceGroupName, certificateOrderName, reissueCertificateOrderRequest).toBlocking().single().body();
     }
 
@@ -1562,7 +1567,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> reissueAsync(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequestInner reissueCertificateOrderRequest, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> reissueAsync(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequest reissueCertificateOrderRequest, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(reissueWithServiceResponseAsync(resourceGroupName, certificateOrderName, reissueCertificateOrderRequest), serviceCallback);
     }
 
@@ -1576,7 +1581,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> reissueAsync(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequestInner reissueCertificateOrderRequest) {
+    public Observable<Void> reissueAsync(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequest reissueCertificateOrderRequest) {
         return reissueWithServiceResponseAsync(resourceGroupName, certificateOrderName, reissueCertificateOrderRequest).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -1595,7 +1600,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> reissueWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequestInner reissueCertificateOrderRequest) {
+    public Observable<ServiceResponse<Void>> reissueWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, ReissueCertificateOrderRequest reissueCertificateOrderRequest) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1642,7 +1647,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void renew(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequestInner renewCertificateOrderRequest) {
+    public void renew(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequest renewCertificateOrderRequest) {
         renewWithServiceResponseAsync(resourceGroupName, certificateOrderName, renewCertificateOrderRequest).toBlocking().single().body();
     }
 
@@ -1657,7 +1662,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> renewAsync(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequestInner renewCertificateOrderRequest, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> renewAsync(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequest renewCertificateOrderRequest, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(renewWithServiceResponseAsync(resourceGroupName, certificateOrderName, renewCertificateOrderRequest), serviceCallback);
     }
 
@@ -1671,7 +1676,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> renewAsync(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequestInner renewCertificateOrderRequest) {
+    public Observable<Void> renewAsync(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequest renewCertificateOrderRequest) {
         return renewWithServiceResponseAsync(resourceGroupName, certificateOrderName, renewCertificateOrderRequest).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -1690,7 +1695,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> renewWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequestInner renewCertificateOrderRequest) {
+    public Observable<ServiceResponse<Void>> renewWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, RenewCertificateOrderRequest renewCertificateOrderRequest) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -2001,7 +2006,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the SiteSealInner object if successful.
      */
-    public SiteSealInner retrieveSiteSeal(String resourceGroupName, String certificateOrderName, SiteSealRequestInner siteSealRequest) {
+    public SiteSealInner retrieveSiteSeal(String resourceGroupName, String certificateOrderName, SiteSealRequest siteSealRequest) {
         return retrieveSiteSealWithServiceResponseAsync(resourceGroupName, certificateOrderName, siteSealRequest).toBlocking().single().body();
     }
 
@@ -2016,7 +2021,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SiteSealInner> retrieveSiteSealAsync(String resourceGroupName, String certificateOrderName, SiteSealRequestInner siteSealRequest, final ServiceCallback<SiteSealInner> serviceCallback) {
+    public ServiceFuture<SiteSealInner> retrieveSiteSealAsync(String resourceGroupName, String certificateOrderName, SiteSealRequest siteSealRequest, final ServiceCallback<SiteSealInner> serviceCallback) {
         return ServiceFuture.fromResponse(retrieveSiteSealWithServiceResponseAsync(resourceGroupName, certificateOrderName, siteSealRequest), serviceCallback);
     }
 
@@ -2030,7 +2035,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SiteSealInner object
      */
-    public Observable<SiteSealInner> retrieveSiteSealAsync(String resourceGroupName, String certificateOrderName, SiteSealRequestInner siteSealRequest) {
+    public Observable<SiteSealInner> retrieveSiteSealAsync(String resourceGroupName, String certificateOrderName, SiteSealRequest siteSealRequest) {
         return retrieveSiteSealWithServiceResponseAsync(resourceGroupName, certificateOrderName, siteSealRequest).map(new Func1<ServiceResponse<SiteSealInner>, SiteSealInner>() {
             @Override
             public SiteSealInner call(ServiceResponse<SiteSealInner> response) {
@@ -2049,7 +2054,7 @@ public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppSer
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the SiteSealInner object
      */
-    public Observable<ServiceResponse<SiteSealInner>> retrieveSiteSealWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, SiteSealRequestInner siteSealRequest) {
+    public Observable<ServiceResponse<SiteSealInner>> retrieveSiteSealWithServiceResponseAsync(String resourceGroupName, String certificateOrderName, SiteSealRequest siteSealRequest) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
