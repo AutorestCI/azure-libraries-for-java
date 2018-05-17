@@ -10,12 +10,12 @@ package com.microsoft.azure.management.sql.implementation;
 
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.microsoft.azure.Resource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * ARM tracked top level resource.
  */
-public class TrackedResourceInner extends Resource {
+public class TrackedResourceInner extends ProxyResource {
     /**
      * Resource tags.
      */

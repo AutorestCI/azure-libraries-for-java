@@ -9,6 +9,7 @@
 package com.microsoft.azure.management.sql.implementation;
 
 import java.util.List;
+import com.microsoft.azure.management.sql.JobTarget;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -21,14 +22,14 @@ public class JobTargetGroupInner extends ProxyResourceInner {
      * Members of the target group.
      */
     @JsonProperty(value = "properties.members", required = true)
-    private List<JobTargetInner> members;
+    private List<JobTarget> members;
 
     /**
      * Get the members value.
      *
      * @return the members value
      */
-    public List<JobTargetInner> members() {
+    public List<JobTarget> members() {
         return this.members;
     }
 
@@ -38,7 +39,7 @@ public class JobTargetGroupInner extends ProxyResourceInner {
      * @param members the members value to set
      * @return the JobTargetGroupInner object itself.
      */
-    public JobTargetGroupInner withMembers(List<JobTargetInner> members) {
+    public JobTargetGroupInner withMembers(List<JobTarget> members) {
         this.members = members;
         return this;
     }

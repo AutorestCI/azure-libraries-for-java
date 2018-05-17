@@ -8,10 +8,10 @@
 
 package com.microsoft.azure.management.sql.implementation;
 
-import com.microsoft.azure.Resource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * ARM proxy resource.
  */
-public class ProxyResourceInner extends Resource {
+public class ProxyResourceInner extends ProxyResource {
 }
