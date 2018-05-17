@@ -13,6 +13,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.sql.ElasticPoolUpdate;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -96,11 +97,11 @@ public class ElasticPoolsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.ElasticPools update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("elasticPoolName") String elasticPoolName, @Path("subscriptionId") String subscriptionId, @Body ElasticPoolUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("elasticPoolName") String elasticPoolName, @Path("subscriptionId") String subscriptionId, @Body ElasticPoolUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.ElasticPools beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("elasticPoolName") String elasticPoolName, @Path("subscriptionId") String subscriptionId, @Body ElasticPoolUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("elasticPoolName") String elasticPoolName, @Path("subscriptionId") String subscriptionId, @Body ElasticPoolUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.ElasticPools listByServerNext" })
         @GET
@@ -191,7 +192,11 @@ public class ElasticPoolsInner {
                 public Observable<ServiceResponse<List<MetricInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<MetricInner>> result = listMetricsDelegate(response);
-                        ServiceResponse<List<MetricInner>> clientResponse = new ServiceResponse<List<MetricInner>>(result.body().items(), result.response());
+                        List<MetricInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<MetricInner>> clientResponse = new ServiceResponse<List<MetricInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -283,7 +288,11 @@ public class ElasticPoolsInner {
                 public Observable<ServiceResponse<List<MetricDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<MetricDefinitionInner>> result = listMetricDefinitionsDelegate(response);
-                        ServiceResponse<List<MetricDefinitionInner>> clientResponse = new ServiceResponse<List<MetricDefinitionInner>>(result.body().items(), result.response());
+                        List<MetricDefinitionInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<MetricDefinitionInner>> clientResponse = new ServiceResponse<List<MetricDefinitionInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -991,7 +1000,7 @@ public class ElasticPoolsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ElasticPoolInner object if successful.
      */
-    public ElasticPoolInner update(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters) {
+    public ElasticPoolInner update(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, serverName, elasticPoolName, parameters).toBlocking().last().body();
     }
 
@@ -1006,7 +1015,7 @@ public class ElasticPoolsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ElasticPoolInner> updateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters, final ServiceCallback<ElasticPoolInner> serviceCallback) {
+    public ServiceFuture<ElasticPoolInner> updateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters, final ServiceCallback<ElasticPoolInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, serverName, elasticPoolName, parameters), serviceCallback);
     }
 
@@ -1020,7 +1029,7 @@ public class ElasticPoolsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ElasticPoolInner> updateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters) {
+    public Observable<ElasticPoolInner> updateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, serverName, elasticPoolName, parameters).map(new Func1<ServiceResponse<ElasticPoolInner>, ElasticPoolInner>() {
             @Override
             public ElasticPoolInner call(ServiceResponse<ElasticPoolInner> response) {
@@ -1039,7 +1048,7 @@ public class ElasticPoolsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ElasticPoolInner>> updateWithServiceResponseAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters) {
+    public Observable<ServiceResponse<ElasticPoolInner>> updateWithServiceResponseAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1073,7 +1082,7 @@ public class ElasticPoolsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ElasticPoolInner object if successful.
      */
-    public ElasticPoolInner beginUpdate(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters) {
+    public ElasticPoolInner beginUpdate(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, serverName, elasticPoolName, parameters).toBlocking().single().body();
     }
 
@@ -1088,7 +1097,7 @@ public class ElasticPoolsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ElasticPoolInner> beginUpdateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters, final ServiceCallback<ElasticPoolInner> serviceCallback) {
+    public ServiceFuture<ElasticPoolInner> beginUpdateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters, final ServiceCallback<ElasticPoolInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, serverName, elasticPoolName, parameters), serviceCallback);
     }
 
@@ -1102,7 +1111,7 @@ public class ElasticPoolsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ElasticPoolInner object
      */
-    public Observable<ElasticPoolInner> beginUpdateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters) {
+    public Observable<ElasticPoolInner> beginUpdateAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, serverName, elasticPoolName, parameters).map(new Func1<ServiceResponse<ElasticPoolInner>, ElasticPoolInner>() {
             @Override
             public ElasticPoolInner call(ServiceResponse<ElasticPoolInner> response) {
@@ -1121,7 +1130,7 @@ public class ElasticPoolsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ElasticPoolInner object
      */
-    public Observable<ServiceResponse<ElasticPoolInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdateInner parameters) {
+    public Observable<ServiceResponse<ElasticPoolInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String serverName, String elasticPoolName, ElasticPoolUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

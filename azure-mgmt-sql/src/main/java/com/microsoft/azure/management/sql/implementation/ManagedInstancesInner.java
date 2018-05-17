@@ -16,6 +16,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.sql.ManagedInstanceUpdate;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -95,11 +96,11 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.ManagedInstances update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("managedInstanceName") String managedInstanceName, @Path("subscriptionId") String subscriptionId, @Body ManagedInstanceUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("managedInstanceName") String managedInstanceName, @Path("subscriptionId") String subscriptionId, @Body ManagedInstanceUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.ManagedInstances beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("managedInstanceName") String managedInstanceName, @Path("subscriptionId") String subscriptionId, @Body ManagedInstanceUpdateInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("managedInstanceName") String managedInstanceName, @Path("subscriptionId") String subscriptionId, @Body ManagedInstanceUpdate parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.ManagedInstances listNext" })
         @GET
@@ -744,7 +745,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ManagedInstanceInner object if successful.
      */
-    public ManagedInstanceInner update(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters) {
+    public ManagedInstanceInner update(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, managedInstanceName, parameters).toBlocking().last().body();
     }
 
@@ -758,7 +759,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagedInstanceInner> updateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters, final ServiceCallback<ManagedInstanceInner> serviceCallback) {
+    public ServiceFuture<ManagedInstanceInner> updateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters, final ServiceCallback<ManagedInstanceInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, managedInstanceName, parameters), serviceCallback);
     }
 
@@ -771,7 +772,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ManagedInstanceInner> updateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters) {
+    public Observable<ManagedInstanceInner> updateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, managedInstanceName, parameters).map(new Func1<ServiceResponse<ManagedInstanceInner>, ManagedInstanceInner>() {
             @Override
             public ManagedInstanceInner call(ServiceResponse<ManagedInstanceInner> response) {
@@ -789,7 +790,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ManagedInstanceInner>> updateWithServiceResponseAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters) {
+    public Observable<ServiceResponse<ManagedInstanceInner>> updateWithServiceResponseAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -819,7 +820,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ManagedInstanceInner object if successful.
      */
-    public ManagedInstanceInner beginUpdate(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters) {
+    public ManagedInstanceInner beginUpdate(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, managedInstanceName, parameters).toBlocking().single().body();
     }
 
@@ -833,7 +834,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagedInstanceInner> beginUpdateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters, final ServiceCallback<ManagedInstanceInner> serviceCallback) {
+    public ServiceFuture<ManagedInstanceInner> beginUpdateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters, final ServiceCallback<ManagedInstanceInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, managedInstanceName, parameters), serviceCallback);
     }
 
@@ -846,7 +847,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagedInstanceInner object
      */
-    public Observable<ManagedInstanceInner> beginUpdateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters) {
+    public Observable<ManagedInstanceInner> beginUpdateAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, managedInstanceName, parameters).map(new Func1<ServiceResponse<ManagedInstanceInner>, ManagedInstanceInner>() {
             @Override
             public ManagedInstanceInner call(ServiceResponse<ManagedInstanceInner> response) {
@@ -864,7 +865,7 @@ public class ManagedInstancesInner implements InnerSupportsGet<ManagedInstanceIn
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagedInstanceInner object
      */
-    public Observable<ServiceResponse<ManagedInstanceInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdateInner parameters) {
+    public Observable<ServiceResponse<ManagedInstanceInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String managedInstanceName, ManagedInstanceUpdate parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
