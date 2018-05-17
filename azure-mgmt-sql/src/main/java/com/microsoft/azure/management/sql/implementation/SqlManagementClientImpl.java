@@ -602,84 +602,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The LongTermRetentionBackupsInner object to access its operations.
-     */
-    private LongTermRetentionBackupsInner longTermRetentionBackups;
-
-    /**
-     * Gets the LongTermRetentionBackupsInner object to access its operations.
-     * @return the LongTermRetentionBackupsInner object.
-     */
-    public LongTermRetentionBackupsInner longTermRetentionBackups() {
-        return this.longTermRetentionBackups;
-    }
-
-    /**
-     * The BackupLongTermRetentionPoliciesInner object to access its operations.
-     */
-    private BackupLongTermRetentionPoliciesInner backupLongTermRetentionPolicies;
-
-    /**
-     * Gets the BackupLongTermRetentionPoliciesInner object to access its operations.
-     * @return the BackupLongTermRetentionPoliciesInner object.
-     */
-    public BackupLongTermRetentionPoliciesInner backupLongTermRetentionPolicies() {
-        return this.backupLongTermRetentionPolicies;
-    }
-
-    /**
-     * The ManagedDatabasesInner object to access its operations.
-     */
-    private ManagedDatabasesInner managedDatabases;
-
-    /**
-     * Gets the ManagedDatabasesInner object to access its operations.
-     * @return the ManagedDatabasesInner object.
-     */
-    public ManagedDatabasesInner managedDatabases() {
-        return this.managedDatabases;
-    }
-
-    /**
-     * The ServerAutomaticTuningsInner object to access its operations.
-     */
-    private ServerAutomaticTuningsInner serverAutomaticTunings;
-
-    /**
-     * Gets the ServerAutomaticTuningsInner object to access its operations.
-     * @return the ServerAutomaticTuningsInner object.
-     */
-    public ServerAutomaticTuningsInner serverAutomaticTunings() {
-        return this.serverAutomaticTunings;
-    }
-
-    /**
-     * The ServerDnsAliasesInner object to access its operations.
-     */
-    private ServerDnsAliasesInner serverDnsAliases;
-
-    /**
-     * Gets the ServerDnsAliasesInner object to access its operations.
-     * @return the ServerDnsAliasesInner object.
-     */
-    public ServerDnsAliasesInner serverDnsAliases() {
-        return this.serverDnsAliases;
-    }
-
-    /**
-     * The RestorePointsInner object to access its operations.
-     */
-    private RestorePointsInner restorePoints;
-
-    /**
-     * Gets the RestorePointsInner object to access its operations.
-     * @return the RestorePointsInner object.
-     */
-    public RestorePointsInner restorePoints() {
-        return this.restorePoints;
-    }
-
-    /**
      * The JobAgentsInner object to access its operations.
      */
     private JobAgentsInner jobAgents;
@@ -794,6 +716,84 @@ public class SqlManagementClientImpl extends AzureServiceClient {
      */
     public JobVersionsInner jobVersions() {
         return this.jobVersions;
+    }
+
+    /**
+     * The LongTermRetentionBackupsInner object to access its operations.
+     */
+    private LongTermRetentionBackupsInner longTermRetentionBackups;
+
+    /**
+     * Gets the LongTermRetentionBackupsInner object to access its operations.
+     * @return the LongTermRetentionBackupsInner object.
+     */
+    public LongTermRetentionBackupsInner longTermRetentionBackups() {
+        return this.longTermRetentionBackups;
+    }
+
+    /**
+     * The BackupLongTermRetentionPoliciesInner object to access its operations.
+     */
+    private BackupLongTermRetentionPoliciesInner backupLongTermRetentionPolicies;
+
+    /**
+     * Gets the BackupLongTermRetentionPoliciesInner object to access its operations.
+     * @return the BackupLongTermRetentionPoliciesInner object.
+     */
+    public BackupLongTermRetentionPoliciesInner backupLongTermRetentionPolicies() {
+        return this.backupLongTermRetentionPolicies;
+    }
+
+    /**
+     * The ManagedDatabasesInner object to access its operations.
+     */
+    private ManagedDatabasesInner managedDatabases;
+
+    /**
+     * Gets the ManagedDatabasesInner object to access its operations.
+     * @return the ManagedDatabasesInner object.
+     */
+    public ManagedDatabasesInner managedDatabases() {
+        return this.managedDatabases;
+    }
+
+    /**
+     * The ServerAutomaticTuningsInner object to access its operations.
+     */
+    private ServerAutomaticTuningsInner serverAutomaticTunings;
+
+    /**
+     * Gets the ServerAutomaticTuningsInner object to access its operations.
+     * @return the ServerAutomaticTuningsInner object.
+     */
+    public ServerAutomaticTuningsInner serverAutomaticTunings() {
+        return this.serverAutomaticTunings;
+    }
+
+    /**
+     * The ServerDnsAliasesInner object to access its operations.
+     */
+    private ServerDnsAliasesInner serverDnsAliases;
+
+    /**
+     * Gets the ServerDnsAliasesInner object to access its operations.
+     * @return the ServerDnsAliasesInner object.
+     */
+    public ServerDnsAliasesInner serverDnsAliases() {
+        return this.serverDnsAliases;
+    }
+
+    /**
+     * The RestorePointsInner object to access its operations.
+     */
+    private RestorePointsInner restorePoints;
+
+    /**
+     * Gets the RestorePointsInner object to access its operations.
+     * @return the RestorePointsInner object.
+     */
+    public RestorePointsInner restorePoints() {
+        return this.restorePoints;
     }
 
     /**
@@ -945,12 +945,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.virtualNetworkRules = new VirtualNetworkRulesInner(restClient().retrofit(), this);
         this.databaseVulnerabilityAssessmentRuleBaselines = new DatabaseVulnerabilityAssessmentRuleBaselinesInner(restClient().retrofit(), this);
         this.databaseVulnerabilityAssessments = new DatabaseVulnerabilityAssessmentsInner(restClient().retrofit(), this);
-        this.longTermRetentionBackups = new LongTermRetentionBackupsInner(restClient().retrofit(), this);
-        this.backupLongTermRetentionPolicies = new BackupLongTermRetentionPoliciesInner(restClient().retrofit(), this);
-        this.managedDatabases = new ManagedDatabasesInner(restClient().retrofit(), this);
-        this.serverAutomaticTunings = new ServerAutomaticTuningsInner(restClient().retrofit(), this);
-        this.serverDnsAliases = new ServerDnsAliasesInner(restClient().retrofit(), this);
-        this.restorePoints = new RestorePointsInner(restClient().retrofit(), this);
         this.jobAgents = new JobAgentsInner(restClient().retrofit(), this);
         this.jobCredentials = new JobCredentialsInner(restClient().retrofit(), this);
         this.jobExecutions = new JobExecutionsInner(restClient().retrofit(), this);
@@ -960,6 +954,12 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.jobTargetExecutions = new JobTargetExecutionsInner(restClient().retrofit(), this);
         this.jobTargetGroups = new JobTargetGroupsInner(restClient().retrofit(), this);
         this.jobVersions = new JobVersionsInner(restClient().retrofit(), this);
+        this.longTermRetentionBackups = new LongTermRetentionBackupsInner(restClient().retrofit(), this);
+        this.backupLongTermRetentionPolicies = new BackupLongTermRetentionPoliciesInner(restClient().retrofit(), this);
+        this.managedDatabases = new ManagedDatabasesInner(restClient().retrofit(), this);
+        this.serverAutomaticTunings = new ServerAutomaticTuningsInner(restClient().retrofit(), this);
+        this.serverDnsAliases = new ServerDnsAliasesInner(restClient().retrofit(), this);
+        this.restorePoints = new RestorePointsInner(restClient().retrofit(), this);
         this.databaseOperations = new DatabaseOperationsInner(restClient().retrofit(), this);
         this.elasticPoolOperations = new ElasticPoolOperationsInner(restClient().retrofit(), this);
         this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
