@@ -109,7 +109,11 @@ public class OperationsInner {
                 public Observable<ServiceResponse<List<ComputeOperationValueInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ComputeOperationValueInner>> result = listDelegate(response);
-                        ServiceResponse<List<ComputeOperationValueInner>> clientResponse = new ServiceResponse<List<ComputeOperationValueInner>>(result.body().items(), result.response());
+                        List<ComputeOperationValueInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ComputeOperationValueInner>> clientResponse = new ServiceResponse<List<ComputeOperationValueInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

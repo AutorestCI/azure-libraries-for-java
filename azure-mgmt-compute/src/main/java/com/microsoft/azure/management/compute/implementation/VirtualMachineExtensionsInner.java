@@ -11,6 +11,7 @@ package com.microsoft.azure.management.compute.implementation;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.compute.VirtualMachineExtensionUpdate;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -66,11 +67,11 @@ public class VirtualMachineExtensionsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineExtensions update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("vmName") String vmName, @Path("vmExtensionName") String vmExtensionName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineExtensionUpdateInner extensionParameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("vmName") String vmName, @Path("vmExtensionName") String vmExtensionName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineExtensionUpdate extensionParameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineExtensions beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("vmName") String vmName, @Path("vmExtensionName") String vmExtensionName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineExtensionUpdateInner extensionParameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("vmName") String vmName, @Path("vmExtensionName") String vmExtensionName, @Path("subscriptionId") String subscriptionId, @Body VirtualMachineExtensionUpdate extensionParameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.VirtualMachineExtensions delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}", method = "DELETE", hasBody = true)
@@ -280,7 +281,7 @@ public class VirtualMachineExtensionsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the VirtualMachineExtensionInner object if successful.
      */
-    public VirtualMachineExtensionInner update(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters) {
+    public VirtualMachineExtensionInner update(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters) {
         return updateWithServiceResponseAsync(resourceGroupName, vmName, vmExtensionName, extensionParameters).toBlocking().last().body();
     }
 
@@ -295,7 +296,7 @@ public class VirtualMachineExtensionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<VirtualMachineExtensionInner> updateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters, final ServiceCallback<VirtualMachineExtensionInner> serviceCallback) {
+    public ServiceFuture<VirtualMachineExtensionInner> updateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters, final ServiceCallback<VirtualMachineExtensionInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, vmName, vmExtensionName, extensionParameters), serviceCallback);
     }
 
@@ -309,7 +310,7 @@ public class VirtualMachineExtensionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<VirtualMachineExtensionInner> updateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters) {
+    public Observable<VirtualMachineExtensionInner> updateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters) {
         return updateWithServiceResponseAsync(resourceGroupName, vmName, vmExtensionName, extensionParameters).map(new Func1<ServiceResponse<VirtualMachineExtensionInner>, VirtualMachineExtensionInner>() {
             @Override
             public VirtualMachineExtensionInner call(ServiceResponse<VirtualMachineExtensionInner> response) {
@@ -328,7 +329,7 @@ public class VirtualMachineExtensionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<VirtualMachineExtensionInner>> updateWithServiceResponseAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters) {
+    public Observable<ServiceResponse<VirtualMachineExtensionInner>> updateWithServiceResponseAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -362,7 +363,7 @@ public class VirtualMachineExtensionsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the VirtualMachineExtensionInner object if successful.
      */
-    public VirtualMachineExtensionInner beginUpdate(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters) {
+    public VirtualMachineExtensionInner beginUpdate(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, vmName, vmExtensionName, extensionParameters).toBlocking().single().body();
     }
 
@@ -377,7 +378,7 @@ public class VirtualMachineExtensionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<VirtualMachineExtensionInner> beginUpdateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters, final ServiceCallback<VirtualMachineExtensionInner> serviceCallback) {
+    public ServiceFuture<VirtualMachineExtensionInner> beginUpdateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters, final ServiceCallback<VirtualMachineExtensionInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, vmName, vmExtensionName, extensionParameters), serviceCallback);
     }
 
@@ -391,7 +392,7 @@ public class VirtualMachineExtensionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the VirtualMachineExtensionInner object
      */
-    public Observable<VirtualMachineExtensionInner> beginUpdateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters) {
+    public Observable<VirtualMachineExtensionInner> beginUpdateAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, vmName, vmExtensionName, extensionParameters).map(new Func1<ServiceResponse<VirtualMachineExtensionInner>, VirtualMachineExtensionInner>() {
             @Override
             public VirtualMachineExtensionInner call(ServiceResponse<VirtualMachineExtensionInner> response) {
@@ -410,7 +411,7 @@ public class VirtualMachineExtensionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the VirtualMachineExtensionInner object
      */
-    public Observable<ServiceResponse<VirtualMachineExtensionInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdateInner extensionParameters) {
+    public Observable<ServiceResponse<VirtualMachineExtensionInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String vmName, String vmExtensionName, VirtualMachineExtensionUpdate extensionParameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }

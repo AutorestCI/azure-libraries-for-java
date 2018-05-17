@@ -16,6 +16,8 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.compute.DiskUpdate;
+import com.microsoft.azure.management.compute.GrantAccessData;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -76,11 +78,11 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Disks update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body DiskUpdateInner disk, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body DiskUpdate disk, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Disks beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body DiskUpdateInner disk, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body DiskUpdate disk, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Disks getByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}")
@@ -104,11 +106,11 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Disks grantAccess" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/beginGetAccess")
-        Observable<Response<ResponseBody>> grantAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body GrantAccessDataInner grantAccessData, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> grantAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body GrantAccessData grantAccessData, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Disks beginGrantAccess" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/beginGetAccess")
-        Observable<Response<ResponseBody>> beginGrantAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body GrantAccessDataInner grantAccessData, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginGrantAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("diskName") String diskName, @Query("api-version") String apiVersion, @Body GrantAccessData grantAccessData, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.Disks revokeAccess" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/endGetAccess")
@@ -307,7 +309,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiskInner object if successful.
      */
-    public DiskInner update(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public DiskInner update(String resourceGroupName, String diskName, DiskUpdate disk) {
         return updateWithServiceResponseAsync(resourceGroupName, diskName, disk).toBlocking().last().body();
     }
 
@@ -321,7 +323,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DiskInner> updateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk, final ServiceCallback<DiskInner> serviceCallback) {
+    public ServiceFuture<DiskInner> updateAsync(String resourceGroupName, String diskName, DiskUpdate disk, final ServiceCallback<DiskInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, diskName, disk), serviceCallback);
     }
 
@@ -334,7 +336,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<DiskInner> updateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public Observable<DiskInner> updateAsync(String resourceGroupName, String diskName, DiskUpdate disk) {
         return updateWithServiceResponseAsync(resourceGroupName, diskName, disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
             @Override
             public DiskInner call(ServiceResponse<DiskInner> response) {
@@ -352,7 +354,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<DiskInner>> updateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public Observable<ServiceResponse<DiskInner>> updateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskUpdate disk) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -382,7 +384,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DiskInner object if successful.
      */
-    public DiskInner beginUpdate(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public DiskInner beginUpdate(String resourceGroupName, String diskName, DiskUpdate disk) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).toBlocking().single().body();
     }
 
@@ -396,7 +398,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DiskInner> beginUpdateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk, final ServiceCallback<DiskInner> serviceCallback) {
+    public ServiceFuture<DiskInner> beginUpdateAsync(String resourceGroupName, String diskName, DiskUpdate disk, final ServiceCallback<DiskInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk), serviceCallback);
     }
 
@@ -409,7 +411,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<DiskInner> beginUpdateAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public Observable<DiskInner> beginUpdateAsync(String resourceGroupName, String diskName, DiskUpdate disk) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, diskName, disk).map(new Func1<ServiceResponse<DiskInner>, DiskInner>() {
             @Override
             public DiskInner call(ServiceResponse<DiskInner> response) {
@@ -427,7 +429,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DiskInner object
      */
-    public Observable<ServiceResponse<DiskInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskUpdateInner disk) {
+    public Observable<ServiceResponse<DiskInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String diskName, DiskUpdate disk) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -930,7 +932,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AccessUriInner object if successful.
      */
-    public AccessUriInner grantAccess(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public AccessUriInner grantAccess(String resourceGroupName, String diskName, GrantAccessData grantAccessData) {
         return grantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).toBlocking().last().body();
     }
 
@@ -944,7 +946,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AccessUriInner> grantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
+    public ServiceFuture<AccessUriInner> grantAccessAsync(String resourceGroupName, String diskName, GrantAccessData grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
         return ServiceFuture.fromResponse(grantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData), serviceCallback);
     }
 
@@ -957,7 +959,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<AccessUriInner> grantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public Observable<AccessUriInner> grantAccessAsync(String resourceGroupName, String diskName, GrantAccessData grantAccessData) {
         return grantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
             @Override
             public AccessUriInner call(ServiceResponse<AccessUriInner> response) {
@@ -975,7 +977,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<AccessUriInner>> grantAccessWithServiceResponseAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public Observable<ServiceResponse<AccessUriInner>> grantAccessWithServiceResponseAsync(String resourceGroupName, String diskName, GrantAccessData grantAccessData) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1005,7 +1007,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AccessUriInner object if successful.
      */
-    public AccessUriInner beginGrantAccess(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public AccessUriInner beginGrantAccess(String resourceGroupName, String diskName, GrantAccessData grantAccessData) {
         return beginGrantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).toBlocking().single().body();
     }
 
@@ -1019,7 +1021,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
+    public ServiceFuture<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String diskName, GrantAccessData grantAccessData, final ServiceCallback<AccessUriInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginGrantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData), serviceCallback);
     }
 
@@ -1032,7 +1034,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AccessUriInner object
      */
-    public Observable<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public Observable<AccessUriInner> beginGrantAccessAsync(String resourceGroupName, String diskName, GrantAccessData grantAccessData) {
         return beginGrantAccessWithServiceResponseAsync(resourceGroupName, diskName, grantAccessData).map(new Func1<ServiceResponse<AccessUriInner>, AccessUriInner>() {
             @Override
             public AccessUriInner call(ServiceResponse<AccessUriInner> response) {
@@ -1050,7 +1052,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AccessUriInner object
      */
-    public Observable<ServiceResponse<AccessUriInner>> beginGrantAccessWithServiceResponseAsync(String resourceGroupName, String diskName, GrantAccessDataInner grantAccessData) {
+    public Observable<ServiceResponse<AccessUriInner>> beginGrantAccessWithServiceResponseAsync(String resourceGroupName, String diskName, GrantAccessData grantAccessData) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

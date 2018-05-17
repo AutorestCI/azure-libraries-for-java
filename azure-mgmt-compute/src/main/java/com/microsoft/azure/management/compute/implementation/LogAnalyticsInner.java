@@ -11,6 +11,8 @@ package com.microsoft.azure.management.compute.implementation;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.compute.RequestRateByIntervalInput;
+import com.microsoft.azure.management.compute.ThrottledRequestsInput;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -55,19 +57,19 @@ public class LogAnalyticsInner {
     interface LogAnalyticsService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.LogAnalytics exportRequestRateByInterval" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getRequestRateByInterval")
-        Observable<Response<ResponseBody>> exportRequestRateByInterval(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body RequestRateByIntervalInputInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> exportRequestRateByInterval(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body RequestRateByIntervalInput parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.LogAnalytics beginExportRequestRateByInterval" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getRequestRateByInterval")
-        Observable<Response<ResponseBody>> beginExportRequestRateByInterval(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body RequestRateByIntervalInputInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginExportRequestRateByInterval(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body RequestRateByIntervalInput parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.LogAnalytics exportThrottledRequests" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getThrottledRequests")
-        Observable<Response<ResponseBody>> exportThrottledRequests(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body ThrottledRequestsInputInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> exportThrottledRequests(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body ThrottledRequestsInput parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.compute.LogAnalytics beginExportThrottledRequests" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getThrottledRequests")
-        Observable<Response<ResponseBody>> beginExportThrottledRequests(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body ThrottledRequestsInputInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginExportThrottledRequests(@Path("location") String location, @Path("subscriptionId") String subscriptionId, @Body ThrottledRequestsInput parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -81,7 +83,7 @@ public class LogAnalyticsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the LogAnalyticsOperationResultInner object if successful.
      */
-    public LogAnalyticsOperationResultInner exportRequestRateByInterval(String location, RequestRateByIntervalInputInner parameters) {
+    public LogAnalyticsOperationResultInner exportRequestRateByInterval(String location, RequestRateByIntervalInput parameters) {
         return exportRequestRateByIntervalWithServiceResponseAsync(location, parameters).toBlocking().last().body();
     }
 
@@ -94,7 +96,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<LogAnalyticsOperationResultInner> exportRequestRateByIntervalAsync(String location, RequestRateByIntervalInputInner parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
+    public ServiceFuture<LogAnalyticsOperationResultInner> exportRequestRateByIntervalAsync(String location, RequestRateByIntervalInput parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(exportRequestRateByIntervalWithServiceResponseAsync(location, parameters), serviceCallback);
     }
 
@@ -106,7 +108,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<LogAnalyticsOperationResultInner> exportRequestRateByIntervalAsync(String location, RequestRateByIntervalInputInner parameters) {
+    public Observable<LogAnalyticsOperationResultInner> exportRequestRateByIntervalAsync(String location, RequestRateByIntervalInput parameters) {
         return exportRequestRateByIntervalWithServiceResponseAsync(location, parameters).map(new Func1<ServiceResponse<LogAnalyticsOperationResultInner>, LogAnalyticsOperationResultInner>() {
             @Override
             public LogAnalyticsOperationResultInner call(ServiceResponse<LogAnalyticsOperationResultInner> response) {
@@ -123,7 +125,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> exportRequestRateByIntervalWithServiceResponseAsync(String location, RequestRateByIntervalInputInner parameters) {
+    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> exportRequestRateByIntervalWithServiceResponseAsync(String location, RequestRateByIntervalInput parameters) {
         if (location == null) {
             throw new IllegalArgumentException("Parameter location is required and cannot be null.");
         }
@@ -149,7 +151,7 @@ public class LogAnalyticsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the LogAnalyticsOperationResultInner object if successful.
      */
-    public LogAnalyticsOperationResultInner beginExportRequestRateByInterval(String location, RequestRateByIntervalInputInner parameters) {
+    public LogAnalyticsOperationResultInner beginExportRequestRateByInterval(String location, RequestRateByIntervalInput parameters) {
         return beginExportRequestRateByIntervalWithServiceResponseAsync(location, parameters).toBlocking().single().body();
     }
 
@@ -162,7 +164,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<LogAnalyticsOperationResultInner> beginExportRequestRateByIntervalAsync(String location, RequestRateByIntervalInputInner parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
+    public ServiceFuture<LogAnalyticsOperationResultInner> beginExportRequestRateByIntervalAsync(String location, RequestRateByIntervalInput parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginExportRequestRateByIntervalWithServiceResponseAsync(location, parameters), serviceCallback);
     }
 
@@ -174,7 +176,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the LogAnalyticsOperationResultInner object
      */
-    public Observable<LogAnalyticsOperationResultInner> beginExportRequestRateByIntervalAsync(String location, RequestRateByIntervalInputInner parameters) {
+    public Observable<LogAnalyticsOperationResultInner> beginExportRequestRateByIntervalAsync(String location, RequestRateByIntervalInput parameters) {
         return beginExportRequestRateByIntervalWithServiceResponseAsync(location, parameters).map(new Func1<ServiceResponse<LogAnalyticsOperationResultInner>, LogAnalyticsOperationResultInner>() {
             @Override
             public LogAnalyticsOperationResultInner call(ServiceResponse<LogAnalyticsOperationResultInner> response) {
@@ -191,7 +193,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the LogAnalyticsOperationResultInner object
      */
-    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> beginExportRequestRateByIntervalWithServiceResponseAsync(String location, RequestRateByIntervalInputInner parameters) {
+    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> beginExportRequestRateByIntervalWithServiceResponseAsync(String location, RequestRateByIntervalInput parameters) {
         if (location == null) {
             throw new IllegalArgumentException("Parameter location is required and cannot be null.");
         }
@@ -235,7 +237,7 @@ public class LogAnalyticsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the LogAnalyticsOperationResultInner object if successful.
      */
-    public LogAnalyticsOperationResultInner exportThrottledRequests(String location, ThrottledRequestsInputInner parameters) {
+    public LogAnalyticsOperationResultInner exportThrottledRequests(String location, ThrottledRequestsInput parameters) {
         return exportThrottledRequestsWithServiceResponseAsync(location, parameters).toBlocking().last().body();
     }
 
@@ -248,7 +250,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<LogAnalyticsOperationResultInner> exportThrottledRequestsAsync(String location, ThrottledRequestsInputInner parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
+    public ServiceFuture<LogAnalyticsOperationResultInner> exportThrottledRequestsAsync(String location, ThrottledRequestsInput parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(exportThrottledRequestsWithServiceResponseAsync(location, parameters), serviceCallback);
     }
 
@@ -260,7 +262,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<LogAnalyticsOperationResultInner> exportThrottledRequestsAsync(String location, ThrottledRequestsInputInner parameters) {
+    public Observable<LogAnalyticsOperationResultInner> exportThrottledRequestsAsync(String location, ThrottledRequestsInput parameters) {
         return exportThrottledRequestsWithServiceResponseAsync(location, parameters).map(new Func1<ServiceResponse<LogAnalyticsOperationResultInner>, LogAnalyticsOperationResultInner>() {
             @Override
             public LogAnalyticsOperationResultInner call(ServiceResponse<LogAnalyticsOperationResultInner> response) {
@@ -277,7 +279,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> exportThrottledRequestsWithServiceResponseAsync(String location, ThrottledRequestsInputInner parameters) {
+    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> exportThrottledRequestsWithServiceResponseAsync(String location, ThrottledRequestsInput parameters) {
         if (location == null) {
             throw new IllegalArgumentException("Parameter location is required and cannot be null.");
         }
@@ -303,7 +305,7 @@ public class LogAnalyticsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the LogAnalyticsOperationResultInner object if successful.
      */
-    public LogAnalyticsOperationResultInner beginExportThrottledRequests(String location, ThrottledRequestsInputInner parameters) {
+    public LogAnalyticsOperationResultInner beginExportThrottledRequests(String location, ThrottledRequestsInput parameters) {
         return beginExportThrottledRequestsWithServiceResponseAsync(location, parameters).toBlocking().single().body();
     }
 
@@ -316,7 +318,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<LogAnalyticsOperationResultInner> beginExportThrottledRequestsAsync(String location, ThrottledRequestsInputInner parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
+    public ServiceFuture<LogAnalyticsOperationResultInner> beginExportThrottledRequestsAsync(String location, ThrottledRequestsInput parameters, final ServiceCallback<LogAnalyticsOperationResultInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginExportThrottledRequestsWithServiceResponseAsync(location, parameters), serviceCallback);
     }
 
@@ -328,7 +330,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the LogAnalyticsOperationResultInner object
      */
-    public Observable<LogAnalyticsOperationResultInner> beginExportThrottledRequestsAsync(String location, ThrottledRequestsInputInner parameters) {
+    public Observable<LogAnalyticsOperationResultInner> beginExportThrottledRequestsAsync(String location, ThrottledRequestsInput parameters) {
         return beginExportThrottledRequestsWithServiceResponseAsync(location, parameters).map(new Func1<ServiceResponse<LogAnalyticsOperationResultInner>, LogAnalyticsOperationResultInner>() {
             @Override
             public LogAnalyticsOperationResultInner call(ServiceResponse<LogAnalyticsOperationResultInner> response) {
@@ -345,7 +347,7 @@ public class LogAnalyticsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the LogAnalyticsOperationResultInner object
      */
-    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> beginExportThrottledRequestsWithServiceResponseAsync(String location, ThrottledRequestsInputInner parameters) {
+    public Observable<ServiceResponse<LogAnalyticsOperationResultInner>> beginExportThrottledRequestsWithServiceResponseAsync(String location, ThrottledRequestsInput parameters) {
         if (location == null) {
             throw new IllegalArgumentException("Parameter location is required and cannot be null.");
         }
