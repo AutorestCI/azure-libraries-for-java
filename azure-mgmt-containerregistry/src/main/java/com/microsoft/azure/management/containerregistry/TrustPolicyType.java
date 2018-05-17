@@ -16,9 +16,6 @@ import com.microsoft.rest.ExpandableStringEnum;
  * Defines values for TrustPolicyType.
  */
 public final class TrustPolicyType extends ExpandableStringEnum<TrustPolicyType> {
-    /** Static value None for TrustPolicyType. */
-    public static final TrustPolicyType NONE = fromString("None");
-
     /** Static value Notary for TrustPolicyType. */
     public static final TrustPolicyType NOTARY = fromString("Notary");
 

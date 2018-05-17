@@ -15,14 +15,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class TrustPolicy {
     /**
-     * The type of trust policy. Possible values include: 'None', 'Notary'.
+     * The type of trust policy. Possible values include: 'Notary'.
      */
     @JsonProperty(value = "type")
     private TrustPolicyType type;
 
     /**
-     * The value that indicates whether the policy is enabled. Possible values
-     * include: 'enabled', 'disabled'.
+     * The value that indicates whether the policy is enabled or not. Possible
+     * values include: 'enabled', 'disabled'.
      */
     @JsonProperty(value = "status")
     private PolicyStatus status;
