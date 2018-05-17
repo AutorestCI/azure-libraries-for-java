@@ -9,6 +9,7 @@
 package com.microsoft.azure.management.compute;
 
 import java.util.List;
+import com.microsoft.azure.management.compute.implementation.InstanceViewStatusInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -32,7 +33,7 @@ public class DiskInstanceView {
      * The resource status information.
      */
     @JsonProperty(value = "statuses")
-    private List<InstanceViewStatus> statuses;
+    private List<InstanceViewStatusInner> statuses;
 
     /**
      * Get the name value.
@@ -79,7 +80,7 @@ public class DiskInstanceView {
      *
      * @return the statuses value
      */
-    public List<InstanceViewStatus> statuses() {
+    public List<InstanceViewStatusInner> statuses() {
         return this.statuses;
     }
 
@@ -89,7 +90,7 @@ public class DiskInstanceView {
      * @param statuses the statuses value to set
      * @return the DiskInstanceView object itself.
      */
-    public DiskInstanceView withStatuses(List<InstanceViewStatus> statuses) {
+    public DiskInstanceView withStatuses(List<InstanceViewStatusInner> statuses) {
         this.statuses = statuses;
         return this;
     }
