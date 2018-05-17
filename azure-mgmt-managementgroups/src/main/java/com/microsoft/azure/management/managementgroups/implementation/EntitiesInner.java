@@ -58,11 +58,19 @@ public class EntitiesInner {
     interface EntitiesService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.Entities list" })
         @POST("providers/Microsoft.Management/getEntities")
-        Observable<Response<ResponseBody>> list(@Query("api-version") String apiVersion, @Query("$skiptoken") String skiptoken, @Query("groupName") String groupName, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> list(@Query("api-version") String apiVersion, @Query("$skiptoken") String skiptoken, @Query("$skip") Integer skip, @Query("$top") Integer top, @Query("$select") String select, @Query("$search") String search, @Query("$filter") String filter, @Query("$view") String view, @Query("groupName") String groupName, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.Entities beginList" })
+        @POST("providers/Microsoft.Management/getEntities")
+        Observable<Response<ResponseBody>> beginList(@Query("api-version") String apiVersion, @Query("$skiptoken") String skiptoken, @Query("$skip") Integer skip, @Query("$top") Integer top, @Query("$select") String select, @Query("$search") String search, @Query("$filter") String filter, @Query("$view") String view, @Query("groupName") String groupName, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.Entities listNext" })
         @GET
         Observable<Response<ResponseBody>> listNext(@Url String nextUrl, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.Entities beginListNext" })
+        @GET
+        Observable<Response<ResponseBody>> beginListNext(@Url String nextUrl, @Header("Cache-Control") String cacheControl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -149,9 +157,13 @@ public class EntitiesInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
+        final String select = null;
+        final String search = null;
+        final String filter = null;
+        final String view = null;
         final String groupName = null;
         final String cacheControl = null;
-        return service.list(this.client.apiVersion(), this.client.skiptoken(), groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
@@ -168,15 +180,22 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
-     * @param groupName A filter which allows the call to be filtered for a specific group.
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;EntityInfoInner&gt; object if successful.
      */
-    public PagedList<EntityInfoInner> list(final String groupName, final String cacheControl) {
-        ServiceResponse<Page<EntityInfoInner>> response = listSinglePageAsync(groupName, cacheControl).toBlocking().single();
+    public PagedList<EntityInfoInner> list(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        ServiceResponse<Page<EntityInfoInner>> response = listSinglePageAsync(select, search, filter, view, groupName, cacheControl).toBlocking().single();
         return new PagedList<EntityInfoInner>(response.body()) {
             @Override
             public Page<EntityInfoInner> nextPage(String nextPageLink) {
@@ -188,15 +207,22 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
-     * @param groupName A filter which allows the call to be filtered for a specific group.
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<EntityInfoInner>> listAsync(final String groupName, final String cacheControl, final ListOperationCallback<EntityInfoInner> serviceCallback) {
+    public ServiceFuture<List<EntityInfoInner>> listAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl, final ListOperationCallback<EntityInfoInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(groupName, cacheControl),
+            listSinglePageAsync(select, search, filter, view, groupName, cacheControl),
             new Func1<String, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(String nextPageLink) {
@@ -209,13 +235,20 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
-     * @param groupName A filter which allows the call to be filtered for a specific group.
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
      */
-    public Observable<Page<EntityInfoInner>> listAsync(final String groupName, final String cacheControl) {
-        return listWithServiceResponseAsync(groupName, cacheControl)
+    public Observable<Page<EntityInfoInner>> listAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return listWithServiceResponseAsync(select, search, filter, view, groupName, cacheControl)
             .map(new Func1<ServiceResponse<Page<EntityInfoInner>>, Page<EntityInfoInner>>() {
                 @Override
                 public Page<EntityInfoInner> call(ServiceResponse<Page<EntityInfoInner>> response) {
@@ -227,13 +260,20 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
-     * @param groupName A filter which allows the call to be filtered for a specific group.
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
      */
-    public Observable<ServiceResponse<Page<EntityInfoInner>>> listWithServiceResponseAsync(final String groupName, final String cacheControl) {
-        return listSinglePageAsync(groupName, cacheControl)
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> listWithServiceResponseAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return listSinglePageAsync(select, search, filter, view, groupName, cacheControl)
             .concatMap(new Func1<ServiceResponse<Page<EntityInfoInner>>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(ServiceResponse<Page<EntityInfoInner>> page) {
@@ -249,16 +289,23 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
-    ServiceResponse<PageImpl<EntityInfoInner>> * @param groupName A filter which allows the call to be filtered for a specific group.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
     ServiceResponse<PageImpl<EntityInfoInner>> * @param cacheControl Indicates that the request shouldn't utilize any caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;EntityInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<EntityInfoInner>>> listSinglePageAsync(final String groupName, final String cacheControl) {
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> listSinglePageAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.list(this.client.apiVersion(), this.client.skiptoken(), groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
@@ -272,7 +319,259 @@ public class EntitiesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<EntityInfoInner>> listDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+    private ServiceResponse<PageImpl<EntityInfoInner>> listDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException, InterruptedException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<EntityInfoInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<EntityInfoInner>>() { }.getType())
+                .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;EntityInfoInner&gt; object if successful.
+     */
+    public PagedList<EntityInfoInner> beginList() {
+        ServiceResponse<Page<EntityInfoInner>> response = beginListSinglePageAsync().toBlocking().single();
+        return new PagedList<EntityInfoInner>(response.body()) {
+            @Override
+            public Page<EntityInfoInner> nextPage(String nextPageLink) {
+                return beginListNextSinglePageAsync(nextPageLink, null).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<EntityInfoInner>> beginListAsync(final ListOperationCallback<EntityInfoInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            beginListSinglePageAsync(),
+            new Func1<String, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(String nextPageLink) {
+                    return beginListNextSinglePageAsync(nextPageLink, null);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<Page<EntityInfoInner>> beginListAsync() {
+        return beginListWithServiceResponseAsync()
+            .map(new Func1<ServiceResponse<Page<EntityInfoInner>>, Page<EntityInfoInner>>() {
+                @Override
+                public Page<EntityInfoInner> call(ServiceResponse<Page<EntityInfoInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListWithServiceResponseAsync() {
+        return beginListSinglePageAsync()
+            .concatMap(new Func1<ServiceResponse<Page<EntityInfoInner>>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(ServiceResponse<Page<EntityInfoInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(beginListNextWithServiceResponseAsync(nextPageLink, null));
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;EntityInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListSinglePageAsync() {
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final String select = null;
+        final String search = null;
+        final String filter = null;
+        final String view = null;
+        final String groupName = null;
+        final String cacheControl = null;
+        return service.beginList(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<EntityInfoInner>> result = beginListDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<EntityInfoInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;EntityInfoInner&gt; object if successful.
+     */
+    public PagedList<EntityInfoInner> beginList(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        ServiceResponse<Page<EntityInfoInner>> response = beginListSinglePageAsync(select, search, filter, view, groupName, cacheControl).toBlocking().single();
+        return new PagedList<EntityInfoInner>(response.body()) {
+            @Override
+            public Page<EntityInfoInner> nextPage(String nextPageLink) {
+                return beginListNextSinglePageAsync(nextPageLink, cacheControl).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<EntityInfoInner>> beginListAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl, final ListOperationCallback<EntityInfoInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            beginListSinglePageAsync(select, search, filter, view, groupName, cacheControl),
+            new Func1<String, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(String nextPageLink) {
+                    return beginListNextSinglePageAsync(nextPageLink, cacheControl);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<Page<EntityInfoInner>> beginListAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return beginListWithServiceResponseAsync(select, search, filter, view, groupName, cacheControl)
+            .map(new Func1<ServiceResponse<Page<EntityInfoInner>>, Page<EntityInfoInner>>() {
+                @Override
+                public Page<EntityInfoInner> call(ServiceResponse<Page<EntityInfoInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+     * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+     * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+     * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListWithServiceResponseAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return beginListSinglePageAsync(select, search, filter, view, groupName, cacheControl)
+            .concatMap(new Func1<ServiceResponse<Page<EntityInfoInner>>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(ServiceResponse<Page<EntityInfoInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(beginListNextWithServiceResponseAsync(nextPageLink, cacheControl));
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
+     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
+     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
+     With $search=ChildrenOnly the API will return the first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ChildrenOnly'
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;EntityInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListSinglePageAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.beginList(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<EntityInfoInner>> result = beginListDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<EntityInfoInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<EntityInfoInner>> beginListDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<EntityInfoInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<EntityInfoInner>>() { }.getType())
                 .registerError(ErrorResponseException.class)
@@ -493,7 +792,228 @@ public class EntitiesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<EntityInfoInner>> listNextDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+    private ServiceResponse<PageImpl<EntityInfoInner>> listNextDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException, InterruptedException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<EntityInfoInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<EntityInfoInner>>() { }.getType())
+                .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;EntityInfoInner&gt; object if successful.
+     */
+    public PagedList<EntityInfoInner> beginListNext(final String nextPageLink) {
+        ServiceResponse<Page<EntityInfoInner>> response = beginListNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<EntityInfoInner>(response.body()) {
+            @Override
+            public Page<EntityInfoInner> nextPage(String nextPageLink) {
+                return beginListNextSinglePageAsync(nextPageLink, null).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<EntityInfoInner>> beginListNextAsync(final String nextPageLink, final ServiceFuture<List<EntityInfoInner>> serviceFuture, final ListOperationCallback<EntityInfoInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            beginListNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(String nextPageLink) {
+                    return beginListNextSinglePageAsync(nextPageLink, null);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<Page<EntityInfoInner>> beginListNextAsync(final String nextPageLink) {
+        return beginListNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<EntityInfoInner>>, Page<EntityInfoInner>>() {
+                @Override
+                public Page<EntityInfoInner> call(ServiceResponse<Page<EntityInfoInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListNextWithServiceResponseAsync(final String nextPageLink) {
+        return beginListNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<EntityInfoInner>>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(ServiceResponse<Page<EntityInfoInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(beginListNextWithServiceResponseAsync(nextPageLink, null));
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;EntityInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        final String cacheControl = null;
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.beginListNext(nextUrl, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<EntityInfoInner>> result = beginListNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<EntityInfoInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;EntityInfoInner&gt; object if successful.
+     */
+    public PagedList<EntityInfoInner> beginListNext(final String nextPageLink, final String cacheControl) {
+        ServiceResponse<Page<EntityInfoInner>> response = beginListNextSinglePageAsync(nextPageLink, cacheControl).toBlocking().single();
+        return new PagedList<EntityInfoInner>(response.body()) {
+            @Override
+            public Page<EntityInfoInner> nextPage(String nextPageLink) {
+                return beginListNextSinglePageAsync(nextPageLink, cacheControl).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<EntityInfoInner>> beginListNextAsync(final String nextPageLink, final String cacheControl, final ServiceFuture<List<EntityInfoInner>> serviceFuture, final ListOperationCallback<EntityInfoInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            beginListNextSinglePageAsync(nextPageLink, cacheControl),
+            new Func1<String, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(String nextPageLink) {
+                    return beginListNextSinglePageAsync(nextPageLink, cacheControl);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<Page<EntityInfoInner>> beginListNextAsync(final String nextPageLink, final String cacheControl) {
+        return beginListNextWithServiceResponseAsync(nextPageLink, cacheControl)
+            .map(new Func1<ServiceResponse<Page<EntityInfoInner>>, Page<EntityInfoInner>>() {
+                @Override
+                public Page<EntityInfoInner> call(ServiceResponse<Page<EntityInfoInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListNextWithServiceResponseAsync(final String nextPageLink, final String cacheControl) {
+        return beginListNextSinglePageAsync(nextPageLink, cacheControl)
+            .concatMap(new Func1<ServiceResponse<Page<EntityInfoInner>>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(ServiceResponse<Page<EntityInfoInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(beginListNextWithServiceResponseAsync(nextPageLink, cacheControl));
+                }
+            });
+    }
+
+    /**
+     * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
+     *
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;EntityInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListNextSinglePageAsync(final String nextPageLink, final String cacheControl) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.beginListNext(nextUrl, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl<EntityInfoInner>> result = beginListNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<EntityInfoInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl<EntityInfoInner>> beginListNextDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<PageImpl<EntityInfoInner>, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<PageImpl<EntityInfoInner>>() { }.getType())
                 .registerError(ErrorResponseException.class)

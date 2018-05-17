@@ -9,6 +9,7 @@
 package com.microsoft.azure.management.managementgroups.implementation;
 
 import com.microsoft.azure.management.managementgroups.EntityParentGroupInfo;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -63,6 +64,31 @@ public class EntityInfoInner {
      */
     @JsonProperty(value = "properties.permissions")
     private String permissions;
+
+    /**
+     * Inherited Permissions.
+     * Possible values include: 'noaccess', 'view', 'edit', 'delete'.
+     */
+    @JsonProperty(value = "properties.inheritedPermissions")
+    private String inheritedPermissions;
+
+    /**
+     * Number of Descendants.
+     */
+    @JsonProperty(value = "properties.numberOfDescendants")
+    private Integer numberOfDescendants;
+
+    /**
+     * The parent display name chain from immediate parent to the root group.
+     */
+    @JsonProperty(value = "properties.parentDisplayNameChain")
+    private List<String> parentDisplayNameChain;
+
+    /**
+     * The parent name chain from immediate parent to the root group.
+     */
+    @JsonProperty(value = "properties.parentNameChain")
+    private List<String> parentNameChain;
 
     /**
      * Get the id value.
@@ -168,6 +194,86 @@ public class EntityInfoInner {
      */
     public EntityInfoInner withPermissions(String permissions) {
         this.permissions = permissions;
+        return this;
+    }
+
+    /**
+     * Get the inheritedPermissions value.
+     *
+     * @return the inheritedPermissions value
+     */
+    public String inheritedPermissions() {
+        return this.inheritedPermissions;
+    }
+
+    /**
+     * Set the inheritedPermissions value.
+     *
+     * @param inheritedPermissions the inheritedPermissions value to set
+     * @return the EntityInfoInner object itself.
+     */
+    public EntityInfoInner withInheritedPermissions(String inheritedPermissions) {
+        this.inheritedPermissions = inheritedPermissions;
+        return this;
+    }
+
+    /**
+     * Get the numberOfDescendants value.
+     *
+     * @return the numberOfDescendants value
+     */
+    public Integer numberOfDescendants() {
+        return this.numberOfDescendants;
+    }
+
+    /**
+     * Set the numberOfDescendants value.
+     *
+     * @param numberOfDescendants the numberOfDescendants value to set
+     * @return the EntityInfoInner object itself.
+     */
+    public EntityInfoInner withNumberOfDescendants(Integer numberOfDescendants) {
+        this.numberOfDescendants = numberOfDescendants;
+        return this;
+    }
+
+    /**
+     * Get the parentDisplayNameChain value.
+     *
+     * @return the parentDisplayNameChain value
+     */
+    public List<String> parentDisplayNameChain() {
+        return this.parentDisplayNameChain;
+    }
+
+    /**
+     * Set the parentDisplayNameChain value.
+     *
+     * @param parentDisplayNameChain the parentDisplayNameChain value to set
+     * @return the EntityInfoInner object itself.
+     */
+    public EntityInfoInner withParentDisplayNameChain(List<String> parentDisplayNameChain) {
+        this.parentDisplayNameChain = parentDisplayNameChain;
+        return this;
+    }
+
+    /**
+     * Get the parentNameChain value.
+     *
+     * @return the parentNameChain value
+     */
+    public List<String> parentNameChain() {
+        return this.parentNameChain;
+    }
+
+    /**
+     * Set the parentNameChain value.
+     *
+     * @param parentNameChain the parentNameChain value to set
+     * @return the EntityInfoInner object itself.
+     */
+    public EntityInfoInner withParentNameChain(List<String> parentNameChain) {
+        this.parentNameChain = parentNameChain;
         return this;
     }
 
