@@ -12,12 +12,14 @@ import com.microsoft.azure.management.network.LoadBalancerSku;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * LoadBalancer resource.
  */
 @JsonFlatten
+@SkipParentValidation
 public class LoadBalancerInner extends Resource {
     /**
      * The load balancer SKU.
@@ -98,6 +100,12 @@ public class LoadBalancerInner extends Resource {
      */
     @JsonProperty(value = "etag")
     private String etag;
+
+    /**
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
 
     /**
      * Get the sku value.
@@ -316,6 +324,26 @@ public class LoadBalancerInner extends Resource {
      */
     public LoadBalancerInner withEtag(String etag) {
         this.etag = etag;
+        return this;
+    }
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id value.
+     *
+     * @param id the id value to set
+     * @return the LoadBalancerInner object itself.
+     */
+    public LoadBalancerInner withId(String id) {
+        this.id = id;
         return this;
     }
 
