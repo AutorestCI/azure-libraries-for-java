@@ -6,8 +6,6 @@
 
 /**
  * This package contains the implementation classes for ManagementGroupsAPI.
- * The Azure Management Groups API enables consolidation of multiple
- subscriptions/resources into an organizational hierarchy and centrally
- manage access control, policies, alerting and reporting for those resources.
+ * The Azure Management Groups API enables consolidation of multiple subscriptions/resources into an organizational hierarchy and centrally manage access control, policies, alerting and reporting for those resources.
  */
 package com.microsoft.azure.management.managementgroups.implementation;

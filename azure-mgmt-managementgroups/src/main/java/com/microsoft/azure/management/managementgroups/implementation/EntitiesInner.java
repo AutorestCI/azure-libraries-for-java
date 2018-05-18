@@ -157,13 +157,16 @@ public class EntitiesInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
+        final String skiptoken = null;
+        final Integer skip = null;
+        final Integer top = null;
         final String select = null;
         final String search = null;
         final String filter = null;
         final String view = null;
         final String groupName = null;
         final String cacheControl = null;
-        return service.list(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.apiVersion(), skiptoken, skip, top, select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
@@ -180,11 +183,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -194,8 +197,8 @@ public class EntitiesInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;EntityInfoInner&gt; object if successful.
      */
-    public PagedList<EntityInfoInner> list(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
-        ServiceResponse<Page<EntityInfoInner>> response = listSinglePageAsync(select, search, filter, view, groupName, cacheControl).toBlocking().single();
+    public PagedList<EntityInfoInner> list(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        ServiceResponse<Page<EntityInfoInner>> response = listSinglePageAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl).toBlocking().single();
         return new PagedList<EntityInfoInner>(response.body()) {
             @Override
             public Page<EntityInfoInner> nextPage(String nextPageLink) {
@@ -207,11 +210,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -220,9 +223,9 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<EntityInfoInner>> listAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl, final ListOperationCallback<EntityInfoInner> serviceCallback) {
+    public ServiceFuture<List<EntityInfoInner>> listAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl, final ListOperationCallback<EntityInfoInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(select, search, filter, view, groupName, cacheControl),
+            listSinglePageAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl),
             new Func1<String, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(String nextPageLink) {
@@ -235,11 +238,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -247,8 +250,8 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
      */
-    public Observable<Page<EntityInfoInner>> listAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
-        return listWithServiceResponseAsync(select, search, filter, view, groupName, cacheControl)
+    public Observable<Page<EntityInfoInner>> listAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return listWithServiceResponseAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl)
             .map(new Func1<ServiceResponse<Page<EntityInfoInner>>, Page<EntityInfoInner>>() {
                 @Override
                 public Page<EntityInfoInner> call(ServiceResponse<Page<EntityInfoInner>> response) {
@@ -260,11 +263,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -272,8 +275,8 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
      */
-    public Observable<ServiceResponse<Page<EntityInfoInner>>> listWithServiceResponseAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
-        return listSinglePageAsync(select, search, filter, view, groupName, cacheControl)
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> listWithServiceResponseAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return listSinglePageAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl)
             .concatMap(new Func1<ServiceResponse<Page<EntityInfoInner>>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(ServiceResponse<Page<EntityInfoInner>> page) {
@@ -289,11 +292,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
     ServiceResponse<PageImpl<EntityInfoInner>> * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-    ServiceResponse<PageImpl<EntityInfoInner>> * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
     ServiceResponse<PageImpl<EntityInfoInner>> * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
     ServiceResponse<PageImpl<EntityInfoInner>> * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
     ServiceResponse<PageImpl<EntityInfoInner>> * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -301,11 +304,11 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;EntityInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<EntityInfoInner>>> listSinglePageAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> listSinglePageAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.list(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.apiVersion(), skiptoken, skip, top, select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
@@ -409,13 +412,16 @@ public class EntitiesInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
+        final String skiptoken = null;
+        final Integer skip = null;
+        final Integer top = null;
         final String select = null;
         final String search = null;
         final String filter = null;
         final String view = null;
         final String groupName = null;
         final String cacheControl = null;
-        return service.beginList(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginList(this.client.apiVersion(), skiptoken, skip, top, select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {
@@ -432,11 +438,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -446,8 +452,8 @@ public class EntitiesInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;EntityInfoInner&gt; object if successful.
      */
-    public PagedList<EntityInfoInner> beginList(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
-        ServiceResponse<Page<EntityInfoInner>> response = beginListSinglePageAsync(select, search, filter, view, groupName, cacheControl).toBlocking().single();
+    public PagedList<EntityInfoInner> beginList(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        ServiceResponse<Page<EntityInfoInner>> response = beginListSinglePageAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl).toBlocking().single();
         return new PagedList<EntityInfoInner>(response.body()) {
             @Override
             public Page<EntityInfoInner> nextPage(String nextPageLink) {
@@ -459,11 +465,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -472,9 +478,9 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<EntityInfoInner>> beginListAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl, final ListOperationCallback<EntityInfoInner> serviceCallback) {
+    public ServiceFuture<List<EntityInfoInner>> beginListAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl, final ListOperationCallback<EntityInfoInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            beginListSinglePageAsync(select, search, filter, view, groupName, cacheControl),
+            beginListSinglePageAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl),
             new Func1<String, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(String nextPageLink) {
@@ -487,11 +493,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -499,8 +505,8 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
      */
-    public Observable<Page<EntityInfoInner>> beginListAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
-        return beginListWithServiceResponseAsync(select, search, filter, view, groupName, cacheControl)
+    public Observable<Page<EntityInfoInner>> beginListAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return beginListWithServiceResponseAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl)
             .map(new Func1<ServiceResponse<Page<EntityInfoInner>>, Page<EntityInfoInner>>() {
                 @Override
                 public Page<EntityInfoInner> call(ServiceResponse<Page<EntityInfoInner>> response) {
@@ -512,11 +518,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+     * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+     * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+     * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
      * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
      * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
      * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -524,8 +530,8 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;EntityInfoInner&gt; object
      */
-    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListWithServiceResponseAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
-        return beginListSinglePageAsync(select, search, filter, view, groupName, cacheControl)
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListWithServiceResponseAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+        return beginListSinglePageAsync(skiptoken, skip, top, select, search, filter, view, groupName, cacheControl)
             .concatMap(new Func1<ServiceResponse<Page<EntityInfoInner>>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(ServiceResponse<Page<EntityInfoInner>> page) {
@@ -541,11 +547,11 @@ public class EntitiesInner {
     /**
      * List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.
      *
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param skip Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
     ServiceResponse<PageImpl<EntityInfoInner>> * @param select This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken.
-    ServiceResponse<PageImpl<EntityInfoInner>> * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.
-     With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.
-     With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.
-     With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
+    ServiceResponse<PageImpl<EntityInfoInner>> * @param search The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants. Possible values include: 'AllowedParents', 'AllowedChildren', 'ParentAndFirstLevelChildren'
     ServiceResponse<PageImpl<EntityInfoInner>> * @param filter The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively.
     ServiceResponse<PageImpl<EntityInfoInner>> * @param view The view parameter allows clients to filter the type of data that is returned by the getEntities call. Possible values include: 'FullHierarchy', 'GroupsOnly', 'SubscriptionsOnly', 'Audit'
     ServiceResponse<PageImpl<EntityInfoInner>> * @param groupName A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'")
@@ -553,11 +559,11 @@ public class EntitiesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;EntityInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListSinglePageAsync(final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
+    public Observable<ServiceResponse<Page<EntityInfoInner>>> beginListSinglePageAsync(final String skiptoken, final Integer skip, final Integer top, final String select, final String search, final String filter, final String view, final String groupName, final String cacheControl) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.beginList(this.client.apiVersion(), this.client.skiptoken(), this.client.skip(), this.client.top(), select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
+        return service.beginList(this.client.apiVersion(), skiptoken, skip, top, select, search, filter, view, groupName, cacheControl, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<EntityInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<EntityInfoInner>>> call(Response<ResponseBody> response) {

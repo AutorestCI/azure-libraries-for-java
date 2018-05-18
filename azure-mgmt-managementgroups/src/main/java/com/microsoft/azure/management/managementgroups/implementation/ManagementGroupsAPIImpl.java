@@ -59,101 +59,6 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
         return this.apiVersion;
     }
 
-    /** The id of the operation result. Possible values include: 'create', 'delete'. */
-    private String operationResultId;
-
-    /**
-     * Gets The id of the operation result. Possible values include: 'create', 'delete'.
-     *
-     * @return the operationResultId value.
-     */
-    public String operationResultId() {
-        return this.operationResultId;
-    }
-
-    /**
-     * Sets The id of the operation result. Possible values include: 'create', 'delete'.
-     *
-     * @param operationResultId the operationResultId value.
-     * @return the service client itself
-     */
-    public ManagementGroupsAPIImpl withOperationResultId(String operationResultId) {
-        this.operationResultId = operationResultId;
-        return this;
-    }
-
-    /** Number of entities to skip over when retrieving results. Passing this in will override $skipToken. */
-    private int skip;
-
-    /**
-     * Gets Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
-     *
-     * @return the skip value.
-     */
-    public int skip() {
-        return this.skip;
-    }
-
-    /**
-     * Sets Number of entities to skip over when retrieving results. Passing this in will override $skipToken.
-     *
-     * @param skip the skip value.
-     * @return the service client itself
-     */
-    public ManagementGroupsAPIImpl withSkip(int skip) {
-        this.skip = skip;
-        return this;
-    }
-
-    /** Number of elements to return when retrieving results. Passing this in will override $skipToken. */
-    private int top;
-
-    /**
-     * Gets Number of elements to return when retrieving results. Passing this in will override $skipToken.
-     *
-     * @return the top value.
-     */
-    public int top() {
-        return this.top;
-    }
-
-    /**
-     * Sets Number of elements to return when retrieving results. Passing this in will override $skipToken.
-     *
-     * @param top the top value.
-     * @return the service client itself
-     */
-    public ManagementGroupsAPIImpl withTop(int top) {
-        this.top = top;
-        return this;
-    }
-
-    /** Page continuation token is only used if a previous operation returned a partial result.
-    If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls. */
-    private String skiptoken;
-
-    /**
-     * Gets Page continuation token is only used if a previous operation returned a partial result.
-     If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
-     *
-     * @return the skiptoken value.
-     */
-    public String skiptoken() {
-        return this.skiptoken;
-    }
-
-    /**
-     * Sets Page continuation token is only used if a previous operation returned a partial result.
-     If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
-     *
-     * @param skiptoken the skiptoken value.
-     * @return the service client itself
-     */
-    public ManagementGroupsAPIImpl withSkiptoken(String skiptoken) {
-        this.skiptoken = skiptoken;
-        return this;
-    }
-
     /** Gets or sets the preferred language for the response. */
     private String acceptLanguage;
 
@@ -549,7 +454,6 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
     private ServiceResponse<TenantBackfillStatusResultInner> beginStartTenantBackfillDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<TenantBackfillStatusResultInner, ErrorResponseException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<TenantBackfillStatusResultInner>() { }.getType())
-                .register(202, new TypeToken<TenantBackfillStatusResultInner>() { }.getType())
                 .registerError(ErrorResponseException.class)
                 .build(response);
     }
