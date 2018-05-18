@@ -146,19 +146,6 @@ public class ContainerRegistryManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The OperationsInner object to access its operations.
-     */
-    private OperationsInner operations;
-
-    /**
-     * Gets the OperationsInner object to access its operations.
-     * @return the OperationsInner object.
-     */
-    public OperationsInner operations() {
-        return this.operations;
-    }
-
-    /**
      * The ReplicationsInner object to access its operations.
      */
     private ReplicationsInner replications;
@@ -220,7 +207,6 @@ public class ContainerRegistryManagementClientImpl extends AzureServiceClient {
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
         this.registries = new RegistriesInner(restClient().retrofit(), this);
-        this.operations = new OperationsInner(restClient().retrofit(), this);
         this.replications = new ReplicationsInner(restClient().retrofit(), this);
         this.webhooks = new WebhooksInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
