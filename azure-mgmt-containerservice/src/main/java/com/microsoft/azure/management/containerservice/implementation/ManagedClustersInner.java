@@ -77,9 +77,9 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/upgradeProfiles/default")
         Observable<Response<ResponseBody>> getUpgradeProfile(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.containerservice.ManagedClusters listCredential" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.containerservice.ManagedClusters getAccessProfile" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/accessProfiles/{roleName}/listCredential")
-        Observable<Response<ResponseBody>> listCredential(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Path("roleName") String roleName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> getAccessProfile(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("resourceName") String resourceName, @Path("roleName") String roleName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.containerservice.ManagedClusters getAccessProfiles" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/accessProfiles/{roleName}")
@@ -345,7 +345,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Use ManagedClusters_ListCredential instead.
+     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -360,7 +360,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Use ManagedClusters_ListCredential instead.
+     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -374,7 +374,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Use ManagedClusters_ListCredential instead.
+     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -392,7 +392,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Use ManagedClusters_ListCredential instead.
+     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -443,8 +443,8 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ManagedClusterAccessProfileInner object if successful.
      */
-    public ManagedClusterAccessProfileInner listCredential(String resourceGroupName, String resourceName, String roleName) {
-        return listCredentialWithServiceResponseAsync(resourceGroupName, resourceName, roleName).toBlocking().single().body();
+    public ManagedClusterAccessProfileInner getAccessProfile(String resourceGroupName, String resourceName, String roleName) {
+        return getAccessProfileWithServiceResponseAsync(resourceGroupName, resourceName, roleName).toBlocking().single().body();
     }
 
     /**
@@ -458,8 +458,8 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ManagedClusterAccessProfileInner> listCredentialAsync(String resourceGroupName, String resourceName, String roleName, final ServiceCallback<ManagedClusterAccessProfileInner> serviceCallback) {
-        return ServiceFuture.fromResponse(listCredentialWithServiceResponseAsync(resourceGroupName, resourceName, roleName), serviceCallback);
+    public ServiceFuture<ManagedClusterAccessProfileInner> getAccessProfileAsync(String resourceGroupName, String resourceName, String roleName, final ServiceCallback<ManagedClusterAccessProfileInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getAccessProfileWithServiceResponseAsync(resourceGroupName, resourceName, roleName), serviceCallback);
     }
 
     /**
@@ -472,8 +472,8 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagedClusterAccessProfileInner object
      */
-    public Observable<ManagedClusterAccessProfileInner> listCredentialAsync(String resourceGroupName, String resourceName, String roleName) {
-        return listCredentialWithServiceResponseAsync(resourceGroupName, resourceName, roleName).map(new Func1<ServiceResponse<ManagedClusterAccessProfileInner>, ManagedClusterAccessProfileInner>() {
+    public Observable<ManagedClusterAccessProfileInner> getAccessProfileAsync(String resourceGroupName, String resourceName, String roleName) {
+        return getAccessProfileWithServiceResponseAsync(resourceGroupName, resourceName, roleName).map(new Func1<ServiceResponse<ManagedClusterAccessProfileInner>, ManagedClusterAccessProfileInner>() {
             @Override
             public ManagedClusterAccessProfileInner call(ServiceResponse<ManagedClusterAccessProfileInner> response) {
                 return response.body();
@@ -491,7 +491,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ManagedClusterAccessProfileInner object
      */
-    public Observable<ServiceResponse<ManagedClusterAccessProfileInner>> listCredentialWithServiceResponseAsync(String resourceGroupName, String resourceName, String roleName) {
+    public Observable<ServiceResponse<ManagedClusterAccessProfileInner>> getAccessProfileWithServiceResponseAsync(String resourceGroupName, String resourceName, String roleName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -505,12 +505,12 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
             throw new IllegalArgumentException("Parameter roleName is required and cannot be null.");
         }
         final String apiVersion = "2017-08-31";
-        return service.listCredential(this.client.subscriptionId(), resourceGroupName, resourceName, roleName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+        return service.getAccessProfile(this.client.subscriptionId(), resourceGroupName, resourceName, roleName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ManagedClusterAccessProfileInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ManagedClusterAccessProfileInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<ManagedClusterAccessProfileInner> clientResponse = listCredentialDelegate(response);
+                        ServiceResponse<ManagedClusterAccessProfileInner> clientResponse = getAccessProfileDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -519,7 +519,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
             });
     }
 
-    private ServiceResponse<ManagedClusterAccessProfileInner> listCredentialDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponse<ManagedClusterAccessProfileInner> getAccessProfileDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ManagedClusterAccessProfileInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ManagedClusterAccessProfileInner>() { }.getType())
                 .registerError(CloudException.class)
@@ -528,7 +528,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets access profile of a managed cluster.
-     * Gets the accessProfile for the specified role name of the managed cluster with a specified resource group and name.
+     * Use ManagedClusters_GetAccessProfile instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -544,7 +544,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets access profile of a managed cluster.
-     * Gets the accessProfile for the specified role name of the managed cluster with a specified resource group and name.
+     * Use ManagedClusters_GetAccessProfile instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -559,7 +559,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets access profile of a managed cluster.
-     * Gets the accessProfile for the specified role name of the managed cluster with a specified resource group and name.
+     * Use ManagedClusters_GetAccessProfile instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -578,7 +578,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets access profile of a managed cluster.
-     * Gets the accessProfile for the specified role name of the managed cluster with a specified resource group and name.
+     * Use ManagedClusters_GetAccessProfile instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
