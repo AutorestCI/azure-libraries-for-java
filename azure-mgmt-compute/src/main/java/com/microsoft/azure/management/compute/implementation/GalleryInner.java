@@ -31,7 +31,10 @@ public class GalleryInner extends Resource {
     private GalleryIdentifier identifier;
 
     /**
-     * The provisioning state, which only appears in the response.
+     * The current state of the gallery.
+     * The provisioning state, which only appears in the response. Possible
+     * values include: 'Creating', 'Updating', 'Failed', 'Succeeded',
+     * 'Deleting', 'Migrating'.
      */
     @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;

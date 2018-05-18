@@ -28,7 +28,10 @@ public class GalleryImageVersionInner extends Resource {
     private GalleryImageVersionPublishingProfile publishingProfile;
 
     /**
-     * The provisioning state, which only appears in the response.
+     * The current state of the gallery image version.
+     * The provisioning state, which only appears in the response. Possible
+     * values include: 'Creating', 'Updating', 'Failed', 'Succeeded',
+     * 'Deleting', 'Migrating'.
      */
     @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
