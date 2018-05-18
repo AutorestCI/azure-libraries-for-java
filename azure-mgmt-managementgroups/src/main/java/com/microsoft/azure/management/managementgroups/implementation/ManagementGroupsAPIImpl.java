@@ -250,10 +250,6 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
         @POST("providers/Microsoft.Management/startTenantBackfill")
         Observable<Response<ResponseBody>> startTenantBackfill(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroupsAPI beginStartTenantBackfill" })
-        @POST("providers/Microsoft.Management/startTenantBackfill")
-        Observable<Response<ResponseBody>> beginStartTenantBackfill(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
-
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.managementgroups.ManagementGroupsAPI tenantBackfillStatus" })
         @POST("providers/Microsoft.Management/tenantBackfillStatus")
         Observable<Response<ResponseBody>> tenantBackfillStatus(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -346,7 +342,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
      * @return the TenantBackfillStatusResultInner object if successful.
      */
     public TenantBackfillStatusResultInner startTenantBackfill() {
-        return startTenantBackfillWithServiceResponseAsync().toBlocking().last().body();
+        return startTenantBackfillWithServiceResponseAsync().toBlocking().single().body();
     }
 
     /**
@@ -364,7 +360,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
      * Starts backfilling subscriptions for the Tenant.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable for the request
+     * @return the observable to the TenantBackfillStatusResultInner object
      */
     public Observable<TenantBackfillStatusResultInner> startTenantBackfillAsync() {
         return startTenantBackfillWithServiceResponseAsync().map(new Func1<ServiceResponse<TenantBackfillStatusResultInner>, TenantBackfillStatusResultInner>() {
@@ -379,70 +375,18 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
      * Starts backfilling subscriptions for the Tenant.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable for the request
+     * @return the observable to the TenantBackfillStatusResultInner object
      */
     public Observable<ServiceResponse<TenantBackfillStatusResultInner>> startTenantBackfillWithServiceResponseAsync() {
         if (this.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
-        Observable<Response<ResponseBody>> observable = service.startTenantBackfill(this.apiVersion(), this.acceptLanguage(), this.userAgent());
-        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<TenantBackfillStatusResultInner>() { }.getType());
-    }
-
-    /**
-     * Starts backfilling subscriptions for the Tenant.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorResponseException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the TenantBackfillStatusResultInner object if successful.
-     */
-    public TenantBackfillStatusResultInner beginStartTenantBackfill() {
-        return beginStartTenantBackfillWithServiceResponseAsync().toBlocking().single().body();
-    }
-
-    /**
-     * Starts backfilling subscriptions for the Tenant.
-     *
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<TenantBackfillStatusResultInner> beginStartTenantBackfillAsync(final ServiceCallback<TenantBackfillStatusResultInner> serviceCallback) {
-        return ServiceFuture.fromResponse(beginStartTenantBackfillWithServiceResponseAsync(), serviceCallback);
-    }
-
-    /**
-     * Starts backfilling subscriptions for the Tenant.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the TenantBackfillStatusResultInner object
-     */
-    public Observable<TenantBackfillStatusResultInner> beginStartTenantBackfillAsync() {
-        return beginStartTenantBackfillWithServiceResponseAsync().map(new Func1<ServiceResponse<TenantBackfillStatusResultInner>, TenantBackfillStatusResultInner>() {
-            @Override
-            public TenantBackfillStatusResultInner call(ServiceResponse<TenantBackfillStatusResultInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Starts backfilling subscriptions for the Tenant.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the TenantBackfillStatusResultInner object
-     */
-    public Observable<ServiceResponse<TenantBackfillStatusResultInner>> beginStartTenantBackfillWithServiceResponseAsync() {
-        if (this.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
-        }
-        return service.beginStartTenantBackfill(this.apiVersion(), this.acceptLanguage(), this.userAgent())
+        return service.startTenantBackfill(this.apiVersion(), this.acceptLanguage(), this.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<TenantBackfillStatusResultInner>>>() {
                 @Override
                 public Observable<ServiceResponse<TenantBackfillStatusResultInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<TenantBackfillStatusResultInner> clientResponse = beginStartTenantBackfillDelegate(response);
+                        ServiceResponse<TenantBackfillStatusResultInner> clientResponse = startTenantBackfillDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -451,7 +395,7 @@ public class ManagementGroupsAPIImpl extends AzureServiceClient {
             });
     }
 
-    private ServiceResponse<TenantBackfillStatusResultInner> beginStartTenantBackfillDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+    private ServiceResponse<TenantBackfillStatusResultInner> startTenantBackfillDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<TenantBackfillStatusResultInner, ErrorResponseException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<TenantBackfillStatusResultInner>() { }.getType())
                 .registerError(ErrorResponseException.class)
