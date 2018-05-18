@@ -182,7 +182,8 @@ public class ManagementGroupsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String cacheControl = null;
-        return service.list(this.client.apiVersion(), cacheControl, this.client.skiptoken(), this.client.acceptLanguage(), this.client.userAgent())
+        final String skiptoken = null;
+        return service.list(this.client.apiVersion(), cacheControl, skiptoken, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(Response<ResponseBody> response) {
@@ -200,13 +201,14 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;ManagementGroupInfoInner&gt; object if successful.
      */
-    public PagedList<ManagementGroupInfoInner> list(final String cacheControl) {
-        ServiceResponse<Page<ManagementGroupInfoInner>> response = listSinglePageAsync(cacheControl).toBlocking().single();
+    public PagedList<ManagementGroupInfoInner> list(final String cacheControl, final String skiptoken) {
+        ServiceResponse<Page<ManagementGroupInfoInner>> response = listSinglePageAsync(cacheControl, skiptoken).toBlocking().single();
         return new PagedList<ManagementGroupInfoInner>(response.body()) {
             @Override
             public Page<ManagementGroupInfoInner> nextPage(String nextPageLink) {
@@ -219,13 +221,14 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ManagementGroupInfoInner>> listAsync(final String cacheControl, final ListOperationCallback<ManagementGroupInfoInner> serviceCallback) {
+    public ServiceFuture<List<ManagementGroupInfoInner>> listAsync(final String cacheControl, final String skiptoken, final ListOperationCallback<ManagementGroupInfoInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(cacheControl),
+            listSinglePageAsync(cacheControl, skiptoken),
             new Func1<String, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(String nextPageLink) {
@@ -239,11 +242,12 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ManagementGroupInfoInner&gt; object
      */
-    public Observable<Page<ManagementGroupInfoInner>> listAsync(final String cacheControl) {
-        return listWithServiceResponseAsync(cacheControl)
+    public Observable<Page<ManagementGroupInfoInner>> listAsync(final String cacheControl, final String skiptoken) {
+        return listWithServiceResponseAsync(cacheControl, skiptoken)
             .map(new Func1<ServiceResponse<Page<ManagementGroupInfoInner>>, Page<ManagementGroupInfoInner>>() {
                 @Override
                 public Page<ManagementGroupInfoInner> call(ServiceResponse<Page<ManagementGroupInfoInner>> response) {
@@ -256,11 +260,12 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;ManagementGroupInfoInner&gt; object
      */
-    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listWithServiceResponseAsync(final String cacheControl) {
-        return listSinglePageAsync(cacheControl)
+    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listWithServiceResponseAsync(final String cacheControl, final String skiptoken) {
+        return listSinglePageAsync(cacheControl, skiptoken)
             .concatMap(new Func1<ServiceResponse<Page<ManagementGroupInfoInner>>, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(ServiceResponse<Page<ManagementGroupInfoInner>> page) {
@@ -277,14 +282,15 @@ public class ManagementGroupsInner {
      * List management groups for the authenticated user.
      *
     ServiceResponse<PageImpl<ManagementGroupInfoInner>> * @param cacheControl Indicates that the request shouldn't utilize any caches.
+    ServiceResponse<PageImpl<ManagementGroupInfoInner>> * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ManagementGroupInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listSinglePageAsync(final String cacheControl) {
+    public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> listSinglePageAsync(final String cacheControl, final String skiptoken) {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.list(this.client.apiVersion(), cacheControl, this.client.skiptoken(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(this.client.apiVersion(), cacheControl, skiptoken, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ManagementGroupInfoInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<ManagementGroupInfoInner>>> call(Response<ResponseBody> response) {
@@ -471,8 +477,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -486,8 +491,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -500,8 +504,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -518,8 +521,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -542,8 +544,7 @@ public class ManagementGroupsInner {
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<Object>() { }.getType());
     }
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -558,8 +559,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -573,8 +573,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -592,8 +591,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -617,8 +615,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -632,8 +629,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -646,8 +642,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -664,8 +659,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -699,8 +693,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -715,8 +708,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -730,8 +722,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -749,8 +740,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Create or update a management group.
-     If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
+     * Create or update a management group. If a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.
      *
      * @param groupId Management Group ID.
      * @param createManagementGroupRequest Management group creation parameters.
@@ -958,8 +948,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -972,8 +961,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -985,8 +973,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1002,8 +989,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1021,8 +1007,7 @@ public class ManagementGroupsInner {
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationResultsInner>() { }.getType());
     }
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
@@ -1036,8 +1021,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
@@ -1050,8 +1034,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
@@ -1068,8 +1051,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
@@ -1088,8 +1070,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1102,8 +1083,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1115,8 +1095,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1132,8 +1111,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1162,8 +1140,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
@@ -1177,8 +1154,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
@@ -1191,8 +1167,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
@@ -1209,8 +1184,7 @@ public class ManagementGroupsInner {
     }
 
     /**
-     * Delete management group.
-     If a management group contains child resources, the request will fail.
+     * Delete management group. If a management group contains child resources, the request will fail.
      *
      * @param groupId Management Group ID.
      * @param cacheControl Indicates that the request shouldn't utilize any caches.
