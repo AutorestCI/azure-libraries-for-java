@@ -345,7 +345,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
+     * Use ManagedClusters_ListCredential instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -360,7 +360,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
+     * Use ManagedClusters_ListCredential instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -374,7 +374,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
+     * Use ManagedClusters_ListCredential instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
@@ -392,7 +392,7 @@ public class ManagedClustersInner implements InnerSupportsGet<ManagedClusterInne
 
     /**
      * Gets upgrade profile for a managed cluster.
-     * Gets the details of the upgrade profile for a managed cluster with a specified resource group and name.
+     * Use ManagedClusters_ListCredential instead.
      *
      * @param resourceGroupName The name of the resource group.
      * @param resourceName The name of the managed cluster resource.
