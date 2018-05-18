@@ -79,13 +79,14 @@ public class EntityInfoInner {
     private Integer numberOfDescendants;
 
     /**
-     * The parent display name chain from immediate parent to the root group.
+     * The parent display name chain from the root group to the immediate
+     * parent.
      */
     @JsonProperty(value = "properties.parentDisplayNameChain")
     private List<String> parentDisplayNameChain;
 
     /**
-     * The parent name chain from immediate parent to the root group.
+     * The parent name chain from the root group to the immediate parent.
      */
     @JsonProperty(value = "properties.parentNameChain")
     private List<String> parentNameChain;
