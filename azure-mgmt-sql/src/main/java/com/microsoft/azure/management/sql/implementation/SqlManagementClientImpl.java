@@ -849,6 +849,45 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The ManagedDatabaseVulnerabilityAssessmentRuleBaselinesInner object to access its operations.
+     */
+    private ManagedDatabaseVulnerabilityAssessmentRuleBaselinesInner managedDatabaseVulnerabilityAssessmentRuleBaselines;
+
+    /**
+     * Gets the ManagedDatabaseVulnerabilityAssessmentRuleBaselinesInner object to access its operations.
+     * @return the ManagedDatabaseVulnerabilityAssessmentRuleBaselinesInner object.
+     */
+    public ManagedDatabaseVulnerabilityAssessmentRuleBaselinesInner managedDatabaseVulnerabilityAssessmentRuleBaselines() {
+        return this.managedDatabaseVulnerabilityAssessmentRuleBaselines;
+    }
+
+    /**
+     * The ManagedDatabaseVulnerabilityAssessmentsInner object to access its operations.
+     */
+    private ManagedDatabaseVulnerabilityAssessmentsInner managedDatabaseVulnerabilityAssessments;
+
+    /**
+     * Gets the ManagedDatabaseVulnerabilityAssessmentsInner object to access its operations.
+     * @return the ManagedDatabaseVulnerabilityAssessmentsInner object.
+     */
+    public ManagedDatabaseVulnerabilityAssessmentsInner managedDatabaseVulnerabilityAssessments() {
+        return this.managedDatabaseVulnerabilityAssessments;
+    }
+
+    /**
+     * The ManagedDatabaseVulnerabilityAssessmentScansInner object to access its operations.
+     */
+    private ManagedDatabaseVulnerabilityAssessmentScansInner managedDatabaseVulnerabilityAssessmentScans;
+
+    /**
+     * Gets the ManagedDatabaseVulnerabilityAssessmentScansInner object to access its operations.
+     * @return the ManagedDatabaseVulnerabilityAssessmentScansInner object.
+     */
+    public ManagedDatabaseVulnerabilityAssessmentScansInner managedDatabaseVulnerabilityAssessmentScans() {
+        return this.managedDatabaseVulnerabilityAssessmentScans;
+    }
+
+    /**
      * The InstanceFailoverGroupsInner object to access its operations.
      */
     private InstanceFailoverGroupsInner instanceFailoverGroups;
@@ -964,6 +1003,9 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.elasticPoolOperations = new ElasticPoolOperationsInner(restClient().retrofit(), this);
         this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
         this.databaseVulnerabilityAssessmentScans = new DatabaseVulnerabilityAssessmentScansInner(restClient().retrofit(), this);
+        this.managedDatabaseVulnerabilityAssessmentRuleBaselines = new ManagedDatabaseVulnerabilityAssessmentRuleBaselinesInner(restClient().retrofit(), this);
+        this.managedDatabaseVulnerabilityAssessments = new ManagedDatabaseVulnerabilityAssessmentsInner(restClient().retrofit(), this);
+        this.managedDatabaseVulnerabilityAssessmentScans = new ManagedDatabaseVulnerabilityAssessmentScansInner(restClient().retrofit(), this);
         this.instanceFailoverGroups = new InstanceFailoverGroupsInner(restClient().retrofit(), this);
         this.shortTermRetentionPolicies = new ShortTermRetentionPoliciesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
