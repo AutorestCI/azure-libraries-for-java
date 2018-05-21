@@ -14,6 +14,7 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.management.monitor.ErrorResponseException;
+import com.microsoft.azure.management.monitor.LogSearchRuleResourcePatch;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -28,6 +29,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.HTTP;
+import retrofit2.http.PATCH;
 import retrofit2.http.Path;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
@@ -68,6 +70,10 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.monitor.ScheduledQueryRules getByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.insights/scheduledQueryRules/{ruleName}")
         Observable<Response<ResponseBody>> getByResourceGroup(@Path("resourceGroupName") String resourceGroupName, @Path("ruleName") String ruleName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.monitor.ScheduledQueryRules update" })
+        @PATCH("subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.insights/scheduledQueryRules/{ruleName}")
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("ruleName") String ruleName, @Query("api-version") String apiVersion, @Body LogSearchRuleResourcePatch parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.monitor.ScheduledQueryRules delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.insights/scheduledQueryRules/{ruleName}", method = "DELETE", hasBody = true)
@@ -254,6 +260,98 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
     }
 
     private ServiceResponse<LogSearchRuleResourceInner> getByResourceGroupDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<LogSearchRuleResourceInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<LogSearchRuleResourceInner>() { }.getType())
+                .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * Update log search Rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param ruleName The name of the rule.
+     * @param parameters The parameters of the rule to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the LogSearchRuleResourceInner object if successful.
+     */
+    public LogSearchRuleResourceInner update(String resourceGroupName, String ruleName, LogSearchRuleResourcePatch parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, ruleName, parameters).toBlocking().single().body();
+    }
+
+    /**
+     * Update log search Rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param ruleName The name of the rule.
+     * @param parameters The parameters of the rule to update.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<LogSearchRuleResourceInner> updateAsync(String resourceGroupName, String ruleName, LogSearchRuleResourcePatch parameters, final ServiceCallback<LogSearchRuleResourceInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, ruleName, parameters), serviceCallback);
+    }
+
+    /**
+     * Update log search Rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param ruleName The name of the rule.
+     * @param parameters The parameters of the rule to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the LogSearchRuleResourceInner object
+     */
+    public Observable<LogSearchRuleResourceInner> updateAsync(String resourceGroupName, String ruleName, LogSearchRuleResourcePatch parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, ruleName, parameters).map(new Func1<ServiceResponse<LogSearchRuleResourceInner>, LogSearchRuleResourceInner>() {
+            @Override
+            public LogSearchRuleResourceInner call(ServiceResponse<LogSearchRuleResourceInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Update log search Rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param ruleName The name of the rule.
+     * @param parameters The parameters of the rule to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the LogSearchRuleResourceInner object
+     */
+    public Observable<ServiceResponse<LogSearchRuleResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String ruleName, LogSearchRuleResourcePatch parameters) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (ruleName == null) {
+            throw new IllegalArgumentException("Parameter ruleName is required and cannot be null.");
+        }
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        }
+        Validator.validate(parameters);
+        final String apiVersion = "2018-04-16";
+        return service.update(this.client.subscriptionId(), resourceGroupName, ruleName, apiVersion, parameters, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<LogSearchRuleResourceInner>>>() {
+                @Override
+                public Observable<ServiceResponse<LogSearchRuleResourceInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<LogSearchRuleResourceInner> clientResponse = updateDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<LogSearchRuleResourceInner> updateDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<LogSearchRuleResourceInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<LogSearchRuleResourceInner>() { }.getType())
                 .registerError(ErrorResponseException.class)

@@ -68,13 +68,6 @@ public class MetricAlertResourceInner extends Resource {
     private MetricAlertCriteria criteria;
 
     /**
-     * the flag that indicates whether the alert should be auto resolved or
-     * not.
-     */
-    @JsonProperty(value = "properties.autoMitigate")
-    private Boolean autoMitigate;
-
-    /**
      * the array of actions that are performed when the alert rule becomes
      * active, and when an alert condition is resolved.
      */
@@ -224,26 +217,6 @@ public class MetricAlertResourceInner extends Resource {
      */
     public MetricAlertResourceInner withCriteria(MetricAlertCriteria criteria) {
         this.criteria = criteria;
-        return this;
-    }
-
-    /**
-     * Get the autoMitigate value.
-     *
-     * @return the autoMitigate value
-     */
-    public Boolean autoMitigate() {
-        return this.autoMitigate;
-    }
-
-    /**
-     * Set the autoMitigate value.
-     *
-     * @param autoMitigate the autoMitigate value to set
-     * @return the MetricAlertResourceInner object itself.
-     */
-    public MetricAlertResourceInner withAutoMitigate(Boolean autoMitigate) {
-        this.autoMitigate = autoMitigate;
         return this;
     }
 
