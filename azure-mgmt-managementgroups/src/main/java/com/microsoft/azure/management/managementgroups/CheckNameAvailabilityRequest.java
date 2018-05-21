@@ -23,7 +23,7 @@ public class CheckNameAvailabilityRequest {
     /**
      * fully qualified resource type which includes provider namespace.
      * Possible values include:
-     * '/providers/Microsoft.Management/managementGroup'.
+     * '/providers/Microsoft.Management/managementGroups'.
      */
     @JsonProperty(value = "type")
     private Type type;

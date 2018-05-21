@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * Defines values for Type.
  */
 public enum Type {
-    /** Enum value /providers/Microsoft.Management/managementGroup. */
-    PROVIDERS_MICROSOFT_MANAGEMENTMANAGEMENT_GROUP("/providers/Microsoft.Management/managementGroup");
+    /** Enum value /providers/Microsoft.Management/managementGroups. */
+    PROVIDERS_MICROSOFT_MANAGEMENTMANAGEMENT_GROUPS("/providers/Microsoft.Management/managementGroups");
 
     /** The actual serialized value for a Type instance. */
     private String value;
