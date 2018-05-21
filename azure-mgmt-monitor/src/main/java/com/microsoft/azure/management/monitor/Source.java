@@ -30,8 +30,8 @@ public class Source {
     /**
      * The resource uri over which log search query is to be run.
      */
-    @JsonProperty(value = "dataSourceId", required = true)
-    private String dataSourceId;
+    @JsonProperty(value = "datasourceId", required = true)
+    private String datasourceId;
 
     /**
      * Set value to ResultCount if query should be returning search result
@@ -82,22 +82,22 @@ public class Source {
     }
 
     /**
-     * Get the dataSourceId value.
+     * Get the datasourceId value.
      *
-     * @return the dataSourceId value
+     * @return the datasourceId value
      */
-    public String dataSourceId() {
-        return this.dataSourceId;
+    public String datasourceId() {
+        return this.datasourceId;
     }
 
     /**
-     * Set the dataSourceId value.
+     * Set the datasourceId value.
      *
-     * @param dataSourceId the dataSourceId value to set
+     * @param datasourceId the datasourceId value to set
      * @return the Source object itself.
      */
-    public Source withDataSourceId(String dataSourceId) {
-        this.dataSourceId = dataSourceId;
+    public Source withDatasourceId(String datasourceId) {
+        this.datasourceId = datasourceId;
         return this;
     }
 
