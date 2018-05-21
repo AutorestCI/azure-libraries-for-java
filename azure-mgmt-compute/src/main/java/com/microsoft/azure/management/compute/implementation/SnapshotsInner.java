@@ -783,7 +783,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a resource group.
      *
-    ServiceResponse<PageImpl1<SnapshotInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl<SnapshotInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;SnapshotInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -800,7 +800,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
                 @Override
                 public Observable<ServiceResponse<Page<SnapshotInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<SnapshotInner>> result = listByResourceGroupDelegate(response);
+                        ServiceResponse<PageImpl<SnapshotInner>> result = listByResourceGroupDelegate(response);
                         return Observable.just(new ServiceResponse<Page<SnapshotInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -809,9 +809,9 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
             });
     }
 
-    private ServiceResponse<PageImpl1<SnapshotInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<SnapshotInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SnapshotInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SnapshotInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -905,7 +905,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
                 @Override
                 public Observable<ServiceResponse<Page<SnapshotInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<SnapshotInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl<SnapshotInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<SnapshotInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -914,9 +914,9 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
             });
     }
 
-    private ServiceResponse<PageImpl1<SnapshotInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<SnapshotInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SnapshotInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SnapshotInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1322,7 +1322,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a resource group.
      *
-    ServiceResponse<PageImpl1<SnapshotInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<SnapshotInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;SnapshotInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1336,7 +1336,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
                 @Override
                 public Observable<ServiceResponse<Page<SnapshotInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<SnapshotInner>> result = listByResourceGroupNextDelegate(response);
+                        ServiceResponse<PageImpl<SnapshotInner>> result = listByResourceGroupNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<SnapshotInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1345,9 +1345,9 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
             });
     }
 
-    private ServiceResponse<PageImpl1<SnapshotInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<SnapshotInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SnapshotInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SnapshotInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1433,7 +1433,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
     /**
      * Lists snapshots under a subscription.
      *
-    ServiceResponse<PageImpl1<SnapshotInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<SnapshotInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;SnapshotInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1447,7 +1447,7 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
                 @Override
                 public Observable<ServiceResponse<Page<SnapshotInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<SnapshotInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl<SnapshotInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<SnapshotInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1456,9 +1456,9 @@ public class SnapshotsInner implements InnerSupportsGet<SnapshotInner>, InnerSup
             });
     }
 
-    private ServiceResponse<PageImpl1<SnapshotInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<SnapshotInner>>() { }.getType())
+    private ServiceResponse<PageImpl<SnapshotInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<SnapshotInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SnapshotInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

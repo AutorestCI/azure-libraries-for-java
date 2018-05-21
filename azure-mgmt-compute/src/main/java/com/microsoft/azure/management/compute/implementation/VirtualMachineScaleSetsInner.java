@@ -1448,7 +1448,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     /**
      * Gets a list of all VM scale sets under a resource group.
      *
-    ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;VirtualMachineScaleSetInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1465,7 +1465,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<VirtualMachineScaleSetInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> result = listByResourceGroupDelegate(response);
+                        ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> result = listByResourceGroupDelegate(response);
                         return Observable.just(new ServiceResponse<Page<VirtualMachineScaleSetInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1474,9 +1474,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetInner>>() { }.getType())
+    private ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<VirtualMachineScaleSetInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1570,7 +1570,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<VirtualMachineScaleSetInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<VirtualMachineScaleSetInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1579,9 +1579,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetInner>>() { }.getType())
+    private ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<VirtualMachineScaleSetInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1670,8 +1670,8 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     /**
      * Gets a list of SKUs available for your VM scale set, including the minimum and maximum VM instances allowed for each SKU.
      *
-    ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> * @param resourceGroupName The name of the resource group.
-    ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> * @param vmScaleSetName The name of the VM scale set.
+    ServiceResponse<PageImpl<VirtualMachineScaleSetSkuInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl<VirtualMachineScaleSetSkuInner>> * @param vmScaleSetName The name of the VM scale set.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;VirtualMachineScaleSetSkuInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1691,7 +1691,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<VirtualMachineScaleSetSkuInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> result = listSkusDelegate(response);
+                        ServiceResponse<PageImpl<VirtualMachineScaleSetSkuInner>> result = listSkusDelegate(response);
                         return Observable.just(new ServiceResponse<Page<VirtualMachineScaleSetSkuInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1700,9 +1700,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> listSkusDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetSkuInner>>() { }.getType())
+    private ServiceResponse<PageImpl<VirtualMachineScaleSetSkuInner>> listSkusDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineScaleSetSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<VirtualMachineScaleSetSkuInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1791,8 +1791,8 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     /**
      * Gets list of OS upgrades on a VM scale set instance.
      *
-    ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> * @param resourceGroupName The name of the resource group.
-    ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> * @param vmScaleSetName The name of the VM scale set.
+    ServiceResponse<PageImpl<UpgradeOperationHistoricalStatusInfoInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl<UpgradeOperationHistoricalStatusInfoInner>> * @param vmScaleSetName The name of the VM scale set.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1812,7 +1812,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> result = getOSUpgradeHistoryDelegate(response);
+                        ServiceResponse<PageImpl<UpgradeOperationHistoricalStatusInfoInner>> result = getOSUpgradeHistoryDelegate(response);
                         return Observable.just(new ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1821,9 +1821,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>>() { }.getType())
+    private ServiceResponse<PageImpl<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<UpgradeOperationHistoricalStatusInfoInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<UpgradeOperationHistoricalStatusInfoInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -4416,7 +4416,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     /**
      * Gets a list of all VM scale sets under a resource group.
      *
-    ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;VirtualMachineScaleSetInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -4430,7 +4430,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<VirtualMachineScaleSetInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> result = listByResourceGroupNextDelegate(response);
+                        ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> result = listByResourceGroupNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<VirtualMachineScaleSetInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -4439,9 +4439,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetInner>>() { }.getType())
+    private ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<VirtualMachineScaleSetInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -4527,7 +4527,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     /**
      * Gets a list of all VM Scale Sets in the subscription, regardless of the associated resource group. Use nextLink property in the response to get the next page of VM Scale Sets. Do this till nextLink is null to fetch all the VM Scale Sets.
      *
-    ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;VirtualMachineScaleSetInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -4541,7 +4541,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<VirtualMachineScaleSetInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<VirtualMachineScaleSetInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -4550,9 +4550,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<VirtualMachineScaleSetInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetInner>>() { }.getType())
+    private ServiceResponse<PageImpl<VirtualMachineScaleSetInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineScaleSetInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<VirtualMachineScaleSetInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -4638,7 +4638,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     /**
      * Gets a list of SKUs available for your VM scale set, including the minimum and maximum VM instances allowed for each SKU.
      *
-    ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<VirtualMachineScaleSetSkuInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;VirtualMachineScaleSetSkuInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -4652,7 +4652,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<VirtualMachineScaleSetSkuInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> result = listSkusNextDelegate(response);
+                        ServiceResponse<PageImpl<VirtualMachineScaleSetSkuInner>> result = listSkusNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<VirtualMachineScaleSetSkuInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -4661,9 +4661,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<VirtualMachineScaleSetSkuInner>> listSkusNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineScaleSetSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<VirtualMachineScaleSetSkuInner>>() { }.getType())
+    private ServiceResponse<PageImpl<VirtualMachineScaleSetSkuInner>> listSkusNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineScaleSetSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<VirtualMachineScaleSetSkuInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -4749,7 +4749,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
     /**
      * Gets list of OS upgrades on a VM scale set instance.
      *
-    ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<UpgradeOperationHistoricalStatusInfoInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;UpgradeOperationHistoricalStatusInfoInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -4763,7 +4763,7 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
                 @Override
                 public Observable<ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> result = getOSUpgradeHistoryNextDelegate(response);
+                        ServiceResponse<PageImpl<UpgradeOperationHistoricalStatusInfoInner>> result = getOSUpgradeHistoryNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<UpgradeOperationHistoricalStatusInfoInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -4772,9 +4772,9 @@ public class VirtualMachineScaleSetsInner implements InnerSupportsGet<VirtualMac
             });
     }
 
-    private ServiceResponse<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<UpgradeOperationHistoricalStatusInfoInner>>() { }.getType())
+    private ServiceResponse<PageImpl<UpgradeOperationHistoricalStatusInfoInner>> getOSUpgradeHistoryNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<UpgradeOperationHistoricalStatusInfoInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<UpgradeOperationHistoricalStatusInfoInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

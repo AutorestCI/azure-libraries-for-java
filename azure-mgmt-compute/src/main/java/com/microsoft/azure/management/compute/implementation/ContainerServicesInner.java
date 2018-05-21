@@ -196,7 +196,7 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
                 @Override
                 public Observable<ServiceResponse<Page<ContainerServiceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ContainerServiceInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl<ContainerServiceInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ContainerServiceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -205,9 +205,9 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
             });
     }
 
-    private ServiceResponse<PageImpl1<ContainerServiceInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ContainerServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ContainerServiceInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ContainerServiceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -720,7 +720,7 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
      * Gets a list of container services in the specified resource group.
      * Gets a list of container services in the specified subscription and resource group. The operation returns properties of each container service including state, orchestrator, number of masters and agents, and FQDNs of masters and agents.
      *
-    ServiceResponse<PageImpl1<ContainerServiceInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl<ContainerServiceInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ContainerServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -737,7 +737,7 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
                 @Override
                 public Observable<ServiceResponse<Page<ContainerServiceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ContainerServiceInner>> result = listByResourceGroupDelegate(response);
+                        ServiceResponse<PageImpl<ContainerServiceInner>> result = listByResourceGroupDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ContainerServiceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -746,9 +746,9 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
             });
     }
 
-    private ServiceResponse<PageImpl1<ContainerServiceInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ContainerServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ContainerServiceInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ContainerServiceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -839,7 +839,7 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
      * Gets a list of container services in the specified subscription.
      * Gets a list of container services in the specified subscription. The operation returns properties of each container service including state, orchestrator, number of masters and agents, and FQDNs of masters and agents.
      *
-    ServiceResponse<PageImpl1<ContainerServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<ContainerServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ContainerServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -853,7 +853,7 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
                 @Override
                 public Observable<ServiceResponse<Page<ContainerServiceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ContainerServiceInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl<ContainerServiceInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ContainerServiceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -862,9 +862,9 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
             });
     }
 
-    private ServiceResponse<PageImpl1<ContainerServiceInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ContainerServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ContainerServiceInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ContainerServiceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -955,7 +955,7 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
      * Gets a list of container services in the specified resource group.
      * Gets a list of container services in the specified subscription and resource group. The operation returns properties of each container service including state, orchestrator, number of masters and agents, and FQDNs of masters and agents.
      *
-    ServiceResponse<PageImpl1<ContainerServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<ContainerServiceInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ContainerServiceInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -969,7 +969,7 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
                 @Override
                 public Observable<ServiceResponse<Page<ContainerServiceInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ContainerServiceInner>> result = listByResourceGroupNextDelegate(response);
+                        ServiceResponse<PageImpl<ContainerServiceInner>> result = listByResourceGroupNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ContainerServiceInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -978,9 +978,9 @@ public class ContainerServicesInner implements InnerSupportsGet<ContainerService
             });
     }
 
-    private ServiceResponse<PageImpl1<ContainerServiceInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ContainerServiceInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ContainerServiceInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ContainerServiceInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ContainerServiceInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

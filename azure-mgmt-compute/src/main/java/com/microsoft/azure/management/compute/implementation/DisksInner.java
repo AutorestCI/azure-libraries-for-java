@@ -783,7 +783,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a resource group.
      *
-    ServiceResponse<PageImpl1<DiskInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl<DiskInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;DiskInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -800,7 +800,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
                 @Override
                 public Observable<ServiceResponse<Page<DiskInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<DiskInner>> result = listByResourceGroupDelegate(response);
+                        ServiceResponse<PageImpl<DiskInner>> result = listByResourceGroupDelegate(response);
                         return Observable.just(new ServiceResponse<Page<DiskInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -809,9 +809,9 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
             });
     }
 
-    private ServiceResponse<PageImpl1<DiskInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<DiskInner>>() { }.getType())
+    private ServiceResponse<PageImpl<DiskInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DiskInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -905,7 +905,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
                 @Override
                 public Observable<ServiceResponse<Page<DiskInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<DiskInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl<DiskInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<DiskInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -914,9 +914,9 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
             });
     }
 
-    private ServiceResponse<PageImpl1<DiskInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<DiskInner>>() { }.getType())
+    private ServiceResponse<PageImpl<DiskInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DiskInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1322,7 +1322,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a resource group.
      *
-    ServiceResponse<PageImpl1<DiskInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<DiskInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;DiskInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1336,7 +1336,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
                 @Override
                 public Observable<ServiceResponse<Page<DiskInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<DiskInner>> result = listByResourceGroupNextDelegate(response);
+                        ServiceResponse<PageImpl<DiskInner>> result = listByResourceGroupNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<DiskInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1345,9 +1345,9 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
             });
     }
 
-    private ServiceResponse<PageImpl1<DiskInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<DiskInner>>() { }.getType())
+    private ServiceResponse<PageImpl<DiskInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DiskInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1433,7 +1433,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
     /**
      * Lists all the disks under a subscription.
      *
-    ServiceResponse<PageImpl1<DiskInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<DiskInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;DiskInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1447,7 +1447,7 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
                 @Override
                 public Observable<ServiceResponse<Page<DiskInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<DiskInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl<DiskInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<DiskInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1456,9 +1456,9 @@ public class DisksInner implements InnerSupportsGet<DiskInner>, InnerSupportsDel
             });
     }
 
-    private ServiceResponse<PageImpl1<DiskInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<DiskInner>>() { }.getType())
+    private ServiceResponse<PageImpl<DiskInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<DiskInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DiskInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

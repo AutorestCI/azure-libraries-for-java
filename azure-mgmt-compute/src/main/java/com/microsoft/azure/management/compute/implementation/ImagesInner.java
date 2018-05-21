@@ -847,7 +847,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
     /**
      * Gets the list of images under a resource group.
      *
-    ServiceResponse<PageImpl1<ImageInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl<ImageInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ImageInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -864,7 +864,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
                 @Override
                 public Observable<ServiceResponse<Page<ImageInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ImageInner>> result = listByResourceGroupDelegate(response);
+                        ServiceResponse<PageImpl<ImageInner>> result = listByResourceGroupDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ImageInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -873,9 +873,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             });
     }
 
-    private ServiceResponse<PageImpl1<ImageInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ImageInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ImageInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ImageInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -969,7 +969,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
                 @Override
                 public Observable<ServiceResponse<Page<ImageInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ImageInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl<ImageInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ImageInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -978,9 +978,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             });
     }
 
-    private ServiceResponse<PageImpl1<ImageInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ImageInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ImageInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ImageInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1066,7 +1066,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
     /**
      * Gets the list of images under a resource group.
      *
-    ServiceResponse<PageImpl1<ImageInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<ImageInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ImageInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1080,7 +1080,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
                 @Override
                 public Observable<ServiceResponse<Page<ImageInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ImageInner>> result = listByResourceGroupNextDelegate(response);
+                        ServiceResponse<PageImpl<ImageInner>> result = listByResourceGroupNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ImageInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1089,9 +1089,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             });
     }
 
-    private ServiceResponse<PageImpl1<ImageInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ImageInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ImageInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ImageInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -1177,7 +1177,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
     /**
      * Gets the list of Images in the subscription. Use nextLink property in the response to get the next page of Images. Do this till nextLink is null to fetch all the Images.
      *
-    ServiceResponse<PageImpl1<ImageInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl<ImageInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ImageInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -1191,7 +1191,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
                 @Override
                 public Observable<ServiceResponse<Page<ImageInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ImageInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl<ImageInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ImageInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1200,9 +1200,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             });
     }
 
-    private ServiceResponse<PageImpl1<ImageInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ImageInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ImageInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ImageInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ImageInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

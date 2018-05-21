@@ -108,7 +108,7 @@ public class OperationsInner {
                 @Override
                 public Observable<ServiceResponse<List<ComputeOperationValueInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ComputeOperationValueInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl1<ComputeOperationValueInner>> result = listDelegate(response);
                         List<ComputeOperationValueInner> items = null;
                         if (result.body() != null) {
                             items = result.body().items();
@@ -122,9 +122,9 @@ public class OperationsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<ComputeOperationValueInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ComputeOperationValueInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ComputeOperationValueInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<ComputeOperationValueInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<ComputeOperationValueInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<ComputeOperationValueInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

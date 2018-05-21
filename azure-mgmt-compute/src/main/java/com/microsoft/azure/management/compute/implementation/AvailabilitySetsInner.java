@@ -448,7 +448,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
      * @return the PagedList<AvailabilitySetInner> object if successful.
      */
     public PagedList<AvailabilitySetInner> listByResourceGroup(String resourceGroupName) {
-        PageImpl<AvailabilitySetInner> page = new PageImpl<>();
+        PageImpl1<AvailabilitySetInner> page = new PageImpl1<>();
         page.setItems(listByResourceGroupWithServiceResponseAsync(resourceGroupName).toBlocking().single().body());
         page.setNextPageLink(null);
         return new PagedList<AvailabilitySetInner>(page) {
@@ -480,7 +480,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
         return listByResourceGroupWithServiceResponseAsync(resourceGroupName).map(new Func1<ServiceResponse<List<AvailabilitySetInner>>, Page<AvailabilitySetInner>>() {
             @Override
             public Page<AvailabilitySetInner> call(ServiceResponse<List<AvailabilitySetInner>> response) {
-                PageImpl<AvailabilitySetInner> page = new PageImpl<>();
+                PageImpl1<AvailabilitySetInner> page = new PageImpl1<>();
                 page.setItems(response.body());
                 return page;
             }
@@ -506,7 +506,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
                 @Override
                 public Observable<ServiceResponse<List<AvailabilitySetInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<AvailabilitySetInner>> result = listByResourceGroupDelegate(response);
+                        ServiceResponse<PageImpl1<AvailabilitySetInner>> result = listByResourceGroupDelegate(response);
                         List<AvailabilitySetInner> items = null;
                         if (result.body() != null) {
                             items = result.body().items();
@@ -520,9 +520,9 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
             });
     }
 
-    private ServiceResponse<PageImpl<AvailabilitySetInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<AvailabilitySetInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<AvailabilitySetInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<AvailabilitySetInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<AvailabilitySetInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<AvailabilitySetInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -595,7 +595,7 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
                 @Override
                 public Observable<ServiceResponse<List<VirtualMachineSizeInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<VirtualMachineSizeInner>> result = listAvailableSizesDelegate(response);
+                        ServiceResponse<PageImpl1<VirtualMachineSizeInner>> result = listAvailableSizesDelegate(response);
                         List<VirtualMachineSizeInner> items = null;
                         if (result.body() != null) {
                             items = result.body().items();
@@ -609,9 +609,9 @@ public class AvailabilitySetsInner implements InnerSupportsGet<AvailabilitySetIn
             });
     }
 
-    private ServiceResponse<PageImpl<VirtualMachineSizeInner>> listAvailableSizesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineSizeInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<VirtualMachineSizeInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<VirtualMachineSizeInner>> listAvailableSizesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineSizeInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<VirtualMachineSizeInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
