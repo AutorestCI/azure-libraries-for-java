@@ -25,13 +25,13 @@ public class AlertingAction extends Action {
     private AlertSeverity severity;
 
     /**
-     * Azure action group reference.
+     * azns notification group reference.
      */
     @JsonProperty(value = "aznsAction", required = true)
     private AzNsActionGroup aznsAction;
 
     /**
-     * time (in minutes) for which Alerts should be throttled or suppressed.
+     * time (in minutes) for which Alerts should be throttled.
      */
     @JsonProperty(value = "throttlingInMin")
     private Integer throttlingInMin;

@@ -14,6 +14,7 @@ import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.monitor.AutoscaleSettingResourcePatch;
 import com.microsoft.azure.management.monitor.ErrorResponseException;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
@@ -82,7 +83,7 @@ public class AutoscaleSettingsInner implements InnerSupportsGet<AutoscaleSetting
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.monitor.AutoscaleSettings update" })
         @PATCH("subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.insights/autoscalesettings/{autoscaleSettingName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("autoscaleSettingName") String autoscaleSettingName, @Query("api-version") String apiVersion, @Body AutoscaleSettingResourcePatchInner autoscaleSettingResource, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("autoscaleSettingName") String autoscaleSettingName, @Query("api-version") String apiVersion, @Body AutoscaleSettingResourcePatch autoscaleSettingResource, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.monitor.AutoscaleSettings listByResourceGroupNext" })
         @GET
@@ -475,7 +476,7 @@ public class AutoscaleSettingsInner implements InnerSupportsGet<AutoscaleSetting
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the AutoscaleSettingResourceInner object if successful.
      */
-    public AutoscaleSettingResourceInner update(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatchInner autoscaleSettingResource) {
+    public AutoscaleSettingResourceInner update(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatch autoscaleSettingResource) {
         return updateWithServiceResponseAsync(resourceGroupName, autoscaleSettingName, autoscaleSettingResource).toBlocking().single().body();
     }
 
@@ -489,7 +490,7 @@ public class AutoscaleSettingsInner implements InnerSupportsGet<AutoscaleSetting
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AutoscaleSettingResourceInner> updateAsync(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatchInner autoscaleSettingResource, final ServiceCallback<AutoscaleSettingResourceInner> serviceCallback) {
+    public ServiceFuture<AutoscaleSettingResourceInner> updateAsync(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatch autoscaleSettingResource, final ServiceCallback<AutoscaleSettingResourceInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, autoscaleSettingName, autoscaleSettingResource), serviceCallback);
     }
 
@@ -502,7 +503,7 @@ public class AutoscaleSettingsInner implements InnerSupportsGet<AutoscaleSetting
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AutoscaleSettingResourceInner object
      */
-    public Observable<AutoscaleSettingResourceInner> updateAsync(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatchInner autoscaleSettingResource) {
+    public Observable<AutoscaleSettingResourceInner> updateAsync(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatch autoscaleSettingResource) {
         return updateWithServiceResponseAsync(resourceGroupName, autoscaleSettingName, autoscaleSettingResource).map(new Func1<ServiceResponse<AutoscaleSettingResourceInner>, AutoscaleSettingResourceInner>() {
             @Override
             public AutoscaleSettingResourceInner call(ServiceResponse<AutoscaleSettingResourceInner> response) {
@@ -520,7 +521,7 @@ public class AutoscaleSettingsInner implements InnerSupportsGet<AutoscaleSetting
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the AutoscaleSettingResourceInner object
      */
-    public Observable<ServiceResponse<AutoscaleSettingResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatchInner autoscaleSettingResource) {
+    public Observable<ServiceResponse<AutoscaleSettingResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String autoscaleSettingName, AutoscaleSettingResourcePatch autoscaleSettingResource) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
