@@ -404,7 +404,11 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
                 public Observable<ServiceResponse<List<LogSearchRuleResourceInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl1<LogSearchRuleResourceInner>> result = listDelegate(response);
-                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(result.body().items(), result.response());
+                        List<LogSearchRuleResourceInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -476,7 +480,11 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
                 public Observable<ServiceResponse<List<LogSearchRuleResourceInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl1<LogSearchRuleResourceInner>> result = listDelegate(response);
-                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(result.body().items(), result.response());
+                        List<LogSearchRuleResourceInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -559,7 +567,11 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
                 public Observable<ServiceResponse<List<LogSearchRuleResourceInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl1<LogSearchRuleResourceInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(result.body().items(), result.response());
+                        List<LogSearchRuleResourceInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -638,7 +650,11 @@ public class ScheduledQueryRulesInner implements InnerSupportsGet<LogSearchRuleR
                 public Observable<ServiceResponse<List<LogSearchRuleResourceInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl1<LogSearchRuleResourceInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(result.body().items(), result.response());
+                        List<LogSearchRuleResourceInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<LogSearchRuleResourceInner>> clientResponse = new ServiceResponse<List<LogSearchRuleResourceInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

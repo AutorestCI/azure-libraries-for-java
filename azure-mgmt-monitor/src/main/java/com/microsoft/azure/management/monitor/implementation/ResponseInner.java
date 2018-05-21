@@ -10,7 +10,6 @@ package com.microsoft.azure.management.monitor.implementation;
 
 import org.joda.time.Period;
 import java.util.List;
-import com.microsoft.azure.management.monitor.Metric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -56,7 +55,7 @@ public class ResponseInner {
      * the value of the collection.
      */
     @JsonProperty(value = "value", required = true)
-    private List<Metric> value;
+    private List<MetricInner> value;
 
     /**
      * Get the cost value.
@@ -163,7 +162,7 @@ public class ResponseInner {
      *
      * @return the value value
      */
-    public List<Metric> value() {
+    public List<MetricInner> value() {
         return this.value;
     }
 
@@ -173,7 +172,7 @@ public class ResponseInner {
      * @param value the value value to set
      * @return the ResponseInner object itself.
      */
-    public ResponseInner withValue(List<Metric> value) {
+    public ResponseInner withValue(List<MetricInner> value) {
         this.value = value;
         return this;
     }
