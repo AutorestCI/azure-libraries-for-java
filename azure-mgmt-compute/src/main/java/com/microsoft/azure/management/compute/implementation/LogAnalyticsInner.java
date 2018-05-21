@@ -136,7 +136,7 @@ public class LogAnalyticsInner {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         Observable<Response<ResponseBody>> observable = service.exportRequestRateByInterval(location, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<LogAnalyticsOperationResultInner>() { }.getType());
     }
@@ -204,7 +204,7 @@ public class LogAnalyticsInner {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.beginExportRequestRateByInterval(location, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<LogAnalyticsOperationResultInner>>>() {
                 @Override
@@ -290,7 +290,7 @@ public class LogAnalyticsInner {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         Observable<Response<ResponseBody>> observable = service.exportThrottledRequests(location, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<LogAnalyticsOperationResultInner>() { }.getType());
     }
@@ -358,7 +358,7 @@ public class LogAnalyticsInner {
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.beginExportThrottledRequests(location, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<LogAnalyticsOperationResultInner>>>() {
                 @Override

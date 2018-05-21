@@ -44,7 +44,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Images.
  */
-public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsDelete<OperationStatusResponseInner>, InnerSupportsListing<ImageInner> {
+public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsDelete<Void>, InnerSupportsListing<ImageInner> {
     /** The Retrofit service to perform REST calls. */
     private ImagesService service;
     /** The service client containing this operation class. */
@@ -182,7 +182,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         Observable<Response<ResponseBody>> observable = service.createOrUpdate(resourceGroupName, imageName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ImageInner>() { }.getType());
     }
@@ -257,7 +257,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.beginCreateOrUpdate(resourceGroupName, imageName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ImageInner>>>() {
                 @Override
@@ -350,7 +350,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         Observable<Response<ResponseBody>> observable = service.update(resourceGroupName, imageName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<ImageInner>() { }.getType());
     }
@@ -425,7 +425,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
         Validator.validate(parameters);
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.beginUpdate(resourceGroupName, imageName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ImageInner>>>() {
                 @Override
@@ -456,10 +456,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner delete(String resourceGroupName, String imageName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, imageName).toBlocking().last().body();
+    public void delete(String resourceGroupName, String imageName) {
+        deleteWithServiceResponseAsync(resourceGroupName, imageName).toBlocking().last().body();
     }
 
     /**
@@ -471,7 +470,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String imageName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String imageName, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, imageName), serviceCallback);
     }
 
@@ -483,10 +482,10 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String imageName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, imageName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<Void> deleteAsync(String resourceGroupName, String imageName) {
+        return deleteWithServiceResponseAsync(resourceGroupName, imageName).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
-            public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
+            public Void call(ServiceResponse<Void> response) {
                 return response.body();
             }
         });
@@ -500,7 +499,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> deleteWithServiceResponseAsync(String resourceGroupName, String imageName) {
+    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String imageName) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -510,9 +509,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         Observable<Response<ResponseBody>> observable = service.delete(resourceGroupName, imageName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
 
     /**
@@ -523,10 +522,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner beginDelete(String resourceGroupName, String imageName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, imageName).toBlocking().single().body();
+    public void beginDelete(String resourceGroupName, String imageName) {
+        beginDeleteWithServiceResponseAsync(resourceGroupName, imageName).toBlocking().single().body();
     }
 
     /**
@@ -538,7 +536,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String imageName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+    public ServiceFuture<Void> beginDeleteAsync(String resourceGroupName, String imageName, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, imageName), serviceCallback);
     }
 
@@ -548,12 +546,12 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @param resourceGroupName The name of the resource group.
      * @param imageName The name of the image.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the OperationStatusResponseInner object
+     * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String imageName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, imageName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<Void> beginDeleteAsync(String resourceGroupName, String imageName) {
+        return beginDeleteWithServiceResponseAsync(resourceGroupName, imageName).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
-            public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
+            public Void call(ServiceResponse<Void> response) {
                 return response.body();
             }
         });
@@ -565,9 +563,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
      * @param resourceGroupName The name of the resource group.
      * @param imageName The name of the image.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the OperationStatusResponseInner object
+     * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String imageName) {
+    public Observable<ServiceResponse<Void>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String imageName) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -577,13 +575,13 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.beginDelete(resourceGroupName, imageName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
-                public Observable<ServiceResponse<OperationStatusResponseInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<OperationStatusResponseInner> clientResponse = beginDeleteDelegate(response);
+                        ServiceResponse<Void> clientResponse = beginDeleteDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -592,9 +590,9 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
             });
     }
 
-    private ServiceResponse<OperationStatusResponseInner> beginDeleteDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<OperationStatusResponseInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<OperationStatusResponseInner>() { }.getType())
+    private ServiceResponse<Void> beginDeleteDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
@@ -663,7 +661,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         final String expand = null;
         return service.getByResourceGroup(resourceGroupName, imageName, this.client.subscriptionId(), expand, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ImageInner>>>() {
@@ -745,7 +743,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.getByResourceGroup(resourceGroupName, imageName, this.client.subscriptionId(), expand, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ImageInner>>>() {
                 @Override
@@ -858,7 +856,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.listByResourceGroup(resourceGroupName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ImageInner>>>>() {
                 @Override
@@ -963,7 +961,7 @@ public class ImagesInner implements InnerSupportsGet<ImageInner>, InnerSupportsD
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.list(this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<ImageInner>>>>() {
                 @Override

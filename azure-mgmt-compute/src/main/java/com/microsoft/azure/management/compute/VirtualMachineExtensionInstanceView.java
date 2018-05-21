@@ -9,6 +9,7 @@
 package com.microsoft.azure.management.compute;
 
 import java.util.List;
+import com.microsoft.azure.management.compute.implementation.InstanceViewStatusInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -38,13 +39,13 @@ public class VirtualMachineExtensionInstanceView {
      * The resource status information.
      */
     @JsonProperty(value = "substatuses")
-    private List<InstanceViewStatus> substatuses;
+    private List<InstanceViewStatusInner> substatuses;
 
     /**
      * The resource status information.
      */
     @JsonProperty(value = "statuses")
-    private List<InstanceViewStatus> statuses;
+    private List<InstanceViewStatusInner> statuses;
 
     /**
      * Get the name value.
@@ -111,7 +112,7 @@ public class VirtualMachineExtensionInstanceView {
      *
      * @return the substatuses value
      */
-    public List<InstanceViewStatus> substatuses() {
+    public List<InstanceViewStatusInner> substatuses() {
         return this.substatuses;
     }
 
@@ -121,7 +122,7 @@ public class VirtualMachineExtensionInstanceView {
      * @param substatuses the substatuses value to set
      * @return the VirtualMachineExtensionInstanceView object itself.
      */
-    public VirtualMachineExtensionInstanceView withSubstatuses(List<InstanceViewStatus> substatuses) {
+    public VirtualMachineExtensionInstanceView withSubstatuses(List<InstanceViewStatusInner> substatuses) {
         this.substatuses = substatuses;
         return this;
     }
@@ -131,7 +132,7 @@ public class VirtualMachineExtensionInstanceView {
      *
      * @return the statuses value
      */
-    public List<InstanceViewStatus> statuses() {
+    public List<InstanceViewStatusInner> statuses() {
         return this.statuses;
     }
 
@@ -141,7 +142,7 @@ public class VirtualMachineExtensionInstanceView {
      * @param statuses the statuses value to set
      * @return the VirtualMachineExtensionInstanceView object itself.
      */
-    public VirtualMachineExtensionInstanceView withStatuses(List<InstanceViewStatus> statuses) {
+    public VirtualMachineExtensionInstanceView withStatuses(List<InstanceViewStatusInner> statuses) {
         this.statuses = statuses;
         return this;
     }

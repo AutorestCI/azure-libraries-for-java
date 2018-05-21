@@ -15,7 +15,6 @@ import com.microsoft.azure.management.compute.DiskInstanceView;
 import com.microsoft.azure.management.compute.VirtualMachineExtensionInstanceView;
 import com.microsoft.azure.management.compute.VirtualMachineHealthStatus;
 import com.microsoft.azure.management.compute.BootDiagnosticsInstanceView;
-import com.microsoft.azure.management.compute.InstanceViewStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -85,7 +84,7 @@ public class VirtualMachineScaleSetVMInstanceViewInner {
      * The resource status information.
      */
     @JsonProperty(value = "statuses")
-    private List<InstanceViewStatus> statuses;
+    private List<InstanceViewStatusInner> statuses;
 
     /**
      * The placement group in which the VM is running. If the VM is deallocated
@@ -268,7 +267,7 @@ public class VirtualMachineScaleSetVMInstanceViewInner {
      *
      * @return the statuses value
      */
-    public List<InstanceViewStatus> statuses() {
+    public List<InstanceViewStatusInner> statuses() {
         return this.statuses;
     }
 
@@ -278,7 +277,7 @@ public class VirtualMachineScaleSetVMInstanceViewInner {
      * @param statuses the statuses value to set
      * @return the VirtualMachineScaleSetVMInstanceViewInner object itself.
      */
-    public VirtualMachineScaleSetVMInstanceViewInner withStatuses(List<InstanceViewStatus> statuses) {
+    public VirtualMachineScaleSetVMInstanceViewInner withStatuses(List<InstanceViewStatusInner> statuses) {
         this.statuses = statuses;
         return this;
     }

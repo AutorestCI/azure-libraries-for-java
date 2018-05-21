@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * LogAnalytics operation status response.
  */
-public class LogAnalyticsOperationResultInner extends OperationStatusResponseInner {
+public class LogAnalyticsOperationResultInner {
     /**
      * LogAnalyticsOutput.
      */
