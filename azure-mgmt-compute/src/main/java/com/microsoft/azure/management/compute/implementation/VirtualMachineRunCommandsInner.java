@@ -151,7 +151,7 @@ public class VirtualMachineRunCommandsInner {
     /**
      * Lists all available run commands for a subscription in a location.
      *
-    ServiceResponse<PageImpl<RunCommandDocumentBaseInner>> * @param location The location upon which run commands is queried.
+    ServiceResponse<PageImpl1<RunCommandDocumentBaseInner>> * @param location The location upon which run commands is queried.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;RunCommandDocumentBaseInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -162,13 +162,13 @@ public class VirtualMachineRunCommandsInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.list(location, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<RunCommandDocumentBaseInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<RunCommandDocumentBaseInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<RunCommandDocumentBaseInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl1<RunCommandDocumentBaseInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<RunCommandDocumentBaseInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -177,9 +177,9 @@ public class VirtualMachineRunCommandsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<RunCommandDocumentBaseInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<RunCommandDocumentBaseInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<RunCommandDocumentBaseInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<RunCommandDocumentBaseInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<RunCommandDocumentBaseInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<RunCommandDocumentBaseInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -246,7 +246,7 @@ public class VirtualMachineRunCommandsInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.get(location, commandId, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<RunCommandDocumentInner>>>() {
                 @Override
@@ -349,7 +349,7 @@ public class VirtualMachineRunCommandsInner {
     /**
      * Lists all available run commands for a subscription in a location.
      *
-    ServiceResponse<PageImpl<RunCommandDocumentBaseInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl1<RunCommandDocumentBaseInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;RunCommandDocumentBaseInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -363,7 +363,7 @@ public class VirtualMachineRunCommandsInner {
                 @Override
                 public Observable<ServiceResponse<Page<RunCommandDocumentBaseInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<RunCommandDocumentBaseInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl1<RunCommandDocumentBaseInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<RunCommandDocumentBaseInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -372,9 +372,9 @@ public class VirtualMachineRunCommandsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<RunCommandDocumentBaseInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<RunCommandDocumentBaseInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<RunCommandDocumentBaseInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<RunCommandDocumentBaseInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<RunCommandDocumentBaseInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<RunCommandDocumentBaseInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

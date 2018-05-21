@@ -102,13 +102,13 @@ public class OperationsInner {
      * @return the observable to the List&lt;ComputeOperationValueInner&gt; object
      */
     public Observable<ServiceResponse<List<ComputeOperationValueInner>>> listWithServiceResponseAsync() {
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.list(apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ComputeOperationValueInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<List<ComputeOperationValueInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ComputeOperationValueInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl<ComputeOperationValueInner>> result = listDelegate(response);
                         List<ComputeOperationValueInner> items = null;
                         if (result.body() != null) {
                             items = result.body().items();
@@ -122,9 +122,9 @@ public class OperationsInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<ComputeOperationValueInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ComputeOperationValueInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ComputeOperationValueInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ComputeOperationValueInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ComputeOperationValueInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ComputeOperationValueInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

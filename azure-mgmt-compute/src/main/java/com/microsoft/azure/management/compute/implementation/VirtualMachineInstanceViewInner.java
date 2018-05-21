@@ -14,7 +14,6 @@ import java.util.List;
 import com.microsoft.azure.management.compute.DiskInstanceView;
 import com.microsoft.azure.management.compute.VirtualMachineExtensionInstanceView;
 import com.microsoft.azure.management.compute.BootDiagnosticsInstanceView;
-import com.microsoft.azure.management.compute.InstanceViewStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -96,7 +95,7 @@ public class VirtualMachineInstanceViewInner {
      * The resource status information.
      */
     @JsonProperty(value = "statuses")
-    private List<InstanceViewStatus> statuses;
+    private List<InstanceViewStatusInner> statuses;
 
     /**
      * Get the platformUpdateDomain value.
@@ -323,7 +322,7 @@ public class VirtualMachineInstanceViewInner {
      *
      * @return the statuses value
      */
-    public List<InstanceViewStatus> statuses() {
+    public List<InstanceViewStatusInner> statuses() {
         return this.statuses;
     }
 
@@ -333,7 +332,7 @@ public class VirtualMachineInstanceViewInner {
      * @param statuses the statuses value to set
      * @return the VirtualMachineInstanceViewInner object itself.
      */
-    public VirtualMachineInstanceViewInner withStatuses(List<InstanceViewStatus> statuses) {
+    public VirtualMachineInstanceViewInner withStatuses(List<InstanceViewStatusInner> statuses) {
         this.statuses = statuses;
         return this;
     }

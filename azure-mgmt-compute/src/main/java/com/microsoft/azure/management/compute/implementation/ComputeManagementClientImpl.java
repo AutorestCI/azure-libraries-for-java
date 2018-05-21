@@ -121,45 +121,6 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The GalleriesInner object to access its operations.
-     */
-    private GalleriesInner galleries;
-
-    /**
-     * Gets the GalleriesInner object to access its operations.
-     * @return the GalleriesInner object.
-     */
-    public GalleriesInner galleries() {
-        return this.galleries;
-    }
-
-    /**
-     * The GalleryImagesInner object to access its operations.
-     */
-    private GalleryImagesInner galleryImages;
-
-    /**
-     * Gets the GalleryImagesInner object to access its operations.
-     * @return the GalleryImagesInner object.
-     */
-    public GalleryImagesInner galleryImages() {
-        return this.galleryImages;
-    }
-
-    /**
-     * The GalleryImageVersionsInner object to access its operations.
-     */
-    private GalleryImageVersionsInner galleryImageVersions;
-
-    /**
-     * Gets the GalleryImageVersionsInner object to access its operations.
-     * @return the GalleryImageVersionsInner object.
-     */
-    public GalleryImageVersionsInner galleryImageVersions() {
-        return this.galleryImageVersions;
-    }
-
-    /**
      * The OperationsInner object to access its operations.
      */
     private OperationsInner operations;
@@ -440,9 +401,6 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
         this.acceptLanguage = "en-US";
         this.longRunningOperationRetryTimeout = 30;
         this.generateClientRequestId = true;
-        this.galleries = new GalleriesInner(restClient().retrofit(), this);
-        this.galleryImages = new GalleryImagesInner(restClient().retrofit(), this);
-        this.galleryImageVersions = new GalleryImageVersionsInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
         this.availabilitySets = new AvailabilitySetsInner(restClient().retrofit(), this);
         this.virtualMachineExtensionImages = new VirtualMachineExtensionImagesInner(restClient().retrofit(), this);

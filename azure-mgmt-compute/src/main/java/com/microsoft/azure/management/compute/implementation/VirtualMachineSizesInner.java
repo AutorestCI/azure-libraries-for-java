@@ -113,13 +113,13 @@ public class VirtualMachineSizesInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        final String apiVersion = "2017-12-01";
+        final String apiVersion = "2018-04-01";
         return service.list(location, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<VirtualMachineSizeInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<List<VirtualMachineSizeInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<VirtualMachineSizeInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl<VirtualMachineSizeInner>> result = listDelegate(response);
                         List<VirtualMachineSizeInner> items = null;
                         if (result.body() != null) {
                             items = result.body().items();
@@ -133,9 +133,9 @@ public class VirtualMachineSizesInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<VirtualMachineSizeInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<VirtualMachineSizeInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<VirtualMachineSizeInner>>() { }.getType())
+    private ServiceResponse<PageImpl<VirtualMachineSizeInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<VirtualMachineSizeInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<VirtualMachineSizeInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

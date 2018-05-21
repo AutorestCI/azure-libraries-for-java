@@ -155,7 +155,7 @@ public class ResourceSkusInner {
                 @Override
                 public Observable<ServiceResponse<Page<ResourceSkuInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ResourceSkuInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl1<ResourceSkuInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ResourceSkuInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -164,9 +164,9 @@ public class ResourceSkusInner {
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceSkuInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ResourceSkuInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<ResourceSkuInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<ResourceSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<ResourceSkuInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
@@ -252,7 +252,7 @@ public class ResourceSkusInner {
     /**
      * Gets the list of Microsoft.Compute SKUs available for your Subscription.
      *
-    ServiceResponse<PageImpl<ResourceSkuInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl1<ResourceSkuInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;ResourceSkuInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -266,7 +266,7 @@ public class ResourceSkusInner {
                 @Override
                 public Observable<ServiceResponse<Page<ResourceSkuInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<ResourceSkuInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl1<ResourceSkuInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<ResourceSkuInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -275,9 +275,9 @@ public class ResourceSkusInner {
             });
     }
 
-    private ServiceResponse<PageImpl<ResourceSkuInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<ResourceSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<ResourceSkuInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<ResourceSkuInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<ResourceSkuInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<ResourceSkuInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
