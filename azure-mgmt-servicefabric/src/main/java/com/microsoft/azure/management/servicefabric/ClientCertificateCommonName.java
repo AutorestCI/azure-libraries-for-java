@@ -11,25 +11,24 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Client certificate details using common name.
+ * Describes the client certificate details using common name.
  */
 public class ClientCertificateCommonName {
     /**
-     * Is this certificate used for admin access from the client, if false , it
-     * is used or query only access.
+     * Indicates if the client certificate has admin access to the cluster. Non
+     * admin clients can perform only read only operations on the cluster.
      */
     @JsonProperty(value = "isAdmin", required = true)
     private boolean isAdmin;
 
     /**
-     * Certificate common name to be granted access; be carefull using wild
-     * card common names.
+     * The common name of the client certificate.
      */
     @JsonProperty(value = "certificateCommonName", required = true)
     private String certificateCommonName;
 
     /**
-     * Certificate issuer thumbprint.
+     * The issuer thumbprint of the client certificate.
      */
     @JsonProperty(value = "certificateIssuerThumbprint", required = true)
     private String certificateIssuerThumbprint;

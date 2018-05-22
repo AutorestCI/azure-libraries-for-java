@@ -11,35 +11,35 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Diagnostics storage account config.
+ * The storage account information for storing Service Fabric diagnostic logs.
  */
 public class DiagnosticsStorageAccountConfig {
     /**
-     * Diagnostics storage account name.
+     * The Azure storage account name.
      */
     @JsonProperty(value = "storageAccountName", required = true)
     private String storageAccountName;
 
     /**
-     * Protected Diagnostics storage key name.
+     * The protected diagnostics storage key name.
      */
     @JsonProperty(value = "protectedAccountKeyName", required = true)
     private String protectedAccountKeyName;
 
     /**
-     * Diagnostics storage account blob endpoint.
+     * The blob endpoint of the azure storage account.
      */
     @JsonProperty(value = "blobEndpoint", required = true)
     private String blobEndpoint;
 
     /**
-     * Diagnostics storage account queue endpoint.
+     * The queue endpoint of the azure storage account.
      */
     @JsonProperty(value = "queueEndpoint", required = true)
     private String queueEndpoint;
 
     /**
-     * Diagnostics storage account table endpoint.
+     * The table endpoint of the azure storage account.
      */
     @JsonProperty(value = "tableEndpoint", required = true)
     private String tableEndpoint;

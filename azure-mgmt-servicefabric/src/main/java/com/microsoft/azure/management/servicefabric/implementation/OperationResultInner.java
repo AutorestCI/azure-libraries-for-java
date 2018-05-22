@@ -16,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class OperationResultInner {
     /**
-     * Result name.
+     * The name of the operation.
      */
     @JsonProperty(value = "name")
     private String name;
 
     /**
-     * Dispaly of the result.
+     * The object that represents the operation.
      */
     @JsonProperty(value = "display")
     private AvailableOperationDisplay display;

@@ -66,15 +66,17 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
+     * @param apiVersion The version of the Service Fabric resouce provider API
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorModelException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;OperationResultInner&gt; object if successful.
      */
-    public PagedList<OperationResultInner> list() {
-        ServiceResponse<Page<OperationResultInner>> response = listSinglePageAsync().toBlocking().single();
+    public PagedList<OperationResultInner> list(final String apiVersion) {
+        ServiceResponse<Page<OperationResultInner>> response = listSinglePageAsync(apiVersion).toBlocking().single();
         return new PagedList<OperationResultInner>(response.body()) {
             @Override
             public Page<OperationResultInner> nextPage(String nextPageLink) {
@@ -84,15 +86,17 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
+     * @param apiVersion The version of the Service Fabric resouce provider API
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<OperationResultInner>> listAsync(final ListOperationCallback<OperationResultInner> serviceCallback) {
+    public ServiceFuture<List<OperationResultInner>> listAsync(final String apiVersion, final ListOperationCallback<OperationResultInner> serviceCallback) {
         return AzureServiceFuture.fromPageResponse(
-            listSinglePageAsync(),
+            listSinglePageAsync(apiVersion),
             new Func1<String, Observable<ServiceResponse<Page<OperationResultInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<OperationResultInner>>> call(String nextPageLink) {
@@ -103,13 +107,15 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
+     * @param apiVersion The version of the Service Fabric resouce provider API
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;OperationResultInner&gt; object
      */
-    public Observable<Page<OperationResultInner>> listAsync() {
-        return listWithServiceResponseAsync()
+    public Observable<Page<OperationResultInner>> listAsync(final String apiVersion) {
+        return listWithServiceResponseAsync(apiVersion)
             .map(new Func1<ServiceResponse<Page<OperationResultInner>>, Page<OperationResultInner>>() {
                 @Override
                 public Page<OperationResultInner> call(ServiceResponse<Page<OperationResultInner>> response) {
@@ -119,13 +125,15 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
+     * @param apiVersion The version of the Service Fabric resouce provider API
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PagedList&lt;OperationResultInner&gt; object
      */
-    public Observable<ServiceResponse<Page<OperationResultInner>>> listWithServiceResponseAsync() {
-        return listSinglePageAsync()
+    public Observable<ServiceResponse<Page<OperationResultInner>>> listWithServiceResponseAsync(final String apiVersion) {
+        return listSinglePageAsync(apiVersion)
             .concatMap(new Func1<ServiceResponse<Page<OperationResultInner>>, Observable<ServiceResponse<Page<OperationResultInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<OperationResultInner>>> call(ServiceResponse<Page<OperationResultInner>> page) {
@@ -139,21 +147,23 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
+    ServiceResponse<PageImpl1<OperationResultInner>> * @param apiVersion The version of the Service Fabric resouce provider API
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;OperationResultInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
-    public Observable<ServiceResponse<Page<OperationResultInner>>> listSinglePageAsync() {
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+    public Observable<ServiceResponse<Page<OperationResultInner>>> listSinglePageAsync(final String apiVersion) {
+        if (apiVersion == null) {
+            throw new IllegalArgumentException("Parameter apiVersion is required and cannot be null.");
         }
-        return service.list(this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        return service.list(apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<OperationResultInner>>>>() {
                 @Override
                 public Observable<ServiceResponse<Page<OperationResultInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<OperationResultInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl1<OperationResultInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<OperationResultInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -162,15 +172,16 @@ public class OperationsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<OperationResultInner>> listDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<OperationResultInner>, ErrorModelException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<OperationResultInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<OperationResultInner>> listDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<OperationResultInner>, ErrorModelException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<OperationResultInner>>() { }.getType())
                 .registerError(ErrorModelException.class)
                 .build(response);
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -189,7 +200,8 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
@@ -210,7 +222,8 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -227,7 +240,8 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -248,9 +262,10 @@ public class OperationsInner {
     }
 
     /**
-     * Lists all of the available ServiceFabric REST API operations.
+     * Lists all of the available Service Fabric resource provider API operations.
+     * Get the list of available Service Fabric resource provider API operations.
      *
-    ServiceResponse<PageImpl<OperationResultInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl1<OperationResultInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;OperationResultInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -264,7 +279,7 @@ public class OperationsInner {
                 @Override
                 public Observable<ServiceResponse<Page<OperationResultInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<OperationResultInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl1<OperationResultInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<OperationResultInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -273,9 +288,9 @@ public class OperationsInner {
             });
     }
 
-    private ServiceResponse<PageImpl<OperationResultInner>> listNextDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<OperationResultInner>, ErrorModelException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<OperationResultInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<OperationResultInner>> listNextDelegate(Response<ResponseBody> response) throws ErrorModelException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<OperationResultInner>, ErrorModelException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<OperationResultInner>>() { }.getType())
                 .registerError(ErrorModelException.class)
                 .build(response);
     }

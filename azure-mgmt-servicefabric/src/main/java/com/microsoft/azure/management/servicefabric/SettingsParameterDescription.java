@@ -11,17 +11,17 @@ package com.microsoft.azure.management.servicefabric;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * ServiceFabric settings under sections.
+ * Describes a parameter in fabric settings of the cluster.
  */
 public class SettingsParameterDescription {
     /**
-     * The name of settings property.
+     * The parameter name of fabric setting.
      */
     @JsonProperty(value = "name", required = true)
     private String name;
 
     /**
-     * The value of the property.
+     * The parameter value of fabric setting.
      */
     @JsonProperty(value = "value", required = true)
     private String value;

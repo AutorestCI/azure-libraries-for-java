@@ -12,18 +12,17 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * ServiceFabric section settings.
+ * Describes a section in the fabric settings of the cluster.
  */
 public class SettingsSectionDescription {
     /**
-     * The name of settings section.
+     * The section name of the fabric settings.
      */
     @JsonProperty(value = "name", required = true)
     private String name;
 
     /**
-     * Collection of settings in the section, each setting is a tuple
-     * consisting of setting name and value.
+     * The collection of parameters in the section.
      */
     @JsonProperty(value = "parameters", required = true)
     private List<SettingsParameterDescription> parameters;

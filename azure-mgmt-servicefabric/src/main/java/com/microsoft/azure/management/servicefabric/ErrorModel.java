@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ErrorModel {
     /**
-     * The error detail.
+     * The error details.
      */
     @JsonProperty(value = "error")
     private ErrorModelError error;
