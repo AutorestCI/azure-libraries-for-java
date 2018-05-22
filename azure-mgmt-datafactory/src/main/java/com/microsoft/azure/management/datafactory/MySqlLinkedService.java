@@ -22,10 +22,38 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class MySqlLinkedService extends LinkedServiceInner {
     /**
-     * The connection string.
+     * Server name for connection. Type: string (or Expression with resultType
+     * string).
      */
-    @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    @JsonProperty(value = "typeProperties.server", required = true)
+    private Object server;
+
+    /**
+     * Database name for connection. Type: string (or Expression with
+     * resultType string).
+     */
+    @JsonProperty(value = "typeProperties.database", required = true)
+    private Object database;
+
+    /**
+     * Schema name for connection. Type: string (or Expression with resultType
+     * string).
+     */
+    @JsonProperty(value = "typeProperties.schema")
+    private Object schema;
+
+    /**
+     * Username for authentication. Type: string (or Expression with resultType
+     * string).
+     */
+    @JsonProperty(value = "typeProperties.username")
+    private Object username;
+
+    /**
+     * Password for authentication.
+     */
+    @JsonProperty(value = "typeProperties.password")
+    private SecretBase password;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -36,22 +64,102 @@ public class MySqlLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the server value.
      *
-     * @return the connectionString value
+     * @return the server value
      */
-    public SecretBase connectionString() {
-        return this.connectionString;
+    public Object server() {
+        return this.server;
     }
 
     /**
-     * Set the connectionString value.
+     * Set the server value.
      *
-     * @param connectionString the connectionString value to set
+     * @param server the server value to set
      * @return the MySqlLinkedService object itself.
      */
-    public MySqlLinkedService withConnectionString(SecretBase connectionString) {
-        this.connectionString = connectionString;
+    public MySqlLinkedService withServer(Object server) {
+        this.server = server;
+        return this;
+    }
+
+    /**
+     * Get the database value.
+     *
+     * @return the database value
+     */
+    public Object database() {
+        return this.database;
+    }
+
+    /**
+     * Set the database value.
+     *
+     * @param database the database value to set
+     * @return the MySqlLinkedService object itself.
+     */
+    public MySqlLinkedService withDatabase(Object database) {
+        this.database = database;
+        return this;
+    }
+
+    /**
+     * Get the schema value.
+     *
+     * @return the schema value
+     */
+    public Object schema() {
+        return this.schema;
+    }
+
+    /**
+     * Set the schema value.
+     *
+     * @param schema the schema value to set
+     * @return the MySqlLinkedService object itself.
+     */
+    public MySqlLinkedService withSchema(Object schema) {
+        this.schema = schema;
+        return this;
+    }
+
+    /**
+     * Get the username value.
+     *
+     * @return the username value
+     */
+    public Object username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username value.
+     *
+     * @param username the username value to set
+     * @return the MySqlLinkedService object itself.
+     */
+    public MySqlLinkedService withUsername(Object username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
+     * Get the password value.
+     *
+     * @return the password value
+     */
+    public SecretBase password() {
+        return this.password;
+    }
+
+    /**
+     * Set the password value.
+     *
+     * @param password the password value to set
+     * @return the MySqlLinkedService object itself.
+     */
+    public MySqlLinkedService withPassword(SecretBase password) {
+        this.password = password;
         return this;
     }
 

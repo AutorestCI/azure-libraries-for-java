@@ -23,11 +23,10 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 public class OdbcLinkedService extends LinkedServiceInner {
     /**
      * The non-access credential portion of the connection string as well as an
-     * optional encrypted credential. Type: string, SecureString or
-     * AzureKeyVaultSecretReference.
+     * optional encrypted credential.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private Object connectionString;
+    private SecretBase connectionString;
 
     /**
      * Type of authentication used to connect to the ODBC data store. Possible
@@ -70,7 +69,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public Object connectionString() {
+    public SecretBase connectionString() {
         return this.connectionString;
     }
 
@@ -80,7 +79,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the OdbcLinkedService object itself.
      */
-    public OdbcLinkedService withConnectionString(Object connectionString) {
+    public OdbcLinkedService withConnectionString(SecretBase connectionString) {
         this.connectionString = connectionString;
         return this;
     }

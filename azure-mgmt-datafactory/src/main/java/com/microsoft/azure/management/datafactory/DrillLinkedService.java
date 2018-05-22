@@ -22,11 +22,10 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class DrillLinkedService extends LinkedServiceInner {
     /**
-     * An ODBC connection string. Type: string, SecureString or
-     * AzureKeyVaultSecretReference.
+     * An ODBC connection string.
      */
     @JsonProperty(value = "typeProperties.connectionString")
-    private Object connectionString;
+    private SecretBase connectionString;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -41,7 +40,7 @@ public class DrillLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public Object connectionString() {
+    public SecretBase connectionString() {
         return this.connectionString;
     }
 
@@ -51,7 +50,7 @@ public class DrillLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the DrillLinkedService object itself.
      */
-    public DrillLinkedService withConnectionString(Object connectionString) {
+    public DrillLinkedService withConnectionString(SecretBase connectionString) {
         this.connectionString = connectionString;
         return this;
     }

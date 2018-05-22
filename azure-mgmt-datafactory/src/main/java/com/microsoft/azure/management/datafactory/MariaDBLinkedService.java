@@ -22,11 +22,10 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class MariaDBLinkedService extends LinkedServiceInner {
     /**
-     * An ODBC connection string. Type: string, SecureString or
-     * AzureKeyVaultSecretReference.
+     * An ODBC connection string.
      */
     @JsonProperty(value = "typeProperties.connectionString")
-    private Object connectionString;
+    private SecretBase connectionString;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -41,7 +40,7 @@ public class MariaDBLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public Object connectionString() {
+    public SecretBase connectionString() {
         return this.connectionString;
     }
 
@@ -51,7 +50,7 @@ public class MariaDBLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the MariaDBLinkedService object itself.
      */
-    public MariaDBLinkedService withConnectionString(Object connectionString) {
+    public MariaDBLinkedService withConnectionString(SecretBase connectionString) {
         this.connectionString = connectionString;
         return this;
     }

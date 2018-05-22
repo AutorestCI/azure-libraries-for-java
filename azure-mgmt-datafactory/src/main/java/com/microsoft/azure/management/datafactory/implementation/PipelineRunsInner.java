@@ -11,6 +11,7 @@ package com.microsoft.azure.management.datafactory.implementation;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.management.datafactory.ErrorResponseException;
+import com.microsoft.azure.management.datafactory.PipelineRunFilterParameters;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -56,7 +57,7 @@ public class PipelineRunsInner {
     interface PipelineRunsService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.PipelineRuns queryByFactory" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns")
-        Observable<Response<ResponseBody>> queryByFactory(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Query("api-version") String apiVersion, @Body PipelineRunFilterParametersInner filterParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> queryByFactory(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Query("api-version") String apiVersion, @Body PipelineRunFilterParameters filterParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.PipelineRuns get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}")
@@ -75,7 +76,7 @@ public class PipelineRunsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PipelineRunQueryResponseInner object if successful.
      */
-    public PipelineRunQueryResponseInner queryByFactory(String resourceGroupName, String factoryName, PipelineRunFilterParametersInner filterParameters) {
+    public PipelineRunQueryResponseInner queryByFactory(String resourceGroupName, String factoryName, PipelineRunFilterParameters filterParameters) {
         return queryByFactoryWithServiceResponseAsync(resourceGroupName, factoryName, filterParameters).toBlocking().single().body();
     }
 
@@ -89,7 +90,7 @@ public class PipelineRunsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<PipelineRunQueryResponseInner> queryByFactoryAsync(String resourceGroupName, String factoryName, PipelineRunFilterParametersInner filterParameters, final ServiceCallback<PipelineRunQueryResponseInner> serviceCallback) {
+    public ServiceFuture<PipelineRunQueryResponseInner> queryByFactoryAsync(String resourceGroupName, String factoryName, PipelineRunFilterParameters filterParameters, final ServiceCallback<PipelineRunQueryResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(queryByFactoryWithServiceResponseAsync(resourceGroupName, factoryName, filterParameters), serviceCallback);
     }
 
@@ -102,7 +103,7 @@ public class PipelineRunsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PipelineRunQueryResponseInner object
      */
-    public Observable<PipelineRunQueryResponseInner> queryByFactoryAsync(String resourceGroupName, String factoryName, PipelineRunFilterParametersInner filterParameters) {
+    public Observable<PipelineRunQueryResponseInner> queryByFactoryAsync(String resourceGroupName, String factoryName, PipelineRunFilterParameters filterParameters) {
         return queryByFactoryWithServiceResponseAsync(resourceGroupName, factoryName, filterParameters).map(new Func1<ServiceResponse<PipelineRunQueryResponseInner>, PipelineRunQueryResponseInner>() {
             @Override
             public PipelineRunQueryResponseInner call(ServiceResponse<PipelineRunQueryResponseInner> response) {
@@ -120,7 +121,7 @@ public class PipelineRunsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the PipelineRunQueryResponseInner object
      */
-    public Observable<ServiceResponse<PipelineRunQueryResponseInner>> queryByFactoryWithServiceResponseAsync(String resourceGroupName, String factoryName, PipelineRunFilterParametersInner filterParameters) {
+    public Observable<ServiceResponse<PipelineRunQueryResponseInner>> queryByFactoryWithServiceResponseAsync(String resourceGroupName, String factoryName, PipelineRunFilterParameters filterParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

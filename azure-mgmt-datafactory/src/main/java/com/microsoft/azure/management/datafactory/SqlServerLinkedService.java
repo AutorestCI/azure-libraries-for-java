@@ -22,11 +22,10 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class SqlServerLinkedService extends LinkedServiceInner {
     /**
-     * The connection string. Type: string, SecureString or
-     * AzureKeyVaultSecretReference.
+     * The connection string.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private Object connectionString;
+    private SecretBase connectionString;
 
     /**
      * The on-premises Windows authentication user name. Type: string (or
@@ -54,7 +53,7 @@ public class SqlServerLinkedService extends LinkedServiceInner {
      *
      * @return the connectionString value
      */
-    public Object connectionString() {
+    public SecretBase connectionString() {
         return this.connectionString;
     }
 
@@ -64,7 +63,7 @@ public class SqlServerLinkedService extends LinkedServiceInner {
      * @param connectionString the connectionString value to set
      * @return the SqlServerLinkedService object itself.
      */
-    public SqlServerLinkedService withConnectionString(Object connectionString) {
+    public SqlServerLinkedService withConnectionString(SecretBase connectionString) {
         this.connectionString = connectionString;
         return this;
     }
