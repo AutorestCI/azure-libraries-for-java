@@ -15,12 +15,14 @@ import java.util.List;
 import com.microsoft.azure.management.network.ApplicationGatewayWebApplicationFirewallConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Application gateway resource.
  */
 @JsonFlatten
+@SkipParentValidation
 public class ApplicationGatewayInner extends Resource {
     /**
      * SKU of the application gateway resource.
@@ -120,6 +122,12 @@ public class ApplicationGatewayInner extends Resource {
     private ApplicationGatewayWebApplicationFirewallConfiguration webApplicationFirewallConfiguration;
 
     /**
+     * Whether HTTP2 is enabled on the application gateway resource.
+     */
+    @JsonProperty(value = "properties.enableHttp2")
+    private Boolean enableHttp2;
+
+    /**
      * Resource GUID property of the application gateway resource.
      */
     @JsonProperty(value = "properties.resourceGuid")
@@ -139,10 +147,10 @@ public class ApplicationGatewayInner extends Resource {
     private String etag;
 
     /**
-     * A list of availability zones denoting where the resource needs to come from..
+     * Resource ID.
      */
-    @JsonProperty(value = "zones")
-    private List<String> zones;
+    @JsonProperty(value = "id")
+    private String id;
 
     /**
      * Get the sku value.
@@ -454,6 +462,26 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
+     * Get the enableHttp2 value.
+     *
+     * @return the enableHttp2 value
+     */
+    public Boolean enableHttp2() {
+        return this.enableHttp2;
+    }
+
+    /**
+     * Set the enableHttp2 value.
+     *
+     * @param enableHttp2 the enableHttp2 value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withEnableHttp2(Boolean enableHttp2) {
+        this.enableHttp2 = enableHttp2;
+        return this;
+    }
+
+    /**
      * Get the resourceGuid value.
      *
      * @return the resourceGuid value
@@ -514,22 +542,23 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the zones value.
+     * Get the id value.
      *
-     * @return the zones value
+     * @return the id value
      */
-    public List<String> zones() {
-        return this.zones;
+    public String id() {
+        return this.id;
     }
 
     /**
-     * Set the zones value.
+     * Set the id value.
      *
-     * @param zones the zones value to set
+     * @param id the id value to set
      * @return the ApplicationGatewayInner object itself.
      */
-    public ApplicationGatewayInner withZones(List<String> zones) {
-        this.zones = zones;
+    public ApplicationGatewayInner withId(String id) {
+        this.id = id;
         return this;
     }
+
 }
