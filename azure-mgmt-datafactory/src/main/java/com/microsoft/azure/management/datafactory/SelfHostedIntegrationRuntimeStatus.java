@@ -111,6 +111,18 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     private List<LinkedIntegrationRuntime> links;
 
     /**
+     * The version that the integration runtime is going to update to.
+     */
+    @JsonProperty(value = "typeProperties.pushedVersion", access = JsonProperty.Access.WRITE_ONLY)
+    private String pushedVersion;
+
+    /**
+     * The latest version on download center.
+     */
+    @JsonProperty(value = "typeProperties.latestVersion", access = JsonProperty.Access.WRITE_ONLY)
+    private String latestVersion;
+
+    /**
      * Get the createTime value.
      *
      * @return the createTime value
@@ -247,6 +259,24 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     public SelfHostedIntegrationRuntimeStatus withLinks(List<LinkedIntegrationRuntime> links) {
         this.links = links;
         return this;
+    }
+
+    /**
+     * Get the pushedVersion value.
+     *
+     * @return the pushedVersion value
+     */
+    public String pushedVersion() {
+        return this.pushedVersion;
+    }
+
+    /**
+     * Get the latestVersion value.
+     *
+     * @return the latestVersion value
+     */
+    public String latestVersion() {
+        return this.latestVersion;
     }
 
 }

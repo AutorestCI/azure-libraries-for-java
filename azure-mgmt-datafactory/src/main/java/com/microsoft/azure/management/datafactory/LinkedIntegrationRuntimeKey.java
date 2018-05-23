@@ -13,13 +13,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * The base definition of a secret type.
+ * The key authorization type.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authorizationType")
 @JsonTypeName("Key")
 public class LinkedIntegrationRuntimeKey extends LinkedIntegrationRuntimeProperties {
     /**
-     * Type of the secret.
+     * The key used for authorization.
      */
     @JsonProperty(value = "key", required = true)
     private SecureString key;
