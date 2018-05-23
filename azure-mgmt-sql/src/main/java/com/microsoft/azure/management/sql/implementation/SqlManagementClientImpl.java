@@ -862,16 +862,16 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The ShortTermRetentionPoliciesInner object to access its operations.
+     * The BackupShortTermRetentionPoliciesInner object to access its operations.
      */
-    private ShortTermRetentionPoliciesInner shortTermRetentionPolicies;
+    private BackupShortTermRetentionPoliciesInner backupShortTermRetentionPolicies;
 
     /**
-     * Gets the ShortTermRetentionPoliciesInner object to access its operations.
-     * @return the ShortTermRetentionPoliciesInner object.
+     * Gets the BackupShortTermRetentionPoliciesInner object to access its operations.
+     * @return the BackupShortTermRetentionPoliciesInner object.
      */
-    public ShortTermRetentionPoliciesInner shortTermRetentionPolicies() {
-        return this.shortTermRetentionPolicies;
+    public BackupShortTermRetentionPoliciesInner backupShortTermRetentionPolicies() {
+        return this.backupShortTermRetentionPolicies;
     }
 
     /**
@@ -965,7 +965,7 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.capabilities = new CapabilitiesInner(restClient().retrofit(), this);
         this.databaseVulnerabilityAssessmentScans = new DatabaseVulnerabilityAssessmentScansInner(restClient().retrofit(), this);
         this.instanceFailoverGroups = new InstanceFailoverGroupsInner(restClient().retrofit(), this);
-        this.shortTermRetentionPolicies = new ShortTermRetentionPoliciesInner(restClient().retrofit(), this);
+        this.backupShortTermRetentionPolicies = new BackupShortTermRetentionPoliciesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 
