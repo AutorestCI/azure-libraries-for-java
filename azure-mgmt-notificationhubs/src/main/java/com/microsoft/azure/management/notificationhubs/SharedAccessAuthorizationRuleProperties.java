@@ -22,6 +22,56 @@ public class SharedAccessAuthorizationRuleProperties {
     private List<AccessRights> rights;
 
     /**
+     * A base64-encoded 256-bit primary key for signing and validating the SAS
+     * token.
+     */
+    @JsonProperty(value = "primaryKey", access = JsonProperty.Access.WRITE_ONLY)
+    private String primaryKey;
+
+    /**
+     * A base64-encoded 256-bit primary key for signing and validating the SAS
+     * token.
+     */
+    @JsonProperty(value = "secondaryKey", access = JsonProperty.Access.WRITE_ONLY)
+    private String secondaryKey;
+
+    /**
+     * A string that describes the authorization rule.
+     */
+    @JsonProperty(value = "keyName", access = JsonProperty.Access.WRITE_ONLY)
+    private String keyName;
+
+    /**
+     * A string that describes the claim type.
+     */
+    @JsonProperty(value = "claimType", access = JsonProperty.Access.WRITE_ONLY)
+    private String claimType;
+
+    /**
+     * A string that describes the claim value.
+     */
+    @JsonProperty(value = "claimValue", access = JsonProperty.Access.WRITE_ONLY)
+    private String claimValue;
+
+    /**
+     * The last modified time for this rule.
+     */
+    @JsonProperty(value = "modifiedTime", access = JsonProperty.Access.WRITE_ONLY)
+    private String modifiedTime;
+
+    /**
+     * The created time for this rule.
+     */
+    @JsonProperty(value = "createdTime", access = JsonProperty.Access.WRITE_ONLY)
+    private String createdTime;
+
+    /**
+     * The revision number for the rule.
+     */
+    @JsonProperty(value = "revision", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer revision;
+
+    /**
      * Get the rights value.
      *
      * @return the rights value
@@ -39,6 +89,78 @@ public class SharedAccessAuthorizationRuleProperties {
     public SharedAccessAuthorizationRuleProperties withRights(List<AccessRights> rights) {
         this.rights = rights;
         return this;
+    }
+
+    /**
+     * Get the primaryKey value.
+     *
+     * @return the primaryKey value
+     */
+    public String primaryKey() {
+        return this.primaryKey;
+    }
+
+    /**
+     * Get the secondaryKey value.
+     *
+     * @return the secondaryKey value
+     */
+    public String secondaryKey() {
+        return this.secondaryKey;
+    }
+
+    /**
+     * Get the keyName value.
+     *
+     * @return the keyName value
+     */
+    public String keyName() {
+        return this.keyName;
+    }
+
+    /**
+     * Get the claimType value.
+     *
+     * @return the claimType value
+     */
+    public String claimType() {
+        return this.claimType;
+    }
+
+    /**
+     * Get the claimValue value.
+     *
+     * @return the claimValue value
+     */
+    public String claimValue() {
+        return this.claimValue;
+    }
+
+    /**
+     * Get the modifiedTime value.
+     *
+     * @return the modifiedTime value
+     */
+    public String modifiedTime() {
+        return this.modifiedTime;
+    }
+
+    /**
+     * Get the createdTime value.
+     *
+     * @return the createdTime value
+     */
+    public String createdTime() {
+        return this.createdTime;
+    }
+
+    /**
+     * Get the revision value.
+     *
+     * @return the revision value
+     */
+    public Integer revision() {
+        return this.revision;
     }
 
 }

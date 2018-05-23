@@ -14,14 +14,17 @@ import com.microsoft.azure.management.notificationhubs.GcmCredential;
 import com.microsoft.azure.management.notificationhubs.MpnsCredential;
 import com.microsoft.azure.management.notificationhubs.AdmCredential;
 import com.microsoft.azure.management.notificationhubs.BaiduCredential;
+import com.microsoft.azure.management.notificationhubs.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Description of a NotificationHub PNS Credentials.
  */
 @JsonFlatten
+@SkipParentValidation
 public class PnsCredentialsResourceInner extends Resource {
     /**
      * The ApnsCredential of the created NotificationHub.
@@ -58,6 +61,12 @@ public class PnsCredentialsResourceInner extends Resource {
      */
     @JsonProperty(value = "properties.baiduCredential")
     private BaiduCredential baiduCredential;
+
+    /**
+     * The sku of the created namespace.
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
 
     /**
      * Get the apnsCredential value.
@@ -176,6 +185,26 @@ public class PnsCredentialsResourceInner extends Resource {
      */
     public PnsCredentialsResourceInner withBaiduCredential(BaiduCredential baiduCredential) {
         this.baiduCredential = baiduCredential;
+        return this;
+    }
+
+    /**
+     * Get the sku value.
+     *
+     * @return the sku value
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku value.
+     *
+     * @param sku the sku value to set
+     * @return the PnsCredentialsResourceInner object itself.
+     */
+    public PnsCredentialsResourceInner withSku(Sku sku) {
+        this.sku = sku;
         return this;
     }
 
