@@ -8,12 +8,15 @@
 
 package com.microsoft.azure.management.notificationhubs.implementation;
 
+import com.microsoft.azure.management.notificationhubs.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Description of a CheckAvailibility resource.
  */
+@SkipParentValidation
 public class CheckAvailabilityResultInner extends Resource {
     /**
      * True if the name is available and can be used to create new
@@ -21,6 +24,12 @@ public class CheckAvailabilityResultInner extends Resource {
      */
     @JsonProperty(value = "isAvailiable")
     private Boolean isAvailiable;
+
+    /**
+     * The sku of the created namespace.
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
 
     /**
      * Get the isAvailiable value.
@@ -39,6 +48,26 @@ public class CheckAvailabilityResultInner extends Resource {
      */
     public CheckAvailabilityResultInner withIsAvailiable(Boolean isAvailiable) {
         this.isAvailiable = isAvailiable;
+        return this;
+    }
+
+    /**
+     * Get the sku value.
+     *
+     * @return the sku value
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku value.
+     *
+     * @param sku the sku value to set
+     * @return the CheckAvailabilityResultInner object itself.
+     */
+    public CheckAvailabilityResultInner withSku(Sku sku) {
+        this.sku = sku;
         return this;
     }
 

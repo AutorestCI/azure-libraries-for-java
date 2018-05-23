@@ -10,14 +10,17 @@ package com.microsoft.azure.management.notificationhubs.implementation;
 
 import org.joda.time.DateTime;
 import com.microsoft.azure.management.notificationhubs.NamespaceType;
+import com.microsoft.azure.management.notificationhubs.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Description of a Namespace resource.
  */
 @JsonFlatten
+@SkipParentValidation
 public class NamespaceResourceInner extends Resource {
     /**
      * The name of the namespace.
@@ -42,6 +45,12 @@ public class NamespaceResourceInner extends Resource {
     private String region;
 
     /**
+     * Identifier for Azure Insights metrics.
+     */
+    @JsonProperty(value = "properties.metricId", access = JsonProperty.Access.WRITE_ONLY)
+    private String metricId;
+
+    /**
      * Status of the namespace. It can be any of these values:1 =
      * Created/Active2 = Creating3 = Suspended4 = Deleting.
      */
@@ -53,6 +62,12 @@ public class NamespaceResourceInner extends Resource {
      */
     @JsonProperty(value = "properties.createdAt")
     private DateTime createdAt;
+
+    /**
+     * The time the namespace was updated.
+     */
+    @JsonProperty(value = "properties.updatedAt")
+    private DateTime updatedAt;
 
     /**
      * Endpoint you can use to perform NotificationHub operations.
@@ -85,11 +100,23 @@ public class NamespaceResourceInner extends Resource {
     private Boolean critical;
 
     /**
+     * Data center for the namespace.
+     */
+    @JsonProperty(value = "properties.dataCenter")
+    private String dataCenter;
+
+    /**
      * The namespace type. Possible values include: 'Messaging',
      * 'NotificationHub'.
      */
     @JsonProperty(value = "properties.namespaceType")
     private NamespaceType namespaceType;
+
+    /**
+     * The sku of the created namespace.
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
 
     /**
      * Get the namespaceResourceName value.
@@ -152,6 +179,15 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
+     * Get the metricId value.
+     *
+     * @return the metricId value
+     */
+    public String metricId() {
+        return this.metricId;
+    }
+
+    /**
      * Get the status value.
      *
      * @return the status value
@@ -188,6 +224,26 @@ public class NamespaceResourceInner extends Resource {
      */
     public NamespaceResourceInner withCreatedAt(DateTime createdAt) {
         this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * Get the updatedAt value.
+     *
+     * @return the updatedAt value
+     */
+    public DateTime updatedAt() {
+        return this.updatedAt;
+    }
+
+    /**
+     * Set the updatedAt value.
+     *
+     * @param updatedAt the updatedAt value to set
+     * @return the NamespaceResourceInner object itself.
+     */
+    public NamespaceResourceInner withUpdatedAt(DateTime updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
 
@@ -292,6 +348,26 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
+     * Get the dataCenter value.
+     *
+     * @return the dataCenter value
+     */
+    public String dataCenter() {
+        return this.dataCenter;
+    }
+
+    /**
+     * Set the dataCenter value.
+     *
+     * @param dataCenter the dataCenter value to set
+     * @return the NamespaceResourceInner object itself.
+     */
+    public NamespaceResourceInner withDataCenter(String dataCenter) {
+        this.dataCenter = dataCenter;
+        return this;
+    }
+
+    /**
      * Get the namespaceType value.
      *
      * @return the namespaceType value
@@ -308,6 +384,26 @@ public class NamespaceResourceInner extends Resource {
      */
     public NamespaceResourceInner withNamespaceType(NamespaceType namespaceType) {
         this.namespaceType = namespaceType;
+        return this;
+    }
+
+    /**
+     * Get the sku value.
+     *
+     * @return the sku value
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku value.
+     *
+     * @param sku the sku value to set
+     * @return the NamespaceResourceInner object itself.
+     */
+    public NamespaceResourceInner withSku(Sku sku) {
+        this.sku = sku;
         return this;
     }
 
