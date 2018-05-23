@@ -12,23 +12,23 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * azns notification group.
+ * Azure action group.
  */
 public class AzNsActionGroup {
     /**
-     * Azure Group reference.
+     * Azure Action Group reference.
      */
     @JsonProperty(value = "actionGroup")
     private List<String> actionGroup;
 
     /**
-     * Custom subject for Azns email.
+     * Custom subject override for all email ids in Azure action group.
      */
     @JsonProperty(value = "emailSubject")
     private String emailSubject;
 
     /**
-     * Custom webhook payload to be send to azns action group.
+     * Custom payload to be sent for all webook URI in Azure action group.
      */
     @JsonProperty(value = "customWebhookPayload")
     private String customWebhookPayload;
