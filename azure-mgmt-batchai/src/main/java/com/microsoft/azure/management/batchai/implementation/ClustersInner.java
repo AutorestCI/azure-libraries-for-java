@@ -16,6 +16,7 @@ import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.batchai.ClusterCreateParameters;
 import com.microsoft.azure.management.batchai.ClustersListByWorkspaceOptions;
 import com.microsoft.azure.management.batchai.ClusterUpdateParameters;
+import com.microsoft.azure.management.batchai.ScaleSettings;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -76,7 +77,7 @@ public class ClustersInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.batchai.Clusters update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BatchAI/workspaces/{workspaceName}/clusters/{clusterName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("workspaceName") String workspaceName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Body ClusterUpdateParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("workspaceName") String workspaceName, @Path("clusterName") String clusterName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body ClusterUpdateParameters parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.batchai.Clusters delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BatchAI/workspaces/{workspaceName}/clusters/{clusterName}", method = "DELETE", hasBody = true)
@@ -300,14 +301,13 @@ public class ClustersInner {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
      * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
-     * @param parameters Additional parameters for cluster update.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ClusterInner object if successful.
      */
-    public ClusterInner update(String resourceGroupName, String workspaceName, String clusterName, ClusterUpdateParameters parameters) {
-        return updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName, parameters).toBlocking().single().body();
+    public ClusterInner update(String resourceGroupName, String workspaceName, String clusterName) {
+        return updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName).toBlocking().single().body();
     }
 
     /**
@@ -316,13 +316,12 @@ public class ClustersInner {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
      * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
-     * @param parameters Additional parameters for cluster update.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ClusterInner> updateAsync(String resourceGroupName, String workspaceName, String clusterName, ClusterUpdateParameters parameters, final ServiceCallback<ClusterInner> serviceCallback) {
-        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName, parameters), serviceCallback);
+    public ServiceFuture<ClusterInner> updateAsync(String resourceGroupName, String workspaceName, String clusterName, final ServiceCallback<ClusterInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName), serviceCallback);
     }
 
     /**
@@ -331,12 +330,11 @@ public class ClustersInner {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
      * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
-     * @param parameters Additional parameters for cluster update.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ClusterInner object
      */
-    public Observable<ClusterInner> updateAsync(String resourceGroupName, String workspaceName, String clusterName, ClusterUpdateParameters parameters) {
-        return updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName, parameters).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
+    public Observable<ClusterInner> updateAsync(String resourceGroupName, String workspaceName, String clusterName) {
+        return updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
             @Override
             public ClusterInner call(ServiceResponse<ClusterInner> response) {
                 return response.body();
@@ -350,11 +348,10 @@ public class ClustersInner {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
      * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
-     * @param parameters Additional parameters for cluster update.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ClusterInner object
      */
-    public Observable<ServiceResponse<ClusterInner>> updateWithServiceResponseAsync(String resourceGroupName, String workspaceName, String clusterName, ClusterUpdateParameters parameters) {
+    public Observable<ServiceResponse<ClusterInner>> updateWithServiceResponseAsync(String resourceGroupName, String workspaceName, String clusterName) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -367,14 +364,106 @@ public class ClustersInner {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
-        if (parameters == null) {
-            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final ScaleSettings scaleSettings = null;
+        ClusterUpdateParameters parameters = new ClusterUpdateParameters();
+        parameters.withScaleSettings(null);
+        return service.update(resourceGroupName, workspaceName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ClusterInner>>>() {
+                @Override
+                public Observable<ServiceResponse<ClusterInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<ClusterInner> clientResponse = updateDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Updates properties of a Cluster.
+     *
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param scaleSettings Desired scale for the cluster
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the ClusterInner object if successful.
+     */
+    public ClusterInner update(String resourceGroupName, String workspaceName, String clusterName, ScaleSettings scaleSettings) {
+        return updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName, scaleSettings).toBlocking().single().body();
+    }
+
+    /**
+     * Updates properties of a Cluster.
+     *
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param scaleSettings Desired scale for the cluster
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<ClusterInner> updateAsync(String resourceGroupName, String workspaceName, String clusterName, ScaleSettings scaleSettings, final ServiceCallback<ClusterInner> serviceCallback) {
+        return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName, scaleSettings), serviceCallback);
+    }
+
+    /**
+     * Updates properties of a Cluster.
+     *
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param scaleSettings Desired scale for the cluster
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ClusterInner object
+     */
+    public Observable<ClusterInner> updateAsync(String resourceGroupName, String workspaceName, String clusterName, ScaleSettings scaleSettings) {
+        return updateWithServiceResponseAsync(resourceGroupName, workspaceName, clusterName, scaleSettings).map(new Func1<ServiceResponse<ClusterInner>, ClusterInner>() {
+            @Override
+            public ClusterInner call(ServiceResponse<ClusterInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Updates properties of a Cluster.
+     *
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param workspaceName The name of the workspace. Workspace names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param clusterName The name of the cluster within the specified resource group. Cluster names can only contain a combination of alphanumeric characters along with dash (-) and underscore (_). The name must be from 1 through 64 characters long.
+     * @param scaleSettings Desired scale for the cluster
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the ClusterInner object
+     */
+    public Observable<ServiceResponse<ClusterInner>> updateWithServiceResponseAsync(String resourceGroupName, String workspaceName, String clusterName, ScaleSettings scaleSettings) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (workspaceName == null) {
+            throw new IllegalArgumentException("Parameter workspaceName is required and cannot be null.");
+        }
+        if (clusterName == null) {
+            throw new IllegalArgumentException("Parameter clusterName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Validator.validate(parameters);
-        return service.update(resourceGroupName, workspaceName, clusterName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(scaleSettings);
+        ClusterUpdateParameters parameters = new ClusterUpdateParameters();
+        parameters.withScaleSettings(scaleSettings);
+        return service.update(resourceGroupName, workspaceName, clusterName, this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<ClusterInner>>>() {
                 @Override
                 public Observable<ServiceResponse<ClusterInner>> call(Response<ResponseBody> response) {

@@ -16,15 +16,13 @@ import org.joda.time.DateTime;
 import com.microsoft.azure.management.batchai.FileServerProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
-import com.microsoft.rest.SkipParentValidation;
-import com.microsoft.azure.Resource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * Contains information about the File Server.
  */
 @JsonFlatten
-@SkipParentValidation
-public class FileServerInner extends Resource {
+public class FileServerInner extends ProxyResource {
     /**
      * The size of the virtual machine of the File Server.
      * For information about available VM sizes for File Server from the

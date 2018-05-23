@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.batchai;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -17,18 +16,6 @@ import com.microsoft.rest.serializer.JsonFlatten;
  */
 @JsonFlatten
 public class FileServerCreateParameters {
-    /**
-     * The region in which to create the File Server.
-     */
-    @JsonProperty(value = "location", required = true)
-    private String location;
-
-    /**
-     * The user specified tags associated with the File Server.
-     */
-    @JsonProperty(value = "tags")
-    private Map<String, String> tags;
-
     /**
      * The size of the virtual machine of the file server.
      * For information about available VM sizes for fileservers from the
@@ -54,46 +41,6 @@ public class FileServerCreateParameters {
      */
     @JsonProperty(value = "properties.subnet")
     private ResourceId subnet;
-
-    /**
-     * Get the location value.
-     *
-     * @return the location value
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location value.
-     *
-     * @param location the location value to set
-     * @return the FileServerCreateParameters object itself.
-     */
-    public FileServerCreateParameters withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
-     * Get the tags value.
-     *
-     * @return the tags value
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags value.
-     *
-     * @param tags the tags value to set
-     * @return the FileServerCreateParameters object itself.
-     */
-    public FileServerCreateParameters withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
 
     /**
      * Get the vmSize value.
