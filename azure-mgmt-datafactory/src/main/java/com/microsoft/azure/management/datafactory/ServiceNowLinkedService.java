@@ -22,7 +22,8 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class ServiceNowLinkedService extends LinkedServiceInner {
     /**
-     * The endpoint of the ServiceNow server. (i.e. ServiceNowData.com).
+     * The endpoint of the ServiceNow server. (i.e.
+     * &lt;instance&gt;.service-now.com).
      */
     @JsonProperty(value = "typeProperties.endpoint", required = true)
     private Object endpoint;

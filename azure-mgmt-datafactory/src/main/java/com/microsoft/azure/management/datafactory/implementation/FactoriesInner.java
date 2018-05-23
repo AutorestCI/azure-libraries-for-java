@@ -91,6 +91,14 @@ public class FactoriesInner implements InnerSupportsGet<FactoryInner>, InnerSupp
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> delete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.Factories listSharedFactory" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/sharedFactory")
+        Observable<Response<ResponseBody>> listSharedFactory(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.Factories listSharedIntegrationRuntime" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/sharedIntegrationRuntime")
+        Observable<Response<ResponseBody>> listSharedIntegrationRuntime(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Query("dataFactoryResourceId") String dataFactoryResourceId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.Factories cancelPipelineRun" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/cancelpipelinerun/{runId}")
         Observable<Response<ResponseBody>> cancelPipelineRun(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("runId") String runId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -683,6 +691,262 @@ public class FactoriesInner implements InnerSupportsGet<FactoryInner>, InnerSupp
         return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
+                .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * List data factories which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the FactoryListResponseInner object if successful.
+     */
+    public FactoryListResponseInner listSharedFactory(String resourceGroupName, String factoryName) {
+        return listSharedFactoryWithServiceResponseAsync(resourceGroupName, factoryName).toBlocking().single().body();
+    }
+
+    /**
+     * List data factories which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<FactoryListResponseInner> listSharedFactoryAsync(String resourceGroupName, String factoryName, final ServiceCallback<FactoryListResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listSharedFactoryWithServiceResponseAsync(resourceGroupName, factoryName), serviceCallback);
+    }
+
+    /**
+     * List data factories which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the FactoryListResponseInner object
+     */
+    public Observable<FactoryListResponseInner> listSharedFactoryAsync(String resourceGroupName, String factoryName) {
+        return listSharedFactoryWithServiceResponseAsync(resourceGroupName, factoryName).map(new Func1<ServiceResponse<FactoryListResponseInner>, FactoryListResponseInner>() {
+            @Override
+            public FactoryListResponseInner call(ServiceResponse<FactoryListResponseInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * List data factories which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the FactoryListResponseInner object
+     */
+    public Observable<ServiceResponse<FactoryListResponseInner>> listSharedFactoryWithServiceResponseAsync(String resourceGroupName, String factoryName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (factoryName == null) {
+            throw new IllegalArgumentException("Parameter factoryName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listSharedFactory(this.client.subscriptionId(), resourceGroupName, factoryName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<FactoryListResponseInner>>>() {
+                @Override
+                public Observable<ServiceResponse<FactoryListResponseInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<FactoryListResponseInner> clientResponse = listSharedFactoryDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<FactoryListResponseInner> listSharedFactoryDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<FactoryListResponseInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<FactoryListResponseInner>() { }.getType())
+                .registerError(ErrorResponseException.class)
+                .build(response);
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the IntegrationRuntimeListResponseInner object if successful.
+     */
+    public IntegrationRuntimeListResponseInner listSharedIntegrationRuntime(String resourceGroupName, String factoryName) {
+        return listSharedIntegrationRuntimeWithServiceResponseAsync(resourceGroupName, factoryName).toBlocking().single().body();
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<IntegrationRuntimeListResponseInner> listSharedIntegrationRuntimeAsync(String resourceGroupName, String factoryName, final ServiceCallback<IntegrationRuntimeListResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listSharedIntegrationRuntimeWithServiceResponseAsync(resourceGroupName, factoryName), serviceCallback);
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationRuntimeListResponseInner object
+     */
+    public Observable<IntegrationRuntimeListResponseInner> listSharedIntegrationRuntimeAsync(String resourceGroupName, String factoryName) {
+        return listSharedIntegrationRuntimeWithServiceResponseAsync(resourceGroupName, factoryName).map(new Func1<ServiceResponse<IntegrationRuntimeListResponseInner>, IntegrationRuntimeListResponseInner>() {
+            @Override
+            public IntegrationRuntimeListResponseInner call(ServiceResponse<IntegrationRuntimeListResponseInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationRuntimeListResponseInner object
+     */
+    public Observable<ServiceResponse<IntegrationRuntimeListResponseInner>> listSharedIntegrationRuntimeWithServiceResponseAsync(String resourceGroupName, String factoryName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (factoryName == null) {
+            throw new IllegalArgumentException("Parameter factoryName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final String dataFactoryResourceId = null;
+        return service.listSharedIntegrationRuntime(this.client.subscriptionId(), resourceGroupName, factoryName, dataFactoryResourceId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationRuntimeListResponseInner>>>() {
+                @Override
+                public Observable<ServiceResponse<IntegrationRuntimeListResponseInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<IntegrationRuntimeListResponseInner> clientResponse = listSharedIntegrationRuntimeDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param dataFactoryResourceId The factory resource identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorResponseException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the IntegrationRuntimeListResponseInner object if successful.
+     */
+    public IntegrationRuntimeListResponseInner listSharedIntegrationRuntime(String resourceGroupName, String factoryName, String dataFactoryResourceId) {
+        return listSharedIntegrationRuntimeWithServiceResponseAsync(resourceGroupName, factoryName, dataFactoryResourceId).toBlocking().single().body();
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param dataFactoryResourceId The factory resource identifier.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<IntegrationRuntimeListResponseInner> listSharedIntegrationRuntimeAsync(String resourceGroupName, String factoryName, String dataFactoryResourceId, final ServiceCallback<IntegrationRuntimeListResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(listSharedIntegrationRuntimeWithServiceResponseAsync(resourceGroupName, factoryName, dataFactoryResourceId), serviceCallback);
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param dataFactoryResourceId The factory resource identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationRuntimeListResponseInner object
+     */
+    public Observable<IntegrationRuntimeListResponseInner> listSharedIntegrationRuntimeAsync(String resourceGroupName, String factoryName, String dataFactoryResourceId) {
+        return listSharedIntegrationRuntimeWithServiceResponseAsync(resourceGroupName, factoryName, dataFactoryResourceId).map(new Func1<ServiceResponse<IntegrationRuntimeListResponseInner>, IntegrationRuntimeListResponseInner>() {
+            @Override
+            public IntegrationRuntimeListResponseInner call(ServiceResponse<IntegrationRuntimeListResponseInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * List integration runtimes which the given data factory has access.
+     *
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param dataFactoryResourceId The factory resource identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the IntegrationRuntimeListResponseInner object
+     */
+    public Observable<ServiceResponse<IntegrationRuntimeListResponseInner>> listSharedIntegrationRuntimeWithServiceResponseAsync(String resourceGroupName, String factoryName, String dataFactoryResourceId) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (factoryName == null) {
+            throw new IllegalArgumentException("Parameter factoryName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listSharedIntegrationRuntime(this.client.subscriptionId(), resourceGroupName, factoryName, dataFactoryResourceId, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationRuntimeListResponseInner>>>() {
+                @Override
+                public Observable<ServiceResponse<IntegrationRuntimeListResponseInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<IntegrationRuntimeListResponseInner> clientResponse = listSharedIntegrationRuntimeDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<IntegrationRuntimeListResponseInner> listSharedIntegrationRuntimeDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<IntegrationRuntimeListResponseInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<IntegrationRuntimeListResponseInner>() { }.getType())
                 .registerError(ErrorResponseException.class)
                 .build(response);
     }

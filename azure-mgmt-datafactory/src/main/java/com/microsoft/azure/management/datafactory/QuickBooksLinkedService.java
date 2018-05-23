@@ -34,15 +34,27 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     private Object companyId;
 
     /**
+     * The consumer key for OAuth 1.0 authentication.
+     */
+    @JsonProperty(value = "typeProperties.consumerKey", required = true)
+    private Object consumerKey;
+
+    /**
+     * The consumer secret for OAuth 1.0 authentication.
+     */
+    @JsonProperty(value = "typeProperties.consumerSecret", required = true)
+    private SecretBase consumerSecret;
+
+    /**
      * The access token for OAuth 1.0 authentication.
      */
-    @JsonProperty(value = "typeProperties.accessToken")
+    @JsonProperty(value = "typeProperties.accessToken", required = true)
     private SecretBase accessToken;
 
     /**
      * The access token secret for OAuth 1.0 authentication.
      */
-    @JsonProperty(value = "typeProperties.accessTokenSecret")
+    @JsonProperty(value = "typeProperties.accessTokenSecret", required = true)
     private SecretBase accessTokenSecret;
 
     /**
@@ -97,6 +109,46 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
      */
     public QuickBooksLinkedService withCompanyId(Object companyId) {
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * Get the consumerKey value.
+     *
+     * @return the consumerKey value
+     */
+    public Object consumerKey() {
+        return this.consumerKey;
+    }
+
+    /**
+     * Set the consumerKey value.
+     *
+     * @param consumerKey the consumerKey value to set
+     * @return the QuickBooksLinkedService object itself.
+     */
+    public QuickBooksLinkedService withConsumerKey(Object consumerKey) {
+        this.consumerKey = consumerKey;
+        return this;
+    }
+
+    /**
+     * Get the consumerSecret value.
+     *
+     * @return the consumerSecret value
+     */
+    public SecretBase consumerSecret() {
+        return this.consumerSecret;
+    }
+
+    /**
+     * Set the consumerSecret value.
+     *
+     * @param consumerSecret the consumerSecret value to set
+     * @return the QuickBooksLinkedService object itself.
+     */
+    public QuickBooksLinkedService withConsumerSecret(SecretBase consumerSecret) {
+        this.consumerSecret = consumerSecret;
         return this;
     }
 
