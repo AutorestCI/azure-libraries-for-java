@@ -34,8 +34,7 @@ public class Source {
     private String dataSourceId;
 
     /**
-     * Set value to ResultCount if query should be returning search result
-     * count. Possible values include: 'ResultCount'.
+     * Set value to 'ResultCount'. Possible values include: 'ResultCount'.
      */
     @JsonProperty(value = "queryType")
     private QueryType queryType;
