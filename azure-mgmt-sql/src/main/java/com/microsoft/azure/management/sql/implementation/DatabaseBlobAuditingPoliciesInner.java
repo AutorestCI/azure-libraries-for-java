@@ -134,7 +134,7 @@ public class DatabaseBlobAuditingPoliciesInner {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
         final String blobAuditingPolicyName = "default";
-        final String apiVersion = "2015-05-01-preview";
+        final String apiVersion = "2017-03-01-preview";
         return service.get(resourceGroupName, serverName, databaseName, blobAuditingPolicyName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DatabaseBlobAuditingPolicyInner>>>() {
                 @Override
@@ -234,7 +234,7 @@ public class DatabaseBlobAuditingPoliciesInner {
         }
         Validator.validate(parameters);
         final String blobAuditingPolicyName = "default";
-        final String apiVersion = "2015-05-01-preview";
+        final String apiVersion = "2017-03-01-preview";
         return service.createOrUpdate(resourceGroupName, serverName, databaseName, blobAuditingPolicyName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DatabaseBlobAuditingPolicyInner>>>() {
                 @Override

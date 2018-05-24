@@ -420,19 +420,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The DatabaseBlobAuditingPoliciesInner object to access its operations.
-     */
-    private DatabaseBlobAuditingPoliciesInner databaseBlobAuditingPolicies;
-
-    /**
-     * Gets the DatabaseBlobAuditingPoliciesInner object to access its operations.
-     * @return the DatabaseBlobAuditingPoliciesInner object.
-     */
-    public DatabaseBlobAuditingPoliciesInner databaseBlobAuditingPolicies() {
-        return this.databaseBlobAuditingPolicies;
-    }
-
-    /**
      * The DatabaseAutomaticTuningsInner object to access its operations.
      */
     private DatabaseAutomaticTuningsInner databaseAutomaticTunings;
@@ -573,6 +560,58 @@ public class SqlManagementClientImpl extends AzureServiceClient {
      */
     public VirtualNetworkRulesInner virtualNetworkRules() {
         return this.virtualNetworkRules;
+    }
+
+    /**
+     * The ExtendedDatabaseBlobAuditingPoliciesInner object to access its operations.
+     */
+    private ExtendedDatabaseBlobAuditingPoliciesInner extendedDatabaseBlobAuditingPolicies;
+
+    /**
+     * Gets the ExtendedDatabaseBlobAuditingPoliciesInner object to access its operations.
+     * @return the ExtendedDatabaseBlobAuditingPoliciesInner object.
+     */
+    public ExtendedDatabaseBlobAuditingPoliciesInner extendedDatabaseBlobAuditingPolicies() {
+        return this.extendedDatabaseBlobAuditingPolicies;
+    }
+
+    /**
+     * The ExtendedServerBlobAuditingPoliciesInner object to access its operations.
+     */
+    private ExtendedServerBlobAuditingPoliciesInner extendedServerBlobAuditingPolicies;
+
+    /**
+     * Gets the ExtendedServerBlobAuditingPoliciesInner object to access its operations.
+     * @return the ExtendedServerBlobAuditingPoliciesInner object.
+     */
+    public ExtendedServerBlobAuditingPoliciesInner extendedServerBlobAuditingPolicies() {
+        return this.extendedServerBlobAuditingPolicies;
+    }
+
+    /**
+     * The ServerBlobAuditingPoliciesInner object to access its operations.
+     */
+    private ServerBlobAuditingPoliciesInner serverBlobAuditingPolicies;
+
+    /**
+     * Gets the ServerBlobAuditingPoliciesInner object to access its operations.
+     * @return the ServerBlobAuditingPoliciesInner object.
+     */
+    public ServerBlobAuditingPoliciesInner serverBlobAuditingPolicies() {
+        return this.serverBlobAuditingPolicies;
+    }
+
+    /**
+     * The DatabaseBlobAuditingPoliciesInner object to access its operations.
+     */
+    private DatabaseBlobAuditingPoliciesInner databaseBlobAuditingPolicies;
+
+    /**
+     * Gets the DatabaseBlobAuditingPoliciesInner object to access its operations.
+     * @return the DatabaseBlobAuditingPoliciesInner object.
+     */
+    public DatabaseBlobAuditingPoliciesInner databaseBlobAuditingPolicies() {
+        return this.databaseBlobAuditingPolicies;
     }
 
     /**
@@ -931,7 +970,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.transparentDataEncryptionActivities = new TransparentDataEncryptionActivitiesInner(restClient().retrofit(), this);
         this.serverUsages = new ServerUsagesInner(restClient().retrofit(), this);
         this.databaseUsages = new DatabaseUsagesInner(restClient().retrofit(), this);
-        this.databaseBlobAuditingPolicies = new DatabaseBlobAuditingPoliciesInner(restClient().retrofit(), this);
         this.databaseAutomaticTunings = new DatabaseAutomaticTuningsInner(restClient().retrofit(), this);
         this.encryptionProtectors = new EncryptionProtectorsInner(restClient().retrofit(), this);
         this.failoverGroups = new FailoverGroupsInner(restClient().retrofit(), this);
@@ -943,6 +981,10 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.syncMembers = new SyncMembersInner(restClient().retrofit(), this);
         this.subscriptionUsages = new SubscriptionUsagesInner(restClient().retrofit(), this);
         this.virtualNetworkRules = new VirtualNetworkRulesInner(restClient().retrofit(), this);
+        this.extendedDatabaseBlobAuditingPolicies = new ExtendedDatabaseBlobAuditingPoliciesInner(restClient().retrofit(), this);
+        this.extendedServerBlobAuditingPolicies = new ExtendedServerBlobAuditingPoliciesInner(restClient().retrofit(), this);
+        this.serverBlobAuditingPolicies = new ServerBlobAuditingPoliciesInner(restClient().retrofit(), this);
+        this.databaseBlobAuditingPolicies = new DatabaseBlobAuditingPoliciesInner(restClient().retrofit(), this);
         this.databaseVulnerabilityAssessmentRuleBaselines = new DatabaseVulnerabilityAssessmentRuleBaselinesInner(restClient().retrofit(), this);
         this.databaseVulnerabilityAssessments = new DatabaseVulnerabilityAssessmentsInner(restClient().retrofit(), this);
         this.jobAgents = new JobAgentsInner(restClient().retrofit(), this);
