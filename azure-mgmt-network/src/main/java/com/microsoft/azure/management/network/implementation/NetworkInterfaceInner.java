@@ -13,24 +13,26 @@ import java.util.List;
 import com.microsoft.azure.management.network.NetworkInterfaceDnsSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * A network interface in a resource group.
  */
 @JsonFlatten
+@SkipParentValidation
 public class NetworkInterfaceInner extends Resource {
     /**
      * The reference of a virtual machine.
      */
-    @JsonProperty(value = "properties.virtualMachine")
+    @JsonProperty(value = "properties.virtualMachine", access = JsonProperty.Access.WRITE_ONLY)
     private SubResource virtualMachine;
 
     /**
      * The reference of the NetworkSecurityGroup resource.
      */
     @JsonProperty(value = "properties.networkSecurityGroup")
-    private SubResource networkSecurityGroup;
+    private NetworkSecurityGroupInner networkSecurityGroup;
 
     /**
      * A list of IPConfigurations of the network interface.
@@ -88,6 +90,12 @@ public class NetworkInterfaceInner extends Resource {
     private String etag;
 
     /**
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
      * Get the virtualMachine value.
      *
      * @return the virtualMachine value
@@ -97,22 +105,11 @@ public class NetworkInterfaceInner extends Resource {
     }
 
     /**
-     * Set the virtualMachine value.
-     *
-     * @param virtualMachine the virtualMachine value to set
-     * @return the NetworkInterfaceInner object itself.
-     */
-    public NetworkInterfaceInner withVirtualMachine(SubResource virtualMachine) {
-        this.virtualMachine = virtualMachine;
-        return this;
-    }
-
-    /**
      * Get the networkSecurityGroup value.
      *
      * @return the networkSecurityGroup value
      */
-    public SubResource networkSecurityGroup() {
+    public NetworkSecurityGroupInner networkSecurityGroup() {
         return this.networkSecurityGroup;
     }
 
@@ -122,7 +119,7 @@ public class NetworkInterfaceInner extends Resource {
      * @param networkSecurityGroup the networkSecurityGroup value to set
      * @return the NetworkInterfaceInner object itself.
      */
-    public NetworkInterfaceInner withNetworkSecurityGroup(SubResource networkSecurityGroup) {
+    public NetworkInterfaceInner withNetworkSecurityGroup(NetworkSecurityGroupInner networkSecurityGroup) {
         this.networkSecurityGroup = networkSecurityGroup;
         return this;
     }
@@ -304,6 +301,26 @@ public class NetworkInterfaceInner extends Resource {
      */
     public NetworkInterfaceInner withEtag(String etag) {
         this.etag = etag;
+        return this;
+    }
+
+    /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id value.
+     *
+     * @param id the id value to set
+     * @return the NetworkInterfaceInner object itself.
+     */
+    public NetworkInterfaceInner withId(String id) {
+        this.id = id;
         return this;
     }
 
