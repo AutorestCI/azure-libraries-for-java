@@ -43,7 +43,7 @@ public class FailoverGroupUpdate {
     private Map<String, String> tags;
 
     /**
-     * Get the readWriteEndpoint value.
+     * Get read-write endpoint of the failover group instance.
      *
      * @return the readWriteEndpoint value
      */
@@ -52,7 +52,7 @@ public class FailoverGroupUpdate {
     }
 
     /**
-     * Set the readWriteEndpoint value.
+     * Set read-write endpoint of the failover group instance.
      *
      * @param readWriteEndpoint the readWriteEndpoint value to set
      * @return the FailoverGroupUpdate object itself.
@@ -63,7 +63,7 @@ public class FailoverGroupUpdate {
     }
 
     /**
-     * Get the readOnlyEndpoint value.
+     * Get read-only endpoint of the failover group instance.
      *
      * @return the readOnlyEndpoint value
      */
@@ -72,7 +72,7 @@ public class FailoverGroupUpdate {
     }
 
     /**
-     * Set the readOnlyEndpoint value.
+     * Set read-only endpoint of the failover group instance.
      *
      * @param readOnlyEndpoint the readOnlyEndpoint value to set
      * @return the FailoverGroupUpdate object itself.
@@ -83,7 +83,7 @@ public class FailoverGroupUpdate {
     }
 
     /**
-     * Get the databases value.
+     * Get list of databases in the failover group.
      *
      * @return the databases value
      */
@@ -92,7 +92,7 @@ public class FailoverGroupUpdate {
     }
 
     /**
-     * Set the databases value.
+     * Set list of databases in the failover group.
      *
      * @param databases the databases value to set
      * @return the FailoverGroupUpdate object itself.
@@ -103,7 +103,7 @@ public class FailoverGroupUpdate {
     }
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -112,7 +112,7 @@ public class FailoverGroupUpdate {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the FailoverGroupUpdate object itself.

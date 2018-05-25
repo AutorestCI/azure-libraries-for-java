@@ -40,7 +40,7 @@ public class DatabaseAutomaticTuningInner extends ProxyResourceInner {
     private Map<String, AutomaticTuningOptions> options;
 
     /**
-     * Get the desiredState value.
+     * Get automatic tuning desired state. Possible values include: 'Inherit', 'Custom', 'Auto', 'Unspecified'.
      *
      * @return the desiredState value
      */
@@ -49,7 +49,7 @@ public class DatabaseAutomaticTuningInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the desiredState value.
+     * Set automatic tuning desired state. Possible values include: 'Inherit', 'Custom', 'Auto', 'Unspecified'.
      *
      * @param desiredState the desiredState value to set
      * @return the DatabaseAutomaticTuningInner object itself.
@@ -60,7 +60,7 @@ public class DatabaseAutomaticTuningInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the actualState value.
+     * Get automatic tuning actual state. Possible values include: 'Inherit', 'Custom', 'Auto', 'Unspecified'.
      *
      * @return the actualState value
      */
@@ -69,7 +69,7 @@ public class DatabaseAutomaticTuningInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the options value.
+     * Get automatic tuning options definition.
      *
      * @return the options value
      */
@@ -78,7 +78,7 @@ public class DatabaseAutomaticTuningInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the options value.
+     * Set automatic tuning options definition.
      *
      * @param options the options value to set
      * @return the DatabaseAutomaticTuningInner object itself.

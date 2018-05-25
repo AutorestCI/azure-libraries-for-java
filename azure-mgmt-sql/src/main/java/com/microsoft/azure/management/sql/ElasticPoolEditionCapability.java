@@ -47,7 +47,7 @@ public class ElasticPoolEditionCapability {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get the elastic pool edition name.
      *
      * @return the name value
      */
@@ -56,7 +56,7 @@ public class ElasticPoolEditionCapability {
     }
 
     /**
-     * Get the supportedElasticPoolPerformanceLevels value.
+     * Get the list of supported elastic pool DTU levels for the edition.
      *
      * @return the supportedElasticPoolPerformanceLevels value
      */
@@ -65,7 +65,7 @@ public class ElasticPoolEditionCapability {
     }
 
     /**
-     * Get the zoneRedundant value.
+     * Get whether or not zone redundancy is supported for the edition.
      *
      * @return the zoneRedundant value
      */
@@ -74,7 +74,7 @@ public class ElasticPoolEditionCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -83,7 +83,7 @@ public class ElasticPoolEditionCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -92,7 +92,7 @@ public class ElasticPoolEditionCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ElasticPoolEditionCapability object itself.

@@ -62,7 +62,7 @@ public class ServerInner extends TrackedResourceInner {
     private String fullyQualifiedDomainName;
 
     /**
-     * Get the identity value.
+     * Get the Azure Active Directory identity of the server.
      *
      * @return the identity value
      */
@@ -71,7 +71,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the identity value.
+     * Set the Azure Active Directory identity of the server.
      *
      * @param identity the identity value to set
      * @return the ServerInner object itself.
@@ -82,7 +82,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the kind value.
+     * Get kind of sql server. This is metadata used for the Azure portal experience.
      *
      * @return the kind value
      */
@@ -91,7 +91,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the administratorLogin value.
+     * Get administrator username for the server. Once created it cannot be changed.
      *
      * @return the administratorLogin value
      */
@@ -100,7 +100,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the administratorLogin value.
+     * Set administrator username for the server. Once created it cannot be changed.
      *
      * @param administratorLogin the administratorLogin value to set
      * @return the ServerInner object itself.
@@ -111,7 +111,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the administratorLoginPassword value.
+     * Get the administrator login password (required for server creation).
      *
      * @return the administratorLoginPassword value
      */
@@ -120,7 +120,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the administratorLoginPassword value.
+     * Set the administrator login password (required for server creation).
      *
      * @param administratorLoginPassword the administratorLoginPassword value to set
      * @return the ServerInner object itself.
@@ -131,7 +131,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the version value.
+     * Get the version of the server.
      *
      * @return the version value
      */
@@ -140,7 +140,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the version value.
+     * Set the version of the server.
      *
      * @param version the version value to set
      * @return the ServerInner object itself.
@@ -151,7 +151,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get the state of the server.
      *
      * @return the state value
      */
@@ -160,7 +160,7 @@ public class ServerInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the fullyQualifiedDomainName value.
+     * Get the fully qualified domain name of the server.
      *
      * @return the fullyQualifiedDomainName value
      */

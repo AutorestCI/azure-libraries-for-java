@@ -34,7 +34,7 @@ public class LicenseTypeCapability {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get license type identifier.
      *
      * @return the name value
      */
@@ -43,7 +43,7 @@ public class LicenseTypeCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -52,7 +52,7 @@ public class LicenseTypeCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -61,7 +61,7 @@ public class LicenseTypeCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the LicenseTypeCapability object itself.

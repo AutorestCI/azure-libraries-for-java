@@ -41,7 +41,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     private Integer weekOfYear;
 
     /**
-     * Get the weeklyRetention value.
+     * Get the weekly retention policy for an LTR backup in an ISO 8601 format.
      *
      * @return the weeklyRetention value
      */
@@ -50,7 +50,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the weeklyRetention value.
+     * Set the weekly retention policy for an LTR backup in an ISO 8601 format.
      *
      * @param weeklyRetention the weeklyRetention value to set
      * @return the BackupLongTermRetentionPolicyInner object itself.
@@ -61,7 +61,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the monthlyRetention value.
+     * Get the montly retention policy for an LTR backup in an ISO 8601 format.
      *
      * @return the monthlyRetention value
      */
@@ -70,7 +70,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the monthlyRetention value.
+     * Set the montly retention policy for an LTR backup in an ISO 8601 format.
      *
      * @param monthlyRetention the monthlyRetention value to set
      * @return the BackupLongTermRetentionPolicyInner object itself.
@@ -81,7 +81,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the yearlyRetention value.
+     * Get the yearly retention policy for an LTR backup in an ISO 8601 format.
      *
      * @return the yearlyRetention value
      */
@@ -90,7 +90,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the yearlyRetention value.
+     * Set the yearly retention policy for an LTR backup in an ISO 8601 format.
      *
      * @param yearlyRetention the yearlyRetention value to set
      * @return the BackupLongTermRetentionPolicyInner object itself.
@@ -101,7 +101,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the weekOfYear value.
+     * Get the week of year to take the yearly backup in an ISO 8601 format.
      *
      * @return the weekOfYear value
      */
@@ -110,7 +110,7 @@ public class BackupLongTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the weekOfYear value.
+     * Set the week of year to take the yearly backup in an ISO 8601 format.
      *
      * @param weekOfYear the weekOfYear value to set
      * @return the BackupLongTermRetentionPolicyInner object itself.

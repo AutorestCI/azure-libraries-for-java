@@ -23,7 +23,7 @@ public class ServerDnsAliasInner extends ProxyResourceInner {
     private String azureDnsRecord;
 
     /**
-     * Get the azureDnsRecord value.
+     * Get the fully qualified DNS record for alias.
      *
      * @return the azureDnsRecord value
      */

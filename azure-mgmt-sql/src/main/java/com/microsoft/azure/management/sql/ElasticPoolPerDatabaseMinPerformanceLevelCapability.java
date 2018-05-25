@@ -41,7 +41,7 @@ public class ElasticPoolPerDatabaseMinPerformanceLevelCapability {
     private String reason;
 
     /**
-     * Get the limit value.
+     * Get the minimum performance level per database.
      *
      * @return the limit value
      */
@@ -50,7 +50,7 @@ public class ElasticPoolPerDatabaseMinPerformanceLevelCapability {
     }
 
     /**
-     * Get the unit value.
+     * Get unit type used to measure performance level. Possible values include: 'DTU', 'VCores'.
      *
      * @return the unit value
      */
@@ -59,7 +59,7 @@ public class ElasticPoolPerDatabaseMinPerformanceLevelCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -68,7 +68,7 @@ public class ElasticPoolPerDatabaseMinPerformanceLevelCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -77,7 +77,7 @@ public class ElasticPoolPerDatabaseMinPerformanceLevelCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ElasticPoolPerDatabaseMinPerformanceLevelCapability object itself.

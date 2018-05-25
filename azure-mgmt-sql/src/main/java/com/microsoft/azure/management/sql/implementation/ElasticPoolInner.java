@@ -95,7 +95,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the kind value.
+     * Get kind of elastic pool. This is metadata used for the Azure portal experience.
      *
      * @return the kind value
      */
@@ -104,7 +104,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get the state of the elastic pool. Possible values include: 'Creating', 'Ready', 'Disabled'.
      *
      * @return the state value
      */
@@ -113,7 +113,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the creationDate value.
+     * Get the creation date of the elastic pool (ISO8601 format).
      *
      * @return the creationDate value
      */
@@ -122,7 +122,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the maxSizeBytes value.
+     * Get the storage limit for the database elastic pool in bytes.
      *
      * @return the maxSizeBytes value
      */
@@ -131,7 +131,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the maxSizeBytes value.
+     * Set the storage limit for the database elastic pool in bytes.
      *
      * @param maxSizeBytes the maxSizeBytes value to set
      * @return the ElasticPoolInner object itself.
@@ -142,7 +142,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the perDatabaseSettings value.
+     * Get the per database settings for the elastic pool.
      *
      * @return the perDatabaseSettings value
      */
@@ -151,7 +151,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the perDatabaseSettings value.
+     * Set the per database settings for the elastic pool.
      *
      * @param perDatabaseSettings the perDatabaseSettings value to set
      * @return the ElasticPoolInner object itself.
@@ -162,7 +162,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the zoneRedundant value.
+     * Get whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
      *
      * @return the zoneRedundant value
      */
@@ -171,7 +171,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the zoneRedundant value.
+     * Set whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
      *
      * @param zoneRedundant the zoneRedundant value to set
      * @return the ElasticPoolInner object itself.
@@ -182,7 +182,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the licenseType value.
+     * Get the license type to apply for this elastic pool. Possible values include: 'LicenseIncluded', 'BasePrice'.
      *
      * @return the licenseType value
      */
@@ -191,7 +191,7 @@ public class ElasticPoolInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the licenseType value.
+     * Set the license type to apply for this elastic pool. Possible values include: 'LicenseIncluded', 'BasePrice'.
      *
      * @param licenseType the licenseType value to set
      * @return the ElasticPoolInner object itself.

@@ -53,7 +53,7 @@ public class MaxSizeRangeCapability {
     private String reason;
 
     /**
-     * Get the minValue value.
+     * Get minimum value.
      *
      * @return the minValue value
      */
@@ -62,7 +62,7 @@ public class MaxSizeRangeCapability {
     }
 
     /**
-     * Get the maxValue value.
+     * Get maximum value.
      *
      * @return the maxValue value
      */
@@ -71,7 +71,7 @@ public class MaxSizeRangeCapability {
     }
 
     /**
-     * Get the scaleSize value.
+     * Get scale/step size for discrete values between the minimum value and the maximum value.
      *
      * @return the scaleSize value
      */
@@ -80,7 +80,7 @@ public class MaxSizeRangeCapability {
     }
 
     /**
-     * Get the logSize value.
+     * Get size of transaction log.
      *
      * @return the logSize value
      */
@@ -89,7 +89,7 @@ public class MaxSizeRangeCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -98,7 +98,7 @@ public class MaxSizeRangeCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -107,7 +107,7 @@ public class MaxSizeRangeCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the MaxSizeRangeCapability object itself.

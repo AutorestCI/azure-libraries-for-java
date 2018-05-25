@@ -24,7 +24,7 @@ public class BackupShortTermRetentionPolicyInner extends ProxyResourceInner {
     private Integer retentionDays;
 
     /**
-     * Get the retentionDays value.
+     * Get the backup retention period in days. This is how many days Point-in-Time Restore will be supported.
      *
      * @return the retentionDays value
      */
@@ -33,7 +33,7 @@ public class BackupShortTermRetentionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the retentionDays value.
+     * Set the backup retention period in days. This is how many days Point-in-Time Restore will be supported.
      *
      * @param retentionDays the retentionDays value to set
      * @return the BackupShortTermRetentionPolicyInner object itself.
