@@ -47,7 +47,7 @@ public class ServerVersionCapability {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get the server version name.
      *
      * @return the name value
      */
@@ -56,7 +56,7 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Get the supportedEditions value.
+     * Get the list of supported database editions.
      *
      * @return the supportedEditions value
      */
@@ -65,7 +65,7 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Get the supportedElasticPoolEditions value.
+     * Get the list of supported elastic pool editions.
      *
      * @return the supportedElasticPoolEditions value
      */
@@ -74,7 +74,7 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -83,7 +83,7 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -92,7 +92,7 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ServerVersionCapability object itself.

@@ -92,7 +92,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     private ReplicationState replicationState;
 
     /**
-     * Get the location value.
+     * Get location of the server that contains this firewall rule.
      *
      * @return the location value
      */
@@ -101,7 +101,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the isTerminationAllowed value.
+     * Get legacy value indicating whether termination is allowed.  Currently always returns true.
      *
      * @return the isTerminationAllowed value
      */
@@ -110,7 +110,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the replicationMode value.
+     * Get replication mode of this replication link.
      *
      * @return the replicationMode value
      */
@@ -119,7 +119,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the partnerServer value.
+     * Get the name of the server hosting the partner database.
      *
      * @return the partnerServer value
      */
@@ -128,7 +128,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the partnerDatabase value.
+     * Get the name of the partner database.
      *
      * @return the partnerDatabase value
      */
@@ -137,7 +137,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the partnerLocation value.
+     * Get the Azure Region of the partner database.
      *
      * @return the partnerLocation value
      */
@@ -146,7 +146,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the role value.
+     * Get the role of the database in the replication link. Possible values include: 'Primary', 'Secondary', 'NonReadableSecondary', 'Source', 'Copy'.
      *
      * @return the role value
      */
@@ -155,7 +155,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the partnerRole value.
+     * Get the role of the partner database in the replication link. Possible values include: 'Primary', 'Secondary', 'NonReadableSecondary', 'Source', 'Copy'.
      *
      * @return the partnerRole value
      */
@@ -164,7 +164,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the startTime value.
+     * Get the start time for the replication link.
      *
      * @return the startTime value
      */
@@ -173,7 +173,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the percentComplete value.
+     * Get the percentage of seeding complete for the replication link.
      *
      * @return the percentComplete value
      */
@@ -182,7 +182,7 @@ public class ReplicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the replicationState value.
+     * Get the replication state for the replication link. Possible values include: 'PENDING', 'SEEDING', 'CATCH_UP', 'SUSPENDED'.
      *
      * @return the replicationState value
      */

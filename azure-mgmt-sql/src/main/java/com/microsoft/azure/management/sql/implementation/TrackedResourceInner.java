@@ -17,39 +17,19 @@ import com.microsoft.azure.ProxyResource;
  */
 public class TrackedResourceInner extends ProxyResource {
     /**
-     * Resource tags.
-     */
-    @JsonProperty(value = "tags")
-    private Map<String, String> tags;
-
-    /**
      * Resource location.
      */
     @JsonProperty(value = "location", required = true)
     private String location;
 
     /**
-     * Get the tags value.
-     *
-     * @return the tags value
+     * Resource tags.
      */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
+    @JsonProperty(value = "tags")
+    private Map<String, String> tags;
 
     /**
-     * Set the tags value.
-     *
-     * @param tags the tags value to set
-     * @return the TrackedResourceInner object itself.
-     */
-    public TrackedResourceInner withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -58,13 +38,33 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the location value.
+     * Set resource location.
      *
      * @param location the location value to set
      * @return the TrackedResourceInner object itself.
      */
     public TrackedResourceInner withLocation(String location) {
         this.location = location;
+        return this;
+    }
+
+    /**
+     * Get resource tags.
+     *
+     * @return the tags value
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set resource tags.
+     *
+     * @param tags the tags value to set
+     * @return the TrackedResourceInner object itself.
+     */
+    public TrackedResourceInner withTags(Map<String, String> tags) {
+        this.tags = tags;
         return this;
     }
 

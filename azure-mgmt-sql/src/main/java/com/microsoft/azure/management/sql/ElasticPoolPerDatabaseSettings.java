@@ -27,7 +27,7 @@ public class ElasticPoolPerDatabaseSettings {
     private Double maxCapacity;
 
     /**
-     * Get the minCapacity value.
+     * Get the minimum capacity all databases are guaranteed.
      *
      * @return the minCapacity value
      */
@@ -36,7 +36,7 @@ public class ElasticPoolPerDatabaseSettings {
     }
 
     /**
-     * Set the minCapacity value.
+     * Set the minimum capacity all databases are guaranteed.
      *
      * @param minCapacity the minCapacity value to set
      * @return the ElasticPoolPerDatabaseSettings object itself.
@@ -47,7 +47,7 @@ public class ElasticPoolPerDatabaseSettings {
     }
 
     /**
-     * Get the maxCapacity value.
+     * Get the maximum capacity any one database can consume.
      *
      * @return the maxCapacity value
      */
@@ -56,7 +56,7 @@ public class ElasticPoolPerDatabaseSettings {
     }
 
     /**
-     * Set the maxCapacity value.
+     * Set the maximum capacity any one database can consume.
      *
      * @param maxCapacity the maxCapacity value to set
      * @return the ElasticPoolPerDatabaseSettings object itself.

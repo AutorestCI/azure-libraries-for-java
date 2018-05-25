@@ -54,7 +54,7 @@ public class LongTermRetentionBackupInner extends ProxyResourceInner {
     private DateTime backupExpirationTime;
 
     /**
-     * Get the serverName value.
+     * Get the server name that the backup database belong to.
      *
      * @return the serverName value
      */
@@ -63,7 +63,7 @@ public class LongTermRetentionBackupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the serverCreateTime value.
+     * Get the create time of the server.
      *
      * @return the serverCreateTime value
      */
@@ -72,7 +72,7 @@ public class LongTermRetentionBackupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the databaseName value.
+     * Get the name of the database the backup belong to.
      *
      * @return the databaseName value
      */
@@ -81,7 +81,7 @@ public class LongTermRetentionBackupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the databaseDeletionTime value.
+     * Get the delete time of the database.
      *
      * @return the databaseDeletionTime value
      */
@@ -90,7 +90,7 @@ public class LongTermRetentionBackupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the backupTime value.
+     * Get the time the backup was taken.
      *
      * @return the backupTime value
      */
@@ -99,7 +99,7 @@ public class LongTermRetentionBackupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the backupExpirationTime value.
+     * Get the time the long term retention backup will expire.
      *
      * @return the backupExpirationTime value
      */

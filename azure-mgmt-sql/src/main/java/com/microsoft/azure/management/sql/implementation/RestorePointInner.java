@@ -50,7 +50,7 @@ public class RestorePointInner extends ProxyResourceInner {
     private String restorePointLabel;
 
     /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -59,7 +59,7 @@ public class RestorePointInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the restorePointType value.
+     * Get the type of restore point. Possible values include: 'CONTINUOUS', 'DISCRETE'.
      *
      * @return the restorePointType value
      */
@@ -68,7 +68,7 @@ public class RestorePointInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the earliestRestoreDate value.
+     * Get the earliest time to which this database can be restored.
      *
      * @return the earliestRestoreDate value
      */
@@ -77,7 +77,7 @@ public class RestorePointInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the restorePointCreationDate value.
+     * Get the time the backup was taken.
      *
      * @return the restorePointCreationDate value
      */
@@ -86,7 +86,7 @@ public class RestorePointInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the restorePointLabel value.
+     * Get the label of restore point for backup request by user.
      *
      * @return the restorePointLabel value
      */

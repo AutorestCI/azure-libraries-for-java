@@ -72,7 +72,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     private DateTime earliestRestoreDate;
 
     /**
-     * Get the location value.
+     * Get the geo-location where the resource lives.
      *
      * @return the location value
      */
@@ -81,7 +81,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the databaseName value.
+     * Get the name of the database.
      *
      * @return the databaseName value
      */
@@ -90,7 +90,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the edition value.
+     * Get the edition of the database.
      *
      * @return the edition value
      */
@@ -99,7 +99,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the maxSizeBytes value.
+     * Get the max size in bytes of the database.
      *
      * @return the maxSizeBytes value
      */
@@ -108,7 +108,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the serviceLevelObjective value.
+     * Get the service level objective name of the database.
      *
      * @return the serviceLevelObjective value
      */
@@ -117,7 +117,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the elasticPoolName value.
+     * Get the elastic pool name of the database.
      *
      * @return the elasticPoolName value
      */
@@ -126,7 +126,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the creationDate value.
+     * Get the creation date of the database (ISO8601 format).
      *
      * @return the creationDate value
      */
@@ -135,7 +135,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the deletionDate value.
+     * Get the deletion date of the database (ISO8601 format).
      *
      * @return the deletionDate value
      */
@@ -144,7 +144,7 @@ public class RestorableDroppedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the earliestRestoreDate value.
+     * Get the earliest restore date of the database (ISO8601 format).
      *
      * @return the earliestRestoreDate value
      */

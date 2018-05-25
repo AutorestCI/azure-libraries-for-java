@@ -38,7 +38,7 @@ public class VirtualNetworkRuleInner extends ProxyResourceInner {
     private VirtualNetworkRuleState state;
 
     /**
-     * Get the virtualNetworkSubnetId value.
+     * Get the ARM resource id of the virtual network subnet.
      *
      * @return the virtualNetworkSubnetId value
      */
@@ -47,7 +47,7 @@ public class VirtualNetworkRuleInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the virtualNetworkSubnetId value.
+     * Set the ARM resource id of the virtual network subnet.
      *
      * @param virtualNetworkSubnetId the virtualNetworkSubnetId value to set
      * @return the VirtualNetworkRuleInner object itself.
@@ -58,7 +58,7 @@ public class VirtualNetworkRuleInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the ignoreMissingVnetServiceEndpoint value.
+     * Get create firewall rule before the virtual network has vnet service endpoint enabled.
      *
      * @return the ignoreMissingVnetServiceEndpoint value
      */
@@ -67,7 +67,7 @@ public class VirtualNetworkRuleInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the ignoreMissingVnetServiceEndpoint value.
+     * Set create firewall rule before the virtual network has vnet service endpoint enabled.
      *
      * @param ignoreMissingVnetServiceEndpoint the ignoreMissingVnetServiceEndpoint value to set
      * @return the VirtualNetworkRuleInner object itself.
@@ -78,7 +78,7 @@ public class VirtualNetworkRuleInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get virtual Network Rule State. Possible values include: 'Initializing', 'InProgress', 'Ready', 'Deleting', 'Unknown'.
      *
      * @return the state value
      */

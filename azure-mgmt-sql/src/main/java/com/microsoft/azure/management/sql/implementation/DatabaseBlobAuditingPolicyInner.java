@@ -74,7 +74,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     private Boolean isStorageSecondaryKeyInUse;
 
     /**
-     * Get the kind value.
+     * Get resource kind.
      *
      * @return the kind value
      */
@@ -83,7 +83,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the state value
      */
@@ -92,7 +92,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the state value.
+     * Set specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param state the state value to set
      * @return the DatabaseBlobAuditingPolicyInner object itself.
@@ -103,7 +103,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the storageEndpoint value.
+     * Get specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint is required.
      *
      * @return the storageEndpoint value
      */
@@ -112,7 +112,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the storageEndpoint value.
+     * Set specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint is required.
      *
      * @param storageEndpoint the storageEndpoint value to set
      * @return the DatabaseBlobAuditingPolicyInner object itself.
@@ -123,7 +123,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the storageAccountAccessKey value.
+     * Get specifies the identifier key of the auditing storage account. If state is Enabled, storageAccountAccessKey is required.
      *
      * @return the storageAccountAccessKey value
      */
@@ -132,7 +132,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the storageAccountAccessKey value.
+     * Set specifies the identifier key of the auditing storage account. If state is Enabled, storageAccountAccessKey is required.
      *
      * @param storageAccountAccessKey the storageAccountAccessKey value to set
      * @return the DatabaseBlobAuditingPolicyInner object itself.
@@ -143,7 +143,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the retentionDays value.
+     * Get specifies the number of days to keep in the audit logs.
      *
      * @return the retentionDays value
      */
@@ -152,7 +152,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the retentionDays value.
+     * Set specifies the number of days to keep in the audit logs.
      *
      * @param retentionDays the retentionDays value to set
      * @return the DatabaseBlobAuditingPolicyInner object itself.
@@ -163,7 +163,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the auditActionsAndGroups value.
+     * Get specifies the Actions and Actions-Groups to audit.
      *
      * @return the auditActionsAndGroups value
      */
@@ -172,7 +172,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the auditActionsAndGroups value.
+     * Set specifies the Actions and Actions-Groups to audit.
      *
      * @param auditActionsAndGroups the auditActionsAndGroups value to set
      * @return the DatabaseBlobAuditingPolicyInner object itself.
@@ -183,7 +183,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the storageAccountSubscriptionId value.
+     * Get specifies the blob storage subscription Id.
      *
      * @return the storageAccountSubscriptionId value
      */
@@ -192,7 +192,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the storageAccountSubscriptionId value.
+     * Set specifies the blob storage subscription Id.
      *
      * @param storageAccountSubscriptionId the storageAccountSubscriptionId value to set
      * @return the DatabaseBlobAuditingPolicyInner object itself.
@@ -203,7 +203,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the isStorageSecondaryKeyInUse value.
+     * Get specifies whether storageAccountAccessKey value is the storage’s secondary key.
      *
      * @return the isStorageSecondaryKeyInUse value
      */
@@ -212,7 +212,7 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the isStorageSecondaryKeyInUse value.
+     * Set specifies whether storageAccountAccessKey value is the storage’s secondary key.
      *
      * @param isStorageSecondaryKeyInUse the isStorageSecondaryKeyInUse value to set
      * @return the DatabaseBlobAuditingPolicyInner object itself.

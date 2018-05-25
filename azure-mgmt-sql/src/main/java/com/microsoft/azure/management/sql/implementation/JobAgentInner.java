@@ -38,7 +38,7 @@ public class JobAgentInner extends TrackedResourceInner {
     private JobAgentState state;
 
     /**
-     * Get the sku value.
+     * Get the name and tier of the SKU.
      *
      * @return the sku value
      */
@@ -47,7 +47,7 @@ public class JobAgentInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the sku value.
+     * Set the name and tier of the SKU.
      *
      * @param sku the sku value to set
      * @return the JobAgentInner object itself.
@@ -58,7 +58,7 @@ public class JobAgentInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the databaseId value.
+     * Get resource ID of the database to store job metadata in.
      *
      * @return the databaseId value
      */
@@ -67,7 +67,7 @@ public class JobAgentInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the databaseId value.
+     * Set resource ID of the database to store job metadata in.
      *
      * @param databaseId the databaseId value to set
      * @return the JobAgentInner object itself.
@@ -78,7 +78,7 @@ public class JobAgentInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get the state of the job agent. Possible values include: 'Creating', 'Ready', 'Updating', 'Deleting', 'Disabled'.
      *
      * @return the state value
      */

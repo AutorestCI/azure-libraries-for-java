@@ -77,7 +77,7 @@ public class ElasticPoolPerformanceLevelCapability {
     private String reason;
 
     /**
-     * Get the performanceLevel value.
+     * Get the performance level for the pool.
      *
      * @return the performanceLevel value
      */
@@ -86,7 +86,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku.
      *
      * @return the sku value
      */
@@ -95,7 +95,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the supportedLicenseTypes value.
+     * Get list of supported license types.
      *
      * @return the supportedLicenseTypes value
      */
@@ -104,7 +104,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the maxDatabaseCount value.
+     * Get the maximum number of databases supported.
      *
      * @return the maxDatabaseCount value
      */
@@ -113,7 +113,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the includedMaxSize value.
+     * Get the included (free) max size for this performance level.
      *
      * @return the includedMaxSize value
      */
@@ -122,7 +122,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the supportedMaxSizes value.
+     * Get the list of supported max sizes.
      *
      * @return the supportedMaxSizes value
      */
@@ -131,7 +131,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the supportedPerDatabaseMaxSizes value.
+     * Get the list of supported per database max sizes.
      *
      * @return the supportedPerDatabaseMaxSizes value
      */
@@ -140,7 +140,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the supportedPerDatabaseMaxPerformanceLevels value.
+     * Get the list of supported per database max performance levels.
      *
      * @return the supportedPerDatabaseMaxPerformanceLevels value
      */
@@ -149,7 +149,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -158,7 +158,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -167,7 +167,7 @@ public class ElasticPoolPerformanceLevelCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ElasticPoolPerformanceLevelCapability object itself.

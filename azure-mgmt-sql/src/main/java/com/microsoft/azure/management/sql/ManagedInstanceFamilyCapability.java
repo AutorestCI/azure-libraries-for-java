@@ -65,7 +65,7 @@ public class ManagedInstanceFamilyCapability {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get family name.
      *
      * @return the name value
      */
@@ -74,7 +74,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Get the sku value.
+     * Get sKU name.
      *
      * @return the sku value
      */
@@ -83,7 +83,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Get the supportedLicenseTypes value.
+     * Get list of supported license types.
      *
      * @return the supportedLicenseTypes value
      */
@@ -92,7 +92,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Get the supportedVcoresValues value.
+     * Get list of supported virtual cores values.
      *
      * @return the supportedVcoresValues value
      */
@@ -101,7 +101,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Get the includedMaxSize value.
+     * Get included size.
      *
      * @return the includedMaxSize value
      */
@@ -110,7 +110,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Get the supportedStorageSizes value.
+     * Get storage size ranges.
      *
      * @return the supportedStorageSizes value
      */
@@ -119,7 +119,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -128,7 +128,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -137,7 +137,7 @@ public class ManagedInstanceFamilyCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ManagedInstanceFamilyCapability object itself.

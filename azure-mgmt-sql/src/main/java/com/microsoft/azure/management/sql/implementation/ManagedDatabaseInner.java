@@ -108,7 +108,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     private String failoverGroupId;
 
     /**
-     * Get the collation value.
+     * Get collation of the managed database.
      *
      * @return the collation value
      */
@@ -117,7 +117,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the collation value.
+     * Set collation of the managed database.
      *
      * @param collation the collation value to set
      * @return the ManagedDatabaseInner object itself.
@@ -128,7 +128,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the status value.
+     * Get status for the database. Possible values include: 'Online', 'Offline', 'Shutdown', 'Creating', 'Inaccessible'.
      *
      * @return the status value
      */
@@ -137,7 +137,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the creationDate value.
+     * Get creation date of the database.
      *
      * @return the creationDate value
      */
@@ -146,7 +146,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the earliestRestorePoint value.
+     * Get earliest restore point in time for point in time restore.
      *
      * @return the earliestRestorePoint value
      */
@@ -155,7 +155,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the restorePointInTime value.
+     * Get conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
      *
      * @return the restorePointInTime value
      */
@@ -164,7 +164,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the restorePointInTime value.
+     * Set conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
      *
      * @param restorePointInTime the restorePointInTime value to set
      * @return the ManagedDatabaseInner object itself.
@@ -175,7 +175,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the defaultSecondaryLocation value.
+     * Get geo paired region.
      *
      * @return the defaultSecondaryLocation value
      */
@@ -184,7 +184,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the catalogCollation value.
+     * Get collation of the metadata catalog. Possible values include: 'DATABASE_DEFAULT', 'SQL_Latin1_General_CP1_CI_AS'.
      *
      * @return the catalogCollation value
      */
@@ -193,7 +193,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the catalogCollation value.
+     * Set collation of the metadata catalog. Possible values include: 'DATABASE_DEFAULT', 'SQL_Latin1_General_CP1_CI_AS'.
      *
      * @param catalogCollation the catalogCollation value to set
      * @return the ManagedDatabaseInner object itself.
@@ -204,7 +204,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the createMode value.
+     * Get managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Possible values include: 'Default', 'RestoreExternalBackup', 'PointInTimeRestore'.
      *
      * @return the createMode value
      */
@@ -213,7 +213,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the createMode value.
+     * Set managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Possible values include: 'Default', 'RestoreExternalBackup', 'PointInTimeRestore'.
      *
      * @param createMode the createMode value to set
      * @return the ManagedDatabaseInner object itself.
@@ -224,7 +224,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the storageContainerUri value.
+     * Get conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored.
      *
      * @return the storageContainerUri value
      */
@@ -233,7 +233,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the storageContainerUri value.
+     * Set conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored.
      *
      * @param storageContainerUri the storageContainerUri value to set
      * @return the ManagedDatabaseInner object itself.
@@ -244,7 +244,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the sourceDatabaseId value.
+     * Get the resource identifier of the source database associated with create operation of this database.
      *
      * @return the sourceDatabaseId value
      */
@@ -253,7 +253,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the sourceDatabaseId value.
+     * Set the resource identifier of the source database associated with create operation of this database.
      *
      * @param sourceDatabaseId the sourceDatabaseId value to set
      * @return the ManagedDatabaseInner object itself.
@@ -264,7 +264,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the storageContainerSasToken value.
+     * Get conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token.
      *
      * @return the storageContainerSasToken value
      */
@@ -273,7 +273,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the storageContainerSasToken value.
+     * Set conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token.
      *
      * @param storageContainerSasToken the storageContainerSasToken value to set
      * @return the ManagedDatabaseInner object itself.
@@ -284,7 +284,7 @@ public class ManagedDatabaseInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the failoverGroupId value.
+     * Get instance Failover Group resource identifier that this managed database belongs to.
      *
      * @return the failoverGroupId value
      */

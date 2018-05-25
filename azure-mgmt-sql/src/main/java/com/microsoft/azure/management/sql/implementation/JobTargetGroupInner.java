@@ -25,7 +25,7 @@ public class JobTargetGroupInner extends ProxyResourceInner {
     private List<JobTarget> members;
 
     /**
-     * Get the members value.
+     * Get members of the target group.
      *
      * @return the members value
      */
@@ -34,7 +34,7 @@ public class JobTargetGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the members value.
+     * Set members of the target group.
      *
      * @param members the members value to set
      * @return the JobTargetGroupInner object itself.
