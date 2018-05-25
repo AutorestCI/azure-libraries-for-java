@@ -9,7 +9,7 @@
 package com.microsoft.azure.management.containerservice.implementation;
 
 import java.util.List;
-import com.microsoft.azure.management.containerservice.ContainerServiceAgentPoolProfile;
+import com.microsoft.azure.management.containerservice.ManagedClusterAgentPoolProfile;
 import com.microsoft.azure.management.containerservice.ContainerServiceLinuxProfile;
 import com.microsoft.azure.management.containerservice.ContainerServiceServicePrincipalProfile;
 import java.util.Map;
@@ -54,7 +54,7 @@ public class ManagedClusterInner extends Resource {
      * Properties of the agent pool.
      */
     @JsonProperty(value = "properties.agentPoolProfiles")
-    private List<ContainerServiceAgentPoolProfile> agentPoolProfiles;
+    private List<ManagedClusterAgentPoolProfile> agentPoolProfiles;
 
     /**
      * Profile for Linux VMs in the container service cluster.
@@ -157,7 +157,7 @@ public class ManagedClusterInner extends Resource {
      *
      * @return the agentPoolProfiles value
      */
-    public List<ContainerServiceAgentPoolProfile> agentPoolProfiles() {
+    public List<ManagedClusterAgentPoolProfile> agentPoolProfiles() {
         return this.agentPoolProfiles;
     }
 
@@ -167,7 +167,7 @@ public class ManagedClusterInner extends Resource {
      * @param agentPoolProfiles the agentPoolProfiles value to set
      * @return the ManagedClusterInner object itself.
      */
-    public ManagedClusterInner withAgentPoolProfiles(List<ContainerServiceAgentPoolProfile> agentPoolProfiles) {
+    public ManagedClusterInner withAgentPoolProfiles(List<ManagedClusterAgentPoolProfile> agentPoolProfiles) {
         this.agentPoolProfiles = agentPoolProfiles;
         return this;
     }
