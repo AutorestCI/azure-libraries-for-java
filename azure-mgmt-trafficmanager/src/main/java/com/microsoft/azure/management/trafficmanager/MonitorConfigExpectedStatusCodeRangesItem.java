@@ -27,7 +27,7 @@ public class MonitorConfigExpectedStatusCodeRangesItem {
     private Integer max;
 
     /**
-     * Get the min value.
+     * Get min status code.
      *
      * @return the min value
      */
@@ -36,7 +36,7 @@ public class MonitorConfigExpectedStatusCodeRangesItem {
     }
 
     /**
-     * Set the min value.
+     * Set min status code.
      *
      * @param min the min value to set
      * @return the MonitorConfigExpectedStatusCodeRangesItem object itself.
@@ -47,7 +47,7 @@ public class MonitorConfigExpectedStatusCodeRangesItem {
     }
 
     /**
-     * Get the max value.
+     * Get max status code.
      *
      * @return the max value
      */
@@ -56,7 +56,7 @@ public class MonitorConfigExpectedStatusCodeRangesItem {
     }
 
     /**
-     * Set the max value.
+     * Set max status code.
      *
      * @param max the max value to set
      * @return the MonitorConfigExpectedStatusCodeRangesItem object itself.

@@ -64,7 +64,7 @@ public class ProfileInner extends TrackedResourceInner {
     private TrafficViewEnrollmentStatus trafficViewEnrollmentStatus;
 
     /**
-     * Get the profileStatus value.
+     * Get the status of the Traffic Manager profile. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the profileStatus value
      */
@@ -73,7 +73,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the profileStatus value.
+     * Set the status of the Traffic Manager profile. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param profileStatus the profileStatus value to set
      * @return the ProfileInner object itself.
@@ -84,7 +84,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the trafficRoutingMethod value.
+     * Get the traffic routing method of the Traffic Manager profile. Possible values include: 'Performance', 'Priority', 'Weighted', 'Geographic'.
      *
      * @return the trafficRoutingMethod value
      */
@@ -93,7 +93,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the trafficRoutingMethod value.
+     * Set the traffic routing method of the Traffic Manager profile. Possible values include: 'Performance', 'Priority', 'Weighted', 'Geographic'.
      *
      * @param trafficRoutingMethod the trafficRoutingMethod value to set
      * @return the ProfileInner object itself.
@@ -104,7 +104,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the dnsConfig value.
+     * Get the DNS settings of the Traffic Manager profile.
      *
      * @return the dnsConfig value
      */
@@ -113,7 +113,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the dnsConfig value.
+     * Set the DNS settings of the Traffic Manager profile.
      *
      * @param dnsConfig the dnsConfig value to set
      * @return the ProfileInner object itself.
@@ -124,7 +124,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the monitorConfig value.
+     * Get the endpoint monitoring settings of the Traffic Manager profile.
      *
      * @return the monitorConfig value
      */
@@ -133,7 +133,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the monitorConfig value.
+     * Set the endpoint monitoring settings of the Traffic Manager profile.
      *
      * @param monitorConfig the monitorConfig value to set
      * @return the ProfileInner object itself.
@@ -144,7 +144,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the endpoints value.
+     * Get the list of endpoints in the Traffic Manager profile.
      *
      * @return the endpoints value
      */
@@ -153,7 +153,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the endpoints value.
+     * Set the list of endpoints in the Traffic Manager profile.
      *
      * @param endpoints the endpoints value to set
      * @return the ProfileInner object itself.
@@ -164,7 +164,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the trafficViewEnrollmentStatus value.
+     * Get indicates whether Traffic View is 'Enabled' or 'Disabled' for the Traffic Manager profile. Null, indicates 'Disabled'. Enabling this feature will increase the cost of the Traffic Manage profile. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the trafficViewEnrollmentStatus value
      */
@@ -173,7 +173,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the trafficViewEnrollmentStatus value.
+     * Set indicates whether Traffic View is 'Enabled' or 'Disabled' for the Traffic Manager profile. Null, indicates 'Disabled'. Enabling this feature will increase the cost of the Traffic Manage profile. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param trafficViewEnrollmentStatus the trafficViewEnrollmentStatus value to set
      * @return the ProfileInner object itself.

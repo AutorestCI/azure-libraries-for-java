@@ -36,7 +36,7 @@ public class ProxyResourceInner extends ProxyResource {
     private String type;
 
     /**
-     * Get the id value.
+     * Get fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}.
      *
      * @return the id value
      */
@@ -45,7 +45,7 @@ public class ProxyResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the id value.
+     * Set fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}.
      *
      * @param id the id value to set
      * @return the ProxyResourceInner object itself.
@@ -56,7 +56,7 @@ public class ProxyResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the name value.
+     * Get the name of the resource.
      *
      * @return the name value
      */
@@ -65,7 +65,7 @@ public class ProxyResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the resource.
      *
      * @param name the name value to set
      * @return the ProxyResourceInner object itself.
@@ -76,7 +76,7 @@ public class ProxyResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the type value.
+     * Get the type of the resource. Ex- Microsoft.Network/trafficmanagerProfiles.
      *
      * @return the type value
      */
@@ -85,7 +85,7 @@ public class ProxyResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the type value.
+     * Set the type of the resource. Ex- Microsoft.Network/trafficmanagerProfiles.
      *
      * @param type the type value to set
      * @return the ProxyResourceInner object itself.

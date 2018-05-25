@@ -26,7 +26,7 @@ public class TrafficManagerGeographicHierarchyInner extends ProxyResourceInner {
     private Region geographicHierarchy;
 
     /**
-     * Get the geographicHierarchy value.
+     * Get the region at the root of the hierarchy from all the regions in the hierarchy can be retrieved.
      *
      * @return the geographicHierarchy value
      */
@@ -35,7 +35,7 @@ public class TrafficManagerGeographicHierarchyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the geographicHierarchy value.
+     * Set the region at the root of the hierarchy from all the regions in the hierarchy can be retrieved.
      *
      * @param geographicHierarchy the geographicHierarchy value to set
      * @return the TrafficManagerGeographicHierarchyInner object itself.

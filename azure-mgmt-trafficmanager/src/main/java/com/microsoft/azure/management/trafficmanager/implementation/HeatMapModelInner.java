@@ -45,7 +45,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     private List<TrafficFlow> trafficFlows;
 
     /**
-     * Get the startTime value.
+     * Get the beginning of the time window for this HeatMap, inclusive.
      *
      * @return the startTime value
      */
@@ -54,7 +54,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the startTime value.
+     * Set the beginning of the time window for this HeatMap, inclusive.
      *
      * @param startTime the startTime value to set
      * @return the HeatMapModelInner object itself.
@@ -65,7 +65,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the endTime value.
+     * Get the ending of the time window for this HeatMap, exclusive.
      *
      * @return the endTime value
      */
@@ -74,7 +74,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the endTime value.
+     * Set the ending of the time window for this HeatMap, exclusive.
      *
      * @param endTime the endTime value to set
      * @return the HeatMapModelInner object itself.
@@ -85,7 +85,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the endpoints value.
+     * Get the endpoints used in this HeatMap calculation.
      *
      * @return the endpoints value
      */
@@ -94,7 +94,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the endpoints value.
+     * Set the endpoints used in this HeatMap calculation.
      *
      * @param endpoints the endpoints value to set
      * @return the HeatMapModelInner object itself.
@@ -105,7 +105,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the trafficFlows value.
+     * Get the traffic flows produced in this HeatMap calculation.
      *
      * @return the trafficFlows value
      */
@@ -114,7 +114,7 @@ public class HeatMapModelInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the trafficFlows value.
+     * Set the traffic flows produced in this HeatMap calculation.
      *
      * @param trafficFlows the trafficFlows value to set
      * @return the HeatMapModelInner object itself.
