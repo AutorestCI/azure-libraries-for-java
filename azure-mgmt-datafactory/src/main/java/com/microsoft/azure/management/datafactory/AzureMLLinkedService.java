@@ -72,7 +72,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the mlEndpoint value.
+     * Get the Batch Execution REST URL for an Azure ML Web Service endpoint. Type: string (or Expression with resultType string).
      *
      * @return the mlEndpoint value
      */
@@ -81,7 +81,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the mlEndpoint value.
+     * Set the Batch Execution REST URL for an Azure ML Web Service endpoint. Type: string (or Expression with resultType string).
      *
      * @param mlEndpoint the mlEndpoint value to set
      * @return the AzureMLLinkedService object itself.
@@ -92,7 +92,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the apiKey value.
+     * Get the API key for accessing the Azure ML model endpoint.
      *
      * @return the apiKey value
      */
@@ -101,7 +101,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the apiKey value.
+     * Set the API key for accessing the Azure ML model endpoint.
      *
      * @param apiKey the apiKey value to set
      * @return the AzureMLLinkedService object itself.
@@ -112,7 +112,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the updateResourceEndpoint value.
+     * Get the Update Resource REST URL for an Azure ML Web Service endpoint. Type: string (or Expression with resultType string).
      *
      * @return the updateResourceEndpoint value
      */
@@ -121,7 +121,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the updateResourceEndpoint value.
+     * Set the Update Resource REST URL for an Azure ML Web Service endpoint. Type: string (or Expression with resultType string).
      *
      * @param updateResourceEndpoint the updateResourceEndpoint value to set
      * @return the AzureMLLinkedService object itself.
@@ -132,7 +132,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalId value.
+     * Get the ID of the service principal used to authenticate against the ARM-based updateResourceEndpoint of an Azure ML web service. Type: string (or Expression with resultType string).
      *
      * @return the servicePrincipalId value
      */
@@ -141,7 +141,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalId value.
+     * Set the ID of the service principal used to authenticate against the ARM-based updateResourceEndpoint of an Azure ML web service. Type: string (or Expression with resultType string).
      *
      * @param servicePrincipalId the servicePrincipalId value to set
      * @return the AzureMLLinkedService object itself.
@@ -152,7 +152,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalKey value.
+     * Get the key of the service principal used to authenticate against the ARM-based updateResourceEndpoint of an Azure ML web service.
      *
      * @return the servicePrincipalKey value
      */
@@ -161,7 +161,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalKey value.
+     * Set the key of the service principal used to authenticate against the ARM-based updateResourceEndpoint of an Azure ML web service.
      *
      * @param servicePrincipalKey the servicePrincipalKey value to set
      * @return the AzureMLLinkedService object itself.
@@ -172,7 +172,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the tenant value.
+     * Get the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @return the tenant value
      */
@@ -181,7 +181,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the tenant value.
+     * Set the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @param tenant the tenant value to set
      * @return the AzureMLLinkedService object itself.
@@ -192,7 +192,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -201,7 +201,7 @@ public class AzureMLLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureMLLinkedService object itself.

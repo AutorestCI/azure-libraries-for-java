@@ -36,7 +36,7 @@ public class PipelineRunQueryFilter {
     private List<String> values;
 
     /**
-     * Get the operand value.
+     * Get parameter name to be used for filter. Possible values include: 'PipelineName', 'Status', 'RunStart', 'RunEnd'.
      *
      * @return the operand value
      */
@@ -45,7 +45,7 @@ public class PipelineRunQueryFilter {
     }
 
     /**
-     * Set the operand value.
+     * Set parameter name to be used for filter. Possible values include: 'PipelineName', 'Status', 'RunStart', 'RunEnd'.
      *
      * @param operand the operand value to set
      * @return the PipelineRunQueryFilter object itself.
@@ -56,7 +56,7 @@ public class PipelineRunQueryFilter {
     }
 
     /**
-     * Get the operator value.
+     * Get operator to be used for filter. Possible values include: 'Equals', 'NotEquals', 'In', 'NotIn'.
      *
      * @return the operator value
      */
@@ -65,7 +65,7 @@ public class PipelineRunQueryFilter {
     }
 
     /**
-     * Set the operator value.
+     * Set operator to be used for filter. Possible values include: 'Equals', 'NotEquals', 'In', 'NotIn'.
      *
      * @param operator the operator value to set
      * @return the PipelineRunQueryFilter object itself.
@@ -76,7 +76,7 @@ public class PipelineRunQueryFilter {
     }
 
     /**
-     * Get the values value.
+     * Get list of filter values.
      *
      * @return the values value
      */
@@ -85,7 +85,7 @@ public class PipelineRunQueryFilter {
     }
 
     /**
-     * Set the values value.
+     * Set list of filter values.
      *
      * @param values the values value to set
      * @return the PipelineRunQueryFilter object itself.

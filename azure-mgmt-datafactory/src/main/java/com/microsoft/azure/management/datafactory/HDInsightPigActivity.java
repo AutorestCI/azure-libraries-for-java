@@ -59,7 +59,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     private Map<String, Object> defines;
 
     /**
-     * Get the storageLinkedServices value.
+     * Get storage linked service references.
      *
      * @return the storageLinkedServices value
      */
@@ -68,7 +68,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the storageLinkedServices value.
+     * Set storage linked service references.
      *
      * @param storageLinkedServices the storageLinkedServices value to set
      * @return the HDInsightPigActivity object itself.
@@ -79,7 +79,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the arguments value.
+     * Get user specified arguments to HDInsightActivity.
      *
      * @return the arguments value
      */
@@ -88,7 +88,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the arguments value.
+     * Set user specified arguments to HDInsightActivity.
      *
      * @param arguments the arguments value to set
      * @return the HDInsightPigActivity object itself.
@@ -99,7 +99,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the getDebugInfo value.
+     * Get debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @return the getDebugInfo value
      */
@@ -108,7 +108,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the getDebugInfo value.
+     * Set debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @param getDebugInfo the getDebugInfo value to set
      * @return the HDInsightPigActivity object itself.
@@ -119,7 +119,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the scriptPath value.
+     * Get script path. Type: string (or Expression with resultType string).
      *
      * @return the scriptPath value
      */
@@ -128,7 +128,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the scriptPath value.
+     * Set script path. Type: string (or Expression with resultType string).
      *
      * @param scriptPath the scriptPath value to set
      * @return the HDInsightPigActivity object itself.
@@ -139,7 +139,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the scriptLinkedService value.
+     * Get script linked service reference.
      *
      * @return the scriptLinkedService value
      */
@@ -148,7 +148,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the scriptLinkedService value.
+     * Set script linked service reference.
      *
      * @param scriptLinkedService the scriptLinkedService value to set
      * @return the HDInsightPigActivity object itself.
@@ -159,7 +159,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the defines value.
+     * Get allows user to specify defines for Pig job request.
      *
      * @return the defines value
      */
@@ -168,7 +168,7 @@ public class HDInsightPigActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the defines value.
+     * Set allows user to specify defines for Pig job request.
      *
      * @param defines the defines value to set
      * @return the HDInsightPigActivity object itself.

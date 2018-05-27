@@ -26,7 +26,7 @@ public class OracleSink extends CopySink {
     private Object preCopyScript;
 
     /**
-     * Get the preCopyScript value.
+     * Get sQL pre-copy script. Type: string (or Expression with resultType string).
      *
      * @return the preCopyScript value
      */
@@ -35,7 +35,7 @@ public class OracleSink extends CopySink {
     }
 
     /**
-     * Set the preCopyScript value.
+     * Set sQL pre-copy script. Type: string (or Expression with resultType string).
      *
      * @param preCopyScript the preCopyScript value to set
      * @return the OracleSink object itself.

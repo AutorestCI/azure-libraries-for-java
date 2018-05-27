@@ -21,7 +21,7 @@ public class CreateRunResponseInner {
     private String runId;
 
     /**
-     * Get the runId value.
+     * Get identifier of a run.
      *
      * @return the runId value
      */
@@ -30,7 +30,7 @@ public class CreateRunResponseInner {
     }
 
     /**
-     * Set the runId value.
+     * Set identifier of a run.
      *
      * @param runId the runId value to set
      * @return the CreateRunResponseInner object itself.

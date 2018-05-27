@@ -27,7 +27,7 @@ public class DynamicsSource extends CopySource {
     private Object query;
 
     /**
-     * Get the query value.
+     * Get fetchXML is a proprietary query language that is used in Microsoft Dynamics (online &amp; on-premises). Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -36,7 +36,7 @@ public class DynamicsSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set fetchXML is a proprietary query language that is used in Microsoft Dynamics (online &amp; on-premises). Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the DynamicsSource object itself.

@@ -42,7 +42,7 @@ public class SqlDWSource extends CopySource {
     private Object storedProcedureParameters;
 
     /**
-     * Get the sqlReaderQuery value.
+     * Get sQL Data Warehouse reader query. Type: string (or Expression with resultType string).
      *
      * @return the sqlReaderQuery value
      */
@@ -51,7 +51,7 @@ public class SqlDWSource extends CopySource {
     }
 
     /**
-     * Set the sqlReaderQuery value.
+     * Set sQL Data Warehouse reader query. Type: string (or Expression with resultType string).
      *
      * @param sqlReaderQuery the sqlReaderQuery value to set
      * @return the SqlDWSource object itself.
@@ -62,7 +62,7 @@ public class SqlDWSource extends CopySource {
     }
 
     /**
-     * Get the sqlReaderStoredProcedureName value.
+     * Get name of the stored procedure for a SQL Data Warehouse source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
      *
      * @return the sqlReaderStoredProcedureName value
      */
@@ -71,7 +71,7 @@ public class SqlDWSource extends CopySource {
     }
 
     /**
-     * Set the sqlReaderStoredProcedureName value.
+     * Set name of the stored procedure for a SQL Data Warehouse source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
      *
      * @param sqlReaderStoredProcedureName the sqlReaderStoredProcedureName value to set
      * @return the SqlDWSource object itself.
@@ -82,7 +82,7 @@ public class SqlDWSource extends CopySource {
     }
 
     /**
-     * Get the storedProcedureParameters value.
+     * Get value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}". Type: object (or Expression with resultType object), itemType: StoredProcedureParameter.
      *
      * @return the storedProcedureParameters value
      */
@@ -91,7 +91,7 @@ public class SqlDWSource extends CopySource {
     }
 
     /**
-     * Set the storedProcedureParameters value.
+     * Set value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}". Type: object (or Expression with resultType object), itemType: StoredProcedureParameter.
      *
      * @param storedProcedureParameters the storedProcedureParameters value to set
      * @return the SqlDWSource object itself.

@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.datafactory.implementation;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -26,39 +25,13 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 })
 public class IntegrationRuntimeInner {
     /**
-     * Unmatched properties from the message are deserialized this collection.
-     */
-    @JsonProperty(value = "")
-    private Map<String, Object> additionalProperties;
-
-    /**
      * Integration runtime description.
      */
     @JsonProperty(value = "description")
     private String description;
 
     /**
-     * Get the additionalProperties value.
-     *
-     * @return the additionalProperties value
-     */
-    public Map<String, Object> additionalProperties() {
-        return this.additionalProperties;
-    }
-
-    /**
-     * Set the additionalProperties value.
-     *
-     * @param additionalProperties the additionalProperties value to set
-     * @return the IntegrationRuntimeInner object itself.
-     */
-    public IntegrationRuntimeInner withAdditionalProperties(Map<String, Object> additionalProperties) {
-        this.additionalProperties = additionalProperties;
-        return this;
-    }
-
-    /**
-     * Get the description value.
+     * Get integration runtime description.
      *
      * @return the description value
      */
@@ -67,7 +40,7 @@ public class IntegrationRuntimeInner {
     }
 
     /**
-     * Set the description value.
+     * Set integration runtime description.
      *
      * @param description the description value to set
      * @return the IntegrationRuntimeInner object itself.

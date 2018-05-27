@@ -35,7 +35,7 @@ public class ActivityDependency {
     private List<DependencyCondition> dependencyConditions;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -44,7 +44,7 @@ public class ActivityDependency {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the ActivityDependency object itself.
@@ -55,7 +55,7 @@ public class ActivityDependency {
     }
 
     /**
-     * Get the activity value.
+     * Get activity name.
      *
      * @return the activity value
      */
@@ -64,7 +64,7 @@ public class ActivityDependency {
     }
 
     /**
-     * Set the activity value.
+     * Set activity name.
      *
      * @param activity the activity value to set
      * @return the ActivityDependency object itself.
@@ -75,7 +75,7 @@ public class ActivityDependency {
     }
 
     /**
-     * Get the dependencyConditions value.
+     * Get match-Condition for the dependency.
      *
      * @return the dependencyConditions value
      */
@@ -84,7 +84,7 @@ public class ActivityDependency {
     }
 
     /**
-     * Set the dependencyConditions value.
+     * Set match-Condition for the dependency.
      *
      * @param dependencyConditions the dependencyConditions value to set
      * @return the ActivityDependency object itself.

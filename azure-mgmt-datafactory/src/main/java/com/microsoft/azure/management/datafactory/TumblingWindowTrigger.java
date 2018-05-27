@@ -83,7 +83,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     private RetryPolicy retryPolicy;
 
     /**
-     * Get the pipeline value.
+     * Get pipeline for which runs are created when an event is fired for trigger window that is ready.
      *
      * @return the pipeline value
      */
@@ -92,7 +92,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the pipeline value.
+     * Set pipeline for which runs are created when an event is fired for trigger window that is ready.
      *
      * @param pipeline the pipeline value to set
      * @return the TumblingWindowTrigger object itself.
@@ -103,7 +103,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Get the frequency value.
+     * Get the frequency of the time windows. Possible values include: 'Minute', 'Hour'.
      *
      * @return the frequency value
      */
@@ -112,7 +112,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the frequency value.
+     * Set the frequency of the time windows. Possible values include: 'Minute', 'Hour'.
      *
      * @param frequency the frequency value to set
      * @return the TumblingWindowTrigger object itself.
@@ -123,7 +123,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Get the interval value.
+     * Get the interval of the time windows. The minimum interval allowed is 15 Minutes.
      *
      * @return the interval value
      */
@@ -132,7 +132,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the interval value.
+     * Set the interval of the time windows. The minimum interval allowed is 15 Minutes.
      *
      * @param interval the interval value to set
      * @return the TumblingWindowTrigger object itself.
@@ -143,7 +143,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Get the startTime value.
+     * Get the start time for the time period for the trigger during which events are fired for windows that are ready. Only UTC time is currently supported.
      *
      * @return the startTime value
      */
@@ -152,7 +152,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the startTime value.
+     * Set the start time for the time period for the trigger during which events are fired for windows that are ready. Only UTC time is currently supported.
      *
      * @param startTime the startTime value to set
      * @return the TumblingWindowTrigger object itself.
@@ -163,7 +163,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Get the endTime value.
+     * Get the end time for the time period for the trigger during which events are fired for windows that are ready. Only UTC time is currently supported.
      *
      * @return the endTime value
      */
@@ -172,7 +172,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the endTime value.
+     * Set the end time for the time period for the trigger during which events are fired for windows that are ready. Only UTC time is currently supported.
      *
      * @param endTime the endTime value to set
      * @return the TumblingWindowTrigger object itself.
@@ -183,7 +183,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Get the delay value.
+     * Get specifies how long the trigger waits past due time before triggering new run. It doesn't alter window start and end time. The default is 0. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the delay value
      */
@@ -192,7 +192,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the delay value.
+     * Set specifies how long the trigger waits past due time before triggering new run. It doesn't alter window start and end time. The default is 0. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param delay the delay value to set
      * @return the TumblingWindowTrigger object itself.
@@ -203,7 +203,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Get the maxConcurrency value.
+     * Get the max number of parallel time windows (ready for execution) for which a new run is triggered.
      *
      * @return the maxConcurrency value
      */
@@ -212,7 +212,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the maxConcurrency value.
+     * Set the max number of parallel time windows (ready for execution) for which a new run is triggered.
      *
      * @param maxConcurrency the maxConcurrency value to set
      * @return the TumblingWindowTrigger object itself.
@@ -223,7 +223,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Get the retryPolicy value.
+     * Get retry policy that will be applied for failed pipeline runs.
      *
      * @return the retryPolicy value
      */
@@ -232,7 +232,7 @@ public class TumblingWindowTrigger extends TriggerInner {
     }
 
     /**
-     * Set the retryPolicy value.
+     * Set retry policy that will be applied for failed pipeline runs.
      *
      * @param retryPolicy the retryPolicy value to set
      * @return the TumblingWindowTrigger object itself.

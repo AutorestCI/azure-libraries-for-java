@@ -25,7 +25,7 @@ public class LinkedIntegrationRuntimeRbac extends LinkedIntegrationRuntimeProper
     private String resourceId;
 
     /**
-     * Get the resourceId value.
+     * Get the resource identifier of the integration runtime to be shared.
      *
      * @return the resourceId value
      */
@@ -34,7 +34,7 @@ public class LinkedIntegrationRuntimeRbac extends LinkedIntegrationRuntimeProper
     }
 
     /**
-     * Set the resourceId value.
+     * Set the resource identifier of the integration runtime to be shared.
      *
      * @param resourceId the resourceId value to set
      * @return the LinkedIntegrationRuntimeRbac object itself.

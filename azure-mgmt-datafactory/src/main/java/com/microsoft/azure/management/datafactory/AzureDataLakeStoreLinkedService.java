@@ -79,7 +79,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the dataLakeStoreUri value.
+     * Get data Lake Store service URI. Type: string (or Expression with resultType string).
      *
      * @return the dataLakeStoreUri value
      */
@@ -88,7 +88,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the dataLakeStoreUri value.
+     * Set data Lake Store service URI. Type: string (or Expression with resultType string).
      *
      * @param dataLakeStoreUri the dataLakeStoreUri value to set
      * @return the AzureDataLakeStoreLinkedService object itself.
@@ -99,7 +99,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalId value.
+     * Get the ID of the application used to authenticate against the Azure Data Lake Store account. Type: string (or Expression with resultType string).
      *
      * @return the servicePrincipalId value
      */
@@ -108,7 +108,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalId value.
+     * Set the ID of the application used to authenticate against the Azure Data Lake Store account. Type: string (or Expression with resultType string).
      *
      * @param servicePrincipalId the servicePrincipalId value to set
      * @return the AzureDataLakeStoreLinkedService object itself.
@@ -119,7 +119,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalKey value.
+     * Get the Key of the application used to authenticate against the Azure Data Lake Store account.
      *
      * @return the servicePrincipalKey value
      */
@@ -128,7 +128,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalKey value.
+     * Set the Key of the application used to authenticate against the Azure Data Lake Store account.
      *
      * @param servicePrincipalKey the servicePrincipalKey value to set
      * @return the AzureDataLakeStoreLinkedService object itself.
@@ -139,7 +139,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the tenant value.
+     * Get the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @return the tenant value
      */
@@ -148,7 +148,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the tenant value.
+     * Set the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @param tenant the tenant value to set
      * @return the AzureDataLakeStoreLinkedService object itself.
@@ -159,7 +159,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accountName value.
+     * Get data Lake Store account name. Type: string (or Expression with resultType string).
      *
      * @return the accountName value
      */
@@ -168,7 +168,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accountName value.
+     * Set data Lake Store account name. Type: string (or Expression with resultType string).
      *
      * @param accountName the accountName value to set
      * @return the AzureDataLakeStoreLinkedService object itself.
@@ -179,7 +179,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the subscriptionId value.
+     * Get data Lake Store account subscription ID (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @return the subscriptionId value
      */
@@ -188,7 +188,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the subscriptionId value.
+     * Set data Lake Store account subscription ID (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @param subscriptionId the subscriptionId value to set
      * @return the AzureDataLakeStoreLinkedService object itself.
@@ -199,7 +199,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the resourceGroupName value.
+     * Get data Lake Store account resource group name (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @return the resourceGroupName value
      */
@@ -208,7 +208,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the resourceGroupName value.
+     * Set data Lake Store account resource group name (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @param resourceGroupName the resourceGroupName value to set
      * @return the AzureDataLakeStoreLinkedService object itself.
@@ -219,7 +219,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -228,7 +228,7 @@ public class AzureDataLakeStoreLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureDataLakeStoreLinkedService object itself.

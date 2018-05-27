@@ -65,7 +65,7 @@ public class HttpDataset extends DatasetInner {
     private DatasetCompression compression;
 
     /**
-     * Get the relativeUrl value.
+     * Get the relative URL based on the URL in the HttpLinkedService refers to an HTTP file Type: string (or Expression with resultType string).
      *
      * @return the relativeUrl value
      */
@@ -74,7 +74,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Set the relativeUrl value.
+     * Set the relative URL based on the URL in the HttpLinkedService refers to an HTTP file Type: string (or Expression with resultType string).
      *
      * @param relativeUrl the relativeUrl value to set
      * @return the HttpDataset object itself.
@@ -85,7 +85,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Get the requestMethod value.
+     * Get the HTTP method for the HTTP request. Type: string (or Expression with resultType string).
      *
      * @return the requestMethod value
      */
@@ -94,7 +94,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Set the requestMethod value.
+     * Set the HTTP method for the HTTP request. Type: string (or Expression with resultType string).
      *
      * @param requestMethod the requestMethod value to set
      * @return the HttpDataset object itself.
@@ -105,7 +105,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Get the requestBody value.
+     * Get the body for the HTTP request. Type: string (or Expression with resultType string).
      *
      * @return the requestBody value
      */
@@ -114,7 +114,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Set the requestBody value.
+     * Set the body for the HTTP request. Type: string (or Expression with resultType string).
      *
      * @param requestBody the requestBody value to set
      * @return the HttpDataset object itself.
@@ -125,7 +125,9 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Get the additionalHeaders value.
+     * Get the headers for the HTTP Request. e.g. request-header-name-1:request-header-value-1
+     ...
+     request-header-name-n:request-header-value-n Type: string (or Expression with resultType string).
      *
      * @return the additionalHeaders value
      */
@@ -134,7 +136,9 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Set the additionalHeaders value.
+     * Set the headers for the HTTP Request. e.g. request-header-name-1:request-header-value-1
+     ...
+     request-header-name-n:request-header-value-n Type: string (or Expression with resultType string).
      *
      * @param additionalHeaders the additionalHeaders value to set
      * @return the HttpDataset object itself.
@@ -145,7 +149,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Get the format value.
+     * Get the format of files.
      *
      * @return the format value
      */
@@ -154,7 +158,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Set the format value.
+     * Set the format of files.
      *
      * @param format the format value to set
      * @return the HttpDataset object itself.
@@ -165,7 +169,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Get the compression value.
+     * Get the data compression method used on files.
      *
      * @return the compression value
      */
@@ -174,7 +178,7 @@ public class HttpDataset extends DatasetInner {
     }
 
     /**
-     * Set the compression value.
+     * Set the data compression method used on files.
      *
      * @param compression the compression value to set
      * @return the HttpDataset object itself.

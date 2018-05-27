@@ -33,7 +33,7 @@ public class FactoryRepoUpdate {
     private FactoryVSTSConfiguration vstsConfiguration;
 
     /**
-     * Get the factoryResourceId value.
+     * Get the factory resource id.
      *
      * @return the factoryResourceId value
      */
@@ -42,7 +42,7 @@ public class FactoryRepoUpdate {
     }
 
     /**
-     * Set the factoryResourceId value.
+     * Set the factory resource id.
      *
      * @param factoryResourceId the factoryResourceId value to set
      * @return the FactoryRepoUpdate object itself.
@@ -53,7 +53,7 @@ public class FactoryRepoUpdate {
     }
 
     /**
-     * Get the resourceGroupName value.
+     * Get the resource group name.
      *
      * @return the resourceGroupName value
      */
@@ -62,7 +62,7 @@ public class FactoryRepoUpdate {
     }
 
     /**
-     * Set the resourceGroupName value.
+     * Set the resource group name.
      *
      * @param resourceGroupName the resourceGroupName value to set
      * @return the FactoryRepoUpdate object itself.
@@ -73,7 +73,7 @@ public class FactoryRepoUpdate {
     }
 
     /**
-     * Get the vstsConfiguration value.
+     * Get vSTS repo information of the factory.
      *
      * @return the vstsConfiguration value
      */
@@ -82,7 +82,7 @@ public class FactoryRepoUpdate {
     }
 
     /**
-     * Set the vstsConfiguration value.
+     * Set vSTS repo information of the factory.
      *
      * @param vstsConfiguration the vstsConfiguration value to set
      * @return the FactoryRepoUpdate object itself.

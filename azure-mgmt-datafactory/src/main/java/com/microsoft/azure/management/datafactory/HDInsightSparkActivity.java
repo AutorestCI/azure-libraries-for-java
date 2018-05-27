@@ -75,7 +75,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     private Map<String, Object> sparkConfig;
 
     /**
-     * Get the rootPath value.
+     * Get the root path in 'sparkJobLinkedService' for all the job’s files. Type: string (or Expression with resultType string).
      *
      * @return the rootPath value
      */
@@ -84,7 +84,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the rootPath value.
+     * Set the root path in 'sparkJobLinkedService' for all the job’s files. Type: string (or Expression with resultType string).
      *
      * @param rootPath the rootPath value to set
      * @return the HDInsightSparkActivity object itself.
@@ -95,7 +95,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the entryFilePath value.
+     * Get the relative path to the root folder of the code/package to be executed. Type: string (or Expression with resultType string).
      *
      * @return the entryFilePath value
      */
@@ -104,7 +104,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the entryFilePath value.
+     * Set the relative path to the root folder of the code/package to be executed. Type: string (or Expression with resultType string).
      *
      * @param entryFilePath the entryFilePath value to set
      * @return the HDInsightSparkActivity object itself.
@@ -115,7 +115,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the arguments value.
+     * Get the user-specified arguments to HDInsightSparkActivity.
      *
      * @return the arguments value
      */
@@ -124,7 +124,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the arguments value.
+     * Set the user-specified arguments to HDInsightSparkActivity.
      *
      * @param arguments the arguments value to set
      * @return the HDInsightSparkActivity object itself.
@@ -135,7 +135,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the getDebugInfo value.
+     * Get debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @return the getDebugInfo value
      */
@@ -144,7 +144,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the getDebugInfo value.
+     * Set debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @param getDebugInfo the getDebugInfo value to set
      * @return the HDInsightSparkActivity object itself.
@@ -155,7 +155,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the sparkJobLinkedService value.
+     * Get the storage linked service for uploading the entry file and dependencies, and for receiving logs.
      *
      * @return the sparkJobLinkedService value
      */
@@ -164,7 +164,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the sparkJobLinkedService value.
+     * Set the storage linked service for uploading the entry file and dependencies, and for receiving logs.
      *
      * @param sparkJobLinkedService the sparkJobLinkedService value to set
      * @return the HDInsightSparkActivity object itself.
@@ -175,7 +175,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the className value.
+     * Get the application's Java/Spark main class.
      *
      * @return the className value
      */
@@ -184,7 +184,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the className value.
+     * Set the application's Java/Spark main class.
      *
      * @param className the className value to set
      * @return the HDInsightSparkActivity object itself.
@@ -195,7 +195,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the proxyUser value.
+     * Get the user to impersonate that will execute the job. Type: string (or Expression with resultType string).
      *
      * @return the proxyUser value
      */
@@ -204,7 +204,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the proxyUser value.
+     * Set the user to impersonate that will execute the job. Type: string (or Expression with resultType string).
      *
      * @param proxyUser the proxyUser value to set
      * @return the HDInsightSparkActivity object itself.
@@ -215,7 +215,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the sparkConfig value.
+     * Get spark configuration property.
      *
      * @return the sparkConfig value
      */
@@ -224,7 +224,7 @@ public class HDInsightSparkActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the sparkConfig value.
+     * Set spark configuration property.
      *
      * @param sparkConfig the sparkConfig value to set
      * @return the HDInsightSparkActivity object itself.

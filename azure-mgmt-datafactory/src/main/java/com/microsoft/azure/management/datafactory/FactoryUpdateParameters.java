@@ -28,7 +28,7 @@ public class FactoryUpdateParameters {
     private FactoryIdentity identity;
 
     /**
-     * Get the tags value.
+     * Get the resource tags.
      *
      * @return the tags value
      */
@@ -37,7 +37,7 @@ public class FactoryUpdateParameters {
     }
 
     /**
-     * Set the tags value.
+     * Set the resource tags.
      *
      * @param tags the tags value to set
      * @return the FactoryUpdateParameters object itself.
@@ -48,7 +48,7 @@ public class FactoryUpdateParameters {
     }
 
     /**
-     * Get the identity value.
+     * Get managed service identity of the factory.
      *
      * @return the identity value
      */
@@ -57,7 +57,7 @@ public class FactoryUpdateParameters {
     }
 
     /**
-     * Set the identity value.
+     * Set managed service identity of the factory.
      *
      * @param identity the identity value to set
      * @return the FactoryUpdateParameters object itself.

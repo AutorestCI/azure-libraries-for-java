@@ -26,7 +26,7 @@ public class CustomDataSourceLinkedService extends LinkedServiceInner {
     private Object typeProperties;
 
     /**
-     * Get the typeProperties value.
+     * Get custom linked service properties.
      *
      * @return the typeProperties value
      */
@@ -35,7 +35,7 @@ public class CustomDataSourceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the typeProperties value.
+     * Set custom linked service properties.
      *
      * @param typeProperties the typeProperties value to set
      * @return the CustomDataSourceLinkedService object itself.

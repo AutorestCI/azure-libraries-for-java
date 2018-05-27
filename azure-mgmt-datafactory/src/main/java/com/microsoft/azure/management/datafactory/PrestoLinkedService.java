@@ -121,7 +121,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get the IP address or host name of the Presto server. (i.e. 192.168.222.160).
      *
      * @return the host value
      */
@@ -130,7 +130,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set the IP address or host name of the Presto server. (i.e. 192.168.222.160).
      *
      * @param host the host value to set
      * @return the PrestoLinkedService object itself.
@@ -141,7 +141,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the serverVersion value.
+     * Get the version of the Presto server. (i.e. 0.148-t).
      *
      * @return the serverVersion value
      */
@@ -150,7 +150,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the serverVersion value.
+     * Set the version of the Presto server. (i.e. 0.148-t).
      *
      * @param serverVersion the serverVersion value to set
      * @return the PrestoLinkedService object itself.
@@ -161,7 +161,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the catalog value.
+     * Get the catalog context for all request against the server.
      *
      * @return the catalog value
      */
@@ -170,7 +170,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the catalog value.
+     * Set the catalog context for all request against the server.
      *
      * @param catalog the catalog value to set
      * @return the PrestoLinkedService object itself.
@@ -181,7 +181,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port that the Presto server uses to listen for client connections. The default value is 8080.
      *
      * @return the port value
      */
@@ -190,7 +190,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port that the Presto server uses to listen for client connections. The default value is 8080.
      *
      * @param port the port value to set
      * @return the PrestoLinkedService object itself.
@@ -201,7 +201,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication mechanism used to connect to the Presto server. Possible values include: 'Anonymous', 'LDAP'.
      *
      * @return the authenticationType value
      */
@@ -210,7 +210,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication mechanism used to connect to the Presto server. Possible values include: 'Anonymous', 'LDAP'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the PrestoLinkedService object itself.
@@ -221,7 +221,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the user name used to connect to the Presto server.
      *
      * @return the username value
      */
@@ -230,7 +230,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the user name used to connect to the Presto server.
      *
      * @param username the username value to set
      * @return the PrestoLinkedService object itself.
@@ -241,7 +241,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password corresponding to the user name.
      *
      * @return the password value
      */
@@ -250,7 +250,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password corresponding to the user name.
      *
      * @param password the password value to set
      * @return the PrestoLinkedService object itself.
@@ -261,7 +261,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the enableSsl value.
+     * Get specifies whether the connections to the server are encrypted using SSL. The default value is false.
      *
      * @return the enableSsl value
      */
@@ -270,7 +270,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the enableSsl value.
+     * Set specifies whether the connections to the server are encrypted using SSL. The default value is false.
      *
      * @param enableSsl the enableSsl value to set
      * @return the PrestoLinkedService object itself.
@@ -281,7 +281,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the trustedCertPath value.
+     * Get the full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
      *
      * @return the trustedCertPath value
      */
@@ -290,7 +290,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the trustedCertPath value.
+     * Set the full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
      *
      * @param trustedCertPath the trustedCertPath value to set
      * @return the PrestoLinkedService object itself.
@@ -301,7 +301,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useSystemTrustStore value.
+     * Get specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
      *
      * @return the useSystemTrustStore value
      */
@@ -310,7 +310,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useSystemTrustStore value.
+     * Set specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
      *
      * @param useSystemTrustStore the useSystemTrustStore value to set
      * @return the PrestoLinkedService object itself.
@@ -321,7 +321,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the allowHostNameCNMismatch value.
+     * Get specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
      *
      * @return the allowHostNameCNMismatch value
      */
@@ -330,7 +330,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the allowHostNameCNMismatch value.
+     * Set specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
      *
      * @param allowHostNameCNMismatch the allowHostNameCNMismatch value to set
      * @return the PrestoLinkedService object itself.
@@ -341,7 +341,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the allowSelfSignedServerCert value.
+     * Get specifies whether to allow self-signed certificates from the server. The default value is false.
      *
      * @return the allowSelfSignedServerCert value
      */
@@ -350,7 +350,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the allowSelfSignedServerCert value.
+     * Set specifies whether to allow self-signed certificates from the server. The default value is false.
      *
      * @param allowSelfSignedServerCert the allowSelfSignedServerCert value to set
      * @return the PrestoLinkedService object itself.
@@ -361,7 +361,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the timeZoneID value.
+     * Get the local time zone used by the connection. Valid values for this option are specified in the IANA Time Zone Database. The default value is the system time zone.
      *
      * @return the timeZoneID value
      */
@@ -370,7 +370,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the timeZoneID value.
+     * Set the local time zone used by the connection. Valid values for this option are specified in the IANA Time Zone Database. The default value is the system time zone.
      *
      * @param timeZoneID the timeZoneID value to set
      * @return the PrestoLinkedService object itself.
@@ -381,7 +381,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -390,7 +390,7 @@ public class PrestoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the PrestoLinkedService object itself.

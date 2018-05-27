@@ -34,7 +34,7 @@ public class RedshiftUnloadSettings {
     private Object bucketName;
 
     /**
-     * Get the s3LinkedServiceName value.
+     * Get the name of the Amazon S3 linked service which will be used for the unload operation when copying from the Amazon Redshift source.
      *
      * @return the s3LinkedServiceName value
      */
@@ -43,7 +43,7 @@ public class RedshiftUnloadSettings {
     }
 
     /**
-     * Set the s3LinkedServiceName value.
+     * Set the name of the Amazon S3 linked service which will be used for the unload operation when copying from the Amazon Redshift source.
      *
      * @param s3LinkedServiceName the s3LinkedServiceName value to set
      * @return the RedshiftUnloadSettings object itself.
@@ -54,7 +54,7 @@ public class RedshiftUnloadSettings {
     }
 
     /**
-     * Get the bucketName value.
+     * Get the bucket of the interim Amazon S3 which will be used to store the unloaded data from Amazon Redshift source. The bucket must be in the same region as the Amazon Redshift source. Type: string (or Expression with resultType string).
      *
      * @return the bucketName value
      */
@@ -63,7 +63,7 @@ public class RedshiftUnloadSettings {
     }
 
     /**
-     * Set the bucketName value.
+     * Set the bucket of the interim Amazon S3 which will be used to store the unloaded data from Amazon Redshift source. The bucket must be in the same region as the Amazon Redshift source. Type: string (or Expression with resultType string).
      *
      * @param bucketName the bucketName value to set
      * @return the RedshiftUnloadSettings object itself.

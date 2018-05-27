@@ -62,7 +62,7 @@ public class AmazonS3Dataset extends DatasetInner {
     private DatasetCompression compression;
 
     /**
-     * Get the bucketName value.
+     * Get the name of the Amazon S3 bucket. Type: string (or Expression with resultType string).
      *
      * @return the bucketName value
      */
@@ -71,7 +71,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Set the bucketName value.
+     * Set the name of the Amazon S3 bucket. Type: string (or Expression with resultType string).
      *
      * @param bucketName the bucketName value to set
      * @return the AmazonS3Dataset object itself.
@@ -82,7 +82,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Get the key value.
+     * Get the key of the Amazon S3 object. Type: string (or Expression with resultType string).
      *
      * @return the key value
      */
@@ -91,7 +91,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Set the key value.
+     * Set the key of the Amazon S3 object. Type: string (or Expression with resultType string).
      *
      * @param key the key value to set
      * @return the AmazonS3Dataset object itself.
@@ -102,7 +102,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Get the prefix value.
+     * Get the prefix filter for the S3 object name. Type: string (or Expression with resultType string).
      *
      * @return the prefix value
      */
@@ -111,7 +111,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Set the prefix value.
+     * Set the prefix filter for the S3 object name. Type: string (or Expression with resultType string).
      *
      * @param prefix the prefix value to set
      * @return the AmazonS3Dataset object itself.
@@ -122,7 +122,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Get the version value.
+     * Get the version for the S3 object. Type: string (or Expression with resultType string).
      *
      * @return the version value
      */
@@ -131,7 +131,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Set the version value.
+     * Set the version for the S3 object. Type: string (or Expression with resultType string).
      *
      * @param version the version value to set
      * @return the AmazonS3Dataset object itself.
@@ -142,7 +142,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Get the format value.
+     * Get the format of files.
      *
      * @return the format value
      */
@@ -151,7 +151,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Set the format value.
+     * Set the format of files.
      *
      * @param format the format value to set
      * @return the AmazonS3Dataset object itself.
@@ -162,7 +162,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Get the compression value.
+     * Get the data compression method used for the Amazon S3 object.
      *
      * @return the compression value
      */
@@ -171,7 +171,7 @@ public class AmazonS3Dataset extends DatasetInner {
     }
 
     /**
-     * Set the compression value.
+     * Set the data compression method used for the Amazon S3 object.
      *
      * @param compression the compression value to set
      * @return the AmazonS3Dataset object itself.

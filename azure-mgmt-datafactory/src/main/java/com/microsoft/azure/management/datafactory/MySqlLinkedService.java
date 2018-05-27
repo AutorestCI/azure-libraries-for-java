@@ -36,7 +36,7 @@ public class MySqlLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the connection string.
      *
      * @return the connectionString value
      */
@@ -45,7 +45,7 @@ public class MySqlLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the connectionString value.
+     * Set the connection string.
      *
      * @param connectionString the connectionString value to set
      * @return the MySqlLinkedService object itself.
@@ -56,7 +56,7 @@ public class MySqlLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -65,7 +65,7 @@ public class MySqlLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the MySqlLinkedService object itself.

@@ -26,7 +26,7 @@ public class OdbcSink extends CopySink {
     private Object preCopyScript;
 
     /**
-     * Get the preCopyScript value.
+     * Get a query to execute before starting the copy. Type: string (or Expression with resultType string).
      *
      * @return the preCopyScript value
      */
@@ -35,7 +35,7 @@ public class OdbcSink extends CopySink {
     }
 
     /**
-     * Set the preCopyScript value.
+     * Set a query to execute before starting the copy. Type: string (or Expression with resultType string).
      *
      * @param preCopyScript the preCopyScript value to set
      * @return the OdbcSink object itself.

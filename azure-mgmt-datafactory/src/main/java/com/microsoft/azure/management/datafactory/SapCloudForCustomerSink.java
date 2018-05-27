@@ -26,7 +26,7 @@ public class SapCloudForCustomerSink extends CopySink {
     private SapCloudForCustomerSinkWriteBehavior writeBehavior;
 
     /**
-     * Get the writeBehavior value.
+     * Get the write behavior for the operation. Default is 'Insert'. Possible values include: 'Insert', 'Update'.
      *
      * @return the writeBehavior value
      */
@@ -35,7 +35,7 @@ public class SapCloudForCustomerSink extends CopySink {
     }
 
     /**
-     * Set the writeBehavior value.
+     * Set the write behavior for the operation. Default is 'Insert'. Possible values include: 'Insert', 'Update'.
      *
      * @param writeBehavior the writeBehavior value to set
      * @return the SapCloudForCustomerSink object itself.

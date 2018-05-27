@@ -26,7 +26,7 @@ public class SapCloudForCustomerSource extends CopySource {
     private Object query;
 
     /**
-     * Get the query value.
+     * Get sAP Cloud for Customer OData query. For example, "$top=1". Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -35,7 +35,7 @@ public class SapCloudForCustomerSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set sAP Cloud for Customer OData query. For example, "$top=1". Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the SapCloudForCustomerSource object itself.

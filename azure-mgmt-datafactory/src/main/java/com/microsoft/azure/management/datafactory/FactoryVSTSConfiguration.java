@@ -57,7 +57,7 @@ public class FactoryVSTSConfiguration {
     private String tenantId;
 
     /**
-     * Get the accountName value.
+     * Get vSTS account name.
      *
      * @return the accountName value
      */
@@ -66,7 +66,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Set the accountName value.
+     * Set vSTS account name.
      *
      * @param accountName the accountName value to set
      * @return the FactoryVSTSConfiguration object itself.
@@ -77,7 +77,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Get the projectName value.
+     * Get vSTS project name.
      *
      * @return the projectName value
      */
@@ -86,7 +86,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Set the projectName value.
+     * Set vSTS project name.
      *
      * @param projectName the projectName value to set
      * @return the FactoryVSTSConfiguration object itself.
@@ -97,7 +97,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Get the repositoryName value.
+     * Get vSTS repository name.
      *
      * @return the repositoryName value
      */
@@ -106,7 +106,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Set the repositoryName value.
+     * Set vSTS repository name.
      *
      * @param repositoryName the repositoryName value to set
      * @return the FactoryVSTSConfiguration object itself.
@@ -117,7 +117,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Get the collaborationBranch value.
+     * Get vSTS collaboration branch.
      *
      * @return the collaborationBranch value
      */
@@ -126,7 +126,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Set the collaborationBranch value.
+     * Set vSTS collaboration branch.
      *
      * @param collaborationBranch the collaborationBranch value to set
      * @return the FactoryVSTSConfiguration object itself.
@@ -137,7 +137,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Get the rootFolder value.
+     * Get vSTS root folder.
      *
      * @return the rootFolder value
      */
@@ -146,7 +146,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Set the rootFolder value.
+     * Set vSTS root folder.
      *
      * @param rootFolder the rootFolder value to set
      * @return the FactoryVSTSConfiguration object itself.
@@ -157,7 +157,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Get the lastCommitId value.
+     * Get vSTS last commit id.
      *
      * @return the lastCommitId value
      */
@@ -166,7 +166,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Set the lastCommitId value.
+     * Set vSTS last commit id.
      *
      * @param lastCommitId the lastCommitId value to set
      * @return the FactoryVSTSConfiguration object itself.
@@ -177,7 +177,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Get the tenantId value.
+     * Get vSTS tenant id.
      *
      * @return the tenantId value
      */
@@ -186,7 +186,7 @@ public class FactoryVSTSConfiguration {
     }
 
     /**
-     * Set the tenantId value.
+     * Set vSTS tenant id.
      *
      * @param tenantId the tenantId value to set
      * @return the FactoryVSTSConfiguration object itself.

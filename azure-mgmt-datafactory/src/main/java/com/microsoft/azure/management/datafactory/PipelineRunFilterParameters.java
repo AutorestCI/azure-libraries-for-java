@@ -50,7 +50,7 @@ public class PipelineRunFilterParameters {
     private List<PipelineRunQueryOrderBy> orderBy;
 
     /**
-     * Get the continuationToken value.
+     * Get the continuation token for getting the next page of results. Null for first page.
      *
      * @return the continuationToken value
      */
@@ -59,7 +59,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Set the continuationToken value.
+     * Set the continuation token for getting the next page of results. Null for first page.
      *
      * @param continuationToken the continuationToken value to set
      * @return the PipelineRunFilterParameters object itself.
@@ -70,7 +70,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Get the lastUpdatedAfter value.
+     * Get the time at or after which the pipeline run event was updated in 'ISO 8601' format.
      *
      * @return the lastUpdatedAfter value
      */
@@ -79,7 +79,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Set the lastUpdatedAfter value.
+     * Set the time at or after which the pipeline run event was updated in 'ISO 8601' format.
      *
      * @param lastUpdatedAfter the lastUpdatedAfter value to set
      * @return the PipelineRunFilterParameters object itself.
@@ -90,7 +90,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Get the lastUpdatedBefore value.
+     * Get the time at or before which the pipeline run event was updated in 'ISO 8601' format.
      *
      * @return the lastUpdatedBefore value
      */
@@ -99,7 +99,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Set the lastUpdatedBefore value.
+     * Set the time at or before which the pipeline run event was updated in 'ISO 8601' format.
      *
      * @param lastUpdatedBefore the lastUpdatedBefore value to set
      * @return the PipelineRunFilterParameters object itself.
@@ -110,7 +110,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Get the filters value.
+     * Get list of filters.
      *
      * @return the filters value
      */
@@ -119,7 +119,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Set the filters value.
+     * Set list of filters.
      *
      * @param filters the filters value to set
      * @return the PipelineRunFilterParameters object itself.
@@ -130,7 +130,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Get the orderBy value.
+     * Get list of OrderBy option.
      *
      * @return the orderBy value
      */
@@ -139,7 +139,7 @@ public class PipelineRunFilterParameters {
     }
 
     /**
-     * Set the orderBy value.
+     * Set list of OrderBy option.
      *
      * @param orderBy the orderBy value to set
      * @return the PipelineRunFilterParameters object itself.

@@ -28,7 +28,7 @@ public class TriggerPipelineReference {
     private Map<String, Object> parameters;
 
     /**
-     * Get the pipelineReference value.
+     * Get pipeline reference.
      *
      * @return the pipelineReference value
      */
@@ -37,7 +37,7 @@ public class TriggerPipelineReference {
     }
 
     /**
-     * Set the pipelineReference value.
+     * Set pipeline reference.
      *
      * @param pipelineReference the pipelineReference value to set
      * @return the TriggerPipelineReference object itself.
@@ -48,7 +48,7 @@ public class TriggerPipelineReference {
     }
 
     /**
-     * Get the parameters value.
+     * Get pipeline parameters.
      *
      * @return the parameters value
      */
@@ -57,7 +57,7 @@ public class TriggerPipelineReference {
     }
 
     /**
-     * Set the parameters value.
+     * Set pipeline parameters.
      *
      * @param parameters the parameters value to set
      * @return the TriggerPipelineReference object itself.

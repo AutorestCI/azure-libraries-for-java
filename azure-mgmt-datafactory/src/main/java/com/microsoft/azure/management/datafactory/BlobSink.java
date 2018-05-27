@@ -47,7 +47,7 @@ public class BlobSink extends CopySink {
     private CopyBehaviorType copyBehavior;
 
     /**
-     * Get the blobWriterOverwriteFiles value.
+     * Get blob writer overwrite files. Type: boolean (or Expression with resultType boolean).
      *
      * @return the blobWriterOverwriteFiles value
      */
@@ -56,7 +56,7 @@ public class BlobSink extends CopySink {
     }
 
     /**
-     * Set the blobWriterOverwriteFiles value.
+     * Set blob writer overwrite files. Type: boolean (or Expression with resultType boolean).
      *
      * @param blobWriterOverwriteFiles the blobWriterOverwriteFiles value to set
      * @return the BlobSink object itself.
@@ -67,7 +67,7 @@ public class BlobSink extends CopySink {
     }
 
     /**
-     * Get the blobWriterDateTimeFormat value.
+     * Get blob writer date time format. Type: string (or Expression with resultType string).
      *
      * @return the blobWriterDateTimeFormat value
      */
@@ -76,7 +76,7 @@ public class BlobSink extends CopySink {
     }
 
     /**
-     * Set the blobWriterDateTimeFormat value.
+     * Set blob writer date time format. Type: string (or Expression with resultType string).
      *
      * @param blobWriterDateTimeFormat the blobWriterDateTimeFormat value to set
      * @return the BlobSink object itself.
@@ -87,7 +87,7 @@ public class BlobSink extends CopySink {
     }
 
     /**
-     * Get the blobWriterAddHeader value.
+     * Get blob writer add header. Type: boolean (or Expression with resultType boolean).
      *
      * @return the blobWriterAddHeader value
      */
@@ -96,7 +96,7 @@ public class BlobSink extends CopySink {
     }
 
     /**
-     * Set the blobWriterAddHeader value.
+     * Set blob writer add header. Type: boolean (or Expression with resultType boolean).
      *
      * @param blobWriterAddHeader the blobWriterAddHeader value to set
      * @return the BlobSink object itself.
@@ -107,7 +107,7 @@ public class BlobSink extends CopySink {
     }
 
     /**
-     * Get the copyBehavior value.
+     * Get the type of copy behavior for copy sink. Possible values include: 'PreserveHierarchy', 'FlattenHierarchy', 'MergeFiles'.
      *
      * @return the copyBehavior value
      */
@@ -116,7 +116,7 @@ public class BlobSink extends CopySink {
     }
 
     /**
-     * Set the copyBehavior value.
+     * Set the type of copy behavior for copy sink. Possible values include: 'PreserveHierarchy', 'FlattenHierarchy', 'MergeFiles'.
      *
      * @param copyBehavior the copyBehavior value to set
      * @return the BlobSink object itself.

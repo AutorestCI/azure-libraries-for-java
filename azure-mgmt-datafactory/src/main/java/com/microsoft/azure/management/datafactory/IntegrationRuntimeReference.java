@@ -35,13 +35,14 @@ public class IntegrationRuntimeReference {
 
     /**
      * Creates an instance of IntegrationRuntimeReference class.
+     * @param referenceName reference integration runtime name.
      */
     public IntegrationRuntimeReference() {
         type = "IntegrationRuntimeReference";
     }
 
     /**
-     * Get the type value.
+     * Get type of integration runtime.
      *
      * @return the type value
      */
@@ -50,7 +51,7 @@ public class IntegrationRuntimeReference {
     }
 
     /**
-     * Set the type value.
+     * Set type of integration runtime.
      *
      * @param type the type value to set
      * @return the IntegrationRuntimeReference object itself.
@@ -61,7 +62,7 @@ public class IntegrationRuntimeReference {
     }
 
     /**
-     * Get the referenceName value.
+     * Get reference integration runtime name.
      *
      * @return the referenceName value
      */
@@ -70,7 +71,7 @@ public class IntegrationRuntimeReference {
     }
 
     /**
-     * Set the referenceName value.
+     * Set reference integration runtime name.
      *
      * @param referenceName the referenceName value to set
      * @return the IntegrationRuntimeReference object itself.
@@ -81,7 +82,7 @@ public class IntegrationRuntimeReference {
     }
 
     /**
-     * Get the parameters value.
+     * Get arguments for integration runtime.
      *
      * @return the parameters value
      */
@@ -90,7 +91,7 @@ public class IntegrationRuntimeReference {
     }
 
     /**
-     * Set the parameters value.
+     * Set arguments for integration runtime.
      *
      * @param parameters the parameters value to set
      * @return the IntegrationRuntimeReference object itself.

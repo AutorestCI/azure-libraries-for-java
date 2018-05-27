@@ -25,7 +25,7 @@ public class TabularTranslator extends CopyTranslator {
     private Object columnMappings;
 
     /**
-     * Get the columnMappings value.
+     * Get column mappings. Type: string (or Expression with resultType string).
      *
      * @return the columnMappings value
      */
@@ -34,7 +34,7 @@ public class TabularTranslator extends CopyTranslator {
     }
 
     /**
-     * Set the columnMappings value.
+     * Set column mappings. Type: string (or Expression with resultType string).
      *
      * @param columnMappings the columnMappings value to set
      * @return the TabularTranslator object itself.

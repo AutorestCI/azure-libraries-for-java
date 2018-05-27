@@ -33,7 +33,7 @@ public class OracleSource extends CopySource {
     private Object queryTimeout;
 
     /**
-     * Get the oracleReaderQuery value.
+     * Get oracle reader query. Type: string (or Expression with resultType string).
      *
      * @return the oracleReaderQuery value
      */
@@ -42,7 +42,7 @@ public class OracleSource extends CopySource {
     }
 
     /**
-     * Set the oracleReaderQuery value.
+     * Set oracle reader query. Type: string (or Expression with resultType string).
      *
      * @param oracleReaderQuery the oracleReaderQuery value to set
      * @return the OracleSource object itself.
@@ -53,7 +53,7 @@ public class OracleSource extends CopySource {
     }
 
     /**
-     * Get the queryTimeout value.
+     * Get query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the queryTimeout value
      */
@@ -62,7 +62,7 @@ public class OracleSource extends CopySource {
     }
 
     /**
-     * Set the queryTimeout value.
+     * Set query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param queryTimeout the queryTimeout value to set
      * @return the OracleSource object itself.

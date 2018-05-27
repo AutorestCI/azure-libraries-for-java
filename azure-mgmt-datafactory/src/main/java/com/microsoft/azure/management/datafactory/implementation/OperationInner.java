@@ -43,7 +43,7 @@ public class OperationInner {
     private OperationServiceSpecification serviceSpecification;
 
     /**
-     * Get the name value.
+     * Get operation name: {provider}/{resource}/{operation}.
      *
      * @return the name value
      */
@@ -52,7 +52,7 @@ public class OperationInner {
     }
 
     /**
-     * Set the name value.
+     * Set operation name: {provider}/{resource}/{operation}.
      *
      * @param name the name value to set
      * @return the OperationInner object itself.
@@ -63,7 +63,7 @@ public class OperationInner {
     }
 
     /**
-     * Get the origin value.
+     * Get the intended executor of the operation.
      *
      * @return the origin value
      */
@@ -72,7 +72,7 @@ public class OperationInner {
     }
 
     /**
-     * Set the origin value.
+     * Set the intended executor of the operation.
      *
      * @param origin the origin value to set
      * @return the OperationInner object itself.
@@ -83,7 +83,7 @@ public class OperationInner {
     }
 
     /**
-     * Get the display value.
+     * Get metadata associated with the operation.
      *
      * @return the display value
      */
@@ -92,7 +92,7 @@ public class OperationInner {
     }
 
     /**
-     * Set the display value.
+     * Set metadata associated with the operation.
      *
      * @param display the display value to set
      * @return the OperationInner object itself.
@@ -103,7 +103,7 @@ public class OperationInner {
     }
 
     /**
-     * Get the serviceSpecification value.
+     * Get details about a service operation.
      *
      * @return the serviceSpecification value
      */
@@ -112,7 +112,7 @@ public class OperationInner {
     }
 
     /**
-     * Set the serviceSpecification value.
+     * Set details about a service operation.
      *
      * @param serviceSpecification the serviceSpecification value to set
      * @return the OperationInner object itself.

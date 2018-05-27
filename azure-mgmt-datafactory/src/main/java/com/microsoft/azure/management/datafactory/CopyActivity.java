@@ -95,7 +95,7 @@ public class CopyActivity extends ExecutionActivity {
     private List<DatasetReference> outputs;
 
     /**
-     * Get the source value.
+     * Get copy activity source.
      *
      * @return the source value
      */
@@ -104,7 +104,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the source value.
+     * Set copy activity source.
      *
      * @param source the source value to set
      * @return the CopyActivity object itself.
@@ -115,7 +115,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the sink value.
+     * Get copy activity sink.
      *
      * @return the sink value
      */
@@ -124,7 +124,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the sink value.
+     * Set copy activity sink.
      *
      * @param sink the sink value to set
      * @return the CopyActivity object itself.
@@ -135,7 +135,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the translator value.
+     * Get copy activity translator. If not specificed, tabular translator is used.
      *
      * @return the translator value
      */
@@ -144,7 +144,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the translator value.
+     * Set copy activity translator. If not specificed, tabular translator is used.
      *
      * @param translator the translator value to set
      * @return the CopyActivity object itself.
@@ -155,7 +155,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the enableStaging value.
+     * Get specifies whether to copy data via an interim staging. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the enableStaging value
      */
@@ -164,7 +164,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the enableStaging value.
+     * Set specifies whether to copy data via an interim staging. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param enableStaging the enableStaging value to set
      * @return the CopyActivity object itself.
@@ -175,7 +175,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the stagingSettings value.
+     * Get specifies interim staging settings when EnableStaging is true.
      *
      * @return the stagingSettings value
      */
@@ -184,7 +184,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the stagingSettings value.
+     * Set specifies interim staging settings when EnableStaging is true.
      *
      * @param stagingSettings the stagingSettings value to set
      * @return the CopyActivity object itself.
@@ -195,7 +195,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the parallelCopies value.
+     * Get maximum number of concurrent sessions opened on the source or sink to avoid overloading the data store. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the parallelCopies value
      */
@@ -204,7 +204,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the parallelCopies value.
+     * Set maximum number of concurrent sessions opened on the source or sink to avoid overloading the data store. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param parallelCopies the parallelCopies value to set
      * @return the CopyActivity object itself.
@@ -215,7 +215,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the cloudDataMovementUnits value.
+     * Get maximum number of cloud data movement units that can be used to perform this data movement. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the cloudDataMovementUnits value
      */
@@ -224,7 +224,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the cloudDataMovementUnits value.
+     * Set maximum number of cloud data movement units that can be used to perform this data movement. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param cloudDataMovementUnits the cloudDataMovementUnits value to set
      * @return the CopyActivity object itself.
@@ -235,7 +235,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the enableSkipIncompatibleRow value.
+     * Get whether to skip incompatible row. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the enableSkipIncompatibleRow value
      */
@@ -244,7 +244,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the enableSkipIncompatibleRow value.
+     * Set whether to skip incompatible row. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param enableSkipIncompatibleRow the enableSkipIncompatibleRow value to set
      * @return the CopyActivity object itself.
@@ -255,7 +255,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the redirectIncompatibleRowSettings value.
+     * Get redirect incompatible row settings when EnableSkipIncompatibleRow is true.
      *
      * @return the redirectIncompatibleRowSettings value
      */
@@ -264,7 +264,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the redirectIncompatibleRowSettings value.
+     * Set redirect incompatible row settings when EnableSkipIncompatibleRow is true.
      *
      * @param redirectIncompatibleRowSettings the redirectIncompatibleRowSettings value to set
      * @return the CopyActivity object itself.
@@ -275,7 +275,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the inputs value.
+     * Get list of inputs for the activity.
      *
      * @return the inputs value
      */
@@ -284,7 +284,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the inputs value.
+     * Set list of inputs for the activity.
      *
      * @param inputs the inputs value to set
      * @return the CopyActivity object itself.
@@ -295,7 +295,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the outputs value.
+     * Get list of outputs for the activity.
      *
      * @return the outputs value
      */
@@ -304,7 +304,7 @@ public class CopyActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the outputs value.
+     * Set list of outputs for the activity.
      *
      * @param outputs the outputs value to set
      * @return the CopyActivity object itself.

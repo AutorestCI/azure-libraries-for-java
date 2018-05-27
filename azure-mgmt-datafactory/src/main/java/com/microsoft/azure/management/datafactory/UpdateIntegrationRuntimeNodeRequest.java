@@ -23,7 +23,7 @@ public class UpdateIntegrationRuntimeNodeRequest {
     private Integer concurrentJobsLimit;
 
     /**
-     * Get the concurrentJobsLimit value.
+     * Get the number of concurrent jobs permitted to run on the integration runtime node. Values between 1 and maxConcurrentJobs(inclusive) are allowed.
      *
      * @return the concurrentJobsLimit value
      */
@@ -32,7 +32,7 @@ public class UpdateIntegrationRuntimeNodeRequest {
     }
 
     /**
-     * Set the concurrentJobsLimit value.
+     * Set the number of concurrent jobs permitted to run on the integration runtime node. Values between 1 and maxConcurrentJobs(inclusive) are allowed.
      *
      * @param concurrentJobsLimit the concurrentJobsLimit value to set
      * @return the UpdateIntegrationRuntimeNodeRequest object itself.

@@ -29,7 +29,7 @@ public class SapCloudForCustomerResourceDataset extends DatasetInner {
     private Object path;
 
     /**
-     * Get the path value.
+     * Get the path of the SAP Cloud for Customer OData entity. Type: string (or Expression with resultType string).
      *
      * @return the path value
      */
@@ -38,7 +38,7 @@ public class SapCloudForCustomerResourceDataset extends DatasetInner {
     }
 
     /**
-     * Set the path value.
+     * Set the path of the SAP Cloud for Customer OData entity. Type: string (or Expression with resultType string).
      *
      * @param path the path value to set
      * @return the SapCloudForCustomerResourceDataset object itself.

@@ -85,7 +85,7 @@ public class PipelineRunInner {
     private String message;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -94,7 +94,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the PipelineRunInner object itself.
@@ -105,7 +105,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the runId value.
+     * Get identifier of a run.
      *
      * @return the runId value
      */
@@ -114,7 +114,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the pipelineName value.
+     * Get the pipeline name.
      *
      * @return the pipelineName value
      */
@@ -123,7 +123,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the parameters value.
+     * Get the full or partial list of parameter name, value pair used in the pipeline run.
      *
      * @return the parameters value
      */
@@ -132,7 +132,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the invokedBy value.
+     * Get entity that started the pipeline run.
      *
      * @return the invokedBy value
      */
@@ -141,7 +141,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the lastUpdated value.
+     * Get the last updated timestamp for the pipeline run event in ISO8601 format.
      *
      * @return the lastUpdated value
      */
@@ -150,7 +150,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the runStart value.
+     * Get the start time of a pipeline run in ISO8601 format.
      *
      * @return the runStart value
      */
@@ -159,7 +159,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the runEnd value.
+     * Get the end time of a pipeline run in ISO8601 format.
      *
      * @return the runEnd value
      */
@@ -168,7 +168,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the durationInMs value.
+     * Get the duration of a pipeline run.
      *
      * @return the durationInMs value
      */
@@ -177,7 +177,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the status value.
+     * Get the status of a pipeline run.
      *
      * @return the status value
      */
@@ -186,7 +186,7 @@ public class PipelineRunInner {
     }
 
     /**
-     * Get the message value.
+     * Get the message from a pipeline run.
      *
      * @return the message value
      */

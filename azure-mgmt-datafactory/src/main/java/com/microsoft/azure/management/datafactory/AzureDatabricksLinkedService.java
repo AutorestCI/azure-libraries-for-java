@@ -82,7 +82,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the domain value.
+     * Get &lt;REGION&gt;.azuredatabricks.net, domain name of your Databricks deployment. Type: string (or Expression with resultType string).
      *
      * @return the domain value
      */
@@ -91,7 +91,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the domain value.
+     * Set &lt;REGION&gt;.azuredatabricks.net, domain name of your Databricks deployment. Type: string (or Expression with resultType string).
      *
      * @param domain the domain value to set
      * @return the AzureDatabricksLinkedService object itself.
@@ -102,7 +102,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessToken value.
+     * Get access token for databricks REST API. Refer to https://docs.azuredatabricks.net/api/latest/authentication.html. Type: string (or Expression with resultType string).
      *
      * @return the accessToken value
      */
@@ -111,7 +111,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessToken value.
+     * Set access token for databricks REST API. Refer to https://docs.azuredatabricks.net/api/latest/authentication.html. Type: string (or Expression with resultType string).
      *
      * @param accessToken the accessToken value to set
      * @return the AzureDatabricksLinkedService object itself.
@@ -122,7 +122,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the existingClusterId value.
+     * Get the id of an existing cluster that will be used for all runs of this job. Type: string (or Expression with resultType string).
      *
      * @return the existingClusterId value
      */
@@ -131,7 +131,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the existingClusterId value.
+     * Set the id of an existing cluster that will be used for all runs of this job. Type: string (or Expression with resultType string).
      *
      * @param existingClusterId the existingClusterId value to set
      * @return the AzureDatabricksLinkedService object itself.
@@ -142,7 +142,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the newClusterVersion value.
+     * Get the Spark version of new cluster. Type: string (or Expression with resultType string).
      *
      * @return the newClusterVersion value
      */
@@ -151,7 +151,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the newClusterVersion value.
+     * Set the Spark version of new cluster. Type: string (or Expression with resultType string).
      *
      * @param newClusterVersion the newClusterVersion value to set
      * @return the AzureDatabricksLinkedService object itself.
@@ -162,7 +162,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the newClusterNumOfWorker value.
+     * Get number of worker nodes that new cluster should have. A string formatted Int32, like '1' means numOfWorker is 1 or '1:10' means auto-scale from 1 as min and 10 as max. Type: string (or Expression with resultType string).
      *
      * @return the newClusterNumOfWorker value
      */
@@ -171,7 +171,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the newClusterNumOfWorker value.
+     * Set number of worker nodes that new cluster should have. A string formatted Int32, like '1' means numOfWorker is 1 or '1:10' means auto-scale from 1 as min and 10 as max. Type: string (or Expression with resultType string).
      *
      * @param newClusterNumOfWorker the newClusterNumOfWorker value to set
      * @return the AzureDatabricksLinkedService object itself.
@@ -182,7 +182,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the newClusterNodeType value.
+     * Get the node types of new cluster. Type: string (or Expression with resultType string).
      *
      * @return the newClusterNodeType value
      */
@@ -191,7 +191,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the newClusterNodeType value.
+     * Set the node types of new cluster. Type: string (or Expression with resultType string).
      *
      * @param newClusterNodeType the newClusterNodeType value to set
      * @return the AzureDatabricksLinkedService object itself.
@@ -202,7 +202,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the newClusterSparkConf value.
+     * Get a set of optional, user-specified Spark configuration key-value pairs.
      *
      * @return the newClusterSparkConf value
      */
@@ -211,7 +211,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the newClusterSparkConf value.
+     * Set a set of optional, user-specified Spark configuration key-value pairs.
      *
      * @param newClusterSparkConf the newClusterSparkConf value to set
      * @return the AzureDatabricksLinkedService object itself.
@@ -222,7 +222,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -231,7 +231,7 @@ public class AzureDatabricksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureDatabricksLinkedService object itself.

@@ -64,7 +64,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the endpoint value.
+     * Get the endpoint of the Zoho server. (i.e. crm.zoho.com/crm/private).
      *
      * @return the endpoint value
      */
@@ -73,7 +73,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the endpoint value.
+     * Set the endpoint of the Zoho server. (i.e. crm.zoho.com/crm/private).
      *
      * @param endpoint the endpoint value to set
      * @return the ZohoLinkedService object itself.
@@ -84,7 +84,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessToken value.
+     * Get the access token for Zoho authentication.
      *
      * @return the accessToken value
      */
@@ -93,7 +93,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessToken value.
+     * Set the access token for Zoho authentication.
      *
      * @param accessToken the accessToken value to set
      * @return the ZohoLinkedService object itself.
@@ -104,7 +104,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -113,7 +113,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the ZohoLinkedService object itself.
@@ -124,7 +124,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -133,7 +133,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the ZohoLinkedService object itself.
@@ -144,7 +144,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -153,7 +153,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the ZohoLinkedService object itself.
@@ -164,7 +164,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -173,7 +173,7 @@ public class ZohoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the ZohoLinkedService object itself.

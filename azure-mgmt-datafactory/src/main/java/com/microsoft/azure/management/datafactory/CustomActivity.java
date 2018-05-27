@@ -56,7 +56,7 @@ public class CustomActivity extends ExecutionActivity {
     private Map<String, Object> extendedProperties;
 
     /**
-     * Get the command value.
+     * Get command for custom activity Type: string (or Expression with resultType string).
      *
      * @return the command value
      */
@@ -65,7 +65,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the command value.
+     * Set command for custom activity Type: string (or Expression with resultType string).
      *
      * @param command the command value to set
      * @return the CustomActivity object itself.
@@ -76,7 +76,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the resourceLinkedService value.
+     * Get resource linked service reference.
      *
      * @return the resourceLinkedService value
      */
@@ -85,7 +85,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the resourceLinkedService value.
+     * Set resource linked service reference.
      *
      * @param resourceLinkedService the resourceLinkedService value to set
      * @return the CustomActivity object itself.
@@ -96,7 +96,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the folderPath value.
+     * Get folder path for resource files Type: string (or Expression with resultType string).
      *
      * @return the folderPath value
      */
@@ -105,7 +105,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the folderPath value.
+     * Set folder path for resource files Type: string (or Expression with resultType string).
      *
      * @param folderPath the folderPath value to set
      * @return the CustomActivity object itself.
@@ -116,7 +116,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the referenceObjects value.
+     * Get reference objects.
      *
      * @return the referenceObjects value
      */
@@ -125,7 +125,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the referenceObjects value.
+     * Set reference objects.
      *
      * @param referenceObjects the referenceObjects value to set
      * @return the CustomActivity object itself.
@@ -136,7 +136,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the extendedProperties value.
+     * Get user defined property bag. There is no restriction on the keys or values that can be used. The user specified custom activity has the full responsibility to consume and interpret the content defined.
      *
      * @return the extendedProperties value
      */
@@ -145,7 +145,7 @@ public class CustomActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the extendedProperties value.
+     * Set user defined property bag. There is no restriction on the keys or values that can be used. The user specified custom activity has the full responsibility to consume and interpret the content defined.
      *
      * @param extendedProperties the extendedProperties value to set
      * @return the CustomActivity object itself.

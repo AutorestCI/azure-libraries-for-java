@@ -60,7 +60,7 @@ public class FactoryInner extends Resource {
     private FactoryVSTSConfiguration vstsConfiguration;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -69,7 +69,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the FactoryInner object itself.
@@ -80,7 +80,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Get the identity value.
+     * Get managed service identity of the factory.
      *
      * @return the identity value
      */
@@ -89,7 +89,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Set the identity value.
+     * Set managed service identity of the factory.
      *
      * @param identity the identity value to set
      * @return the FactoryInner object itself.
@@ -100,7 +100,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get factory provisioning state, example Succeeded.
      *
      * @return the provisioningState value
      */
@@ -109,7 +109,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Get the createTime value.
+     * Get time the factory was created in ISO8601 format.
      *
      * @return the createTime value
      */
@@ -118,7 +118,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Get the version value.
+     * Get version of the factory.
      *
      * @return the version value
      */
@@ -127,7 +127,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Get the vstsConfiguration value.
+     * Get vSTS repo information of the factory.
      *
      * @return the vstsConfiguration value
      */
@@ -136,7 +136,7 @@ public class FactoryInner extends Resource {
     }
 
     /**
-     * Set the vstsConfiguration value.
+     * Set vSTS repo information of the factory.
      *
      * @param vstsConfiguration the vstsConfiguration value to set
      * @return the FactoryInner object itself.

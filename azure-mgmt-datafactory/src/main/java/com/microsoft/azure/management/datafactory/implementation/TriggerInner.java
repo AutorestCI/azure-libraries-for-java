@@ -47,7 +47,7 @@ public class TriggerInner {
     private TriggerRuntimeState runtimeState;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -56,7 +56,7 @@ public class TriggerInner {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the TriggerInner object itself.
@@ -67,7 +67,7 @@ public class TriggerInner {
     }
 
     /**
-     * Get the description value.
+     * Get trigger description.
      *
      * @return the description value
      */
@@ -76,7 +76,7 @@ public class TriggerInner {
     }
 
     /**
-     * Set the description value.
+     * Set trigger description.
      *
      * @param description the description value to set
      * @return the TriggerInner object itself.
@@ -87,7 +87,7 @@ public class TriggerInner {
     }
 
     /**
-     * Get the runtimeState value.
+     * Get indicates if trigger is running or not. Updated when Start/Stop APIs are called on the Trigger. Possible values include: 'Started', 'Stopped', 'Disabled'.
      *
      * @return the runtimeState value
      */

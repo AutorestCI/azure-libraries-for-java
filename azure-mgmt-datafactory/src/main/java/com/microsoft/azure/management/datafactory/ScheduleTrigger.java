@@ -27,7 +27,7 @@ public class ScheduleTrigger extends MultiplePipelineTrigger {
     private ScheduleTriggerRecurrence recurrence;
 
     /**
-     * Get the recurrence value.
+     * Get recurrence schedule configuration.
      *
      * @return the recurrence value
      */
@@ -36,7 +36,7 @@ public class ScheduleTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the recurrence value.
+     * Set recurrence schedule configuration.
      *
      * @param recurrence the recurrence value to set
      * @return the ScheduleTrigger object itself.

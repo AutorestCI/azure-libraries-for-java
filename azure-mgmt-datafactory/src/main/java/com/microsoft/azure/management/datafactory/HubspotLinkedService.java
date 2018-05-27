@@ -78,7 +78,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the clientId value.
+     * Get the client ID associated with your Hubspot application.
      *
      * @return the clientId value
      */
@@ -87,7 +87,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clientId value.
+     * Set the client ID associated with your Hubspot application.
      *
      * @param clientId the clientId value to set
      * @return the HubspotLinkedService object itself.
@@ -98,7 +98,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clientSecret value.
+     * Get the client secret associated with your Hubspot application.
      *
      * @return the clientSecret value
      */
@@ -107,7 +107,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clientSecret value.
+     * Set the client secret associated with your Hubspot application.
      *
      * @param clientSecret the clientSecret value to set
      * @return the HubspotLinkedService object itself.
@@ -118,7 +118,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessToken value.
+     * Get the access token obtained when initially authenticating your OAuth integration.
      *
      * @return the accessToken value
      */
@@ -127,7 +127,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessToken value.
+     * Set the access token obtained when initially authenticating your OAuth integration.
      *
      * @param accessToken the accessToken value to set
      * @return the HubspotLinkedService object itself.
@@ -138,7 +138,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the refreshToken value.
+     * Get the refresh token obtained when initially authenticating your OAuth integration.
      *
      * @return the refreshToken value
      */
@@ -147,7 +147,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the refreshToken value.
+     * Set the refresh token obtained when initially authenticating your OAuth integration.
      *
      * @param refreshToken the refreshToken value to set
      * @return the HubspotLinkedService object itself.
@@ -158,7 +158,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -167,7 +167,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the HubspotLinkedService object itself.
@@ -178,7 +178,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -187,7 +187,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the HubspotLinkedService object itself.
@@ -198,7 +198,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -207,7 +207,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the HubspotLinkedService object itself.
@@ -218,7 +218,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -227,7 +227,7 @@ public class HubspotLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the HubspotLinkedService object itself.

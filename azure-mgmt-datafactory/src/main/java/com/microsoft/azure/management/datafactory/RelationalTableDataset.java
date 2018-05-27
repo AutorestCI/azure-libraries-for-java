@@ -29,7 +29,7 @@ public class RelationalTableDataset extends DatasetInner {
     private Object tableName;
 
     /**
-     * Get the tableName value.
+     * Get the relational table name. Type: string (or Expression with resultType string).
      *
      * @return the tableName value
      */
@@ -38,7 +38,7 @@ public class RelationalTableDataset extends DatasetInner {
     }
 
     /**
-     * Set the tableName value.
+     * Set the relational table name. Type: string (or Expression with resultType string).
      *
      * @param tableName the tableName value to set
      * @return the RelationalTableDataset object itself.

@@ -29,7 +29,7 @@ public class AzureKeyVaultLinkedService extends LinkedServiceInner {
     private Object baseUrl;
 
     /**
-     * Get the baseUrl value.
+     * Get the base URL of the Azure Key Vault. e.g. https://myakv.vault.azure.net Type: string (or Expression with resultType string).
      *
      * @return the baseUrl value
      */
@@ -38,7 +38,7 @@ public class AzureKeyVaultLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the baseUrl value.
+     * Set the base URL of the Azure Key Vault. e.g. https://myakv.vault.azure.net Type: string (or Expression with resultType string).
      *
      * @param baseUrl the baseUrl value to set
      * @return the AzureKeyVaultLinkedService object itself.

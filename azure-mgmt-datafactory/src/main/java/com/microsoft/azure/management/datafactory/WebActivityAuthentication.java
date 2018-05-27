@@ -46,7 +46,7 @@ public class WebActivityAuthentication {
     private String resource;
 
     /**
-     * Get the type value.
+     * Get web activity authentication (Basic/ClientCertificate/MSI).
      *
      * @return the type value
      */
@@ -55,7 +55,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Set the type value.
+     * Set web activity authentication (Basic/ClientCertificate/MSI).
      *
      * @param type the type value to set
      * @return the WebActivityAuthentication object itself.
@@ -66,7 +66,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Get the pfx value.
+     * Get base64-encoded contents of a PFX file.
      *
      * @return the pfx value
      */
@@ -75,7 +75,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Set the pfx value.
+     * Set base64-encoded contents of a PFX file.
      *
      * @param pfx the pfx value to set
      * @return the WebActivityAuthentication object itself.
@@ -86,7 +86,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Get the username value.
+     * Get web activity authentication user name for basic authentication.
      *
      * @return the username value
      */
@@ -95,7 +95,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Set the username value.
+     * Set web activity authentication user name for basic authentication.
      *
      * @param username the username value to set
      * @return the WebActivityAuthentication object itself.
@@ -106,7 +106,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Get the password value.
+     * Get password for the PFX file or basic authentication.
      *
      * @return the password value
      */
@@ -115,7 +115,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Set the password value.
+     * Set password for the PFX file or basic authentication.
      *
      * @param password the password value to set
      * @return the WebActivityAuthentication object itself.
@@ -126,7 +126,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Get the resource value.
+     * Get resource for which Azure Auth token will be requested when using MSI Authentication.
      *
      * @return the resource value
      */
@@ -135,7 +135,7 @@ public class WebActivityAuthentication {
     }
 
     /**
-     * Set the resource value.
+     * Set resource for which Azure Auth token will be requested when using MSI Authentication.
      *
      * @param resource the resource value to set
      * @return the WebActivityAuthentication object itself.

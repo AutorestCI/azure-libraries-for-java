@@ -26,7 +26,7 @@ public class DatasetDeflateCompression extends DatasetCompression {
     private DatasetCompressionLevel level;
 
     /**
-     * Get the level value.
+     * Get the Deflate compression level. Possible values include: 'Optimal', 'Fastest'.
      *
      * @return the level value
      */
@@ -35,7 +35,7 @@ public class DatasetDeflateCompression extends DatasetCompression {
     }
 
     /**
-     * Set the level value.
+     * Set the Deflate compression level. Possible values include: 'Optimal', 'Fastest'.
      *
      * @param level the level value to set
      * @return the DatasetDeflateCompression object itself.

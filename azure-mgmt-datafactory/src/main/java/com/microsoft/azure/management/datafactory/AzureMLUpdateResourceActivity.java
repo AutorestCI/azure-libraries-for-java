@@ -43,7 +43,7 @@ public class AzureMLUpdateResourceActivity extends ExecutionActivity {
     private Object trainedModelFilePath;
 
     /**
-     * Get the trainedModelName value.
+     * Get name of the Trained Model module in the Web Service experiment to be updated. Type: string (or Expression with resultType string).
      *
      * @return the trainedModelName value
      */
@@ -52,7 +52,7 @@ public class AzureMLUpdateResourceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the trainedModelName value.
+     * Set name of the Trained Model module in the Web Service experiment to be updated. Type: string (or Expression with resultType string).
      *
      * @param trainedModelName the trainedModelName value to set
      * @return the AzureMLUpdateResourceActivity object itself.
@@ -63,7 +63,7 @@ public class AzureMLUpdateResourceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the trainedModelLinkedServiceName value.
+     * Get name of Azure Storage linked service holding the .ilearner file that will be uploaded by the update operation.
      *
      * @return the trainedModelLinkedServiceName value
      */
@@ -72,7 +72,7 @@ public class AzureMLUpdateResourceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the trainedModelLinkedServiceName value.
+     * Set name of Azure Storage linked service holding the .ilearner file that will be uploaded by the update operation.
      *
      * @param trainedModelLinkedServiceName the trainedModelLinkedServiceName value to set
      * @return the AzureMLUpdateResourceActivity object itself.
@@ -83,7 +83,7 @@ public class AzureMLUpdateResourceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the trainedModelFilePath value.
+     * Get the relative file path in trainedModelLinkedService to represent the .ilearner file that will be uploaded by the update operation.  Type: string (or Expression with resultType string).
      *
      * @return the trainedModelFilePath value
      */
@@ -92,7 +92,7 @@ public class AzureMLUpdateResourceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the trainedModelFilePath value.
+     * Set the relative file path in trainedModelLinkedService to represent the .ilearner file that will be uploaded by the update operation.  Type: string (or Expression with resultType string).
      *
      * @param trainedModelFilePath the trainedModelFilePath value to set
      * @return the AzureMLUpdateResourceActivity object itself.

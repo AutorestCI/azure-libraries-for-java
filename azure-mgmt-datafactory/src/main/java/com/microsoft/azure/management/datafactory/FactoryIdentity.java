@@ -42,7 +42,7 @@ public class FactoryIdentity {
     }
 
     /**
-     * Get the type value.
+     * Get the identity type. Currently the only supported type is 'SystemAssigned'.
      *
      * @return the type value
      */
@@ -51,7 +51,7 @@ public class FactoryIdentity {
     }
 
     /**
-     * Set the type value.
+     * Set the identity type. Currently the only supported type is 'SystemAssigned'.
      *
      * @param type the type value to set
      * @return the FactoryIdentity object itself.
@@ -62,7 +62,7 @@ public class FactoryIdentity {
     }
 
     /**
-     * Get the principalId value.
+     * Get the principal id of the identity.
      *
      * @return the principalId value
      */
@@ -71,7 +71,7 @@ public class FactoryIdentity {
     }
 
     /**
-     * Get the tenantId value.
+     * Get the client tenant id of the identity.
      *
      * @return the tenantId value
      */

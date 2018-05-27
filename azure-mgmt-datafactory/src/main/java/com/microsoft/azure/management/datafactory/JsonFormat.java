@@ -64,7 +64,7 @@ public class JsonFormat extends DatasetStorageFormat {
     private Object jsonPathDefinition;
 
     /**
-     * Get the filePattern value.
+     * Get file pattern of JSON. To be more specific, the way of separating a collection of JSON objects. The default value is 'setOfObjects'. It is case-sensitive. Possible values include: 'setOfObjects', 'arrayOfObjects'.
      *
      * @return the filePattern value
      */
@@ -73,7 +73,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the filePattern value.
+     * Set file pattern of JSON. To be more specific, the way of separating a collection of JSON objects. The default value is 'setOfObjects'. It is case-sensitive. Possible values include: 'setOfObjects', 'arrayOfObjects'.
      *
      * @param filePattern the filePattern value to set
      * @return the JsonFormat object itself.
@@ -84,7 +84,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the nestingSeparator value.
+     * Get the character used to separate nesting levels. Default value is '.' (dot). Type: string (or Expression with resultType string).
      *
      * @return the nestingSeparator value
      */
@@ -93,7 +93,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the nestingSeparator value.
+     * Set the character used to separate nesting levels. Default value is '.' (dot). Type: string (or Expression with resultType string).
      *
      * @param nestingSeparator the nestingSeparator value to set
      * @return the JsonFormat object itself.
@@ -104,7 +104,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the encodingName value.
+     * Get the code page name of the preferred encoding. If not provided, the default value is 'utf-8', unless the byte order mark (BOM) denotes another Unicode encoding. The full list of supported values can be found in the 'Name' column of the table of encodings in the following reference: https://go.microsoft.com/fwlink/?linkid=861078. Type: string (or Expression with resultType string).
      *
      * @return the encodingName value
      */
@@ -113,7 +113,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the encodingName value.
+     * Set the code page name of the preferred encoding. If not provided, the default value is 'utf-8', unless the byte order mark (BOM) denotes another Unicode encoding. The full list of supported values can be found in the 'Name' column of the table of encodings in the following reference: https://go.microsoft.com/fwlink/?linkid=861078. Type: string (or Expression with resultType string).
      *
      * @param encodingName the encodingName value to set
      * @return the JsonFormat object itself.
@@ -124,7 +124,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the jsonNodeReference value.
+     * Get the JSONPath of the JSON array element to be flattened. Example: "$.ArrayPath". Type: string (or Expression with resultType string).
      *
      * @return the jsonNodeReference value
      */
@@ -133,7 +133,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the jsonNodeReference value.
+     * Set the JSONPath of the JSON array element to be flattened. Example: "$.ArrayPath". Type: string (or Expression with resultType string).
      *
      * @param jsonNodeReference the jsonNodeReference value to set
      * @return the JsonFormat object itself.
@@ -144,7 +144,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the jsonPathDefinition value.
+     * Get the JSONPath definition for each column mapping with a customized column name to extract data from JSON file. For fields under root object, start with "$"; for fields inside the array chosen by jsonNodeReference property, start from the array element. Example: {"Column1": "$.Column1Path", "Column2": "Column2PathInArray"}. Type: object (or Expression with resultType object).
      *
      * @return the jsonPathDefinition value
      */
@@ -153,7 +153,7 @@ public class JsonFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the jsonPathDefinition value.
+     * Set the JSONPath definition for each column mapping with a customized column name to extract data from JSON file. For fields under root object, start with "$"; for fields inside the array chosen by jsonNodeReference property, start from the array element. Example: {"Column1": "$.Column1Path", "Column2": "Column2PathInArray"}. Type: object (or Expression with resultType object).
      *
      * @param jsonPathDefinition the jsonPathDefinition value to set
      * @return the JsonFormat object itself.

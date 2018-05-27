@@ -32,7 +32,7 @@ public class HdfsSource extends CopySource {
     private DistcpSettings distcpSettings;
 
     /**
-     * Get the recursive value.
+     * Get if true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the recursive value
      */
@@ -41,7 +41,7 @@ public class HdfsSource extends CopySource {
     }
 
     /**
-     * Set the recursive value.
+     * Set if true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param recursive the recursive value to set
      * @return the HdfsSource object itself.
@@ -52,7 +52,7 @@ public class HdfsSource extends CopySource {
     }
 
     /**
-     * Get the distcpSettings value.
+     * Get specifies Distcp-related settings.
      *
      * @return the distcpSettings value
      */
@@ -61,7 +61,7 @@ public class HdfsSource extends CopySource {
     }
 
     /**
-     * Set the distcpSettings value.
+     * Set specifies Distcp-related settings.
      *
      * @param distcpSettings the distcpSettings value to set
      * @return the HdfsSource object itself.

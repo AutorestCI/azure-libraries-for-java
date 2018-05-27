@@ -40,7 +40,7 @@ public class ErrorResponse {
     private List<ErrorResponse> details;
 
     /**
-     * Get the code value.
+     * Get error code.
      *
      * @return the code value
      */
@@ -49,7 +49,7 @@ public class ErrorResponse {
     }
 
     /**
-     * Set the code value.
+     * Set error code.
      *
      * @param code the code value to set
      * @return the ErrorResponse object itself.
@@ -60,7 +60,7 @@ public class ErrorResponse {
     }
 
     /**
-     * Get the message value.
+     * Get error message.
      *
      * @return the message value
      */
@@ -69,7 +69,7 @@ public class ErrorResponse {
     }
 
     /**
-     * Set the message value.
+     * Set error message.
      *
      * @param message the message value to set
      * @return the ErrorResponse object itself.
@@ -80,7 +80,7 @@ public class ErrorResponse {
     }
 
     /**
-     * Get the target value.
+     * Get property name/path in request associated with error.
      *
      * @return the target value
      */
@@ -89,7 +89,7 @@ public class ErrorResponse {
     }
 
     /**
-     * Set the target value.
+     * Set property name/path in request associated with error.
      *
      * @param target the target value to set
      * @return the ErrorResponse object itself.
@@ -100,7 +100,7 @@ public class ErrorResponse {
     }
 
     /**
-     * Get the details value.
+     * Get array with additional error details.
      *
      * @return the details value
      */
@@ -109,7 +109,7 @@ public class ErrorResponse {
     }
 
     /**
-     * Set the details value.
+     * Set array with additional error details.
      *
      * @param details the details value to set
      * @return the ErrorResponse object itself.

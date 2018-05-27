@@ -71,7 +71,7 @@ public class WebActivity extends ExecutionActivity {
     private List<LinkedServiceReference> linkedServices;
 
     /**
-     * Get the method value.
+     * Get rest API method for target endpoint. Possible values include: 'GET', 'POST', 'PUT', 'DELETE'.
      *
      * @return the method value
      */
@@ -80,7 +80,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the method value.
+     * Set rest API method for target endpoint. Possible values include: 'GET', 'POST', 'PUT', 'DELETE'.
      *
      * @param method the method value to set
      * @return the WebActivity object itself.
@@ -91,7 +91,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the url value.
+     * Get web activity target endpoint and path. Type: string (or Expression with resultType string).
      *
      * @return the url value
      */
@@ -100,7 +100,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the url value.
+     * Set web activity target endpoint and path. Type: string (or Expression with resultType string).
      *
      * @param url the url value to set
      * @return the WebActivity object itself.
@@ -111,7 +111,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the headers value.
+     * Get represents the headers that will be sent to the request. For example, to set the language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with resultType string).
      *
      * @return the headers value
      */
@@ -120,7 +120,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the headers value.
+     * Set represents the headers that will be sent to the request. For example, to set the language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with resultType string).
      *
      * @param headers the headers value to set
      * @return the WebActivity object itself.
@@ -131,7 +131,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the body value.
+     * Get represents the payload that will be sent to the endpoint. Required for POST/PUT method, not allowed for GET method Type: string (or Expression with resultType string).
      *
      * @return the body value
      */
@@ -140,7 +140,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the body value.
+     * Set represents the payload that will be sent to the endpoint. Required for POST/PUT method, not allowed for GET method Type: string (or Expression with resultType string).
      *
      * @param body the body value to set
      * @return the WebActivity object itself.
@@ -151,7 +151,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the authentication value.
+     * Get authentication method used for calling the endpoint.
      *
      * @return the authentication value
      */
@@ -160,7 +160,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the authentication value.
+     * Set authentication method used for calling the endpoint.
      *
      * @param authentication the authentication value to set
      * @return the WebActivity object itself.
@@ -171,7 +171,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the datasets value.
+     * Get list of datasets passed to web endpoint.
      *
      * @return the datasets value
      */
@@ -180,7 +180,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the datasets value.
+     * Set list of datasets passed to web endpoint.
      *
      * @param datasets the datasets value to set
      * @return the WebActivity object itself.
@@ -191,7 +191,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the linkedServices value.
+     * Get list of linked services passed to web endpoint.
      *
      * @return the linkedServices value
      */
@@ -200,7 +200,7 @@ public class WebActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the linkedServices value.
+     * Set list of linked services passed to web endpoint.
      *
      * @param linkedServices the linkedServices value to set
      * @return the WebActivity object itself.

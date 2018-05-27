@@ -64,7 +64,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get the URL of the Magento instance. (i.e. 192.168.222.110/magento3).
      *
      * @return the host value
      */
@@ -73,7 +73,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set the URL of the Magento instance. (i.e. 192.168.222.110/magento3).
      *
      * @param host the host value to set
      * @return the MagentoLinkedService object itself.
@@ -84,7 +84,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessToken value.
+     * Get the access token from Magento.
      *
      * @return the accessToken value
      */
@@ -93,7 +93,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessToken value.
+     * Set the access token from Magento.
      *
      * @param accessToken the accessToken value to set
      * @return the MagentoLinkedService object itself.
@@ -104,7 +104,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -113,7 +113,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the MagentoLinkedService object itself.
@@ -124,7 +124,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -133,7 +133,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the MagentoLinkedService object itself.
@@ -144,7 +144,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -153,7 +153,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the MagentoLinkedService object itself.
@@ -164,7 +164,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -173,7 +173,7 @@ public class MagentoLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the MagentoLinkedService object itself.

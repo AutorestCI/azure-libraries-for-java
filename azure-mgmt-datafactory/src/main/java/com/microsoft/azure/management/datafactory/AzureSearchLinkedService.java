@@ -43,7 +43,7 @@ public class AzureSearchLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the url value.
+     * Get uRL for Azure Search service. Type: string (or Expression with resultType string).
      *
      * @return the url value
      */
@@ -52,7 +52,7 @@ public class AzureSearchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the url value.
+     * Set uRL for Azure Search service. Type: string (or Expression with resultType string).
      *
      * @param url the url value to set
      * @return the AzureSearchLinkedService object itself.
@@ -63,7 +63,7 @@ public class AzureSearchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the key value.
+     * Get admin Key for Azure Search service.
      *
      * @return the key value
      */
@@ -72,7 +72,7 @@ public class AzureSearchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the key value.
+     * Set admin Key for Azure Search service.
      *
      * @param key the key value to set
      * @return the AzureSearchLinkedService object itself.
@@ -83,7 +83,7 @@ public class AzureSearchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -92,7 +92,7 @@ public class AzureSearchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureSearchLinkedService object itself.

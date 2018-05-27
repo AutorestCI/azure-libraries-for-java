@@ -34,13 +34,14 @@ public class PipelineReference {
 
     /**
      * Creates an instance of PipelineReference class.
+     * @param referenceName reference pipeline name.
      */
     public PipelineReference() {
         type = "PipelineReference";
     }
 
     /**
-     * Get the type value.
+     * Get pipeline reference type.
      *
      * @return the type value
      */
@@ -49,7 +50,7 @@ public class PipelineReference {
     }
 
     /**
-     * Set the type value.
+     * Set pipeline reference type.
      *
      * @param type the type value to set
      * @return the PipelineReference object itself.
@@ -60,7 +61,7 @@ public class PipelineReference {
     }
 
     /**
-     * Get the referenceName value.
+     * Get reference pipeline name.
      *
      * @return the referenceName value
      */
@@ -69,7 +70,7 @@ public class PipelineReference {
     }
 
     /**
-     * Set the referenceName value.
+     * Set reference pipeline name.
      *
      * @param referenceName the referenceName value to set
      * @return the PipelineReference object itself.
@@ -80,7 +81,7 @@ public class PipelineReference {
     }
 
     /**
-     * Get the name value.
+     * Get reference name.
      *
      * @return the name value
      */
@@ -89,7 +90,7 @@ public class PipelineReference {
     }
 
     /**
-     * Set the name value.
+     * Set reference name.
      *
      * @param name the name value to set
      * @return the PipelineReference object itself.

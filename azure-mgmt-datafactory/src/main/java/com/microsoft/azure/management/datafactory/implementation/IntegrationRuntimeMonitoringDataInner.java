@@ -29,7 +29,7 @@ public class IntegrationRuntimeMonitoringDataInner {
     private List<IntegrationRuntimeNodeMonitoringData> nodes;
 
     /**
-     * Get the name value.
+     * Get integration runtime name.
      *
      * @return the name value
      */
@@ -38,7 +38,7 @@ public class IntegrationRuntimeMonitoringDataInner {
     }
 
     /**
-     * Set the name value.
+     * Set integration runtime name.
      *
      * @param name the name value to set
      * @return the IntegrationRuntimeMonitoringDataInner object itself.
@@ -49,7 +49,7 @@ public class IntegrationRuntimeMonitoringDataInner {
     }
 
     /**
-     * Get the nodes value.
+     * Get integration runtime node monitoring data.
      *
      * @return the nodes value
      */
@@ -58,7 +58,7 @@ public class IntegrationRuntimeMonitoringDataInner {
     }
 
     /**
-     * Set the nodes value.
+     * Set integration runtime node monitoring data.
      *
      * @param nodes the nodes value to set
      * @return the IntegrationRuntimeMonitoringDataInner object itself.

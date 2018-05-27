@@ -66,7 +66,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the server value.
+     * Get host name of the SAP BW instance. Type: string (or Expression with resultType string).
      *
      * @return the server value
      */
@@ -75,7 +75,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the server value.
+     * Set host name of the SAP BW instance. Type: string (or Expression with resultType string).
      *
      * @param server the server value to set
      * @return the SapBWLinkedService object itself.
@@ -86,7 +86,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the systemNumber value.
+     * Get system number of the BW system. (Usually a two-digit decimal number represented as a string.) Type: string (or Expression with resultType string).
      *
      * @return the systemNumber value
      */
@@ -95,7 +95,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the systemNumber value.
+     * Set system number of the BW system. (Usually a two-digit decimal number represented as a string.) Type: string (or Expression with resultType string).
      *
      * @param systemNumber the systemNumber value to set
      * @return the SapBWLinkedService object itself.
@@ -106,7 +106,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clientId value.
+     * Get client ID of the client on the BW system. (Usually a three-digit decimal number represented as a string) Type: string (or Expression with resultType string).
      *
      * @return the clientId value
      */
@@ -115,7 +115,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clientId value.
+     * Set client ID of the client on the BW system. (Usually a three-digit decimal number represented as a string) Type: string (or Expression with resultType string).
      *
      * @param clientId the clientId value to set
      * @return the SapBWLinkedService object itself.
@@ -126,7 +126,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get username to access the SAP BW server. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -135,7 +135,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set username to access the SAP BW server. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the SapBWLinkedService object itself.
@@ -146,7 +146,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password to access the SAP BW server.
      *
      * @return the password value
      */
@@ -155,7 +155,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password to access the SAP BW server.
      *
      * @param password the password value to set
      * @return the SapBWLinkedService object itself.
@@ -166,7 +166,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -175,7 +175,7 @@ public class SapBWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the SapBWLinkedService object itself.

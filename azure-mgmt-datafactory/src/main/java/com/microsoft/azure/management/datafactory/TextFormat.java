@@ -88,7 +88,7 @@ public class TextFormat extends DatasetStorageFormat {
     private Object firstRowAsHeader;
 
     /**
-     * Get the columnDelimiter value.
+     * Get the column delimiter. Type: string (or Expression with resultType string).
      *
      * @return the columnDelimiter value
      */
@@ -97,7 +97,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the columnDelimiter value.
+     * Set the column delimiter. Type: string (or Expression with resultType string).
      *
      * @param columnDelimiter the columnDelimiter value to set
      * @return the TextFormat object itself.
@@ -108,7 +108,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the rowDelimiter value.
+     * Get the row delimiter. Type: string (or Expression with resultType string).
      *
      * @return the rowDelimiter value
      */
@@ -117,7 +117,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the rowDelimiter value.
+     * Set the row delimiter. Type: string (or Expression with resultType string).
      *
      * @param rowDelimiter the rowDelimiter value to set
      * @return the TextFormat object itself.
@@ -128,7 +128,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the escapeChar value.
+     * Get the escape character. Type: string (or Expression with resultType string).
      *
      * @return the escapeChar value
      */
@@ -137,7 +137,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the escapeChar value.
+     * Set the escape character. Type: string (or Expression with resultType string).
      *
      * @param escapeChar the escapeChar value to set
      * @return the TextFormat object itself.
@@ -148,7 +148,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the quoteChar value.
+     * Get the quote character. Type: string (or Expression with resultType string).
      *
      * @return the quoteChar value
      */
@@ -157,7 +157,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the quoteChar value.
+     * Set the quote character. Type: string (or Expression with resultType string).
      *
      * @param quoteChar the quoteChar value to set
      * @return the TextFormat object itself.
@@ -168,7 +168,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the nullValue value.
+     * Get the null value string. Type: string (or Expression with resultType string).
      *
      * @return the nullValue value
      */
@@ -177,7 +177,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the nullValue value.
+     * Set the null value string. Type: string (or Expression with resultType string).
      *
      * @param nullValue the nullValue value to set
      * @return the TextFormat object itself.
@@ -188,7 +188,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the encodingName value.
+     * Get the code page name of the preferred encoding. If miss, the default value is ΓÇ£utf-8ΓÇ¥, unless BOM denotes another Unicode encoding. Refer to the ΓÇ£NameΓÇ¥ column of the table in the following link to set supported values: https://msdn.microsoft.com/library/system.text.encoding.aspx. Type: string (or Expression with resultType string).
      *
      * @return the encodingName value
      */
@@ -197,7 +197,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the encodingName value.
+     * Set the code page name of the preferred encoding. If miss, the default value is ΓÇ£utf-8ΓÇ¥, unless BOM denotes another Unicode encoding. Refer to the ΓÇ£NameΓÇ¥ column of the table in the following link to set supported values: https://msdn.microsoft.com/library/system.text.encoding.aspx. Type: string (or Expression with resultType string).
      *
      * @param encodingName the encodingName value to set
      * @return the TextFormat object itself.
@@ -208,7 +208,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the treatEmptyAsNull value.
+     * Get treat empty column values in the text file as null. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the treatEmptyAsNull value
      */
@@ -217,7 +217,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the treatEmptyAsNull value.
+     * Set treat empty column values in the text file as null. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param treatEmptyAsNull the treatEmptyAsNull value to set
      * @return the TextFormat object itself.
@@ -228,7 +228,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the skipLineCount value.
+     * Get the number of lines/rows to be skipped when parsing text files. The default value is 0. Type: integer (or Expression with resultType integer).
      *
      * @return the skipLineCount value
      */
@@ -237,7 +237,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the skipLineCount value.
+     * Set the number of lines/rows to be skipped when parsing text files. The default value is 0. Type: integer (or Expression with resultType integer).
      *
      * @param skipLineCount the skipLineCount value to set
      * @return the TextFormat object itself.
@@ -248,7 +248,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Get the firstRowAsHeader value.
+     * Get when used as input, treat the first row of data as headers. When used as output,write the headers into the output as the first row of data. The default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the firstRowAsHeader value
      */
@@ -257,7 +257,7 @@ public class TextFormat extends DatasetStorageFormat {
     }
 
     /**
-     * Set the firstRowAsHeader value.
+     * Set when used as input, treat the first row of data as headers. When used as output,write the headers into the output as the first row of data. The default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param firstRowAsHeader the firstRowAsHeader value to set
      * @return the TextFormat object itself.

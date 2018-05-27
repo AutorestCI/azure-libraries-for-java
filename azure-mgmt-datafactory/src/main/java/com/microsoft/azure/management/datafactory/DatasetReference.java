@@ -35,13 +35,14 @@ public class DatasetReference {
 
     /**
      * Creates an instance of DatasetReference class.
+     * @param referenceName reference dataset name.
      */
     public DatasetReference() {
         type = "DatasetReference";
     }
 
     /**
-     * Get the type value.
+     * Get dataset reference type.
      *
      * @return the type value
      */
@@ -50,7 +51,7 @@ public class DatasetReference {
     }
 
     /**
-     * Set the type value.
+     * Set dataset reference type.
      *
      * @param type the type value to set
      * @return the DatasetReference object itself.
@@ -61,7 +62,7 @@ public class DatasetReference {
     }
 
     /**
-     * Get the referenceName value.
+     * Get reference dataset name.
      *
      * @return the referenceName value
      */
@@ -70,7 +71,7 @@ public class DatasetReference {
     }
 
     /**
-     * Set the referenceName value.
+     * Set reference dataset name.
      *
      * @param referenceName the referenceName value to set
      * @return the DatasetReference object itself.
@@ -81,7 +82,7 @@ public class DatasetReference {
     }
 
     /**
-     * Get the parameters value.
+     * Get arguments for dataset.
      *
      * @return the parameters value
      */
@@ -90,7 +91,7 @@ public class DatasetReference {
     }
 
     /**
-     * Set the parameters value.
+     * Set arguments for dataset.
      *
      * @param parameters the parameters value to set
      * @return the DatasetReference object itself.

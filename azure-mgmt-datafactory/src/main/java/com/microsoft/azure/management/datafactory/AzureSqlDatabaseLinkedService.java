@@ -58,7 +58,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @return the connectionString value
      */
@@ -67,7 +67,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the connectionString value.
+     * Set the connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @param connectionString the connectionString value to set
      * @return the AzureSqlDatabaseLinkedService object itself.
@@ -78,7 +78,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalId value.
+     * Get the ID of the service principal used to authenticate against Azure SQL Database. Type: string (or Expression with resultType string).
      *
      * @return the servicePrincipalId value
      */
@@ -87,7 +87,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalId value.
+     * Set the ID of the service principal used to authenticate against Azure SQL Database. Type: string (or Expression with resultType string).
      *
      * @param servicePrincipalId the servicePrincipalId value to set
      * @return the AzureSqlDatabaseLinkedService object itself.
@@ -98,7 +98,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalKey value.
+     * Get the key of the service principal used to authenticate against Azure SQL Database.
      *
      * @return the servicePrincipalKey value
      */
@@ -107,7 +107,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalKey value.
+     * Set the key of the service principal used to authenticate against Azure SQL Database.
      *
      * @param servicePrincipalKey the servicePrincipalKey value to set
      * @return the AzureSqlDatabaseLinkedService object itself.
@@ -118,7 +118,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the tenant value.
+     * Get the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @return the tenant value
      */
@@ -127,7 +127,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the tenant value.
+     * Set the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @param tenant the tenant value to set
      * @return the AzureSqlDatabaseLinkedService object itself.
@@ -138,7 +138,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -147,7 +147,7 @@ public class AzureSqlDatabaseLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureSqlDatabaseLinkedService object itself.

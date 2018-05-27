@@ -28,7 +28,7 @@ public class ParameterSpecification {
     private Object defaultValue;
 
     /**
-     * Get the type value.
+     * Get parameter type. Possible values include: 'Object', 'String', 'Int', 'Float', 'Bool', 'Array', 'SecureString'.
      *
      * @return the type value
      */
@@ -37,7 +37,7 @@ public class ParameterSpecification {
     }
 
     /**
-     * Set the type value.
+     * Set parameter type. Possible values include: 'Object', 'String', 'Int', 'Float', 'Bool', 'Array', 'SecureString'.
      *
      * @param type the type value to set
      * @return the ParameterSpecification object itself.
@@ -48,7 +48,7 @@ public class ParameterSpecification {
     }
 
     /**
-     * Get the defaultValue value.
+     * Get default value of parameter.
      *
      * @return the defaultValue value
      */
@@ -57,7 +57,7 @@ public class ParameterSpecification {
     }
 
     /**
-     * Set the defaultValue value.
+     * Set default value of parameter.
      *
      * @param defaultValue the defaultValue value to set
      * @return the ParameterSpecification object itself.

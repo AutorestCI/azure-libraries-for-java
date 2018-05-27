@@ -40,7 +40,7 @@ public class TriggerResourceInner extends SubResource {
     private String etag;
 
     /**
-     * Get the properties value.
+     * Get properties of the trigger.
      *
      * @return the properties value
      */
@@ -49,7 +49,7 @@ public class TriggerResourceInner extends SubResource {
     }
 
     /**
-     * Set the properties value.
+     * Set properties of the trigger.
      *
      * @param properties the properties value to set
      * @return the TriggerResourceInner object itself.
@@ -60,7 +60,7 @@ public class TriggerResourceInner extends SubResource {
     }
 
     /**
-     * Get the name value.
+     * Get the resource name.
      *
      * @return the name value
      */
@@ -69,7 +69,7 @@ public class TriggerResourceInner extends SubResource {
     }
 
     /**
-     * Get the type value.
+     * Get the resource type.
      *
      * @return the type value
      */
@@ -78,7 +78,7 @@ public class TriggerResourceInner extends SubResource {
     }
 
     /**
-     * Get the etag value.
+     * Get etag identifies change in the resource.
      *
      * @return the etag value
      */

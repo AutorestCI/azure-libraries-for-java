@@ -41,7 +41,7 @@ public class SqlSource extends CopySource {
     private Map<String, StoredProcedureParameter> storedProcedureParameters;
 
     /**
-     * Get the sqlReaderQuery value.
+     * Get sQL reader query. Type: string (or Expression with resultType string).
      *
      * @return the sqlReaderQuery value
      */
@@ -50,7 +50,7 @@ public class SqlSource extends CopySource {
     }
 
     /**
-     * Set the sqlReaderQuery value.
+     * Set sQL reader query. Type: string (or Expression with resultType string).
      *
      * @param sqlReaderQuery the sqlReaderQuery value to set
      * @return the SqlSource object itself.
@@ -61,7 +61,7 @@ public class SqlSource extends CopySource {
     }
 
     /**
-     * Get the sqlReaderStoredProcedureName value.
+     * Get name of the stored procedure for a SQL Database source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
      *
      * @return the sqlReaderStoredProcedureName value
      */
@@ -70,7 +70,7 @@ public class SqlSource extends CopySource {
     }
 
     /**
-     * Set the sqlReaderStoredProcedureName value.
+     * Set name of the stored procedure for a SQL Database source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
      *
      * @param sqlReaderStoredProcedureName the sqlReaderStoredProcedureName value to set
      * @return the SqlSource object itself.
@@ -81,7 +81,7 @@ public class SqlSource extends CopySource {
     }
 
     /**
-     * Get the storedProcedureParameters value.
+     * Get value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
      *
      * @return the storedProcedureParameters value
      */
@@ -90,7 +90,7 @@ public class SqlSource extends CopySource {
     }
 
     /**
-     * Set the storedProcedureParameters value.
+     * Set value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
      *
      * @param storedProcedureParameters the storedProcedureParameters value to set
      * @return the SqlSource object itself.

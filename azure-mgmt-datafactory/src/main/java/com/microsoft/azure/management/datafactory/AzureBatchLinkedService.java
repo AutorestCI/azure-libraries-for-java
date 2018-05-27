@@ -63,7 +63,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the accountName value.
+     * Get the Azure Batch account name. Type: string (or Expression with resultType string).
      *
      * @return the accountName value
      */
@@ -72,7 +72,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accountName value.
+     * Set the Azure Batch account name. Type: string (or Expression with resultType string).
      *
      * @param accountName the accountName value to set
      * @return the AzureBatchLinkedService object itself.
@@ -83,7 +83,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessKey value.
+     * Get the Azure Batch account access key.
      *
      * @return the accessKey value
      */
@@ -92,7 +92,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessKey value.
+     * Set the Azure Batch account access key.
      *
      * @param accessKey the accessKey value to set
      * @return the AzureBatchLinkedService object itself.
@@ -103,7 +103,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the batchUri value.
+     * Get the Azure Batch URI. Type: string (or Expression with resultType string).
      *
      * @return the batchUri value
      */
@@ -112,7 +112,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the batchUri value.
+     * Set the Azure Batch URI. Type: string (or Expression with resultType string).
      *
      * @param batchUri the batchUri value to set
      * @return the AzureBatchLinkedService object itself.
@@ -123,7 +123,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the poolName value.
+     * Get the Azure Batch pool name. Type: string (or Expression with resultType string).
      *
      * @return the poolName value
      */
@@ -132,7 +132,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the poolName value.
+     * Set the Azure Batch pool name. Type: string (or Expression with resultType string).
      *
      * @param poolName the poolName value to set
      * @return the AzureBatchLinkedService object itself.
@@ -143,7 +143,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get the Azure Storage linked service reference.
      *
      * @return the linkedServiceName value
      */
@@ -152,7 +152,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set the Azure Storage linked service reference.
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the AzureBatchLinkedService object itself.
@@ -163,7 +163,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -172,7 +172,7 @@ public class AzureBatchLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureBatchLinkedService object itself.

@@ -40,7 +40,7 @@ public class IntegrationRuntimeResourceInner extends SubResource {
     private String etag;
 
     /**
-     * Get the properties value.
+     * Get integration runtime properties.
      *
      * @return the properties value
      */
@@ -49,7 +49,7 @@ public class IntegrationRuntimeResourceInner extends SubResource {
     }
 
     /**
-     * Set the properties value.
+     * Set integration runtime properties.
      *
      * @param properties the properties value to set
      * @return the IntegrationRuntimeResourceInner object itself.
@@ -60,7 +60,7 @@ public class IntegrationRuntimeResourceInner extends SubResource {
     }
 
     /**
-     * Get the name value.
+     * Get the resource name.
      *
      * @return the name value
      */
@@ -69,7 +69,7 @@ public class IntegrationRuntimeResourceInner extends SubResource {
     }
 
     /**
-     * Get the type value.
+     * Get the resource type.
      *
      * @return the type value
      */
@@ -78,7 +78,7 @@ public class IntegrationRuntimeResourceInner extends SubResource {
     }
 
     /**
-     * Get the etag value.
+     * Get etag identifies change in the resource.
      *
      * @return the etag value
      */

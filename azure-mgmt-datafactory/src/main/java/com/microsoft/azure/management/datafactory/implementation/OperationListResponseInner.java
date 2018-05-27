@@ -29,7 +29,7 @@ public class OperationListResponseInner {
     private String nextLink;
 
     /**
-     * Get the value value.
+     * Get list of Data Factory operations supported by the Data Factory resource provider.
      *
      * @return the value value
      */
@@ -38,7 +38,7 @@ public class OperationListResponseInner {
     }
 
     /**
-     * Set the value value.
+     * Set list of Data Factory operations supported by the Data Factory resource provider.
      *
      * @param value the value value to set
      * @return the OperationListResponseInner object itself.
@@ -49,7 +49,7 @@ public class OperationListResponseInner {
     }
 
     /**
-     * Get the nextLink value.
+     * Get the link to the next page of results, if any remaining results exist.
      *
      * @return the nextLink value
      */
@@ -58,7 +58,7 @@ public class OperationListResponseInner {
     }
 
     /**
-     * Set the nextLink value.
+     * Set the link to the next page of results, if any remaining results exist.
      *
      * @param nextLink the nextLink value to set
      * @return the OperationListResponseInner object itself.

@@ -46,7 +46,7 @@ public class SalesforceSink extends CopySink {
     private Object ignoreNullValues;
 
     /**
-     * Get the writeBehavior value.
+     * Get the write behavior for the operation. Default is Insert. Possible values include: 'Insert', 'Upsert'.
      *
      * @return the writeBehavior value
      */
@@ -55,7 +55,7 @@ public class SalesforceSink extends CopySink {
     }
 
     /**
-     * Set the writeBehavior value.
+     * Set the write behavior for the operation. Default is Insert. Possible values include: 'Insert', 'Upsert'.
      *
      * @param writeBehavior the writeBehavior value to set
      * @return the SalesforceSink object itself.
@@ -66,7 +66,7 @@ public class SalesforceSink extends CopySink {
     }
 
     /**
-     * Get the externalIdFieldName value.
+     * Get the name of the external ID field for upsert operation. Default value is 'Id' column. Type: string (or Expression with resultType string).
      *
      * @return the externalIdFieldName value
      */
@@ -75,7 +75,7 @@ public class SalesforceSink extends CopySink {
     }
 
     /**
-     * Set the externalIdFieldName value.
+     * Set the name of the external ID field for upsert operation. Default value is 'Id' column. Type: string (or Expression with resultType string).
      *
      * @param externalIdFieldName the externalIdFieldName value to set
      * @return the SalesforceSink object itself.
@@ -86,7 +86,7 @@ public class SalesforceSink extends CopySink {
     }
 
     /**
-     * Get the ignoreNullValues value.
+     * Get the flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean).
      *
      * @return the ignoreNullValues value
      */
@@ -95,7 +95,7 @@ public class SalesforceSink extends CopySink {
     }
 
     /**
-     * Set the ignoreNullValues value.
+     * Set the flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean).
      *
      * @param ignoreNullValues the ignoreNullValues value to set
      * @return the SalesforceSink object itself.

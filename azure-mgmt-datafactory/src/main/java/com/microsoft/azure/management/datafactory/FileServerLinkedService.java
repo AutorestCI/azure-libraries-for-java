@@ -50,7 +50,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get host name of the server. Type: string (or Expression with resultType string).
      *
      * @return the host value
      */
@@ -59,7 +59,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set host name of the server. Type: string (or Expression with resultType string).
      *
      * @param host the host value to set
      * @return the FileServerLinkedService object itself.
@@ -70,7 +70,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userId value.
+     * Get user ID to logon the server. Type: string (or Expression with resultType string).
      *
      * @return the userId value
      */
@@ -79,7 +79,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userId value.
+     * Set user ID to logon the server. Type: string (or Expression with resultType string).
      *
      * @param userId the userId value to set
      * @return the FileServerLinkedService object itself.
@@ -90,7 +90,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password to logon the server.
      *
      * @return the password value
      */
@@ -99,7 +99,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password to logon the server.
      *
      * @param password the password value to set
      * @return the FileServerLinkedService object itself.
@@ -110,7 +110,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -119,7 +119,7 @@ public class FileServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the FileServerLinkedService object itself.

@@ -41,7 +41,7 @@ public class ManagedIntegrationRuntimeError {
     private String message;
 
     /**
-     * Get the time value.
+     * Get the time when the error occurred.
      *
      * @return the time value
      */
@@ -50,7 +50,7 @@ public class ManagedIntegrationRuntimeError {
     }
 
     /**
-     * Get the code value.
+     * Get error code.
      *
      * @return the code value
      */
@@ -59,7 +59,7 @@ public class ManagedIntegrationRuntimeError {
     }
 
     /**
-     * Get the parameters value.
+     * Get managed integration runtime error parameters.
      *
      * @return the parameters value
      */
@@ -68,7 +68,7 @@ public class ManagedIntegrationRuntimeError {
     }
 
     /**
-     * Get the message value.
+     * Get error message.
      *
      * @return the message value
      */

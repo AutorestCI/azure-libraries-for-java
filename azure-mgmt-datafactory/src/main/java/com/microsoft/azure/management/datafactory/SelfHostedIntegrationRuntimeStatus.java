@@ -123,7 +123,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     private String latestVersion;
 
     /**
-     * Get the createTime value.
+     * Get the time at which the integration runtime was created, in ISO8601 format.
      *
      * @return the createTime value
      */
@@ -132,7 +132,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the taskQueueId value.
+     * Get the task queue id of the integration runtime.
      *
      * @return the taskQueueId value
      */
@@ -141,7 +141,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the internalChannelEncryption value.
+     * Get it is used to set the encryption mode for node-node communication channel (when more than 2 self-hosted integration runtime nodes exist). Possible values include: 'NotSet', 'SslEncrypted', 'NotEncrypted'.
      *
      * @return the internalChannelEncryption value
      */
@@ -150,7 +150,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the version value.
+     * Get version of the integration runtime.
      *
      * @return the version value
      */
@@ -159,7 +159,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the nodes value.
+     * Get the list of nodes for this integration runtime.
      *
      * @return the nodes value
      */
@@ -168,7 +168,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Set the nodes value.
+     * Set the list of nodes for this integration runtime.
      *
      * @param nodes the nodes value to set
      * @return the SelfHostedIntegrationRuntimeStatus object itself.
@@ -179,7 +179,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the scheduledUpdateDate value.
+     * Get the date at which the integration runtime will be scheduled to update, in ISO8601 format.
      *
      * @return the scheduledUpdateDate value
      */
@@ -188,7 +188,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the updateDelayOffset value.
+     * Get the time in the date scheduled by service to update the integration runtime, e.g., PT03H is 3 hours.
      *
      * @return the updateDelayOffset value
      */
@@ -197,7 +197,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the localTimeZoneOffset value.
+     * Get the local time zone offset in hours.
      *
      * @return the localTimeZoneOffset value
      */
@@ -206,7 +206,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the capabilities value.
+     * Get object with additional information about integration runtime capabilities.
      *
      * @return the capabilities value
      */
@@ -215,7 +215,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the serviceUrls value.
+     * Get the URLs for the services used in integration runtime backend service.
      *
      * @return the serviceUrls value
      */
@@ -224,7 +224,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the autoUpdate value.
+     * Get whether Self-hosted integration runtime auto update has been turned on. Possible values include: 'On', 'Off'.
      *
      * @return the autoUpdate value
      */
@@ -233,7 +233,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the versionStatus value.
+     * Get status of the integration runtime version.
      *
      * @return the versionStatus value
      */
@@ -242,7 +242,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the links value.
+     * Get the list of linked integration runtimes that are created to share with this integration runtime.
      *
      * @return the links value
      */
@@ -251,7 +251,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Set the links value.
+     * Set the list of linked integration runtimes that are created to share with this integration runtime.
      *
      * @param links the links value to set
      * @return the SelfHostedIntegrationRuntimeStatus object itself.
@@ -262,7 +262,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the pushedVersion value.
+     * Get the version that the integration runtime is going to update to.
      *
      * @return the pushedVersion value
      */
@@ -271,7 +271,7 @@ public class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus
     }
 
     /**
-     * Get the latestVersion value.
+     * Get the latest version on download center.
      *
      * @return the latestVersion value
      */

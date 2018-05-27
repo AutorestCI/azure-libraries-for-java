@@ -34,7 +34,7 @@ public class MultiplePipelineTrigger extends TriggerInner {
     private List<TriggerPipelineReference> pipelines;
 
     /**
-     * Get the pipelines value.
+     * Get pipelines that need to be started.
      *
      * @return the pipelines value
      */
@@ -43,7 +43,7 @@ public class MultiplePipelineTrigger extends TriggerInner {
     }
 
     /**
-     * Set the pipelines value.
+     * Set pipelines that need to be started.
      *
      * @param pipelines the pipelines value to set
      * @return the MultiplePipelineTrigger object itself.

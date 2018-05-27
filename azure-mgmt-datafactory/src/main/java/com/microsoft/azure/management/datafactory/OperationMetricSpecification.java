@@ -70,7 +70,7 @@ public class OperationMetricSpecification {
     private List<OperationMetricAvailability> availabilities;
 
     /**
-     * Get the name value.
+     * Get the name of the metric.
      *
      * @return the name value
      */
@@ -79,7 +79,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the metric.
      *
      * @param name the name value to set
      * @return the OperationMetricSpecification object itself.
@@ -90,7 +90,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the displayName value.
+     * Get localized display name of the metric.
      *
      * @return the displayName value
      */
@@ -99,7 +99,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the displayName value.
+     * Set localized display name of the metric.
      *
      * @param displayName the displayName value to set
      * @return the OperationMetricSpecification object itself.
@@ -110,7 +110,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the displayDescription value.
+     * Get the description of the metric.
      *
      * @return the displayDescription value
      */
@@ -119,7 +119,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the displayDescription value.
+     * Set the description of the metric.
      *
      * @param displayDescription the displayDescription value to set
      * @return the OperationMetricSpecification object itself.
@@ -130,7 +130,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the unit value.
+     * Get the unit that the metric is measured in.
      *
      * @return the unit value
      */
@@ -139,7 +139,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the unit value.
+     * Set the unit that the metric is measured in.
      *
      * @param unit the unit value to set
      * @return the OperationMetricSpecification object itself.
@@ -150,7 +150,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the aggregationType value.
+     * Get the type of metric aggregation.
      *
      * @return the aggregationType value
      */
@@ -159,7 +159,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the aggregationType value.
+     * Set the type of metric aggregation.
      *
      * @param aggregationType the aggregationType value to set
      * @return the OperationMetricSpecification object itself.
@@ -170,7 +170,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the enableRegionalMdmAccount value.
+     * Get whether or not the service is using regional MDM accounts.
      *
      * @return the enableRegionalMdmAccount value
      */
@@ -179,7 +179,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the enableRegionalMdmAccount value.
+     * Set whether or not the service is using regional MDM accounts.
      *
      * @param enableRegionalMdmAccount the enableRegionalMdmAccount value to set
      * @return the OperationMetricSpecification object itself.
@@ -190,7 +190,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the sourceMdmAccount value.
+     * Get the name of the MDM account.
      *
      * @return the sourceMdmAccount value
      */
@@ -199,7 +199,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the sourceMdmAccount value.
+     * Set the name of the MDM account.
      *
      * @param sourceMdmAccount the sourceMdmAccount value to set
      * @return the OperationMetricSpecification object itself.
@@ -210,7 +210,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the sourceMdmNamespace value.
+     * Get the name of the MDM namespace.
      *
      * @return the sourceMdmNamespace value
      */
@@ -219,7 +219,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the sourceMdmNamespace value.
+     * Set the name of the MDM namespace.
      *
      * @param sourceMdmNamespace the sourceMdmNamespace value to set
      * @return the OperationMetricSpecification object itself.
@@ -230,7 +230,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Get the availabilities value.
+     * Get defines how often data for metrics becomes available.
      *
      * @return the availabilities value
      */
@@ -239,7 +239,7 @@ public class OperationMetricSpecification {
     }
 
     /**
-     * Set the availabilities value.
+     * Set defines how often data for metrics becomes available.
      *
      * @param availabilities the availabilities value to set
      * @return the OperationMetricSpecification object itself.

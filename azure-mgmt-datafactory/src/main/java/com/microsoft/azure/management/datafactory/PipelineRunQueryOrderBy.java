@@ -28,7 +28,7 @@ public class PipelineRunQueryOrderBy {
     private PipelineRunQueryOrder order;
 
     /**
-     * Get the orderBy value.
+     * Get parameter name to be used for order by. Possible values include: 'RunStart', 'RunEnd'.
      *
      * @return the orderBy value
      */
@@ -37,7 +37,7 @@ public class PipelineRunQueryOrderBy {
     }
 
     /**
-     * Set the orderBy value.
+     * Set parameter name to be used for order by. Possible values include: 'RunStart', 'RunEnd'.
      *
      * @param orderBy the orderBy value to set
      * @return the PipelineRunQueryOrderBy object itself.
@@ -48,7 +48,7 @@ public class PipelineRunQueryOrderBy {
     }
 
     /**
-     * Get the order value.
+     * Get sorting order of the parameter. Possible values include: 'ASC', 'DESC'.
      *
      * @return the order value
      */
@@ -57,7 +57,7 @@ public class PipelineRunQueryOrderBy {
     }
 
     /**
-     * Set the order value.
+     * Set sorting order of the parameter. Possible values include: 'ASC', 'DESC'.
      *
      * @param order the order value to set
      * @return the PipelineRunQueryOrderBy object itself.

@@ -52,7 +52,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     private String scope;
 
     /**
-     * Get the blobPathBeginsWith value.
+     * Get the blob path must begin with the pattern provided for trigger to fire. For example, '/records/blobs/december/' will only fire the trigger for blobs in the december folder under the records container. At least one of these must be provided: blobPathBeginsWith, blobPathEndsWith.
      *
      * @return the blobPathBeginsWith value
      */
@@ -61,7 +61,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the blobPathBeginsWith value.
+     * Set the blob path must begin with the pattern provided for trigger to fire. For example, '/records/blobs/december/' will only fire the trigger for blobs in the december folder under the records container. At least one of these must be provided: blobPathBeginsWith, blobPathEndsWith.
      *
      * @param blobPathBeginsWith the blobPathBeginsWith value to set
      * @return the BlobEventsTrigger object itself.
@@ -72,7 +72,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Get the blobPathEndsWith value.
+     * Get the blob path must end with the pattern provided for trigger to fire. For example, 'december/boxes.csv' will only fire the trigger for blobs named boxes in a december folder. At least one of these must be provided: blobPathBeginsWith, blobPathEndsWith.
      *
      * @return the blobPathEndsWith value
      */
@@ -81,7 +81,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the blobPathEndsWith value.
+     * Set the blob path must end with the pattern provided for trigger to fire. For example, 'december/boxes.csv' will only fire the trigger for blobs named boxes in a december folder. At least one of these must be provided: blobPathBeginsWith, blobPathEndsWith.
      *
      * @param blobPathEndsWith the blobPathEndsWith value to set
      * @return the BlobEventsTrigger object itself.
@@ -92,7 +92,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Get the events value.
+     * Get the type of events that cause this trigger to fire.
      *
      * @return the events value
      */
@@ -101,7 +101,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the events value.
+     * Set the type of events that cause this trigger to fire.
      *
      * @param events the events value to set
      * @return the BlobEventsTrigger object itself.
@@ -112,7 +112,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Get the scope value.
+     * Get the ARM resource ID of the Storage Account.
      *
      * @return the scope value
      */
@@ -121,7 +121,7 @@ public class BlobEventsTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the scope value.
+     * Set the ARM resource ID of the Storage Account.
      *
      * @param scope the scope value to set
      * @return the BlobEventsTrigger object itself.

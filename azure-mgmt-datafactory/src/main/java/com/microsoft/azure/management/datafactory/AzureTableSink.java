@@ -47,7 +47,7 @@ public class AzureTableSink extends CopySink {
     private Object azureTableInsertType;
 
     /**
-     * Get the azureTableDefaultPartitionKeyValue value.
+     * Get azure Table default partition key value. Type: string (or Expression with resultType string).
      *
      * @return the azureTableDefaultPartitionKeyValue value
      */
@@ -56,7 +56,7 @@ public class AzureTableSink extends CopySink {
     }
 
     /**
-     * Set the azureTableDefaultPartitionKeyValue value.
+     * Set azure Table default partition key value. Type: string (or Expression with resultType string).
      *
      * @param azureTableDefaultPartitionKeyValue the azureTableDefaultPartitionKeyValue value to set
      * @return the AzureTableSink object itself.
@@ -67,7 +67,7 @@ public class AzureTableSink extends CopySink {
     }
 
     /**
-     * Get the azureTablePartitionKeyName value.
+     * Get azure Table partition key name. Type: string (or Expression with resultType string).
      *
      * @return the azureTablePartitionKeyName value
      */
@@ -76,7 +76,7 @@ public class AzureTableSink extends CopySink {
     }
 
     /**
-     * Set the azureTablePartitionKeyName value.
+     * Set azure Table partition key name. Type: string (or Expression with resultType string).
      *
      * @param azureTablePartitionKeyName the azureTablePartitionKeyName value to set
      * @return the AzureTableSink object itself.
@@ -87,7 +87,7 @@ public class AzureTableSink extends CopySink {
     }
 
     /**
-     * Get the azureTableRowKeyName value.
+     * Get azure Table row key name. Type: string (or Expression with resultType string).
      *
      * @return the azureTableRowKeyName value
      */
@@ -96,7 +96,7 @@ public class AzureTableSink extends CopySink {
     }
 
     /**
-     * Set the azureTableRowKeyName value.
+     * Set azure Table row key name. Type: string (or Expression with resultType string).
      *
      * @param azureTableRowKeyName the azureTableRowKeyName value to set
      * @return the AzureTableSink object itself.
@@ -107,7 +107,7 @@ public class AzureTableSink extends CopySink {
     }
 
     /**
-     * Get the azureTableInsertType value.
+     * Get azure Table insert type. Type: string (or Expression with resultType string).
      *
      * @return the azureTableInsertType value
      */
@@ -116,7 +116,7 @@ public class AzureTableSink extends CopySink {
     }
 
     /**
-     * Set the azureTableInsertType value.
+     * Set azure Table insert type. Type: string (or Expression with resultType string).
      *
      * @param azureTableInsertType the azureTableInsertType value to set
      * @return the AzureTableSink object itself.

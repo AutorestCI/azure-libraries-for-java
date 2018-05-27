@@ -28,7 +28,7 @@ public class IntegrationRuntimeRemoveNodeRequest {
     private String nodeName;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -37,7 +37,7 @@ public class IntegrationRuntimeRemoveNodeRequest {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeRemoveNodeRequest object itself.
@@ -48,7 +48,7 @@ public class IntegrationRuntimeRemoveNodeRequest {
     }
 
     /**
-     * Get the nodeName value.
+     * Get the name of the node to be removed.
      *
      * @return the nodeName value
      */
@@ -57,7 +57,7 @@ public class IntegrationRuntimeRemoveNodeRequest {
     }
 
     /**
-     * Set the nodeName value.
+     * Set the name of the node to be removed.
      *
      * @param nodeName the nodeName value to set
      * @return the IntegrationRuntimeRemoveNodeRequest object itself.

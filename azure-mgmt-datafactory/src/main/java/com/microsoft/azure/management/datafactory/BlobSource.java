@@ -40,7 +40,7 @@ public class BlobSource extends CopySource {
     private Object recursive;
 
     /**
-     * Get the treatEmptyAsNull value.
+     * Get treat empty as null. Type: boolean (or Expression with resultType boolean).
      *
      * @return the treatEmptyAsNull value
      */
@@ -49,7 +49,7 @@ public class BlobSource extends CopySource {
     }
 
     /**
-     * Set the treatEmptyAsNull value.
+     * Set treat empty as null. Type: boolean (or Expression with resultType boolean).
      *
      * @param treatEmptyAsNull the treatEmptyAsNull value to set
      * @return the BlobSource object itself.
@@ -60,7 +60,7 @@ public class BlobSource extends CopySource {
     }
 
     /**
-     * Get the skipHeaderLineCount value.
+     * Get number of header lines to skip from each blob. Type: integer (or Expression with resultType integer).
      *
      * @return the skipHeaderLineCount value
      */
@@ -69,7 +69,7 @@ public class BlobSource extends CopySource {
     }
 
     /**
-     * Set the skipHeaderLineCount value.
+     * Set number of header lines to skip from each blob. Type: integer (or Expression with resultType integer).
      *
      * @param skipHeaderLineCount the skipHeaderLineCount value to set
      * @return the BlobSource object itself.
@@ -80,7 +80,7 @@ public class BlobSource extends CopySource {
     }
 
     /**
-     * Get the recursive value.
+     * Get if true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the recursive value
      */
@@ -89,7 +89,7 @@ public class BlobSource extends CopySource {
     }
 
     /**
-     * Set the recursive value.
+     * Set if true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param recursive the recursive value to set
      * @return the BlobSource object itself.

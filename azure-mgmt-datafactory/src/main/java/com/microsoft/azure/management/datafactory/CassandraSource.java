@@ -40,7 +40,7 @@ public class CassandraSource extends CopySource {
     private CassandraSourceReadConsistencyLevels consistencyLevel;
 
     /**
-     * Get the query value.
+     * Get database query. Should be a SQL-92 query expression or Cassandra Query Language (CQL) command. Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -49,7 +49,7 @@ public class CassandraSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set database query. Should be a SQL-92 query expression or Cassandra Query Language (CQL) command. Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the CassandraSource object itself.
@@ -60,7 +60,7 @@ public class CassandraSource extends CopySource {
     }
 
     /**
-     * Get the consistencyLevel value.
+     * Get the consistency level specifies how many Cassandra servers must respond to a read request before returning data to the client application. Cassandra checks the specified number of Cassandra servers for data to satisfy the read request. Must be one of cassandraSourceReadConsistencyLevels. The default value is 'ONE'. It is case-insensitive. Possible values include: 'ALL', 'EACH_QUORUM', 'QUORUM', 'LOCAL_QUORUM', 'ONE', 'TWO', 'THREE', 'LOCAL_ONE', 'SERIAL', 'LOCAL_SERIAL'.
      *
      * @return the consistencyLevel value
      */
@@ -69,7 +69,7 @@ public class CassandraSource extends CopySource {
     }
 
     /**
-     * Set the consistencyLevel value.
+     * Set the consistency level specifies how many Cassandra servers must respond to a read request before returning data to the client application. Cassandra checks the specified number of Cassandra servers for data to satisfy the read request. Must be one of cassandraSourceReadConsistencyLevels. The default value is 'ONE'. It is case-insensitive. Possible values include: 'ALL', 'EACH_QUORUM', 'QUORUM', 'LOCAL_QUORUM', 'ONE', 'TWO', 'THREE', 'LOCAL_ONE', 'SERIAL', 'LOCAL_SERIAL'.
      *
      * @param consistencyLevel the consistencyLevel value to set
      * @return the CassandraSource object itself.

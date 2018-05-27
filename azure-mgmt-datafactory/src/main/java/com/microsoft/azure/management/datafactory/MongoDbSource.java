@@ -26,7 +26,7 @@ public class MongoDbSource extends CopySource {
     private Object query;
 
     /**
-     * Get the query value.
+     * Get database query. Should be a SQL-92 query expression. Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -35,7 +35,7 @@ public class MongoDbSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set database query. Should be a SQL-92 query expression. Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the MongoDbSource object itself.

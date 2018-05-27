@@ -21,7 +21,7 @@ public class IntegrationRuntimePermissionRequest {
     private String factoryIdentity;
 
     /**
-     * Get the factoryIdentity value.
+     * Get the data factory identity.
      *
      * @return the factoryIdentity value
      */
@@ -30,7 +30,7 @@ public class IntegrationRuntimePermissionRequest {
     }
 
     /**
-     * Set the factoryIdentity value.
+     * Set the data factory identity.
      *
      * @param factoryIdentity the factoryIdentity value to set
      * @return the IntegrationRuntimePermissionRequest object itself.

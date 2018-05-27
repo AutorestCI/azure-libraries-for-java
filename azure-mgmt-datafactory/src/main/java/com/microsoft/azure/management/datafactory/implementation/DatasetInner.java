@@ -117,7 +117,7 @@ public class DatasetInner {
     private List<Object> annotations;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -126,7 +126,7 @@ public class DatasetInner {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the DatasetInner object itself.
@@ -137,7 +137,7 @@ public class DatasetInner {
     }
 
     /**
-     * Get the description value.
+     * Get dataset description.
      *
      * @return the description value
      */
@@ -146,7 +146,7 @@ public class DatasetInner {
     }
 
     /**
-     * Set the description value.
+     * Set dataset description.
      *
      * @param description the description value to set
      * @return the DatasetInner object itself.
@@ -157,7 +157,7 @@ public class DatasetInner {
     }
 
     /**
-     * Get the structure value.
+     * Get columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement.
      *
      * @return the structure value
      */
@@ -166,7 +166,7 @@ public class DatasetInner {
     }
 
     /**
-     * Set the structure value.
+     * Set columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement.
      *
      * @param structure the structure value to set
      * @return the DatasetInner object itself.
@@ -177,7 +177,7 @@ public class DatasetInner {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get linked service reference.
      *
      * @return the linkedServiceName value
      */
@@ -186,7 +186,7 @@ public class DatasetInner {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set linked service reference.
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the DatasetInner object itself.
@@ -197,7 +197,7 @@ public class DatasetInner {
     }
 
     /**
-     * Get the parameters value.
+     * Get parameters for dataset.
      *
      * @return the parameters value
      */
@@ -206,7 +206,7 @@ public class DatasetInner {
     }
 
     /**
-     * Set the parameters value.
+     * Set parameters for dataset.
      *
      * @param parameters the parameters value to set
      * @return the DatasetInner object itself.
@@ -217,7 +217,7 @@ public class DatasetInner {
     }
 
     /**
-     * Get the annotations value.
+     * Get list of tags that can be used for describing the Dataset.
      *
      * @return the annotations value
      */
@@ -226,7 +226,7 @@ public class DatasetInner {
     }
 
     /**
-     * Set the annotations value.
+     * Set list of tags that can be used for describing the Dataset.
      *
      * @param annotations the annotations value to set
      * @return the DatasetInner object itself.

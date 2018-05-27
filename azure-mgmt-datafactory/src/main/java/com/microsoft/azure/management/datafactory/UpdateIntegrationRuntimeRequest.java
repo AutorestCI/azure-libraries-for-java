@@ -30,7 +30,7 @@ public class UpdateIntegrationRuntimeRequest {
     private String updateDelayOffset;
 
     /**
-     * Get the autoUpdate value.
+     * Get enables or disables the auto-update feature of the self-hosted integration runtime. See https://go.microsoft.com/fwlink/?linkid=854189. Possible values include: 'On', 'Off'.
      *
      * @return the autoUpdate value
      */
@@ -39,7 +39,7 @@ public class UpdateIntegrationRuntimeRequest {
     }
 
     /**
-     * Set the autoUpdate value.
+     * Set enables or disables the auto-update feature of the self-hosted integration runtime. See https://go.microsoft.com/fwlink/?linkid=854189. Possible values include: 'On', 'Off'.
      *
      * @param autoUpdate the autoUpdate value to set
      * @return the UpdateIntegrationRuntimeRequest object itself.
@@ -50,7 +50,7 @@ public class UpdateIntegrationRuntimeRequest {
     }
 
     /**
-     * Get the updateDelayOffset value.
+     * Get the time offset (in hours) in the day, e.g., PT03H is 3 hours. The integration runtime auto update will happen on that time.
      *
      * @return the updateDelayOffset value
      */
@@ -59,7 +59,7 @@ public class UpdateIntegrationRuntimeRequest {
     }
 
     /**
-     * Set the updateDelayOffset value.
+     * Set the time offset (in hours) in the day, e.g., PT03H is 3 hours. The integration runtime auto update will happen on that time.
      *
      * @param updateDelayOffset the updateDelayOffset value to set
      * @return the UpdateIntegrationRuntimeRequest object itself.

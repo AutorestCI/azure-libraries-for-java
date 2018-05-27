@@ -52,7 +52,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     private String encryptedCredential;
 
     /**
-     * Get the url value.
+     * Get the URL of SAP ECC OData API. For example, '[https://hostname:port/sap/opu/odata/sap/servicename/]'. Type: string (or Expression with resultType string).
      *
      * @return the url value
      */
@@ -61,7 +61,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the url value.
+     * Set the URL of SAP ECC OData API. For example, '[https://hostname:port/sap/opu/odata/sap/servicename/]'. Type: string (or Expression with resultType string).
      *
      * @param url the url value to set
      * @return the SapEccLinkedService object itself.
@@ -72,7 +72,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the username for Basic authentication. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -81,7 +81,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the username for Basic authentication. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the SapEccLinkedService object itself.
@@ -92,7 +92,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password for Basic authentication.
      *
      * @return the password value
      */
@@ -101,7 +101,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password for Basic authentication.
      *
      * @param password the password value to set
      * @return the SapEccLinkedService object itself.
@@ -112,7 +112,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Either encryptedCredential or username/password must be provided. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -121,7 +121,7 @@ public class SapEccLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Either encryptedCredential or username/password must be provided. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the SapEccLinkedService object itself.
