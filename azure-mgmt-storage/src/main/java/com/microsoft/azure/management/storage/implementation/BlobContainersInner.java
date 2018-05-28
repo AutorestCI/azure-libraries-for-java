@@ -11,6 +11,11 @@ package com.microsoft.azure.management.storage.implementation;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.storage.BlobContainersCreateOrUpdateImmutabilityPolicyHeaders;
+import com.microsoft.azure.management.storage.BlobContainersDeleteImmutabilityPolicyHeaders;
+import com.microsoft.azure.management.storage.BlobContainersExtendImmutabilityPolicyHeaders;
+import com.microsoft.azure.management.storage.BlobContainersGetImmutabilityPolicyHeaders;
+import com.microsoft.azure.management.storage.BlobContainersLockImmutabilityPolicyHeaders;
 import com.microsoft.azure.management.storage.PublicAccess;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
@@ -1023,9 +1028,9 @@ public class BlobContainersInner {
      * @return the observable to the ImmutabilityPolicyInner object
      */
     public Observable<ImmutabilityPolicyInner> createOrUpdateImmutabilityPolicyAsync(String resourceGroupName, String accountName, String containerName, int immutabilityPeriodSinceCreationInDays) {
-        return createOrUpdateImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, immutabilityPeriodSinceCreationInDays).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>, ImmutabilityPolicyInner>() {
+        return createOrUpdateImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, immutabilityPeriodSinceCreationInDays).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>, ImmutabilityPolicyInner>() {
             @Override
-            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner> response) {
+            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders> response) {
                 return response.body();
             }
         });
@@ -1041,7 +1046,7 @@ public class BlobContainersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImmutabilityPolicyInner object
      */
-    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>> createOrUpdateImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, int immutabilityPeriodSinceCreationInDays) {
+    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>> createOrUpdateImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, int immutabilityPeriodSinceCreationInDays) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1062,11 +1067,11 @@ public class BlobContainersInner {
         ImmutabilityPolicyInner parameters = new ImmutabilityPolicyInner();
         parameters.withImmutabilityPeriodSinceCreationInDays(immutabilityPeriodSinceCreationInDays);
         return service.createOrUpdateImmutabilityPolicy(resourceGroupName, accountName, containerName, immutabilityPolicyName, this.client.subscriptionId(), this.client.apiVersion(), ifMatch, this.client.acceptLanguage(), parameters, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner> clientResponse = createOrUpdateImmutabilityPolicyDelegate(response);
+                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders> clientResponse = createOrUpdateImmutabilityPolicyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1120,9 +1125,9 @@ public class BlobContainersInner {
      * @return the observable to the ImmutabilityPolicyInner object
      */
     public Observable<ImmutabilityPolicyInner> createOrUpdateImmutabilityPolicyAsync(String resourceGroupName, String accountName, String containerName, int immutabilityPeriodSinceCreationInDays, String ifMatch) {
-        return createOrUpdateImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, immutabilityPeriodSinceCreationInDays, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>, ImmutabilityPolicyInner>() {
+        return createOrUpdateImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, immutabilityPeriodSinceCreationInDays, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>, ImmutabilityPolicyInner>() {
             @Override
-            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner> response) {
+            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders> response) {
                 return response.body();
             }
         });
@@ -1139,7 +1144,7 @@ public class BlobContainersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImmutabilityPolicyInner object
      */
-    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>> createOrUpdateImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, int immutabilityPeriodSinceCreationInDays, String ifMatch) {
+    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>> createOrUpdateImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, int immutabilityPeriodSinceCreationInDays, String ifMatch) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1159,11 +1164,11 @@ public class BlobContainersInner {
         ImmutabilityPolicyInner parameters = new ImmutabilityPolicyInner();
         parameters.withImmutabilityPeriodSinceCreationInDays(immutabilityPeriodSinceCreationInDays);
         return service.createOrUpdateImmutabilityPolicy(resourceGroupName, accountName, containerName, immutabilityPolicyName, this.client.subscriptionId(), this.client.apiVersion(), ifMatch, this.client.acceptLanguage(), parameters, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner> clientResponse = createOrUpdateImmutabilityPolicyDelegate(response);
+                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders> clientResponse = createOrUpdateImmutabilityPolicyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1172,11 +1177,11 @@ public class BlobContainersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner> createOrUpdateImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders> createOrUpdateImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ImmutabilityPolicyInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ImmutabilityPolicyInner>() { }.getType())
                 .registerError(CloudException.class)
-                .buildWithHeaders(response, BlobContainersCreateOrUpdateImmutabilityPolicyHeadersInner.class);
+                .buildWithHeaders(response, BlobContainersCreateOrUpdateImmutabilityPolicyHeaders.class);
     }
 
     /**
@@ -1218,9 +1223,9 @@ public class BlobContainersInner {
      * @return the observable to the ImmutabilityPolicyInner object
      */
     public Observable<ImmutabilityPolicyInner> getImmutabilityPolicyAsync(String resourceGroupName, String accountName, String containerName) {
-        return getImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>, ImmutabilityPolicyInner>() {
+        return getImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>, ImmutabilityPolicyInner>() {
             @Override
-            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner> response) {
+            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders> response) {
                 return response.body();
             }
         });
@@ -1235,7 +1240,7 @@ public class BlobContainersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImmutabilityPolicyInner object
      */
-    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>> getImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName) {
+    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>> getImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1254,11 +1259,11 @@ public class BlobContainersInner {
         final String immutabilityPolicyName = "default";
         final String ifMatch = null;
         return service.getImmutabilityPolicy(resourceGroupName, accountName, containerName, immutabilityPolicyName, this.client.subscriptionId(), this.client.apiVersion(), ifMatch, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner> clientResponse = getImmutabilityPolicyDelegate(response);
+                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders> clientResponse = getImmutabilityPolicyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1309,9 +1314,9 @@ public class BlobContainersInner {
      * @return the observable to the ImmutabilityPolicyInner object
      */
     public Observable<ImmutabilityPolicyInner> getImmutabilityPolicyAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
-        return getImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>, ImmutabilityPolicyInner>() {
+        return getImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>, ImmutabilityPolicyInner>() {
             @Override
-            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner> response) {
+            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders> response) {
                 return response.body();
             }
         });
@@ -1327,7 +1332,7 @@ public class BlobContainersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImmutabilityPolicyInner object
      */
-    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>> getImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
+    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>> getImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1345,11 +1350,11 @@ public class BlobContainersInner {
         }
         final String immutabilityPolicyName = "default";
         return service.getImmutabilityPolicy(resourceGroupName, accountName, containerName, immutabilityPolicyName, this.client.subscriptionId(), this.client.apiVersion(), ifMatch, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner> clientResponse = getImmutabilityPolicyDelegate(response);
+                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders> clientResponse = getImmutabilityPolicyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1358,11 +1363,11 @@ public class BlobContainersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeadersInner> getImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersGetImmutabilityPolicyHeaders> getImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ImmutabilityPolicyInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ImmutabilityPolicyInner>() { }.getType())
                 .registerError(CloudException.class)
-                .buildWithHeaders(response, BlobContainersGetImmutabilityPolicyHeadersInner.class);
+                .buildWithHeaders(response, BlobContainersGetImmutabilityPolicyHeaders.class);
     }
 
     /**
@@ -1407,9 +1412,9 @@ public class BlobContainersInner {
      * @return the observable to the ImmutabilityPolicyInner object
      */
     public Observable<ImmutabilityPolicyInner> deleteImmutabilityPolicyAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
-        return deleteImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeadersInner>, ImmutabilityPolicyInner>() {
+        return deleteImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeaders>, ImmutabilityPolicyInner>() {
             @Override
-            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeadersInner> response) {
+            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeaders> response) {
                 return response.body();
             }
         });
@@ -1425,7 +1430,7 @@ public class BlobContainersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImmutabilityPolicyInner object
      */
-    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeadersInner>> deleteImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
+    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeaders>> deleteImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1446,11 +1451,11 @@ public class BlobContainersInner {
         }
         final String immutabilityPolicyName = "default";
         return service.deleteImmutabilityPolicy(resourceGroupName, accountName, containerName, immutabilityPolicyName, this.client.subscriptionId(), this.client.apiVersion(), ifMatch, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeadersInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeadersInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeadersInner> clientResponse = deleteImmutabilityPolicyDelegate(response);
+                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeaders> clientResponse = deleteImmutabilityPolicyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1459,11 +1464,11 @@ public class BlobContainersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeadersInner> deleteImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersDeleteImmutabilityPolicyHeaders> deleteImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ImmutabilityPolicyInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ImmutabilityPolicyInner>() { }.getType())
                 .registerError(CloudException.class)
-                .buildWithHeaders(response, BlobContainersDeleteImmutabilityPolicyHeadersInner.class);
+                .buildWithHeaders(response, BlobContainersDeleteImmutabilityPolicyHeaders.class);
     }
 
     /**
@@ -1508,9 +1513,9 @@ public class BlobContainersInner {
      * @return the observable to the ImmutabilityPolicyInner object
      */
     public Observable<ImmutabilityPolicyInner> lockImmutabilityPolicyAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
-        return lockImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeadersInner>, ImmutabilityPolicyInner>() {
+        return lockImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeaders>, ImmutabilityPolicyInner>() {
             @Override
-            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeadersInner> response) {
+            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeaders> response) {
                 return response.body();
             }
         });
@@ -1526,7 +1531,7 @@ public class BlobContainersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImmutabilityPolicyInner object
      */
-    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeadersInner>> lockImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
+    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeaders>> lockImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1546,11 +1551,11 @@ public class BlobContainersInner {
             throw new IllegalArgumentException("Parameter ifMatch is required and cannot be null.");
         }
         return service.lockImmutabilityPolicy(resourceGroupName, accountName, containerName, this.client.subscriptionId(), this.client.apiVersion(), ifMatch, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeadersInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeadersInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeadersInner> clientResponse = lockImmutabilityPolicyDelegate(response);
+                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeaders> clientResponse = lockImmutabilityPolicyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1559,11 +1564,11 @@ public class BlobContainersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeadersInner> lockImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersLockImmutabilityPolicyHeaders> lockImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ImmutabilityPolicyInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ImmutabilityPolicyInner>() { }.getType())
                 .registerError(CloudException.class)
-                .buildWithHeaders(response, BlobContainersLockImmutabilityPolicyHeadersInner.class);
+                .buildWithHeaders(response, BlobContainersLockImmutabilityPolicyHeaders.class);
     }
 
     /**
@@ -1611,9 +1616,9 @@ public class BlobContainersInner {
      * @return the observable to the ImmutabilityPolicyInner object
      */
     public Observable<ImmutabilityPolicyInner> extendImmutabilityPolicyAsync(String resourceGroupName, String accountName, String containerName, String ifMatch, int immutabilityPeriodSinceCreationInDays) {
-        return extendImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch, immutabilityPeriodSinceCreationInDays).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeadersInner>, ImmutabilityPolicyInner>() {
+        return extendImmutabilityPolicyWithServiceResponseAsync(resourceGroupName, accountName, containerName, ifMatch, immutabilityPeriodSinceCreationInDays).map(new Func1<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeaders>, ImmutabilityPolicyInner>() {
             @Override
-            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeadersInner> response) {
+            public ImmutabilityPolicyInner call(ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeaders> response) {
                 return response.body();
             }
         });
@@ -1630,7 +1635,7 @@ public class BlobContainersInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ImmutabilityPolicyInner object
      */
-    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeadersInner>> extendImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch, int immutabilityPeriodSinceCreationInDays) {
+    public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeaders>> extendImmutabilityPolicyWithServiceResponseAsync(String resourceGroupName, String accountName, String containerName, String ifMatch, int immutabilityPeriodSinceCreationInDays) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1652,11 +1657,11 @@ public class BlobContainersInner {
         ImmutabilityPolicyInner parameters = new ImmutabilityPolicyInner();
         parameters.withImmutabilityPeriodSinceCreationInDays(immutabilityPeriodSinceCreationInDays);
         return service.extendImmutabilityPolicy(resourceGroupName, accountName, containerName, this.client.subscriptionId(), this.client.apiVersion(), ifMatch, this.client.acceptLanguage(), parameters, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeadersInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeadersInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeadersInner> clientResponse = extendImmutabilityPolicyDelegate(response);
+                        ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeaders> clientResponse = extendImmutabilityPolicyDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1665,11 +1670,11 @@ public class BlobContainersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeadersInner> extendImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<ImmutabilityPolicyInner, BlobContainersExtendImmutabilityPolicyHeaders> extendImmutabilityPolicyDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ImmutabilityPolicyInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ImmutabilityPolicyInner>() { }.getType())
                 .registerError(CloudException.class)
-                .buildWithHeaders(response, BlobContainersExtendImmutabilityPolicyHeadersInner.class);
+                .buildWithHeaders(response, BlobContainersExtendImmutabilityPolicyHeaders.class);
     }
 
 }

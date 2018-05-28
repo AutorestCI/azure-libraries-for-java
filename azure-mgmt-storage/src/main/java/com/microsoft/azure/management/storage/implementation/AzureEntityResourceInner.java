@@ -9,13 +9,13 @@
 package com.microsoft.azure.management.storage.implementation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.microsoft.azure.Resource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * The resource model definition for a Azure Resource Manager resource with an
  * etag.
  */
-public class AzureEntityResourceInner extends Resource {
+public class AzureEntityResourceInner extends ProxyResource {
     /**
      * Resource Etag.
      */
@@ -23,7 +23,7 @@ public class AzureEntityResourceInner extends Resource {
     private String etag;
 
     /**
-     * Get the etag value.
+     * Get resource Etag.
      *
      * @return the etag value
      */
