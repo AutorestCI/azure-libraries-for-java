@@ -33,7 +33,7 @@ public class Category {
     private CategoryDetail detail;
 
     /**
-     * Get the name value.
+     * Get name of the category.
      *
      * @return the name value
      */
@@ -42,7 +42,7 @@ public class Category {
     }
 
     /**
-     * Set the name value.
+     * Set name of the category.
      *
      * @param name the name value to set
      * @return the Category object itself.
@@ -53,7 +53,7 @@ public class Category {
     }
 
     /**
-     * Get the score value.
+     * Get scoring of the category.
      *
      * @return the score value
      */
@@ -62,7 +62,7 @@ public class Category {
     }
 
     /**
-     * Set the score value.
+     * Set scoring of the category.
      *
      * @param score the score value to set
      * @return the Category object itself.

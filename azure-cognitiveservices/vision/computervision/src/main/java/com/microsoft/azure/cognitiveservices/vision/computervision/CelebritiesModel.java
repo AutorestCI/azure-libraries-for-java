@@ -33,7 +33,7 @@ public class CelebritiesModel {
     private FaceRectangle faceRectangle;
 
     /**
-     * Get the name value.
+     * Get name of the celebrity.
      *
      * @return the name value
      */
@@ -42,7 +42,7 @@ public class CelebritiesModel {
     }
 
     /**
-     * Set the name value.
+     * Set name of the celebrity.
      *
      * @param name the name value to set
      * @return the CelebritiesModel object itself.
@@ -53,7 +53,7 @@ public class CelebritiesModel {
     }
 
     /**
-     * Get the confidence value.
+     * Get level of confidence ranging from 0 to 1.
      *
      * @return the confidence value
      */
@@ -62,7 +62,7 @@ public class CelebritiesModel {
     }
 
     /**
-     * Set the confidence value.
+     * Set level of confidence ranging from 0 to 1.
      *
      * @param confidence the confidence value to set
      * @return the CelebritiesModel object itself.

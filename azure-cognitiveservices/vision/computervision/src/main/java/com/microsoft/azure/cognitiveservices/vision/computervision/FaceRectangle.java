@@ -39,7 +39,7 @@ public class FaceRectangle {
     private Integer height;
 
     /**
-     * Get the left value.
+     * Get x-coordinate of the top left point of the face.
      *
      * @return the left value
      */
@@ -48,7 +48,7 @@ public class FaceRectangle {
     }
 
     /**
-     * Set the left value.
+     * Set x-coordinate of the top left point of the face.
      *
      * @param left the left value to set
      * @return the FaceRectangle object itself.
@@ -59,7 +59,7 @@ public class FaceRectangle {
     }
 
     /**
-     * Get the top value.
+     * Get y-coordinate of the top left point of the face.
      *
      * @return the top value
      */
@@ -68,7 +68,7 @@ public class FaceRectangle {
     }
 
     /**
-     * Set the top value.
+     * Set y-coordinate of the top left point of the face.
      *
      * @param top the top value to set
      * @return the FaceRectangle object itself.
@@ -79,7 +79,7 @@ public class FaceRectangle {
     }
 
     /**
-     * Get the width value.
+     * Get width measured from the top-left point of the face.
      *
      * @return the width value
      */
@@ -88,7 +88,7 @@ public class FaceRectangle {
     }
 
     /**
-     * Set the width value.
+     * Set width measured from the top-left point of the face.
      *
      * @param width the width value to set
      * @return the FaceRectangle object itself.
@@ -99,7 +99,7 @@ public class FaceRectangle {
     }
 
     /**
-     * Get the height value.
+     * Get height measured from the top-left point of the face.
      *
      * @return the height value
      */
@@ -108,7 +108,7 @@ public class FaceRectangle {
     }
 
     /**
-     * Set the height value.
+     * Set height measured from the top-left point of the face.
      *
      * @param height the height value to set
      * @return the FaceRectangle object itself.

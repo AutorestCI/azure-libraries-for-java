@@ -33,7 +33,7 @@ public class FaceDescription {
     private FaceRectangle faceRectangle;
 
     /**
-     * Get the age value.
+     * Get possible age of the face.
      *
      * @return the age value
      */
@@ -42,7 +42,7 @@ public class FaceDescription {
     }
 
     /**
-     * Set the age value.
+     * Set possible age of the face.
      *
      * @param age the age value to set
      * @return the FaceDescription object itself.
@@ -53,7 +53,7 @@ public class FaceDescription {
     }
 
     /**
-     * Get the gender value.
+     * Get possible gender of the face. Possible values include: 'Male', 'Female'.
      *
      * @return the gender value
      */
@@ -62,7 +62,7 @@ public class FaceDescription {
     }
 
     /**
-     * Set the gender value.
+     * Set possible gender of the face. Possible values include: 'Male', 'Female'.
      *
      * @param gender the gender value to set
      * @return the FaceDescription object itself.
