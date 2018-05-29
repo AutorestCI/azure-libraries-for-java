@@ -8,18 +8,45 @@
 
 package com.microsoft.azure.management.logic;
 
+import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The access key regenerate action content.
+ * The callback url parameters.
  */
-public class RegenerateActionParameter {
+public class GetCallbackUrlParameters {
+    /**
+     * The expiry time.
+     */
+    @JsonProperty(value = "notAfter")
+    private DateTime notAfter;
+
     /**
      * The key type. Possible values include: 'NotSpecified', 'Primary',
      * 'Secondary'.
      */
     @JsonProperty(value = "keyType")
     private KeyType keyType;
+
+    /**
+     * Get the expiry time.
+     *
+     * @return the notAfter value
+     */
+    public DateTime notAfter() {
+        return this.notAfter;
+    }
+
+    /**
+     * Set the expiry time.
+     *
+     * @param notAfter the notAfter value to set
+     * @return the GetCallbackUrlParameters object itself.
+     */
+    public GetCallbackUrlParameters withNotAfter(DateTime notAfter) {
+        this.notAfter = notAfter;
+        return this;
+    }
 
     /**
      * Get the key type. Possible values include: 'NotSpecified', 'Primary', 'Secondary'.
@@ -34,9 +61,9 @@ public class RegenerateActionParameter {
      * Set the key type. Possible values include: 'NotSpecified', 'Primary', 'Secondary'.
      *
      * @param keyType the keyType value to set
-     * @return the RegenerateActionParameter object itself.
+     * @return the GetCallbackUrlParameters object itself.
      */
-    public RegenerateActionParameter withKeyType(KeyType keyType) {
+    public GetCallbackUrlParameters withKeyType(KeyType keyType) {
         this.keyType = keyType;
         return this;
     }

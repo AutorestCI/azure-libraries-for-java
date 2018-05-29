@@ -13,6 +13,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.logic.GetCallbackUrlParameters;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -80,7 +81,7 @@ public class AgreementsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Agreements listContentCallbackUrl" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/agreements/{agreementName}/listContentCallbackUrl")
-        Observable<Response<ResponseBody>> listContentCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Path("agreementName") String agreementName, @Query("api-version") String apiVersion, @Body GetCallbackUrlParametersInner listContentCallbackUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listContentCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Path("agreementName") String agreementName, @Query("api-version") String apiVersion, @Body GetCallbackUrlParameters listContentCallbackUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Agreements listByIntegrationAccountsNext" })
         @GET
@@ -633,13 +634,13 @@ public class AgreementsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param agreementName The integration account agreement name.
-     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @param listContentCallbackUrl the GetCallbackUrlParameters value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the WorkflowTriggerCallbackUrlInner object if successful.
      */
-    public WorkflowTriggerCallbackUrlInner listContentCallbackUrl(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParametersInner listContentCallbackUrl) {
+    public WorkflowTriggerCallbackUrlInner listContentCallbackUrl(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParameters listContentCallbackUrl) {
         return listContentCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, agreementName, listContentCallbackUrl).toBlocking().single().body();
     }
 
@@ -649,12 +650,12 @@ public class AgreementsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param agreementName The integration account agreement name.
-     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @param listContentCallbackUrl the GetCallbackUrlParameters value
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlAsync(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParametersInner listContentCallbackUrl, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
+    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlAsync(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParameters listContentCallbackUrl, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
         return ServiceFuture.fromResponse(listContentCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, agreementName, listContentCallbackUrl), serviceCallback);
     }
 
@@ -664,11 +665,11 @@ public class AgreementsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param agreementName The integration account agreement name.
-     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @param listContentCallbackUrl the GetCallbackUrlParameters value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkflowTriggerCallbackUrlInner object
      */
-    public Observable<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlAsync(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParametersInner listContentCallbackUrl) {
+    public Observable<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlAsync(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParameters listContentCallbackUrl) {
         return listContentCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, agreementName, listContentCallbackUrl).map(new Func1<ServiceResponse<WorkflowTriggerCallbackUrlInner>, WorkflowTriggerCallbackUrlInner>() {
             @Override
             public WorkflowTriggerCallbackUrlInner call(ServiceResponse<WorkflowTriggerCallbackUrlInner> response) {
@@ -683,11 +684,11 @@ public class AgreementsInner {
      * @param resourceGroupName The resource group name.
      * @param integrationAccountName The integration account name.
      * @param agreementName The integration account agreement name.
-     * @param listContentCallbackUrl the GetCallbackUrlParametersInner value
+     * @param listContentCallbackUrl the GetCallbackUrlParameters value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkflowTriggerCallbackUrlInner object
      */
-    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listContentCallbackUrlWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParametersInner listContentCallbackUrl) {
+    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listContentCallbackUrlWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, String agreementName, GetCallbackUrlParameters listContentCallbackUrl) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

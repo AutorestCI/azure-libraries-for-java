@@ -33,7 +33,7 @@ public class ResourceReference {
     private String type;
 
     /**
-     * Get the id value.
+     * Get the resource id.
      *
      * @return the id value
      */
@@ -42,7 +42,7 @@ public class ResourceReference {
     }
 
     /**
-     * Get the name value.
+     * Get gets the resource name.
      *
      * @return the name value
      */
@@ -51,7 +51,7 @@ public class ResourceReference {
     }
 
     /**
-     * Get the type value.
+     * Get gets the resource type.
      *
      * @return the type value
      */

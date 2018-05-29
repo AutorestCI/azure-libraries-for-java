@@ -12,12 +12,14 @@ import org.joda.time.DateTime;
 import com.microsoft.azure.management.logic.KeyVaultKeyReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * The integration account certificate.
  */
 @JsonFlatten
+@SkipParentValidation
 public class IntegrationAccountCertificateInner extends Resource {
     /**
      * The created time.
@@ -50,7 +52,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     private String publicCertificate;
 
     /**
-     * Get the createdTime value.
+     * Get the created time.
      *
      * @return the createdTime value
      */
@@ -59,7 +61,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     }
 
     /**
-     * Get the changedTime value.
+     * Get the changed time.
      *
      * @return the changedTime value
      */
@@ -68,7 +70,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     }
 
     /**
-     * Get the metadata value.
+     * Get the metadata.
      *
      * @return the metadata value
      */
@@ -77,7 +79,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     }
 
     /**
-     * Set the metadata value.
+     * Set the metadata.
      *
      * @param metadata the metadata value to set
      * @return the IntegrationAccountCertificateInner object itself.
@@ -88,7 +90,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     }
 
     /**
-     * Get the key value.
+     * Get the key details in the key vault.
      *
      * @return the key value
      */
@@ -97,7 +99,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     }
 
     /**
-     * Set the key value.
+     * Set the key details in the key vault.
      *
      * @param key the key value to set
      * @return the IntegrationAccountCertificateInner object itself.
@@ -108,7 +110,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     }
 
     /**
-     * Get the publicCertificate value.
+     * Get the public certificate.
      *
      * @return the publicCertificate value
      */
@@ -117,7 +119,7 @@ public class IntegrationAccountCertificateInner extends Resource {
     }
 
     /**
-     * Set the publicCertificate value.
+     * Set the public certificate.
      *
      * @param publicCertificate the publicCertificate value to set
      * @return the IntegrationAccountCertificateInner object itself.

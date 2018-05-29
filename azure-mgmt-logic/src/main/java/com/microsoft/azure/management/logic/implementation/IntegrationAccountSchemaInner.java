@@ -13,12 +13,14 @@ import org.joda.time.DateTime;
 import com.microsoft.azure.management.logic.ContentLink;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * The integration account schema.
  */
 @JsonFlatten
+@SkipParentValidation
 public class IntegrationAccountSchemaInner extends Resource {
     /**
      * The schema type. Possible values include: 'NotSpecified', 'Xml'.
@@ -81,7 +83,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     private ContentLink contentLink;
 
     /**
-     * Get the schemaType value.
+     * Get the schema type. Possible values include: 'NotSpecified', 'Xml'.
      *
      * @return the schemaType value
      */
@@ -90,7 +92,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Set the schemaType value.
+     * Set the schema type. Possible values include: 'NotSpecified', 'Xml'.
      *
      * @param schemaType the schemaType value to set
      * @return the IntegrationAccountSchemaInner object itself.
@@ -101,7 +103,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the targetNamespace value.
+     * Get the target namespace of the schema.
      *
      * @return the targetNamespace value
      */
@@ -110,7 +112,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Set the targetNamespace value.
+     * Set the target namespace of the schema.
      *
      * @param targetNamespace the targetNamespace value to set
      * @return the IntegrationAccountSchemaInner object itself.
@@ -121,7 +123,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the documentName value.
+     * Get the document name.
      *
      * @return the documentName value
      */
@@ -130,7 +132,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Set the documentName value.
+     * Set the document name.
      *
      * @param documentName the documentName value to set
      * @return the IntegrationAccountSchemaInner object itself.
@@ -141,7 +143,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the fileName value.
+     * Get the file name.
      *
      * @return the fileName value
      */
@@ -150,7 +152,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Set the fileName value.
+     * Set the file name.
      *
      * @param fileName the fileName value to set
      * @return the IntegrationAccountSchemaInner object itself.
@@ -161,7 +163,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the createdTime value.
+     * Get the created time.
      *
      * @return the createdTime value
      */
@@ -170,7 +172,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the changedTime value.
+     * Get the changed time.
      *
      * @return the changedTime value
      */
@@ -179,7 +181,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the metadata value.
+     * Get the metadata.
      *
      * @return the metadata value
      */
@@ -188,7 +190,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Set the metadata value.
+     * Set the metadata.
      *
      * @param metadata the metadata value to set
      * @return the IntegrationAccountSchemaInner object itself.
@@ -199,7 +201,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the content value.
+     * Get the content.
      *
      * @return the content value
      */
@@ -208,7 +210,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Set the content value.
+     * Set the content.
      *
      * @param content the content value to set
      * @return the IntegrationAccountSchemaInner object itself.
@@ -219,7 +221,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the contentType value.
+     * Get the content type.
      *
      * @return the contentType value
      */
@@ -228,7 +230,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Set the contentType value.
+     * Set the content type.
      *
      * @param contentType the contentType value to set
      * @return the IntegrationAccountSchemaInner object itself.
@@ -239,7 +241,7 @@ public class IntegrationAccountSchemaInner extends Resource {
     }
 
     /**
-     * Get the contentLink value.
+     * Get the content link.
      *
      * @return the contentLink value
      */

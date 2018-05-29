@@ -16,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class IntegrationAccountMapFilter {
     /**
      * The map type of integration account map. Possible values include:
-     * 'NotSpecified', 'Xslt'.
+     * 'NotSpecified', 'Xslt', 'Xslt20', 'Xslt30', 'Liquid'.
      */
     @JsonProperty(value = "mapType", required = true)
     private MapType mapType;
 
     /**
-     * Get the mapType value.
+     * Get the map type of integration account map. Possible values include: 'NotSpecified', 'Xslt', 'Xslt20', 'Xslt30', 'Liquid'.
      *
      * @return the mapType value
      */
@@ -31,7 +31,7 @@ public class IntegrationAccountMapFilter {
     }
 
     /**
-     * Set the mapType value.
+     * Set the map type of integration account map. Possible values include: 'NotSpecified', 'Xslt', 'Xslt20', 'Xslt30', 'Liquid'.
      *
      * @param mapType the mapType value to set
      * @return the IntegrationAccountMapFilter object itself.

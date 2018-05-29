@@ -33,7 +33,7 @@ public class KeyVaultKeyReference {
     private String keyVersion;
 
     /**
-     * Get the keyVault value.
+     * Get the key vault reference.
      *
      * @return the keyVault value
      */
@@ -42,7 +42,7 @@ public class KeyVaultKeyReference {
     }
 
     /**
-     * Set the keyVault value.
+     * Set the key vault reference.
      *
      * @param keyVault the keyVault value to set
      * @return the KeyVaultKeyReference object itself.
@@ -53,7 +53,7 @@ public class KeyVaultKeyReference {
     }
 
     /**
-     * Get the keyName value.
+     * Get the private key name in key vault.
      *
      * @return the keyName value
      */
@@ -62,7 +62,7 @@ public class KeyVaultKeyReference {
     }
 
     /**
-     * Set the keyName value.
+     * Set the private key name in key vault.
      *
      * @param keyName the keyName value to set
      * @return the KeyVaultKeyReference object itself.
@@ -73,7 +73,7 @@ public class KeyVaultKeyReference {
     }
 
     /**
-     * Get the keyVersion value.
+     * Get the private key version in key vault.
      *
      * @return the keyVersion value
      */
@@ -82,7 +82,7 @@ public class KeyVaultKeyReference {
     }
 
     /**
-     * Set the keyVersion value.
+     * Set the private key version in key vault.
      *
      * @param keyVersion the keyVersion value to set
      * @return the KeyVaultKeyReference object itself.

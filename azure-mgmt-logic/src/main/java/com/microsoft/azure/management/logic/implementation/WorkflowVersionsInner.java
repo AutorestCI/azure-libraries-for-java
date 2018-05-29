@@ -13,6 +13,7 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.logic.GetCallbackUrlParameters;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -70,7 +71,7 @@ public class WorkflowVersionsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowVersions listCallbackUrl" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/versions/{versionId}/triggers/{triggerName}/listCallbackUrl")
-        Observable<Response<ResponseBody>> listCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("versionId") String versionId, @Path("triggerName") String triggerName, @Body GetCallbackUrlParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Path("versionId") String versionId, @Path("triggerName") String triggerName, @Body GetCallbackUrlParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.WorkflowVersions listNext" })
         @GET
@@ -495,7 +496,7 @@ public class WorkflowVersionsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final GetCallbackUrlParametersInner parameters = null;
+        final GetCallbackUrlParameters parameters = null;
         return service.listCallbackUrl(this.client.subscriptionId(), resourceGroupName, workflowName, versionId, triggerName, parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>>>() {
                 @Override
@@ -523,7 +524,7 @@ public class WorkflowVersionsInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the WorkflowTriggerCallbackUrlInner object if successful.
      */
-    public WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParametersInner parameters) {
+    public WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParameters parameters) {
         return listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, versionId, triggerName, parameters).toBlocking().single().body();
     }
 
@@ -539,7 +540,7 @@ public class WorkflowVersionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParametersInner parameters, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
+    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParameters parameters, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
         return ServiceFuture.fromResponse(listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, versionId, triggerName, parameters), serviceCallback);
     }
 
@@ -554,7 +555,7 @@ public class WorkflowVersionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkflowTriggerCallbackUrlInner object
      */
-    public Observable<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParametersInner parameters) {
+    public Observable<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParameters parameters) {
         return listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, versionId, triggerName, parameters).map(new Func1<ServiceResponse<WorkflowTriggerCallbackUrlInner>, WorkflowTriggerCallbackUrlInner>() {
             @Override
             public WorkflowTriggerCallbackUrlInner call(ServiceResponse<WorkflowTriggerCallbackUrlInner> response) {
@@ -574,7 +575,7 @@ public class WorkflowVersionsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkflowTriggerCallbackUrlInner object
      */
-    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithServiceResponseAsync(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParametersInner parameters) {
+    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithServiceResponseAsync(String resourceGroupName, String workflowName, String versionId, String triggerName, GetCallbackUrlParameters parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

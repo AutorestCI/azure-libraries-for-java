@@ -528,7 +528,11 @@ public class WorkflowRunActionsInner {
                 public Observable<ServiceResponse<List<ExpressionRootInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl1<ExpressionRootInner>> result = listExpressionTracesDelegate(response);
-                        ServiceResponse<List<ExpressionRootInner>> clientResponse = new ServiceResponse<List<ExpressionRootInner>>(result.body().items(), result.response());
+                        List<ExpressionRootInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ExpressionRootInner>> clientResponse = new ServiceResponse<List<ExpressionRootInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

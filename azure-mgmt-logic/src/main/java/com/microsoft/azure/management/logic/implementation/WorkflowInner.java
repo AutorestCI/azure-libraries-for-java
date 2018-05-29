@@ -17,12 +17,14 @@ import java.util.Map;
 import com.microsoft.azure.management.logic.WorkflowParameter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * The workflow type.
  */
 @JsonFlatten
+@SkipParentValidation
 public class WorkflowInner extends Resource {
     /**
      * Gets the provisioning state. Possible values include: 'NotSpecified',
@@ -90,7 +92,7 @@ public class WorkflowInner extends Resource {
     private Map<String, WorkflowParameter> parameters;
 
     /**
-     * Get the provisioningState value.
+     * Get gets the provisioning state. Possible values include: 'NotSpecified', 'Accepted', 'Running', 'Ready', 'Creating', 'Created', 'Deleting', 'Deleted', 'Canceled', 'Failed', 'Succeeded', 'Moving', 'Updating', 'Registering', 'Registered', 'Unregistering', 'Unregistered', 'Completed'.
      *
      * @return the provisioningState value
      */
@@ -99,7 +101,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the createdTime value.
+     * Get gets the created time.
      *
      * @return the createdTime value
      */
@@ -108,7 +110,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the changedTime value.
+     * Get gets the changed time.
      *
      * @return the changedTime value
      */
@@ -117,7 +119,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the state value.
+     * Get the state. Possible values include: 'NotSpecified', 'Completed', 'Enabled', 'Disabled', 'Deleted', 'Suspended'.
      *
      * @return the state value
      */
@@ -126,7 +128,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Set the state value.
+     * Set the state. Possible values include: 'NotSpecified', 'Completed', 'Enabled', 'Disabled', 'Deleted', 'Suspended'.
      *
      * @param state the state value to set
      * @return the WorkflowInner object itself.
@@ -137,7 +139,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the version value.
+     * Get gets the version.
      *
      * @return the version value
      */
@@ -146,7 +148,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the accessEndpoint value.
+     * Get gets the access endpoint.
      *
      * @return the accessEndpoint value
      */
@@ -155,7 +157,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku.
      *
      * @return the sku value
      */
@@ -164,7 +166,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Set the sku value.
+     * Set the sku.
      *
      * @param sku the sku value to set
      * @return the WorkflowInner object itself.
@@ -175,7 +177,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the integrationAccount value.
+     * Get the integration account.
      *
      * @return the integrationAccount value
      */
@@ -184,7 +186,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Set the integrationAccount value.
+     * Set the integration account.
      *
      * @param integrationAccount the integrationAccount value to set
      * @return the WorkflowInner object itself.
@@ -195,7 +197,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the definition value.
+     * Get the definition.
      *
      * @return the definition value
      */
@@ -204,7 +206,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Set the definition value.
+     * Set the definition.
      *
      * @param definition the definition value to set
      * @return the WorkflowInner object itself.
@@ -215,7 +217,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Get the parameters value.
+     * Get the parameters.
      *
      * @return the parameters value
      */
@@ -224,7 +226,7 @@ public class WorkflowInner extends Resource {
     }
 
     /**
-     * Set the parameters value.
+     * Set the parameters.
      *
      * @param parameters the parameters value to set
      * @return the WorkflowInner object itself.

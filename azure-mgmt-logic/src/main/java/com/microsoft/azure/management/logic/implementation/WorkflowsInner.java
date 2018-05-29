@@ -17,6 +17,7 @@ import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.logic.GenerateUpgradedDefinitionParameters;
+import com.microsoft.azure.management.logic.GetCallbackUrlParameters;
 import com.microsoft.azure.management.logic.KeyType;
 import com.microsoft.azure.management.logic.RegenerateActionParameter;
 import com.microsoft.azure.Page;
@@ -107,7 +108,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listCallbackUrl" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/listCallbackUrl")
-        Observable<Response<ResponseBody>> listCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Body GetCallbackUrlParametersInner listCallbackUrl, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("workflowName") String workflowName, @Body GetCallbackUrlParameters listCallbackUrl, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.Workflows listSwagger" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/listSwagger")
@@ -1309,7 +1310,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the WorkflowTriggerCallbackUrlInner object if successful.
      */
-    public WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl) {
+    public WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName, GetCallbackUrlParameters listCallbackUrl) {
         return listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, listCallbackUrl).toBlocking().single().body();
     }
 
@@ -1323,7 +1324,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
+    public ServiceFuture<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, GetCallbackUrlParameters listCallbackUrl, final ServiceCallback<WorkflowTriggerCallbackUrlInner> serviceCallback) {
         return ServiceFuture.fromResponse(listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, listCallbackUrl), serviceCallback);
     }
 
@@ -1336,7 +1337,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkflowTriggerCallbackUrlInner object
      */
-    public Observable<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl) {
+    public Observable<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName, GetCallbackUrlParameters listCallbackUrl) {
         return listCallbackUrlWithServiceResponseAsync(resourceGroupName, workflowName, listCallbackUrl).map(new Func1<ServiceResponse<WorkflowTriggerCallbackUrlInner>, WorkflowTriggerCallbackUrlInner>() {
             @Override
             public WorkflowTriggerCallbackUrlInner call(ServiceResponse<WorkflowTriggerCallbackUrlInner> response) {
@@ -1354,7 +1355,7 @@ public class WorkflowsInner implements InnerSupportsGet<WorkflowInner>, InnerSup
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the WorkflowTriggerCallbackUrlInner object
      */
-    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithServiceResponseAsync(String resourceGroupName, String workflowName, GetCallbackUrlParametersInner listCallbackUrl) {
+    public Observable<ServiceResponse<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithServiceResponseAsync(String resourceGroupName, String workflowName, GetCallbackUrlParameters listCallbackUrl) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

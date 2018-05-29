@@ -145,7 +145,11 @@ public class IntegrationAccountBatchConfigurationsInner {
                 public Observable<ServiceResponse<List<BatchConfigurationInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl2<BatchConfigurationInner>> result = listDelegate(response);
-                        ServiceResponse<List<BatchConfigurationInner>> clientResponse = new ServiceResponse<List<BatchConfigurationInner>>(result.body().items(), result.response());
+                        List<BatchConfigurationInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<BatchConfigurationInner>> clientResponse = new ServiceResponse<List<BatchConfigurationInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

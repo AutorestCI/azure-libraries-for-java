@@ -152,7 +152,11 @@ public class WorkflowRunActionRepetitionsInner {
                 public Observable<ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl2<WorkflowRunActionRepetitionDefinitionInner>> result = listDelegate(response);
-                        ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>> clientResponse = new ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>(result.body().items(), result.response());
+                        List<WorkflowRunActionRepetitionDefinitionInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>> clientResponse = new ServiceResponse<List<WorkflowRunActionRepetitionDefinitionInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -367,7 +371,11 @@ public class WorkflowRunActionRepetitionsInner {
                 public Observable<ServiceResponse<List<ExpressionRootInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl1<ExpressionRootInner>> result = listExpressionTracesDelegate(response);
-                        ServiceResponse<List<ExpressionRootInner>> clientResponse = new ServiceResponse<List<ExpressionRootInner>>(result.body().items(), result.response());
+                        List<ExpressionRootInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ExpressionRootInner>> clientResponse = new ServiceResponse<List<ExpressionRootInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

@@ -150,7 +150,11 @@ public class IntegrationAccountAssembliesInner {
                 public Observable<ServiceResponse<List<AssemblyDefinitionInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl2<AssemblyDefinitionInner>> result = listDelegate(response);
-                        ServiceResponse<List<AssemblyDefinitionInner>> clientResponse = new ServiceResponse<List<AssemblyDefinitionInner>>(result.body().items(), result.response());
+                        List<AssemblyDefinitionInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<AssemblyDefinitionInner>> clientResponse = new ServiceResponse<List<AssemblyDefinitionInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

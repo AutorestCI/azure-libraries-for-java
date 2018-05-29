@@ -19,7 +19,16 @@ public enum MapType {
     NOT_SPECIFIED("NotSpecified"),
 
     /** Enum value Xslt. */
-    XSLT("Xslt");
+    XSLT("Xslt"),
+
+    /** Enum value Xslt20. */
+    XSLT20("Xslt20"),
+
+    /** Enum value Xslt30. */
+    XSLT30("Xslt30"),
+
+    /** Enum value Liquid. */
+    LIQUID("Liquid");
 
     /** The actual serialized value for a MapType instance. */
     private String value;

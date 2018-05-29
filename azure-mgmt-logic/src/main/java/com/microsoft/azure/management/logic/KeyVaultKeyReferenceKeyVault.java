@@ -33,7 +33,7 @@ public class KeyVaultKeyReferenceKeyVault {
     private String type;
 
     /**
-     * Get the id value.
+     * Get the resource id.
      *
      * @return the id value
      */
@@ -42,7 +42,7 @@ public class KeyVaultKeyReferenceKeyVault {
     }
 
     /**
-     * Set the id value.
+     * Set the resource id.
      *
      * @param id the id value to set
      * @return the KeyVaultKeyReferenceKeyVault object itself.
@@ -53,7 +53,7 @@ public class KeyVaultKeyReferenceKeyVault {
     }
 
     /**
-     * Get the name value.
+     * Get the resource name.
      *
      * @return the name value
      */
@@ -62,7 +62,7 @@ public class KeyVaultKeyReferenceKeyVault {
     }
 
     /**
-     * Get the type value.
+     * Get the resource type.
      *
      * @return the type value
      */

@@ -103,7 +103,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     private String type;
 
     /**
-     * Get the startTime value.
+     * Get gets the start time.
      *
      * @return the startTime value
      */
@@ -112,7 +112,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the endTime value.
+     * Get gets the end time.
      *
      * @return the endTime value
      */
@@ -121,7 +121,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the status value.
+     * Get gets the status. Possible values include: 'NotSpecified', 'Paused', 'Running', 'Waiting', 'Succeeded', 'Skipped', 'Suspended', 'Cancelled', 'Failed', 'Faulted', 'TimedOut', 'Aborted', 'Ignored'.
      *
      * @return the status value
      */
@@ -130,7 +130,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the code value.
+     * Get gets the code.
      *
      * @return the code value
      */
@@ -139,7 +139,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the error value.
+     * Get gets the error.
      *
      * @return the error value
      */
@@ -148,7 +148,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the trackingId value.
+     * Get gets the tracking id.
      *
      * @return the trackingId value
      */
@@ -157,7 +157,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the correlation value.
+     * Get the run correlation.
      *
      * @return the correlation value
      */
@@ -166,7 +166,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Set the correlation value.
+     * Set the run correlation.
      *
      * @param correlation the correlation value to set
      * @return the WorkflowTriggerHistoryInner object itself.
@@ -177,7 +177,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the inputsLink value.
+     * Get gets the link to input parameters.
      *
      * @return the inputsLink value
      */
@@ -186,7 +186,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the outputsLink value.
+     * Get gets the link to output parameters.
      *
      * @return the outputsLink value
      */
@@ -195,7 +195,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the fired value.
+     * Get gets a value indicating whether trigger was fired.
      *
      * @return the fired value
      */
@@ -204,7 +204,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the run value.
+     * Get gets the reference to workflow run.
      *
      * @return the run value
      */
@@ -213,7 +213,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the name value.
+     * Get gets the workflow trigger history name.
      *
      * @return the name value
      */
@@ -222,7 +222,7 @@ public class WorkflowTriggerHistoryInner extends SubResource {
     }
 
     /**
-     * Get the type value.
+     * Get gets the workflow trigger history type.
      *
      * @return the type value
      */

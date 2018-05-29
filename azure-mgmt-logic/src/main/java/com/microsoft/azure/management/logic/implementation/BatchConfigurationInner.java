@@ -10,11 +10,13 @@ package com.microsoft.azure.management.logic.implementation;
 
 import com.microsoft.azure.management.logic.BatchConfigurationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * The batch configuration resource definition.
  */
+@SkipParentValidation
 public class BatchConfigurationInner extends Resource {
     /**
      * The batch configuration properties.
@@ -23,7 +25,7 @@ public class BatchConfigurationInner extends Resource {
     private BatchConfigurationProperties properties;
 
     /**
-     * Get the properties value.
+     * Get the batch configuration properties.
      *
      * @return the properties value
      */
@@ -32,7 +34,7 @@ public class BatchConfigurationInner extends Resource {
     }
 
     /**
-     * Set the properties value.
+     * Set the batch configuration properties.
      *
      * @param properties the properties value to set
      * @return the BatchConfigurationInner object itself.

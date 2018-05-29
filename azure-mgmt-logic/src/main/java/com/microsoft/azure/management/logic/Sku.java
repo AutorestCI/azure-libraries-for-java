@@ -28,7 +28,7 @@ public class Sku {
     private ResourceReference plan;
 
     /**
-     * Get the name value.
+     * Get the name. Possible values include: 'NotSpecified', 'Free', 'Shared', 'Basic', 'Standard', 'Premium'.
      *
      * @return the name value
      */
@@ -37,7 +37,7 @@ public class Sku {
     }
 
     /**
-     * Set the name value.
+     * Set the name. Possible values include: 'NotSpecified', 'Free', 'Shared', 'Basic', 'Standard', 'Premium'.
      *
      * @param name the name value to set
      * @return the Sku object itself.
@@ -48,7 +48,7 @@ public class Sku {
     }
 
     /**
-     * Get the plan value.
+     * Get the reference to plan.
      *
      * @return the plan value
      */
@@ -57,7 +57,7 @@ public class Sku {
     }
 
     /**
-     * Set the plan value.
+     * Set the reference to plan.
      *
      * @param plan the plan value to set
      * @return the Sku object itself.

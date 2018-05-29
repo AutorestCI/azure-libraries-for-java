@@ -16,8 +16,11 @@ import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.logic.GetCallbackUrlParameters;
 import com.microsoft.azure.management.logic.KeyType;
+import com.microsoft.azure.management.logic.ListKeyVaultKeysDefinition;
 import com.microsoft.azure.management.logic.RegenerateActionParameter;
+import com.microsoft.azure.management.logic.TrackingEventsDefinition;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -94,15 +97,15 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts getCallbackUrl" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/listCallbackUrl")
-        Observable<Response<ResponseBody>> getCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body GetCallbackUrlParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> getCallbackUrl(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body GetCallbackUrlParameters parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts listKeyVaultKeys" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/listKeyVaultKeys")
-        Observable<Response<ResponseBody>> listKeyVaultKeys(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body ListKeyVaultKeysDefinitionInner listKeyVaultKeys, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listKeyVaultKeys(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body ListKeyVaultKeysDefinition listKeyVaultKeys, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts logTrackingEvents" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/logTrackingEvents")
-        Observable<Response<ResponseBody>> logTrackingEvents(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body TrackingEventsDefinitionInner logTrackingEvents, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> logTrackingEvents(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("integrationAccountName") String integrationAccountName, @Query("api-version") String apiVersion, @Body TrackingEventsDefinition logTrackingEvents, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.logic.IntegrationAccounts regenerateAccessKey" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/regenerateAccessKey")
@@ -932,7 +935,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CallbackUrlInner object if successful.
      */
-    public CallbackUrlInner getCallbackUrl(String resourceGroupName, String integrationAccountName, GetCallbackUrlParametersInner parameters) {
+    public CallbackUrlInner getCallbackUrl(String resourceGroupName, String integrationAccountName, GetCallbackUrlParameters parameters) {
         return getCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, parameters).toBlocking().single().body();
     }
 
@@ -946,7 +949,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CallbackUrlInner> getCallbackUrlAsync(String resourceGroupName, String integrationAccountName, GetCallbackUrlParametersInner parameters, final ServiceCallback<CallbackUrlInner> serviceCallback) {
+    public ServiceFuture<CallbackUrlInner> getCallbackUrlAsync(String resourceGroupName, String integrationAccountName, GetCallbackUrlParameters parameters, final ServiceCallback<CallbackUrlInner> serviceCallback) {
         return ServiceFuture.fromResponse(getCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, parameters), serviceCallback);
     }
 
@@ -959,7 +962,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CallbackUrlInner object
      */
-    public Observable<CallbackUrlInner> getCallbackUrlAsync(String resourceGroupName, String integrationAccountName, GetCallbackUrlParametersInner parameters) {
+    public Observable<CallbackUrlInner> getCallbackUrlAsync(String resourceGroupName, String integrationAccountName, GetCallbackUrlParameters parameters) {
         return getCallbackUrlWithServiceResponseAsync(resourceGroupName, integrationAccountName, parameters).map(new Func1<ServiceResponse<CallbackUrlInner>, CallbackUrlInner>() {
             @Override
             public CallbackUrlInner call(ServiceResponse<CallbackUrlInner> response) {
@@ -977,7 +980,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CallbackUrlInner object
      */
-    public Observable<ServiceResponse<CallbackUrlInner>> getCallbackUrlWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, GetCallbackUrlParametersInner parameters) {
+    public Observable<ServiceResponse<CallbackUrlInner>> getCallbackUrlWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, GetCallbackUrlParameters parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1026,7 +1029,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the List&lt;KeyVaultKeyInner&gt; object if successful.
      */
-    public List<KeyVaultKeyInner> listKeyVaultKeys(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+    public List<KeyVaultKeyInner> listKeyVaultKeys(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinition listKeyVaultKeys) {
         return listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys).toBlocking().single().body();
     }
 
@@ -1040,7 +1043,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys, final ServiceCallback<List<KeyVaultKeyInner>> serviceCallback) {
+    public ServiceFuture<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinition listKeyVaultKeys, final ServiceCallback<List<KeyVaultKeyInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys), serviceCallback);
     }
 
@@ -1053,7 +1056,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;KeyVaultKeyInner&gt; object
      */
-    public Observable<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+    public Observable<List<KeyVaultKeyInner>> listKeyVaultKeysAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinition listKeyVaultKeys) {
         return listKeyVaultKeysWithServiceResponseAsync(resourceGroupName, integrationAccountName, listKeyVaultKeys).map(new Func1<ServiceResponse<List<KeyVaultKeyInner>>, List<KeyVaultKeyInner>>() {
             @Override
             public List<KeyVaultKeyInner> call(ServiceResponse<List<KeyVaultKeyInner>> response) {
@@ -1071,7 +1074,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;KeyVaultKeyInner&gt; object
      */
-    public Observable<ServiceResponse<List<KeyVaultKeyInner>>> listKeyVaultKeysWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinitionInner listKeyVaultKeys) {
+    public Observable<ServiceResponse<List<KeyVaultKeyInner>>> listKeyVaultKeysWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, ListKeyVaultKeysDefinition listKeyVaultKeys) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1094,7 +1097,11 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
                 public Observable<ServiceResponse<List<KeyVaultKeyInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl2<KeyVaultKeyInner>> result = listKeyVaultKeysDelegate(response);
-                        ServiceResponse<List<KeyVaultKeyInner>> clientResponse = new ServiceResponse<List<KeyVaultKeyInner>>(result.body().items(), result.response());
+                        List<KeyVaultKeyInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<KeyVaultKeyInner>> clientResponse = new ServiceResponse<List<KeyVaultKeyInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1120,7 +1127,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void logTrackingEvents(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents) {
+    public void logTrackingEvents(String resourceGroupName, String integrationAccountName, TrackingEventsDefinition logTrackingEvents) {
         logTrackingEventsWithServiceResponseAsync(resourceGroupName, integrationAccountName, logTrackingEvents).toBlocking().single().body();
     }
 
@@ -1134,7 +1141,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> logTrackingEventsAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> logTrackingEventsAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinition logTrackingEvents, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(logTrackingEventsWithServiceResponseAsync(resourceGroupName, integrationAccountName, logTrackingEvents), serviceCallback);
     }
 
@@ -1147,7 +1154,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> logTrackingEventsAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents) {
+    public Observable<Void> logTrackingEventsAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinition logTrackingEvents) {
         return logTrackingEventsWithServiceResponseAsync(resourceGroupName, integrationAccountName, logTrackingEvents).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -1165,7 +1172,7 @@ public class IntegrationAccountsInner implements InnerSupportsGet<IntegrationAcc
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> logTrackingEventsWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinitionInner logTrackingEvents) {
+    public Observable<ServiceResponse<Void>> logTrackingEventsWithServiceResponseAsync(String resourceGroupName, String integrationAccountName, TrackingEventsDefinition logTrackingEvents) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
