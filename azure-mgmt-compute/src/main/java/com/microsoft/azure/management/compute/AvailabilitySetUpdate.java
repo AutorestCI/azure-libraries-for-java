@@ -51,7 +51,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     private Sku sku;
 
     /**
-     * Get the platformUpdateDomainCount value.
+     * Get update Domain count.
      *
      * @return the platformUpdateDomainCount value
      */
@@ -60,7 +60,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Set the platformUpdateDomainCount value.
+     * Set update Domain count.
      *
      * @param platformUpdateDomainCount the platformUpdateDomainCount value to set
      * @return the AvailabilitySetUpdate object itself.
@@ -71,7 +71,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Get the platformFaultDomainCount value.
+     * Get fault Domain count.
      *
      * @return the platformFaultDomainCount value
      */
@@ -80,7 +80,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Set the platformFaultDomainCount value.
+     * Set fault Domain count.
      *
      * @param platformFaultDomainCount the platformFaultDomainCount value to set
      * @return the AvailabilitySetUpdate object itself.
@@ -91,7 +91,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Get the virtualMachines value.
+     * Get a list of references to all virtual machines in the availability set.
      *
      * @return the virtualMachines value
      */
@@ -100,7 +100,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Set the virtualMachines value.
+     * Set a list of references to all virtual machines in the availability set.
      *
      * @param virtualMachines the virtualMachines value to set
      * @return the AvailabilitySetUpdate object itself.
@@ -111,7 +111,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Get the statuses value.
+     * Get the resource status information.
      *
      * @return the statuses value
      */
@@ -120,7 +120,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Get the sku value.
+     * Get sku of the availability set.
      *
      * @return the sku value
      */
@@ -129,7 +129,7 @@ public class AvailabilitySetUpdate extends UpdateResource {
     }
 
     /**
-     * Set the sku value.
+     * Set sku of the availability set.
      *
      * @param sku the sku value to set
      * @return the AvailabilitySetUpdate object itself.

@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.compute;
 
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -15,7 +16,7 @@ import com.microsoft.rest.serializer.JsonFlatten;
  * Snapshot update resource.
  */
 @JsonFlatten
-public class SnapshotUpdate extends ResourceUpdate {
+public class SnapshotUpdate {
     /**
      * the Operating System type. Possible values include: 'Windows', 'Linux'.
      */
@@ -39,7 +40,19 @@ public class SnapshotUpdate extends ResourceUpdate {
     private EncryptionSettings encryptionSettings;
 
     /**
-     * Get the osType value.
+     * Resource tags.
+     */
+    @JsonProperty(value = "tags")
+    private Map<String, String> tags;
+
+    /**
+     * The sku property.
+     */
+    @JsonProperty(value = "sku")
+    private SnapshotSku sku;
+
+    /**
+     * Get the Operating System type. Possible values include: 'Windows', 'Linux'.
      *
      * @return the osType value
      */
@@ -48,7 +61,7 @@ public class SnapshotUpdate extends ResourceUpdate {
     }
 
     /**
-     * Set the osType value.
+     * Set the Operating System type. Possible values include: 'Windows', 'Linux'.
      *
      * @param osType the osType value to set
      * @return the SnapshotUpdate object itself.
@@ -59,7 +72,7 @@ public class SnapshotUpdate extends ResourceUpdate {
     }
 
     /**
-     * Get the diskSizeGB value.
+     * Get if creationData.createOption is Empty, this field is mandatory and it indicates the size of the VHD to create. If this field is present for updates or creation with other options, it indicates a resize. Resizes are only allowed if the disk is not attached to a running VM, and can only increase the disk's size.
      *
      * @return the diskSizeGB value
      */
@@ -68,7 +81,7 @@ public class SnapshotUpdate extends ResourceUpdate {
     }
 
     /**
-     * Set the diskSizeGB value.
+     * Set if creationData.createOption is Empty, this field is mandatory and it indicates the size of the VHD to create. If this field is present for updates or creation with other options, it indicates a resize. Resizes are only allowed if the disk is not attached to a running VM, and can only increase the disk's size.
      *
      * @param diskSizeGB the diskSizeGB value to set
      * @return the SnapshotUpdate object itself.
@@ -79,7 +92,7 @@ public class SnapshotUpdate extends ResourceUpdate {
     }
 
     /**
-     * Get the encryptionSettings value.
+     * Get encryption settings for disk or snapshot.
      *
      * @return the encryptionSettings value
      */
@@ -88,13 +101,53 @@ public class SnapshotUpdate extends ResourceUpdate {
     }
 
     /**
-     * Set the encryptionSettings value.
+     * Set encryption settings for disk or snapshot.
      *
      * @param encryptionSettings the encryptionSettings value to set
      * @return the SnapshotUpdate object itself.
      */
     public SnapshotUpdate withEncryptionSettings(EncryptionSettings encryptionSettings) {
         this.encryptionSettings = encryptionSettings;
+        return this;
+    }
+
+    /**
+     * Get resource tags.
+     *
+     * @return the tags value
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set resource tags.
+     *
+     * @param tags the tags value to set
+     * @return the SnapshotUpdate object itself.
+     */
+    public SnapshotUpdate withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * Get the sku value.
+     *
+     * @return the sku value
+     */
+    public SnapshotSku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku value.
+     *
+     * @param sku the sku value to set
+     * @return the SnapshotUpdate object itself.
+     */
+    public SnapshotUpdate withSku(SnapshotSku sku) {
+        this.sku = sku;
         return this;
     }
 

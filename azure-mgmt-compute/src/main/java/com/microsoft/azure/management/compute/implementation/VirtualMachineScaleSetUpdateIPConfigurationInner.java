@@ -74,7 +74,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     private List<SubResource> loadBalancerInboundNatPools;
 
     /**
-     * Get the name value.
+     * Get the IP configuration name.
      *
      * @return the name value
      */
@@ -83,7 +83,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the name value.
+     * Set the IP configuration name.
      *
      * @param name the name value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.
@@ -94,7 +94,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Get the subnet value.
+     * Get the subnet.
      *
      * @return the subnet value
      */
@@ -103,7 +103,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the subnet value.
+     * Set the subnet.
      *
      * @param subnet the subnet value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.
@@ -114,7 +114,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Get the primary value.
+     * Get specifies the primary IP Configuration in case the network interface has more than one IP Configuration.
      *
      * @return the primary value
      */
@@ -123,7 +123,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the primary value.
+     * Set specifies the primary IP Configuration in case the network interface has more than one IP Configuration.
      *
      * @param primary the primary value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.
@@ -134,7 +134,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Get the publicIPAddressConfiguration value.
+     * Get the publicIPAddressConfiguration.
      *
      * @return the publicIPAddressConfiguration value
      */
@@ -143,7 +143,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the publicIPAddressConfiguration value.
+     * Set the publicIPAddressConfiguration.
      *
      * @param publicIPAddressConfiguration the publicIPAddressConfiguration value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.
@@ -154,7 +154,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Get the privateIPAddressVersion value.
+     * Get available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'. Possible values include: 'IPv4', 'IPv6'.
      *
      * @return the privateIPAddressVersion value
      */
@@ -163,7 +163,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the privateIPAddressVersion value.
+     * Set available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'. Possible values include: 'IPv4', 'IPv6'.
      *
      * @param privateIPAddressVersion the privateIPAddressVersion value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.
@@ -174,7 +174,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Get the applicationGatewayBackendAddressPools value.
+     * Get the application gateway backend address pools.
      *
      * @return the applicationGatewayBackendAddressPools value
      */
@@ -183,7 +183,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the applicationGatewayBackendAddressPools value.
+     * Set the application gateway backend address pools.
      *
      * @param applicationGatewayBackendAddressPools the applicationGatewayBackendAddressPools value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.
@@ -194,7 +194,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Get the loadBalancerBackendAddressPools value.
+     * Get the load balancer backend address pools.
      *
      * @return the loadBalancerBackendAddressPools value
      */
@@ -203,7 +203,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the loadBalancerBackendAddressPools value.
+     * Set the load balancer backend address pools.
      *
      * @param loadBalancerBackendAddressPools the loadBalancerBackendAddressPools value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.
@@ -214,7 +214,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Get the loadBalancerInboundNatPools value.
+     * Get the load balancer inbound nat pools.
      *
      * @return the loadBalancerInboundNatPools value
      */
@@ -223,7 +223,7 @@ public class VirtualMachineScaleSetUpdateIPConfigurationInner extends SubResourc
     }
 
     /**
-     * Set the loadBalancerInboundNatPools value.
+     * Set the load balancer inbound nat pools.
      *
      * @param loadBalancerInboundNatPools the loadBalancerInboundNatPools value to set
      * @return the VirtualMachineScaleSetUpdateIPConfigurationInner object itself.

@@ -34,7 +34,7 @@ public class ContainerServiceMasterProfile {
     private String fqdn;
 
     /**
-     * Get the count value.
+     * Get number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1.
      *
      * @return the count value
      */
@@ -43,7 +43,7 @@ public class ContainerServiceMasterProfile {
     }
 
     /**
-     * Set the count value.
+     * Set number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1.
      *
      * @param count the count value to set
      * @return the ContainerServiceMasterProfile object itself.
@@ -54,7 +54,7 @@ public class ContainerServiceMasterProfile {
     }
 
     /**
-     * Get the dnsPrefix value.
+     * Get dNS prefix to be used to create the FQDN for master.
      *
      * @return the dnsPrefix value
      */
@@ -63,7 +63,7 @@ public class ContainerServiceMasterProfile {
     }
 
     /**
-     * Set the dnsPrefix value.
+     * Set dNS prefix to be used to create the FQDN for master.
      *
      * @param dnsPrefix the dnsPrefix value to set
      * @return the ContainerServiceMasterProfile object itself.
@@ -74,7 +74,7 @@ public class ContainerServiceMasterProfile {
     }
 
     /**
-     * Get the fqdn value.
+     * Get fDQN for the master.
      *
      * @return the fqdn value
      */
