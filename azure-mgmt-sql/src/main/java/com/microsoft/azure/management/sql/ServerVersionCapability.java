@@ -12,7 +12,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The server capabilities.
+ * The server capability.
  */
 public class ServerVersionCapability {
     /**
@@ -20,13 +20,6 @@ public class ServerVersionCapability {
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
-
-    /**
-     * The status of the server version. Possible values include: 'Visible',
-     * 'Available', 'Default', 'Disabled'.
-     */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
-    private CapabilityStatus status;
 
     /**
      * The list of supported database editions.
@@ -41,7 +34,20 @@ public class ServerVersionCapability {
     private List<ElasticPoolEditionCapability> supportedElasticPoolEditions;
 
     /**
-     * Get the name value.
+     * The status of the capability. Possible values include: 'Visible',
+     * 'Available', 'Default', 'Disabled'.
+     */
+    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
+    private CapabilityStatus status;
+
+    /**
+     * The reason for the capability not being available.
+     */
+    @JsonProperty(value = "reason")
+    private String reason;
+
+    /**
+     * Get the server version name.
      *
      * @return the name value
      */
@@ -50,16 +56,7 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Get the status value.
-     *
-     * @return the status value
-     */
-    public CapabilityStatus status() {
-        return this.status;
-    }
-
-    /**
-     * Get the supportedEditions value.
+     * Get the list of supported database editions.
      *
      * @return the supportedEditions value
      */
@@ -68,12 +65,41 @@ public class ServerVersionCapability {
     }
 
     /**
-     * Get the supportedElasticPoolEditions value.
+     * Get the list of supported elastic pool editions.
      *
      * @return the supportedElasticPoolEditions value
      */
     public List<ElasticPoolEditionCapability> supportedElasticPoolEditions() {
         return this.supportedElasticPoolEditions;
+    }
+
+    /**
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
+     *
+     * @return the status value
+     */
+    public CapabilityStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Get the reason for the capability not being available.
+     *
+     * @return the reason value
+     */
+    public String reason() {
+        return this.reason;
+    }
+
+    /**
+     * Set the reason for the capability not being available.
+     *
+     * @param reason the reason value to set
+     * @return the ServerVersionCapability object itself.
+     */
+    public ServerVersionCapability withReason(String reason) {
+        this.reason = reason;
+        return this;
     }
 
 }

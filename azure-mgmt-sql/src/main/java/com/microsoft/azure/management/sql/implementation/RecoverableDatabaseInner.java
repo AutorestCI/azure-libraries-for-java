@@ -42,7 +42,7 @@ public class RecoverableDatabaseInner extends ProxyResourceInner {
     private DateTime lastAvailableBackupDate;
 
     /**
-     * Get the edition value.
+     * Get the edition of the database.
      *
      * @return the edition value
      */
@@ -51,7 +51,7 @@ public class RecoverableDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the serviceLevelObjective value.
+     * Get the service level objective name of the database.
      *
      * @return the serviceLevelObjective value
      */
@@ -60,7 +60,7 @@ public class RecoverableDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the elasticPoolName value.
+     * Get the elastic pool name of the database.
      *
      * @return the elasticPoolName value
      */
@@ -69,7 +69,7 @@ public class RecoverableDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the lastAvailableBackupDate value.
+     * Get the last available backup date of the database (ISO8601 format).
      *
      * @return the lastAvailableBackupDate value
      */

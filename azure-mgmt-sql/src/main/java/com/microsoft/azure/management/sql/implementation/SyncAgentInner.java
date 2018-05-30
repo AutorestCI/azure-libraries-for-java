@@ -62,7 +62,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     private String version;
 
     /**
-     * Get the syncAgentName value.
+     * Get name of the sync agent.
      *
      * @return the syncAgentName value
      */
@@ -71,7 +71,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the syncDatabaseId value.
+     * Get aRM resource id of the sync database in the sync agent.
      *
      * @return the syncDatabaseId value
      */
@@ -80,7 +80,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the syncDatabaseId value.
+     * Set aRM resource id of the sync database in the sync agent.
      *
      * @param syncDatabaseId the syncDatabaseId value to set
      * @return the SyncAgentInner object itself.
@@ -91,7 +91,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the lastAliveTime value.
+     * Get last alive time of the sync agent.
      *
      * @return the lastAliveTime value
      */
@@ -100,7 +100,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get state of the sync agent. Possible values include: 'Online', 'Offline', 'NeverConnected'.
      *
      * @return the state value
      */
@@ -109,7 +109,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the isUpToDate value.
+     * Get if the sync agent version is up to date.
      *
      * @return the isUpToDate value
      */
@@ -118,7 +118,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the expiryTime value.
+     * Get expiration time of the sync agent version.
      *
      * @return the expiryTime value
      */
@@ -127,7 +127,7 @@ public class SyncAgentInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the version value.
+     * Get version of the sync agent.
      *
      * @return the version value
      */

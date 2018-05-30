@@ -41,7 +41,7 @@ public class SubscriptionUsageInner extends ProxyResourceInner {
     private String unit;
 
     /**
-     * Get the displayName value.
+     * Get user-readable name of the metric.
      *
      * @return the displayName value
      */
@@ -50,7 +50,7 @@ public class SubscriptionUsageInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the currentValue value.
+     * Get current value of the metric.
      *
      * @return the currentValue value
      */
@@ -59,7 +59,7 @@ public class SubscriptionUsageInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the limit value.
+     * Get boundary value of the metric.
      *
      * @return the limit value
      */
@@ -68,7 +68,7 @@ public class SubscriptionUsageInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the unit value.
+     * Get unit of the metric.
      *
      * @return the unit value
      */
