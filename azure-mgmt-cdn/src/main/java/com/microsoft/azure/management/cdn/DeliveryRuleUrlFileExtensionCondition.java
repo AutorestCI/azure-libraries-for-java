@@ -25,7 +25,7 @@ public class DeliveryRuleUrlFileExtensionCondition extends DeliveryRuleCondition
     private UrlFileExtensionConditionParameters parameters;
 
     /**
-     * Get the parameters value.
+     * Get defines the parameters for the condition.
      *
      * @return the parameters value
      */
@@ -34,7 +34,7 @@ public class DeliveryRuleUrlFileExtensionCondition extends DeliveryRuleCondition
     }
 
     /**
-     * Set the parameters value.
+     * Set defines the parameters for the condition.
      *
      * @param parameters the parameters value to set
      * @return the DeliveryRuleUrlFileExtensionCondition object itself.

@@ -10,12 +10,12 @@ package com.microsoft.azure.management.cdn.implementation;
 
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.microsoft.azure.Resource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * The resource model definition for a ARM tracked top level resource.
  */
-public class TrackedResourceInner extends Resource {
+public class TrackedResourceInner extends ProxyResource {
     /**
      * Resource location.
      */
@@ -29,7 +29,7 @@ public class TrackedResourceInner extends Resource {
     private Map<String, String> tags;
 
     /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -38,7 +38,7 @@ public class TrackedResourceInner extends Resource {
     }
 
     /**
-     * Set the location value.
+     * Set resource location.
      *
      * @param location the location value to set
      * @return the TrackedResourceInner object itself.
@@ -49,7 +49,7 @@ public class TrackedResourceInner extends Resource {
     }
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -58,7 +58,7 @@ public class TrackedResourceInner extends Resource {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the TrackedResourceInner object itself.

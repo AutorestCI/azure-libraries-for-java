@@ -35,6 +35,8 @@ public class UrlPathConditionParameters {
 
     /**
      * Creates an instance of UrlPathConditionParameters class.
+     * @param path a URL path for the condition of the delivery rule.
+     * @param matchType the match type for the condition of the delivery rule. Possible values include: 'Literal', 'Wildcard'.
      */
     public UrlPathConditionParameters() {
         odatatype = "Microsoft.Azure.Cdn.Models.DeliveryRuleUrlPathConditionParameters";
@@ -61,7 +63,7 @@ public class UrlPathConditionParameters {
     }
 
     /**
-     * Get the path value.
+     * Get a URL path for the condition of the delivery rule.
      *
      * @return the path value
      */
@@ -70,7 +72,7 @@ public class UrlPathConditionParameters {
     }
 
     /**
-     * Set the path value.
+     * Set a URL path for the condition of the delivery rule.
      *
      * @param path the path value to set
      * @return the UrlPathConditionParameters object itself.
@@ -81,7 +83,7 @@ public class UrlPathConditionParameters {
     }
 
     /**
-     * Get the matchType value.
+     * Get the match type for the condition of the delivery rule. Possible values include: 'Literal', 'Wildcard'.
      *
      * @return the matchType value
      */
@@ -90,7 +92,7 @@ public class UrlPathConditionParameters {
     }
 
     /**
-     * Set the matchType value.
+     * Set the match type for the condition of the delivery rule. Possible values include: 'Literal', 'Wildcard'.
      *
      * @param matchType the matchType value to set
      * @return the UrlPathConditionParameters object itself.

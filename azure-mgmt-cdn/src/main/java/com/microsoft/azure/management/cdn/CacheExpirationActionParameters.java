@@ -42,6 +42,7 @@ public class CacheExpirationActionParameters {
 
     /**
      * Creates an instance of CacheExpirationActionParameters class.
+     * @param cacheBehavior caching behavior for the requests that include query strings. Possible values include: 'BypassCache', 'Override', 'SetIfMissing'.
      */
     public CacheExpirationActionParameters() {
         odatatype = "Microsoft.Azure.Cdn.Models.DeliveryRuleCacheExpirationActionParameters";
@@ -69,7 +70,7 @@ public class CacheExpirationActionParameters {
     }
 
     /**
-     * Get the cacheBehavior value.
+     * Get caching behavior for the requests that include query strings. Possible values include: 'BypassCache', 'Override', 'SetIfMissing'.
      *
      * @return the cacheBehavior value
      */
@@ -78,7 +79,7 @@ public class CacheExpirationActionParameters {
     }
 
     /**
-     * Set the cacheBehavior value.
+     * Set caching behavior for the requests that include query strings. Possible values include: 'BypassCache', 'Override', 'SetIfMissing'.
      *
      * @param cacheBehavior the cacheBehavior value to set
      * @return the CacheExpirationActionParameters object itself.
@@ -89,7 +90,7 @@ public class CacheExpirationActionParameters {
     }
 
     /**
-     * Get the cacheType value.
+     * Get the level at which the content needs to be cached.
      *
      * @return the cacheType value
      */
@@ -98,7 +99,7 @@ public class CacheExpirationActionParameters {
     }
 
     /**
-     * Set the cacheType value.
+     * Set the level at which the content needs to be cached.
      *
      * @param cacheType the cacheType value to set
      * @return the CacheExpirationActionParameters object itself.
@@ -109,7 +110,7 @@ public class CacheExpirationActionParameters {
     }
 
     /**
-     * Get the cacheDuration value.
+     * Get the duration for which the the content needs to be cached. Allowed format is [d.]hh:mm:ss.
      *
      * @return the cacheDuration value
      */
@@ -118,7 +119,7 @@ public class CacheExpirationActionParameters {
     }
 
     /**
-     * Set the cacheDuration value.
+     * Set the duration for which the the content needs to be cached. Allowed format is [d.]hh:mm:ss.
      *
      * @param cacheDuration the cacheDuration value to set
      * @return the CacheExpirationActionParameters object itself.

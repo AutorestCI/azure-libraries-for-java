@@ -8,11 +8,11 @@
 
 package com.microsoft.azure.management.cdn.implementation;
 
-import com.microsoft.azure.Resource;
+import com.microsoft.azure.ProxyResource;
 
 /**
  * The resource model definition for a ARM proxy resource. It will have
  * everything other than required location and tags.
  */
-public class ProxyResourceInner extends Resource {
+public class ProxyResourceInner extends ProxyResource {
 }

@@ -40,7 +40,7 @@ public class ProfileInner extends TrackedResourceInner {
     private String provisioningState;
 
     /**
-     * Get the sku value.
+     * Get the pricing tier (defines a CDN provider, feature list and rate) of the CDN profile.
      *
      * @return the sku value
      */
@@ -49,7 +49,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the sku value.
+     * Set the pricing tier (defines a CDN provider, feature list and rate) of the CDN profile.
      *
      * @param sku the sku value to set
      * @return the ProfileInner object itself.
@@ -60,7 +60,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the resourceState value.
+     * Get resource status of the profile. Possible values include: 'Creating', 'Active', 'Deleting', 'Disabled'.
      *
      * @return the resourceState value
      */
@@ -69,7 +69,7 @@ public class ProfileInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get provisioning status of the profile.
      *
      * @return the provisioningState value
      */

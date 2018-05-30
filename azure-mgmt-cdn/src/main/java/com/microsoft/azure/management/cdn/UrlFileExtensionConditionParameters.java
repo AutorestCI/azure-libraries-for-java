@@ -29,6 +29,7 @@ public class UrlFileExtensionConditionParameters {
 
     /**
      * Creates an instance of UrlFileExtensionConditionParameters class.
+     * @param extensions a list of extensions for the condition of the delivery rule.
      */
     public UrlFileExtensionConditionParameters() {
         odatatype = "Microsoft.Azure.Cdn.Models.DeliveryRuleUrlFileExtensionConditionParameters";
@@ -55,7 +56,7 @@ public class UrlFileExtensionConditionParameters {
     }
 
     /**
-     * Get the extensions value.
+     * Get a list of extensions for the condition of the delivery rule.
      *
      * @return the extensions value
      */
@@ -64,7 +65,7 @@ public class UrlFileExtensionConditionParameters {
     }
 
     /**
-     * Set the extensions value.
+     * Set a list of extensions for the condition of the delivery rule.
      *
      * @param extensions the extensions value to set
      * @return the UrlFileExtensionConditionParameters object itself.

@@ -26,7 +26,7 @@ public class EdgeNodeInner extends ProxyResourceInner {
     private List<IpAddressGroup> ipAddressGroups;
 
     /**
-     * Get the ipAddressGroups value.
+     * Get list of ip address groups.
      *
      * @return the ipAddressGroups value
      */
@@ -35,7 +35,7 @@ public class EdgeNodeInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the ipAddressGroups value.
+     * Set list of ip address groups.
      *
      * @param ipAddressGroups the ipAddressGroups value to set
      * @return the EdgeNodeInner object itself.

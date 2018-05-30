@@ -12,21 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
 /**
- * The main origin of CDN content which is added when creating a CDN endpoint.
+ * Origin properties needed for origin creation or update.
  */
 @JsonFlatten
-public class DeepCreatedOrigin {
+public class OriginUpdateParameters {
     /**
-     * Origin name.
+     * The address of the origin. Domain names, IPv4 addresses, and IPv6
+     * addresses are supported.
      */
-    @JsonProperty(value = "name", required = true)
-    private String name;
-
-    /**
-     * The address of the origin. It can be a domain name, IPv4 address, or
-     * IPv6 address.
-     */
-    @JsonProperty(value = "properties.hostName", required = true)
+    @JsonProperty(value = "properties.hostName")
     private String hostName;
 
     /**
@@ -42,27 +36,7 @@ public class DeepCreatedOrigin {
     private Integer httpsPort;
 
     /**
-     * Get origin name.
-     *
-     * @return the name value
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Set origin name.
-     *
-     * @param name the name value to set
-     * @return the DeepCreatedOrigin object itself.
-     */
-    public DeepCreatedOrigin withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get the address of the origin. It can be a domain name, IPv4 address, or IPv6 address.
+     * Get the address of the origin. Domain names, IPv4 addresses, and IPv6 addresses are supported.
      *
      * @return the hostName value
      */
@@ -71,12 +45,12 @@ public class DeepCreatedOrigin {
     }
 
     /**
-     * Set the address of the origin. It can be a domain name, IPv4 address, or IPv6 address.
+     * Set the address of the origin. Domain names, IPv4 addresses, and IPv6 addresses are supported.
      *
      * @param hostName the hostName value to set
-     * @return the DeepCreatedOrigin object itself.
+     * @return the OriginUpdateParameters object itself.
      */
-    public DeepCreatedOrigin withHostName(String hostName) {
+    public OriginUpdateParameters withHostName(String hostName) {
         this.hostName = hostName;
         return this;
     }
@@ -94,9 +68,9 @@ public class DeepCreatedOrigin {
      * Set the value of the HTTP port. Must be between 1 and 65535.
      *
      * @param httpPort the httpPort value to set
-     * @return the DeepCreatedOrigin object itself.
+     * @return the OriginUpdateParameters object itself.
      */
-    public DeepCreatedOrigin withHttpPort(Integer httpPort) {
+    public OriginUpdateParameters withHttpPort(Integer httpPort) {
         this.httpPort = httpPort;
         return this;
     }
@@ -114,9 +88,9 @@ public class DeepCreatedOrigin {
      * Set the value of the HTTPS port. Must be between 1 and 65535.
      *
      * @param httpsPort the httpsPort value to set
-     * @return the DeepCreatedOrigin object itself.
+     * @return the OriginUpdateParameters object itself.
      */
-    public DeepCreatedOrigin withHttpsPort(Integer httpsPort) {
+    public OriginUpdateParameters withHttpsPort(Integer httpsPort) {
         this.httpsPort = httpsPort;
         return this;
     }

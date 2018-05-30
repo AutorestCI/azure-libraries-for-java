@@ -40,7 +40,7 @@ public class DeliveryRule {
     private List<DeliveryRuleCondition> conditions;
 
     /**
-     * Get the order value.
+     * Get the order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.
      *
      * @return the order value
      */
@@ -49,7 +49,7 @@ public class DeliveryRule {
     }
 
     /**
-     * Set the order value.
+     * Set the order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.
      *
      * @param order the order value to set
      * @return the DeliveryRule object itself.
@@ -60,7 +60,7 @@ public class DeliveryRule {
     }
 
     /**
-     * Get the actions value.
+     * Get a list of actions that are executed when all the conditions of a rule are satisfied.
      *
      * @return the actions value
      */
@@ -69,7 +69,7 @@ public class DeliveryRule {
     }
 
     /**
-     * Set the actions value.
+     * Set a list of actions that are executed when all the conditions of a rule are satisfied.
      *
      * @param actions the actions value to set
      * @return the DeliveryRule object itself.
@@ -80,7 +80,7 @@ public class DeliveryRule {
     }
 
     /**
-     * Get the conditions value.
+     * Get a list of conditions that must be matched for the actions to be executed.
      *
      * @return the conditions value
      */
@@ -89,7 +89,7 @@ public class DeliveryRule {
     }
 
     /**
-     * Set the conditions value.
+     * Set a list of conditions that must be matched for the actions to be executed.
      *
      * @param conditions the conditions value to set
      * @return the DeliveryRule object itself.
