@@ -23,7 +23,7 @@ public class ContainerServiceNetworkProfile {
 
     /**
      * Network policy used for building Kubernetes network. Possible values
-     * include: 'calico', 'cilium'.
+     * include: 'calico'.
      */
     @JsonProperty(value = "networkPolicy")
     private NetworkPolicy networkPolicy;
@@ -78,7 +78,7 @@ public class ContainerServiceNetworkProfile {
     }
 
     /**
-     * Get network policy used for building Kubernetes network. Possible values include: 'calico', 'cilium'.
+     * Get network policy used for building Kubernetes network. Possible values include: 'calico'.
      *
      * @return the networkPolicy value
      */
@@ -87,7 +87,7 @@ public class ContainerServiceNetworkProfile {
     }
 
     /**
-     * Set network policy used for building Kubernetes network. Possible values include: 'calico', 'cilium'.
+     * Set network policy used for building Kubernetes network. Possible values include: 'calico'.
      *
      * @param networkPolicy the networkPolicy value to set
      * @return the ContainerServiceNetworkProfile object itself.

@@ -93,9 +93,7 @@ public class ContainerServiceMasterProfile {
     private Integer osDiskSizeGB;
 
     /**
-     * VNet SubnetID specifies the vnet's subnet identifier. If you specify
-     * either master VNet Subnet, or agent VNet Subnet, you need to specify
-     * both. And they have to be in the same VNet.
+     * VNet SubnetID specifies the vnet's subnet identifier.
      */
     @JsonProperty(value = "vnetSubnetID")
     private String vnetSubnetID;
@@ -202,7 +200,7 @@ public class ContainerServiceMasterProfile {
     }
 
     /**
-     * Get vNet SubnetID specifies the vnet's subnet identifier. If you specify either master VNet Subnet, or agent VNet Subnet, you need to specify both. And they have to be in the same VNet.
+     * Get vNet SubnetID specifies the vnet's subnet identifier.
      *
      * @return the vnetSubnetID value
      */
@@ -211,7 +209,7 @@ public class ContainerServiceMasterProfile {
     }
 
     /**
-     * Set vNet SubnetID specifies the vnet's subnet identifier. If you specify either master VNet Subnet, or agent VNet Subnet, you need to specify both. And they have to be in the same VNet.
+     * Set vNet SubnetID specifies the vnet's subnet identifier.
      *
      * @param vnetSubnetID the vnetSubnetID value to set
      * @return the ContainerServiceMasterProfile object itself.
