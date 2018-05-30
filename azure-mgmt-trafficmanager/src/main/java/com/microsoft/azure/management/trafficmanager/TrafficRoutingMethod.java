@@ -28,6 +28,12 @@ public final class TrafficRoutingMethod extends ExpandableStringEnum<TrafficRout
     /** Static value Geographic for TrafficRoutingMethod. */
     public static final TrafficRoutingMethod GEOGRAPHIC = fromString("Geographic");
 
+    /** Static value MultiValue for TrafficRoutingMethod. */
+    public static final TrafficRoutingMethod MULTI_VALUE = fromString("MultiValue");
+
+    /** Static value Subnet for TrafficRoutingMethod. */
+    public static final TrafficRoutingMethod SUBNET = fromString("Subnet");
+
     /**
      * Creates or finds a TrafficRoutingMethod from its string representation.
      * @param name a name to look for

@@ -27,7 +27,7 @@ public class HeatMapEndpoint {
     private Integer endpointId;
 
     /**
-     * Get the resourceId value.
+     * Get the ARM Resource ID of this Traffic Manager endpoint.
      *
      * @return the resourceId value
      */
@@ -36,7 +36,7 @@ public class HeatMapEndpoint {
     }
 
     /**
-     * Set the resourceId value.
+     * Set the ARM Resource ID of this Traffic Manager endpoint.
      *
      * @param resourceId the resourceId value to set
      * @return the HeatMapEndpoint object itself.
@@ -47,7 +47,7 @@ public class HeatMapEndpoint {
     }
 
     /**
-     * Get the endpointId value.
+     * Get a number uniquely identifying this endpoint in query experiences.
      *
      * @return the endpointId value
      */
@@ -56,7 +56,7 @@ public class HeatMapEndpoint {
     }
 
     /**
-     * Set the endpointId value.
+     * Set a number uniquely identifying this endpoint in query experiences.
      *
      * @param endpointId the endpointId value to set
      * @return the HeatMapEndpoint object itself.

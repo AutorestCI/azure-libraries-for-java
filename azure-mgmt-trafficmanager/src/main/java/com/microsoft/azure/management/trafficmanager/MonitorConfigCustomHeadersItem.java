@@ -27,7 +27,7 @@ public class MonitorConfigCustomHeadersItem {
     private String value;
 
     /**
-     * Get the name value.
+     * Get header name.
      *
      * @return the name value
      */
@@ -36,7 +36,7 @@ public class MonitorConfigCustomHeadersItem {
     }
 
     /**
-     * Set the name value.
+     * Set header name.
      *
      * @param name the name value to set
      * @return the MonitorConfigCustomHeadersItem object itself.
@@ -47,7 +47,7 @@ public class MonitorConfigCustomHeadersItem {
     }
 
     /**
-     * Get the value value.
+     * Get header value.
      *
      * @return the value value
      */
@@ -56,7 +56,7 @@ public class MonitorConfigCustomHeadersItem {
     }
 
     /**
-     * Set the value value.
+     * Set header value.
      *
      * @param value the value value to set
      * @return the MonitorConfigCustomHeadersItem object itself.

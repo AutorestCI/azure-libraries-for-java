@@ -48,7 +48,7 @@ public class TrackedResourceInner extends ProxyResource {
     private String type;
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -57,7 +57,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the TrackedResourceInner object itself.
@@ -68,7 +68,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the location value.
+     * Get the Azure Region where the resource lives.
      *
      * @return the location value
      */
@@ -77,7 +77,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the location value.
+     * Set the Azure Region where the resource lives.
      *
      * @param location the location value to set
      * @return the TrackedResourceInner object itself.
@@ -88,7 +88,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the id value.
+     * Get fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}.
      *
      * @return the id value
      */
@@ -97,7 +97,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the id value.
+     * Set fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}.
      *
      * @param id the id value to set
      * @return the TrackedResourceInner object itself.
@@ -108,7 +108,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the name value.
+     * Get the name of the resource.
      *
      * @return the name value
      */
@@ -117,7 +117,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the resource.
      *
      * @param name the name value to set
      * @return the TrackedResourceInner object itself.
@@ -128,7 +128,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the type value.
+     * Get the type of the resource. Ex- Microsoft.Network/trafficmanagerProfiles.
      *
      * @return the type value
      */
@@ -137,7 +137,7 @@ public class TrackedResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the type value.
+     * Set the type of the resource. Ex- Microsoft.Network/trafficmanagerProfiles.
      *
      * @param type the type value to set
      * @return the TrackedResourceInner object itself.

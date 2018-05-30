@@ -185,6 +185,19 @@ public class TrafficManagerManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The TrafficManagerUserMetricsKeysInner object to access its operations.
+     */
+    private TrafficManagerUserMetricsKeysInner trafficManagerUserMetricsKeys;
+
+    /**
+     * Gets the TrafficManagerUserMetricsKeysInner object to access its operations.
+     * @return the TrafficManagerUserMetricsKeysInner object.
+     */
+    public TrafficManagerUserMetricsKeysInner trafficManagerUserMetricsKeys() {
+        return this.trafficManagerUserMetricsKeys;
+    }
+
+    /**
      * Initializes an instance of TrafficManagerManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -223,6 +236,7 @@ public class TrafficManagerManagementClientImpl extends AzureServiceClient {
         this.profiles = new ProfilesInner(restClient().retrofit(), this);
         this.geographicHierarchies = new GeographicHierarchiesInner(restClient().retrofit(), this);
         this.heatMaps = new HeatMapsInner(restClient().retrofit(), this);
+        this.trafficManagerUserMetricsKeys = new TrafficManagerUserMetricsKeysInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 

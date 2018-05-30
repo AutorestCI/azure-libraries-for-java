@@ -80,7 +80,7 @@ public class MonitorConfig {
     private List<MonitorConfigExpectedStatusCodeRangesItem> expectedStatusCodeRanges;
 
     /**
-     * Get the profileMonitorStatus value.
+     * Get the profile-level monitoring status of the Traffic Manager profile. Possible values include: 'CheckingEndpoints', 'Online', 'Degraded', 'Disabled', 'Inactive'.
      *
      * @return the profileMonitorStatus value
      */
@@ -89,7 +89,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the profileMonitorStatus value.
+     * Set the profile-level monitoring status of the Traffic Manager profile. Possible values include: 'CheckingEndpoints', 'Online', 'Degraded', 'Disabled', 'Inactive'.
      *
      * @param profileMonitorStatus the profileMonitorStatus value to set
      * @return the MonitorConfig object itself.
@@ -100,7 +100,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the protocol value.
+     * Get the protocol (HTTP, HTTPS or TCP) used to probe for endpoint health. Possible values include: 'HTTP', 'HTTPS', 'TCP'.
      *
      * @return the protocol value
      */
@@ -109,7 +109,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the protocol value.
+     * Set the protocol (HTTP, HTTPS or TCP) used to probe for endpoint health. Possible values include: 'HTTP', 'HTTPS', 'TCP'.
      *
      * @param protocol the protocol value to set
      * @return the MonitorConfig object itself.
@@ -120,7 +120,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port used to probe for endpoint health.
      *
      * @return the port value
      */
@@ -129,7 +129,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port used to probe for endpoint health.
      *
      * @param port the port value to set
      * @return the MonitorConfig object itself.
@@ -140,7 +140,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the path value.
+     * Get the path relative to the endpoint domain name used to probe for endpoint health.
      *
      * @return the path value
      */
@@ -149,7 +149,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the path value.
+     * Set the path relative to the endpoint domain name used to probe for endpoint health.
      *
      * @param path the path value to set
      * @return the MonitorConfig object itself.
@@ -160,7 +160,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the intervalInSeconds value.
+     * Get the monitor interval for endpoints in this profile. This is the interval at which Traffic Manager will check the health of each endpoint in this profile.
      *
      * @return the intervalInSeconds value
      */
@@ -169,7 +169,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the intervalInSeconds value.
+     * Set the monitor interval for endpoints in this profile. This is the interval at which Traffic Manager will check the health of each endpoint in this profile.
      *
      * @param intervalInSeconds the intervalInSeconds value to set
      * @return the MonitorConfig object itself.
@@ -180,7 +180,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the timeoutInSeconds value.
+     * Get the monitor timeout for endpoints in this profile. This is the time that Traffic Manager allows endpoints in this profile to response to the health check.
      *
      * @return the timeoutInSeconds value
      */
@@ -189,7 +189,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the timeoutInSeconds value.
+     * Set the monitor timeout for endpoints in this profile. This is the time that Traffic Manager allows endpoints in this profile to response to the health check.
      *
      * @param timeoutInSeconds the timeoutInSeconds value to set
      * @return the MonitorConfig object itself.
@@ -200,7 +200,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the toleratedNumberOfFailures value.
+     * Get the number of consecutive failed health check that Traffic Manager tolerates before declaring an endpoint in this profile Degraded after the next failed health check.
      *
      * @return the toleratedNumberOfFailures value
      */
@@ -209,7 +209,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the toleratedNumberOfFailures value.
+     * Set the number of consecutive failed health check that Traffic Manager tolerates before declaring an endpoint in this profile Degraded after the next failed health check.
      *
      * @param toleratedNumberOfFailures the toleratedNumberOfFailures value to set
      * @return the MonitorConfig object itself.
@@ -220,7 +220,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the customHeaders value.
+     * Get list of custom headers.
      *
      * @return the customHeaders value
      */
@@ -229,7 +229,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the customHeaders value.
+     * Set list of custom headers.
      *
      * @param customHeaders the customHeaders value to set
      * @return the MonitorConfig object itself.
@@ -240,7 +240,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Get the expectedStatusCodeRanges value.
+     * Get list of expected status code ranges.
      *
      * @return the expectedStatusCodeRanges value
      */
@@ -249,7 +249,7 @@ public class MonitorConfig {
     }
 
     /**
-     * Set the expectedStatusCodeRanges value.
+     * Set list of expected status code ranges.
      *
      * @param expectedStatusCodeRanges the expectedStatusCodeRanges value to set
      * @return the MonitorConfig object itself.

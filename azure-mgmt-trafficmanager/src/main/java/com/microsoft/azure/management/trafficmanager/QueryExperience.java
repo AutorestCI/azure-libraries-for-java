@@ -34,7 +34,7 @@ public class QueryExperience {
     private Double latency;
 
     /**
-     * Get the endpointId value.
+     * Get the id of the endpoint from the 'endpoints' array which these queries were routed to.
      *
      * @return the endpointId value
      */
@@ -43,7 +43,7 @@ public class QueryExperience {
     }
 
     /**
-     * Set the endpointId value.
+     * Set the id of the endpoint from the 'endpoints' array which these queries were routed to.
      *
      * @param endpointId the endpointId value to set
      * @return the QueryExperience object itself.
@@ -54,7 +54,7 @@ public class QueryExperience {
     }
 
     /**
-     * Get the queryCount value.
+     * Get the number of queries originating from this location.
      *
      * @return the queryCount value
      */
@@ -63,7 +63,7 @@ public class QueryExperience {
     }
 
     /**
-     * Set the queryCount value.
+     * Set the number of queries originating from this location.
      *
      * @param queryCount the queryCount value to set
      * @return the QueryExperience object itself.
@@ -74,7 +74,7 @@ public class QueryExperience {
     }
 
     /**
-     * Get the latency value.
+     * Get the latency experienced by queries originating from this location.
      *
      * @return the latency value
      */
@@ -83,7 +83,7 @@ public class QueryExperience {
     }
 
     /**
-     * Set the latency value.
+     * Set the latency experienced by queries originating from this location.
      *
      * @param latency the latency value to set
      * @return the QueryExperience object itself.

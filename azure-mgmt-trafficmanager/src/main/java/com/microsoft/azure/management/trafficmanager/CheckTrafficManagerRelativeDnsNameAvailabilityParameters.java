@@ -27,7 +27,7 @@ public class CheckTrafficManagerRelativeDnsNameAvailabilityParameters {
     private String type;
 
     /**
-     * Get the name value.
+     * Get the name of the resource.
      *
      * @return the name value
      */
@@ -36,7 +36,7 @@ public class CheckTrafficManagerRelativeDnsNameAvailabilityParameters {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the resource.
      *
      * @param name the name value to set
      * @return the CheckTrafficManagerRelativeDnsNameAvailabilityParameters object itself.
@@ -47,7 +47,7 @@ public class CheckTrafficManagerRelativeDnsNameAvailabilityParameters {
     }
 
     /**
-     * Get the type value.
+     * Get the type of the resource.
      *
      * @return the type value
      */
@@ -56,7 +56,7 @@ public class CheckTrafficManagerRelativeDnsNameAvailabilityParameters {
     }
 
     /**
-     * Set the type value.
+     * Set the type of the resource.
      *
      * @param type the type value to set
      * @return the CheckTrafficManagerRelativeDnsNameAvailabilityParameters object itself.

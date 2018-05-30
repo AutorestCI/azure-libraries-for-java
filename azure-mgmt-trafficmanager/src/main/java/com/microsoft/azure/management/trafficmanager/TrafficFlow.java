@@ -40,7 +40,7 @@ public class TrafficFlow {
     private List<QueryExperience> queryExperiences;
 
     /**
-     * Get the sourceIp value.
+     * Get the IP address that this query experience originated from.
      *
      * @return the sourceIp value
      */
@@ -49,7 +49,7 @@ public class TrafficFlow {
     }
 
     /**
-     * Set the sourceIp value.
+     * Set the IP address that this query experience originated from.
      *
      * @param sourceIp the sourceIp value to set
      * @return the TrafficFlow object itself.
@@ -60,7 +60,7 @@ public class TrafficFlow {
     }
 
     /**
-     * Get the latitude value.
+     * Get the approximate latitude that these queries originated from.
      *
      * @return the latitude value
      */
@@ -69,7 +69,7 @@ public class TrafficFlow {
     }
 
     /**
-     * Set the latitude value.
+     * Set the approximate latitude that these queries originated from.
      *
      * @param latitude the latitude value to set
      * @return the TrafficFlow object itself.
@@ -80,7 +80,7 @@ public class TrafficFlow {
     }
 
     /**
-     * Get the longitude value.
+     * Get the approximate longitude that these queries originated from.
      *
      * @return the longitude value
      */
@@ -89,7 +89,7 @@ public class TrafficFlow {
     }
 
     /**
-     * Set the longitude value.
+     * Set the approximate longitude that these queries originated from.
      *
      * @param longitude the longitude value to set
      * @return the TrafficFlow object itself.
@@ -100,7 +100,7 @@ public class TrafficFlow {
     }
 
     /**
-     * Get the queryExperiences value.
+     * Get the query experiences produced in this HeatMap calculation.
      *
      * @return the queryExperiences value
      */
@@ -109,7 +109,7 @@ public class TrafficFlow {
     }
 
     /**
-     * Set the queryExperiences value.
+     * Set the query experiences produced in this HeatMap calculation.
      *
      * @param queryExperiences the queryExperiences value to set
      * @return the TrafficFlow object itself.
