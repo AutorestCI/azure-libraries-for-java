@@ -82,7 +82,7 @@ public class ContainerServiceInner extends Resource {
     private ContainerServiceDiagnosticsProfile diagnosticsProfile;
 
     /**
-     * Get the provisioningState value.
+     * Get the current deployment or provisioning state, which only appears in the response.
      *
      * @return the provisioningState value
      */
@@ -91,7 +91,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the orchestratorProfile value.
+     * Get properties of the orchestrator.
      *
      * @return the orchestratorProfile value
      */
@@ -100,7 +100,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the orchestratorProfile value.
+     * Set properties of the orchestrator.
      *
      * @param orchestratorProfile the orchestratorProfile value to set
      * @return the ContainerServiceInner object itself.
@@ -111,7 +111,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the customProfile value.
+     * Get properties for custom clusters.
      *
      * @return the customProfile value
      */
@@ -120,7 +120,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the customProfile value.
+     * Set properties for custom clusters.
      *
      * @param customProfile the customProfile value to set
      * @return the ContainerServiceInner object itself.
@@ -131,7 +131,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the servicePrincipalProfile value.
+     * Get properties for cluster service principals.
      *
      * @return the servicePrincipalProfile value
      */
@@ -140,7 +140,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the servicePrincipalProfile value.
+     * Set properties for cluster service principals.
      *
      * @param servicePrincipalProfile the servicePrincipalProfile value to set
      * @return the ContainerServiceInner object itself.
@@ -151,7 +151,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the masterProfile value.
+     * Get properties of master agents.
      *
      * @return the masterProfile value
      */
@@ -160,7 +160,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the masterProfile value.
+     * Set properties of master agents.
      *
      * @param masterProfile the masterProfile value to set
      * @return the ContainerServiceInner object itself.
@@ -171,7 +171,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the agentPoolProfiles value.
+     * Get properties of the agent pool.
      *
      * @return the agentPoolProfiles value
      */
@@ -180,7 +180,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the agentPoolProfiles value.
+     * Set properties of the agent pool.
      *
      * @param agentPoolProfiles the agentPoolProfiles value to set
      * @return the ContainerServiceInner object itself.
@@ -191,7 +191,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the windowsProfile value.
+     * Get properties of Windows VMs.
      *
      * @return the windowsProfile value
      */
@@ -200,7 +200,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the windowsProfile value.
+     * Set properties of Windows VMs.
      *
      * @param windowsProfile the windowsProfile value to set
      * @return the ContainerServiceInner object itself.
@@ -211,7 +211,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the linuxProfile value.
+     * Get properties of Linux VMs.
      *
      * @return the linuxProfile value
      */
@@ -220,7 +220,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the linuxProfile value.
+     * Set properties of Linux VMs.
      *
      * @param linuxProfile the linuxProfile value to set
      * @return the ContainerServiceInner object itself.
@@ -231,7 +231,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Get the diagnosticsProfile value.
+     * Get properties of the diagnostic agent.
      *
      * @return the diagnosticsProfile value
      */
@@ -240,7 +240,7 @@ public class ContainerServiceInner extends Resource {
     }
 
     /**
-     * Set the diagnosticsProfile value.
+     * Set properties of the diagnostic agent.
      *
      * @param diagnosticsProfile the diagnosticsProfile value to set
      * @return the ContainerServiceInner object itself.
