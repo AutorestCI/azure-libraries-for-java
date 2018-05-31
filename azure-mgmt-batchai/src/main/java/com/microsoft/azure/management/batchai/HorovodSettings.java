@@ -11,7 +11,7 @@ package com.microsoft.azure.management.batchai;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Specifies the settings for Chainer job.
+ * Specifies the settings for Horovod job.
  */
 public class HorovodSettings {
     /**

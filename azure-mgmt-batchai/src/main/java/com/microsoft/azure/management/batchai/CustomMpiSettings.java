@@ -11,7 +11,7 @@ package com.microsoft.azure.management.batchai;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Specifies the settings for a custom tool kit job.
+ * Specifies the settings for a custom MPI job.
  */
 public class CustomMpiSettings {
     /**
