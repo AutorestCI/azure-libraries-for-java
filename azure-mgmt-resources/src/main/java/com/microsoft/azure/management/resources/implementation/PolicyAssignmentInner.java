@@ -85,7 +85,7 @@ public class PolicyAssignmentInner {
     private PolicySku sku;
 
     /**
-     * Get the displayName value.
+     * Get the display name of the policy assignment.
      *
      * @return the displayName value
      */
@@ -94,7 +94,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the displayName value.
+     * Set the display name of the policy assignment.
      *
      * @param displayName the displayName value to set
      * @return the PolicyAssignmentInner object itself.
@@ -105,7 +105,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the policyDefinitionId value.
+     * Get the ID of the policy definition.
      *
      * @return the policyDefinitionId value
      */
@@ -114,7 +114,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the policyDefinitionId value.
+     * Set the ID of the policy definition.
      *
      * @param policyDefinitionId the policyDefinitionId value to set
      * @return the PolicyAssignmentInner object itself.
@@ -125,7 +125,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the scope value.
+     * Get the scope for the policy assignment.
      *
      * @return the scope value
      */
@@ -134,7 +134,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the scope value.
+     * Set the scope for the policy assignment.
      *
      * @param scope the scope value to set
      * @return the PolicyAssignmentInner object itself.
@@ -145,7 +145,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the notScopes value.
+     * Get the policy's excluded scopes.
      *
      * @return the notScopes value
      */
@@ -154,7 +154,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the notScopes value.
+     * Set the policy's excluded scopes.
      *
      * @param notScopes the notScopes value to set
      * @return the PolicyAssignmentInner object itself.
@@ -165,7 +165,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the parameters value.
+     * Get required if a parameter is used in policy rule.
      *
      * @return the parameters value
      */
@@ -174,7 +174,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the parameters value.
+     * Set required if a parameter is used in policy rule.
      *
      * @param parameters the parameters value to set
      * @return the PolicyAssignmentInner object itself.
@@ -185,7 +185,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the description value.
+     * Get this message will be part of response in case of policy violation.
      *
      * @return the description value
      */
@@ -194,7 +194,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the description value.
+     * Set this message will be part of response in case of policy violation.
      *
      * @param description the description value to set
      * @return the PolicyAssignmentInner object itself.
@@ -205,7 +205,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the metadata value.
+     * Get the policy assignment metadata.
      *
      * @return the metadata value
      */
@@ -214,7 +214,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the metadata value.
+     * Set the policy assignment metadata.
      *
      * @param metadata the metadata value to set
      * @return the PolicyAssignmentInner object itself.
@@ -225,7 +225,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the id value.
+     * Get the ID of the policy assignment.
      *
      * @return the id value
      */
@@ -234,7 +234,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the type value.
+     * Get the type of the policy assignment.
      *
      * @return the type value
      */
@@ -243,7 +243,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the name value.
+     * Get the name of the policy assignment.
      *
      * @return the name value
      */
@@ -252,7 +252,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the sku value.
+     * Get the policy sku.
      *
      * @return the sku value
      */
@@ -261,7 +261,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the sku value.
+     * Set the policy sku.
      *
      * @param sku the sku value to set
      * @return the PolicyAssignmentInner object itself.

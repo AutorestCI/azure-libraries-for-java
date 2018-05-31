@@ -60,7 +60,7 @@ public class ManagementLockObjectInner {
     private String name;
 
     /**
-     * Get the level value.
+     * Get the level of the lock. Possible values are: NotSpecified, CanNotDelete, ReadOnly. CanNotDelete means authorized users are able to read and modify the resources, but not delete. ReadOnly means authorized users can only read from a resource, but they can't modify or delete it. Possible values include: 'NotSpecified', 'CanNotDelete', 'ReadOnly'.
      *
      * @return the level value
      */
@@ -69,7 +69,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Set the level value.
+     * Set the level of the lock. Possible values are: NotSpecified, CanNotDelete, ReadOnly. CanNotDelete means authorized users are able to read and modify the resources, but not delete. ReadOnly means authorized users can only read from a resource, but they can't modify or delete it. Possible values include: 'NotSpecified', 'CanNotDelete', 'ReadOnly'.
      *
      * @param level the level value to set
      * @return the ManagementLockObjectInner object itself.
@@ -80,7 +80,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Get the notes value.
+     * Get notes about the lock. Maximum of 512 characters.
      *
      * @return the notes value
      */
@@ -89,7 +89,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Set the notes value.
+     * Set notes about the lock. Maximum of 512 characters.
      *
      * @param notes the notes value to set
      * @return the ManagementLockObjectInner object itself.
@@ -100,7 +100,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Get the owners value.
+     * Get the owners of the lock.
      *
      * @return the owners value
      */
@@ -109,7 +109,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Set the owners value.
+     * Set the owners of the lock.
      *
      * @param owners the owners value to set
      * @return the ManagementLockObjectInner object itself.
@@ -120,7 +120,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Get the id value.
+     * Get the resource ID of the lock.
      *
      * @return the id value
      */
@@ -129,7 +129,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Get the type value.
+     * Get the resource type of the lock - Microsoft.Authorization/locks.
      *
      * @return the type value
      */
@@ -138,7 +138,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Get the name value.
+     * Get the name of the lock.
      *
      * @return the name value
      */
@@ -147,7 +147,7 @@ public class ManagementLockObjectInner {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the lock.
      *
      * @param name the name value to set
      * @return the ManagementLockObjectInner object itself.
