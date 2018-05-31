@@ -16,14 +16,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class VirtualNetworkGatewaySku {
     /**
      * Gateway SKU name. Possible values include: 'Basic', 'HighPerformance',
-     * 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3'.
+     * 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3',
+     * 'VpnGw1AZ', 'VpnGw2AZ', 'VpnGw3AZ', 'ErGw1AZ', 'ErGw2AZ', 'ErGw3AZ'.
      */
     @JsonProperty(value = "name")
     private VirtualNetworkGatewaySkuName name;
 
     /**
      * Gateway SKU tier. Possible values include: 'Basic', 'HighPerformance',
-     * 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3'.
+     * 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3',
+     * 'VpnGw1AZ', 'VpnGw2AZ', 'VpnGw3AZ', 'ErGw1AZ', 'ErGw2AZ', 'ErGw3AZ'.
      */
     @JsonProperty(value = "tier")
     private VirtualNetworkGatewaySkuTier tier;
@@ -35,7 +37,7 @@ public class VirtualNetworkGatewaySku {
     private Integer capacity;
 
     /**
-     * Get the name value.
+     * Get gateway SKU name. Possible values include: 'Basic', 'HighPerformance', 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3', 'VpnGw1AZ', 'VpnGw2AZ', 'VpnGw3AZ', 'ErGw1AZ', 'ErGw2AZ', 'ErGw3AZ'.
      *
      * @return the name value
      */
@@ -44,7 +46,7 @@ public class VirtualNetworkGatewaySku {
     }
 
     /**
-     * Set the name value.
+     * Set gateway SKU name. Possible values include: 'Basic', 'HighPerformance', 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3', 'VpnGw1AZ', 'VpnGw2AZ', 'VpnGw3AZ', 'ErGw1AZ', 'ErGw2AZ', 'ErGw3AZ'.
      *
      * @param name the name value to set
      * @return the VirtualNetworkGatewaySku object itself.
@@ -55,7 +57,7 @@ public class VirtualNetworkGatewaySku {
     }
 
     /**
-     * Get the tier value.
+     * Get gateway SKU tier. Possible values include: 'Basic', 'HighPerformance', 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3', 'VpnGw1AZ', 'VpnGw2AZ', 'VpnGw3AZ', 'ErGw1AZ', 'ErGw2AZ', 'ErGw3AZ'.
      *
      * @return the tier value
      */
@@ -64,7 +66,7 @@ public class VirtualNetworkGatewaySku {
     }
 
     /**
-     * Set the tier value.
+     * Set gateway SKU tier. Possible values include: 'Basic', 'HighPerformance', 'Standard', 'UltraPerformance', 'VpnGw1', 'VpnGw2', 'VpnGw3', 'VpnGw1AZ', 'VpnGw2AZ', 'VpnGw3AZ', 'ErGw1AZ', 'ErGw2AZ', 'ErGw3AZ'.
      *
      * @param tier the tier value to set
      * @return the VirtualNetworkGatewaySku object itself.
@@ -75,7 +77,7 @@ public class VirtualNetworkGatewaySku {
     }
 
     /**
-     * Get the capacity value.
+     * Get the capacity.
      *
      * @return the capacity value
      */
@@ -84,7 +86,7 @@ public class VirtualNetworkGatewaySku {
     }
 
     /**
-     * Set the capacity value.
+     * Set the capacity.
      *
      * @param capacity the capacity value to set
      * @return the VirtualNetworkGatewaySku object itself.

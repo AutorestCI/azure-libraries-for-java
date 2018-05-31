@@ -11,17 +11,19 @@ package com.microsoft.azure.management.network;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Parameters that define a resource to query flow log status.
+ * Parameters that define a resource to query flow log and traffic analytics
+ * (optional) status.
  */
 public class FlowLogStatusParameters {
     /**
-     * The target resource where getting the flow logging status.
+     * The target resource where getting the flow log and traffic analytics
+     * (optional) status.
      */
     @JsonProperty(value = "targetResourceId", required = true)
     private String targetResourceId;
 
     /**
-     * Get the targetResourceId value.
+     * Get the target resource where getting the flow log and traffic analytics (optional) status.
      *
      * @return the targetResourceId value
      */
@@ -30,7 +32,7 @@ public class FlowLogStatusParameters {
     }
 
     /**
-     * Set the targetResourceId value.
+     * Set the target resource where getting the flow log and traffic analytics (optional) status.
      *
      * @param targetResourceId the targetResourceId value to set
      * @return the FlowLogStatusParameters object itself.

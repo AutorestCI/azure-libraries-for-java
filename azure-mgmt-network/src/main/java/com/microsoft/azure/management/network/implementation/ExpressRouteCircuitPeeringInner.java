@@ -8,10 +8,11 @@
 
 package com.microsoft.azure.management.network.implementation;
 
-import com.microsoft.azure.management.network.ExpressRouteCircuitPeeringType;
-import com.microsoft.azure.management.network.ExpressRouteCircuitPeeringState;
+import com.microsoft.azure.management.network.ExpressRoutePeeringType;
+import com.microsoft.azure.management.network.ExpressRoutePeeringState;
 import com.microsoft.azure.management.network.ExpressRouteCircuitPeeringConfig;
 import com.microsoft.azure.management.network.Ipv6ExpressRouteCircuitPeeringConfig;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.SubResource;
@@ -22,19 +23,17 @@ import com.microsoft.azure.SubResource;
 @JsonFlatten
 public class ExpressRouteCircuitPeeringInner extends SubResource {
     /**
-     * The PeeringType. Possible values are: 'AzurePublicPeering',
-     * 'AzurePrivatePeering', and 'MicrosoftPeering'. Possible values include:
-     * 'AzurePublicPeering', 'AzurePrivatePeering', 'MicrosoftPeering'.
+     * The peering type. Possible values include: 'AzurePublicPeering',
+     * 'AzurePrivatePeering', 'MicrosoftPeering'.
      */
     @JsonProperty(value = "properties.peeringType")
-    private ExpressRouteCircuitPeeringType peeringType;
+    private ExpressRoutePeeringType peeringType;
 
     /**
-     * The state of peering. Possible values are: 'Disabled' and 'Enabled'.
-     * Possible values include: 'Disabled', 'Enabled'.
+     * The peering state. Possible values include: 'Disabled', 'Enabled'.
      */
     @JsonProperty(value = "properties.state")
-    private ExpressRouteCircuitPeeringState state;
+    private ExpressRoutePeeringState state;
 
     /**
      * The Azure ASN.
@@ -46,7 +45,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
      * The peer ASN.
      */
     @JsonProperty(value = "properties.peerASN")
-    private Integer peerASN;
+    private Long peerASN;
 
     /**
      * The primary address prefix.
@@ -128,6 +127,13 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     private Ipv6ExpressRouteCircuitPeeringConfig ipv6PeeringConfig;
 
     /**
+     * The list of circuit connections associated with Azure Private Peering
+     * for this circuit.
+     */
+    @JsonProperty(value = "properties.connections")
+    private List<ExpressRouteCircuitConnectionInner> connections;
+
+    /**
      * Gets name of the resource that is unique within a resource group. This
      * name can be used to access the resource.
      */
@@ -141,47 +147,47 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     private String etag;
 
     /**
-     * Get the peeringType value.
+     * Get the peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering', 'MicrosoftPeering'.
      *
      * @return the peeringType value
      */
-    public ExpressRouteCircuitPeeringType peeringType() {
+    public ExpressRoutePeeringType peeringType() {
         return this.peeringType;
     }
 
     /**
-     * Set the peeringType value.
+     * Set the peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering', 'MicrosoftPeering'.
      *
      * @param peeringType the peeringType value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
      */
-    public ExpressRouteCircuitPeeringInner withPeeringType(ExpressRouteCircuitPeeringType peeringType) {
+    public ExpressRouteCircuitPeeringInner withPeeringType(ExpressRoutePeeringType peeringType) {
         this.peeringType = peeringType;
         return this;
     }
 
     /**
-     * Get the state value.
+     * Get the peering state. Possible values include: 'Disabled', 'Enabled'.
      *
      * @return the state value
      */
-    public ExpressRouteCircuitPeeringState state() {
+    public ExpressRoutePeeringState state() {
         return this.state;
     }
 
     /**
-     * Set the state value.
+     * Set the peering state. Possible values include: 'Disabled', 'Enabled'.
      *
      * @param state the state value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
      */
-    public ExpressRouteCircuitPeeringInner withState(ExpressRouteCircuitPeeringState state) {
+    public ExpressRouteCircuitPeeringInner withState(ExpressRoutePeeringState state) {
         this.state = state;
         return this;
     }
 
     /**
-     * Get the azureASN value.
+     * Get the Azure ASN.
      *
      * @return the azureASN value
      */
@@ -190,7 +196,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the azureASN value.
+     * Set the Azure ASN.
      *
      * @param azureASN the azureASN value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -201,27 +207,27 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the peerASN value.
+     * Get the peer ASN.
      *
      * @return the peerASN value
      */
-    public Integer peerASN() {
+    public Long peerASN() {
         return this.peerASN;
     }
 
     /**
-     * Set the peerASN value.
+     * Set the peer ASN.
      *
      * @param peerASN the peerASN value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
      */
-    public ExpressRouteCircuitPeeringInner withPeerASN(Integer peerASN) {
+    public ExpressRouteCircuitPeeringInner withPeerASN(Long peerASN) {
         this.peerASN = peerASN;
         return this;
     }
 
     /**
-     * Get the primaryPeerAddressPrefix value.
+     * Get the primary address prefix.
      *
      * @return the primaryPeerAddressPrefix value
      */
@@ -230,7 +236,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the primaryPeerAddressPrefix value.
+     * Set the primary address prefix.
      *
      * @param primaryPeerAddressPrefix the primaryPeerAddressPrefix value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -241,7 +247,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the secondaryPeerAddressPrefix value.
+     * Get the secondary address prefix.
      *
      * @return the secondaryPeerAddressPrefix value
      */
@@ -250,7 +256,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the secondaryPeerAddressPrefix value.
+     * Set the secondary address prefix.
      *
      * @param secondaryPeerAddressPrefix the secondaryPeerAddressPrefix value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -261,7 +267,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the primaryAzurePort value.
+     * Get the primary port.
      *
      * @return the primaryAzurePort value
      */
@@ -270,7 +276,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the primaryAzurePort value.
+     * Set the primary port.
      *
      * @param primaryAzurePort the primaryAzurePort value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -281,7 +287,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the secondaryAzurePort value.
+     * Get the secondary port.
      *
      * @return the secondaryAzurePort value
      */
@@ -290,7 +296,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the secondaryAzurePort value.
+     * Set the secondary port.
      *
      * @param secondaryAzurePort the secondaryAzurePort value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -301,7 +307,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the sharedKey value.
+     * Get the shared key.
      *
      * @return the sharedKey value
      */
@@ -310,7 +316,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the sharedKey value.
+     * Set the shared key.
      *
      * @param sharedKey the sharedKey value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -321,7 +327,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the vlanId value.
+     * Get the VLAN ID.
      *
      * @return the vlanId value
      */
@@ -330,7 +336,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the vlanId value.
+     * Set the VLAN ID.
      *
      * @param vlanId the vlanId value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -341,7 +347,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the microsoftPeeringConfig value.
+     * Get the Microsoft peering configuration.
      *
      * @return the microsoftPeeringConfig value
      */
@@ -350,7 +356,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the microsoftPeeringConfig value.
+     * Set the Microsoft peering configuration.
      *
      * @param microsoftPeeringConfig the microsoftPeeringConfig value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -361,7 +367,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the stats value.
+     * Get gets peering stats.
      *
      * @return the stats value
      */
@@ -370,7 +376,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the stats value.
+     * Set gets peering stats.
      *
      * @param stats the stats value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -381,7 +387,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get gets the provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
      *
      * @return the provisioningState value
      */
@@ -390,7 +396,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the provisioningState value.
+     * Set gets the provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
      *
      * @param provisioningState the provisioningState value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -401,7 +407,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the gatewayManagerEtag value.
+     * Get the GatewayManager Etag.
      *
      * @return the gatewayManagerEtag value
      */
@@ -410,7 +416,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the gatewayManagerEtag value.
+     * Set the GatewayManager Etag.
      *
      * @param gatewayManagerEtag the gatewayManagerEtag value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -421,7 +427,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the lastModifiedBy value.
+     * Get gets whether the provider or the customer last modified the peering.
      *
      * @return the lastModifiedBy value
      */
@@ -430,7 +436,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the lastModifiedBy value.
+     * Set gets whether the provider or the customer last modified the peering.
      *
      * @param lastModifiedBy the lastModifiedBy value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -441,7 +447,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the routeFilter value.
+     * Get the reference of the RouteFilter resource.
      *
      * @return the routeFilter value
      */
@@ -450,7 +456,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the routeFilter value.
+     * Set the reference of the RouteFilter resource.
      *
      * @param routeFilter the routeFilter value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -461,7 +467,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the ipv6PeeringConfig value.
+     * Get the IPv6 peering configuration.
      *
      * @return the ipv6PeeringConfig value
      */
@@ -470,7 +476,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the ipv6PeeringConfig value.
+     * Set the IPv6 peering configuration.
      *
      * @param ipv6PeeringConfig the ipv6PeeringConfig value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -481,7 +487,27 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the name value.
+     * Get the list of circuit connections associated with Azure Private Peering for this circuit.
+     *
+     * @return the connections value
+     */
+    public List<ExpressRouteCircuitConnectionInner> connections() {
+        return this.connections;
+    }
+
+    /**
+     * Set the list of circuit connections associated with Azure Private Peering for this circuit.
+     *
+     * @param connections the connections value to set
+     * @return the ExpressRouteCircuitPeeringInner object itself.
+     */
+    public ExpressRouteCircuitPeeringInner withConnections(List<ExpressRouteCircuitConnectionInner> connections) {
+        this.connections = connections;
+        return this;
+    }
+
+    /**
+     * Get gets name of the resource that is unique within a resource group. This name can be used to access the resource.
      *
      * @return the name value
      */
@@ -490,7 +516,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Set the name value.
+     * Set gets name of the resource that is unique within a resource group. This name can be used to access the resource.
      *
      * @param name the name value to set
      * @return the ExpressRouteCircuitPeeringInner object itself.
@@ -501,7 +527,7 @@ public class ExpressRouteCircuitPeeringInner extends SubResource {
     }
 
     /**
-     * Get the etag value.
+     * Get a unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value
      */

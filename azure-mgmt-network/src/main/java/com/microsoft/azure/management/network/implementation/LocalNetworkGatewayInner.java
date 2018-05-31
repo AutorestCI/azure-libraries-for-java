@@ -12,12 +12,14 @@ import com.microsoft.azure.management.network.AddressSpace;
 import com.microsoft.azure.management.network.BgpSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * A common class for general resource information.
  */
 @JsonFlatten
+@SkipParentValidation
 public class LocalNetworkGatewayInner extends Resource {
     /**
      * Local network site address space.
@@ -57,7 +59,13 @@ public class LocalNetworkGatewayInner extends Resource {
     private String etag;
 
     /**
-     * Get the localNetworkAddressSpace value.
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
+     * Get local network site address space.
      *
      * @return the localNetworkAddressSpace value
      */
@@ -66,7 +74,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Set the localNetworkAddressSpace value.
+     * Set local network site address space.
      *
      * @param localNetworkAddressSpace the localNetworkAddressSpace value to set
      * @return the LocalNetworkGatewayInner object itself.
@@ -77,7 +85,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Get the gatewayIpAddress value.
+     * Get iP address of local network gateway.
      *
      * @return the gatewayIpAddress value
      */
@@ -86,7 +94,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Set the gatewayIpAddress value.
+     * Set iP address of local network gateway.
      *
      * @param gatewayIpAddress the gatewayIpAddress value to set
      * @return the LocalNetworkGatewayInner object itself.
@@ -97,7 +105,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Get the bgpSettings value.
+     * Get local network gateway's BGP speaker settings.
      *
      * @return the bgpSettings value
      */
@@ -106,7 +114,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Set the bgpSettings value.
+     * Set local network gateway's BGP speaker settings.
      *
      * @param bgpSettings the bgpSettings value to set
      * @return the LocalNetworkGatewayInner object itself.
@@ -117,7 +125,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Get the resourceGuid value.
+     * Get the resource GUID property of the LocalNetworkGateway resource.
      *
      * @return the resourceGuid value
      */
@@ -126,7 +134,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Set the resourceGuid value.
+     * Set the resource GUID property of the LocalNetworkGateway resource.
      *
      * @param resourceGuid the resourceGuid value to set
      * @return the LocalNetworkGatewayInner object itself.
@@ -137,7 +145,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state of the LocalNetworkGateway resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
      *
      * @return the provisioningState value
      */
@@ -146,7 +154,7 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Get the etag value.
+     * Get a unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value
      */
@@ -155,13 +163,33 @@ public class LocalNetworkGatewayInner extends Resource {
     }
 
     /**
-     * Set the etag value.
+     * Set a unique read-only string that changes whenever the resource is updated.
      *
      * @param etag the etag value to set
      * @return the LocalNetworkGatewayInner object itself.
      */
     public LocalNetworkGatewayInner withEtag(String etag) {
         this.etag = etag;
+        return this;
+    }
+
+    /**
+     * Get resource ID.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set resource ID.
+     *
+     * @param id the id value to set
+     * @return the LocalNetworkGatewayInner object itself.
+     */
+    public LocalNetworkGatewayInner withId(String id) {
+        this.id = id;
         return this;
     }
 

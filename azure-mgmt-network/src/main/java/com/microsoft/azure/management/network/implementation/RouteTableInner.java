@@ -11,12 +11,14 @@ package com.microsoft.azure.management.network.implementation;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Route table resource.
  */
 @JsonFlatten
+@SkipParentValidation
 public class RouteTableInner extends Resource {
     /**
      * Collection of routes contained within a route table.
@@ -29,6 +31,13 @@ public class RouteTableInner extends Resource {
      */
     @JsonProperty(value = "properties.subnets", access = JsonProperty.Access.WRITE_ONLY)
     private List<SubnetInner> subnets;
+
+    /**
+     * Gets or sets whether to disable the routes learned by BGP on that route
+     * table. True means disable.
+     */
+    @JsonProperty(value = "properties.disableBgpRoutePropagation")
+    private Boolean disableBgpRoutePropagation;
 
     /**
      * The provisioning state of the resource. Possible values are: 'Updating',
@@ -45,7 +54,13 @@ public class RouteTableInner extends Resource {
     private String etag;
 
     /**
-     * Get the routes value.
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
+     * Get collection of routes contained within a route table.
      *
      * @return the routes value
      */
@@ -54,7 +69,7 @@ public class RouteTableInner extends Resource {
     }
 
     /**
-     * Set the routes value.
+     * Set collection of routes contained within a route table.
      *
      * @param routes the routes value to set
      * @return the RouteTableInner object itself.
@@ -65,7 +80,7 @@ public class RouteTableInner extends Resource {
     }
 
     /**
-     * Get the subnets value.
+     * Get a collection of references to subnets.
      *
      * @return the subnets value
      */
@@ -74,7 +89,27 @@ public class RouteTableInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get gets or sets whether to disable the routes learned by BGP on that route table. True means disable.
+     *
+     * @return the disableBgpRoutePropagation value
+     */
+    public Boolean disableBgpRoutePropagation() {
+        return this.disableBgpRoutePropagation;
+    }
+
+    /**
+     * Set gets or sets whether to disable the routes learned by BGP on that route table. True means disable.
+     *
+     * @param disableBgpRoutePropagation the disableBgpRoutePropagation value to set
+     * @return the RouteTableInner object itself.
+     */
+    public RouteTableInner withDisableBgpRoutePropagation(Boolean disableBgpRoutePropagation) {
+        this.disableBgpRoutePropagation = disableBgpRoutePropagation;
+        return this;
+    }
+
+    /**
+     * Get the provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
      *
      * @return the provisioningState value
      */
@@ -83,7 +118,7 @@ public class RouteTableInner extends Resource {
     }
 
     /**
-     * Set the provisioningState value.
+     * Set the provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
      *
      * @param provisioningState the provisioningState value to set
      * @return the RouteTableInner object itself.
@@ -94,7 +129,7 @@ public class RouteTableInner extends Resource {
     }
 
     /**
-     * Get the etag value.
+     * Get gets a unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value
      */
@@ -103,13 +138,33 @@ public class RouteTableInner extends Resource {
     }
 
     /**
-     * Set the etag value.
+     * Set gets a unique read-only string that changes whenever the resource is updated.
      *
      * @param etag the etag value to set
      * @return the RouteTableInner object itself.
      */
     public RouteTableInner withEtag(String etag) {
         this.etag = etag;
+        return this;
+    }
+
+    /**
+     * Get resource ID.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set resource ID.
+     *
+     * @param id the id value to set
+     * @return the RouteTableInner object itself.
+     */
+    public RouteTableInner withId(String id) {
+        this.id = id;
         return this;
     }
 

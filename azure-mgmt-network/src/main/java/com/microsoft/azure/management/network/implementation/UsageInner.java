@@ -16,6 +16,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class UsageInner {
     /**
+     * Resource identifier.
+     */
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
+    /**
      * An enum describing the unit of measurement.
      */
     @JsonProperty(value = "unit", required = true)
@@ -41,13 +47,25 @@ public class UsageInner {
 
     /**
      * Creates an instance of UsageInner class.
+     * @param currentValue the current value of the usage.
+     * @param limit the limit of usage.
+     * @param name the name of the type of usage.
      */
     public UsageInner() {
         unit = "Count";
     }
 
     /**
-     * Get the unit value.
+     * Get resource identifier.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get an enum describing the unit of measurement.
      *
      * @return the unit value
      */
@@ -56,7 +74,7 @@ public class UsageInner {
     }
 
     /**
-     * Set the unit value.
+     * Set an enum describing the unit of measurement.
      *
      * @param unit the unit value to set
      * @return the UsageInner object itself.
@@ -67,7 +85,7 @@ public class UsageInner {
     }
 
     /**
-     * Get the currentValue value.
+     * Get the current value of the usage.
      *
      * @return the currentValue value
      */
@@ -76,7 +94,7 @@ public class UsageInner {
     }
 
     /**
-     * Set the currentValue value.
+     * Set the current value of the usage.
      *
      * @param currentValue the currentValue value to set
      * @return the UsageInner object itself.
@@ -87,7 +105,7 @@ public class UsageInner {
     }
 
     /**
-     * Get the limit value.
+     * Get the limit of usage.
      *
      * @return the limit value
      */
@@ -96,7 +114,7 @@ public class UsageInner {
     }
 
     /**
-     * Set the limit value.
+     * Set the limit of usage.
      *
      * @param limit the limit value to set
      * @return the UsageInner object itself.
@@ -107,7 +125,7 @@ public class UsageInner {
     }
 
     /**
-     * Get the name value.
+     * Get the name of the type of usage.
      *
      * @return the name value
      */
@@ -116,7 +134,7 @@ public class UsageInner {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the type of usage.
      *
      * @param name the name value to set
      * @return the UsageInner object itself.

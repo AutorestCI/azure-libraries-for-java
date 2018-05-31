@@ -14,8 +14,13 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.storage.AccountSasParameters;
+import com.microsoft.azure.management.storage.ManagementPoliciesRulesSetParameter;
+import com.microsoft.azure.management.storage.ServiceSasParameters;
 import com.microsoft.azure.management.storage.StorageAccountCheckNameAvailabilityParameters;
+import com.microsoft.azure.management.storage.StorageAccountCreateParameters;
 import com.microsoft.azure.management.storage.StorageAccountRegenerateKeyParameters;
+import com.microsoft.azure.management.storage.StorageAccountUpdateParameters;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -71,11 +76,11 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}")
-        Observable<Response<ResponseBody>> create(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body StorageAccountCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body StorageAccountCreateParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts beginCreate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}")
-        Observable<Response<ResponseBody>> beginCreate(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body StorageAccountCreateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreate(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body StorageAccountCreateParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}", method = "DELETE", hasBody = true)
@@ -87,7 +92,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}")
-        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body StorageAccountUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body StorageAccountUpdateParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts list" })
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts")
@@ -107,11 +112,23 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts listAccountSAS" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/ListAccountSas")
-        Observable<Response<ResponseBody>> listAccountSAS(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body AccountSasParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listAccountSAS(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body AccountSasParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts listServiceSAS" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/ListServiceSas")
-        Observable<Response<ResponseBody>> listServiceSAS(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body ServiceSasParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> listServiceSAS(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Body ServiceSasParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts getManagementPolicies" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/managementPolicies/{managementPolicyName}")
+        Observable<Response<ResponseBody>> getManagementPolicies(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Path("managementPolicyName") String managementPolicyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts createOrUpdateManagementPolicies" })
+        @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/managementPolicies/{managementPolicyName}")
+        Observable<Response<ResponseBody>> createOrUpdateManagementPolicies(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Path("managementPolicyName") String managementPolicyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body ManagementPoliciesRulesSetParameter properties, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storage.StorageAccounts deleteManagementPolicies" })
+        @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/managementPolicies/{managementPolicyName}", method = "DELETE", hasBody = true)
+        Observable<Response<ResponseBody>> deleteManagementPolicies(@Path("resourceGroupName") String resourceGroupName, @Path("accountName") String accountName, @Path("subscriptionId") String subscriptionId, @Path("managementPolicyName") String managementPolicyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -207,7 +224,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageAccountInner object if successful.
      */
-    public StorageAccountInner create(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters) {
+    public StorageAccountInner create(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters) {
         return createWithServiceResponseAsync(resourceGroupName, accountName, parameters).toBlocking().last().body();
     }
 
@@ -221,7 +238,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<StorageAccountInner> createAsync(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters, final ServiceCallback<StorageAccountInner> serviceCallback) {
+    public ServiceFuture<StorageAccountInner> createAsync(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters, final ServiceCallback<StorageAccountInner> serviceCallback) {
         return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, accountName, parameters), serviceCallback);
     }
 
@@ -234,7 +251,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<StorageAccountInner> createAsync(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters) {
+    public Observable<StorageAccountInner> createAsync(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters) {
         return createWithServiceResponseAsync(resourceGroupName, accountName, parameters).map(new Func1<ServiceResponse<StorageAccountInner>, StorageAccountInner>() {
             @Override
             public StorageAccountInner call(ServiceResponse<StorageAccountInner> response) {
@@ -252,7 +269,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<StorageAccountInner>> createWithServiceResponseAsync(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters) {
+    public Observable<ServiceResponse<StorageAccountInner>> createWithServiceResponseAsync(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -284,7 +301,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageAccountInner object if successful.
      */
-    public StorageAccountInner beginCreate(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters) {
+    public StorageAccountInner beginCreate(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters) {
         return beginCreateWithServiceResponseAsync(resourceGroupName, accountName, parameters).toBlocking().single().body();
     }
 
@@ -298,7 +315,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<StorageAccountInner> beginCreateAsync(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters, final ServiceCallback<StorageAccountInner> serviceCallback) {
+    public ServiceFuture<StorageAccountInner> beginCreateAsync(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters, final ServiceCallback<StorageAccountInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(resourceGroupName, accountName, parameters), serviceCallback);
     }
 
@@ -311,7 +328,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageAccountInner object
      */
-    public Observable<StorageAccountInner> beginCreateAsync(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters) {
+    public Observable<StorageAccountInner> beginCreateAsync(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters) {
         return beginCreateWithServiceResponseAsync(resourceGroupName, accountName, parameters).map(new Func1<ServiceResponse<StorageAccountInner>, StorageAccountInner>() {
             @Override
             public StorageAccountInner call(ServiceResponse<StorageAccountInner> response) {
@@ -329,7 +346,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageAccountInner object
      */
-    public Observable<ServiceResponse<StorageAccountInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String accountName, StorageAccountCreateParametersInner parameters) {
+    public Observable<ServiceResponse<StorageAccountInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String accountName, StorageAccountCreateParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -551,7 +568,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageAccountInner object if successful.
      */
-    public StorageAccountInner update(String resourceGroupName, String accountName, StorageAccountUpdateParametersInner parameters) {
+    public StorageAccountInner update(String resourceGroupName, String accountName, StorageAccountUpdateParameters parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, accountName, parameters).toBlocking().single().body();
     }
 
@@ -565,7 +582,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<StorageAccountInner> updateAsync(String resourceGroupName, String accountName, StorageAccountUpdateParametersInner parameters, final ServiceCallback<StorageAccountInner> serviceCallback) {
+    public ServiceFuture<StorageAccountInner> updateAsync(String resourceGroupName, String accountName, StorageAccountUpdateParameters parameters, final ServiceCallback<StorageAccountInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, accountName, parameters), serviceCallback);
     }
 
@@ -578,7 +595,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageAccountInner object
      */
-    public Observable<StorageAccountInner> updateAsync(String resourceGroupName, String accountName, StorageAccountUpdateParametersInner parameters) {
+    public Observable<StorageAccountInner> updateAsync(String resourceGroupName, String accountName, StorageAccountUpdateParameters parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, accountName, parameters).map(new Func1<ServiceResponse<StorageAccountInner>, StorageAccountInner>() {
             @Override
             public StorageAccountInner call(ServiceResponse<StorageAccountInner> response) {
@@ -596,7 +613,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageAccountInner object
      */
-    public Observable<ServiceResponse<StorageAccountInner>> updateWithServiceResponseAsync(String resourceGroupName, String accountName, StorageAccountUpdateParametersInner parameters) {
+    public Observable<ServiceResponse<StorageAccountInner>> updateWithServiceResponseAsync(String resourceGroupName, String accountName, StorageAccountUpdateParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -695,7 +712,11 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
                 public Observable<ServiceResponse<List<StorageAccountInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<StorageAccountInner>> result = listDelegate(response);
-                        ServiceResponse<List<StorageAccountInner>> clientResponse = new ServiceResponse<List<StorageAccountInner>>(result.body().items(), result.response());
+                        List<StorageAccountInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<StorageAccountInner>> clientResponse = new ServiceResponse<List<StorageAccountInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -779,7 +800,11 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
                 public Observable<ServiceResponse<List<StorageAccountInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<StorageAccountInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<StorageAccountInner>> clientResponse = new ServiceResponse<List<StorageAccountInner>>(result.body().items(), result.response());
+                        List<StorageAccountInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<StorageAccountInner>> clientResponse = new ServiceResponse<List<StorageAccountInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -987,7 +1012,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ListAccountSasResponseInner object if successful.
      */
-    public ListAccountSasResponseInner listAccountSAS(String resourceGroupName, String accountName, AccountSasParametersInner parameters) {
+    public ListAccountSasResponseInner listAccountSAS(String resourceGroupName, String accountName, AccountSasParameters parameters) {
         return listAccountSASWithServiceResponseAsync(resourceGroupName, accountName, parameters).toBlocking().single().body();
     }
 
@@ -1001,7 +1026,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ListAccountSasResponseInner> listAccountSASAsync(String resourceGroupName, String accountName, AccountSasParametersInner parameters, final ServiceCallback<ListAccountSasResponseInner> serviceCallback) {
+    public ServiceFuture<ListAccountSasResponseInner> listAccountSASAsync(String resourceGroupName, String accountName, AccountSasParameters parameters, final ServiceCallback<ListAccountSasResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(listAccountSASWithServiceResponseAsync(resourceGroupName, accountName, parameters), serviceCallback);
     }
 
@@ -1014,7 +1039,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ListAccountSasResponseInner object
      */
-    public Observable<ListAccountSasResponseInner> listAccountSASAsync(String resourceGroupName, String accountName, AccountSasParametersInner parameters) {
+    public Observable<ListAccountSasResponseInner> listAccountSASAsync(String resourceGroupName, String accountName, AccountSasParameters parameters) {
         return listAccountSASWithServiceResponseAsync(resourceGroupName, accountName, parameters).map(new Func1<ServiceResponse<ListAccountSasResponseInner>, ListAccountSasResponseInner>() {
             @Override
             public ListAccountSasResponseInner call(ServiceResponse<ListAccountSasResponseInner> response) {
@@ -1032,7 +1057,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ListAccountSasResponseInner object
      */
-    public Observable<ServiceResponse<ListAccountSasResponseInner>> listAccountSASWithServiceResponseAsync(String resourceGroupName, String accountName, AccountSasParametersInner parameters) {
+    public Observable<ServiceResponse<ListAccountSasResponseInner>> listAccountSASWithServiceResponseAsync(String resourceGroupName, String accountName, AccountSasParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1081,7 +1106,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ListServiceSasResponseInner object if successful.
      */
-    public ListServiceSasResponseInner listServiceSAS(String resourceGroupName, String accountName, ServiceSasParametersInner parameters) {
+    public ListServiceSasResponseInner listServiceSAS(String resourceGroupName, String accountName, ServiceSasParameters parameters) {
         return listServiceSASWithServiceResponseAsync(resourceGroupName, accountName, parameters).toBlocking().single().body();
     }
 
@@ -1095,7 +1120,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ListServiceSasResponseInner> listServiceSASAsync(String resourceGroupName, String accountName, ServiceSasParametersInner parameters, final ServiceCallback<ListServiceSasResponseInner> serviceCallback) {
+    public ServiceFuture<ListServiceSasResponseInner> listServiceSASAsync(String resourceGroupName, String accountName, ServiceSasParameters parameters, final ServiceCallback<ListServiceSasResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(listServiceSASWithServiceResponseAsync(resourceGroupName, accountName, parameters), serviceCallback);
     }
 
@@ -1108,7 +1133,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ListServiceSasResponseInner object
      */
-    public Observable<ListServiceSasResponseInner> listServiceSASAsync(String resourceGroupName, String accountName, ServiceSasParametersInner parameters) {
+    public Observable<ListServiceSasResponseInner> listServiceSASAsync(String resourceGroupName, String accountName, ServiceSasParameters parameters) {
         return listServiceSASWithServiceResponseAsync(resourceGroupName, accountName, parameters).map(new Func1<ServiceResponse<ListServiceSasResponseInner>, ListServiceSasResponseInner>() {
             @Override
             public ListServiceSasResponseInner call(ServiceResponse<ListServiceSasResponseInner> response) {
@@ -1126,7 +1151,7 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ListServiceSasResponseInner object
      */
-    public Observable<ServiceResponse<ListServiceSasResponseInner>> listServiceSASWithServiceResponseAsync(String resourceGroupName, String accountName, ServiceSasParametersInner parameters) {
+    public Observable<ServiceResponse<ListServiceSasResponseInner>> listServiceSASWithServiceResponseAsync(String resourceGroupName, String accountName, ServiceSasParameters parameters) {
         if (resourceGroupName == null) {
             throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
         }
@@ -1160,6 +1185,356 @@ public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInne
     private ServiceResponse<ListServiceSasResponseInner> listServiceSASDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<ListServiceSasResponseInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<ListServiceSasResponseInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the StorageAccountManagementPoliciesInner object if successful.
+     */
+    public StorageAccountManagementPoliciesInner getManagementPolicies(String resourceGroupName, String accountName) {
+        return getManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName).toBlocking().single().body();
+    }
+
+    /**
+     * Gets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<StorageAccountManagementPoliciesInner> getManagementPoliciesAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountManagementPoliciesInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName), serviceCallback);
+    }
+
+    /**
+     * Gets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the StorageAccountManagementPoliciesInner object
+     */
+    public Observable<StorageAccountManagementPoliciesInner> getManagementPoliciesAsync(String resourceGroupName, String accountName) {
+        return getManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName).map(new Func1<ServiceResponse<StorageAccountManagementPoliciesInner>, StorageAccountManagementPoliciesInner>() {
+            @Override
+            public StorageAccountManagementPoliciesInner call(ServiceResponse<StorageAccountManagementPoliciesInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Gets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the StorageAccountManagementPoliciesInner object
+     */
+    public Observable<ServiceResponse<StorageAccountManagementPoliciesInner>> getManagementPoliciesWithServiceResponseAsync(String resourceGroupName, String accountName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final String managementPolicyName = "default";
+        return service.getManagementPolicies(resourceGroupName, accountName, this.client.subscriptionId(), managementPolicyName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageAccountManagementPoliciesInner>>>() {
+                @Override
+                public Observable<ServiceResponse<StorageAccountManagementPoliciesInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<StorageAccountManagementPoliciesInner> clientResponse = getManagementPoliciesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<StorageAccountManagementPoliciesInner> getManagementPoliciesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<StorageAccountManagementPoliciesInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<StorageAccountManagementPoliciesInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the StorageAccountManagementPoliciesInner object if successful.
+     */
+    public StorageAccountManagementPoliciesInner createOrUpdateManagementPolicies(String resourceGroupName, String accountName) {
+        return createOrUpdateManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName).toBlocking().single().body();
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<StorageAccountManagementPoliciesInner> createOrUpdateManagementPoliciesAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountManagementPoliciesInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName), serviceCallback);
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the StorageAccountManagementPoliciesInner object
+     */
+    public Observable<StorageAccountManagementPoliciesInner> createOrUpdateManagementPoliciesAsync(String resourceGroupName, String accountName) {
+        return createOrUpdateManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName).map(new Func1<ServiceResponse<StorageAccountManagementPoliciesInner>, StorageAccountManagementPoliciesInner>() {
+            @Override
+            public StorageAccountManagementPoliciesInner call(ServiceResponse<StorageAccountManagementPoliciesInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the StorageAccountManagementPoliciesInner object
+     */
+    public Observable<ServiceResponse<StorageAccountManagementPoliciesInner>> createOrUpdateManagementPoliciesWithServiceResponseAsync(String resourceGroupName, String accountName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final String managementPolicyName = "default";
+        final Object policy = null;
+        ManagementPoliciesRulesSetParameter properties = new ManagementPoliciesRulesSetParameter();
+        properties.withPolicy(null);
+        return service.createOrUpdateManagementPolicies(resourceGroupName, accountName, this.client.subscriptionId(), managementPolicyName, this.client.apiVersion(), this.client.acceptLanguage(), properties, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageAccountManagementPoliciesInner>>>() {
+                @Override
+                public Observable<ServiceResponse<StorageAccountManagementPoliciesInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<StorageAccountManagementPoliciesInner> clientResponse = createOrUpdateManagementPoliciesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @param policy The Storage Account ManagementPolicies Rules, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the StorageAccountManagementPoliciesInner object if successful.
+     */
+    public StorageAccountManagementPoliciesInner createOrUpdateManagementPolicies(String resourceGroupName, String accountName, Object policy) {
+        return createOrUpdateManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName, policy).toBlocking().single().body();
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @param policy The Storage Account ManagementPolicies Rules, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<StorageAccountManagementPoliciesInner> createOrUpdateManagementPoliciesAsync(String resourceGroupName, String accountName, Object policy, final ServiceCallback<StorageAccountManagementPoliciesInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName, policy), serviceCallback);
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @param policy The Storage Account ManagementPolicies Rules, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the StorageAccountManagementPoliciesInner object
+     */
+    public Observable<StorageAccountManagementPoliciesInner> createOrUpdateManagementPoliciesAsync(String resourceGroupName, String accountName, Object policy) {
+        return createOrUpdateManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName, policy).map(new Func1<ServiceResponse<StorageAccountManagementPoliciesInner>, StorageAccountManagementPoliciesInner>() {
+            @Override
+            public StorageAccountManagementPoliciesInner call(ServiceResponse<StorageAccountManagementPoliciesInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Sets the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @param policy The Storage Account ManagementPolicies Rules, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the StorageAccountManagementPoliciesInner object
+     */
+    public Observable<ServiceResponse<StorageAccountManagementPoliciesInner>> createOrUpdateManagementPoliciesWithServiceResponseAsync(String resourceGroupName, String accountName, Object policy) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final String managementPolicyName = "default";
+        ManagementPoliciesRulesSetParameter properties = new ManagementPoliciesRulesSetParameter();
+        properties.withPolicy(policy);
+        return service.createOrUpdateManagementPolicies(resourceGroupName, accountName, this.client.subscriptionId(), managementPolicyName, this.client.apiVersion(), this.client.acceptLanguage(), properties, this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageAccountManagementPoliciesInner>>>() {
+                @Override
+                public Observable<ServiceResponse<StorageAccountManagementPoliciesInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<StorageAccountManagementPoliciesInner> clientResponse = createOrUpdateManagementPoliciesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<StorageAccountManagementPoliciesInner> createOrUpdateManagementPoliciesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<StorageAccountManagementPoliciesInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<StorageAccountManagementPoliciesInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Deletes the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void deleteManagementPolicies(String resourceGroupName, String accountName) {
+        deleteManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName).toBlocking().single().body();
+    }
+
+    /**
+     * Deletes the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> deleteManagementPoliciesAsync(String resourceGroupName, String accountName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName), serviceCallback);
+    }
+
+    /**
+     * Deletes the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> deleteManagementPoliciesAsync(String resourceGroupName, String accountName) {
+        return deleteManagementPoliciesWithServiceResponseAsync(resourceGroupName, accountName).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Deletes the data policy rules associated with the specified storage account.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param accountName The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> deleteManagementPoliciesWithServiceResponseAsync(String resourceGroupName, String accountName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (accountName == null) {
+            throw new IllegalArgumentException("Parameter accountName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        final String managementPolicyName = "default";
+        return service.deleteManagementPolicies(resourceGroupName, accountName, this.client.subscriptionId(), managementPolicyName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = deleteManagementPoliciesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> deleteManagementPoliciesDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .register(204, new TypeToken<Void>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

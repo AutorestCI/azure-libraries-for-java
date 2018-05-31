@@ -11,12 +11,14 @@ package com.microsoft.azure.management.network.implementation;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Route Filter Resource.
  */
 @JsonFlatten
+@SkipParentValidation
 public class RouteFilterInner extends Resource {
     /**
      * Collection of RouteFilterRules contained within a route filter.
@@ -45,7 +47,13 @@ public class RouteFilterInner extends Resource {
     private String etag;
 
     /**
-     * Get the rules value.
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
+     * Get collection of RouteFilterRules contained within a route filter.
      *
      * @return the rules value
      */
@@ -54,7 +62,7 @@ public class RouteFilterInner extends Resource {
     }
 
     /**
-     * Set the rules value.
+     * Set collection of RouteFilterRules contained within a route filter.
      *
      * @param rules the rules value to set
      * @return the RouteFilterInner object itself.
@@ -65,7 +73,7 @@ public class RouteFilterInner extends Resource {
     }
 
     /**
-     * Get the peerings value.
+     * Get a collection of references to express route circuit peerings.
      *
      * @return the peerings value
      */
@@ -74,7 +82,7 @@ public class RouteFilterInner extends Resource {
     }
 
     /**
-     * Set the peerings value.
+     * Set a collection of references to express route circuit peerings.
      *
      * @param peerings the peerings value to set
      * @return the RouteFilterInner object itself.
@@ -85,7 +93,7 @@ public class RouteFilterInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state of the resource. Possible values are: 'Updating', 'Deleting', 'Succeeded' and 'Failed'.
      *
      * @return the provisioningState value
      */
@@ -94,12 +102,32 @@ public class RouteFilterInner extends Resource {
     }
 
     /**
-     * Get the etag value.
+     * Get gets a unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value
      */
     public String etag() {
         return this.etag;
+    }
+
+    /**
+     * Get resource ID.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set resource ID.
+     *
+     * @param id the id value to set
+     * @return the RouteFilterInner object itself.
+     */
+    public RouteFilterInner withId(String id) {
+        this.id = id;
+        return this;
     }
 
 }

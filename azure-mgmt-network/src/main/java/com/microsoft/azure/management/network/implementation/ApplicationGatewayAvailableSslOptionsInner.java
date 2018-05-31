@@ -15,12 +15,14 @@ import com.microsoft.azure.management.network.ApplicationGatewaySslCipherSuite;
 import com.microsoft.azure.management.network.ApplicationGatewaySslProtocol;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * Response for ApplicationGatewayAvailableSslOptions API service call.
  */
 @JsonFlatten
+@SkipParentValidation
 public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     /**
      * List of available Ssl predefined policy.
@@ -49,7 +51,13 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     private List<ApplicationGatewaySslProtocol> availableProtocols;
 
     /**
-     * Get the predefinedPolicies value.
+     * Resource ID.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
+     * Get list of available Ssl predefined policy.
      *
      * @return the predefinedPolicies value
      */
@@ -58,7 +66,7 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     }
 
     /**
-     * Set the predefinedPolicies value.
+     * Set list of available Ssl predefined policy.
      *
      * @param predefinedPolicies the predefinedPolicies value to set
      * @return the ApplicationGatewayAvailableSslOptionsInner object itself.
@@ -69,7 +77,7 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     }
 
     /**
-     * Get the defaultPolicy value.
+     * Get name of the Ssl predefined policy applied by default to application gateway. Possible values include: 'AppGwSslPolicy20150501', 'AppGwSslPolicy20170401', 'AppGwSslPolicy20170401S'.
      *
      * @return the defaultPolicy value
      */
@@ -78,7 +86,7 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     }
 
     /**
-     * Set the defaultPolicy value.
+     * Set name of the Ssl predefined policy applied by default to application gateway. Possible values include: 'AppGwSslPolicy20150501', 'AppGwSslPolicy20170401', 'AppGwSslPolicy20170401S'.
      *
      * @param defaultPolicy the defaultPolicy value to set
      * @return the ApplicationGatewayAvailableSslOptionsInner object itself.
@@ -89,7 +97,7 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     }
 
     /**
-     * Get the availableCipherSuites value.
+     * Get list of available Ssl cipher suites.
      *
      * @return the availableCipherSuites value
      */
@@ -98,7 +106,7 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     }
 
     /**
-     * Set the availableCipherSuites value.
+     * Set list of available Ssl cipher suites.
      *
      * @param availableCipherSuites the availableCipherSuites value to set
      * @return the ApplicationGatewayAvailableSslOptionsInner object itself.
@@ -109,7 +117,7 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     }
 
     /**
-     * Get the availableProtocols value.
+     * Get list of available Ssl protocols.
      *
      * @return the availableProtocols value
      */
@@ -118,13 +126,33 @@ public class ApplicationGatewayAvailableSslOptionsInner extends Resource {
     }
 
     /**
-     * Set the availableProtocols value.
+     * Set list of available Ssl protocols.
      *
      * @param availableProtocols the availableProtocols value to set
      * @return the ApplicationGatewayAvailableSslOptionsInner object itself.
      */
     public ApplicationGatewayAvailableSslOptionsInner withAvailableProtocols(List<ApplicationGatewaySslProtocol> availableProtocols) {
         this.availableProtocols = availableProtocols;
+        return this;
+    }
+
+    /**
+     * Get resource ID.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set resource ID.
+     *
+     * @param id the id value to set
+     * @return the ApplicationGatewayAvailableSslOptionsInner object itself.
+     */
+    public ApplicationGatewayAvailableSslOptionsInner withId(String id) {
+        this.id = id;
         return this;
     }
 
