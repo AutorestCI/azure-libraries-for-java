@@ -82,7 +82,7 @@ public class FileServerInner extends ProxyResource {
     private FileServerProvisioningState provisioningState;
 
     /**
-     * Get the vmSize value.
+     * Get for information about available VM sizes for File Server from the Virtual Machines Marketplace, see Sizes for Virtual Machines (Linux).
      *
      * @return the vmSize value
      */
@@ -91,7 +91,7 @@ public class FileServerInner extends ProxyResource {
     }
 
     /**
-     * Set the vmSize value.
+     * Set for information about available VM sizes for File Server from the Virtual Machines Marketplace, see Sizes for Virtual Machines (Linux).
      *
      * @param vmSize the vmSize value to set
      * @return the FileServerInner object itself.
@@ -189,7 +189,7 @@ public class FileServerInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get possible values: creating - The File Server is getting created. updating - The File Server creation has been accepted and it is getting updated. deleting - The user has requested that the File Server be deleted, and it is in the process of being deleted. failed - The File Server creation has failed with the specified errorCode. Details about the error code are specified in the message field. succeeded - The File Server creation has succeeded. Possible values include: 'creating', 'updating', 'deleting', 'succeeded', 'failed'.
      *
      * @return the provisioningState value
      */

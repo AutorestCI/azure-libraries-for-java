@@ -22,7 +22,7 @@ public class WorkspaceUpdateParameters {
     private Map<String, String> tags;
 
     /**
-     * Get the tags value.
+     * Get the user specified tags associated with the Workspace.
      *
      * @return the tags value
      */
@@ -31,7 +31,7 @@ public class WorkspaceUpdateParameters {
     }
 
     /**
-     * Set the tags value.
+     * Set the user specified tags associated with the Workspace.
      *
      * @param tags the tags value to set
      * @return the WorkspaceUpdateParameters object itself.

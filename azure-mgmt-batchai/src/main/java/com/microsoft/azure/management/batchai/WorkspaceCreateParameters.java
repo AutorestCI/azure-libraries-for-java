@@ -28,7 +28,7 @@ public class WorkspaceCreateParameters {
     private Map<String, String> tags;
 
     /**
-     * Get the location value.
+     * Get the region in which to create the Workspace.
      *
      * @return the location value
      */
@@ -37,7 +37,7 @@ public class WorkspaceCreateParameters {
     }
 
     /**
-     * Set the location value.
+     * Set the region in which to create the Workspace.
      *
      * @param location the location value to set
      * @return the WorkspaceCreateParameters object itself.
@@ -48,7 +48,7 @@ public class WorkspaceCreateParameters {
     }
 
     /**
-     * Get the tags value.
+     * Get the user specified tags associated with the Workspace.
      *
      * @return the tags value
      */
@@ -57,7 +57,7 @@ public class WorkspaceCreateParameters {
     }
 
     /**
-     * Set the tags value.
+     * Set the user specified tags associated with the Workspace.
      *
      * @param tags the tags value to set
      * @return the WorkspaceCreateParameters object itself.

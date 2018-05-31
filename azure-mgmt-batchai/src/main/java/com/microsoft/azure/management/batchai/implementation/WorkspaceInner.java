@@ -51,7 +51,7 @@ public class WorkspaceInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioned state of the workspace. Possible values include: 'creating', 'succeeded', 'failed', 'deleting'.
      *
      * @return the provisioningState value
      */
@@ -60,7 +60,7 @@ public class WorkspaceInner extends Resource {
     }
 
     /**
-     * Get the provisioningStateTransitionTime value.
+     * Get the time at which the workspace entered its current provisioning state.
      *
      * @return the provisioningStateTransitionTime value
      */

@@ -43,7 +43,7 @@ public class FileServerCreateParameters {
     private ResourceId subnet;
 
     /**
-     * Get the vmSize value.
+     * Get for information about available VM sizes for fileservers from the Virtual Machines Marketplace, see Sizes for Virtual Machines (Linux).
      *
      * @return the vmSize value
      */
@@ -52,7 +52,7 @@ public class FileServerCreateParameters {
     }
 
     /**
-     * Set the vmSize value.
+     * Set for information about available VM sizes for fileservers from the Virtual Machines Marketplace, see Sizes for Virtual Machines (Linux).
      *
      * @param vmSize the vmSize value to set
      * @return the FileServerCreateParameters object itself.

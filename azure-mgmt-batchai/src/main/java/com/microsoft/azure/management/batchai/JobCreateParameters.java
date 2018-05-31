@@ -159,7 +159,7 @@ public class JobCreateParameters {
     private JobBasePropertiesConstraints constraints;
 
     /**
-     * Get the schedulingPriority value.
+     * Get scheduling priority associated with the job. Possible values include: 'low', 'normal', 'high'.
      *
      * @return the schedulingPriority value
      */
@@ -168,7 +168,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the schedulingPriority value.
+     * Set scheduling priority associated with the job. Possible values include: 'low', 'normal', 'high'.
      *
      * @param schedulingPriority the schedulingPriority value to set
      * @return the JobCreateParameters object itself.
@@ -199,7 +199,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the mountVolumes value.
+     * Get these volumes will be mounted before the job execution and will be unmouted after the job completion. The volumes will be mounted at location specified by $AZ_BATCHAI_JOB_MOUNT_ROOT environment variable.
      *
      * @return the mountVolumes value
      */
@@ -208,7 +208,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the mountVolumes value.
+     * Set these volumes will be mounted before the job execution and will be unmouted after the job completion. The volumes will be mounted at location specified by $AZ_BATCHAI_JOB_MOUNT_ROOT environment variable.
      *
      * @param mountVolumes the mountVolumes value to set
      * @return the JobCreateParameters object itself.
@@ -219,7 +219,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the nodeCount value.
+     * Get the job will be gang scheduled on that many compute nodes.
      *
      * @return the nodeCount value
      */
@@ -228,7 +228,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the nodeCount value.
+     * Set the job will be gang scheduled on that many compute nodes.
      *
      * @param nodeCount the nodeCount value to set
      * @return the JobCreateParameters object itself.
@@ -239,7 +239,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the containerSettings value.
+     * Get if the container was downloaded as part of cluster setup then the same container image will be used. If not provided, the job will run on the VM.
      *
      * @return the containerSettings value
      */
@@ -248,7 +248,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the containerSettings value.
+     * Set if the container was downloaded as part of cluster setup then the same container image will be used. If not provided, the job will run on the VM.
      *
      * @param containerSettings the containerSettings value to set
      * @return the JobCreateParameters object itself.
@@ -439,7 +439,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the jobPreparation value.
+     * Get the specified actions will run on all the nodes that are part of the job.
      *
      * @return the jobPreparation value
      */
@@ -448,7 +448,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the jobPreparation value.
+     * Set the specified actions will run on all the nodes that are part of the job.
      *
      * @param jobPreparation the jobPreparation value to set
      * @return the JobCreateParameters object itself.
@@ -459,7 +459,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the stdOutErrPathPrefix value.
+     * Get the path where the Batch AI service will upload stdout and stderror of the job.
      *
      * @return the stdOutErrPathPrefix value
      */
@@ -468,7 +468,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the stdOutErrPathPrefix value.
+     * Set the path where the Batch AI service will upload stdout and stderror of the job.
      *
      * @param stdOutErrPathPrefix the stdOutErrPathPrefix value to set
      * @return the JobCreateParameters object itself.
@@ -519,7 +519,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the environmentVariables value.
+     * Get batch AI will setup these additional environment variables for the job.
      *
      * @return the environmentVariables value
      */
@@ -528,7 +528,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the environmentVariables value.
+     * Set batch AI will setup these additional environment variables for the job.
      *
      * @param environmentVariables the environmentVariables value to set
      * @return the JobCreateParameters object itself.
@@ -539,7 +539,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the secrets value.
+     * Get batch AI will setup these additional environment variables for the job. Server will never report values of these variables back.
      *
      * @return the secrets value
      */
@@ -548,7 +548,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the secrets value.
+     * Set batch AI will setup these additional environment variables for the job. Server will never report values of these variables back.
      *
      * @param secrets the secrets value to set
      * @return the JobCreateParameters object itself.
@@ -559,7 +559,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Get the constraints value.
+     * Get constraints associated with the Job.
      *
      * @return the constraints value
      */
@@ -568,7 +568,7 @@ public class JobCreateParameters {
     }
 
     /**
-     * Set the constraints value.
+     * Set constraints associated with the Job.
      *
      * @param constraints the constraints value to set
      * @return the JobCreateParameters object itself.

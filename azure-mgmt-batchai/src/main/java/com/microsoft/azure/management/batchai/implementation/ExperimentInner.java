@@ -49,7 +49,7 @@ public class ExperimentInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioned state of the experiment. Possible values include: 'creating', 'succeeded', 'failed', 'deleting'.
      *
      * @return the provisioningState value
      */
@@ -58,7 +58,7 @@ public class ExperimentInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningStateTransitionTime value.
+     * Get the time at which the experiment entered its current provisioning state.
      *
      * @return the provisioningStateTransitionTime value
      */

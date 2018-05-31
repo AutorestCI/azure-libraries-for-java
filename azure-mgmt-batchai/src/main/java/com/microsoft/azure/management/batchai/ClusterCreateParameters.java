@@ -68,7 +68,7 @@ public class ClusterCreateParameters {
     private ResourceId subnet;
 
     /**
-     * Get the vmSize value.
+     * Get all virtual machines in a cluster are the same size. For information about available VM sizes for clusters using images from the Virtual Machines Marketplace (see Sizes for Virtual Machines (Linux) or Sizes for Virtual Machines (Windows). Batch AI service supports all Azure VM sizes except STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and STANDARD_DSV2 series).
      *
      * @return the vmSize value
      */
@@ -77,7 +77,7 @@ public class ClusterCreateParameters {
     }
 
     /**
-     * Set the vmSize value.
+     * Set all virtual machines in a cluster are the same size. For information about available VM sizes for clusters using images from the Virtual Machines Marketplace (see Sizes for Virtual Machines (Linux) or Sizes for Virtual Machines (Windows). Batch AI service supports all Azure VM sizes except STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and STANDARD_DSV2 series).
      *
      * @param vmSize the vmSize value to set
      * @return the ClusterCreateParameters object itself.
@@ -88,7 +88,7 @@ public class ClusterCreateParameters {
     }
 
     /**
-     * Get the vmPriority value.
+     * Get default is dedicated. Possible values include: 'dedicated', 'lowpriority'.
      *
      * @return the vmPriority value
      */
@@ -97,7 +97,7 @@ public class ClusterCreateParameters {
     }
 
     /**
-     * Set the vmPriority value.
+     * Set default is dedicated. Possible values include: 'dedicated', 'lowpriority'.
      *
      * @param vmPriority the vmPriority value to set
      * @return the ClusterCreateParameters object itself.
