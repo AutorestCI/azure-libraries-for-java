@@ -27,7 +27,7 @@ public class ContainerExecRequestTerminalSize {
     private Integer column;
 
     /**
-     * Get the row value.
+     * Get the row size of the terminal.
      *
      * @return the row value
      */
@@ -36,7 +36,7 @@ public class ContainerExecRequestTerminalSize {
     }
 
     /**
-     * Set the row value.
+     * Set the row size of the terminal.
      *
      * @param row the row value to set
      * @return the ContainerExecRequestTerminalSize object itself.
@@ -47,7 +47,7 @@ public class ContainerExecRequestTerminalSize {
     }
 
     /**
-     * Get the column value.
+     * Get the column size of the terminal.
      *
      * @return the column value
      */
@@ -56,7 +56,7 @@ public class ContainerExecRequestTerminalSize {
     }
 
     /**
-     * Set the column value.
+     * Set the column size of the terminal.
      *
      * @param column the column value to set
      * @return the ContainerExecRequestTerminalSize object itself.

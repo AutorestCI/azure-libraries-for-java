@@ -52,7 +52,7 @@ public class Event {
     private String type;
 
     /**
-     * Get the count value.
+     * Get the count of the event.
      *
      * @return the count value
      */
@@ -61,7 +61,7 @@ public class Event {
     }
 
     /**
-     * Get the firstTimestamp value.
+     * Get the date-time of the earliest logged event.
      *
      * @return the firstTimestamp value
      */
@@ -70,7 +70,7 @@ public class Event {
     }
 
     /**
-     * Get the lastTimestamp value.
+     * Get the date-time of the latest logged event.
      *
      * @return the lastTimestamp value
      */
@@ -79,7 +79,7 @@ public class Event {
     }
 
     /**
-     * Get the name value.
+     * Get the event name.
      *
      * @return the name value
      */
@@ -88,7 +88,7 @@ public class Event {
     }
 
     /**
-     * Get the message value.
+     * Get the event message.
      *
      * @return the message value
      */
@@ -97,7 +97,7 @@ public class Event {
     }
 
     /**
-     * Get the type value.
+     * Get the event type.
      *
      * @return the type value
      */

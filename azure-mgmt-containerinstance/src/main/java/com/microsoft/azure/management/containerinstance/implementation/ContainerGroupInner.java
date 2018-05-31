@@ -18,12 +18,14 @@ import com.microsoft.azure.management.containerinstance.Volume;
 import com.microsoft.azure.management.containerinstance.ContainerGroupPropertiesInstanceView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
+import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
  * A container group.
  */
 @JsonFlatten
+@SkipParentValidation
 public class ContainerGroupInner extends Resource {
     /**
      * The provisioning state of the container group. This only appears in the
@@ -82,7 +84,7 @@ public class ContainerGroupInner extends Resource {
     private ContainerGroupPropertiesInstanceView instanceView;
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state of the container group. This only appears in the response.
      *
      * @return the provisioningState value
      */
@@ -91,7 +93,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Get the containers value.
+     * Get the containers within the container group.
      *
      * @return the containers value
      */
@@ -100,7 +102,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Set the containers value.
+     * Set the containers within the container group.
      *
      * @param containers the containers value to set
      * @return the ContainerGroupInner object itself.
@@ -111,7 +113,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Get the imageRegistryCredentials value.
+     * Get the image registry credentials by which the container group is created from.
      *
      * @return the imageRegistryCredentials value
      */
@@ -120,7 +122,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Set the imageRegistryCredentials value.
+     * Set the image registry credentials by which the container group is created from.
      *
      * @param imageRegistryCredentials the imageRegistryCredentials value to set
      * @return the ContainerGroupInner object itself.
@@ -131,7 +133,11 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Get the restartPolicy value.
+     * Get restart policy for all containers within the container group.
+     - `Always` Always restart
+     - `OnFailure` Restart on failure
+     - `Never` Never restart
+     . Possible values include: 'Always', 'OnFailure', 'Never'.
      *
      * @return the restartPolicy value
      */
@@ -140,7 +146,11 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Set the restartPolicy value.
+     * Set restart policy for all containers within the container group.
+     - `Always` Always restart
+     - `OnFailure` Restart on failure
+     - `Never` Never restart
+     . Possible values include: 'Always', 'OnFailure', 'Never'.
      *
      * @param restartPolicy the restartPolicy value to set
      * @return the ContainerGroupInner object itself.
@@ -151,7 +161,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Get the ipAddress value.
+     * Get the IP address type of the container group.
      *
      * @return the ipAddress value
      */
@@ -160,7 +170,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Set the ipAddress value.
+     * Set the IP address type of the container group.
      *
      * @param ipAddress the ipAddress value to set
      * @return the ContainerGroupInner object itself.
@@ -171,7 +181,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Get the osType value.
+     * Get the operating system type required by the containers in the container group. Possible values include: 'Windows', 'Linux'.
      *
      * @return the osType value
      */
@@ -180,7 +190,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Set the osType value.
+     * Set the operating system type required by the containers in the container group. Possible values include: 'Windows', 'Linux'.
      *
      * @param osType the osType value to set
      * @return the ContainerGroupInner object itself.
@@ -191,7 +201,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Get the volumes value.
+     * Get the list of volumes that can be mounted by containers in this container group.
      *
      * @return the volumes value
      */
@@ -200,7 +210,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Set the volumes value.
+     * Set the list of volumes that can be mounted by containers in this container group.
      *
      * @param volumes the volumes value to set
      * @return the ContainerGroupInner object itself.
@@ -211,7 +221,7 @@ public class ContainerGroupInner extends Resource {
     }
 
     /**
-     * Get the instanceView value.
+     * Get the instance view of the container group. Only valid in response.
      *
      * @return the instanceView value
      */

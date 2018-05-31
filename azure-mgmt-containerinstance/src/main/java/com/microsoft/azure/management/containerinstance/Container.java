@@ -66,7 +66,7 @@ public class Container {
     private List<VolumeMount> volumeMounts;
 
     /**
-     * Get the name value.
+     * Get the user-provided name of the container instance.
      *
      * @return the name value
      */
@@ -75,7 +75,7 @@ public class Container {
     }
 
     /**
-     * Set the name value.
+     * Set the user-provided name of the container instance.
      *
      * @param name the name value to set
      * @return the Container object itself.
@@ -86,7 +86,7 @@ public class Container {
     }
 
     /**
-     * Get the image value.
+     * Get the name of the image used to create the container instance.
      *
      * @return the image value
      */
@@ -95,7 +95,7 @@ public class Container {
     }
 
     /**
-     * Set the image value.
+     * Set the name of the image used to create the container instance.
      *
      * @param image the image value to set
      * @return the Container object itself.
@@ -106,7 +106,7 @@ public class Container {
     }
 
     /**
-     * Get the command value.
+     * Get the commands to execute within the container instance in exec form.
      *
      * @return the command value
      */
@@ -115,7 +115,7 @@ public class Container {
     }
 
     /**
-     * Set the command value.
+     * Set the commands to execute within the container instance in exec form.
      *
      * @param command the command value to set
      * @return the Container object itself.
@@ -126,7 +126,7 @@ public class Container {
     }
 
     /**
-     * Get the ports value.
+     * Get the exposed ports on the container instance.
      *
      * @return the ports value
      */
@@ -135,7 +135,7 @@ public class Container {
     }
 
     /**
-     * Set the ports value.
+     * Set the exposed ports on the container instance.
      *
      * @param ports the ports value to set
      * @return the Container object itself.
@@ -146,7 +146,7 @@ public class Container {
     }
 
     /**
-     * Get the environmentVariables value.
+     * Get the environment variables to set in the container instance.
      *
      * @return the environmentVariables value
      */
@@ -155,7 +155,7 @@ public class Container {
     }
 
     /**
-     * Set the environmentVariables value.
+     * Set the environment variables to set in the container instance.
      *
      * @param environmentVariables the environmentVariables value to set
      * @return the Container object itself.
@@ -166,7 +166,7 @@ public class Container {
     }
 
     /**
-     * Get the instanceView value.
+     * Get the instance view of the container instance. Only valid in response.
      *
      * @return the instanceView value
      */
@@ -175,7 +175,7 @@ public class Container {
     }
 
     /**
-     * Get the resources value.
+     * Get the resource requirements of the container instance.
      *
      * @return the resources value
      */
@@ -184,7 +184,7 @@ public class Container {
     }
 
     /**
-     * Set the resources value.
+     * Set the resource requirements of the container instance.
      *
      * @param resources the resources value to set
      * @return the Container object itself.
@@ -195,7 +195,7 @@ public class Container {
     }
 
     /**
-     * Get the volumeMounts value.
+     * Get the volume mounts available to the container instance.
      *
      * @return the volumeMounts value
      */
@@ -204,7 +204,7 @@ public class Container {
     }
 
     /**
-     * Set the volumeMounts value.
+     * Set the volume mounts available to the container instance.
      *
      * @param volumeMounts the volumeMounts value to set
      * @return the Container object itself.

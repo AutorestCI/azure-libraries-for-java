@@ -27,7 +27,7 @@ public class ContainerExecResponseInner {
     private String password;
 
     /**
-     * Get the webSocketUri value.
+     * Get the uri for the exec websocket.
      *
      * @return the webSocketUri value
      */
@@ -36,7 +36,7 @@ public class ContainerExecResponseInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password to start the exec command.
      *
      * @return the password value
      */

@@ -21,7 +21,7 @@ public class LogsInner {
     private String content;
 
     /**
-     * Get the content value.
+     * Get the content of the log.
      *
      * @return the content value
      */

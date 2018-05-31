@@ -47,7 +47,7 @@ public class ContainerState {
     private String detailStatus;
 
     /**
-     * Get the state value.
+     * Get the state of the container instance.
      *
      * @return the state value
      */
@@ -56,7 +56,7 @@ public class ContainerState {
     }
 
     /**
-     * Get the startTime value.
+     * Get the date-time when the container instance state started.
      *
      * @return the startTime value
      */
@@ -65,7 +65,7 @@ public class ContainerState {
     }
 
     /**
-     * Get the exitCode value.
+     * Get the container instance exit codes correspond to those from the `docker run` command.
      *
      * @return the exitCode value
      */
@@ -74,7 +74,7 @@ public class ContainerState {
     }
 
     /**
-     * Get the finishTime value.
+     * Get the date-time when the container instance state finished.
      *
      * @return the finishTime value
      */
@@ -83,7 +83,7 @@ public class ContainerState {
     }
 
     /**
-     * Get the detailStatus value.
+     * Get the human-readable status of the container instance state.
      *
      * @return the detailStatus value
      */

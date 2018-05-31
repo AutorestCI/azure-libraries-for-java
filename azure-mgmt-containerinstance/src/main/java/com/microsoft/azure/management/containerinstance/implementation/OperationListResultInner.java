@@ -9,7 +9,6 @@
 package com.microsoft.azure.management.containerinstance.implementation;
 
 import java.util.List;
-import com.microsoft.azure.management.containerinstance.Operation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -21,7 +20,7 @@ public class OperationListResultInner {
      * The list of operations.
      */
     @JsonProperty(value = "value")
-    private List<Operation> value;
+    private List<OperationInner> value;
 
     /**
      * The URI to fetch the next page of operations.
@@ -30,27 +29,27 @@ public class OperationListResultInner {
     private String nextLink;
 
     /**
-     * Get the value value.
+     * Get the list of operations.
      *
      * @return the value value
      */
-    public List<Operation> value() {
+    public List<OperationInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value value.
+     * Set the list of operations.
      *
      * @param value the value value to set
      * @return the OperationListResultInner object itself.
      */
-    public OperationListResultInner withValue(List<Operation> value) {
+    public OperationListResultInner withValue(List<OperationInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink value.
+     * Get the URI to fetch the next page of operations.
      *
      * @return the nextLink value
      */
@@ -59,7 +58,7 @@ public class OperationListResultInner {
     }
 
     /**
-     * Set the nextLink value.
+     * Set the URI to fetch the next page of operations.
      *
      * @param nextLink the nextLink value to set
      * @return the OperationListResultInner object itself.

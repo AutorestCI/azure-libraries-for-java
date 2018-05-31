@@ -47,13 +47,14 @@ public class IpAddress {
 
     /**
      * Creates an instance of IpAddress class.
+     * @param ports the list of ports exposed on the container group.
      */
     public IpAddress() {
         type = "Public";
     }
 
     /**
-     * Get the ports value.
+     * Get the list of ports exposed on the container group.
      *
      * @return the ports value
      */
@@ -62,7 +63,7 @@ public class IpAddress {
     }
 
     /**
-     * Set the ports value.
+     * Set the list of ports exposed on the container group.
      *
      * @param ports the ports value to set
      * @return the IpAddress object itself.
@@ -73,7 +74,7 @@ public class IpAddress {
     }
 
     /**
-     * Get the type value.
+     * Get specifies if the IP is exposed to the public internet.
      *
      * @return the type value
      */
@@ -82,7 +83,7 @@ public class IpAddress {
     }
 
     /**
-     * Set the type value.
+     * Set specifies if the IP is exposed to the public internet.
      *
      * @param type the type value to set
      * @return the IpAddress object itself.
@@ -93,7 +94,7 @@ public class IpAddress {
     }
 
     /**
-     * Get the ip value.
+     * Get the IP exposed to the public internet.
      *
      * @return the ip value
      */
@@ -102,7 +103,7 @@ public class IpAddress {
     }
 
     /**
-     * Set the ip value.
+     * Set the IP exposed to the public internet.
      *
      * @param ip the ip value to set
      * @return the IpAddress object itself.
@@ -113,7 +114,7 @@ public class IpAddress {
     }
 
     /**
-     * Get the dnsNameLabel value.
+     * Get the Dns name label for the IP.
      *
      * @return the dnsNameLabel value
      */
@@ -122,7 +123,7 @@ public class IpAddress {
     }
 
     /**
-     * Set the dnsNameLabel value.
+     * Set the Dns name label for the IP.
      *
      * @param dnsNameLabel the dnsNameLabel value to set
      * @return the IpAddress object itself.
@@ -133,7 +134,7 @@ public class IpAddress {
     }
 
     /**
-     * Get the fqdn value.
+     * Get the FQDN for the IP.
      *
      * @return the fqdn value
      */
