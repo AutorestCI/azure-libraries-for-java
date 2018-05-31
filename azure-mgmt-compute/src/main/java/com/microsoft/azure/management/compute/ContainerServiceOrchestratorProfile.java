@@ -23,7 +23,7 @@ public class ContainerServiceOrchestratorProfile {
     private ContainerServiceOrchestratorTypes orchestratorType;
 
     /**
-     * Get the orchestratorType value.
+     * Get the orchestrator to use to manage container service cluster resources. Valid values are Swarm, DCOS, and Custom. Possible values include: 'Swarm', 'DCOS', 'Custom', 'Kubernetes'.
      *
      * @return the orchestratorType value
      */
@@ -32,7 +32,7 @@ public class ContainerServiceOrchestratorProfile {
     }
 
     /**
-     * Set the orchestratorType value.
+     * Set the orchestrator to use to manage container service cluster resources. Valid values are Swarm, DCOS, and Custom. Possible values include: 'Swarm', 'DCOS', 'Custom', 'Kubernetes'.
      *
      * @param orchestratorType the orchestratorType value to set
      * @return the ContainerServiceOrchestratorProfile object itself.

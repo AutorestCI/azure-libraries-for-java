@@ -53,7 +53,7 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     private RollbackStatusInfo rollbackInfo;
 
     /**
-     * Get the runningStatus value.
+     * Get information about the overall status of the upgrade operation.
      *
      * @return the runningStatus value
      */
@@ -62,7 +62,7 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     }
 
     /**
-     * Get the progress value.
+     * Get counts of the VM's in each state.
      *
      * @return the progress value
      */
@@ -71,7 +71,7 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     }
 
     /**
-     * Get the error value.
+     * Get error Details for this upgrade if there are any.
      *
      * @return the error value
      */
@@ -80,7 +80,7 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     }
 
     /**
-     * Get the startedBy value.
+     * Get invoker of the Upgrade Operation. Possible values include: 'Unknown', 'User', 'Platform'.
      *
      * @return the startedBy value
      */
@@ -89,7 +89,7 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     }
 
     /**
-     * Get the targetImageReference value.
+     * Get image Reference details.
      *
      * @return the targetImageReference value
      */
@@ -98,7 +98,7 @@ public class UpgradeOperationHistoricalStatusInfoProperties {
     }
 
     /**
-     * Get the rollbackInfo value.
+     * Get information about OS rollback if performed.
      *
      * @return the rollbackInfo value
      */

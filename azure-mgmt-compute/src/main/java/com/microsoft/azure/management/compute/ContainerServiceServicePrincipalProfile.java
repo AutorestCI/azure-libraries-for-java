@@ -28,7 +28,7 @@ public class ContainerServiceServicePrincipalProfile {
     private String secret;
 
     /**
-     * Get the clientId value.
+     * Get the ID for the service principal.
      *
      * @return the clientId value
      */
@@ -37,7 +37,7 @@ public class ContainerServiceServicePrincipalProfile {
     }
 
     /**
-     * Set the clientId value.
+     * Set the ID for the service principal.
      *
      * @param clientId the clientId value to set
      * @return the ContainerServiceServicePrincipalProfile object itself.
@@ -48,7 +48,7 @@ public class ContainerServiceServicePrincipalProfile {
     }
 
     /**
-     * Get the secret value.
+     * Get the secret password associated with the service principal.
      *
      * @return the secret value
      */
@@ -57,7 +57,7 @@ public class ContainerServiceServicePrincipalProfile {
     }
 
     /**
-     * Set the secret value.
+     * Set the secret password associated with the service principal.
      *
      * @param secret the secret value to set
      * @return the ContainerServiceServicePrincipalProfile object itself.

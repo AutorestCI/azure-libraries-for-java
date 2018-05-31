@@ -47,7 +47,7 @@ public class InstanceViewStatusInner {
     private DateTime time;
 
     /**
-     * Get the code value.
+     * Get the status code.
      *
      * @return the code value
      */
@@ -56,7 +56,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Set the code value.
+     * Set the status code.
      *
      * @param code the code value to set
      * @return the InstanceViewStatusInner object itself.
@@ -67,7 +67,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Get the level value.
+     * Get the level code. Possible values include: 'Info', 'Warning', 'Error'.
      *
      * @return the level value
      */
@@ -76,7 +76,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Set the level value.
+     * Set the level code. Possible values include: 'Info', 'Warning', 'Error'.
      *
      * @param level the level value to set
      * @return the InstanceViewStatusInner object itself.
@@ -87,7 +87,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Get the displayStatus value.
+     * Get the short localizable label for the status.
      *
      * @return the displayStatus value
      */
@@ -96,7 +96,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Set the displayStatus value.
+     * Set the short localizable label for the status.
      *
      * @param displayStatus the displayStatus value to set
      * @return the InstanceViewStatusInner object itself.
@@ -107,7 +107,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Get the message value.
+     * Get the detailed status message, including for alerts and error messages.
      *
      * @return the message value
      */
@@ -116,7 +116,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Set the message value.
+     * Set the detailed status message, including for alerts and error messages.
      *
      * @param message the message value to set
      * @return the InstanceViewStatusInner object itself.
@@ -127,7 +127,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Get the time value.
+     * Get the time of the status.
      *
      * @return the time value
      */
@@ -136,7 +136,7 @@ public class InstanceViewStatusInner {
     }
 
     /**
-     * Set the time value.
+     * Set the time of the status.
      *
      * @param time the time value to set
      * @return the InstanceViewStatusInner object itself.

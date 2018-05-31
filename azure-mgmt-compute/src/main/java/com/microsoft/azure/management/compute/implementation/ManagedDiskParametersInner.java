@@ -25,7 +25,7 @@ public class ManagedDiskParametersInner extends SubResource {
     private StorageAccountTypes storageAccountType;
 
     /**
-     * Get the storageAccountType value.
+     * Get specifies the storage account type for the managed disk. Possible values are: Standard_LRS or Premium_LRS. Possible values include: 'Standard_LRS', 'Premium_LRS'.
      *
      * @return the storageAccountType value
      */
@@ -34,7 +34,7 @@ public class ManagedDiskParametersInner extends SubResource {
     }
 
     /**
-     * Set the storageAccountType value.
+     * Set specifies the storage account type for the managed disk. Possible values are: Standard_LRS or Premium_LRS. Possible values include: 'Standard_LRS', 'Premium_LRS'.
      *
      * @param storageAccountType the storageAccountType value to set
      * @return the ManagedDiskParametersInner object itself.

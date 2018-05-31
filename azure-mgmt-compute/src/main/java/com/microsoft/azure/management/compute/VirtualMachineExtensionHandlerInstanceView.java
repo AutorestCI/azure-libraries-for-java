@@ -35,7 +35,7 @@ public class VirtualMachineExtensionHandlerInstanceView {
     private InstanceViewStatusInner status;
 
     /**
-     * Get the type value.
+     * Get specifies the type of the extension; an example is "CustomScriptExtension".
      *
      * @return the type value
      */
@@ -44,7 +44,7 @@ public class VirtualMachineExtensionHandlerInstanceView {
     }
 
     /**
-     * Set the type value.
+     * Set specifies the type of the extension; an example is "CustomScriptExtension".
      *
      * @param type the type value to set
      * @return the VirtualMachineExtensionHandlerInstanceView object itself.
@@ -55,7 +55,7 @@ public class VirtualMachineExtensionHandlerInstanceView {
     }
 
     /**
-     * Get the typeHandlerVersion value.
+     * Get specifies the version of the script handler.
      *
      * @return the typeHandlerVersion value
      */
@@ -64,7 +64,7 @@ public class VirtualMachineExtensionHandlerInstanceView {
     }
 
     /**
-     * Set the typeHandlerVersion value.
+     * Set specifies the version of the script handler.
      *
      * @param typeHandlerVersion the typeHandlerVersion value to set
      * @return the VirtualMachineExtensionHandlerInstanceView object itself.
@@ -75,7 +75,7 @@ public class VirtualMachineExtensionHandlerInstanceView {
     }
 
     /**
-     * Get the status value.
+     * Get the extension handler status.
      *
      * @return the status value
      */
@@ -84,7 +84,7 @@ public class VirtualMachineExtensionHandlerInstanceView {
     }
 
     /**
-     * Set the status value.
+     * Set the extension handler status.
      *
      * @param status the status value to set
      * @return the VirtualMachineExtensionHandlerInstanceView object itself.

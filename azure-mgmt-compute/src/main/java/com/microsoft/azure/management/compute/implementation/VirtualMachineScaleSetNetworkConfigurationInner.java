@@ -65,7 +65,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     private Boolean enableIPForwarding;
 
     /**
-     * Get the name value.
+     * Get the network configuration name.
      *
      * @return the name value
      */
@@ -74,7 +74,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Set the name value.
+     * Set the network configuration name.
      *
      * @param name the name value to set
      * @return the VirtualMachineScaleSetNetworkConfigurationInner object itself.
@@ -85,7 +85,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Get the primary value.
+     * Get specifies the primary network interface in case the virtual machine has more than 1 network interface.
      *
      * @return the primary value
      */
@@ -94,7 +94,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Set the primary value.
+     * Set specifies the primary network interface in case the virtual machine has more than 1 network interface.
      *
      * @param primary the primary value to set
      * @return the VirtualMachineScaleSetNetworkConfigurationInner object itself.
@@ -105,7 +105,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Get the enableAcceleratedNetworking value.
+     * Get specifies whether the network interface is accelerated networking-enabled.
      *
      * @return the enableAcceleratedNetworking value
      */
@@ -114,7 +114,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Set the enableAcceleratedNetworking value.
+     * Set specifies whether the network interface is accelerated networking-enabled.
      *
      * @param enableAcceleratedNetworking the enableAcceleratedNetworking value to set
      * @return the VirtualMachineScaleSetNetworkConfigurationInner object itself.
@@ -125,7 +125,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Get the networkSecurityGroup value.
+     * Get the network security group.
      *
      * @return the networkSecurityGroup value
      */
@@ -134,7 +134,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Set the networkSecurityGroup value.
+     * Set the network security group.
      *
      * @param networkSecurityGroup the networkSecurityGroup value to set
      * @return the VirtualMachineScaleSetNetworkConfigurationInner object itself.
@@ -145,7 +145,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Get the dnsSettings value.
+     * Get the dns settings to be applied on the network interfaces.
      *
      * @return the dnsSettings value
      */
@@ -154,7 +154,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Set the dnsSettings value.
+     * Set the dns settings to be applied on the network interfaces.
      *
      * @param dnsSettings the dnsSettings value to set
      * @return the VirtualMachineScaleSetNetworkConfigurationInner object itself.
@@ -165,7 +165,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Get the ipConfigurations value.
+     * Get specifies the IP configurations of the network interface.
      *
      * @return the ipConfigurations value
      */
@@ -174,7 +174,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Set the ipConfigurations value.
+     * Set specifies the IP configurations of the network interface.
      *
      * @param ipConfigurations the ipConfigurations value to set
      * @return the VirtualMachineScaleSetNetworkConfigurationInner object itself.
@@ -185,7 +185,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Get the enableIPForwarding value.
+     * Get whether IP forwarding enabled on this NIC.
      *
      * @return the enableIPForwarding value
      */
@@ -194,7 +194,7 @@ public class VirtualMachineScaleSetNetworkConfigurationInner extends SubResource
     }
 
     /**
-     * Set the enableIPForwarding value.
+     * Set whether IP forwarding enabled on this NIC.
      *
      * @param enableIPForwarding the enableIPForwarding value to set
      * @return the VirtualMachineScaleSetNetworkConfigurationInner object itself.

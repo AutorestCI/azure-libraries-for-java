@@ -41,7 +41,7 @@ public class VirtualMachineCaptureResultInner extends SubResource {
     private List<Object> resources;
 
     /**
-     * Get the schema value.
+     * Get the schema of the captured virtual machine.
      *
      * @return the schema value
      */
@@ -50,7 +50,7 @@ public class VirtualMachineCaptureResultInner extends SubResource {
     }
 
     /**
-     * Get the contentVersion value.
+     * Get the version of the content.
      *
      * @return the contentVersion value
      */
@@ -59,7 +59,7 @@ public class VirtualMachineCaptureResultInner extends SubResource {
     }
 
     /**
-     * Get the parameters value.
+     * Get parameters of the captured virtual machine.
      *
      * @return the parameters value
      */
@@ -68,7 +68,7 @@ public class VirtualMachineCaptureResultInner extends SubResource {
     }
 
     /**
-     * Get the resources value.
+     * Get a list of resource items of the captured virtual machine.
      *
      * @return the resources value
      */
