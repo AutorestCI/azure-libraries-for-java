@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.keyvault.implementation;
 
+import com.microsoft.azure.management.keyvault.VaultAccessPolicyProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -42,10 +43,10 @@ public class VaultAccessPolicyParametersInner {
      * Properties of the access policy.
      */
     @JsonProperty(value = "properties", required = true)
-    private VaultAccessPolicyPropertiesInner properties;
+    private VaultAccessPolicyProperties properties;
 
     /**
-     * Get the id value.
+     * Get the resource id of the access policy.
      *
      * @return the id value
      */
@@ -54,7 +55,7 @@ public class VaultAccessPolicyParametersInner {
     }
 
     /**
-     * Get the name value.
+     * Get the resource name of the access policy.
      *
      * @return the name value
      */
@@ -63,7 +64,7 @@ public class VaultAccessPolicyParametersInner {
     }
 
     /**
-     * Get the type value.
+     * Get the resource name of the access policy.
      *
      * @return the type value
      */
@@ -72,7 +73,7 @@ public class VaultAccessPolicyParametersInner {
     }
 
     /**
-     * Get the location value.
+     * Get the resource type of the the access policy.
      *
      * @return the location value
      */
@@ -81,21 +82,21 @@ public class VaultAccessPolicyParametersInner {
     }
 
     /**
-     * Get the properties value.
+     * Get properties of the access policy.
      *
      * @return the properties value
      */
-    public VaultAccessPolicyPropertiesInner properties() {
+    public VaultAccessPolicyProperties properties() {
         return this.properties;
     }
 
     /**
-     * Set the properties value.
+     * Set properties of the access policy.
      *
      * @param properties the properties value to set
      * @return the VaultAccessPolicyParametersInner object itself.
      */
-    public VaultAccessPolicyParametersInner withProperties(VaultAccessPolicyPropertiesInner properties) {
+    public VaultAccessPolicyParametersInner withProperties(VaultAccessPolicyProperties properties) {
         this.properties = properties;
         return this;
     }

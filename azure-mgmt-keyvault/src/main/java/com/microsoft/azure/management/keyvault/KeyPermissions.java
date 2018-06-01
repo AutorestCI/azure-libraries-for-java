@@ -16,6 +16,9 @@ import com.microsoft.rest.ExpandableStringEnum;
  * Defines values for KeyPermissions.
  */
 public final class KeyPermissions extends ExpandableStringEnum<KeyPermissions> {
+    /** Static value all for KeyPermissions. */
+    public static final KeyPermissions ALL = fromString("all");
+
     /** Static value encrypt for KeyPermissions. */
     public static final KeyPermissions ENCRYPT = fromString("encrypt");
 

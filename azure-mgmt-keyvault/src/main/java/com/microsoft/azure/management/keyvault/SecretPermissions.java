@@ -16,6 +16,9 @@ import com.microsoft.rest.ExpandableStringEnum;
  * Defines values for SecretPermissions.
  */
 public final class SecretPermissions extends ExpandableStringEnum<SecretPermissions> {
+    /** Static value all for SecretPermissions. */
+    public static final SecretPermissions ALL = fromString("all");
+
     /** Static value get for SecretPermissions. */
     public static final SecretPermissions GET = fromString("get");
 

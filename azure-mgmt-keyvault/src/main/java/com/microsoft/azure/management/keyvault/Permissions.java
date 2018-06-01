@@ -12,7 +12,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Permissions the identity has for keys, secrets, certificates and storage.
+ * Permissions the identity has for keys, secrets and certificates.
  */
 public class Permissions {
     /**
@@ -34,13 +34,7 @@ public class Permissions {
     private List<CertificatePermissions> certificates;
 
     /**
-     * Permissions to storage accounts.
-     */
-    @JsonProperty(value = "storage")
-    private List<StoragePermissions> storage;
-
-    /**
-     * Get the keys value.
+     * Get permissions to keys.
      *
      * @return the keys value
      */
@@ -49,7 +43,7 @@ public class Permissions {
     }
 
     /**
-     * Set the keys value.
+     * Set permissions to keys.
      *
      * @param keys the keys value to set
      * @return the Permissions object itself.
@@ -60,7 +54,7 @@ public class Permissions {
     }
 
     /**
-     * Get the secrets value.
+     * Get permissions to secrets.
      *
      * @return the secrets value
      */
@@ -69,7 +63,7 @@ public class Permissions {
     }
 
     /**
-     * Set the secrets value.
+     * Set permissions to secrets.
      *
      * @param secrets the secrets value to set
      * @return the Permissions object itself.
@@ -80,7 +74,7 @@ public class Permissions {
     }
 
     /**
-     * Get the certificates value.
+     * Get permissions to certificates.
      *
      * @return the certificates value
      */
@@ -89,33 +83,13 @@ public class Permissions {
     }
 
     /**
-     * Set the certificates value.
+     * Set permissions to certificates.
      *
      * @param certificates the certificates value to set
      * @return the Permissions object itself.
      */
     public Permissions withCertificates(List<CertificatePermissions> certificates) {
         this.certificates = certificates;
-        return this;
-    }
-
-    /**
-     * Get the storage value.
-     *
-     * @return the storage value
-     */
-    public List<StoragePermissions> storage() {
-        return this.storage;
-    }
-
-    /**
-     * Set the storage value.
-     *
-     * @param storage the storage value to set
-     * @return the Permissions object itself.
-     */
-    public Permissions withStorage(List<StoragePermissions> storage) {
-        this.storage = storage;
         return this;
     }
 
