@@ -28,7 +28,7 @@ public class GalleryArtifactPublishingProfileBase {
     private GalleryArtifactSource source;
 
     /**
-     * Get the regions value.
+     * Get the regions where the artifact is going to be published.
      *
      * @return the regions value
      */
@@ -37,7 +37,7 @@ public class GalleryArtifactPublishingProfileBase {
     }
 
     /**
-     * Set the regions value.
+     * Set the regions where the artifact is going to be published.
      *
      * @param regions the regions value to set
      * @return the GalleryArtifactPublishingProfileBase object itself.

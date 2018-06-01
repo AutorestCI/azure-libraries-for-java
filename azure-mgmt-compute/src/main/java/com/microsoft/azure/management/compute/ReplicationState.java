@@ -8,52 +8,40 @@
 
 package com.microsoft.azure.management.compute;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for ReplicationState.
  */
-public enum ReplicationState {
-    /** Enum value Unknown. */
-    UNKNOWN("Unknown"),
+public final class ReplicationState extends ExpandableStringEnum<ReplicationState> {
+    /** Static value Unknown for ReplicationState. */
+    public static final ReplicationState UNKNOWN = fromString("Unknown");
 
-    /** Enum value Replicating. */
-    REPLICATING("Replicating"),
+    /** Static value Replicating for ReplicationState. */
+    public static final ReplicationState REPLICATING = fromString("Replicating");
 
-    /** Enum value Completed. */
-    COMPLETED("Completed"),
+    /** Static value Completed for ReplicationState. */
+    public static final ReplicationState COMPLETED = fromString("Completed");
 
-    /** Enum value Failed. */
-    FAILED("Failed");
+    /** Static value Failed for ReplicationState. */
+    public static final ReplicationState FAILED = fromString("Failed");
 
-    /** The actual serialized value for a ReplicationState instance. */
-    private String value;
-
-    ReplicationState(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a ReplicationState from its string representation.
+     * @param name a name to look for
+     * @return the corresponding ReplicationState
+     */
+    @JsonCreator
+    public static ReplicationState fromString(String name) {
+        return fromString(name, ReplicationState.class);
     }
 
     /**
-     * Parses a serialized value to a ReplicationState instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed ReplicationState object, or null if unable to parse.
+     * @return known ReplicationState values
      */
-    @JsonCreator
-    public static ReplicationState fromString(String value) {
-        ReplicationState[] items = ReplicationState.values();
-        for (ReplicationState item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<ReplicationState> values() {
+        return values(ReplicationState.class);
     }
 }

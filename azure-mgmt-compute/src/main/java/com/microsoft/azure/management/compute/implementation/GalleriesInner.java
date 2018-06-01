@@ -14,8 +14,8 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.AzureServiceFuture;
-import com.microsoft.azure.CloudException;
 import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.management.compute.ApiErrorException;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -42,7 +42,7 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in Galleries.
  */
-public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupportsDelete<OperationStatusResponseInner>, InnerSupportsListing<GalleryInner> {
+public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupportsDelete<Void>, InnerSupportsListing<GalleryInner> {
     /** The Retrofit service to perform REST calls. */
     private GalleriesService service;
     /** The service client containing this operation class. */
@@ -109,7 +109,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @param galleryName The name of the gallery.
      * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the GalleryInner object if successful.
      */
@@ -184,7 +184,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @param galleryName The name of the gallery.
      * @param gallery Parameters supplied to the create or update gallery operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the GalleryInner object if successful.
      */
@@ -262,11 +262,12 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
             });
     }
 
-    private ServiceResponse<GalleryInner> beginCreateOrUpdateDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<GalleryInner, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<GalleryInner> beginCreateOrUpdateDelegate(Response<ResponseBody> response) throws ApiErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<GalleryInner, ApiErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<GalleryInner>() { }.getType())
                 .register(201, new TypeToken<GalleryInner>() { }.getType())
-                .registerError(CloudException.class)
+                .register(202, new TypeToken<GalleryInner>() { }.getType())
+                .registerError(ApiErrorException.class)
                 .build(response);
     }
 
@@ -276,7 +277,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the GalleryInner object if successful.
      */
@@ -347,10 +348,10 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
             });
     }
 
-    private ServiceResponse<GalleryInner> getByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<GalleryInner, CloudException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<GalleryInner> getByResourceGroupDelegate(Response<ResponseBody> response) throws ApiErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<GalleryInner, ApiErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<GalleryInner>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ApiErrorException.class)
                 .build(response);
     }
 
@@ -360,12 +361,11 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner delete(String resourceGroupName, String galleryName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, galleryName).toBlocking().last().body();
+    public void delete(String resourceGroupName, String galleryName) {
+        deleteWithServiceResponseAsync(resourceGroupName, galleryName).toBlocking().last().body();
     }
 
     /**
@@ -377,7 +377,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String galleryName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String galleryName, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, galleryName), serviceCallback);
     }
 
@@ -389,10 +389,10 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<OperationStatusResponseInner> deleteAsync(String resourceGroupName, String galleryName) {
-        return deleteWithServiceResponseAsync(resourceGroupName, galleryName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<Void> deleteAsync(String resourceGroupName, String galleryName) {
+        return deleteWithServiceResponseAsync(resourceGroupName, galleryName).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
-            public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
+            public Void call(ServiceResponse<Void> response) {
                 return response.body();
             }
         });
@@ -406,7 +406,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> deleteWithServiceResponseAsync(String resourceGroupName, String galleryName) {
+    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String galleryName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -418,7 +418,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
         }
         final String apiVersion = "2018-06-01";
         Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<OperationStatusResponseInner>() { }.getType());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
     }
 
     /**
@@ -427,12 +427,11 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the OperationStatusResponseInner object if successful.
      */
-    public OperationStatusResponseInner beginDelete(String resourceGroupName, String galleryName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName).toBlocking().single().body();
+    public void beginDelete(String resourceGroupName, String galleryName) {
+        beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName).toBlocking().single().body();
     }
 
     /**
@@ -444,7 +443,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String galleryName, final ServiceCallback<OperationStatusResponseInner> serviceCallback) {
+    public ServiceFuture<Void> beginDeleteAsync(String resourceGroupName, String galleryName, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName), serviceCallback);
     }
 
@@ -454,12 +453,12 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the OperationStatusResponseInner object
+     * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<OperationStatusResponseInner> beginDeleteAsync(String resourceGroupName, String galleryName) {
-        return beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName).map(new Func1<ServiceResponse<OperationStatusResponseInner>, OperationStatusResponseInner>() {
+    public Observable<Void> beginDeleteAsync(String resourceGroupName, String galleryName) {
+        return beginDeleteWithServiceResponseAsync(resourceGroupName, galleryName).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
-            public OperationStatusResponseInner call(ServiceResponse<OperationStatusResponseInner> response) {
+            public Void call(ServiceResponse<Void> response) {
                 return response.body();
             }
         });
@@ -471,9 +470,9 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the OperationStatusResponseInner object
+     * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<OperationStatusResponseInner>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String galleryName) {
+    public Observable<ServiceResponse<Void>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String galleryName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -485,11 +484,11 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
         }
         final String apiVersion = "2018-06-01";
         return service.beginDelete(this.client.subscriptionId(), resourceGroupName, galleryName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<OperationStatusResponseInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
                 @Override
-                public Observable<ServiceResponse<OperationStatusResponseInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<OperationStatusResponseInner> clientResponse = beginDeleteDelegate(response);
+                        ServiceResponse<Void> clientResponse = beginDeleteDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -498,12 +497,12 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
             });
     }
 
-    private ServiceResponse<OperationStatusResponseInner> beginDeleteDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<OperationStatusResponseInner, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<OperationStatusResponseInner>() { }.getType())
+    private ServiceResponse<Void> beginDeleteDelegate(Response<ResponseBody> response) throws ApiErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, ApiErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
-                .registerError(CloudException.class)
+                .registerError(ApiErrorException.class)
                 .build(response);
     }
 
@@ -512,7 +511,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;GalleryInner&gt; object if successful.
      */
@@ -587,7 +586,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
     /**
      * List galleries under a resource group.
      *
-    ServiceResponse<PageImpl<GalleryInner>> * @param resourceGroupName The name of the resource group.
+    ServiceResponse<PageImpl1<GalleryInner>> * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;GalleryInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -604,7 +603,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
                 @Override
                 public Observable<ServiceResponse<Page<GalleryInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<GalleryInner>> result = listByResourceGroupDelegate(response);
+                        ServiceResponse<PageImpl1<GalleryInner>> result = listByResourceGroupDelegate(response);
                         return Observable.just(new ServiceResponse<Page<GalleryInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -613,10 +612,10 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
             });
     }
 
-    private ServiceResponse<PageImpl<GalleryInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<GalleryInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<GalleryInner>>() { }.getType())
-                .registerError(CloudException.class)
+    private ServiceResponse<PageImpl1<GalleryInner>> listByResourceGroupDelegate(Response<ResponseBody> response) throws ApiErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<GalleryInner>, ApiErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<GalleryInner>>() { }.getType())
+                .registerError(ApiErrorException.class)
                 .build(response);
     }
 
@@ -624,7 +623,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      * List galleries under a subscription.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;GalleryInner&gt; object if successful.
      */
@@ -709,7 +708,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
                 @Override
                 public Observable<ServiceResponse<Page<GalleryInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<GalleryInner>> result = listDelegate(response);
+                        ServiceResponse<PageImpl1<GalleryInner>> result = listDelegate(response);
                         return Observable.just(new ServiceResponse<Page<GalleryInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -718,10 +717,10 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
             });
     }
 
-    private ServiceResponse<PageImpl<GalleryInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<GalleryInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<GalleryInner>>() { }.getType())
-                .registerError(CloudException.class)
+    private ServiceResponse<PageImpl1<GalleryInner>> listDelegate(Response<ResponseBody> response) throws ApiErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<GalleryInner>, ApiErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<GalleryInner>>() { }.getType())
+                .registerError(ApiErrorException.class)
                 .build(response);
     }
 
@@ -730,7 +729,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;GalleryInner&gt; object if successful.
      */
@@ -806,7 +805,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
     /**
      * List galleries under a resource group.
      *
-    ServiceResponse<PageImpl<GalleryInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl1<GalleryInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;GalleryInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -820,7 +819,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
                 @Override
                 public Observable<ServiceResponse<Page<GalleryInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<GalleryInner>> result = listByResourceGroupNextDelegate(response);
+                        ServiceResponse<PageImpl1<GalleryInner>> result = listByResourceGroupNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<GalleryInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -829,10 +828,10 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
             });
     }
 
-    private ServiceResponse<PageImpl<GalleryInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<GalleryInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<GalleryInner>>() { }.getType())
-                .registerError(CloudException.class)
+    private ServiceResponse<PageImpl1<GalleryInner>> listByResourceGroupNextDelegate(Response<ResponseBody> response) throws ApiErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<GalleryInner>, ApiErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<GalleryInner>>() { }.getType())
+                .registerError(ApiErrorException.class)
                 .build(response);
     }
 
@@ -841,7 +840,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
      *
      * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws CloudException thrown if the request is rejected by server
+     * @throws ApiErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the PagedList&lt;GalleryInner&gt; object if successful.
      */
@@ -917,7 +916,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
     /**
      * List galleries under a subscription.
      *
-    ServiceResponse<PageImpl<GalleryInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+    ServiceResponse<PageImpl1<GalleryInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the PagedList&lt;GalleryInner&gt; object wrapped in {@link ServiceResponse} if successful.
      */
@@ -931,7 +930,7 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
                 @Override
                 public Observable<ServiceResponse<Page<GalleryInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<GalleryInner>> result = listNextDelegate(response);
+                        ServiceResponse<PageImpl1<GalleryInner>> result = listNextDelegate(response);
                         return Observable.just(new ServiceResponse<Page<GalleryInner>>(result.body(), result.response()));
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -940,10 +939,10 @@ public class GalleriesInner implements InnerSupportsGet<GalleryInner>, InnerSupp
             });
     }
 
-    private ServiceResponse<PageImpl<GalleryInner>> listNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<GalleryInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<GalleryInner>>() { }.getType())
-                .registerError(CloudException.class)
+    private ServiceResponse<PageImpl1<GalleryInner>> listNextDelegate(Response<ResponseBody> response) throws ApiErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<GalleryInner>, ApiErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<GalleryInner>>() { }.getType())
+                .registerError(ApiErrorException.class)
                 .build(response);
     }
 

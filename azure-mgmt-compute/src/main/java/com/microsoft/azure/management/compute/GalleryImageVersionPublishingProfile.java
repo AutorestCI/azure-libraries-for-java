@@ -8,13 +8,20 @@
 
 package com.microsoft.azure.management.compute;
 
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The publishing profile of a gallery image version.
  */
 public class GalleryImageVersionPublishingProfile extends GalleryArtifactPublishingProfileBase {
+    /**
+     * The scale tier of the gallery image version. Valid values are 'S30' and
+     * 'S100'. Possible values include: 'S30', 'S100'.
+     */
+    @JsonProperty(value = "scaleTier")
+    private ScaleTier scaleTier;
+
     /**
      * The flag means that if it is set to true, people deploying VMs with
      * 'latest' as version will not use this version.
@@ -26,16 +33,36 @@ public class GalleryImageVersionPublishingProfile extends GalleryArtifactPublish
      * The time when the gallery image version is published.
      */
     @JsonProperty(value = "publishedDate", access = JsonProperty.Access.WRITE_ONLY)
-    private LocalDate publishedDate;
+    private DateTime publishedDate;
 
     /**
      * The end of life date of the gallery image version.
      */
     @JsonProperty(value = "endOfLifeDate")
-    private LocalDate endOfLifeDate;
+    private DateTime endOfLifeDate;
 
     /**
-     * Get the excludeFromLatest value.
+     * Get the scale tier of the gallery image version. Valid values are 'S30' and 'S100'. Possible values include: 'S30', 'S100'.
+     *
+     * @return the scaleTier value
+     */
+    public ScaleTier scaleTier() {
+        return this.scaleTier;
+    }
+
+    /**
+     * Set the scale tier of the gallery image version. Valid values are 'S30' and 'S100'. Possible values include: 'S30', 'S100'.
+     *
+     * @param scaleTier the scaleTier value to set
+     * @return the GalleryImageVersionPublishingProfile object itself.
+     */
+    public GalleryImageVersionPublishingProfile withScaleTier(ScaleTier scaleTier) {
+        this.scaleTier = scaleTier;
+        return this;
+    }
+
+    /**
+     * Get the flag means that if it is set to true, people deploying VMs with 'latest' as version will not use this version.
      *
      * @return the excludeFromLatest value
      */
@@ -44,7 +71,7 @@ public class GalleryImageVersionPublishingProfile extends GalleryArtifactPublish
     }
 
     /**
-     * Set the excludeFromLatest value.
+     * Set the flag means that if it is set to true, people deploying VMs with 'latest' as version will not use this version.
      *
      * @param excludeFromLatest the excludeFromLatest value to set
      * @return the GalleryImageVersionPublishingProfile object itself.
@@ -55,30 +82,30 @@ public class GalleryImageVersionPublishingProfile extends GalleryArtifactPublish
     }
 
     /**
-     * Get the publishedDate value.
+     * Get the time when the gallery image version is published.
      *
      * @return the publishedDate value
      */
-    public LocalDate publishedDate() {
+    public DateTime publishedDate() {
         return this.publishedDate;
     }
 
     /**
-     * Get the endOfLifeDate value.
+     * Get the end of life date of the gallery image version.
      *
      * @return the endOfLifeDate value
      */
-    public LocalDate endOfLifeDate() {
+    public DateTime endOfLifeDate() {
         return this.endOfLifeDate;
     }
 
     /**
-     * Set the endOfLifeDate value.
+     * Set the end of life date of the gallery image version.
      *
      * @param endOfLifeDate the endOfLifeDate value to set
      * @return the GalleryImageVersionPublishingProfile object itself.
      */
-    public GalleryImageVersionPublishingProfile withEndOfLifeDate(LocalDate endOfLifeDate) {
+    public GalleryImageVersionPublishingProfile withEndOfLifeDate(DateTime endOfLifeDate) {
         this.endOfLifeDate = endOfLifeDate;
         return this;
     }

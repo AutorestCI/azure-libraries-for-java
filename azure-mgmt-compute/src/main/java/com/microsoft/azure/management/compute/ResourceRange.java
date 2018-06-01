@@ -27,7 +27,7 @@ public class ResourceRange {
     private Integer max;
 
     /**
-     * Get the min value.
+     * Get the minimum number of the resource.
      *
      * @return the min value
      */
@@ -36,7 +36,7 @@ public class ResourceRange {
     }
 
     /**
-     * Set the min value.
+     * Set the minimum number of the resource.
      *
      * @param min the min value to set
      * @return the ResourceRange object itself.
@@ -47,7 +47,7 @@ public class ResourceRange {
     }
 
     /**
-     * Get the max value.
+     * Get the maximum number of the resource.
      *
      * @return the max value
      */
@@ -56,7 +56,7 @@ public class ResourceRange {
     }
 
     /**
-     * Set the max value.
+     * Set the maximum number of the resource.
      *
      * @param max the max value to set
      * @return the ResourceRange object itself.

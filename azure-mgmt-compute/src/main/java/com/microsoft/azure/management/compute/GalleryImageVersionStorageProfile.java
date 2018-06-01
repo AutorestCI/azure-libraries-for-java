@@ -18,13 +18,13 @@ public class GalleryImageVersionStorageProfile {
     /**
      * The osDiskImage property.
      */
-    @JsonProperty(value = "osDiskImage")
+    @JsonProperty(value = "osDiskImage", access = JsonProperty.Access.WRITE_ONLY)
     private GalleryOSDiskImage osDiskImage;
 
     /**
      * A list of data disk images.
      */
-    @JsonProperty(value = "dataDiskImages")
+    @JsonProperty(value = "dataDiskImages", access = JsonProperty.Access.WRITE_ONLY)
     private List<GalleryDataDiskImage> dataDiskImages;
 
     /**
@@ -37,34 +37,12 @@ public class GalleryImageVersionStorageProfile {
     }
 
     /**
-     * Set the osDiskImage value.
-     *
-     * @param osDiskImage the osDiskImage value to set
-     * @return the GalleryImageVersionStorageProfile object itself.
-     */
-    public GalleryImageVersionStorageProfile withOsDiskImage(GalleryOSDiskImage osDiskImage) {
-        this.osDiskImage = osDiskImage;
-        return this;
-    }
-
-    /**
-     * Get the dataDiskImages value.
+     * Get a list of data disk images.
      *
      * @return the dataDiskImages value
      */
     public List<GalleryDataDiskImage> dataDiskImages() {
         return this.dataDiskImages;
-    }
-
-    /**
-     * Set the dataDiskImages value.
-     *
-     * @param dataDiskImages the dataDiskImages value to set
-     * @return the GalleryImageVersionStorageProfile object itself.
-     */
-    public GalleryImageVersionStorageProfile withDataDiskImages(List<GalleryDataDiskImage> dataDiskImages) {
-        this.dataDiskImages = dataDiskImages;
-        return this;
     }
 
 }

@@ -40,7 +40,7 @@ public class GalleryInner extends Resource {
     private String provisioningState;
 
     /**
-     * Get the description value.
+     * Get the description of this gallery resource.
      *
      * @return the description value
      */
@@ -49,7 +49,7 @@ public class GalleryInner extends Resource {
     }
 
     /**
-     * Set the description value.
+     * Set the description of this gallery resource.
      *
      * @param description the description value to set
      * @return the GalleryInner object itself.
@@ -80,7 +80,7 @@ public class GalleryInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state, which only appears in the response. Possible values include: 'Creating', 'Updating', 'Failed', 'Succeeded', 'Deleting', 'Migrating'.
      *
      * @return the provisioningState value
      */

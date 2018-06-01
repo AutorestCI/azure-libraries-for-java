@@ -10,7 +10,7 @@ package com.microsoft.azure.management.compute.implementation;
 
 import com.microsoft.azure.management.compute.OperatingSystemTypes;
 import com.microsoft.azure.management.compute.OperatingSystemStateTypes;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 import com.microsoft.azure.management.compute.GalleryImageIdentifier;
 import com.microsoft.azure.management.compute.RecommendedMachineConfiguration;
 import com.microsoft.azure.management.compute.Disallowed;
@@ -69,7 +69,7 @@ public class GalleryImageInner extends Resource {
      * The end of life of this gallery image.
      */
     @JsonProperty(value = "properties.endOfLifeDate")
-    private LocalDate endOfLifeDate;
+    private DateTime endOfLifeDate;
 
     /**
      * The identifier property.
@@ -105,7 +105,7 @@ public class GalleryImageInner extends Resource {
     private String provisioningState;
 
     /**
-     * Get the description value.
+     * Get the description of this gallery image resource.
      *
      * @return the description value
      */
@@ -114,7 +114,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Set the description value.
+     * Set the description of this gallery image resource.
      *
      * @param description the description value to set
      * @return the GalleryImageInner object itself.
@@ -125,7 +125,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Get the eula value.
+     * Get the Eula agreement for the gallery image.
      *
      * @return the eula value
      */
@@ -134,7 +134,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Set the eula value.
+     * Set the Eula agreement for the gallery image.
      *
      * @param eula the eula value to set
      * @return the GalleryImageInner object itself.
@@ -145,7 +145,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Get the privacyStatementUri value.
+     * Get the privacy statement uri.
      *
      * @return the privacyStatementUri value
      */
@@ -154,7 +154,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Set the privacyStatementUri value.
+     * Set the privacy statement uri.
      *
      * @param privacyStatementUri the privacyStatementUri value to set
      * @return the GalleryImageInner object itself.
@@ -165,7 +165,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Get the releaseNoteUri value.
+     * Get the release note uri.
      *
      * @return the releaseNoteUri value
      */
@@ -174,7 +174,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Set the releaseNoteUri value.
+     * Set the release note uri.
      *
      * @param releaseNoteUri the releaseNoteUri value to set
      * @return the GalleryImageInner object itself.
@@ -185,7 +185,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Get the osType value.
+     * Get this property allows you to specify the type of the OS that is included in the disk if creating a VM from user-image or a specialized VHD. &lt;br&gt;&lt;br&gt; Possible values are: &lt;br&gt;&lt;br&gt; **Windows** &lt;br&gt;&lt;br&gt; **Linux**. Possible values include: 'Windows', 'Linux'.
      *
      * @return the osType value
      */
@@ -194,7 +194,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Set the osType value.
+     * Set this property allows you to specify the type of the OS that is included in the disk if creating a VM from user-image or a specialized VHD. &lt;br&gt;&lt;br&gt; Possible values are: &lt;br&gt;&lt;br&gt; **Windows** &lt;br&gt;&lt;br&gt; **Linux**. Possible values include: 'Windows', 'Linux'.
      *
      * @param osType the osType value to set
      * @return the GalleryImageInner object itself.
@@ -205,7 +205,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Get the osState value.
+     * Get the OS State. Possible values include: 'Generalized', 'Specialized'.
      *
      * @return the osState value
      */
@@ -214,7 +214,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Set the osState value.
+     * Set the OS State. Possible values include: 'Generalized', 'Specialized'.
      *
      * @param osState the osState value to set
      * @return the GalleryImageInner object itself.
@@ -225,21 +225,21 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Get the endOfLifeDate value.
+     * Get the end of life of this gallery image.
      *
      * @return the endOfLifeDate value
      */
-    public LocalDate endOfLifeDate() {
+    public DateTime endOfLifeDate() {
         return this.endOfLifeDate;
     }
 
     /**
-     * Set the endOfLifeDate value.
+     * Set the end of life of this gallery image.
      *
      * @param endOfLifeDate the endOfLifeDate value to set
      * @return the GalleryImageInner object itself.
      */
-    public GalleryImageInner withEndOfLifeDate(LocalDate endOfLifeDate) {
+    public GalleryImageInner withEndOfLifeDate(DateTime endOfLifeDate) {
         this.endOfLifeDate = endOfLifeDate;
         return this;
     }
@@ -325,7 +325,7 @@ public class GalleryImageInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state, which only appears in the response. Possible values include: 'Creating', 'Updating', 'Failed', 'Succeeded', 'Deleting', 'Migrating'.
      *
      * @return the provisioningState value
      */

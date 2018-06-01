@@ -20,17 +20,17 @@ public class ReplicationStatus {
      * replication status. Possible values include: 'Unknown', 'InProgress',
      * 'Completed', 'Failed'.
      */
-    @JsonProperty(value = "aggregatedState")
+    @JsonProperty(value = "aggregatedState", access = JsonProperty.Access.WRITE_ONLY)
     private AggregatedReplicationState aggregatedState;
 
     /**
      * This is a summary of replication status for each region.
      */
-    @JsonProperty(value = "summary")
+    @JsonProperty(value = "summary", access = JsonProperty.Access.WRITE_ONLY)
     private List<RegionalReplicationStatus> summary;
 
     /**
-     * Get the aggregatedState value.
+     * Get this is the aggregated replication status based on the regional replication status. Possible values include: 'Unknown', 'InProgress', 'Completed', 'Failed'.
      *
      * @return the aggregatedState value
      */
@@ -39,34 +39,12 @@ public class ReplicationStatus {
     }
 
     /**
-     * Set the aggregatedState value.
-     *
-     * @param aggregatedState the aggregatedState value to set
-     * @return the ReplicationStatus object itself.
-     */
-    public ReplicationStatus withAggregatedState(AggregatedReplicationState aggregatedState) {
-        this.aggregatedState = aggregatedState;
-        return this;
-    }
-
-    /**
-     * Get the summary value.
+     * Get this is a summary of replication status for each region.
      *
      * @return the summary value
      */
     public List<RegionalReplicationStatus> summary() {
         return this.summary;
-    }
-
-    /**
-     * Set the summary value.
-     *
-     * @param summary the summary value to set
-     * @return the ReplicationStatus object itself.
-     */
-    public ReplicationStatus withSummary(List<RegionalReplicationStatus> summary) {
-        this.summary = summary;
-        return this;
     }
 
 }

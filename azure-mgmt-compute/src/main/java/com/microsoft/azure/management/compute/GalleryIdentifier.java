@@ -21,7 +21,7 @@ public class GalleryIdentifier {
     private String uniqueName;
 
     /**
-     * Get the uniqueName value.
+     * Get the unique name of the gallery.
      *
      * @return the uniqueName value
      */

@@ -22,7 +22,7 @@ public class Disallowed {
     private List<String> diskTypes;
 
     /**
-     * Get the diskTypes value.
+     * Get a list of disk types.
      *
      * @return the diskTypes value
      */
@@ -31,7 +31,7 @@ public class Disallowed {
     }
 
     /**
-     * Set the diskTypes value.
+     * Set a list of disk types.
      *
      * @param diskTypes the diskTypes value to set
      * @return the Disallowed object itself.

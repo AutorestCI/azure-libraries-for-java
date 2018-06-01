@@ -8,52 +8,40 @@
 
 package com.microsoft.azure.management.compute;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.microsoft.rest.ExpandableStringEnum;
 
 /**
  * Defines values for AggregatedReplicationState.
  */
-public enum AggregatedReplicationState {
-    /** Enum value Unknown. */
-    UNKNOWN("Unknown"),
+public final class AggregatedReplicationState extends ExpandableStringEnum<AggregatedReplicationState> {
+    /** Static value Unknown for AggregatedReplicationState. */
+    public static final AggregatedReplicationState UNKNOWN = fromString("Unknown");
 
-    /** Enum value InProgress. */
-    IN_PROGRESS("InProgress"),
+    /** Static value InProgress for AggregatedReplicationState. */
+    public static final AggregatedReplicationState IN_PROGRESS = fromString("InProgress");
 
-    /** Enum value Completed. */
-    COMPLETED("Completed"),
+    /** Static value Completed for AggregatedReplicationState. */
+    public static final AggregatedReplicationState COMPLETED = fromString("Completed");
 
-    /** Enum value Failed. */
-    FAILED("Failed");
+    /** Static value Failed for AggregatedReplicationState. */
+    public static final AggregatedReplicationState FAILED = fromString("Failed");
 
-    /** The actual serialized value for a AggregatedReplicationState instance. */
-    private String value;
-
-    AggregatedReplicationState(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a AggregatedReplicationState from its string representation.
+     * @param name a name to look for
+     * @return the corresponding AggregatedReplicationState
+     */
+    @JsonCreator
+    public static AggregatedReplicationState fromString(String name) {
+        return fromString(name, AggregatedReplicationState.class);
     }
 
     /**
-     * Parses a serialized value to a AggregatedReplicationState instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed AggregatedReplicationState object, or null if unable to parse.
+     * @return known AggregatedReplicationState values
      */
-    @JsonCreator
-    public static AggregatedReplicationState fromString(String value) {
-        AggregatedReplicationState[] items = AggregatedReplicationState.values();
-        for (AggregatedReplicationState item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<AggregatedReplicationState> values() {
+        return values(AggregatedReplicationState.class);
     }
 }

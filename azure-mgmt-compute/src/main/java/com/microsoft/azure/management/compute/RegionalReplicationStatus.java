@@ -17,30 +17,30 @@ public class RegionalReplicationStatus {
     /**
      * The region where the gallery image version is published to.
      */
-    @JsonProperty(value = "region")
+    @JsonProperty(value = "region", access = JsonProperty.Access.WRITE_ONLY)
     private String region;
 
     /**
      * This is the regional replication state. Possible values include:
      * 'Unknown', 'Replicating', 'Completed', 'Failed'.
      */
-    @JsonProperty(value = "state")
+    @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private ReplicationState state;
 
     /**
      * The details of the replication status.
      */
-    @JsonProperty(value = "details")
+    @JsonProperty(value = "details", access = JsonProperty.Access.WRITE_ONLY)
     private String details;
 
     /**
      * It indicates progress of the replication job.
      */
-    @JsonProperty(value = "progress")
+    @JsonProperty(value = "progress", access = JsonProperty.Access.WRITE_ONLY)
     private Integer progress;
 
     /**
-     * Get the region value.
+     * Get the region where the gallery image version is published to.
      *
      * @return the region value
      */
@@ -49,18 +49,7 @@ public class RegionalReplicationStatus {
     }
 
     /**
-     * Set the region value.
-     *
-     * @param region the region value to set
-     * @return the RegionalReplicationStatus object itself.
-     */
-    public RegionalReplicationStatus withRegion(String region) {
-        this.region = region;
-        return this;
-    }
-
-    /**
-     * Get the state value.
+     * Get this is the regional replication state. Possible values include: 'Unknown', 'Replicating', 'Completed', 'Failed'.
      *
      * @return the state value
      */
@@ -69,18 +58,7 @@ public class RegionalReplicationStatus {
     }
 
     /**
-     * Set the state value.
-     *
-     * @param state the state value to set
-     * @return the RegionalReplicationStatus object itself.
-     */
-    public RegionalReplicationStatus withState(ReplicationState state) {
-        this.state = state;
-        return this;
-    }
-
-    /**
-     * Get the details value.
+     * Get the details of the replication status.
      *
      * @return the details value
      */
@@ -89,34 +67,12 @@ public class RegionalReplicationStatus {
     }
 
     /**
-     * Set the details value.
-     *
-     * @param details the details value to set
-     * @return the RegionalReplicationStatus object itself.
-     */
-    public RegionalReplicationStatus withDetails(String details) {
-        this.details = details;
-        return this;
-    }
-
-    /**
-     * Get the progress value.
+     * Get it indicates progress of the replication job.
      *
      * @return the progress value
      */
     public Integer progress() {
         return this.progress;
-    }
-
-    /**
-     * Set the progress value.
-     *
-     * @param progress the progress value to set
-     * @return the RegionalReplicationStatus object itself.
-     */
-    public RegionalReplicationStatus withProgress(Integer progress) {
-        this.progress = progress;
-        return this;
     }
 
 }

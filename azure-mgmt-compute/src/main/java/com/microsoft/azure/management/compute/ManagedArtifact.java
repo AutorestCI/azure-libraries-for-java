@@ -21,7 +21,7 @@ public class ManagedArtifact {
     private String id;
 
     /**
-     * Get the id value.
+     * Get the managed artifact id.
      *
      * @return the id value
      */
@@ -30,7 +30,7 @@ public class ManagedArtifact {
     }
 
     /**
-     * Set the id value.
+     * Set the managed artifact id.
      *
      * @param id the id value to set
      * @return the ManagedArtifact object itself.

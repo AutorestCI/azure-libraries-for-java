@@ -17,54 +17,32 @@ public class GalleryDiskImage {
     /**
      * It indicates the size of the VHD to create.
      */
-    @JsonProperty(value = "sizedInGB")
-    private Integer sizedInGB;
+    @JsonProperty(value = "sizeInGB", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer sizeInGB;
 
     /**
      * The host caching of the disk. Valid values are 'None', 'ReadOnly', and
      * 'ReadWrite'. Possible values include: 'None', 'ReadOnly', 'ReadWrite'.
      */
-    @JsonProperty(value = "hostCaching")
+    @JsonProperty(value = "hostCaching", access = JsonProperty.Access.WRITE_ONLY)
     private HostCaching hostCaching;
 
     /**
-     * Get the sizedInGB value.
+     * Get it indicates the size of the VHD to create.
      *
-     * @return the sizedInGB value
+     * @return the sizeInGB value
      */
-    public Integer sizedInGB() {
-        return this.sizedInGB;
+    public Integer sizeInGB() {
+        return this.sizeInGB;
     }
 
     /**
-     * Set the sizedInGB value.
-     *
-     * @param sizedInGB the sizedInGB value to set
-     * @return the GalleryDiskImage object itself.
-     */
-    public GalleryDiskImage withSizedInGB(Integer sizedInGB) {
-        this.sizedInGB = sizedInGB;
-        return this;
-    }
-
-    /**
-     * Get the hostCaching value.
+     * Get the host caching of the disk. Valid values are 'None', 'ReadOnly', and 'ReadWrite'. Possible values include: 'None', 'ReadOnly', 'ReadWrite'.
      *
      * @return the hostCaching value
      */
     public HostCaching hostCaching() {
         return this.hostCaching;
-    }
-
-    /**
-     * Set the hostCaching value.
-     *
-     * @param hostCaching the hostCaching value to set
-     * @return the GalleryDiskImage object itself.
-     */
-    public GalleryDiskImage withHostCaching(HostCaching hostCaching) {
-        this.hostCaching = hostCaching;
-        return this;
     }
 
 }

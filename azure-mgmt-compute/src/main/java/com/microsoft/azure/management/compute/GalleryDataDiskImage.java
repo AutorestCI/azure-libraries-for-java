@@ -19,27 +19,16 @@ public class GalleryDataDiskImage extends GalleryDiskImage {
      * to identify data disks within the VM and therefore must be unique for
      * each data disk attached to a VM.
      */
-    @JsonProperty(value = "lun")
+    @JsonProperty(value = "lun", access = JsonProperty.Access.WRITE_ONLY)
     private Integer lun;
 
     /**
-     * Get the lun value.
+     * Get specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM.
      *
      * @return the lun value
      */
     public Integer lun() {
         return this.lun;
-    }
-
-    /**
-     * Set the lun value.
-     *
-     * @param lun the lun value to set
-     * @return the GalleryDataDiskImage object itself.
-     */
-    public GalleryDataDiskImage withLun(Integer lun) {
-        this.lun = lun;
-        return this;
     }
 
 }

@@ -39,13 +39,13 @@ public class GalleryImageVersionInner extends Resource {
     /**
      * The storageProfile property.
      */
-    @JsonProperty(value = "properties.storageProfile")
+    @JsonProperty(value = "properties.storageProfile", access = JsonProperty.Access.WRITE_ONLY)
     private GalleryImageVersionStorageProfile storageProfile;
 
     /**
      * The replicationStatus property.
      */
-    @JsonProperty(value = "properties.replicationStatus")
+    @JsonProperty(value = "properties.replicationStatus", access = JsonProperty.Access.WRITE_ONLY)
     private ReplicationStatus replicationStatus;
 
     /**
@@ -69,7 +69,7 @@ public class GalleryImageVersionInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state, which only appears in the response. Possible values include: 'Creating', 'Updating', 'Failed', 'Succeeded', 'Deleting', 'Migrating'.
      *
      * @return the provisioningState value
      */
@@ -87,34 +87,12 @@ public class GalleryImageVersionInner extends Resource {
     }
 
     /**
-     * Set the storageProfile value.
-     *
-     * @param storageProfile the storageProfile value to set
-     * @return the GalleryImageVersionInner object itself.
-     */
-    public GalleryImageVersionInner withStorageProfile(GalleryImageVersionStorageProfile storageProfile) {
-        this.storageProfile = storageProfile;
-        return this;
-    }
-
-    /**
      * Get the replicationStatus value.
      *
      * @return the replicationStatus value
      */
     public ReplicationStatus replicationStatus() {
         return this.replicationStatus;
-    }
-
-    /**
-     * Set the replicationStatus value.
-     *
-     * @param replicationStatus the replicationStatus value to set
-     * @return the GalleryImageVersionInner object itself.
-     */
-    public GalleryImageVersionInner withReplicationStatus(ReplicationStatus replicationStatus) {
-        this.replicationStatus = replicationStatus;
-        return this;
     }
 
 }

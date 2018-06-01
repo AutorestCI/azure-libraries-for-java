@@ -34,7 +34,7 @@ public class ImagePurchasePlan {
     private String product;
 
     /**
-     * Get the name value.
+     * Get the plan ID.
      *
      * @return the name value
      */
@@ -43,7 +43,7 @@ public class ImagePurchasePlan {
     }
 
     /**
-     * Set the name value.
+     * Set the plan ID.
      *
      * @param name the name value to set
      * @return the ImagePurchasePlan object itself.
@@ -54,7 +54,7 @@ public class ImagePurchasePlan {
     }
 
     /**
-     * Get the publisher value.
+     * Get the publisher ID.
      *
      * @return the publisher value
      */
@@ -63,7 +63,7 @@ public class ImagePurchasePlan {
     }
 
     /**
-     * Set the publisher value.
+     * Set the publisher ID.
      *
      * @param publisher the publisher value to set
      * @return the ImagePurchasePlan object itself.
@@ -74,7 +74,7 @@ public class ImagePurchasePlan {
     }
 
     /**
-     * Get the product value.
+     * Get the product ID.
      *
      * @return the product value
      */
@@ -83,7 +83,7 @@ public class ImagePurchasePlan {
     }
 
     /**
-     * Set the product value.
+     * Set the product ID.
      *
      * @param product the product value to set
      * @return the ImagePurchasePlan object itself.

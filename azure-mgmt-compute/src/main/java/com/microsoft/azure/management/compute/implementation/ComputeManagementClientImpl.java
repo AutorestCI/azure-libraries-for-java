@@ -355,6 +355,45 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The GalleriesInner object to access its operations.
+     */
+    private GalleriesInner galleries;
+
+    /**
+     * Gets the GalleriesInner object to access its operations.
+     * @return the GalleriesInner object.
+     */
+    public GalleriesInner galleries() {
+        return this.galleries;
+    }
+
+    /**
+     * The GalleryImagesInner object to access its operations.
+     */
+    private GalleryImagesInner galleryImages;
+
+    /**
+     * Gets the GalleryImagesInner object to access its operations.
+     * @return the GalleryImagesInner object.
+     */
+    public GalleryImagesInner galleryImages() {
+        return this.galleryImages;
+    }
+
+    /**
+     * The GalleryImageVersionsInner object to access its operations.
+     */
+    private GalleryImageVersionsInner galleryImageVersions;
+
+    /**
+     * Gets the GalleryImageVersionsInner object to access its operations.
+     * @return the GalleryImageVersionsInner object.
+     */
+    public GalleryImageVersionsInner galleryImageVersions() {
+        return this.galleryImageVersions;
+    }
+
+    /**
      * The ContainerServicesInner object to access its operations.
      */
     private ContainerServicesInner containerServices;
@@ -419,6 +458,9 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
         this.resourceSkus = new ResourceSkusInner(restClient().retrofit(), this);
         this.disks = new DisksInner(restClient().retrofit(), this);
         this.snapshots = new SnapshotsInner(restClient().retrofit(), this);
+        this.galleries = new GalleriesInner(restClient().retrofit(), this);
+        this.galleryImages = new GalleryImagesInner(restClient().retrofit(), this);
+        this.galleryImageVersions = new GalleryImageVersionsInner(restClient().retrofit(), this);
         this.containerServices = new ContainerServicesInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }

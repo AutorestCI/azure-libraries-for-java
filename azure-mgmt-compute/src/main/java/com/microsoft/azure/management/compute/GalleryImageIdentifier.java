@@ -33,7 +33,7 @@ public class GalleryImageIdentifier {
     private String sku;
 
     /**
-     * Get the publisher value.
+     * Get the gallery image publisher name.
      *
      * @return the publisher value
      */
@@ -42,7 +42,7 @@ public class GalleryImageIdentifier {
     }
 
     /**
-     * Set the publisher value.
+     * Set the gallery image publisher name.
      *
      * @param publisher the publisher value to set
      * @return the GalleryImageIdentifier object itself.
@@ -53,7 +53,7 @@ public class GalleryImageIdentifier {
     }
 
     /**
-     * Get the offer value.
+     * Get the gallery image offer name.
      *
      * @return the offer value
      */
@@ -62,7 +62,7 @@ public class GalleryImageIdentifier {
     }
 
     /**
-     * Set the offer value.
+     * Set the gallery image offer name.
      *
      * @param offer the offer value to set
      * @return the GalleryImageIdentifier object itself.
@@ -73,7 +73,7 @@ public class GalleryImageIdentifier {
     }
 
     /**
-     * Get the sku value.
+     * Get the gallery image sku name.
      *
      * @return the sku value
      */
@@ -82,7 +82,7 @@ public class GalleryImageIdentifier {
     }
 
     /**
-     * Set the sku value.
+     * Set the gallery image sku name.
      *
      * @param sku the sku value to set
      * @return the GalleryImageIdentifier object itself.
