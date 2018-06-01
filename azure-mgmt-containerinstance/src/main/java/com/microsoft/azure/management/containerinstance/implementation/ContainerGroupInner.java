@@ -16,6 +16,7 @@ import com.microsoft.azure.management.containerinstance.IpAddress;
 import com.microsoft.azure.management.containerinstance.OperatingSystemTypes;
 import com.microsoft.azure.management.containerinstance.Volume;
 import com.microsoft.azure.management.containerinstance.ContainerGroupPropertiesInstanceView;
+import com.microsoft.azure.management.containerinstance.ContainerGroupDiagnostics;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.rest.SkipParentValidation;
@@ -82,6 +83,12 @@ public class ContainerGroupInner extends Resource {
      */
     @JsonProperty(value = "properties.instanceView", access = JsonProperty.Access.WRITE_ONLY)
     private ContainerGroupPropertiesInstanceView instanceView;
+
+    /**
+     * The diagnostic information for a container group.
+     */
+    @JsonProperty(value = "properties.diagnostics")
+    private ContainerGroupDiagnostics diagnostics;
 
     /**
      * Get the provisioning state of the container group. This only appears in the response.
@@ -227,6 +234,26 @@ public class ContainerGroupInner extends Resource {
      */
     public ContainerGroupPropertiesInstanceView instanceView() {
         return this.instanceView;
+    }
+
+    /**
+     * Get the diagnostic information for a container group.
+     *
+     * @return the diagnostics value
+     */
+    public ContainerGroupDiagnostics diagnostics() {
+        return this.diagnostics;
+    }
+
+    /**
+     * Set the diagnostic information for a container group.
+     *
+     * @param diagnostics the diagnostics value to set
+     * @return the ContainerGroupInner object itself.
+     */
+    public ContainerGroupInner withDiagnostics(ContainerGroupDiagnostics diagnostics) {
+        this.diagnostics = diagnostics;
+        return this;
     }
 
 }

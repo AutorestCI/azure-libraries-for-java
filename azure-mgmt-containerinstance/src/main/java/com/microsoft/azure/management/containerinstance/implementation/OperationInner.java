@@ -19,20 +19,20 @@ public class OperationInner {
     /**
      * The name of the operation.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "name", required = true)
     private String name;
 
     /**
      * The display information of the operation.
      */
-    @JsonProperty(value = "display")
+    @JsonProperty(value = "display", required = true)
     private OperationDisplay display;
 
     /**
      * The intended executor of the operation. Possible values include: 'User',
      * 'System'.
      */
-    @JsonProperty(value = "origin", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "origin")
     private ContainerInstanceOperationsOrigin origin;
 
     /**
@@ -42,6 +42,17 @@ public class OperationInner {
      */
     public String name() {
         return this.name;
+    }
+
+    /**
+     * Set the name of the operation.
+     *
+     * @param name the name value to set
+     * @return the OperationInner object itself.
+     */
+    public OperationInner withName(String name) {
+        this.name = name;
+        return this;
     }
 
     /**
@@ -71,6 +82,17 @@ public class OperationInner {
      */
     public ContainerInstanceOperationsOrigin origin() {
         return this.origin;
+    }
+
+    /**
+     * Set the intended executor of the operation. Possible values include: 'User', 'System'.
+     *
+     * @param origin the origin value to set
+     * @return the OperationInner object itself.
+     */
+    public OperationInner withOrigin(ContainerInstanceOperationsOrigin origin) {
+        this.origin = origin;
+        return this;
     }
 
 }

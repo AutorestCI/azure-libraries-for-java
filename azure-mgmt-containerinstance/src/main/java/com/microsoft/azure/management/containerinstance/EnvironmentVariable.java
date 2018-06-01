@@ -23,8 +23,14 @@ public class EnvironmentVariable {
     /**
      * The value of the environment variable.
      */
-    @JsonProperty(value = "value", required = true)
+    @JsonProperty(value = "value")
     private String value;
+
+    /**
+     * The value of the secure environment variable.
+     */
+    @JsonProperty(value = "secureValue")
+    private String secureValue;
 
     /**
      * Get the name of the environment variable.
@@ -63,6 +69,26 @@ public class EnvironmentVariable {
      */
     public EnvironmentVariable withValue(String value) {
         this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the value of the secure environment variable.
+     *
+     * @return the secureValue value
+     */
+    public String secureValue() {
+        return this.secureValue;
+    }
+
+    /**
+     * Set the value of the secure environment variable.
+     *
+     * @param secureValue the secureValue value to set
+     * @return the EnvironmentVariable object itself.
+     */
+    public EnvironmentVariable withSecureValue(String secureValue) {
+        this.secureValue = secureValue;
         return this;
     }
 
