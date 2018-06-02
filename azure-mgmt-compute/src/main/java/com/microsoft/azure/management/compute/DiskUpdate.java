@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.compute;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -16,7 +15,7 @@ import com.microsoft.rest.serializer.JsonFlatten;
  * Disk update resource.
  */
 @JsonFlatten
-public class DiskUpdate {
+public class DiskUpdate extends ResourceUpdate {
     /**
      * the Operating System type. Possible values include: 'Windows', 'Linux'.
      */
@@ -38,18 +37,6 @@ public class DiskUpdate {
      */
     @JsonProperty(value = "properties.encryptionSettings")
     private EncryptionSettings encryptionSettings;
-
-    /**
-     * Resource tags.
-     */
-    @JsonProperty(value = "tags")
-    private Map<String, String> tags;
-
-    /**
-     * The sku property.
-     */
-    @JsonProperty(value = "sku")
-    private DiskSku sku;
 
     /**
      * Get the Operating System type. Possible values include: 'Windows', 'Linux'.
@@ -108,46 +95,6 @@ public class DiskUpdate {
      */
     public DiskUpdate withEncryptionSettings(EncryptionSettings encryptionSettings) {
         this.encryptionSettings = encryptionSettings;
-        return this;
-    }
-
-    /**
-     * Get resource tags.
-     *
-     * @return the tags value
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set resource tags.
-     *
-     * @param tags the tags value to set
-     * @return the DiskUpdate object itself.
-     */
-    public DiskUpdate withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the sku value.
-     *
-     * @return the sku value
-     */
-    public DiskSku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku value.
-     *
-     * @param sku the sku value to set
-     * @return the DiskUpdate object itself.
-     */
-    public DiskUpdate withSku(DiskSku sku) {
-        this.sku = sku;
         return this;
     }
 
