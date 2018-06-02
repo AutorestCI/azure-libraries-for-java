@@ -40,6 +40,17 @@ public class LiveEventPreview {
     private String streamingPolicyName;
 
     /**
+     * An Alternative Media Identifier associated with the preview url.  This
+     * identifier can be used to distinguish the preview of different live
+     * events for authorization purposes in the
+     * CustomLicenseAcquisitionUrlTemplate or the
+     * CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the
+     * StreamingPolicyName field.
+     */
+    @JsonProperty(value = "alternativeMediaId")
+    private String alternativeMediaId;
+
+    /**
      * Get the endpoints for preview.
      *
      * @return the endpoints value
@@ -116,6 +127,26 @@ public class LiveEventPreview {
      */
     public LiveEventPreview withStreamingPolicyName(String streamingPolicyName) {
         this.streamingPolicyName = streamingPolicyName;
+        return this;
+    }
+
+    /**
+     * Get an Alternative Media Identifier associated with the preview url.  This identifier can be used to distinguish the preview of different live events for authorization purposes in the CustomLicenseAcquisitionUrlTemplate or the CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the StreamingPolicyName field.
+     *
+     * @return the alternativeMediaId value
+     */
+    public String alternativeMediaId() {
+        return this.alternativeMediaId;
+    }
+
+    /**
+     * Set an Alternative Media Identifier associated with the preview url.  This identifier can be used to distinguish the preview of different live events for authorization purposes in the CustomLicenseAcquisitionUrlTemplate or the CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the StreamingPolicyName field.
+     *
+     * @param alternativeMediaId the alternativeMediaId value to set
+     * @return the LiveEventPreview object itself.
+     */
+    public LiveEventPreview withAlternativeMediaId(String alternativeMediaId) {
+        this.alternativeMediaId = alternativeMediaId;
         return this;
     }
 

@@ -11,7 +11,7 @@ package com.microsoft.azure.management.mediaservices.implementation;
 import org.joda.time.DateTime;
 import java.util.UUID;
 import java.util.List;
-import com.microsoft.azure.management.mediaservices.StreamingLocatorUserDefinedContentKey;
+import com.microsoft.azure.management.mediaservices.StreamingLocatorContentKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -72,7 +72,18 @@ public class StreamingLocatorInner extends ProxyResourceInner {
      * ContentKeys used by this Streaming Locator.
      */
     @JsonProperty(value = "properties.contentKeys")
-    private List<StreamingLocatorUserDefinedContentKey> contentKeys;
+    private List<StreamingLocatorContentKey> contentKeys;
+
+    /**
+     * An Alternative Media Identifier associated with the StreamingLocator.
+     * This identifier can be used to distinguish different StreamingLocators
+     * for the same Asset for authorization purposes in the
+     * CustomLicenseAcquisitionUrlTemplate or the
+     * CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the
+     * StreamingPolicyName field.
+     */
+    @JsonProperty(value = "properties.alternativeMediaId")
+    private String alternativeMediaId;
 
     /**
      * Get asset Name.
@@ -208,7 +219,7 @@ public class StreamingLocatorInner extends ProxyResourceInner {
      *
      * @return the contentKeys value
      */
-    public List<StreamingLocatorUserDefinedContentKey> contentKeys() {
+    public List<StreamingLocatorContentKey> contentKeys() {
         return this.contentKeys;
     }
 
@@ -218,8 +229,28 @@ public class StreamingLocatorInner extends ProxyResourceInner {
      * @param contentKeys the contentKeys value to set
      * @return the StreamingLocatorInner object itself.
      */
-    public StreamingLocatorInner withContentKeys(List<StreamingLocatorUserDefinedContentKey> contentKeys) {
+    public StreamingLocatorInner withContentKeys(List<StreamingLocatorContentKey> contentKeys) {
         this.contentKeys = contentKeys;
+        return this;
+    }
+
+    /**
+     * Get an Alternative Media Identifier associated with the StreamingLocator.  This identifier can be used to distinguish different StreamingLocators for the same Asset for authorization purposes in the CustomLicenseAcquisitionUrlTemplate or the CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the StreamingPolicyName field.
+     *
+     * @return the alternativeMediaId value
+     */
+    public String alternativeMediaId() {
+        return this.alternativeMediaId;
+    }
+
+    /**
+     * Set an Alternative Media Identifier associated with the StreamingLocator.  This identifier can be used to distinguish different StreamingLocators for the same Asset for authorization purposes in the CustomLicenseAcquisitionUrlTemplate or the CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the StreamingPolicyName field.
+     *
+     * @param alternativeMediaId the alternativeMediaId value to set
+     * @return the StreamingLocatorInner object itself.
+     */
+    public StreamingLocatorInner withAlternativeMediaId(String alternativeMediaId) {
+        this.alternativeMediaId = alternativeMediaId;
         return this;
     }
 

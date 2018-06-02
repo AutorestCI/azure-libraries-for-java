@@ -11,12 +11,12 @@ package com.microsoft.azure.management.mediaservices;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Class to specify drm configurations of CommonEncryptionCbcs scheme in
+ * Class to specify DRM configurations of CommonEncryptionCbcs scheme in
  * Streaming Policy.
  */
 public class CbcsDrmConfiguration {
     /**
-     * Fairplay configurations.
+     * FairPlay configurations.
      */
     @JsonProperty(value = "fairPlay")
     private StreamingPolicyFairPlayConfiguration fairPlay;
@@ -34,7 +34,7 @@ public class CbcsDrmConfiguration {
     private StreamingPolicyWidevineConfiguration widevine;
 
     /**
-     * Get fairplay configurations.
+     * Get fairPlay configurations.
      *
      * @return the fairPlay value
      */
@@ -43,7 +43,7 @@ public class CbcsDrmConfiguration {
     }
 
     /**
-     * Set fairplay configurations.
+     * Set fairPlay configurations.
      *
      * @param fairPlay the fairPlay value to set
      * @return the CbcsDrmConfiguration object itself.

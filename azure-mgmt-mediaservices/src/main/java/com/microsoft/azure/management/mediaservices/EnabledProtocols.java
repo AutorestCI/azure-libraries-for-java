@@ -21,13 +21,13 @@ public class EnabledProtocols {
     private boolean download;
 
     /**
-     * Enable Dash protocol or not.
+     * Enable DASH protocol or not.
      */
     @JsonProperty(value = "dash", required = true)
     private boolean dash;
 
     /**
-     * Enable Hls protocol or not.
+     * Enable HLS protocol or not.
      */
     @JsonProperty(value = "hls", required = true)
     private boolean hls;
@@ -59,7 +59,7 @@ public class EnabledProtocols {
     }
 
     /**
-     * Get enable Dash protocol or not.
+     * Get enable DASH protocol or not.
      *
      * @return the dash value
      */
@@ -68,7 +68,7 @@ public class EnabledProtocols {
     }
 
     /**
-     * Set enable Dash protocol or not.
+     * Set enable DASH protocol or not.
      *
      * @param dash the dash value to set
      * @return the EnabledProtocols object itself.
@@ -79,7 +79,7 @@ public class EnabledProtocols {
     }
 
     /**
-     * Get enable Hls protocol or not.
+     * Get enable HLS protocol or not.
      *
      * @return the hls value
      */
@@ -88,7 +88,7 @@ public class EnabledProtocols {
     }
 
     /**
-     * Set enable Hls protocol or not.
+     * Set enable HLS protocol or not.
      *
      * @param hls the hls value to set
      * @return the EnabledProtocols object itself.

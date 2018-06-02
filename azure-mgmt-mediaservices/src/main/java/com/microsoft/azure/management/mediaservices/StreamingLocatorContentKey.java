@@ -17,23 +17,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class StreamingLocatorContentKey {
     /**
-     * Label of Content Key.
+     * ID of Content Key.
      */
-    @JsonProperty(value = "label")
-    private String label;
+    @JsonProperty(value = "id", required = true)
+    private UUID id;
 
     /**
      * Encryption type of Content Key. Possible values include:
      * 'CommonEncryptionCenc', 'CommonEncryptionCbcs', 'EnvelopeEncryption'.
      */
-    @JsonProperty(value = "type", required = true)
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private StreamingLocatorContentKeyType type;
 
     /**
-     * ID of Content Key.
+     * Label of Content Key.
      */
-    @JsonProperty(value = "id", required = true)
-    private UUID id;
+    @JsonProperty(value = "label")
+    private String label;
 
     /**
      * Value of  of Content Key.
@@ -44,7 +44,7 @@ public class StreamingLocatorContentKey {
     /**
      * ContentKeyPolicy used by Content Key.
      */
-    @JsonProperty(value = "policyName")
+    @JsonProperty(value = "policyName", access = JsonProperty.Access.WRITE_ONLY)
     private String policyName;
 
     /**
@@ -52,46 +52,6 @@ public class StreamingLocatorContentKey {
      */
     @JsonProperty(value = "tracks")
     private List<TrackSelection> tracks;
-
-    /**
-     * Get label of Content Key.
-     *
-     * @return the label value
-     */
-    public String label() {
-        return this.label;
-    }
-
-    /**
-     * Set label of Content Key.
-     *
-     * @param label the label value to set
-     * @return the StreamingLocatorContentKey object itself.
-     */
-    public StreamingLocatorContentKey withLabel(String label) {
-        this.label = label;
-        return this;
-    }
-
-    /**
-     * Get encryption type of Content Key. Possible values include: 'CommonEncryptionCenc', 'CommonEncryptionCbcs', 'EnvelopeEncryption'.
-     *
-     * @return the type value
-     */
-    public StreamingLocatorContentKeyType type() {
-        return this.type;
-    }
-
-    /**
-     * Set encryption type of Content Key. Possible values include: 'CommonEncryptionCenc', 'CommonEncryptionCbcs', 'EnvelopeEncryption'.
-     *
-     * @param type the type value to set
-     * @return the StreamingLocatorContentKey object itself.
-     */
-    public StreamingLocatorContentKey withType(StreamingLocatorContentKeyType type) {
-        this.type = type;
-        return this;
-    }
 
     /**
      * Get iD of Content Key.
@@ -110,6 +70,35 @@ public class StreamingLocatorContentKey {
      */
     public StreamingLocatorContentKey withId(UUID id) {
         this.id = id;
+        return this;
+    }
+
+    /**
+     * Get encryption type of Content Key. Possible values include: 'CommonEncryptionCenc', 'CommonEncryptionCbcs', 'EnvelopeEncryption'.
+     *
+     * @return the type value
+     */
+    public StreamingLocatorContentKeyType type() {
+        return this.type;
+    }
+
+    /**
+     * Get label of Content Key.
+     *
+     * @return the label value
+     */
+    public String label() {
+        return this.label;
+    }
+
+    /**
+     * Set label of Content Key.
+     *
+     * @param label the label value to set
+     * @return the StreamingLocatorContentKey object itself.
+     */
+    public StreamingLocatorContentKey withLabel(String label) {
+        this.label = label;
         return this;
     }
 
@@ -140,17 +129,6 @@ public class StreamingLocatorContentKey {
      */
     public String policyName() {
         return this.policyName;
-    }
-
-    /**
-     * Set contentKeyPolicy used by Content Key.
-     *
-     * @param policyName the policyName value to set
-     * @return the StreamingLocatorContentKey object itself.
-     */
-    public StreamingLocatorContentKey withPolicyName(String policyName) {
-        this.policyName = policyName;
-        return this;
     }
 
     /**

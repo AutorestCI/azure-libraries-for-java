@@ -14,6 +14,7 @@ import com.microsoft.azure.management.mediaservices.JobInput;
 import java.util.List;
 import com.microsoft.azure.management.mediaservices.JobOutput;
 import com.microsoft.azure.management.mediaservices.Priority;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -69,6 +70,13 @@ public class JobInner extends ProxyResourceInner {
      */
     @JsonProperty(value = "properties.priority")
     private Priority priority;
+
+    /**
+     * Customer provided correlation data that will be returned in Job
+     * completed events.
+     */
+    @JsonProperty(value = "properties.correlationData")
+    private Map<String, String> correlationData;
 
     /**
      * Get the UTC date and time when the Job was created, in 'YYYY-MM-DDThh:mm:ssZ' format.
@@ -174,6 +182,26 @@ public class JobInner extends ProxyResourceInner {
      */
     public JobInner withPriority(Priority priority) {
         this.priority = priority;
+        return this;
+    }
+
+    /**
+     * Get customer provided correlation data that will be returned in Job completed events.
+     *
+     * @return the correlationData value
+     */
+    public Map<String, String> correlationData() {
+        return this.correlationData;
+    }
+
+    /**
+     * Set customer provided correlation data that will be returned in Job completed events.
+     *
+     * @param correlationData the correlationData value to set
+     * @return the JobInner object itself.
+     */
+    public JobInner withCorrelationData(Map<String, String> correlationData) {
+        this.correlationData = correlationData;
         return this;
     }
 

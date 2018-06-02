@@ -35,11 +35,11 @@ public class EnvelopeEncryption {
     private StreamingPolicyContentKeys contentKeys;
 
     /**
-     * LicenseAcquistionUrlTemplate is used to point to user speicified service
-     * to delivery content keys.
+     * KeyAcquistionUrlTemplate is used to point to user specified service to
+     * delivery content keys.
      */
-    @JsonProperty(value = "customLicenseAcquisitionUrlTemplate")
-    private String customLicenseAcquisitionUrlTemplate;
+    @JsonProperty(value = "customKeyAcquisitionUrlTemplate")
+    private String customKeyAcquisitionUrlTemplate;
 
     /**
      * Get representing supported protocols.
@@ -102,22 +102,22 @@ public class EnvelopeEncryption {
     }
 
     /**
-     * Get licenseAcquistionUrlTemplate is used to point to user speicified service to delivery content keys.
+     * Get keyAcquistionUrlTemplate is used to point to user specified service to delivery content keys.
      *
-     * @return the customLicenseAcquisitionUrlTemplate value
+     * @return the customKeyAcquisitionUrlTemplate value
      */
-    public String customLicenseAcquisitionUrlTemplate() {
-        return this.customLicenseAcquisitionUrlTemplate;
+    public String customKeyAcquisitionUrlTemplate() {
+        return this.customKeyAcquisitionUrlTemplate;
     }
 
     /**
-     * Set licenseAcquistionUrlTemplate is used to point to user speicified service to delivery content keys.
+     * Set keyAcquistionUrlTemplate is used to point to user specified service to delivery content keys.
      *
-     * @param customLicenseAcquisitionUrlTemplate the customLicenseAcquisitionUrlTemplate value to set
+     * @param customKeyAcquisitionUrlTemplate the customKeyAcquisitionUrlTemplate value to set
      * @return the EnvelopeEncryption object itself.
      */
-    public EnvelopeEncryption withCustomLicenseAcquisitionUrlTemplate(String customLicenseAcquisitionUrlTemplate) {
-        this.customLicenseAcquisitionUrlTemplate = customLicenseAcquisitionUrlTemplate;
+    public EnvelopeEncryption withCustomKeyAcquisitionUrlTemplate(String customKeyAcquisitionUrlTemplate) {
+        this.customKeyAcquisitionUrlTemplate = customKeyAcquisitionUrlTemplate;
         return this;
     }
 

@@ -11,7 +11,7 @@ package com.microsoft.azure.management.mediaservices;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Class to specify drm configurations of CommonEncryptionCenc scheme in
+ * Class to specify DRM configurations of CommonEncryptionCenc scheme in
  * Streaming Policy.
  */
 public class CencDrmConfiguration {
