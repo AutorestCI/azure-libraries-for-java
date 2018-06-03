@@ -244,7 +244,7 @@ public class DatabaseUpdate {
     private Map<String, String> tags;
 
     /**
-     * Get the sku value.
+     * Get the name and tier of the SKU.
      *
      * @return the sku value
      */
@@ -253,7 +253,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the sku value.
+     * Set the name and tier of the SKU.
      *
      * @param sku the sku value to set
      * @return the DatabaseUpdate object itself.
@@ -264,7 +264,15 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the createMode value.
+     * Get specifies the mode of database creation.
+     Default: regular database creation.
+     Copy: creates a database as a copy of an existing database. sourceDatabaseId must be specified as the resource ID of the source database.
+     Secondary: creates a database as a secondary replica of an existing database. sourceDatabaseId must be specified as the resource ID of the existing primary database.
+     PointInTimeRestore: Creates a database by restoring a point in time backup of an existing database. sourceDatabaseId must be specified as the resource ID of the existing database, and restorePointInTime must be specified.
+     Recovery: Creates a database by restoring a geo-replicated backup. sourceDatabaseId must be specified as the recoverable database resource ID to restore.
+     Restore: Creates a database by restoring a backup of a deleted database. sourceDatabaseId must be specified. If sourceDatabaseId is the database's original resource ID, then sourceDatabaseDeletionDate must be specified. Otherwise sourceDatabaseId must be the restorable dropped database resource ID and sourceDatabaseDeletionDate is ignored. restorePointInTime may also be specified to restore from an earlier point in time.
+     RestoreLongTermRetentionBackup: Creates a database by restoring from a long term retention vault. recoveryServicesRecoveryPointResourceId must be specified as the recovery point resource ID.
+     Copy, Secondary, and RestoreLongTermRetentionBackup are not supported for DataWarehouse edition. Possible values include: 'Default', 'Copy', 'Secondary', 'PointInTimeRestore', 'Restore', 'Recovery', 'RestoreExternalBackup', 'RestoreExternalBackupSecondary', 'RestoreLongTermRetentionBackup', 'OnlineSecondary'.
      *
      * @return the createMode value
      */
@@ -273,7 +281,15 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the createMode value.
+     * Set specifies the mode of database creation.
+     Default: regular database creation.
+     Copy: creates a database as a copy of an existing database. sourceDatabaseId must be specified as the resource ID of the source database.
+     Secondary: creates a database as a secondary replica of an existing database. sourceDatabaseId must be specified as the resource ID of the existing primary database.
+     PointInTimeRestore: Creates a database by restoring a point in time backup of an existing database. sourceDatabaseId must be specified as the resource ID of the existing database, and restorePointInTime must be specified.
+     Recovery: Creates a database by restoring a geo-replicated backup. sourceDatabaseId must be specified as the recoverable database resource ID to restore.
+     Restore: Creates a database by restoring a backup of a deleted database. sourceDatabaseId must be specified. If sourceDatabaseId is the database's original resource ID, then sourceDatabaseDeletionDate must be specified. Otherwise sourceDatabaseId must be the restorable dropped database resource ID and sourceDatabaseDeletionDate is ignored. restorePointInTime may also be specified to restore from an earlier point in time.
+     RestoreLongTermRetentionBackup: Creates a database by restoring from a long term retention vault. recoveryServicesRecoveryPointResourceId must be specified as the recovery point resource ID.
+     Copy, Secondary, and RestoreLongTermRetentionBackup are not supported for DataWarehouse edition. Possible values include: 'Default', 'Copy', 'Secondary', 'PointInTimeRestore', 'Restore', 'Recovery', 'RestoreExternalBackup', 'RestoreExternalBackupSecondary', 'RestoreLongTermRetentionBackup', 'OnlineSecondary'.
      *
      * @param createMode the createMode value to set
      * @return the DatabaseUpdate object itself.
@@ -284,7 +300,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the collation value.
+     * Get the collation of the database.
      *
      * @return the collation value
      */
@@ -293,7 +309,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the collation value.
+     * Set the collation of the database.
      *
      * @param collation the collation value to set
      * @return the DatabaseUpdate object itself.
@@ -304,7 +320,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the maxSizeBytes value.
+     * Get the max size of the database expressed in bytes.
      *
      * @return the maxSizeBytes value
      */
@@ -313,7 +329,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the maxSizeBytes value.
+     * Set the max size of the database expressed in bytes.
      *
      * @param maxSizeBytes the maxSizeBytes value to set
      * @return the DatabaseUpdate object itself.
@@ -324,7 +340,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the sampleName value.
+     * Get the name of the sample schema to apply when creating this database. Possible values include: 'AdventureWorksLT', 'WideWorldImportersStd', 'WideWorldImportersFull'.
      *
      * @return the sampleName value
      */
@@ -333,7 +349,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the sampleName value.
+     * Set the name of the sample schema to apply when creating this database. Possible values include: 'AdventureWorksLT', 'WideWorldImportersStd', 'WideWorldImportersFull'.
      *
      * @param sampleName the sampleName value to set
      * @return the DatabaseUpdate object itself.
@@ -344,7 +360,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the elasticPoolId value.
+     * Get the resource identifier of the elastic pool containing this database.
      *
      * @return the elasticPoolId value
      */
@@ -353,7 +369,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the elasticPoolId value.
+     * Set the resource identifier of the elastic pool containing this database.
      *
      * @param elasticPoolId the elasticPoolId value to set
      * @return the DatabaseUpdate object itself.
@@ -364,7 +380,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the sourceDatabaseId value.
+     * Get the resource identifier of the source database associated with create operation of this database.
      *
      * @return the sourceDatabaseId value
      */
@@ -373,7 +389,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the sourceDatabaseId value.
+     * Set the resource identifier of the source database associated with create operation of this database.
      *
      * @param sourceDatabaseId the sourceDatabaseId value to set
      * @return the DatabaseUpdate object itself.
@@ -384,7 +400,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the database. Possible values include: 'Online', 'Restoring', 'RecoveryPending', 'Recovering', 'Suspect', 'Offline', 'Standby', 'Shutdown', 'EmergencyMode', 'AutoClosed', 'Copying', 'Creating', 'Inaccessible', 'OfflineSecondary', 'Pausing', 'Paused', 'Resuming', 'Scaling'.
      *
      * @return the status value
      */
@@ -393,7 +409,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the databaseId value.
+     * Get the ID of the database.
      *
      * @return the databaseId value
      */
@@ -402,7 +418,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the creationDate value.
+     * Get the creation date of the database (ISO8601 format).
      *
      * @return the creationDate value
      */
@@ -411,7 +427,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the currentServiceObjectiveName value.
+     * Get the current service level objective name of the database.
      *
      * @return the currentServiceObjectiveName value
      */
@@ -420,7 +436,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the requestedServiceObjectiveName value.
+     * Get the requested service level objective name of the database.
      *
      * @return the requestedServiceObjectiveName value
      */
@@ -429,7 +445,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the defaultSecondaryLocation value.
+     * Get the default secondary region for this database.
      *
      * @return the defaultSecondaryLocation value
      */
@@ -438,7 +454,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the failoverGroupId value.
+     * Get failover Group resource identifier that this database belongs to.
      *
      * @return the failoverGroupId value
      */
@@ -447,7 +463,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the restorePointInTime value.
+     * Get specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
      *
      * @return the restorePointInTime value
      */
@@ -456,7 +472,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the restorePointInTime value.
+     * Set specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
      *
      * @param restorePointInTime the restorePointInTime value to set
      * @return the DatabaseUpdate object itself.
@@ -467,7 +483,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the sourceDatabaseDeletionDate value.
+     * Get specifies the time that the database was deleted.
      *
      * @return the sourceDatabaseDeletionDate value
      */
@@ -476,7 +492,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the sourceDatabaseDeletionDate value.
+     * Set specifies the time that the database was deleted.
      *
      * @param sourceDatabaseDeletionDate the sourceDatabaseDeletionDate value to set
      * @return the DatabaseUpdate object itself.
@@ -487,7 +503,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the recoveryServicesRecoveryPointId value.
+     * Get the resource identifier of the recovery point associated with create operation of this database.
      *
      * @return the recoveryServicesRecoveryPointId value
      */
@@ -496,7 +512,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the recoveryServicesRecoveryPointId value.
+     * Set the resource identifier of the recovery point associated with create operation of this database.
      *
      * @param recoveryServicesRecoveryPointId the recoveryServicesRecoveryPointId value to set
      * @return the DatabaseUpdate object itself.
@@ -507,7 +523,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the longTermRetentionBackupResourceId value.
+     * Get the resource identifier of the long term retention backup associated with create operation of this database.
      *
      * @return the longTermRetentionBackupResourceId value
      */
@@ -516,7 +532,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the longTermRetentionBackupResourceId value.
+     * Set the resource identifier of the long term retention backup associated with create operation of this database.
      *
      * @param longTermRetentionBackupResourceId the longTermRetentionBackupResourceId value to set
      * @return the DatabaseUpdate object itself.
@@ -527,7 +543,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the recoverableDatabaseId value.
+     * Get the resource identifier of the recoverable database associated with create operation of this database.
      *
      * @return the recoverableDatabaseId value
      */
@@ -536,7 +552,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the recoverableDatabaseId value.
+     * Set the resource identifier of the recoverable database associated with create operation of this database.
      *
      * @param recoverableDatabaseId the recoverableDatabaseId value to set
      * @return the DatabaseUpdate object itself.
@@ -547,7 +563,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the restorableDroppedDatabaseId value.
+     * Get the resource identifier of the restorable dropped database associated with create operation of this database.
      *
      * @return the restorableDroppedDatabaseId value
      */
@@ -556,7 +572,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the restorableDroppedDatabaseId value.
+     * Set the resource identifier of the restorable dropped database associated with create operation of this database.
      *
      * @param restorableDroppedDatabaseId the restorableDroppedDatabaseId value to set
      * @return the DatabaseUpdate object itself.
@@ -567,7 +583,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the catalogCollation value.
+     * Get collation of the metadata catalog. Possible values include: 'DATABASE_DEFAULT', 'SQL_Latin1_General_CP1_CI_AS'.
      *
      * @return the catalogCollation value
      */
@@ -576,7 +592,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the catalogCollation value.
+     * Set collation of the metadata catalog. Possible values include: 'DATABASE_DEFAULT', 'SQL_Latin1_General_CP1_CI_AS'.
      *
      * @param catalogCollation the catalogCollation value to set
      * @return the DatabaseUpdate object itself.
@@ -587,7 +603,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the zoneRedundant value.
+     * Get whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones.
      *
      * @return the zoneRedundant value
      */
@@ -596,7 +612,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the zoneRedundant value.
+     * Set whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones.
      *
      * @param zoneRedundant the zoneRedundant value to set
      * @return the DatabaseUpdate object itself.
@@ -607,7 +623,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the licenseType value.
+     * Get the license type to apply for this database. Possible values include: 'LicenseIncluded', 'BasePrice'.
      *
      * @return the licenseType value
      */
@@ -616,7 +632,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the licenseType value.
+     * Set the license type to apply for this database. Possible values include: 'LicenseIncluded', 'BasePrice'.
      *
      * @param licenseType the licenseType value to set
      * @return the DatabaseUpdate object itself.
@@ -627,7 +643,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the maxLogSizeBytes value.
+     * Get the max log size for this database.
      *
      * @return the maxLogSizeBytes value
      */
@@ -636,7 +652,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the earliestRestoreDate value.
+     * Get this records the earliest start date and time that restore is available for this database (ISO8601 format).
      *
      * @return the earliestRestoreDate value
      */
@@ -645,7 +661,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the readScale value.
+     * Get the state of read-only routing. If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica in the same region. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the readScale value
      */
@@ -654,7 +670,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the readScale value.
+     * Set the state of read-only routing. If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica in the same region. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param readScale the readScale value to set
      * @return the DatabaseUpdate object itself.
@@ -665,7 +681,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the currentSku value.
+     * Get the name and tier of the SKU.
      *
      * @return the currentSku value
      */
@@ -674,7 +690,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -683,7 +699,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the DatabaseUpdate object itself.

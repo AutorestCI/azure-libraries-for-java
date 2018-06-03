@@ -55,7 +55,7 @@ public class ServerUpdate {
     private Map<String, String> tags;
 
     /**
-     * Get the administratorLogin value.
+     * Get administrator username for the server. Once created it cannot be changed.
      *
      * @return the administratorLogin value
      */
@@ -64,7 +64,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Set the administratorLogin value.
+     * Set administrator username for the server. Once created it cannot be changed.
      *
      * @param administratorLogin the administratorLogin value to set
      * @return the ServerUpdate object itself.
@@ -75,7 +75,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Get the administratorLoginPassword value.
+     * Get the administrator login password (required for server creation).
      *
      * @return the administratorLoginPassword value
      */
@@ -84,7 +84,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Set the administratorLoginPassword value.
+     * Set the administrator login password (required for server creation).
      *
      * @param administratorLoginPassword the administratorLoginPassword value to set
      * @return the ServerUpdate object itself.
@@ -95,7 +95,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Get the version value.
+     * Get the version of the server.
      *
      * @return the version value
      */
@@ -104,7 +104,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Set the version value.
+     * Set the version of the server.
      *
      * @param version the version value to set
      * @return the ServerUpdate object itself.
@@ -115,7 +115,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Get the state value.
+     * Get the state of the server.
      *
      * @return the state value
      */
@@ -124,7 +124,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Get the fullyQualifiedDomainName value.
+     * Get the fully qualified domain name of the server.
      *
      * @return the fullyQualifiedDomainName value
      */
@@ -133,7 +133,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -142,7 +142,7 @@ public class ServerUpdate {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the ServerUpdate object itself.

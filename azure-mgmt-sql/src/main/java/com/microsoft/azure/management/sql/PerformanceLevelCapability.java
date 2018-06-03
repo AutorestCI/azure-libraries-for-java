@@ -28,7 +28,7 @@ public class PerformanceLevelCapability {
     private PerformanceLevelUnit unit;
 
     /**
-     * Get the value value.
+     * Get performance level value.
      *
      * @return the value value
      */
@@ -37,7 +37,7 @@ public class PerformanceLevelCapability {
     }
 
     /**
-     * Get the unit value.
+     * Get unit type used to measure performance level. Possible values include: 'DTU', 'VCores'.
      *
      * @return the unit value
      */

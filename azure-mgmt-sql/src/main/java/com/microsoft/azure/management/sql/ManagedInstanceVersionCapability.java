@@ -41,7 +41,7 @@ public class ManagedInstanceVersionCapability {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get the server version name.
      *
      * @return the name value
      */
@@ -50,7 +50,7 @@ public class ManagedInstanceVersionCapability {
     }
 
     /**
-     * Get the supportedEditions value.
+     * Get the list of supported managed instance editions.
      *
      * @return the supportedEditions value
      */
@@ -59,7 +59,7 @@ public class ManagedInstanceVersionCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -68,7 +68,7 @@ public class ManagedInstanceVersionCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -77,7 +77,7 @@ public class ManagedInstanceVersionCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ManagedInstanceVersionCapability object itself.

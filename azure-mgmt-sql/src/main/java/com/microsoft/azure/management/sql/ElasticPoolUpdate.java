@@ -77,7 +77,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Get the maxSizeBytes value.
+     * Get the storage limit for the database elastic pool in bytes.
      *
      * @return the maxSizeBytes value
      */
@@ -86,7 +86,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Set the maxSizeBytes value.
+     * Set the storage limit for the database elastic pool in bytes.
      *
      * @param maxSizeBytes the maxSizeBytes value to set
      * @return the ElasticPoolUpdate object itself.
@@ -97,7 +97,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Get the perDatabaseSettings value.
+     * Get the per database settings for the elastic pool.
      *
      * @return the perDatabaseSettings value
      */
@@ -106,7 +106,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Set the perDatabaseSettings value.
+     * Set the per database settings for the elastic pool.
      *
      * @param perDatabaseSettings the perDatabaseSettings value to set
      * @return the ElasticPoolUpdate object itself.
@@ -117,7 +117,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Get the zoneRedundant value.
+     * Get whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
      *
      * @return the zoneRedundant value
      */
@@ -126,7 +126,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Set the zoneRedundant value.
+     * Set whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
      *
      * @param zoneRedundant the zoneRedundant value to set
      * @return the ElasticPoolUpdate object itself.
@@ -137,7 +137,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Get the licenseType value.
+     * Get the license type to apply for this elastic pool. Possible values include: 'LicenseIncluded', 'BasePrice'.
      *
      * @return the licenseType value
      */
@@ -146,7 +146,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Set the licenseType value.
+     * Set the license type to apply for this elastic pool. Possible values include: 'LicenseIncluded', 'BasePrice'.
      *
      * @param licenseType the licenseType value to set
      * @return the ElasticPoolUpdate object itself.
@@ -157,7 +157,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -166,7 +166,7 @@ public class ElasticPoolUpdate {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the ElasticPoolUpdate object itself.

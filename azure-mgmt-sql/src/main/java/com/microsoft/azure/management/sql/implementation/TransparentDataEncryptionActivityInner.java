@@ -38,7 +38,7 @@ public class TransparentDataEncryptionActivityInner extends ProxyResourceInner {
     private Double percentComplete;
 
     /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -47,7 +47,7 @@ public class TransparentDataEncryptionActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the database. Possible values include: 'Encrypting', 'Decrypting'.
      *
      * @return the status value
      */
@@ -56,7 +56,7 @@ public class TransparentDataEncryptionActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the percentComplete value.
+     * Get the percent complete of the transparent data encryption scan for a database.
      *
      * @return the percentComplete value
      */

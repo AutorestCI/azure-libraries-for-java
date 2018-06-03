@@ -71,7 +71,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     private SyncGroupSchema schema;
 
     /**
-     * Get the interval value.
+     * Get sync interval of the sync group.
      *
      * @return the interval value
      */
@@ -80,7 +80,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the interval value.
+     * Set sync interval of the sync group.
      *
      * @param interval the interval value to set
      * @return the SyncGroupInner object itself.
@@ -91,7 +91,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the lastSyncTime value.
+     * Get last sync time of the sync group.
      *
      * @return the lastSyncTime value
      */
@@ -100,7 +100,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the conflictResolutionPolicy value.
+     * Get conflict resolution policy of the sync group. Possible values include: 'HubWin', 'MemberWin'.
      *
      * @return the conflictResolutionPolicy value
      */
@@ -109,7 +109,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the conflictResolutionPolicy value.
+     * Set conflict resolution policy of the sync group. Possible values include: 'HubWin', 'MemberWin'.
      *
      * @param conflictResolutionPolicy the conflictResolutionPolicy value to set
      * @return the SyncGroupInner object itself.
@@ -120,7 +120,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the syncDatabaseId value.
+     * Get aRM resource id of the sync database in the sync group.
      *
      * @return the syncDatabaseId value
      */
@@ -129,7 +129,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the syncDatabaseId value.
+     * Set aRM resource id of the sync database in the sync group.
      *
      * @param syncDatabaseId the syncDatabaseId value to set
      * @return the SyncGroupInner object itself.
@@ -140,7 +140,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the hubDatabaseUserName value.
+     * Get user name for the sync group hub database credential.
      *
      * @return the hubDatabaseUserName value
      */
@@ -149,7 +149,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the hubDatabaseUserName value.
+     * Set user name for the sync group hub database credential.
      *
      * @param hubDatabaseUserName the hubDatabaseUserName value to set
      * @return the SyncGroupInner object itself.
@@ -160,7 +160,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the hubDatabasePassword value.
+     * Get password for the sync group hub database credential.
      *
      * @return the hubDatabasePassword value
      */
@@ -169,7 +169,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the hubDatabasePassword value.
+     * Set password for the sync group hub database credential.
      *
      * @param hubDatabasePassword the hubDatabasePassword value to set
      * @return the SyncGroupInner object itself.
@@ -180,7 +180,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the syncState value.
+     * Get sync state of the sync group. Possible values include: 'NotReady', 'Error', 'Warning', 'Progressing', 'Good'.
      *
      * @return the syncState value
      */
@@ -189,7 +189,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the schema value.
+     * Get sync schema of the sync group.
      *
      * @return the schema value
      */
@@ -198,7 +198,7 @@ public class SyncGroupInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the schema value.
+     * Set sync schema of the sync group.
      *
      * @param schema the schema value to set
      * @return the SyncGroupInner object itself.

@@ -42,7 +42,7 @@ public class ServerCommunicationLinkInner extends ProxyResourceInner {
     private String kind;
 
     /**
-     * Get the state value.
+     * Get the state.
      *
      * @return the state value
      */
@@ -51,7 +51,7 @@ public class ServerCommunicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the partnerServer value.
+     * Get the name of the partner server.
      *
      * @return the partnerServer value
      */
@@ -60,7 +60,7 @@ public class ServerCommunicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the partnerServer value.
+     * Set the name of the partner server.
      *
      * @param partnerServer the partnerServer value to set
      * @return the ServerCommunicationLinkInner object itself.
@@ -71,7 +71,7 @@ public class ServerCommunicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the location value.
+     * Get communication link location.
      *
      * @return the location value
      */
@@ -80,7 +80,7 @@ public class ServerCommunicationLinkInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the kind value.
+     * Get communication link kind.  This property is used for Azure Portal metadata.
      *
      * @return the kind value
      */

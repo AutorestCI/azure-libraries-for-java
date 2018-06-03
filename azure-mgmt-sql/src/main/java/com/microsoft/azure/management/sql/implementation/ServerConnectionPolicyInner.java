@@ -37,7 +37,7 @@ public class ServerConnectionPolicyInner extends ProxyResourceInner {
     private ServerConnectionType connectionType;
 
     /**
-     * Get the kind value.
+     * Get metadata used for the Azure portal experience.
      *
      * @return the kind value
      */
@@ -46,7 +46,7 @@ public class ServerConnectionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -55,7 +55,7 @@ public class ServerConnectionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the connectionType value.
+     * Get the server connection type. Possible values include: 'Default', 'Proxy', 'Redirect'.
      *
      * @return the connectionType value
      */
@@ -64,7 +64,7 @@ public class ServerConnectionPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the connectionType value.
+     * Set the server connection type. Possible values include: 'Default', 'Proxy', 'Redirect'.
      *
      * @param connectionType the connectionType value to set
      * @return the ServerConnectionPolicyInner object itself.

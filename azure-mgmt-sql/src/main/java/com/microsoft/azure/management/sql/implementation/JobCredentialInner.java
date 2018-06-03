@@ -30,7 +30,7 @@ public class JobCredentialInner extends ProxyResourceInner {
     private String password;
 
     /**
-     * Get the username value.
+     * Get the credential user name.
      *
      * @return the username value
      */
@@ -39,7 +39,7 @@ public class JobCredentialInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the credential user name.
      *
      * @param username the username value to set
      * @return the JobCredentialInner object itself.
@@ -50,7 +50,7 @@ public class JobCredentialInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the credential password.
      *
      * @return the password value
      */
@@ -59,7 +59,7 @@ public class JobCredentialInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the credential password.
      *
      * @param password the password value to set
      * @return the JobCredentialInner object itself.

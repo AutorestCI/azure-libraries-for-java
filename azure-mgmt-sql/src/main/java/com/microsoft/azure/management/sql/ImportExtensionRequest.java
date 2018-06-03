@@ -74,13 +74,18 @@ public class ImportExtensionRequest {
 
     /**
      * Creates an instance of ImportExtensionRequest class.
+     * @param storageKeyType the type of the storage key to use. Possible values include: 'StorageAccessKey', 'SharedAccessKey'.
+     * @param storageKey the storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?.".
+     * @param storageUri the storage uri to use.
+     * @param administratorLogin the name of the SQL administrator.
+     * @param administratorLoginPassword the password of the SQL administrator.
      */
     public ImportExtensionRequest() {
         operationMode = "Import";
     }
 
     /**
-     * Get the name value.
+     * Get the name of the extension.
      *
      * @return the name value
      */
@@ -89,7 +94,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the extension.
      *
      * @param name the name value to set
      * @return the ImportExtensionRequest object itself.
@@ -100,7 +105,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the type value.
+     * Get the type of the extension.
      *
      * @return the type value
      */
@@ -109,7 +114,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the type value.
+     * Set the type of the extension.
      *
      * @param type the type value to set
      * @return the ImportExtensionRequest object itself.
@@ -120,7 +125,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the storageKeyType value.
+     * Get the type of the storage key to use. Possible values include: 'StorageAccessKey', 'SharedAccessKey'.
      *
      * @return the storageKeyType value
      */
@@ -129,7 +134,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the storageKeyType value.
+     * Set the type of the storage key to use. Possible values include: 'StorageAccessKey', 'SharedAccessKey'.
      *
      * @param storageKeyType the storageKeyType value to set
      * @return the ImportExtensionRequest object itself.
@@ -140,7 +145,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the storageKey value.
+     * Get the storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?.".
      *
      * @return the storageKey value
      */
@@ -149,7 +154,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the storageKey value.
+     * Set the storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?.".
      *
      * @param storageKey the storageKey value to set
      * @return the ImportExtensionRequest object itself.
@@ -160,7 +165,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the storageUri value.
+     * Get the storage uri to use.
      *
      * @return the storageUri value
      */
@@ -169,7 +174,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the storageUri value.
+     * Set the storage uri to use.
      *
      * @param storageUri the storageUri value to set
      * @return the ImportExtensionRequest object itself.
@@ -180,7 +185,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the administratorLogin value.
+     * Get the name of the SQL administrator.
      *
      * @return the administratorLogin value
      */
@@ -189,7 +194,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the administratorLogin value.
+     * Set the name of the SQL administrator.
      *
      * @param administratorLogin the administratorLogin value to set
      * @return the ImportExtensionRequest object itself.
@@ -200,7 +205,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the administratorLoginPassword value.
+     * Get the password of the SQL administrator.
      *
      * @return the administratorLoginPassword value
      */
@@ -209,7 +214,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the administratorLoginPassword value.
+     * Set the password of the SQL administrator.
      *
      * @param administratorLoginPassword the administratorLoginPassword value to set
      * @return the ImportExtensionRequest object itself.
@@ -220,7 +225,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type. Possible values include: 'SQL', 'ADPassword'.
      *
      * @return the authenticationType value
      */
@@ -229,7 +234,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type. Possible values include: 'SQL', 'ADPassword'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the ImportExtensionRequest object itself.
@@ -240,7 +245,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Get the operationMode value.
+     * Get the type of import operation being performed. This is always Import.
      *
      * @return the operationMode value
      */
@@ -249,7 +254,7 @@ public class ImportExtensionRequest {
     }
 
     /**
-     * Set the operationMode value.
+     * Set the type of import operation being performed. This is always Import.
      *
      * @param operationMode the operationMode value to set
      * @return the ImportExtensionRequest object itself.

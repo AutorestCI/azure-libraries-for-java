@@ -41,7 +41,7 @@ public class ManagedInstanceEditionCapability {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get the managed server version name.
      *
      * @return the name value
      */
@@ -50,7 +50,7 @@ public class ManagedInstanceEditionCapability {
     }
 
     /**
-     * Get the supportedFamilies value.
+     * Get the supported families.
      *
      * @return the supportedFamilies value
      */
@@ -59,7 +59,7 @@ public class ManagedInstanceEditionCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -68,7 +68,7 @@ public class ManagedInstanceEditionCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -77,7 +77,7 @@ public class ManagedInstanceEditionCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ManagedInstanceEditionCapability object itself.

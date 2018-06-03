@@ -62,7 +62,7 @@ public class JobTarget {
     private String refreshCredential;
 
     /**
-     * Get the membershipType value.
+     * Get whether the target is included or excluded from the group. Possible values include: 'Include', 'Exclude'.
      *
      * @return the membershipType value
      */
@@ -71,7 +71,7 @@ public class JobTarget {
     }
 
     /**
-     * Set the membershipType value.
+     * Set whether the target is included or excluded from the group. Possible values include: 'Include', 'Exclude'.
      *
      * @param membershipType the membershipType value to set
      * @return the JobTarget object itself.
@@ -82,7 +82,7 @@ public class JobTarget {
     }
 
     /**
-     * Get the type value.
+     * Get the target type. Possible values include: 'TargetGroup', 'SqlDatabase', 'SqlElasticPool', 'SqlShardMap', 'SqlServer'.
      *
      * @return the type value
      */
@@ -91,7 +91,7 @@ public class JobTarget {
     }
 
     /**
-     * Set the type value.
+     * Set the target type. Possible values include: 'TargetGroup', 'SqlDatabase', 'SqlElasticPool', 'SqlShardMap', 'SqlServer'.
      *
      * @param type the type value to set
      * @return the JobTarget object itself.
@@ -102,7 +102,7 @@ public class JobTarget {
     }
 
     /**
-     * Get the serverName value.
+     * Get the target server name.
      *
      * @return the serverName value
      */
@@ -111,7 +111,7 @@ public class JobTarget {
     }
 
     /**
-     * Set the serverName value.
+     * Set the target server name.
      *
      * @param serverName the serverName value to set
      * @return the JobTarget object itself.
@@ -122,7 +122,7 @@ public class JobTarget {
     }
 
     /**
-     * Get the databaseName value.
+     * Get the target database name.
      *
      * @return the databaseName value
      */
@@ -131,7 +131,7 @@ public class JobTarget {
     }
 
     /**
-     * Set the databaseName value.
+     * Set the target database name.
      *
      * @param databaseName the databaseName value to set
      * @return the JobTarget object itself.
@@ -142,7 +142,7 @@ public class JobTarget {
     }
 
     /**
-     * Get the elasticPoolName value.
+     * Get the target elastic pool name.
      *
      * @return the elasticPoolName value
      */
@@ -151,7 +151,7 @@ public class JobTarget {
     }
 
     /**
-     * Set the elasticPoolName value.
+     * Set the target elastic pool name.
      *
      * @param elasticPoolName the elasticPoolName value to set
      * @return the JobTarget object itself.
@@ -162,7 +162,7 @@ public class JobTarget {
     }
 
     /**
-     * Get the shardMapName value.
+     * Get the target shard map.
      *
      * @return the shardMapName value
      */
@@ -171,7 +171,7 @@ public class JobTarget {
     }
 
     /**
-     * Set the shardMapName value.
+     * Set the target shard map.
      *
      * @param shardMapName the shardMapName value to set
      * @return the JobTarget object itself.
@@ -182,7 +182,7 @@ public class JobTarget {
     }
 
     /**
-     * Get the refreshCredential value.
+     * Get the resource ID of the credential that is used during job execution to connect to the target and determine the list of databases inside the target.
      *
      * @return the refreshCredential value
      */
@@ -191,7 +191,7 @@ public class JobTarget {
     }
 
     /**
-     * Set the refreshCredential value.
+     * Set the resource ID of the credential that is used during job execution to connect to the target and determine the list of databases inside the target.
      *
      * @param refreshCredential the refreshCredential value to set
      * @return the JobTarget object itself.

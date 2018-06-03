@@ -11,23 +11,25 @@ package com.microsoft.azure.management.sql;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * An ARM Resource SKU.
+ * The resource model definition representing SKU.
  */
 public class Sku {
     /**
-     * The name of the SKU, typically, a letter + Number code, e.g. P3.
+     * The name of the SKU. Ex - P3. It is typically a letter+number code.
      */
     @JsonProperty(value = "name", required = true)
     private String name;
 
     /**
-     * The tier of the particular SKU, e.g. Basic, Premium.
+     * This field is required to be implemented by the Resource Provider if the
+     * service has more than one tier, but is not required on a PUT.
      */
     @JsonProperty(value = "tier")
     private String tier;
 
     /**
-     * Size of the particular SKU.
+     * The SKU size. When the name field is the combination of tier and some
+     * other value, this would be the standalone code.
      */
     @JsonProperty(value = "size")
     private String size;
@@ -40,13 +42,15 @@ public class Sku {
     private String family;
 
     /**
-     * Capacity of the particular SKU.
+     * If the SKU supports scale out/in then the capacity integer should be
+     * included. If scale out/in is not possible for the resource this may be
+     * omitted.
      */
     @JsonProperty(value = "capacity")
     private Integer capacity;
 
     /**
-     * Get the name value.
+     * Get the name of the SKU. Ex - P3. It is typically a letter+number code.
      *
      * @return the name value
      */
@@ -55,7 +59,7 @@ public class Sku {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the SKU. Ex - P3. It is typically a letter+number code.
      *
      * @param name the name value to set
      * @return the Sku object itself.
@@ -66,7 +70,7 @@ public class Sku {
     }
 
     /**
-     * Get the tier value.
+     * Get this field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT.
      *
      * @return the tier value
      */
@@ -75,7 +79,7 @@ public class Sku {
     }
 
     /**
-     * Set the tier value.
+     * Set this field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT.
      *
      * @param tier the tier value to set
      * @return the Sku object itself.
@@ -86,7 +90,7 @@ public class Sku {
     }
 
     /**
-     * Get the size value.
+     * Get the SKU size. When the name field is the combination of tier and some other value, this would be the standalone code.
      *
      * @return the size value
      */
@@ -95,7 +99,7 @@ public class Sku {
     }
 
     /**
-     * Set the size value.
+     * Set the SKU size. When the name field is the combination of tier and some other value, this would be the standalone code.
      *
      * @param size the size value to set
      * @return the Sku object itself.
@@ -106,7 +110,7 @@ public class Sku {
     }
 
     /**
-     * Get the family value.
+     * Get if the service has different generations of hardware, for the same SKU, then that can be captured here.
      *
      * @return the family value
      */
@@ -115,7 +119,7 @@ public class Sku {
     }
 
     /**
-     * Set the family value.
+     * Set if the service has different generations of hardware, for the same SKU, then that can be captured here.
      *
      * @param family the family value to set
      * @return the Sku object itself.
@@ -126,7 +130,7 @@ public class Sku {
     }
 
     /**
-     * Get the capacity value.
+     * Get if the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted.
      *
      * @return the capacity value
      */
@@ -135,7 +139,7 @@ public class Sku {
     }
 
     /**
-     * Set the capacity value.
+     * Set if the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted.
      *
      * @param capacity the capacity value to set
      * @return the Sku object itself.

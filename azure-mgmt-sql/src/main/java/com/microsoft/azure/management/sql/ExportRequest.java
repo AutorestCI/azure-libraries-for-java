@@ -53,7 +53,7 @@ public class ExportRequest {
     private AuthenticationType authenticationType;
 
     /**
-     * Get the storageKeyType value.
+     * Get the type of the storage key to use. Possible values include: 'StorageAccessKey', 'SharedAccessKey'.
      *
      * @return the storageKeyType value
      */
@@ -62,7 +62,7 @@ public class ExportRequest {
     }
 
     /**
-     * Set the storageKeyType value.
+     * Set the type of the storage key to use. Possible values include: 'StorageAccessKey', 'SharedAccessKey'.
      *
      * @param storageKeyType the storageKeyType value to set
      * @return the ExportRequest object itself.
@@ -73,7 +73,7 @@ public class ExportRequest {
     }
 
     /**
-     * Get the storageKey value.
+     * Get the storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?.".
      *
      * @return the storageKey value
      */
@@ -82,7 +82,7 @@ public class ExportRequest {
     }
 
     /**
-     * Set the storageKey value.
+     * Set the storage key to use.  If storage key type is SharedAccessKey, it must be preceded with a "?.".
      *
      * @param storageKey the storageKey value to set
      * @return the ExportRequest object itself.
@@ -93,7 +93,7 @@ public class ExportRequest {
     }
 
     /**
-     * Get the storageUri value.
+     * Get the storage uri to use.
      *
      * @return the storageUri value
      */
@@ -102,7 +102,7 @@ public class ExportRequest {
     }
 
     /**
-     * Set the storageUri value.
+     * Set the storage uri to use.
      *
      * @param storageUri the storageUri value to set
      * @return the ExportRequest object itself.
@@ -113,7 +113,7 @@ public class ExportRequest {
     }
 
     /**
-     * Get the administratorLogin value.
+     * Get the name of the SQL administrator.
      *
      * @return the administratorLogin value
      */
@@ -122,7 +122,7 @@ public class ExportRequest {
     }
 
     /**
-     * Set the administratorLogin value.
+     * Set the name of the SQL administrator.
      *
      * @param administratorLogin the administratorLogin value to set
      * @return the ExportRequest object itself.
@@ -133,7 +133,7 @@ public class ExportRequest {
     }
 
     /**
-     * Get the administratorLoginPassword value.
+     * Get the password of the SQL administrator.
      *
      * @return the administratorLoginPassword value
      */
@@ -142,7 +142,7 @@ public class ExportRequest {
     }
 
     /**
-     * Set the administratorLoginPassword value.
+     * Set the password of the SQL administrator.
      *
      * @param administratorLoginPassword the administratorLoginPassword value to set
      * @return the ExportRequest object itself.
@@ -153,7 +153,7 @@ public class ExportRequest {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type. Possible values include: 'SQL', 'ADPassword'.
      *
      * @return the authenticationType value
      */
@@ -162,7 +162,7 @@ public class ExportRequest {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type. Possible values include: 'SQL', 'ADPassword'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the ExportRequest object itself.

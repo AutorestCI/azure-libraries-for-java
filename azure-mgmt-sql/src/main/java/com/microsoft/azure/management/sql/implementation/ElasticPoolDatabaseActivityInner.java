@@ -115,7 +115,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     private String state;
 
     /**
-     * Get the location value.
+     * Get the geo-location where the resource lives.
      *
      * @return the location value
      */
@@ -124,7 +124,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the location value.
+     * Set the geo-location where the resource lives.
      *
      * @param location the location value to set
      * @return the ElasticPoolDatabaseActivityInner object itself.
@@ -135,7 +135,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the databaseName value.
+     * Get the database name.
      *
      * @return the databaseName value
      */
@@ -144,7 +144,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the endTime value.
+     * Get the time the operation finished (ISO8601 format).
      *
      * @return the endTime value
      */
@@ -153,7 +153,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the errorCode value.
+     * Get the error code if available.
      *
      * @return the errorCode value
      */
@@ -162,7 +162,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the errorMessage value.
+     * Get the error message if available.
      *
      * @return the errorMessage value
      */
@@ -171,7 +171,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the errorSeverity value.
+     * Get the error severity if available.
      *
      * @return the errorSeverity value
      */
@@ -180,7 +180,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the operation value.
+     * Get the operation name.
      *
      * @return the operation value
      */
@@ -189,7 +189,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the operationId value.
+     * Get the unique operation ID.
      *
      * @return the operationId value
      */
@@ -198,7 +198,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the percentComplete value.
+     * Get the percentage complete if available.
      *
      * @return the percentComplete value
      */
@@ -207,7 +207,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the requestedElasticPoolName value.
+     * Get the name for the elastic pool the database is moving into if available.
      *
      * @return the requestedElasticPoolName value
      */
@@ -216,7 +216,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the currentElasticPoolName value.
+     * Get the name of the current elastic pool the database is in if available.
      *
      * @return the currentElasticPoolName value
      */
@@ -225,7 +225,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the currentServiceObjective value.
+     * Get the name of the current service objective if available.
      *
      * @return the currentServiceObjective value
      */
@@ -234,7 +234,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the requestedServiceObjective value.
+     * Get the name of the requested service objective if available.
      *
      * @return the requestedServiceObjective value
      */
@@ -243,7 +243,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the serverName value.
+     * Get the name of the server the elastic pool is in.
      *
      * @return the serverName value
      */
@@ -252,7 +252,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the startTime value.
+     * Get the time the operation started (ISO8601 format).
      *
      * @return the startTime value
      */
@@ -261,7 +261,7 @@ public class ElasticPoolDatabaseActivityInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get the current state of the operation.
      *
      * @return the state value
      */

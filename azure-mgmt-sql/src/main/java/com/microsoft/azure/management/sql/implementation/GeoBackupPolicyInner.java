@@ -44,7 +44,7 @@ public class GeoBackupPolicyInner extends ProxyResourceInner {
     private String location;
 
     /**
-     * Get the state value.
+     * Get the state of the geo backup policy. Possible values include: 'Disabled', 'Enabled'.
      *
      * @return the state value
      */
@@ -53,7 +53,7 @@ public class GeoBackupPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the state value.
+     * Set the state of the geo backup policy. Possible values include: 'Disabled', 'Enabled'.
      *
      * @param state the state value to set
      * @return the GeoBackupPolicyInner object itself.
@@ -64,7 +64,7 @@ public class GeoBackupPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the storageType value.
+     * Get the storage type of the geo backup policy.
      *
      * @return the storageType value
      */
@@ -73,7 +73,7 @@ public class GeoBackupPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the kind value.
+     * Get kind of geo backup policy.  This is metadata used for the Azure portal experience.
      *
      * @return the kind value
      */
@@ -82,7 +82,7 @@ public class GeoBackupPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the location value.
+     * Get backup policy location.
      *
      * @return the location value
      */

@@ -40,7 +40,7 @@ public class ManagedInstanceVcoresCapability {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get the virtual cores identifier.
      *
      * @return the name value
      */
@@ -49,7 +49,7 @@ public class ManagedInstanceVcoresCapability {
     }
 
     /**
-     * Get the value value.
+     * Get the virtual cores value.
      *
      * @return the value value
      */
@@ -58,7 +58,7 @@ public class ManagedInstanceVcoresCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -67,7 +67,7 @@ public class ManagedInstanceVcoresCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -76,7 +76,7 @@ public class ManagedInstanceVcoresCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ManagedInstanceVcoresCapability object itself.

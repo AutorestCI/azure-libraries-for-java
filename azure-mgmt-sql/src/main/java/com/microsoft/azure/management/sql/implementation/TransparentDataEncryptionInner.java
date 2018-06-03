@@ -31,7 +31,7 @@ public class TransparentDataEncryptionInner extends ProxyResourceInner {
     private TransparentDataEncryptionStatus status;
 
     /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -40,7 +40,7 @@ public class TransparentDataEncryptionInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the database transparent data encryption. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the status value
      */
@@ -49,7 +49,7 @@ public class TransparentDataEncryptionInner extends ProxyResourceInner {
     }
 
     /**
-     * Set the status value.
+     * Set the status of the database transparent data encryption. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param status the status value to set
      * @return the TransparentDataEncryptionInner object itself.

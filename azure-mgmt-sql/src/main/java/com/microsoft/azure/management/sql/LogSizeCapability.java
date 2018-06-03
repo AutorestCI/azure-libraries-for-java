@@ -28,7 +28,7 @@ public class LogSizeCapability {
     private LogSizeUnit unit;
 
     /**
-     * Get the limit value.
+     * Get the log size limit (see 'unit' for the units).
      *
      * @return the limit value
      */
@@ -37,7 +37,7 @@ public class LogSizeCapability {
     }
 
     /**
-     * Get the unit value.
+     * Get the units that the limit is expressed in. Possible values include: 'Megabytes', 'Gigabytes', 'Terabytes', 'Petabytes', 'Percent'.
      *
      * @return the unit value
      */

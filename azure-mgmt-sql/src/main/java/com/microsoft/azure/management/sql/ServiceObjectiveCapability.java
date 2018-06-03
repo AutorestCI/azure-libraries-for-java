@@ -72,7 +72,7 @@ public class ServiceObjectiveCapability {
     private String reason;
 
     /**
-     * Get the id value.
+     * Get the unique ID of the service objective.
      *
      * @return the id value
      */
@@ -81,7 +81,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the name value.
+     * Get the service objective name.
      *
      * @return the name value
      */
@@ -90,7 +90,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the supportedMaxSizes value.
+     * Get the list of supported maximum database sizes.
      *
      * @return the supportedMaxSizes value
      */
@@ -99,7 +99,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the performanceLevel value.
+     * Get the performance level.
      *
      * @return the performanceLevel value
      */
@@ -108,7 +108,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku.
      *
      * @return the sku value
      */
@@ -117,7 +117,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the supportedLicenseTypes value.
+     * Get list of supported license types.
      *
      * @return the supportedLicenseTypes value
      */
@@ -126,7 +126,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the includedMaxSize value.
+     * Get the included (free) max size.
      *
      * @return the includedMaxSize value
      */
@@ -135,7 +135,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -144,7 +144,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -153,7 +153,7 @@ public class ServiceObjectiveCapability {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the ServiceObjectiveCapability object itself.

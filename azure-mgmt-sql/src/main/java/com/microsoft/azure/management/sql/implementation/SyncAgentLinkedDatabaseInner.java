@@ -55,7 +55,7 @@ public class SyncAgentLinkedDatabaseInner extends ProxyResourceInner {
     private String userName;
 
     /**
-     * Get the databaseType value.
+     * Get type of the sync agent linked database. Possible values include: 'AzureSqlDatabase', 'SqlServerDatabase'.
      *
      * @return the databaseType value
      */
@@ -64,7 +64,7 @@ public class SyncAgentLinkedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the databaseId value.
+     * Get id of the sync agent linked database.
      *
      * @return the databaseId value
      */
@@ -73,7 +73,7 @@ public class SyncAgentLinkedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the description value.
+     * Get description of the sync agent linked database.
      *
      * @return the description value
      */
@@ -82,7 +82,7 @@ public class SyncAgentLinkedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the serverName value.
+     * Get server name of the sync agent linked database.
      *
      * @return the serverName value
      */
@@ -91,7 +91,7 @@ public class SyncAgentLinkedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the databaseName value.
+     * Get database name of the sync agent linked database.
      *
      * @return the databaseName value
      */
@@ -100,7 +100,7 @@ public class SyncAgentLinkedDatabaseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get user name of the sync agent linked database.
      *
      * @return the userName value
      */

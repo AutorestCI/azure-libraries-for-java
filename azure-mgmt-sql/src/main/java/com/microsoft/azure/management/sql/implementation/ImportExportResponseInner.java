@@ -72,7 +72,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     private String errorMessage;
 
     /**
-     * Get the requestType value.
+     * Get the request type of the operation.
      *
      * @return the requestType value
      */
@@ -81,7 +81,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the requestId value.
+     * Get the request type of the operation.
      *
      * @return the requestId value
      */
@@ -90,7 +90,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the serverName value.
+     * Get the name of the server.
      *
      * @return the serverName value
      */
@@ -99,7 +99,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the databaseName value.
+     * Get the name of the database.
      *
      * @return the databaseName value
      */
@@ -108,7 +108,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the status value.
+     * Get the status message returned from the server.
      *
      * @return the status value
      */
@@ -117,7 +117,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the lastModifiedTime value.
+     * Get the operation status last modified time.
      *
      * @return the lastModifiedTime value
      */
@@ -126,7 +126,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the queuedTime value.
+     * Get the operation queued time.
      *
      * @return the queuedTime value
      */
@@ -135,7 +135,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the blobUri value.
+     * Get the blob uri.
      *
      * @return the blobUri value
      */
@@ -144,7 +144,7 @@ public class ImportExportResponseInner extends ProxyResourceInner {
     }
 
     /**
-     * Get the errorMessage value.
+     * Get the error message returned from the server.
      *
      * @return the errorMessage value
      */

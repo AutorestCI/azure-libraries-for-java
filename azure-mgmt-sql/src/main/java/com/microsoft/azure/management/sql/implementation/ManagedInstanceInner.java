@@ -82,7 +82,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     private Integer storageSizeInGB;
 
     /**
-     * Get the identity value.
+     * Get the Azure Active Directory identity of the managed instance.
      *
      * @return the identity value
      */
@@ -91,7 +91,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the identity value.
+     * Set the Azure Active Directory identity of the managed instance.
      *
      * @param identity the identity value to set
      * @return the ManagedInstanceInner object itself.
@@ -102,7 +102,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the sku value.
+     * Get managed instance sku.
      *
      * @return the sku value
      */
@@ -111,7 +111,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the sku value.
+     * Set managed instance sku.
      *
      * @param sku the sku value to set
      * @return the ManagedInstanceInner object itself.
@@ -122,7 +122,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the fullyQualifiedDomainName value.
+     * Get the fully qualified domain name of the managed instance.
      *
      * @return the fullyQualifiedDomainName value
      */
@@ -131,7 +131,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the administratorLogin value.
+     * Get administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
      *
      * @return the administratorLogin value
      */
@@ -140,7 +140,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the administratorLogin value.
+     * Set administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
      *
      * @param administratorLogin the administratorLogin value to set
      * @return the ManagedInstanceInner object itself.
@@ -151,7 +151,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the administratorLoginPassword value.
+     * Get the administrator login password (required for managed instance creation).
      *
      * @return the administratorLoginPassword value
      */
@@ -160,7 +160,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the administratorLoginPassword value.
+     * Set the administrator login password (required for managed instance creation).
      *
      * @param administratorLoginPassword the administratorLoginPassword value to set
      * @return the ManagedInstanceInner object itself.
@@ -171,7 +171,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the subnetId value.
+     * Get subnet resource ID for the managed instance.
      *
      * @return the subnetId value
      */
@@ -180,7 +180,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the subnetId value.
+     * Set subnet resource ID for the managed instance.
      *
      * @param subnetId the subnetId value to set
      * @return the ManagedInstanceInner object itself.
@@ -191,7 +191,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the state value.
+     * Get the state of the managed instance.
      *
      * @return the state value
      */
@@ -200,7 +200,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the licenseType value.
+     * Get the license type. Possible values are 'LicenseIncluded' and 'BasePrice'.
      *
      * @return the licenseType value
      */
@@ -209,7 +209,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the licenseType value.
+     * Set the license type. Possible values are 'LicenseIncluded' and 'BasePrice'.
      *
      * @param licenseType the licenseType value to set
      * @return the ManagedInstanceInner object itself.
@@ -220,7 +220,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the vCores value.
+     * Get the number of VCores.
      *
      * @return the vCores value
      */
@@ -229,7 +229,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the vCores value.
+     * Set the number of VCores.
      *
      * @param vCores the vCores value to set
      * @return the ManagedInstanceInner object itself.
@@ -240,7 +240,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Get the storageSizeInGB value.
+     * Get the maximum storage size in GB.
      *
      * @return the storageSizeInGB value
      */
@@ -249,7 +249,7 @@ public class ManagedInstanceInner extends TrackedResourceInner {
     }
 
     /**
-     * Set the storageSizeInGB value.
+     * Set the maximum storage size in GB.
      *
      * @param storageSizeInGB the storageSizeInGB value to set
      * @return the ManagedInstanceInner object itself.

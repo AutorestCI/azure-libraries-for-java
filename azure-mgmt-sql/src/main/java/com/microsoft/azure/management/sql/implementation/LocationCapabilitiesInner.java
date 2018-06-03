@@ -50,7 +50,7 @@ public class LocationCapabilitiesInner {
     private String reason;
 
     /**
-     * Get the name value.
+     * Get the location name.
      *
      * @return the name value
      */
@@ -59,7 +59,7 @@ public class LocationCapabilitiesInner {
     }
 
     /**
-     * Get the supportedServerVersions value.
+     * Get the list of supported server versions.
      *
      * @return the supportedServerVersions value
      */
@@ -68,7 +68,7 @@ public class LocationCapabilitiesInner {
     }
 
     /**
-     * Get the supportedManagedInstanceVersions value.
+     * Get the list of supported managed instance versions.
      *
      * @return the supportedManagedInstanceVersions value
      */
@@ -77,7 +77,7 @@ public class LocationCapabilitiesInner {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the capability. Possible values include: 'Visible', 'Available', 'Default', 'Disabled'.
      *
      * @return the status value
      */
@@ -86,7 +86,7 @@ public class LocationCapabilitiesInner {
     }
 
     /**
-     * Get the reason value.
+     * Get the reason for the capability not being available.
      *
      * @return the reason value
      */
@@ -95,7 +95,7 @@ public class LocationCapabilitiesInner {
     }
 
     /**
-     * Set the reason value.
+     * Set the reason for the capability not being available.
      *
      * @param reason the reason value to set
      * @return the LocationCapabilitiesInner object itself.
