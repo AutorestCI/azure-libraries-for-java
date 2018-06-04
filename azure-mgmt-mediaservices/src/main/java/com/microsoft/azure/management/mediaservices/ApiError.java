@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ApiError {
     /**
-     * ApiError.
      * The error properties.
      */
     @JsonProperty(value = "error")
