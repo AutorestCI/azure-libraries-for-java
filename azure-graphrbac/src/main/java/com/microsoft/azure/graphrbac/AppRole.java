@@ -28,7 +28,8 @@ public class AppRole {
 
     /**
      * Specifies whether this app role definition can be assigned to users and
-     * groups, to other applications, or to both.
+     * groups by setting to "User", or to other applications by setting to
+     * "Application", or to both.
      */
     @JsonProperty(value = "allowedMemberTypes")
     private List<String> allowedMemberTypes;
@@ -42,13 +43,14 @@ public class AppRole {
 
     /**
      * Display name for the permission that appears in the admin consent and
-     * app assignment experiences.
+     * app assignment experiences. For example, "Read Only" or "Admin".
      */
     @JsonProperty(value = "displayName")
     private String displayName;
 
     /**
-     * Unique role identifier inside the appRoles collection.
+     * Unique role identifier inside the appRoles collection, such as
+     * "c20e145e-5459-4a6c-a074-b942bbd4cfe1".
      */
     @JsonProperty(value = "id")
     private String id;
@@ -63,7 +65,8 @@ public class AppRole {
 
     /**
      * Specifies the value of the roles claim that the application should
-     * expect in the authentication and access tokens.
+     * expect in the authentication and access tokens, such as "ReadOnly" or
+     * "Admin".
      */
     @JsonProperty(value = "value")
     private String value;
@@ -89,7 +92,7 @@ public class AppRole {
     }
 
     /**
-     * Get specifies whether this app role definition can be assigned to users and groups, to other applications, or to both.
+     * Get specifies whether this app role definition can be assigned to users and groups by setting to "User", or to other applications by setting to "Application", or to both.
      *
      * @return the allowedMemberTypes value
      */
@@ -98,7 +101,7 @@ public class AppRole {
     }
 
     /**
-     * Set specifies whether this app role definition can be assigned to users and groups, to other applications, or to both.
+     * Set specifies whether this app role definition can be assigned to users and groups by setting to "User", or to other applications by setting to "Application", or to both.
      *
      * @param allowedMemberTypes the allowedMemberTypes value to set
      * @return the AppRole object itself.
@@ -129,7 +132,7 @@ public class AppRole {
     }
 
     /**
-     * Get display name for the permission that appears in the admin consent and app assignment experiences.
+     * Get display name for the permission that appears in the admin consent and app assignment experiences. For example, "Read Only" or "Admin".
      *
      * @return the displayName value
      */
@@ -138,7 +141,7 @@ public class AppRole {
     }
 
     /**
-     * Set display name for the permission that appears in the admin consent and app assignment experiences.
+     * Set display name for the permission that appears in the admin consent and app assignment experiences. For example, "Read Only" or "Admin".
      *
      * @param displayName the displayName value to set
      * @return the AppRole object itself.
@@ -149,7 +152,7 @@ public class AppRole {
     }
 
     /**
-     * Get unique role identifier inside the appRoles collection.
+     * Get unique role identifier inside the appRoles collection, such as "c20e145e-5459-4a6c-a074-b942bbd4cfe1".
      *
      * @return the id value
      */
@@ -158,7 +161,7 @@ public class AppRole {
     }
 
     /**
-     * Set unique role identifier inside the appRoles collection.
+     * Set unique role identifier inside the appRoles collection, such as "c20e145e-5459-4a6c-a074-b942bbd4cfe1".
      *
      * @param id the id value to set
      * @return the AppRole object itself.
@@ -189,7 +192,7 @@ public class AppRole {
     }
 
     /**
-     * Get specifies the value of the roles claim that the application should expect in the authentication and access tokens.
+     * Get specifies the value of the roles claim that the application should expect in the authentication and access tokens, such as "ReadOnly" or "Admin".
      *
      * @return the value value
      */
@@ -198,7 +201,7 @@ public class AppRole {
     }
 
     /**
-     * Set specifies the value of the roles claim that the application should expect in the authentication and access tokens.
+     * Set specifies the value of the roles claim that the application should expect in the authentication and access tokens, such as "ReadOnly" or "Admin".
      *
      * @param value the value value to set
      * @return the AppRole object itself.
