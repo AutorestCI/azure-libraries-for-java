@@ -173,19 +173,6 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The VirtualMachinesInner object to access its operations.
-     */
-    private VirtualMachinesInner virtualMachines;
-
-    /**
-     * Gets the VirtualMachinesInner object to access its operations.
-     * @return the VirtualMachinesInner object.
-     */
-    public VirtualMachinesInner virtualMachines() {
-        return this.virtualMachines;
-    }
-
-    /**
      * The VirtualMachineImagesInner object to access its operations.
      */
     private VirtualMachineImagesInner virtualMachineImages;
@@ -235,6 +222,19 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
      */
     public ImagesInner images() {
         return this.images;
+    }
+
+    /**
+     * The VirtualMachinesInner object to access its operations.
+     */
+    private VirtualMachinesInner virtualMachines;
+
+    /**
+     * Gets the VirtualMachinesInner object to access its operations.
+     * @return the VirtualMachinesInner object.
+     */
+    public VirtualMachinesInner virtualMachines() {
+        return this.virtualMachines;
     }
 
     /**
@@ -444,11 +444,11 @@ public class ComputeManagementClientImpl extends AzureServiceClient {
         this.availabilitySets = new AvailabilitySetsInner(restClient().retrofit(), this);
         this.virtualMachineExtensionImages = new VirtualMachineExtensionImagesInner(restClient().retrofit(), this);
         this.virtualMachineExtensions = new VirtualMachineExtensionsInner(restClient().retrofit(), this);
-        this.virtualMachines = new VirtualMachinesInner(restClient().retrofit(), this);
         this.virtualMachineImages = new VirtualMachineImagesInner(restClient().retrofit(), this);
         this.usages = new UsagesInner(restClient().retrofit(), this);
         this.virtualMachineSizes = new VirtualMachineSizesInner(restClient().retrofit(), this);
         this.images = new ImagesInner(restClient().retrofit(), this);
+        this.virtualMachines = new VirtualMachinesInner(restClient().retrofit(), this);
         this.virtualMachineScaleSets = new VirtualMachineScaleSetsInner(restClient().retrofit(), this);
         this.virtualMachineScaleSetExtensions = new VirtualMachineScaleSetExtensionsInner(restClient().retrofit(), this);
         this.virtualMachineScaleSetRollingUpgrades = new VirtualMachineScaleSetRollingUpgradesInner(restClient().retrofit(), this);

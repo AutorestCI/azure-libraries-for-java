@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.management.compute;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -34,6 +35,12 @@ public class VirtualMachineScaleSetPublicIPAddressConfiguration {
      */
     @JsonProperty(value = "properties.dnsSettings")
     private VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings dnsSettings;
+
+    /**
+     * The list of IP tags associated with the public IP address.
+     */
+    @JsonProperty(value = "properties.ipTags")
+    private List<VirtualMachineScaleSetIpTag> ipTags;
 
     /**
      * Get the publicIP address configuration name.
@@ -92,6 +99,26 @@ public class VirtualMachineScaleSetPublicIPAddressConfiguration {
      */
     public VirtualMachineScaleSetPublicIPAddressConfiguration withDnsSettings(VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings dnsSettings) {
         this.dnsSettings = dnsSettings;
+        return this;
+    }
+
+    /**
+     * Get the list of IP tags associated with the public IP address.
+     *
+     * @return the ipTags value
+     */
+    public List<VirtualMachineScaleSetIpTag> ipTags() {
+        return this.ipTags;
+    }
+
+    /**
+     * Set the list of IP tags associated with the public IP address.
+     *
+     * @param ipTags the ipTags value to set
+     * @return the VirtualMachineScaleSetPublicIPAddressConfiguration object itself.
+     */
+    public VirtualMachineScaleSetPublicIPAddressConfiguration withIpTags(List<VirtualMachineScaleSetIpTag> ipTags) {
+        this.ipTags = ipTags;
         return this;
     }
 
