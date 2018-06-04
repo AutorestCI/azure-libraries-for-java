@@ -63,9 +63,9 @@ public class OperationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;ComputeOperationValueInner&gt; object if successful.
+     * @return the List&lt;OperationValueInner&gt; object if successful.
      */
-    public List<ComputeOperationValueInner> list() {
+    public List<OperationValueInner> list() {
         return listWithServiceResponseAsync().toBlocking().single().body();
     }
 
@@ -76,7 +76,7 @@ public class OperationsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<ComputeOperationValueInner>> listAsync(final ServiceCallback<List<ComputeOperationValueInner>> serviceCallback) {
+    public ServiceFuture<List<OperationValueInner>> listAsync(final ServiceCallback<List<OperationValueInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listWithServiceResponseAsync(), serviceCallback);
     }
 
@@ -84,12 +84,12 @@ public class OperationsInner {
      * Gets a list of compute operations.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ComputeOperationValueInner&gt; object
+     * @return the observable to the List&lt;OperationValueInner&gt; object
      */
-    public Observable<List<ComputeOperationValueInner>> listAsync() {
-        return listWithServiceResponseAsync().map(new Func1<ServiceResponse<List<ComputeOperationValueInner>>, List<ComputeOperationValueInner>>() {
+    public Observable<List<OperationValueInner>> listAsync() {
+        return listWithServiceResponseAsync().map(new Func1<ServiceResponse<List<OperationValueInner>>, List<OperationValueInner>>() {
             @Override
-            public List<ComputeOperationValueInner> call(ServiceResponse<List<ComputeOperationValueInner>> response) {
+            public List<OperationValueInner> call(ServiceResponse<List<OperationValueInner>> response) {
                 return response.body();
             }
         });
@@ -99,21 +99,21 @@ public class OperationsInner {
      * Gets a list of compute operations.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;ComputeOperationValueInner&gt; object
+     * @return the observable to the List&lt;OperationValueInner&gt; object
      */
-    public Observable<ServiceResponse<List<ComputeOperationValueInner>>> listWithServiceResponseAsync() {
+    public Observable<ServiceResponse<List<OperationValueInner>>> listWithServiceResponseAsync() {
         final String apiVersion = "2018-03-31";
         return service.list(apiVersion, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ComputeOperationValueInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<OperationValueInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<List<ComputeOperationValueInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<OperationValueInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl1<ComputeOperationValueInner>> result = listDelegate(response);
-                        List<ComputeOperationValueInner> items = null;
+                        ServiceResponse<PageImpl1<OperationValueInner>> result = listDelegate(response);
+                        List<OperationValueInner> items = null;
                         if (result.body() != null) {
                             items = result.body().items();
                         }
-                        ServiceResponse<List<ComputeOperationValueInner>> clientResponse = new ServiceResponse<List<ComputeOperationValueInner>>(items, result.response());
+                        ServiceResponse<List<OperationValueInner>> clientResponse = new ServiceResponse<List<OperationValueInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -122,9 +122,9 @@ public class OperationsInner {
             });
     }
 
-    private ServiceResponse<PageImpl1<ComputeOperationValueInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl1<ComputeOperationValueInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl1<ComputeOperationValueInner>>() { }.getType())
+    private ServiceResponse<PageImpl1<OperationValueInner>> listDelegate(Response<ResponseBody> response) throws CloudException, IOException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<OperationValueInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<OperationValueInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }
