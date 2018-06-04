@@ -11,7 +11,7 @@ package com.microsoft.azure.management.compute;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The GalleryIdentifier model.
+ * Describes the gallery unique name.
  */
 public class GalleryIdentifier {
     /**
