@@ -24,11 +24,10 @@ public class ReservationProperties {
     private String reservedResourceType;
 
     /**
-     * Possible values include: 'InstanceFlexibilityOn', 'CapacityPriority',
-     * 'InstanceFlexibilityOff'.
+     * Possible values include: 'On', 'Off', 'NotSupported'.
      */
-    @JsonProperty(value = "autoFit")
-    private String autoFit;
+    @JsonProperty(value = "instanceFlexibility")
+    private String instanceFlexibility;
 
     /**
      * Friendly name for user to easily identify the reservation.
@@ -127,22 +126,22 @@ public class ReservationProperties {
     }
 
     /**
-     * Get possible values include: 'InstanceFlexibilityOn', 'CapacityPriority', 'InstanceFlexibilityOff'.
+     * Get possible values include: 'On', 'Off', 'NotSupported'.
      *
-     * @return the autoFit value
+     * @return the instanceFlexibility value
      */
-    public String autoFit() {
-        return this.autoFit;
+    public String instanceFlexibility() {
+        return this.instanceFlexibility;
     }
 
     /**
-     * Set possible values include: 'InstanceFlexibilityOn', 'CapacityPriority', 'InstanceFlexibilityOff'.
+     * Set possible values include: 'On', 'Off', 'NotSupported'.
      *
-     * @param autoFit the autoFit value to set
+     * @param instanceFlexibility the instanceFlexibility value to set
      * @return the ReservationProperties object itself.
      */
-    public ReservationProperties withAutoFit(String autoFit) {
-        this.autoFit = autoFit;
+    public ReservationProperties withInstanceFlexibility(String instanceFlexibility) {
+        this.instanceFlexibility = instanceFlexibility;
         return this;
     }
 

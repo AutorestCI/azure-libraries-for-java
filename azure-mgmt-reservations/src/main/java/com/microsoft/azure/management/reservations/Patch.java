@@ -30,11 +30,10 @@ public class Patch {
     private List<String> appliedScopes;
 
     /**
-     * Possible values include: 'InstanceFlexibilityOn', 'CapacityPriority',
-     * 'InstanceFlexibilityOff'.
+     * Possible values include: 'On', 'Off', 'NotSupported'.
      */
-    @JsonProperty(value = "properties.autoFit")
-    private String autoFit;
+    @JsonProperty(value = "properties.instanceFlexibility")
+    private String instanceFlexibility;
 
     /**
      * Get possible values include: 'Single', 'Shared'.
@@ -77,22 +76,22 @@ public class Patch {
     }
 
     /**
-     * Get possible values include: 'InstanceFlexibilityOn', 'CapacityPriority', 'InstanceFlexibilityOff'.
+     * Get possible values include: 'On', 'Off', 'NotSupported'.
      *
-     * @return the autoFit value
+     * @return the instanceFlexibility value
      */
-    public String autoFit() {
-        return this.autoFit;
+    public String instanceFlexibility() {
+        return this.instanceFlexibility;
     }
 
     /**
-     * Set possible values include: 'InstanceFlexibilityOn', 'CapacityPriority', 'InstanceFlexibilityOff'.
+     * Set possible values include: 'On', 'Off', 'NotSupported'.
      *
-     * @param autoFit the autoFit value to set
+     * @param instanceFlexibility the instanceFlexibility value to set
      * @return the Patch object itself.
      */
-    public Patch withAutoFit(String autoFit) {
-        this.autoFit = autoFit;
+    public Patch withInstanceFlexibility(String instanceFlexibility) {
+        this.instanceFlexibility = instanceFlexibility;
         return this;
     }
 
