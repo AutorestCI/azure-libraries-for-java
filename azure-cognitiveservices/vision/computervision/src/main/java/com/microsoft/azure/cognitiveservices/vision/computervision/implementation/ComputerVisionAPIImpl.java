@@ -16,7 +16,6 @@ import com.microsoft.azure.CloudException;
 import com.microsoft.azure.cognitiveservices.vision.computervision.AzureRegions;
 import com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionErrorException;
 import com.microsoft.azure.cognitiveservices.vision.computervision.Details;
-import com.microsoft.azure.cognitiveservices.vision.computervision.DomainModels;
 import com.microsoft.azure.cognitiveservices.vision.computervision.ImageUrl;
 import com.microsoft.azure.cognitiveservices.vision.computervision.OcrLanguages;
 import com.microsoft.azure.cognitiveservices.vision.computervision.RecognizeTextHeaders;
@@ -241,7 +240,7 @@ public class ComputerVisionAPIImpl extends AzureServiceClient {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionAPI analyzeImageByDomain" })
         @POST("models/{model}/analyze")
-        Observable<Response<ResponseBody>> analyzeImageByDomain(@Path("model") DomainModels model, @Header("accept-language") String acceptLanguage, @Body ImageUrl imageUrl, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> analyzeImageByDomain(@Path("model") String model, @Query("language") String language, @Header("accept-language") String acceptLanguage, @Body ImageUrl imageUrl, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionAPI recognizeText" })
         @POST("recognizeText")
@@ -270,11 +269,11 @@ public class ComputerVisionAPIImpl extends AzureServiceClient {
 
         @Headers({ "Content-Type: application/octet-stream", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionAPI tagImageInStream" })
         @POST("tag")
-        Observable<Response<ResponseBody>> tagImageInStream(@Body RequestBody image, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> tagImageInStream(@Query("language") String language, @Body RequestBody image, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/octet-stream", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionAPI analyzeImageByDomainInStream" })
         @POST("models/{model}/analyze")
-        Observable<Response<ResponseBody>> analyzeImageByDomainInStream(@Path("model") String model, @Body RequestBody image, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> analyzeImageByDomainInStream(@Path("model") String model, @Query("language") String language, @Body RequestBody image, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/octet-stream", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionAPI recognizeTextInStream" })
         @POST("recognizeText")
@@ -1178,39 +1177,39 @@ public class ComputerVisionAPIImpl extends AzureServiceClient {
     /**
      * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
      *
-     * @param model The domain-specific content to recognize. Possible values include: 'Celebrities', 'Landmarks'
+     * @param model The domain-specific content to recognize.
      * @param url Publicly reachable URL of an image
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ComputerVisionErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the DomainModelResultsInner object if successful.
      */
-    public DomainModelResultsInner analyzeImageByDomain(DomainModels model, String url) {
+    public DomainModelResultsInner analyzeImageByDomain(String model, String url) {
         return analyzeImageByDomainWithServiceResponseAsync(model, url).toBlocking().single().body();
     }
 
     /**
      * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
      *
-     * @param model The domain-specific content to recognize. Possible values include: 'Celebrities', 'Landmarks'
+     * @param model The domain-specific content to recognize.
      * @param url Publicly reachable URL of an image
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DomainModelResultsInner> analyzeImageByDomainAsync(DomainModels model, String url, final ServiceCallback<DomainModelResultsInner> serviceCallback) {
+    public ServiceFuture<DomainModelResultsInner> analyzeImageByDomainAsync(String model, String url, final ServiceCallback<DomainModelResultsInner> serviceCallback) {
         return ServiceFuture.fromResponse(analyzeImageByDomainWithServiceResponseAsync(model, url), serviceCallback);
     }
 
     /**
      * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
      *
-     * @param model The domain-specific content to recognize. Possible values include: 'Celebrities', 'Landmarks'
+     * @param model The domain-specific content to recognize.
      * @param url Publicly reachable URL of an image
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DomainModelResultsInner object
      */
-    public Observable<DomainModelResultsInner> analyzeImageByDomainAsync(DomainModels model, String url) {
+    public Observable<DomainModelResultsInner> analyzeImageByDomainAsync(String model, String url) {
         return analyzeImageByDomainWithServiceResponseAsync(model, url).map(new Func1<ServiceResponse<DomainModelResultsInner>, DomainModelResultsInner>() {
             @Override
             public DomainModelResultsInner call(ServiceResponse<DomainModelResultsInner> response) {
@@ -1222,12 +1221,96 @@ public class ComputerVisionAPIImpl extends AzureServiceClient {
     /**
      * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
      *
-     * @param model The domain-specific content to recognize. Possible values include: 'Celebrities', 'Landmarks'
+     * @param model The domain-specific content to recognize.
      * @param url Publicly reachable URL of an image
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DomainModelResultsInner object
      */
-    public Observable<ServiceResponse<DomainModelResultsInner>> analyzeImageByDomainWithServiceResponseAsync(DomainModels model, String url) {
+    public Observable<ServiceResponse<DomainModelResultsInner>> analyzeImageByDomainWithServiceResponseAsync(String model, String url) {
+        if (this.azureRegion() == null) {
+            throw new IllegalArgumentException("Parameter this.azureRegion() is required and cannot be null.");
+        }
+        if (model == null) {
+            throw new IllegalArgumentException("Parameter model is required and cannot be null.");
+        }
+        if (url == null) {
+            throw new IllegalArgumentException("Parameter url is required and cannot be null.");
+        }
+        final String language = null;
+        ImageUrl imageUrl = new ImageUrl();
+        imageUrl.withUrl(url);
+        String parameterizedHost = Joiner.on(", ").join("{AzureRegion}", this.azureRegion());
+        return service.analyzeImageByDomain(model, language, this.acceptLanguage(), imageUrl, parameterizedHost, this.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DomainModelResultsInner>>>() {
+                @Override
+                public Observable<ServiceResponse<DomainModelResultsInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<DomainModelResultsInner> clientResponse = analyzeImageByDomainDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param url Publicly reachable URL of an image
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ComputerVisionErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the DomainModelResultsInner object if successful.
+     */
+    public DomainModelResultsInner analyzeImageByDomain(String model, String url, String language) {
+        return analyzeImageByDomainWithServiceResponseAsync(model, url, language).toBlocking().single().body();
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param url Publicly reachable URL of an image
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<DomainModelResultsInner> analyzeImageByDomainAsync(String model, String url, String language, final ServiceCallback<DomainModelResultsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(analyzeImageByDomainWithServiceResponseAsync(model, url, language), serviceCallback);
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param url Publicly reachable URL of an image
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the DomainModelResultsInner object
+     */
+    public Observable<DomainModelResultsInner> analyzeImageByDomainAsync(String model, String url, String language) {
+        return analyzeImageByDomainWithServiceResponseAsync(model, url, language).map(new Func1<ServiceResponse<DomainModelResultsInner>, DomainModelResultsInner>() {
+            @Override
+            public DomainModelResultsInner call(ServiceResponse<DomainModelResultsInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param url Publicly reachable URL of an image
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the DomainModelResultsInner object
+     */
+    public Observable<ServiceResponse<DomainModelResultsInner>> analyzeImageByDomainWithServiceResponseAsync(String model, String url, String language) {
         if (this.azureRegion() == null) {
             throw new IllegalArgumentException("Parameter this.azureRegion() is required and cannot be null.");
         }
@@ -1240,7 +1323,7 @@ public class ComputerVisionAPIImpl extends AzureServiceClient {
         ImageUrl imageUrl = new ImageUrl();
         imageUrl.withUrl(url);
         String parameterizedHost = Joiner.on(", ").join("{AzureRegion}", this.azureRegion());
-        return service.analyzeImageByDomain(model, this.acceptLanguage(), imageUrl, parameterizedHost, this.userAgent())
+        return service.analyzeImageByDomain(model, language, this.acceptLanguage(), imageUrl, parameterizedHost, this.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DomainModelResultsInner>>>() {
                 @Override
                 public Observable<ServiceResponse<DomainModelResultsInner>> call(Response<ResponseBody> response) {
@@ -2203,9 +2286,85 @@ public class ComputerVisionAPIImpl extends AzureServiceClient {
         if (image == null) {
             throw new IllegalArgumentException("Parameter image is required and cannot be null.");
         }
+        final String language = null;
         String parameterizedHost = Joiner.on(", ").join("{AzureRegion}", this.azureRegion());
         RequestBody imageConverted = RequestBody.create(MediaType.parse("application/octet-stream"), image);
-        return service.tagImageInStream(imageConverted, this.acceptLanguage(), parameterizedHost, this.userAgent())
+        return service.tagImageInStream(language, imageConverted, this.acceptLanguage(), parameterizedHost, this.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<TagResultInner>>>() {
+                @Override
+                public Observable<ServiceResponse<TagResultInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<TagResultInner> clientResponse = tagImageInStreamDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag 'cello' may be accompanied by the hint 'musical instrument'. All tags are in English.
+     *
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ComputerVisionErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the TagResultInner object if successful.
+     */
+    public TagResultInner tagImageInStream(byte[] image, String language) {
+        return tagImageInStreamWithServiceResponseAsync(image, language).toBlocking().single().body();
+    }
+
+    /**
+     * This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag 'cello' may be accompanied by the hint 'musical instrument'. All tags are in English.
+     *
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<TagResultInner> tagImageInStreamAsync(byte[] image, String language, final ServiceCallback<TagResultInner> serviceCallback) {
+        return ServiceFuture.fromResponse(tagImageInStreamWithServiceResponseAsync(image, language), serviceCallback);
+    }
+
+    /**
+     * This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag 'cello' may be accompanied by the hint 'musical instrument'. All tags are in English.
+     *
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the TagResultInner object
+     */
+    public Observable<TagResultInner> tagImageInStreamAsync(byte[] image, String language) {
+        return tagImageInStreamWithServiceResponseAsync(image, language).map(new Func1<ServiceResponse<TagResultInner>, TagResultInner>() {
+            @Override
+            public TagResultInner call(ServiceResponse<TagResultInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag 'cello' may be accompanied by the hint 'musical instrument'. All tags are in English.
+     *
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the TagResultInner object
+     */
+    public Observable<ServiceResponse<TagResultInner>> tagImageInStreamWithServiceResponseAsync(byte[] image, String language) {
+        if (this.azureRegion() == null) {
+            throw new IllegalArgumentException("Parameter this.azureRegion() is required and cannot be null.");
+        }
+        if (image == null) {
+            throw new IllegalArgumentException("Parameter image is required and cannot be null.");
+        }
+        String parameterizedHost = Joiner.on(", ").join("{AzureRegion}", this.azureRegion());
+        RequestBody imageConverted = RequestBody.create(MediaType.parse("application/octet-stream"), image);
+        return service.tagImageInStream(language, imageConverted, this.acceptLanguage(), parameterizedHost, this.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<TagResultInner>>>() {
                 @Override
                 public Observable<ServiceResponse<TagResultInner>> call(Response<ResponseBody> response) {
@@ -2288,9 +2447,92 @@ public class ComputerVisionAPIImpl extends AzureServiceClient {
         if (image == null) {
             throw new IllegalArgumentException("Parameter image is required and cannot be null.");
         }
+        final String language = null;
         String parameterizedHost = Joiner.on(", ").join("{AzureRegion}", this.azureRegion());
         RequestBody imageConverted = RequestBody.create(MediaType.parse("application/octet-stream"), image);
-        return service.analyzeImageByDomainInStream(model, imageConverted, this.acceptLanguage(), parameterizedHost, this.userAgent())
+        return service.analyzeImageByDomainInStream(model, language, imageConverted, this.acceptLanguage(), parameterizedHost, this.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DomainModelResultsInner>>>() {
+                @Override
+                public Observable<ServiceResponse<DomainModelResultsInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<DomainModelResultsInner> clientResponse = analyzeImageByDomainInStreamDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ComputerVisionErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the DomainModelResultsInner object if successful.
+     */
+    public DomainModelResultsInner analyzeImageByDomainInStream(String model, byte[] image, String language) {
+        return analyzeImageByDomainInStreamWithServiceResponseAsync(model, image, language).toBlocking().single().body();
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<DomainModelResultsInner> analyzeImageByDomainInStreamAsync(String model, byte[] image, String language, final ServiceCallback<DomainModelResultsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(analyzeImageByDomainInStreamWithServiceResponseAsync(model, image, language), serviceCallback);
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the DomainModelResultsInner object
+     */
+    public Observable<DomainModelResultsInner> analyzeImageByDomainInStreamAsync(String model, byte[] image, String language) {
+        return analyzeImageByDomainInStreamWithServiceResponseAsync(model, image, language).map(new Func1<ServiceResponse<DomainModelResultsInner>, DomainModelResultsInner>() {
+            @Override
+            public DomainModelResultsInner call(ServiceResponse<DomainModelResultsInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
+     *
+     * @param model The domain-specific content to recognize.
+     * @param image An image stream.
+     * @param language The desired language for output generation. If this parameter is not specified, the default value is &amp;quot;en&amp;quot;.Supported languages:en - English, Default.ja - Japanese pt - Portuguese zh - Simplified Chinese. Possible values include: 'en', 'ja', 'pt', 'zh'
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the DomainModelResultsInner object
+     */
+    public Observable<ServiceResponse<DomainModelResultsInner>> analyzeImageByDomainInStreamWithServiceResponseAsync(String model, byte[] image, String language) {
+        if (this.azureRegion() == null) {
+            throw new IllegalArgumentException("Parameter this.azureRegion() is required and cannot be null.");
+        }
+        if (model == null) {
+            throw new IllegalArgumentException("Parameter model is required and cannot be null.");
+        }
+        if (image == null) {
+            throw new IllegalArgumentException("Parameter image is required and cannot be null.");
+        }
+        String parameterizedHost = Joiner.on(", ").join("{AzureRegion}", this.azureRegion());
+        RequestBody imageConverted = RequestBody.create(MediaType.parse("application/octet-stream"), image);
+        return service.analyzeImageByDomainInStream(model, language, imageConverted, this.acceptLanguage(), parameterizedHost, this.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DomainModelResultsInner>>>() {
                 @Override
                 public Observable<ServiceResponse<DomainModelResultsInner>> call(Response<ResponseBody> response) {

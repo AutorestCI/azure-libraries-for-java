@@ -33,7 +33,7 @@ public class ImageMetadata {
     private String format;
 
     /**
-     * Get the width value.
+     * Get image width.
      *
      * @return the width value
      */
@@ -42,7 +42,7 @@ public class ImageMetadata {
     }
 
     /**
-     * Set the width value.
+     * Set image width.
      *
      * @param width the width value to set
      * @return the ImageMetadata object itself.
@@ -53,7 +53,7 @@ public class ImageMetadata {
     }
 
     /**
-     * Get the height value.
+     * Get image height.
      *
      * @return the height value
      */
@@ -62,7 +62,7 @@ public class ImageMetadata {
     }
 
     /**
-     * Set the height value.
+     * Set image height.
      *
      * @param height the height value to set
      * @return the ImageMetadata object itself.
@@ -73,7 +73,7 @@ public class ImageMetadata {
     }
 
     /**
-     * Get the format value.
+     * Get image format.
      *
      * @return the format value
      */
@@ -82,7 +82,7 @@ public class ImageMetadata {
     }
 
     /**
-     * Set the format value.
+     * Set image format.
      *
      * @param format the format value to set
      * @return the ImageMetadata object itself.

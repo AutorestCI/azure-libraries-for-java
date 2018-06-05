@@ -30,7 +30,7 @@ public class TextOperationResultInner {
     private RecognitionResult recognitionResult;
 
     /**
-     * Get the status value.
+     * Get status of the text operation. Possible values include: 'Not Started', 'Running', 'Failed', 'Succeeded'.
      *
      * @return the status value
      */
@@ -39,7 +39,7 @@ public class TextOperationResultInner {
     }
 
     /**
-     * Set the status value.
+     * Set status of the text operation. Possible values include: 'Not Started', 'Running', 'Failed', 'Succeeded'.
      *
      * @param status the status value to set
      * @return the TextOperationResultInner object itself.

@@ -22,7 +22,7 @@ public class CategoryDetail {
     private List<CelebritiesModel> celebrities;
 
     /**
-     * Get the celebrities value.
+     * Get an array of celebrities if any identified.
      *
      * @return the celebrities value
      */
@@ -31,7 +31,7 @@ public class CategoryDetail {
     }
 
     /**
-     * Set the celebrities value.
+     * Set an array of celebrities if any identified.
      *
      * @param celebrities the celebrities value to set
      * @return the CategoryDetail object itself.

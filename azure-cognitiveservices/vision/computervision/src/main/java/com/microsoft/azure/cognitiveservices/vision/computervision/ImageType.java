@@ -27,7 +27,7 @@ public class ImageType {
     private Double lineDrawingType;
 
     /**
-     * Get the clipArtType value.
+     * Get confidence level that the image is a clip art.
      *
      * @return the clipArtType value
      */
@@ -36,7 +36,7 @@ public class ImageType {
     }
 
     /**
-     * Set the clipArtType value.
+     * Set confidence level that the image is a clip art.
      *
      * @param clipArtType the clipArtType value to set
      * @return the ImageType object itself.
@@ -47,7 +47,7 @@ public class ImageType {
     }
 
     /**
-     * Get the lineDrawingType value.
+     * Get confidence level that the image is a line drawing.
      *
      * @return the lineDrawingType value
      */
@@ -56,7 +56,7 @@ public class ImageType {
     }
 
     /**
-     * Set the lineDrawingType value.
+     * Set confidence level that the image is a line drawing.
      *
      * @param lineDrawingType the lineDrawingType value to set
      * @return the ImageType object itself.

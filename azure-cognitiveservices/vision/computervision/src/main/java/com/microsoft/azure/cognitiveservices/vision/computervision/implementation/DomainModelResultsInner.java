@@ -8,23 +8,19 @@
 
 package com.microsoft.azure.cognitiveservices.vision.computervision.implementation;
 
-import java.util.List;
-import com.microsoft.azure.cognitiveservices.vision.computervision.CelebritiesModel;
 import com.microsoft.azure.cognitiveservices.vision.computervision.ImageMetadata;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.microsoft.rest.serializer.JsonFlatten;
 
 /**
  * Result of image analysis using a specific domain model including additional
  * metadata.
  */
-@JsonFlatten
 public class DomainModelResultsInner {
     /**
-     * An array of possible celebritied identified in the image.
+     * Model-specific response.
      */
-    @JsonProperty(value = "result.celebrities")
-    private List<CelebritiesModel> celebrities;
+    @JsonProperty(value = "result")
+    private Object result;
 
     /**
      * Id of the REST API request.
@@ -39,27 +35,27 @@ public class DomainModelResultsInner {
     private ImageMetadata metadata;
 
     /**
-     * Get the celebrities value.
+     * Get model-specific response.
      *
-     * @return the celebrities value
+     * @return the result value
      */
-    public List<CelebritiesModel> celebrities() {
-        return this.celebrities;
+    public Object result() {
+        return this.result;
     }
 
     /**
-     * Set the celebrities value.
+     * Set model-specific response.
      *
-     * @param celebrities the celebrities value to set
+     * @param result the result value to set
      * @return the DomainModelResultsInner object itself.
      */
-    public DomainModelResultsInner withCelebrities(List<CelebritiesModel> celebrities) {
-        this.celebrities = celebrities;
+    public DomainModelResultsInner withResult(Object result) {
+        this.result = result;
         return this;
     }
 
     /**
-     * Get the requestId value.
+     * Get id of the REST API request.
      *
      * @return the requestId value
      */
@@ -68,7 +64,7 @@ public class DomainModelResultsInner {
     }
 
     /**
-     * Set the requestId value.
+     * Set id of the REST API request.
      *
      * @param requestId the requestId value to set
      * @return the DomainModelResultsInner object itself.

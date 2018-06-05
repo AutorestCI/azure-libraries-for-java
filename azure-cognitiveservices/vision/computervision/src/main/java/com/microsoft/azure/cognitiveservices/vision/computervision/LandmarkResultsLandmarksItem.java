@@ -11,23 +11,23 @@ package com.microsoft.azure.cognitiveservices.vision.computervision;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * An image caption, i.e. a brief description of what the image depicts.
+ * A landmark recognized in the image.
  */
-public class ImageTag {
+public class LandmarkResultsLandmarksItem {
     /**
-     * The tag value.
+     * Name of the landmark.
      */
     @JsonProperty(value = "name")
     private String name;
 
     /**
-     * The level of confidence the service has in the caption.
+     * Confidence level for the landmark recognition.
      */
     @JsonProperty(value = "confidence")
     private Double confidence;
 
     /**
-     * Get the tag value.
+     * Get name of the landmark.
      *
      * @return the name value
      */
@@ -36,18 +36,18 @@ public class ImageTag {
     }
 
     /**
-     * Set the tag value.
+     * Set name of the landmark.
      *
      * @param name the name value to set
-     * @return the ImageTag object itself.
+     * @return the LandmarkResultsLandmarksItem object itself.
      */
-    public ImageTag withName(String name) {
+    public LandmarkResultsLandmarksItem withName(String name) {
         this.name = name;
         return this;
     }
 
     /**
-     * Get the level of confidence the service has in the caption.
+     * Get confidence level for the landmark recognition.
      *
      * @return the confidence value
      */
@@ -56,12 +56,12 @@ public class ImageTag {
     }
 
     /**
-     * Set the level of confidence the service has in the caption.
+     * Set confidence level for the landmark recognition.
      *
      * @param confidence the confidence value to set
-     * @return the ImageTag object itself.
+     * @return the LandmarkResultsLandmarksItem object itself.
      */
-    public ImageTag withConfidence(Double confidence) {
+    public LandmarkResultsLandmarksItem withConfidence(Double confidence) {
         this.confidence = confidence;
         return this;
     }
