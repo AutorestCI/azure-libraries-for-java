@@ -11,7 +11,7 @@ package com.microsoft.azure.management.monitor.implementation;
 import java.util.List;
 import org.joda.time.Period;
 import com.microsoft.azure.management.monitor.MetricAlertCriteria;
-import com.microsoft.azure.management.monitor.MetricAlertAction;
+import com.microsoft.azure.management.monitor.Action;
 import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
@@ -79,7 +79,7 @@ public class MetricAlertResourceInner extends Resource {
      * active, and when an alert condition is resolved.
      */
     @JsonProperty(value = "properties.actions")
-    private List<MetricAlertAction> actions;
+    private List<Action> actions;
 
     /**
      * Last time the rule was updated in ISO8601 format.
@@ -252,7 +252,7 @@ public class MetricAlertResourceInner extends Resource {
      *
      * @return the actions value
      */
-    public List<MetricAlertAction> actions() {
+    public List<Action> actions() {
         return this.actions;
     }
 
@@ -262,7 +262,7 @@ public class MetricAlertResourceInner extends Resource {
      * @param actions the actions value to set
      * @return the MetricAlertResourceInner object itself.
      */
-    public MetricAlertResourceInner withActions(List<MetricAlertAction> actions) {
+    public MetricAlertResourceInner withActions(List<Action> actions) {
         this.actions = actions;
         return this;
     }

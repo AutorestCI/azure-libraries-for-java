@@ -83,7 +83,7 @@ public class MetricAlertResourcePatch {
      * active, and when an alert condition is resolved.
      */
     @JsonProperty(value = "properties.actions")
-    private List<MetricAlertAction> actions;
+    private List<Action> actions;
 
     /**
      * Last time the rule was updated in ISO8601 format.
@@ -276,7 +276,7 @@ public class MetricAlertResourcePatch {
      *
      * @return the actions value
      */
-    public List<MetricAlertAction> actions() {
+    public List<Action> actions() {
         return this.actions;
     }
 
@@ -286,7 +286,7 @@ public class MetricAlertResourcePatch {
      * @param actions the actions value to set
      * @return the MetricAlertResourcePatch object itself.
      */
-    public MetricAlertResourcePatch withActions(List<MetricAlertAction> actions) {
+    public MetricAlertResourcePatch withActions(List<Action> actions) {
         this.actions = actions;
         return this;
     }
