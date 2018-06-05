@@ -35,7 +35,7 @@ public class TimeSeriesInformation {
     private List<DateTime> timestamps;
 
     /**
-     * Get the sensitivities value.
+     * Get the list of sensitivities for calculating the baseline.
      *
      * @return the sensitivities value
      */
@@ -44,7 +44,7 @@ public class TimeSeriesInformation {
     }
 
     /**
-     * Set the sensitivities value.
+     * Set the list of sensitivities for calculating the baseline.
      *
      * @param sensitivities the sensitivities value to set
      * @return the TimeSeriesInformation object itself.
@@ -55,7 +55,7 @@ public class TimeSeriesInformation {
     }
 
     /**
-     * Get the values value.
+     * Get the metric values to calculate the baseline.
      *
      * @return the values value
      */
@@ -64,7 +64,7 @@ public class TimeSeriesInformation {
     }
 
     /**
-     * Set the values value.
+     * Set the metric values to calculate the baseline.
      *
      * @param values the values value to set
      * @return the TimeSeriesInformation object itself.
@@ -75,7 +75,7 @@ public class TimeSeriesInformation {
     }
 
     /**
-     * Get the timestamps value.
+     * Get the array of timestamps of the baselines.
      *
      * @return the timestamps value
      */
@@ -84,7 +84,7 @@ public class TimeSeriesInformation {
     }
 
     /**
-     * Set the timestamps value.
+     * Set the array of timestamps of the baselines.
      *
      * @param timestamps the timestamps value to set
      * @return the TimeSeriesInformation object itself.

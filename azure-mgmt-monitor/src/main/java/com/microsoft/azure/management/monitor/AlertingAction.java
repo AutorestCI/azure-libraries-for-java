@@ -43,7 +43,7 @@ public class AlertingAction extends Action {
     private TriggerCondition trigger;
 
     /**
-     * Get the severity value.
+     * Get severity of the alert. Possible values include: '0', '1', '2', '3', '4'.
      *
      * @return the severity value
      */
@@ -52,7 +52,7 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Set the severity value.
+     * Set severity of the alert. Possible values include: '0', '1', '2', '3', '4'.
      *
      * @param severity the severity value to set
      * @return the AlertingAction object itself.
@@ -63,7 +63,7 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Get the aznsAction value.
+     * Get azure action group reference.
      *
      * @return the aznsAction value
      */
@@ -72,7 +72,7 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Set the aznsAction value.
+     * Set azure action group reference.
      *
      * @param aznsAction the aznsAction value to set
      * @return the AlertingAction object itself.
@@ -83,7 +83,7 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Get the throttlingInMin value.
+     * Get time (in minutes) for which Alerts should be throttled or suppressed.
      *
      * @return the throttlingInMin value
      */
@@ -92,7 +92,7 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Set the throttlingInMin value.
+     * Set time (in minutes) for which Alerts should be throttled or suppressed.
      *
      * @param throttlingInMin the throttlingInMin value to set
      * @return the AlertingAction object itself.
@@ -103,7 +103,7 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Get the trigger value.
+     * Get the trigger condition that results in the alert rule being.
      *
      * @return the trigger value
      */
@@ -112,7 +112,7 @@ public class AlertingAction extends Action {
     }
 
     /**
-     * Set the trigger value.
+     * Set the trigger condition that results in the alert rule being.
      *
      * @param trigger the trigger value to set
      * @return the AlertingAction object itself.

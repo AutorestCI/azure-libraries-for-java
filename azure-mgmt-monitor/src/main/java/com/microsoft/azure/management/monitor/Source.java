@@ -40,7 +40,7 @@ public class Source {
     private QueryType queryType;
 
     /**
-     * Get the query value.
+     * Get log search query.
      *
      * @return the query value
      */
@@ -49,7 +49,7 @@ public class Source {
     }
 
     /**
-     * Set the query value.
+     * Set log search query.
      *
      * @param query the query value to set
      * @return the Source object itself.
@@ -60,7 +60,7 @@ public class Source {
     }
 
     /**
-     * Get the authorizedResources value.
+     * Get list of  Resource referred into query.
      *
      * @return the authorizedResources value
      */
@@ -69,7 +69,7 @@ public class Source {
     }
 
     /**
-     * Set the authorizedResources value.
+     * Set list of  Resource referred into query.
      *
      * @param authorizedResources the authorizedResources value to set
      * @return the Source object itself.
@@ -80,7 +80,7 @@ public class Source {
     }
 
     /**
-     * Get the dataSourceId value.
+     * Get the resource uri over which log search query is to be run.
      *
      * @return the dataSourceId value
      */
@@ -89,7 +89,7 @@ public class Source {
     }
 
     /**
-     * Set the dataSourceId value.
+     * Set the resource uri over which log search query is to be run.
      *
      * @param dataSourceId the dataSourceId value to set
      * @return the Source object itself.
@@ -100,7 +100,7 @@ public class Source {
     }
 
     /**
-     * Get the queryType value.
+     * Get set value to 'ResultCount'. Possible values include: 'ResultCount'.
      *
      * @return the queryType value
      */
@@ -109,7 +109,7 @@ public class Source {
     }
 
     /**
-     * Set the queryType value.
+     * Set set value to 'ResultCount'. Possible values include: 'ResultCount'.
      *
      * @param queryType the queryType value to set
      * @return the Source object itself.

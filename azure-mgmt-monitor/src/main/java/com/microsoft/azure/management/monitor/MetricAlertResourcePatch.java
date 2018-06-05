@@ -83,7 +83,7 @@ public class MetricAlertResourcePatch {
      * active, and when an alert condition is resolved.
      */
     @JsonProperty(value = "properties.actions")
-    private List<Action> actions;
+    private List<MetricAlertAction> actions;
 
     /**
      * Last time the rule was updated in ISO8601 format.
@@ -92,7 +92,7 @@ public class MetricAlertResourcePatch {
     private DateTime lastUpdatedTime;
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -101,7 +101,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -112,7 +112,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the description value.
+     * Get the description of the metric alert that will be included in the alert email.
      *
      * @return the description value
      */
@@ -121,7 +121,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the description value.
+     * Set the description of the metric alert that will be included in the alert email.
      *
      * @param description the description value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -132,7 +132,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the severity value.
+     * Get alert severity {0, 1, 2, 3, 4}.
      *
      * @return the severity value
      */
@@ -141,7 +141,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the severity value.
+     * Set alert severity {0, 1, 2, 3, 4}.
      *
      * @param severity the severity value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -152,7 +152,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the enabled value.
+     * Get the flag that indicates whether the metric alert is enabled.
      *
      * @return the enabled value
      */
@@ -161,7 +161,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the enabled value.
+     * Set the flag that indicates whether the metric alert is enabled.
      *
      * @param enabled the enabled value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -172,7 +172,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the scopes value.
+     * Get the list of resource id's that this metric alert is scoped to.
      *
      * @return the scopes value
      */
@@ -181,7 +181,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the scopes value.
+     * Set the list of resource id's that this metric alert is scoped to.
      *
      * @param scopes the scopes value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -192,7 +192,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the evaluationFrequency value.
+     * Get how often the metric alert is evaluated represented in ISO 8601 duration format.
      *
      * @return the evaluationFrequency value
      */
@@ -201,7 +201,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the evaluationFrequency value.
+     * Set how often the metric alert is evaluated represented in ISO 8601 duration format.
      *
      * @param evaluationFrequency the evaluationFrequency value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -212,7 +212,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the windowSize value.
+     * Get the period of time (in ISO 8601 duration format) that is used to monitor alert activity based on the threshold.
      *
      * @return the windowSize value
      */
@@ -221,7 +221,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the windowSize value.
+     * Set the period of time (in ISO 8601 duration format) that is used to monitor alert activity based on the threshold.
      *
      * @param windowSize the windowSize value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -232,7 +232,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the criteria value.
+     * Get defines the specific alert criteria information.
      *
      * @return the criteria value
      */
@@ -241,7 +241,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the criteria value.
+     * Set defines the specific alert criteria information.
      *
      * @param criteria the criteria value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -252,7 +252,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the autoMitigate value.
+     * Get the flag that indicates whether the alert should be auto resolved or not.
      *
      * @return the autoMitigate value
      */
@@ -261,7 +261,7 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Set the autoMitigate value.
+     * Set the flag that indicates whether the alert should be auto resolved or not.
      *
      * @param autoMitigate the autoMitigate value to set
      * @return the MetricAlertResourcePatch object itself.
@@ -272,27 +272,27 @@ public class MetricAlertResourcePatch {
     }
 
     /**
-     * Get the actions value.
+     * Get the array of actions that are performed when the alert rule becomes active, and when an alert condition is resolved.
      *
      * @return the actions value
      */
-    public List<Action> actions() {
+    public List<MetricAlertAction> actions() {
         return this.actions;
     }
 
     /**
-     * Set the actions value.
+     * Set the array of actions that are performed when the alert rule becomes active, and when an alert condition is resolved.
      *
      * @param actions the actions value to set
      * @return the MetricAlertResourcePatch object itself.
      */
-    public MetricAlertResourcePatch withActions(List<Action> actions) {
+    public MetricAlertResourcePatch withActions(List<MetricAlertAction> actions) {
         this.actions = actions;
         return this;
     }
 
     /**
-     * Get the lastUpdatedTime value.
+     * Get last time the rule was updated in ISO8601 format.
      *
      * @return the lastUpdatedTime value
      */

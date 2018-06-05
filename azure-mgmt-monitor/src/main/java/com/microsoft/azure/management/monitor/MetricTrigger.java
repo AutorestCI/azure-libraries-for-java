@@ -73,27 +73,7 @@ public class MetricTrigger {
     private double threshold;
 
     /**
-     * Evaluation operation for Metric -'GreaterThan' or 'LessThan' or 'Equal'.
-     * Possible values include: 'GreaterThan', 'LessThan', 'Equal'.
-     */
-    @JsonProperty(value = "thresholdOperator")
-    private ConditionalOperator thresholdOperator;
-
-    /**
-     * Metric Trigger Type - 'Consecutive' or 'Total'. Possible values include:
-     * 'Consecutive', 'Total'.
-     */
-    @JsonProperty(value = "metricTriggerType")
-    private MetricTriggerType metricTriggerType;
-
-    /**
-     * Evaluation of metric on a particular column.
-     */
-    @JsonProperty(value = "metricColumn")
-    private String metricColumn;
-
-    /**
-     * Get the metricName value.
+     * Get the name of the metric that defines what the rule monitors.
      *
      * @return the metricName value
      */
@@ -102,7 +82,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the metricName value.
+     * Set the name of the metric that defines what the rule monitors.
      *
      * @param metricName the metricName value to set
      * @return the MetricTrigger object itself.
@@ -113,7 +93,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Get the metricResourceUri value.
+     * Get the resource identifier of the resource the rule monitors.
      *
      * @return the metricResourceUri value
      */
@@ -122,7 +102,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the metricResourceUri value.
+     * Set the resource identifier of the resource the rule monitors.
      *
      * @param metricResourceUri the metricResourceUri value to set
      * @return the MetricTrigger object itself.
@@ -133,7 +113,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Get the timeGrain value.
+     * Get the granularity of metrics the rule monitors. Must be one of the predefined values returned from metric definitions for the metric. Must be between 12 hours and 1 minute.
      *
      * @return the timeGrain value
      */
@@ -142,7 +122,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the timeGrain value.
+     * Set the granularity of metrics the rule monitors. Must be one of the predefined values returned from metric definitions for the metric. Must be between 12 hours and 1 minute.
      *
      * @param timeGrain the timeGrain value to set
      * @return the MetricTrigger object itself.
@@ -153,7 +133,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Get the statistic value.
+     * Get the metric statistic type. How the metrics from multiple instances are combined. Possible values include: 'Average', 'Min', 'Max', 'Sum'.
      *
      * @return the statistic value
      */
@@ -162,7 +142,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the statistic value.
+     * Set the metric statistic type. How the metrics from multiple instances are combined. Possible values include: 'Average', 'Min', 'Max', 'Sum'.
      *
      * @param statistic the statistic value to set
      * @return the MetricTrigger object itself.
@@ -173,7 +153,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Get the timeWindow value.
+     * Get the range of time in which instance data is collected. This value must be greater than the delay in metric collection, which can vary from resource-to-resource. Must be between 12 hours and 5 minutes.
      *
      * @return the timeWindow value
      */
@@ -182,7 +162,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the timeWindow value.
+     * Set the range of time in which instance data is collected. This value must be greater than the delay in metric collection, which can vary from resource-to-resource. Must be between 12 hours and 5 minutes.
      *
      * @param timeWindow the timeWindow value to set
      * @return the MetricTrigger object itself.
@@ -193,7 +173,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Get the timeAggregation value.
+     * Get time aggregation type. How the data that is collected should be combined over time. The default value is Average. Possible values include: 'Average', 'Minimum', 'Maximum', 'Total', 'Count'.
      *
      * @return the timeAggregation value
      */
@@ -202,7 +182,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the timeAggregation value.
+     * Set time aggregation type. How the data that is collected should be combined over time. The default value is Average. Possible values include: 'Average', 'Minimum', 'Maximum', 'Total', 'Count'.
      *
      * @param timeAggregation the timeAggregation value to set
      * @return the MetricTrigger object itself.
@@ -213,7 +193,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Get the operator value.
+     * Get the operator that is used to compare the metric data and the threshold. Possible values include: 'Equals', 'NotEquals', 'GreaterThan', 'GreaterThanOrEqual', 'LessThan', 'LessThanOrEqual'.
      *
      * @return the operator value
      */
@@ -222,7 +202,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the operator value.
+     * Set the operator that is used to compare the metric data and the threshold. Possible values include: 'Equals', 'NotEquals', 'GreaterThan', 'GreaterThanOrEqual', 'LessThan', 'LessThanOrEqual'.
      *
      * @param operator the operator value to set
      * @return the MetricTrigger object itself.
@@ -233,7 +213,7 @@ public class MetricTrigger {
     }
 
     /**
-     * Get the threshold value.
+     * Get the threshold of the metric that triggers the scale action.
      *
      * @return the threshold value
      */
@@ -242,73 +222,13 @@ public class MetricTrigger {
     }
 
     /**
-     * Set the threshold value.
+     * Set the threshold of the metric that triggers the scale action.
      *
      * @param threshold the threshold value to set
      * @return the MetricTrigger object itself.
      */
     public MetricTrigger withThreshold(double threshold) {
         this.threshold = threshold;
-        return this;
-    }
-
-    /**
-     * Get the thresholdOperator value.
-     *
-     * @return the thresholdOperator value
-     */
-    public ConditionalOperator thresholdOperator() {
-        return this.thresholdOperator;
-    }
-
-    /**
-     * Set the thresholdOperator value.
-     *
-     * @param thresholdOperator the thresholdOperator value to set
-     * @return the MetricTrigger object itself.
-     */
-    public MetricTrigger withThresholdOperator(ConditionalOperator thresholdOperator) {
-        this.thresholdOperator = thresholdOperator;
-        return this;
-    }
-
-    /**
-     * Get the metricTriggerType value.
-     *
-     * @return the metricTriggerType value
-     */
-    public MetricTriggerType metricTriggerType() {
-        return this.metricTriggerType;
-    }
-
-    /**
-     * Set the metricTriggerType value.
-     *
-     * @param metricTriggerType the metricTriggerType value to set
-     * @return the MetricTrigger object itself.
-     */
-    public MetricTrigger withMetricTriggerType(MetricTriggerType metricTriggerType) {
-        this.metricTriggerType = metricTriggerType;
-        return this;
-    }
-
-    /**
-     * Get the metricColumn value.
-     *
-     * @return the metricColumn value
-     */
-    public String metricColumn() {
-        return this.metricColumn;
-    }
-
-    /**
-     * Set the metricColumn value.
-     *
-     * @param metricColumn the metricColumn value to set
-     * @return the MetricTrigger object itself.
-     */
-    public MetricTrigger withMetricColumn(String metricColumn) {
-        this.metricColumn = metricColumn;
         return this;
     }
 

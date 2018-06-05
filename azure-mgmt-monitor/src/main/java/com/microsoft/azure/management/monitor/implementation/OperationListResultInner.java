@@ -29,7 +29,7 @@ public class OperationListResultInner {
     private String nextLink;
 
     /**
-     * Get the value value.
+     * Get list of operations supported by the Microsoft.Insights provider.
      *
      * @return the value value
      */
@@ -38,7 +38,7 @@ public class OperationListResultInner {
     }
 
     /**
-     * Set the value value.
+     * Set list of operations supported by the Microsoft.Insights provider.
      *
      * @param value the value value to set
      * @return the OperationListResultInner object itself.
@@ -49,7 +49,7 @@ public class OperationListResultInner {
     }
 
     /**
-     * Get the nextLink value.
+     * Get uRL to get the next set of operation list results if there are any.
      *
      * @return the nextLink value
      */
@@ -58,7 +58,7 @@ public class OperationListResultInner {
     }
 
     /**
-     * Set the nextLink value.
+     * Set uRL to get the next set of operation list results if there are any.
      *
      * @param nextLink the nextLink value to set
      * @return the OperationListResultInner object itself.

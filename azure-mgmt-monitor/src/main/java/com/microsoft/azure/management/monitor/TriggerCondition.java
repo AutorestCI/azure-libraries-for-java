@@ -31,10 +31,10 @@ public class TriggerCondition {
      * Trigger condition for metric query rule.
      */
     @JsonProperty(value = "metricTrigger")
-    private MetricTrigger metricTrigger;
+    private LogMetricTrigger metricTrigger;
 
     /**
-     * Get the thresholdOperator value.
+     * Get evaluation operation for rule - 'GreaterThan' or 'LessThan. Possible values include: 'GreaterThan', 'LessThan', 'Equal'.
      *
      * @return the thresholdOperator value
      */
@@ -43,7 +43,7 @@ public class TriggerCondition {
     }
 
     /**
-     * Set the thresholdOperator value.
+     * Set evaluation operation for rule - 'GreaterThan' or 'LessThan. Possible values include: 'GreaterThan', 'LessThan', 'Equal'.
      *
      * @param thresholdOperator the thresholdOperator value to set
      * @return the TriggerCondition object itself.
@@ -54,7 +54,7 @@ public class TriggerCondition {
     }
 
     /**
-     * Get the threshold value.
+     * Get result or count threshold based on which rule should be triggered.
      *
      * @return the threshold value
      */
@@ -63,7 +63,7 @@ public class TriggerCondition {
     }
 
     /**
-     * Set the threshold value.
+     * Set result or count threshold based on which rule should be triggered.
      *
      * @param threshold the threshold value to set
      * @return the TriggerCondition object itself.
@@ -74,21 +74,21 @@ public class TriggerCondition {
     }
 
     /**
-     * Get the metricTrigger value.
+     * Get trigger condition for metric query rule.
      *
      * @return the metricTrigger value
      */
-    public MetricTrigger metricTrigger() {
+    public LogMetricTrigger metricTrigger() {
         return this.metricTrigger;
     }
 
     /**
-     * Set the metricTrigger value.
+     * Set trigger condition for metric query rule.
      *
      * @param metricTrigger the metricTrigger value to set
      * @return the TriggerCondition object itself.
      */
-    public TriggerCondition withMetricTrigger(MetricTrigger metricTrigger) {
+    public TriggerCondition withMetricTrigger(LogMetricTrigger metricTrigger) {
         this.metricTrigger = metricTrigger;
         return this;
     }

@@ -31,7 +31,7 @@ public class ActionGroupPatchBody {
     private Boolean enabled;
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -40,7 +40,7 @@ public class ActionGroupPatchBody {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the ActionGroupPatchBody object itself.
@@ -51,7 +51,7 @@ public class ActionGroupPatchBody {
     }
 
     /**
-     * Get the enabled value.
+     * Get indicates whether this action group is enabled. If an action group is not enabled, then none of its actions will be activated.
      *
      * @return the enabled value
      */
@@ -60,7 +60,7 @@ public class ActionGroupPatchBody {
     }
 
     /**
-     * Set the enabled value.
+     * Set indicates whether this action group is enabled. If an action group is not enabled, then none of its actions will be activated.
      *
      * @param enabled the enabled value to set
      * @return the ActionGroupPatchBody object itself.

@@ -58,7 +58,7 @@ public class ResponseInner {
     private List<MetricInner> value;
 
     /**
-     * Get the cost value.
+     * Get the integer value representing the cost of the query, for data case.
      *
      * @return the cost value
      */
@@ -67,7 +67,7 @@ public class ResponseInner {
     }
 
     /**
-     * Set the cost value.
+     * Set the integer value representing the cost of the query, for data case.
      *
      * @param cost the cost value to set
      * @return the ResponseInner object itself.
@@ -78,7 +78,7 @@ public class ResponseInner {
     }
 
     /**
-     * Get the timespan value.
+     * Get the timespan for which the data was retrieved. Its value consists of two datatimes concatenated, separated by '/'.  This may be adjusted in the future and returned back from what was originally requested.
      *
      * @return the timespan value
      */
@@ -87,7 +87,7 @@ public class ResponseInner {
     }
 
     /**
-     * Set the timespan value.
+     * Set the timespan for which the data was retrieved. Its value consists of two datatimes concatenated, separated by '/'.  This may be adjusted in the future and returned back from what was originally requested.
      *
      * @param timespan the timespan value to set
      * @return the ResponseInner object itself.
@@ -98,7 +98,7 @@ public class ResponseInner {
     }
 
     /**
-     * Get the interval value.
+     * Get the interval (window size) for which the metric data was returned in.  This may be adjusted in the future and returned back from what was originally requested.  This is not present if a metadata request was made.
      *
      * @return the interval value
      */
@@ -107,7 +107,7 @@ public class ResponseInner {
     }
 
     /**
-     * Set the interval value.
+     * Set the interval (window size) for which the metric data was returned in.  This may be adjusted in the future and returned back from what was originally requested.  This is not present if a metadata request was made.
      *
      * @param interval the interval value to set
      * @return the ResponseInner object itself.
@@ -118,7 +118,7 @@ public class ResponseInner {
     }
 
     /**
-     * Get the namespace value.
+     * Get the namespace of the metrics been queried.
      *
      * @return the namespace value
      */
@@ -127,7 +127,7 @@ public class ResponseInner {
     }
 
     /**
-     * Set the namespace value.
+     * Set the namespace of the metrics been queried.
      *
      * @param namespace the namespace value to set
      * @return the ResponseInner object itself.
@@ -138,7 +138,7 @@ public class ResponseInner {
     }
 
     /**
-     * Get the resourceregion value.
+     * Get the region of the resource been queried for metrics.
      *
      * @return the resourceregion value
      */
@@ -147,7 +147,7 @@ public class ResponseInner {
     }
 
     /**
-     * Set the resourceregion value.
+     * Set the region of the resource been queried for metrics.
      *
      * @param resourceregion the resourceregion value to set
      * @return the ResponseInner object itself.
@@ -158,7 +158,7 @@ public class ResponseInner {
     }
 
     /**
-     * Get the value value.
+     * Get the value of the collection.
      *
      * @return the value value
      */
@@ -167,7 +167,7 @@ public class ResponseInner {
     }
 
     /**
-     * Set the value value.
+     * Set the value of the collection.
      *
      * @param value the value value to set
      * @return the ResponseInner object itself.

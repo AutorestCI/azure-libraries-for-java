@@ -33,7 +33,7 @@ public class ProxyOnlyResource {
     private String type;
 
     /**
-     * Get the id value.
+     * Get azure resource Id.
      *
      * @return the id value
      */
@@ -42,7 +42,7 @@ public class ProxyOnlyResource {
     }
 
     /**
-     * Get the name value.
+     * Get azure resource name.
      *
      * @return the name value
      */
@@ -51,7 +51,7 @@ public class ProxyOnlyResource {
     }
 
     /**
-     * Get the type value.
+     * Get azure resource type.
      *
      * @return the type value
      */

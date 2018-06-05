@@ -28,7 +28,7 @@ public class Schedule {
     private int timeWindowInMinutes;
 
     /**
-     * Get the frequencyInMinutes value.
+     * Get frequency (in minutes) at which rule condition should be evaluated.
      *
      * @return the frequencyInMinutes value
      */
@@ -37,7 +37,7 @@ public class Schedule {
     }
 
     /**
-     * Set the frequencyInMinutes value.
+     * Set frequency (in minutes) at which rule condition should be evaluated.
      *
      * @param frequencyInMinutes the frequencyInMinutes value to set
      * @return the Schedule object itself.
@@ -48,7 +48,7 @@ public class Schedule {
     }
 
     /**
-     * Get the timeWindowInMinutes value.
+     * Get time window for which data needs to be fetched for query (should be greater than or equal to frequencyInMinutes).
      *
      * @return the timeWindowInMinutes value
      */
@@ -57,7 +57,7 @@ public class Schedule {
     }
 
     /**
-     * Set the timeWindowInMinutes value.
+     * Set time window for which data needs to be fetched for query (should be greater than or equal to frequencyInMinutes).
      *
      * @param timeWindowInMinutes the timeWindowInMinutes value to set
      * @return the Schedule object itself.

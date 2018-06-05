@@ -31,7 +31,7 @@ public class Recurrence {
     private RecurrentSchedule schedule;
 
     /**
-     * Get the frequency value.
+     * Get the recurrence frequency. How often the schedule profile should take effect. This value must be Week, meaning each week will have the same set of profiles. Possible values include: 'None', 'Second', 'Minute', 'Hour', 'Day', 'Week', 'Month', 'Year'.
      *
      * @return the frequency value
      */
@@ -40,7 +40,7 @@ public class Recurrence {
     }
 
     /**
-     * Set the frequency value.
+     * Set the recurrence frequency. How often the schedule profile should take effect. This value must be Week, meaning each week will have the same set of profiles. Possible values include: 'None', 'Second', 'Minute', 'Hour', 'Day', 'Week', 'Month', 'Year'.
      *
      * @param frequency the frequency value to set
      * @return the Recurrence object itself.
@@ -51,7 +51,7 @@ public class Recurrence {
     }
 
     /**
-     * Get the schedule value.
+     * Get the scheduling constraints for when the profile begins.
      *
      * @return the schedule value
      */
@@ -60,7 +60,7 @@ public class Recurrence {
     }
 
     /**
-     * Set the schedule value.
+     * Set the scheduling constraints for when the profile begins.
      *
      * @param schedule the schedule value to set
      * @return the Recurrence object itself.

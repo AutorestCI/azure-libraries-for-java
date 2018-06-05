@@ -64,7 +64,7 @@ public class AlertRuleResourcePatch {
     private DateTime lastUpdatedTime;
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -73,7 +73,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the AlertRuleResourcePatch object itself.
@@ -84,7 +84,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Get the name value.
+     * Get the name of the alert rule.
      *
      * @return the name value
      */
@@ -93,7 +93,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the alert rule.
      *
      * @param name the name value to set
      * @return the AlertRuleResourcePatch object itself.
@@ -104,7 +104,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Get the description value.
+     * Get the description of the alert rule that will be included in the alert email.
      *
      * @return the description value
      */
@@ -113,7 +113,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Set the description value.
+     * Set the description of the alert rule that will be included in the alert email.
      *
      * @param description the description value to set
      * @return the AlertRuleResourcePatch object itself.
@@ -124,7 +124,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Get the isEnabled value.
+     * Get the flag that indicates whether the alert rule is enabled.
      *
      * @return the isEnabled value
      */
@@ -133,7 +133,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Set the isEnabled value.
+     * Set the flag that indicates whether the alert rule is enabled.
      *
      * @param isEnabled the isEnabled value to set
      * @return the AlertRuleResourcePatch object itself.
@@ -144,7 +144,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Get the condition value.
+     * Get the condition that results in the alert rule being activated.
      *
      * @return the condition value
      */
@@ -153,7 +153,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Set the condition value.
+     * Set the condition that results in the alert rule being activated.
      *
      * @param condition the condition value to set
      * @return the AlertRuleResourcePatch object itself.
@@ -164,7 +164,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Get the actions value.
+     * Get the array of actions that are performed when the alert rule becomes active, and when an alert condition is resolved.
      *
      * @return the actions value
      */
@@ -173,7 +173,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Set the actions value.
+     * Set the array of actions that are performed when the alert rule becomes active, and when an alert condition is resolved.
      *
      * @param actions the actions value to set
      * @return the AlertRuleResourcePatch object itself.
@@ -184,7 +184,7 @@ public class AlertRuleResourcePatch {
     }
 
     /**
-     * Get the lastUpdatedTime value.
+     * Get last time the rule was updated in ISO8601 format.
      *
      * @return the lastUpdatedTime value
      */

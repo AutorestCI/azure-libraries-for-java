@@ -68,7 +68,7 @@ public class LogSearchRuleResourceInner extends Resource {
     private Action action;
 
     /**
-     * Get the description value.
+     * Get the description of the Log Search rule.
      *
      * @return the description value
      */
@@ -77,7 +77,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Set the description value.
+     * Set the description of the Log Search rule.
      *
      * @param description the description value to set
      * @return the LogSearchRuleResourceInner object itself.
@@ -88,7 +88,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the enabled value.
+     * Get the flag which indicates whether the Log Search rule is enabled. Value should be true or false. Possible values include: 'true', 'false'.
      *
      * @return the enabled value
      */
@@ -97,7 +97,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Set the enabled value.
+     * Set the flag which indicates whether the Log Search rule is enabled. Value should be true or false. Possible values include: 'true', 'false'.
      *
      * @param enabled the enabled value to set
      * @return the LogSearchRuleResourceInner object itself.
@@ -108,7 +108,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the lastUpdatedTime value.
+     * Get last time the rule was updated in IS08601 format.
      *
      * @return the lastUpdatedTime value
      */
@@ -117,7 +117,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get provisioning state of the scheduledquery rule. Possible values include: 'Succeeded', 'Deploying', 'Canceled', 'Failed'.
      *
      * @return the provisioningState value
      */
@@ -126,7 +126,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the source value.
+     * Get data Source against which rule will Query Data.
      *
      * @return the source value
      */
@@ -135,7 +135,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Set the source value.
+     * Set data Source against which rule will Query Data.
      *
      * @param source the source value to set
      * @return the LogSearchRuleResourceInner object itself.
@@ -146,7 +146,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the schedule value.
+     * Get schedule (Frequnecy, Time Window) for rule.
      *
      * @return the schedule value
      */
@@ -155,7 +155,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Set the schedule value.
+     * Set schedule (Frequnecy, Time Window) for rule.
      *
      * @param schedule the schedule value to set
      * @return the LogSearchRuleResourceInner object itself.
@@ -166,7 +166,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the action value.
+     * Get action needs to be taken on rule execution.
      *
      * @return the action value
      */
@@ -175,7 +175,7 @@ public class LogSearchRuleResourceInner extends Resource {
     }
 
     /**
-     * Set the action value.
+     * Set action needs to be taken on rule execution.
      *
      * @param action the action value to set
      * @return the LogSearchRuleResourceInner object itself.

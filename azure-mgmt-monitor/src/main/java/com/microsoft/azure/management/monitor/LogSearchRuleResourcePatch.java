@@ -31,7 +31,7 @@ public class LogSearchRuleResourcePatch {
     private Enabled enabled;
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -40,7 +40,7 @@ public class LogSearchRuleResourcePatch {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the LogSearchRuleResourcePatch object itself.
@@ -51,7 +51,7 @@ public class LogSearchRuleResourcePatch {
     }
 
     /**
-     * Get the enabled value.
+     * Get the flag which indicates whether the Log Search rule is enabled. Value should be true or false. Possible values include: 'true', 'false'.
      *
      * @return the enabled value
      */
@@ -60,7 +60,7 @@ public class LogSearchRuleResourcePatch {
     }
 
     /**
-     * Set the enabled value.
+     * Set the flag which indicates whether the Log Search rule is enabled. Value should be true or false. Possible values include: 'true', 'false'.
      *
      * @param enabled the enabled value to set
      * @return the LogSearchRuleResourcePatch object itself.

@@ -34,7 +34,7 @@ public class AzNsActionGroup {
     private String customWebhookPayload;
 
     /**
-     * Get the actionGroup value.
+     * Get azure Action Group reference.
      *
      * @return the actionGroup value
      */
@@ -43,7 +43,7 @@ public class AzNsActionGroup {
     }
 
     /**
-     * Set the actionGroup value.
+     * Set azure Action Group reference.
      *
      * @param actionGroup the actionGroup value to set
      * @return the AzNsActionGroup object itself.
@@ -54,7 +54,7 @@ public class AzNsActionGroup {
     }
 
     /**
-     * Get the emailSubject value.
+     * Get custom subject override for all email ids in Azure action group.
      *
      * @return the emailSubject value
      */
@@ -63,7 +63,7 @@ public class AzNsActionGroup {
     }
 
     /**
-     * Set the emailSubject value.
+     * Set custom subject override for all email ids in Azure action group.
      *
      * @param emailSubject the emailSubject value to set
      * @return the AzNsActionGroup object itself.
@@ -74,7 +74,7 @@ public class AzNsActionGroup {
     }
 
     /**
-     * Get the customWebhookPayload value.
+     * Get custom payload to be sent for all webook URI in Azure action group.
      *
      * @return the customWebhookPayload value
      */
@@ -83,7 +83,7 @@ public class AzNsActionGroup {
     }
 
     /**
-     * Set the customWebhookPayload value.
+     * Set custom payload to be sent for all webook URI in Azure action group.
      *
      * @param customWebhookPayload the customWebhookPayload value to set
      * @return the AzNsActionGroup object itself.

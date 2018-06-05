@@ -51,7 +51,7 @@ public class MetricInner {
     private List<TimeSeriesElement> timeseries;
 
     /**
-     * Get the id value.
+     * Get the metric Id.
      *
      * @return the id value
      */
@@ -60,7 +60,7 @@ public class MetricInner {
     }
 
     /**
-     * Set the id value.
+     * Set the metric Id.
      *
      * @param id the id value to set
      * @return the MetricInner object itself.
@@ -71,7 +71,7 @@ public class MetricInner {
     }
 
     /**
-     * Get the type value.
+     * Get the resource type of the metric resource.
      *
      * @return the type value
      */
@@ -80,7 +80,7 @@ public class MetricInner {
     }
 
     /**
-     * Set the type value.
+     * Set the resource type of the metric resource.
      *
      * @param type the type value to set
      * @return the MetricInner object itself.
@@ -91,7 +91,7 @@ public class MetricInner {
     }
 
     /**
-     * Get the name value.
+     * Get the name and the display name of the metric, i.e. it is localizable string.
      *
      * @return the name value
      */
@@ -100,7 +100,7 @@ public class MetricInner {
     }
 
     /**
-     * Set the name value.
+     * Set the name and the display name of the metric, i.e. it is localizable string.
      *
      * @param name the name value to set
      * @return the MetricInner object itself.
@@ -111,7 +111,7 @@ public class MetricInner {
     }
 
     /**
-     * Get the unit value.
+     * Get the unit of the metric. Possible values include: 'Count', 'Bytes', 'Seconds', 'CountPerSecond', 'BytesPerSecond', 'Percent', 'MilliSeconds', 'ByteSeconds', 'Unspecified'.
      *
      * @return the unit value
      */
@@ -120,7 +120,7 @@ public class MetricInner {
     }
 
     /**
-     * Set the unit value.
+     * Set the unit of the metric. Possible values include: 'Count', 'Bytes', 'Seconds', 'CountPerSecond', 'BytesPerSecond', 'Percent', 'MilliSeconds', 'ByteSeconds', 'Unspecified'.
      *
      * @param unit the unit value to set
      * @return the MetricInner object itself.
@@ -131,7 +131,7 @@ public class MetricInner {
     }
 
     /**
-     * Get the timeseries value.
+     * Get the time series returned when a data query is performed.
      *
      * @return the timeseries value
      */
@@ -140,7 +140,7 @@ public class MetricInner {
     }
 
     /**
-     * Set the timeseries value.
+     * Set the time series returned when a data query is performed.
      *
      * @param timeseries the timeseries value to set
      * @return the MetricInner object itself.

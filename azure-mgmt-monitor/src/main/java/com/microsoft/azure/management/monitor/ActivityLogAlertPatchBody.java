@@ -31,7 +31,7 @@ public class ActivityLogAlertPatchBody {
     private Boolean enabled;
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -40,7 +40,7 @@ public class ActivityLogAlertPatchBody {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the ActivityLogAlertPatchBody object itself.
@@ -51,7 +51,7 @@ public class ActivityLogAlertPatchBody {
     }
 
     /**
-     * Get the enabled value.
+     * Get indicates whether this activity log alert is enabled. If an activity log alert is not enabled, then none of its actions will be activated.
      *
      * @return the enabled value
      */
@@ -60,7 +60,7 @@ public class ActivityLogAlertPatchBody {
     }
 
     /**
-     * Set the enabled value.
+     * Set indicates whether this activity log alert is enabled. If an activity log alert is not enabled, then none of its actions will be activated.
      *
      * @param enabled the enabled value to set
      * @return the ActivityLogAlertPatchBody object itself.

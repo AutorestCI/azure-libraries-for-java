@@ -12,24 +12,23 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * A pointer to an Azure Action Group.
+ * An alert action.
  */
-public class ActivityLogAlertActionGroup {
+public class MetricAlertAction {
     /**
-     * The resourceId of the action group. This cannot be null or empty.
+     * the id of the action group to use.
      */
-    @JsonProperty(value = "actionGroupId", required = true)
+    @JsonProperty(value = "actionGroupId")
     private String actionGroupId;
 
     /**
-     * the dictionary of custom properties to include with the post operation.
-     * These data are appended to the webhook payload.
+     * The webhookProperties property.
      */
     @JsonProperty(value = "webhookProperties")
     private Map<String, String> webhookProperties;
 
     /**
-     * Get the resourceId of the action group. This cannot be null or empty.
+     * Get the id of the action group to use.
      *
      * @return the actionGroupId value
      */
@@ -38,18 +37,18 @@ public class ActivityLogAlertActionGroup {
     }
 
     /**
-     * Set the resourceId of the action group. This cannot be null or empty.
+     * Set the id of the action group to use.
      *
      * @param actionGroupId the actionGroupId value to set
-     * @return the ActivityLogAlertActionGroup object itself.
+     * @return the MetricAlertAction object itself.
      */
-    public ActivityLogAlertActionGroup withActionGroupId(String actionGroupId) {
+    public MetricAlertAction withActionGroupId(String actionGroupId) {
         this.actionGroupId = actionGroupId;
         return this;
     }
 
     /**
-     * Get the dictionary of custom properties to include with the post operation. These data are appended to the webhook payload.
+     * Get the webhookProperties value.
      *
      * @return the webhookProperties value
      */
@@ -58,12 +57,12 @@ public class ActivityLogAlertActionGroup {
     }
 
     /**
-     * Set the dictionary of custom properties to include with the post operation. These data are appended to the webhook payload.
+     * Set the webhookProperties value.
      *
      * @param webhookProperties the webhookProperties value to set
-     * @return the ActivityLogAlertActionGroup object itself.
+     * @return the MetricAlertAction object itself.
      */
-    public ActivityLogAlertActionGroup withWebhookProperties(Map<String, String> webhookProperties) {
+    public MetricAlertAction withWebhookProperties(Map<String, String> webhookProperties) {
         this.webhookProperties = webhookProperties;
         return this;
     }

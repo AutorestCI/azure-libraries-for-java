@@ -55,7 +55,7 @@ public class MetricAlertStatusProperties {
     }
 
     /**
-     * Get the status value.
+     * Get status value.
      *
      * @return the status value
      */
@@ -64,7 +64,7 @@ public class MetricAlertStatusProperties {
     }
 
     /**
-     * Set the status value.
+     * Set status value.
      *
      * @param status the status value to set
      * @return the MetricAlertStatusProperties object itself.
@@ -75,7 +75,7 @@ public class MetricAlertStatusProperties {
     }
 
     /**
-     * Get the timestamp value.
+     * Get uTC time when the status was checked.
      *
      * @return the timestamp value
      */
@@ -84,7 +84,7 @@ public class MetricAlertStatusProperties {
     }
 
     /**
-     * Set the timestamp value.
+     * Set uTC time when the status was checked.
      *
      * @param timestamp the timestamp value to set
      * @return the MetricAlertStatusProperties object itself.
