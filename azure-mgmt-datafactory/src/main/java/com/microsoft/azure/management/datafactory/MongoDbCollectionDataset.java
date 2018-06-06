@@ -29,7 +29,7 @@ public class MongoDbCollectionDataset extends DatasetInner {
     private Object collectionName;
 
     /**
-     * Get the collectionName value.
+     * Get the table name of the MongoDB database. Type: string (or Expression with resultType string).
      *
      * @return the collectionName value
      */
@@ -38,7 +38,7 @@ public class MongoDbCollectionDataset extends DatasetInner {
     }
 
     /**
-     * Set the collectionName value.
+     * Set the table name of the MongoDB database. Type: string (or Expression with resultType string).
      *
      * @param collectionName the collectionName value to set
      * @return the MongoDbCollectionDataset object itself.

@@ -75,7 +75,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the endpoint value.
+     * Get the endpoint of the Responsys server.
      *
      * @return the endpoint value
      */
@@ -84,7 +84,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the endpoint value.
+     * Set the endpoint of the Responsys server.
      *
      * @param endpoint the endpoint value to set
      * @return the ResponsysLinkedService object itself.
@@ -95,7 +95,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clientId value.
+     * Get the client ID associated with the Responsys application. Type: string (or Expression with resultType string).
      *
      * @return the clientId value
      */
@@ -104,7 +104,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clientId value.
+     * Set the client ID associated with the Responsys application. Type: string (or Expression with resultType string).
      *
      * @param clientId the clientId value to set
      * @return the ResponsysLinkedService object itself.
@@ -115,7 +115,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clientSecret value.
+     * Get the client secret associated with the Responsys application. Type: string (or Expression with resultType string).
      *
      * @return the clientSecret value
      */
@@ -124,7 +124,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clientSecret value.
+     * Set the client secret associated with the Responsys application. Type: string (or Expression with resultType string).
      *
      * @param clientSecret the clientSecret value to set
      * @return the ResponsysLinkedService object itself.
@@ -135,7 +135,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the useEncryptedEndpoints value
      */
@@ -144,7 +144,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the ResponsysLinkedService object itself.
@@ -155,7 +155,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the useHostVerification value
      */
@@ -164,7 +164,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the ResponsysLinkedService object itself.
@@ -175,7 +175,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the usePeerVerification value
      */
@@ -184,7 +184,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the ResponsysLinkedService object itself.
@@ -195,7 +195,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -204,7 +204,7 @@ public class ResponsysLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the ResponsysLinkedService object itself.

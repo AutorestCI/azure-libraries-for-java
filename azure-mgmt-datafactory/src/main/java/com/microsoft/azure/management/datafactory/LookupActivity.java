@@ -40,7 +40,7 @@ public class LookupActivity extends ExecutionActivity {
     private Object firstRowOnly;
 
     /**
-     * Get the source value.
+     * Get dataset-specific source properties, same as copy activity source.
      *
      * @return the source value
      */
@@ -49,7 +49,7 @@ public class LookupActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the source value.
+     * Set dataset-specific source properties, same as copy activity source.
      *
      * @param source the source value to set
      * @return the LookupActivity object itself.
@@ -60,7 +60,7 @@ public class LookupActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the dataset value.
+     * Get lookup activity dataset reference.
      *
      * @return the dataset value
      */
@@ -69,7 +69,7 @@ public class LookupActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the dataset value.
+     * Set lookup activity dataset reference.
      *
      * @param dataset the dataset value to set
      * @return the LookupActivity object itself.
@@ -80,7 +80,7 @@ public class LookupActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the firstRowOnly value.
+     * Get whether to return first row or all rows. Default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the firstRowOnly value
      */
@@ -89,7 +89,7 @@ public class LookupActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the firstRowOnly value.
+     * Set whether to return first row or all rows. Default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param firstRowOnly the firstRowOnly value to set
      * @return the LookupActivity object itself.

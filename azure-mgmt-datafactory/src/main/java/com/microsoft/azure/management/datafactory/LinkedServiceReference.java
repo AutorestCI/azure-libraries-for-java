@@ -35,13 +35,14 @@ public class LinkedServiceReference {
 
     /**
      * Creates an instance of LinkedServiceReference class.
+     * @param referenceName reference LinkedService name.
      */
     public LinkedServiceReference() {
         type = "LinkedServiceReference";
     }
 
     /**
-     * Get the type value.
+     * Get linked service reference type.
      *
      * @return the type value
      */
@@ -50,7 +51,7 @@ public class LinkedServiceReference {
     }
 
     /**
-     * Set the type value.
+     * Set linked service reference type.
      *
      * @param type the type value to set
      * @return the LinkedServiceReference object itself.
@@ -61,7 +62,7 @@ public class LinkedServiceReference {
     }
 
     /**
-     * Get the referenceName value.
+     * Get reference LinkedService name.
      *
      * @return the referenceName value
      */
@@ -70,7 +71,7 @@ public class LinkedServiceReference {
     }
 
     /**
-     * Set the referenceName value.
+     * Set reference LinkedService name.
      *
      * @param referenceName the referenceName value to set
      * @return the LinkedServiceReference object itself.
@@ -81,7 +82,7 @@ public class LinkedServiceReference {
     }
 
     /**
-     * Get the parameters value.
+     * Get arguments for LinkedService.
      *
      * @return the parameters value
      */
@@ -90,7 +91,7 @@ public class LinkedServiceReference {
     }
 
     /**
-     * Set the parameters value.
+     * Set arguments for LinkedService.
      *
      * @param parameters the parameters value to set
      * @return the LinkedServiceReference object itself.

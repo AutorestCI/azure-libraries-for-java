@@ -21,7 +21,7 @@ public class IntegrationRuntimeNodeIpAddressInner {
     private String ipAddress;
 
     /**
-     * Get the ipAddress value.
+     * Get the IP address of self-hosted integration runtime node.
      *
      * @return the ipAddress value
      */

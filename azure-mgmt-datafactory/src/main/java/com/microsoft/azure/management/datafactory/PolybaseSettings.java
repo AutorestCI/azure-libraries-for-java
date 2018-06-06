@@ -52,7 +52,7 @@ public class PolybaseSettings {
     private Object useTypeDefault;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -61,7 +61,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the PolybaseSettings object itself.
@@ -72,7 +72,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Get the rejectType value.
+     * Get reject type. Possible values include: 'value', 'percentage'.
      *
      * @return the rejectType value
      */
@@ -81,7 +81,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Set the rejectType value.
+     * Set reject type. Possible values include: 'value', 'percentage'.
      *
      * @param rejectType the rejectType value to set
      * @return the PolybaseSettings object itself.
@@ -92,7 +92,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Get the rejectValue value.
+     * Get specifies the value or the percentage of rows that can be rejected before the query fails. Type: number (or Expression with resultType number), minimum: 0.
      *
      * @return the rejectValue value
      */
@@ -101,7 +101,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Set the rejectValue value.
+     * Set specifies the value or the percentage of rows that can be rejected before the query fails. Type: number (or Expression with resultType number), minimum: 0.
      *
      * @param rejectValue the rejectValue value to set
      * @return the PolybaseSettings object itself.
@@ -112,7 +112,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Get the rejectSampleValue value.
+     * Get determines the number of rows to attempt to retrieve before the PolyBase recalculates the percentage of rejected rows. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the rejectSampleValue value
      */
@@ -121,7 +121,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Set the rejectSampleValue value.
+     * Set determines the number of rows to attempt to retrieve before the PolyBase recalculates the percentage of rejected rows. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param rejectSampleValue the rejectSampleValue value to set
      * @return the PolybaseSettings object itself.
@@ -132,7 +132,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Get the useTypeDefault value.
+     * Get specifies how to handle missing values in delimited text files when PolyBase retrieves data from the text file. Type: boolean (or Expression with resultType boolean).
      *
      * @return the useTypeDefault value
      */
@@ -141,7 +141,7 @@ public class PolybaseSettings {
     }
 
     /**
-     * Set the useTypeDefault value.
+     * Set specifies how to handle missing values in delimited text files when PolyBase retrieves data from the text file. Type: boolean (or Expression with resultType boolean).
      *
      * @param useTypeDefault the useTypeDefault value to set
      * @return the PolybaseSettings object itself.

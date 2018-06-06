@@ -73,7 +73,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get the endpoint of the Xero server. (i.e. api.xero.com).
      *
      * @return the host value
      */
@@ -82,7 +82,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set the endpoint of the Xero server. (i.e. api.xero.com).
      *
      * @param host the host value to set
      * @return the XeroLinkedService object itself.
@@ -93,7 +93,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the consumerKey value.
+     * Get the consumer key associated with the Xero application.
      *
      * @return the consumerKey value
      */
@@ -102,7 +102,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the consumerKey value.
+     * Set the consumer key associated with the Xero application.
      *
      * @param consumerKey the consumerKey value to set
      * @return the XeroLinkedService object itself.
@@ -113,7 +113,8 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the privateKey value.
+     * Get the private key from the .pem file that was generated for your Xero private application. You must include all the text from the .pem file, including the Unix line endings(
+     ).
      *
      * @return the privateKey value
      */
@@ -122,7 +123,8 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the privateKey value.
+     * Set the private key from the .pem file that was generated for your Xero private application. You must include all the text from the .pem file, including the Unix line endings(
+     ).
      *
      * @param privateKey the privateKey value to set
      * @return the XeroLinkedService object itself.
@@ -133,7 +135,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -142,7 +144,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the XeroLinkedService object itself.
@@ -153,7 +155,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -162,7 +164,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the XeroLinkedService object itself.
@@ -173,7 +175,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -182,7 +184,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the XeroLinkedService object itself.
@@ -193,7 +195,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -202,7 +204,7 @@ public class XeroLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the XeroLinkedService object itself.

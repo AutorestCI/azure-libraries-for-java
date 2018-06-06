@@ -27,7 +27,7 @@ public class PipelineRunInvokedBy {
     private String id;
 
     /**
-     * Get the name value.
+     * Get name of the entity that started the pipeline run.
      *
      * @return the name value
      */
@@ -36,7 +36,7 @@ public class PipelineRunInvokedBy {
     }
 
     /**
-     * Get the id value.
+     * Get the ID of the entity that started the run.
      *
      * @return the id value
      */

@@ -29,7 +29,7 @@ public class DocumentDbCollectionDataset extends DatasetInner {
     private Object collectionName;
 
     /**
-     * Get the collectionName value.
+     * Get document Database collection name. Type: string (or Expression with resultType string).
      *
      * @return the collectionName value
      */
@@ -38,7 +38,7 @@ public class DocumentDbCollectionDataset extends DatasetInner {
     }
 
     /**
-     * Set the collectionName value.
+     * Set document Database collection name. Type: string (or Expression with resultType string).
      *
      * @param collectionName the collectionName value to set
      * @return the DocumentDbCollectionDataset object itself.

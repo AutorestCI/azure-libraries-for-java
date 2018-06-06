@@ -47,7 +47,7 @@ public class SqlSink extends CopySink {
     private Map<String, StoredProcedureParameter> storedProcedureParameters;
 
     /**
-     * Get the sqlWriterStoredProcedureName value.
+     * Get sQL writer stored procedure name. Type: string (or Expression with resultType string).
      *
      * @return the sqlWriterStoredProcedureName value
      */
@@ -56,7 +56,7 @@ public class SqlSink extends CopySink {
     }
 
     /**
-     * Set the sqlWriterStoredProcedureName value.
+     * Set sQL writer stored procedure name. Type: string (or Expression with resultType string).
      *
      * @param sqlWriterStoredProcedureName the sqlWriterStoredProcedureName value to set
      * @return the SqlSink object itself.
@@ -67,7 +67,7 @@ public class SqlSink extends CopySink {
     }
 
     /**
-     * Get the sqlWriterTableType value.
+     * Get sQL writer table type. Type: string (or Expression with resultType string).
      *
      * @return the sqlWriterTableType value
      */
@@ -76,7 +76,7 @@ public class SqlSink extends CopySink {
     }
 
     /**
-     * Set the sqlWriterTableType value.
+     * Set sQL writer table type. Type: string (or Expression with resultType string).
      *
      * @param sqlWriterTableType the sqlWriterTableType value to set
      * @return the SqlSink object itself.
@@ -87,7 +87,7 @@ public class SqlSink extends CopySink {
     }
 
     /**
-     * Get the preCopyScript value.
+     * Get sQL pre-copy script. Type: string (or Expression with resultType string).
      *
      * @return the preCopyScript value
      */
@@ -96,7 +96,7 @@ public class SqlSink extends CopySink {
     }
 
     /**
-     * Set the preCopyScript value.
+     * Set sQL pre-copy script. Type: string (or Expression with resultType string).
      *
      * @param preCopyScript the preCopyScript value to set
      * @return the SqlSink object itself.
@@ -107,7 +107,7 @@ public class SqlSink extends CopySink {
     }
 
     /**
-     * Get the storedProcedureParameters value.
+     * Get sQL stored procedure parameters.
      *
      * @return the storedProcedureParameters value
      */
@@ -116,7 +116,7 @@ public class SqlSink extends CopySink {
     }
 
     /**
-     * Set the storedProcedureParameters value.
+     * Set sQL stored procedure parameters.
      *
      * @param storedProcedureParameters the storedProcedureParameters value to set
      * @return the SqlSink object itself.

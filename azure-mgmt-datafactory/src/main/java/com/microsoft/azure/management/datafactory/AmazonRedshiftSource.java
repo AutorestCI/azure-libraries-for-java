@@ -34,7 +34,7 @@ public class AmazonRedshiftSource extends CopySource {
     private RedshiftUnloadSettings redshiftUnloadSettings;
 
     /**
-     * Get the query value.
+     * Get database query. Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -43,7 +43,7 @@ public class AmazonRedshiftSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set database query. Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the AmazonRedshiftSource object itself.
@@ -54,7 +54,7 @@ public class AmazonRedshiftSource extends CopySource {
     }
 
     /**
-     * Get the redshiftUnloadSettings value.
+     * Get the Amazon S3 settings needed for the interim Amazon S3 when copying from Amazon Redshift with unload. With this, data from Amazon Redshift source will be unloaded into S3 first and then copied into the targeted sink from the interim S3.
      *
      * @return the redshiftUnloadSettings value
      */
@@ -63,7 +63,7 @@ public class AmazonRedshiftSource extends CopySource {
     }
 
     /**
-     * Set the redshiftUnloadSettings value.
+     * Set the Amazon S3 settings needed for the interim Amazon S3 when copying from Amazon Redshift with unload. With this, data from Amazon Redshift source will be unloaded into S3 first and then copied into the targeted sink from the interim S3.
      *
      * @param redshiftUnloadSettings the redshiftUnloadSettings value to set
      * @return the AmazonRedshiftSource object itself.

@@ -103,7 +103,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get the IP address or host name of the Impala server. (i.e. 192.168.222.160).
      *
      * @return the host value
      */
@@ -112,7 +112,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set the IP address or host name of the Impala server. (i.e. 192.168.222.160).
      *
      * @param host the host value to set
      * @return the ImpalaLinkedService object itself.
@@ -123,7 +123,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port that the Impala server uses to listen for client connections. The default value is 21050.
      *
      * @return the port value
      */
@@ -132,7 +132,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port that the Impala server uses to listen for client connections. The default value is 21050.
      *
      * @param port the port value to set
      * @return the ImpalaLinkedService object itself.
@@ -143,7 +143,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type to use. Possible values include: 'Anonymous', 'SASLUsername', 'UsernameAndPassword'.
      *
      * @return the authenticationType value
      */
@@ -152,7 +152,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type to use. Possible values include: 'Anonymous', 'SASLUsername', 'UsernameAndPassword'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the ImpalaLinkedService object itself.
@@ -163,7 +163,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the user name used to access the Impala server. The default value is anonymous when using SASLUsername.
      *
      * @return the username value
      */
@@ -172,7 +172,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the user name used to access the Impala server. The default value is anonymous when using SASLUsername.
      *
      * @param username the username value to set
      * @return the ImpalaLinkedService object itself.
@@ -183,7 +183,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password corresponding to the user name when using UsernameAndPassword.
      *
      * @return the password value
      */
@@ -192,7 +192,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password corresponding to the user name when using UsernameAndPassword.
      *
      * @param password the password value to set
      * @return the ImpalaLinkedService object itself.
@@ -203,7 +203,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the enableSsl value.
+     * Get specifies whether the connections to the server are encrypted using SSL. The default value is false.
      *
      * @return the enableSsl value
      */
@@ -212,7 +212,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the enableSsl value.
+     * Set specifies whether the connections to the server are encrypted using SSL. The default value is false.
      *
      * @param enableSsl the enableSsl value to set
      * @return the ImpalaLinkedService object itself.
@@ -223,7 +223,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the trustedCertPath value.
+     * Get the full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
      *
      * @return the trustedCertPath value
      */
@@ -232,7 +232,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the trustedCertPath value.
+     * Set the full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
      *
      * @param trustedCertPath the trustedCertPath value to set
      * @return the ImpalaLinkedService object itself.
@@ -243,7 +243,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useSystemTrustStore value.
+     * Get specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
      *
      * @return the useSystemTrustStore value
      */
@@ -252,7 +252,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useSystemTrustStore value.
+     * Set specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
      *
      * @param useSystemTrustStore the useSystemTrustStore value to set
      * @return the ImpalaLinkedService object itself.
@@ -263,7 +263,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the allowHostNameCNMismatch value.
+     * Get specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
      *
      * @return the allowHostNameCNMismatch value
      */
@@ -272,7 +272,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the allowHostNameCNMismatch value.
+     * Set specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
      *
      * @param allowHostNameCNMismatch the allowHostNameCNMismatch value to set
      * @return the ImpalaLinkedService object itself.
@@ -283,7 +283,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the allowSelfSignedServerCert value.
+     * Get specifies whether to allow self-signed certificates from the server. The default value is false.
      *
      * @return the allowSelfSignedServerCert value
      */
@@ -292,7 +292,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the allowSelfSignedServerCert value.
+     * Set specifies whether to allow self-signed certificates from the server. The default value is false.
      *
      * @param allowSelfSignedServerCert the allowSelfSignedServerCert value to set
      * @return the ImpalaLinkedService object itself.
@@ -303,7 +303,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -312,7 +312,7 @@ public class ImpalaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the ImpalaLinkedService object itself.

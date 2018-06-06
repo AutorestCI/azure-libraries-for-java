@@ -29,7 +29,7 @@ public class AzureSearchIndexDataset extends DatasetInner {
     private Object indexName;
 
     /**
-     * Get the indexName value.
+     * Get the name of the Azure Search Index. Type: string (or Expression with resultType string).
      *
      * @return the indexName value
      */
@@ -38,7 +38,7 @@ public class AzureSearchIndexDataset extends DatasetInner {
     }
 
     /**
-     * Set the indexName value.
+     * Set the name of the Azure Search Index. Type: string (or Expression with resultType string).
      *
      * @param indexName the indexName value to set
      * @return the AzureSearchIndexDataset object itself.

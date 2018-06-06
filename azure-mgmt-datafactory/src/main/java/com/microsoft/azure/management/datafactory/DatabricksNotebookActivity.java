@@ -38,7 +38,7 @@ public class DatabricksNotebookActivity extends ExecutionActivity {
     private Map<String, Object> baseParameters;
 
     /**
-     * Get the notebookPath value.
+     * Get the absolute path of the notebook to be run in the Databricks Workspace. This path must begin with a slash. Type: string (or Expression with resultType string).
      *
      * @return the notebookPath value
      */
@@ -47,7 +47,7 @@ public class DatabricksNotebookActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the notebookPath value.
+     * Set the absolute path of the notebook to be run in the Databricks Workspace. This path must begin with a slash. Type: string (or Expression with resultType string).
      *
      * @param notebookPath the notebookPath value to set
      * @return the DatabricksNotebookActivity object itself.
@@ -58,7 +58,7 @@ public class DatabricksNotebookActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the baseParameters value.
+     * Get base parameters to be used for each run of this job.If the notebook takes a parameter that is not specified, the default value from the notebook will be used.
      *
      * @return the baseParameters value
      */
@@ -67,7 +67,7 @@ public class DatabricksNotebookActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the baseParameters value.
+     * Set base parameters to be used for each run of this job.If the notebook takes a parameter that is not specified, the default value from the notebook will be used.
      *
      * @param baseParameters the baseParameters value to set
      * @return the DatabricksNotebookActivity object itself.

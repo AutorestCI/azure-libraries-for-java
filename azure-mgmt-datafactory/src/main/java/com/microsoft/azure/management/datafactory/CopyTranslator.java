@@ -30,7 +30,7 @@ public class CopyTranslator {
     private Map<String, Object> additionalProperties;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -39,7 +39,7 @@ public class CopyTranslator {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the CopyTranslator object itself.

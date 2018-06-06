@@ -44,7 +44,7 @@ public class ManagedIntegrationRuntime extends IntegrationRuntimeInner {
     private IntegrationRuntimeSsisProperties ssisProperties;
 
     /**
-     * Get the state value.
+     * Get integration runtime state, only valid for managed dedicated integration runtime. Possible values include: 'Initial', 'Stopped', 'Started', 'Starting', 'Stopping', 'NeedRegistration', 'Online', 'Limited', 'Offline'.
      *
      * @return the state value
      */
@@ -53,7 +53,7 @@ public class ManagedIntegrationRuntime extends IntegrationRuntimeInner {
     }
 
     /**
-     * Get the computeProperties value.
+     * Get the compute resource for managed integration runtime.
      *
      * @return the computeProperties value
      */
@@ -62,7 +62,7 @@ public class ManagedIntegrationRuntime extends IntegrationRuntimeInner {
     }
 
     /**
-     * Set the computeProperties value.
+     * Set the compute resource for managed integration runtime.
      *
      * @param computeProperties the computeProperties value to set
      * @return the ManagedIntegrationRuntime object itself.
@@ -73,7 +73,7 @@ public class ManagedIntegrationRuntime extends IntegrationRuntimeInner {
     }
 
     /**
-     * Get the ssisProperties value.
+     * Get sSIS properties for managed integration runtime.
      *
      * @return the ssisProperties value
      */
@@ -82,7 +82,7 @@ public class ManagedIntegrationRuntime extends IntegrationRuntimeInner {
     }
 
     /**
-     * Set the ssisProperties value.
+     * Set sSIS properties for managed integration runtime.
      *
      * @param ssisProperties the ssisProperties value to set
      * @return the ManagedIntegrationRuntime object itself.

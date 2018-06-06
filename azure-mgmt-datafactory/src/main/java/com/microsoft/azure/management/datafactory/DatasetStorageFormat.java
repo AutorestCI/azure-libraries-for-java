@@ -46,7 +46,7 @@ public class DatasetStorageFormat {
     private Object deserializer;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -55,7 +55,7 @@ public class DatasetStorageFormat {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the DatasetStorageFormat object itself.
@@ -66,7 +66,7 @@ public class DatasetStorageFormat {
     }
 
     /**
-     * Get the serializer value.
+     * Get serializer. Type: string (or Expression with resultType string).
      *
      * @return the serializer value
      */
@@ -75,7 +75,7 @@ public class DatasetStorageFormat {
     }
 
     /**
-     * Set the serializer value.
+     * Set serializer. Type: string (or Expression with resultType string).
      *
      * @param serializer the serializer value to set
      * @return the DatasetStorageFormat object itself.
@@ -86,7 +86,7 @@ public class DatasetStorageFormat {
     }
 
     /**
-     * Get the deserializer value.
+     * Get deserializer. Type: string (or Expression with resultType string).
      *
      * @return the deserializer value
      */
@@ -95,7 +95,7 @@ public class DatasetStorageFormat {
     }
 
     /**
-     * Set the deserializer value.
+     * Set deserializer. Type: string (or Expression with resultType string).
      *
      * @param deserializer the deserializer value to set
      * @return the DatasetStorageFormat object itself.

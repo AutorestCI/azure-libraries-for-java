@@ -50,7 +50,7 @@ public class Activity {
     private List<ActivityDependency> dependsOn;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -59,7 +59,7 @@ public class Activity {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the Activity object itself.
@@ -70,7 +70,7 @@ public class Activity {
     }
 
     /**
-     * Get the name value.
+     * Get activity name.
      *
      * @return the name value
      */
@@ -79,7 +79,7 @@ public class Activity {
     }
 
     /**
-     * Set the name value.
+     * Set activity name.
      *
      * @param name the name value to set
      * @return the Activity object itself.
@@ -90,7 +90,7 @@ public class Activity {
     }
 
     /**
-     * Get the description value.
+     * Get activity description.
      *
      * @return the description value
      */
@@ -99,7 +99,7 @@ public class Activity {
     }
 
     /**
-     * Set the description value.
+     * Set activity description.
      *
      * @param description the description value to set
      * @return the Activity object itself.
@@ -110,7 +110,7 @@ public class Activity {
     }
 
     /**
-     * Get the dependsOn value.
+     * Get activity depends on condition.
      *
      * @return the dependsOn value
      */
@@ -119,7 +119,7 @@ public class Activity {
     }
 
     /**
-     * Set the dependsOn value.
+     * Set activity depends on condition.
      *
      * @param dependsOn the dependsOn value to set
      * @return the Activity object itself.

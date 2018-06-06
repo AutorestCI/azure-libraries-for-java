@@ -23,9 +23,10 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 public class AzureStorageLinkedService extends LinkedServiceInner {
     /**
      * The connection string. It is mutually exclusive with sasUri property.
+     * Type: string, SecureString or AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString")
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * SAS URI of the Azure Storage resource. It is mutually exclusive with
@@ -43,27 +44,27 @@ public class AzureStorageLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the connection string. It is mutually exclusive with sasUri property. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
     /**
-     * Set the connectionString value.
+     * Set the connection string. It is mutually exclusive with sasUri property. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @param connectionString the connectionString value to set
      * @return the AzureStorageLinkedService object itself.
      */
-    public AzureStorageLinkedService withConnectionString(SecretBase connectionString) {
+    public AzureStorageLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }
 
     /**
-     * Get the sasUri value.
+     * Get sAS URI of the Azure Storage resource. It is mutually exclusive with connectionString property.
      *
      * @return the sasUri value
      */
@@ -72,7 +73,7 @@ public class AzureStorageLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the sasUri value.
+     * Set sAS URI of the Azure Storage resource. It is mutually exclusive with connectionString property.
      *
      * @param sasUri the sasUri value to set
      * @return the AzureStorageLinkedService object itself.
@@ -83,7 +84,7 @@ public class AzureStorageLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -92,7 +93,7 @@ public class AzureStorageLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureStorageLinkedService object itself.

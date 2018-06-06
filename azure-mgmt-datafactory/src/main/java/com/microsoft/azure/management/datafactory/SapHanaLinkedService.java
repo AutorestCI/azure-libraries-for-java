@@ -57,7 +57,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the server value.
+     * Get host name of the SAP HANA server. Type: string (or Expression with resultType string).
      *
      * @return the server value
      */
@@ -66,7 +66,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the server value.
+     * Set host name of the SAP HANA server. Type: string (or Expression with resultType string).
      *
      * @param server the server value to set
      * @return the SapHanaLinkedService object itself.
@@ -77,7 +77,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type to be used to connect to the SAP HANA server. Possible values include: 'Basic', 'Windows'.
      *
      * @return the authenticationType value
      */
@@ -86,7 +86,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type to be used to connect to the SAP HANA server. Possible values include: 'Basic', 'Windows'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the SapHanaLinkedService object itself.
@@ -97,7 +97,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get username to access the SAP HANA server. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -106,7 +106,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set username to access the SAP HANA server. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the SapHanaLinkedService object itself.
@@ -117,7 +117,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password to access the SAP HANA server.
      *
      * @return the password value
      */
@@ -126,7 +126,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password to access the SAP HANA server.
      *
      * @param password the password value to set
      * @return the SapHanaLinkedService object itself.
@@ -137,7 +137,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -146,7 +146,7 @@ public class SapHanaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the SapHanaLinkedService object itself.

@@ -15,6 +15,8 @@ import com.microsoft.azure.ListOperationCallback;
 import com.microsoft.azure.management.datafactory.ErrorResponseException;
 import com.microsoft.azure.management.datafactory.IntegrationRuntimeAuthKeyName;
 import com.microsoft.azure.management.datafactory.IntegrationRuntimeRegenerateKeyParameters;
+import com.microsoft.azure.management.datafactory.IntegrationRuntimeRemoveNodeRequest;
+import com.microsoft.azure.management.datafactory.UpdateIntegrationRuntimeRequest;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -79,7 +81,7 @@ public class IntegrationRuntimesInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.IntegrationRuntimes update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Body UpdateIntegrationRuntimeRequestInner updateIntegrationRuntimeRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Body UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.IntegrationRuntimes delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}", method = "DELETE", hasBody = true)
@@ -119,7 +121,7 @@ public class IntegrationRuntimesInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.IntegrationRuntimes removeNode" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/removeNode")
-        Observable<Response<ResponseBody>> removeNode(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Body IntegrationRuntimeRemoveNodeRequestInner removeNodeParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> removeNode(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Body IntegrationRuntimeRemoveNodeRequest removeNodeParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.IntegrationRuntimes syncCredentials" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/syncCredentials")
@@ -571,7 +573,7 @@ public class IntegrationRuntimesInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the IntegrationRuntimeStatusResponseInner object if successful.
      */
-    public IntegrationRuntimeStatusResponseInner update(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequestInner updateIntegrationRuntimeRequest) {
+    public IntegrationRuntimeStatusResponseInner update(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
         return updateWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, updateIntegrationRuntimeRequest).toBlocking().single().body();
     }
 
@@ -586,7 +588,7 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<IntegrationRuntimeStatusResponseInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequestInner updateIntegrationRuntimeRequest, final ServiceCallback<IntegrationRuntimeStatusResponseInner> serviceCallback) {
+    public ServiceFuture<IntegrationRuntimeStatusResponseInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest, final ServiceCallback<IntegrationRuntimeStatusResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, updateIntegrationRuntimeRequest), serviceCallback);
     }
 
@@ -600,7 +602,7 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the IntegrationRuntimeStatusResponseInner object
      */
-    public Observable<IntegrationRuntimeStatusResponseInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequestInner updateIntegrationRuntimeRequest) {
+    public Observable<IntegrationRuntimeStatusResponseInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
         return updateWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, updateIntegrationRuntimeRequest).map(new Func1<ServiceResponse<IntegrationRuntimeStatusResponseInner>, IntegrationRuntimeStatusResponseInner>() {
             @Override
             public IntegrationRuntimeStatusResponseInner call(ServiceResponse<IntegrationRuntimeStatusResponseInner> response) {
@@ -619,7 +621,7 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the IntegrationRuntimeStatusResponseInner object
      */
-    public Observable<ServiceResponse<IntegrationRuntimeStatusResponseInner>> updateWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequestInner updateIntegrationRuntimeRequest) {
+    public Observable<ServiceResponse<IntegrationRuntimeStatusResponseInner>> updateWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1569,7 +1571,7 @@ public class IntegrationRuntimesInner {
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void removeNode(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequestInner removeNodeParameters) {
+    public void removeNode(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequest removeNodeParameters) {
         removeNodeWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, removeNodeParameters).toBlocking().single().body();
     }
 
@@ -1584,7 +1586,7 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> removeNodeAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequestInner removeNodeParameters, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<Void> removeNodeAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequest removeNodeParameters, final ServiceCallback<Void> serviceCallback) {
         return ServiceFuture.fromResponse(removeNodeWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, removeNodeParameters), serviceCallback);
     }
 
@@ -1598,7 +1600,7 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<Void> removeNodeAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequestInner removeNodeParameters) {
+    public Observable<Void> removeNodeAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequest removeNodeParameters) {
         return removeNodeWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, removeNodeParameters).map(new Func1<ServiceResponse<Void>, Void>() {
             @Override
             public Void call(ServiceResponse<Void> response) {
@@ -1617,7 +1619,7 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponse} object if successful.
      */
-    public Observable<ServiceResponse<Void>> removeNodeWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequestInner removeNodeParameters) {
+    public Observable<ServiceResponse<Void>> removeNodeWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimeRemoveNodeRequest removeNodeParameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

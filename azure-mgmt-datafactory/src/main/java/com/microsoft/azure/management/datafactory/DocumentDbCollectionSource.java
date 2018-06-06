@@ -32,7 +32,7 @@ public class DocumentDbCollectionSource extends CopySource {
     private Object nestingSeparator;
 
     /**
-     * Get the query value.
+     * Get documents query. Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -41,7 +41,7 @@ public class DocumentDbCollectionSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set documents query. Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the DocumentDbCollectionSource object itself.
@@ -52,7 +52,7 @@ public class DocumentDbCollectionSource extends CopySource {
     }
 
     /**
-     * Get the nestingSeparator value.
+     * Get nested properties separator. Type: string (or Expression with resultType string).
      *
      * @return the nestingSeparator value
      */
@@ -61,7 +61,7 @@ public class DocumentDbCollectionSource extends CopySource {
     }
 
     /**
-     * Set the nestingSeparator value.
+     * Set nested properties separator. Type: string (or Expression with resultType string).
      *
      * @param nestingSeparator the nestingSeparator value to set
      * @return the DocumentDbCollectionSource object itself.

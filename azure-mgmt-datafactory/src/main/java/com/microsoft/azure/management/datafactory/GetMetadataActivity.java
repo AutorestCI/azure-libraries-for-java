@@ -34,7 +34,7 @@ public class GetMetadataActivity extends ExecutionActivity {
     private List<Object> fieldList;
 
     /**
-     * Get the dataset value.
+     * Get getMetadata activity dataset reference.
      *
      * @return the dataset value
      */
@@ -43,7 +43,7 @@ public class GetMetadataActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the dataset value.
+     * Set getMetadata activity dataset reference.
      *
      * @param dataset the dataset value to set
      * @return the GetMetadataActivity object itself.
@@ -54,7 +54,7 @@ public class GetMetadataActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the fieldList value.
+     * Get fields of metadata to get from dataset.
      *
      * @return the fieldList value
      */
@@ -63,7 +63,7 @@ public class GetMetadataActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the fieldList value.
+     * Set fields of metadata to get from dataset.
      *
      * @param fieldList the fieldList value to set
      * @return the GetMetadataActivity object itself.

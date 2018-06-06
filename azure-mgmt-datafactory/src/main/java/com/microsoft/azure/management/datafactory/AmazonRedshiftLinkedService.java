@@ -65,7 +65,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the server value.
+     * Get the name of the Amazon Redshift server. Type: string (or Expression with resultType string).
      *
      * @return the server value
      */
@@ -74,7 +74,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the server value.
+     * Set the name of the Amazon Redshift server. Type: string (or Expression with resultType string).
      *
      * @param server the server value to set
      * @return the AmazonRedshiftLinkedService object itself.
@@ -85,7 +85,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the username of the Amazon Redshift source. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -94,7 +94,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the username of the Amazon Redshift source. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the AmazonRedshiftLinkedService object itself.
@@ -105,7 +105,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password of the Amazon Redshift source.
      *
      * @return the password value
      */
@@ -114,7 +114,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password of the Amazon Redshift source.
      *
      * @param password the password value to set
      * @return the AmazonRedshiftLinkedService object itself.
@@ -125,7 +125,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the database value.
+     * Get the database name of the Amazon Redshift source. Type: string (or Expression with resultType string).
      *
      * @return the database value
      */
@@ -134,7 +134,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the database value.
+     * Set the database name of the Amazon Redshift source. Type: string (or Expression with resultType string).
      *
      * @param database the database value to set
      * @return the AmazonRedshiftLinkedService object itself.
@@ -145,7 +145,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port number that the Amazon Redshift server uses to listen for client connections. The default value is 5439. Type: integer (or Expression with resultType integer).
      *
      * @return the port value
      */
@@ -154,7 +154,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port number that the Amazon Redshift server uses to listen for client connections. The default value is 5439. Type: integer (or Expression with resultType integer).
      *
      * @param port the port value to set
      * @return the AmazonRedshiftLinkedService object itself.
@@ -165,7 +165,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -174,7 +174,7 @@ public class AmazonRedshiftLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AmazonRedshiftLinkedService object itself.

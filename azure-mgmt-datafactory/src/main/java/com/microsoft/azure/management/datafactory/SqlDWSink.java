@@ -39,7 +39,7 @@ public class SqlDWSink extends CopySink {
     private PolybaseSettings polyBaseSettings;
 
     /**
-     * Get the preCopyScript value.
+     * Get sQL pre-copy script. Type: string (or Expression with resultType string).
      *
      * @return the preCopyScript value
      */
@@ -48,7 +48,7 @@ public class SqlDWSink extends CopySink {
     }
 
     /**
-     * Set the preCopyScript value.
+     * Set sQL pre-copy script. Type: string (or Expression with resultType string).
      *
      * @param preCopyScript the preCopyScript value to set
      * @return the SqlDWSink object itself.
@@ -59,7 +59,7 @@ public class SqlDWSink extends CopySink {
     }
 
     /**
-     * Get the allowPolyBase value.
+     * Get indicates to use PolyBase to copy data into SQL Data Warehouse when applicable. Type: boolean (or Expression with resultType boolean).
      *
      * @return the allowPolyBase value
      */
@@ -68,7 +68,7 @@ public class SqlDWSink extends CopySink {
     }
 
     /**
-     * Set the allowPolyBase value.
+     * Set indicates to use PolyBase to copy data into SQL Data Warehouse when applicable. Type: boolean (or Expression with resultType boolean).
      *
      * @param allowPolyBase the allowPolyBase value to set
      * @return the SqlDWSink object itself.
@@ -79,7 +79,7 @@ public class SqlDWSink extends CopySink {
     }
 
     /**
-     * Get the polyBaseSettings value.
+     * Get specifies PolyBase-related settings when allowPolyBase is true.
      *
      * @return the polyBaseSettings value
      */
@@ -88,7 +88,7 @@ public class SqlDWSink extends CopySink {
     }
 
     /**
-     * Set the polyBaseSettings value.
+     * Set specifies PolyBase-related settings when allowPolyBase is true.
      *
      * @param polyBaseSettings the polyBaseSettings value to set
      * @return the SqlDWSink object itself.

@@ -27,7 +27,7 @@ public class WaitActivity extends ControlActivity {
     private int waitTimeInSeconds;
 
     /**
-     * Get the waitTimeInSeconds value.
+     * Get duration in seconds.
      *
      * @return the waitTimeInSeconds value
      */
@@ -36,7 +36,7 @@ public class WaitActivity extends ControlActivity {
     }
 
     /**
-     * Set the waitTimeInSeconds value.
+     * Set duration in seconds.
      *
      * @param waitTimeInSeconds the waitTimeInSeconds value to set
      * @return the WaitActivity object itself.

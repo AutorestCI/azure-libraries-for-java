@@ -70,7 +70,7 @@ public class CopySink {
     private Object sinkRetryWait;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -79,7 +79,7 @@ public class CopySink {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the CopySink object itself.
@@ -90,7 +90,7 @@ public class CopySink {
     }
 
     /**
-     * Get the writeBatchSize value.
+     * Get write batch size. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the writeBatchSize value
      */
@@ -99,7 +99,7 @@ public class CopySink {
     }
 
     /**
-     * Set the writeBatchSize value.
+     * Set write batch size. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param writeBatchSize the writeBatchSize value to set
      * @return the CopySink object itself.
@@ -110,7 +110,7 @@ public class CopySink {
     }
 
     /**
-     * Get the writeBatchTimeout value.
+     * Get write batch timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the writeBatchTimeout value
      */
@@ -119,7 +119,7 @@ public class CopySink {
     }
 
     /**
-     * Set the writeBatchTimeout value.
+     * Set write batch timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param writeBatchTimeout the writeBatchTimeout value to set
      * @return the CopySink object itself.
@@ -130,7 +130,7 @@ public class CopySink {
     }
 
     /**
-     * Get the sinkRetryCount value.
+     * Get sink retry count. Type: integer (or Expression with resultType integer).
      *
      * @return the sinkRetryCount value
      */
@@ -139,7 +139,7 @@ public class CopySink {
     }
 
     /**
-     * Set the sinkRetryCount value.
+     * Set sink retry count. Type: integer (or Expression with resultType integer).
      *
      * @param sinkRetryCount the sinkRetryCount value to set
      * @return the CopySink object itself.
@@ -150,7 +150,7 @@ public class CopySink {
     }
 
     /**
-     * Get the sinkRetryWait value.
+     * Get sink retry wait. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the sinkRetryWait value
      */
@@ -159,7 +159,7 @@ public class CopySink {
     }
 
     /**
-     * Set the sinkRetryWait value.
+     * Set sink retry wait. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param sinkRetryWait the sinkRetryWait value to set
      * @return the CopySink object itself.

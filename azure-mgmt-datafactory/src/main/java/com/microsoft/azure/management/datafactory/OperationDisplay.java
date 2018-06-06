@@ -39,7 +39,7 @@ public class OperationDisplay {
     private String operation;
 
     /**
-     * Get the description value.
+     * Get the description of the operation.
      *
      * @return the description value
      */
@@ -48,7 +48,7 @@ public class OperationDisplay {
     }
 
     /**
-     * Set the description value.
+     * Set the description of the operation.
      *
      * @param description the description value to set
      * @return the OperationDisplay object itself.
@@ -59,7 +59,7 @@ public class OperationDisplay {
     }
 
     /**
-     * Get the provider value.
+     * Get the name of the provider.
      *
      * @return the provider value
      */
@@ -68,7 +68,7 @@ public class OperationDisplay {
     }
 
     /**
-     * Set the provider value.
+     * Set the name of the provider.
      *
      * @param provider the provider value to set
      * @return the OperationDisplay object itself.
@@ -79,7 +79,7 @@ public class OperationDisplay {
     }
 
     /**
-     * Get the resource value.
+     * Get the name of the resource type on which the operation is performed.
      *
      * @return the resource value
      */
@@ -88,7 +88,7 @@ public class OperationDisplay {
     }
 
     /**
-     * Set the resource value.
+     * Set the name of the resource type on which the operation is performed.
      *
      * @param resource the resource value to set
      * @return the OperationDisplay object itself.
@@ -99,7 +99,7 @@ public class OperationDisplay {
     }
 
     /**
-     * Get the operation value.
+     * Get the type of operation: get, read, delete, etc.
      *
      * @return the operation value
      */
@@ -108,7 +108,7 @@ public class OperationDisplay {
     }
 
     /**
-     * Set the operation value.
+     * Set the type of operation: get, read, delete, etc.
      *
      * @param operation the operation value to set
      * @return the OperationDisplay object itself.

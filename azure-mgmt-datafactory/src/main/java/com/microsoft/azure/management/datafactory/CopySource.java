@@ -93,7 +93,7 @@ public class CopySource {
     private Object sourceRetryWait;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -102,7 +102,7 @@ public class CopySource {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the CopySource object itself.
@@ -113,7 +113,7 @@ public class CopySource {
     }
 
     /**
-     * Get the sourceRetryCount value.
+     * Get source retry count. Type: integer (or Expression with resultType integer).
      *
      * @return the sourceRetryCount value
      */
@@ -122,7 +122,7 @@ public class CopySource {
     }
 
     /**
-     * Set the sourceRetryCount value.
+     * Set source retry count. Type: integer (or Expression with resultType integer).
      *
      * @param sourceRetryCount the sourceRetryCount value to set
      * @return the CopySource object itself.
@@ -133,7 +133,7 @@ public class CopySource {
     }
 
     /**
-     * Get the sourceRetryWait value.
+     * Get source retry wait. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the sourceRetryWait value
      */
@@ -142,7 +142,7 @@ public class CopySource {
     }
 
     /**
-     * Set the sourceRetryWait value.
+     * Set source retry wait. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param sourceRetryWait the sourceRetryWait value to set
      * @return the CopySource object itself.

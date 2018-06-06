@@ -29,7 +29,7 @@ public class HttpSource extends CopySource {
     private Object httpRequestTimeout;
 
     /**
-     * Get the httpRequestTimeout value.
+     * Get specifies the timeout for a HTTP client to get HTTP response from HTTP server. The default value is equivalent to System.Net.HttpWebRequest.Timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the httpRequestTimeout value
      */
@@ -38,7 +38,7 @@ public class HttpSource extends CopySource {
     }
 
     /**
-     * Set the httpRequestTimeout value.
+     * Set specifies the timeout for a HTTP client to get HTTP response from HTTP server. The default value is equivalent to System.Net.HttpWebRequest.Timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param httpRequestTimeout the httpRequestTimeout value to set
      * @return the HttpSource object itself.

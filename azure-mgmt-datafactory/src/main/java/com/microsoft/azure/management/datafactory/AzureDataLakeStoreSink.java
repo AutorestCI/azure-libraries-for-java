@@ -26,7 +26,7 @@ public class AzureDataLakeStoreSink extends CopySink {
     private CopyBehaviorType copyBehavior;
 
     /**
-     * Get the copyBehavior value.
+     * Get the type of copy behavior for copy sink. Possible values include: 'PreserveHierarchy', 'FlattenHierarchy', 'MergeFiles'.
      *
      * @return the copyBehavior value
      */
@@ -35,7 +35,7 @@ public class AzureDataLakeStoreSink extends CopySink {
     }
 
     /**
-     * Set the copyBehavior value.
+     * Set the type of copy behavior for copy sink. Possible values include: 'PreserveHierarchy', 'FlattenHierarchy', 'MergeFiles'.
      *
      * @param copyBehavior the copyBehavior value to set
      * @return the AzureDataLakeStoreSink object itself.

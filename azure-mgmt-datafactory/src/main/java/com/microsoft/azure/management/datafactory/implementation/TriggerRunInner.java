@@ -74,7 +74,7 @@ public class TriggerRunInner {
     private Map<String, String> triggeredPipelines;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -83,7 +83,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the TriggerRunInner object itself.
@@ -94,7 +94,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the triggerRunId value.
+     * Get trigger run id.
      *
      * @return the triggerRunId value
      */
@@ -103,7 +103,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the triggerName value.
+     * Get trigger name.
      *
      * @return the triggerName value
      */
@@ -112,7 +112,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the triggerType value.
+     * Get trigger type.
      *
      * @return the triggerType value
      */
@@ -121,7 +121,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the triggerRunTimestamp value.
+     * Get trigger run start time.
      *
      * @return the triggerRunTimestamp value
      */
@@ -130,7 +130,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the status value.
+     * Get trigger run status. Possible values include: 'Succeeded', 'Failed', 'Inprogress'.
      *
      * @return the status value
      */
@@ -139,7 +139,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the message value.
+     * Get trigger error message.
      *
      * @return the message value
      */
@@ -148,7 +148,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the properties value.
+     * Get list of property name and value related to trigger run. Name, value pair depends on type of trigger.
      *
      * @return the properties value
      */
@@ -157,7 +157,7 @@ public class TriggerRunInner {
     }
 
     /**
-     * Get the triggeredPipelines value.
+     * Get list of pipeline name and run Id triggered by the trigger run.
      *
      * @return the triggeredPipelines value
      */

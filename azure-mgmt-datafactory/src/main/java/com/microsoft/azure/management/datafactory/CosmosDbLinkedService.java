@@ -22,10 +22,11 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class CosmosDbLinkedService extends LinkedServiceInner {
     /**
-     * The connection string.
+     * The connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The encrypted credential used for authentication. Credentials are
@@ -36,27 +37,27 @@ public class CosmosDbLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
     /**
-     * Set the connectionString value.
+     * Set the connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @param connectionString the connectionString value to set
      * @return the CosmosDbLinkedService object itself.
      */
-    public CosmosDbLinkedService withConnectionString(SecretBase connectionString) {
+    public CosmosDbLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -65,7 +66,7 @@ public class CosmosDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the CosmosDbLinkedService object itself.

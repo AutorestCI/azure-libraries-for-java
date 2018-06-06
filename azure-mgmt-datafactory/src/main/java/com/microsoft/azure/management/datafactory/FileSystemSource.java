@@ -26,7 +26,7 @@ public class FileSystemSource extends CopySource {
     private Object recursive;
 
     /**
-     * Get the recursive value.
+     * Get if true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the recursive value
      */
@@ -35,7 +35,7 @@ public class FileSystemSource extends CopySource {
     }
 
     /**
-     * Set the recursive value.
+     * Set if true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param recursive the recursive value to set
      * @return the FileSystemSource object itself.

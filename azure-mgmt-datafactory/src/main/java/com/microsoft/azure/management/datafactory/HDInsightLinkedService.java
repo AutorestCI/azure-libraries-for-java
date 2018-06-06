@@ -63,7 +63,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the clusterUri value.
+     * Get hDInsight cluster URI. Type: string (or Expression with resultType string).
      *
      * @return the clusterUri value
      */
@@ -72,7 +72,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterUri value.
+     * Set hDInsight cluster URI. Type: string (or Expression with resultType string).
      *
      * @param clusterUri the clusterUri value to set
      * @return the HDInsightLinkedService object itself.
@@ -83,7 +83,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get hDInsight cluster user name. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -92,7 +92,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set hDInsight cluster user name. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the HDInsightLinkedService object itself.
@@ -103,7 +103,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get hDInsight cluster password.
      *
      * @return the password value
      */
@@ -112,7 +112,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set hDInsight cluster password.
      *
      * @param password the password value to set
      * @return the HDInsightLinkedService object itself.
@@ -123,7 +123,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get the Azure Storage linked service reference.
      *
      * @return the linkedServiceName value
      */
@@ -132,7 +132,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set the Azure Storage linked service reference.
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the HDInsightLinkedService object itself.
@@ -143,7 +143,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hcatalogLinkedServiceName value.
+     * Get a reference to the Azure SQL linked service that points to the HCatalog database.
      *
      * @return the hcatalogLinkedServiceName value
      */
@@ -152,7 +152,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hcatalogLinkedServiceName value.
+     * Set a reference to the Azure SQL linked service that points to the HCatalog database.
      *
      * @param hcatalogLinkedServiceName the hcatalogLinkedServiceName value to set
      * @return the HDInsightLinkedService object itself.
@@ -163,7 +163,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -172,7 +172,7 @@ public class HDInsightLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the HDInsightLinkedService object itself.

@@ -29,7 +29,7 @@ public class IntegrationRuntimeStatusListResponse {
     private String nextLink;
 
     /**
-     * Get the value value.
+     * Get list of integration runtime status.
      *
      * @return the value value
      */
@@ -38,7 +38,7 @@ public class IntegrationRuntimeStatusListResponse {
     }
 
     /**
-     * Set the value value.
+     * Set list of integration runtime status.
      *
      * @param value the value value to set
      * @return the IntegrationRuntimeStatusListResponse object itself.
@@ -49,7 +49,7 @@ public class IntegrationRuntimeStatusListResponse {
     }
 
     /**
-     * Get the nextLink value.
+     * Get the link to the next page of results, if any remaining results exist.
      *
      * @return the nextLink value
      */
@@ -58,7 +58,7 @@ public class IntegrationRuntimeStatusListResponse {
     }
 
     /**
-     * Set the nextLink value.
+     * Set the link to the next page of results, if any remaining results exist.
      *
      * @param nextLink the nextLink value to set
      * @return the IntegrationRuntimeStatusListResponse object itself.

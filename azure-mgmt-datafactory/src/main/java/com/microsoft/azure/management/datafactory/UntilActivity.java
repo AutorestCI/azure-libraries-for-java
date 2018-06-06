@@ -47,7 +47,7 @@ public class UntilActivity extends ControlActivity {
     private List<Activity> activities;
 
     /**
-     * Get the expression value.
+     * Get an expression that would evaluate to Boolean. The loop will continue until this expression evaluates to true.
      *
      * @return the expression value
      */
@@ -56,7 +56,7 @@ public class UntilActivity extends ControlActivity {
     }
 
     /**
-     * Set the expression value.
+     * Set an expression that would evaluate to Boolean. The loop will continue until this expression evaluates to true.
      *
      * @param expression the expression value to set
      * @return the UntilActivity object itself.
@@ -67,7 +67,7 @@ public class UntilActivity extends ControlActivity {
     }
 
     /**
-     * Get the timeout value.
+     * Get specifies the timeout for the activity to run. If there is no value specified, it takes the value of TimeSpan.FromDays(7) which is 1 week as default. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the timeout value
      */
@@ -76,7 +76,7 @@ public class UntilActivity extends ControlActivity {
     }
 
     /**
-     * Set the timeout value.
+     * Set specifies the timeout for the activity to run. If there is no value specified, it takes the value of TimeSpan.FromDays(7) which is 1 week as default. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param timeout the timeout value to set
      * @return the UntilActivity object itself.
@@ -87,7 +87,7 @@ public class UntilActivity extends ControlActivity {
     }
 
     /**
-     * Get the activities value.
+     * Get list of activities to execute.
      *
      * @return the activities value
      */
@@ -96,7 +96,7 @@ public class UntilActivity extends ControlActivity {
     }
 
     /**
-     * Set the activities value.
+     * Set list of activities to execute.
      *
      * @param activities the activities value to set
      * @return the UntilActivity object itself.

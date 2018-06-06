@@ -34,7 +34,7 @@ public class IntegrationRuntimeVNetProperties {
     private String subnet;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -43,7 +43,7 @@ public class IntegrationRuntimeVNetProperties {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeVNetProperties object itself.
@@ -54,7 +54,7 @@ public class IntegrationRuntimeVNetProperties {
     }
 
     /**
-     * Get the vNetId value.
+     * Get the ID of the VNet that this integration runtime will join.
      *
      * @return the vNetId value
      */
@@ -63,7 +63,7 @@ public class IntegrationRuntimeVNetProperties {
     }
 
     /**
-     * Set the vNetId value.
+     * Set the ID of the VNet that this integration runtime will join.
      *
      * @param vNetId the vNetId value to set
      * @return the IntegrationRuntimeVNetProperties object itself.
@@ -74,7 +74,7 @@ public class IntegrationRuntimeVNetProperties {
     }
 
     /**
-     * Get the subnet value.
+     * Get the name of the subnet this integration runtime will join.
      *
      * @return the subnet value
      */
@@ -83,7 +83,7 @@ public class IntegrationRuntimeVNetProperties {
     }
 
     /**
-     * Set the subnet value.
+     * Set the name of the subnet this integration runtime will join.
      *
      * @param subnet the subnet value to set
      * @return the IntegrationRuntimeVNetProperties object itself.

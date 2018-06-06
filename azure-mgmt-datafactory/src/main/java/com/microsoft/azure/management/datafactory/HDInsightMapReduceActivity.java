@@ -71,7 +71,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     private Map<String, Object> defines;
 
     /**
-     * Get the storageLinkedServices value.
+     * Get storage linked service references.
      *
      * @return the storageLinkedServices value
      */
@@ -80,7 +80,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the storageLinkedServices value.
+     * Set storage linked service references.
      *
      * @param storageLinkedServices the storageLinkedServices value to set
      * @return the HDInsightMapReduceActivity object itself.
@@ -91,7 +91,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the arguments value.
+     * Get user specified arguments to HDInsightActivity.
      *
      * @return the arguments value
      */
@@ -100,7 +100,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the arguments value.
+     * Set user specified arguments to HDInsightActivity.
      *
      * @param arguments the arguments value to set
      * @return the HDInsightMapReduceActivity object itself.
@@ -111,7 +111,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the getDebugInfo value.
+     * Get debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @return the getDebugInfo value
      */
@@ -120,7 +120,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the getDebugInfo value.
+     * Set debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @param getDebugInfo the getDebugInfo value to set
      * @return the HDInsightMapReduceActivity object itself.
@@ -131,7 +131,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the className value.
+     * Get class name. Type: string (or Expression with resultType string).
      *
      * @return the className value
      */
@@ -140,7 +140,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the className value.
+     * Set class name. Type: string (or Expression with resultType string).
      *
      * @param className the className value to set
      * @return the HDInsightMapReduceActivity object itself.
@@ -151,7 +151,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the jarFilePath value.
+     * Get jar path. Type: string (or Expression with resultType string).
      *
      * @return the jarFilePath value
      */
@@ -160,7 +160,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the jarFilePath value.
+     * Set jar path. Type: string (or Expression with resultType string).
      *
      * @param jarFilePath the jarFilePath value to set
      * @return the HDInsightMapReduceActivity object itself.
@@ -171,7 +171,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the jarLinkedService value.
+     * Get jar linked service reference.
      *
      * @return the jarLinkedService value
      */
@@ -180,7 +180,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the jarLinkedService value.
+     * Set jar linked service reference.
      *
      * @param jarLinkedService the jarLinkedService value to set
      * @return the HDInsightMapReduceActivity object itself.
@@ -191,7 +191,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the jarLibs value.
+     * Get jar libs.
      *
      * @return the jarLibs value
      */
@@ -200,7 +200,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the jarLibs value.
+     * Set jar libs.
      *
      * @param jarLibs the jarLibs value to set
      * @return the HDInsightMapReduceActivity object itself.
@@ -211,7 +211,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the defines value.
+     * Get allows user to specify defines for the MapReduce job request.
      *
      * @return the defines value
      */
@@ -220,7 +220,7 @@ public class HDInsightMapReduceActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the defines value.
+     * Set allows user to specify defines for the MapReduce job request.
      *
      * @param defines the defines value to set
      * @return the HDInsightMapReduceActivity object itself.

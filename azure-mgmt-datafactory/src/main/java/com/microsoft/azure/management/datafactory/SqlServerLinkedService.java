@@ -22,10 +22,11 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class SqlServerLinkedService extends LinkedServiceInner {
     /**
-     * The connection string.
+     * The connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The on-premises Windows authentication user name. Type: string (or
@@ -49,27 +50,27 @@ public class SqlServerLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
     /**
-     * Set the connectionString value.
+     * Set the connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @param connectionString the connectionString value to set
      * @return the SqlServerLinkedService object itself.
      */
-    public SqlServerLinkedService withConnectionString(SecretBase connectionString) {
+    public SqlServerLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }
 
     /**
-     * Get the userName value.
+     * Get the on-premises Windows authentication user name. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -78,7 +79,7 @@ public class SqlServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set the on-premises Windows authentication user name. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the SqlServerLinkedService object itself.
@@ -89,7 +90,7 @@ public class SqlServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the on-premises Windows authentication password.
      *
      * @return the password value
      */
@@ -98,7 +99,7 @@ public class SqlServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the on-premises Windows authentication password.
      *
      * @param password the password value to set
      * @return the SqlServerLinkedService object itself.
@@ -109,7 +110,7 @@ public class SqlServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -118,7 +119,7 @@ public class SqlServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the SqlServerLinkedService object itself.

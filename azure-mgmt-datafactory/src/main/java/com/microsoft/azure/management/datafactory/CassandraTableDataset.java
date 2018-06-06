@@ -36,7 +36,7 @@ public class CassandraTableDataset extends DatasetInner {
     private Object keyspace;
 
     /**
-     * Get the tableName value.
+     * Get the table name of the Cassandra database. Type: string (or Expression with resultType string).
      *
      * @return the tableName value
      */
@@ -45,7 +45,7 @@ public class CassandraTableDataset extends DatasetInner {
     }
 
     /**
-     * Set the tableName value.
+     * Set the table name of the Cassandra database. Type: string (or Expression with resultType string).
      *
      * @param tableName the tableName value to set
      * @return the CassandraTableDataset object itself.
@@ -56,7 +56,7 @@ public class CassandraTableDataset extends DatasetInner {
     }
 
     /**
-     * Get the keyspace value.
+     * Get the keyspace of the Cassandra database. Type: string (or Expression with resultType string).
      *
      * @return the keyspace value
      */
@@ -65,7 +65,7 @@ public class CassandraTableDataset extends DatasetInner {
     }
 
     /**
-     * Set the keyspace value.
+     * Set the keyspace of the Cassandra database. Type: string (or Expression with resultType string).
      *
      * @param keyspace the keyspace value to set
      * @return the CassandraTableDataset object itself.

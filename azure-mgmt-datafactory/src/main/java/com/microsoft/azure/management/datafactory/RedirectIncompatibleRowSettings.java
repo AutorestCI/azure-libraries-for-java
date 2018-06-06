@@ -38,7 +38,7 @@ public class RedirectIncompatibleRowSettings {
     private Object path;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -47,7 +47,7 @@ public class RedirectIncompatibleRowSettings {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the RedirectIncompatibleRowSettings object itself.
@@ -58,7 +58,7 @@ public class RedirectIncompatibleRowSettings {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get name of the Azure Storage, Storage SAS, or Azure Data Lake Store linked service used for redirecting incompatible row. Must be specified if redirectIncompatibleRowSettings is specified. Type: string (or Expression with resultType string).
      *
      * @return the linkedServiceName value
      */
@@ -67,7 +67,7 @@ public class RedirectIncompatibleRowSettings {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set name of the Azure Storage, Storage SAS, or Azure Data Lake Store linked service used for redirecting incompatible row. Must be specified if redirectIncompatibleRowSettings is specified. Type: string (or Expression with resultType string).
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the RedirectIncompatibleRowSettings object itself.
@@ -78,7 +78,7 @@ public class RedirectIncompatibleRowSettings {
     }
 
     /**
-     * Get the path value.
+     * Get the path for storing the redirect incompatible row data. Type: string (or Expression with resultType string).
      *
      * @return the path value
      */
@@ -87,7 +87,7 @@ public class RedirectIncompatibleRowSettings {
     }
 
     /**
-     * Set the path value.
+     * Set the path for storing the redirect incompatible row data. Type: string (or Expression with resultType string).
      *
      * @param path the path value to set
      * @return the RedirectIncompatibleRowSettings object itself.

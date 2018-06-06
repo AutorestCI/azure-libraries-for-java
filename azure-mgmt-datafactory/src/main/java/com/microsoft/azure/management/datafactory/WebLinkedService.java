@@ -26,7 +26,7 @@ public class WebLinkedService extends LinkedServiceInner {
     private WebLinkedServiceTypeProperties typeProperties;
 
     /**
-     * Get the typeProperties value.
+     * Get web linked service properties.
      *
      * @return the typeProperties value
      */
@@ -35,7 +35,7 @@ public class WebLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the typeProperties value.
+     * Set web linked service properties.
      *
      * @param typeProperties the typeProperties value to set
      * @return the WebLinkedService object itself.

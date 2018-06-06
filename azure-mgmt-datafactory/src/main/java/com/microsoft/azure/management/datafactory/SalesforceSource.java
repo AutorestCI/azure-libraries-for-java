@@ -32,7 +32,7 @@ public class SalesforceSource extends CopySource {
     private SalesforceSourceReadBehavior readBehavior;
 
     /**
-     * Get the query value.
+     * Get database query. Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -41,7 +41,7 @@ public class SalesforceSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set database query. Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the SalesforceSource object itself.
@@ -52,7 +52,7 @@ public class SalesforceSource extends CopySource {
     }
 
     /**
-     * Get the readBehavior value.
+     * Get the read behavior for the operation. Default is Query. Possible values include: 'Query', 'QueryAll'.
      *
      * @return the readBehavior value
      */
@@ -61,7 +61,7 @@ public class SalesforceSource extends CopySource {
     }
 
     /**
-     * Set the readBehavior value.
+     * Set the read behavior for the operation. Default is Query. Possible values include: 'Query', 'QueryAll'.
      *
      * @param readBehavior the readBehavior value to set
      * @return the SalesforceSource object itself.

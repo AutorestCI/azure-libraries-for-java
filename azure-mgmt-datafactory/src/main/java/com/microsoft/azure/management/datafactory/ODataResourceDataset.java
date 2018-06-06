@@ -29,7 +29,7 @@ public class ODataResourceDataset extends DatasetInner {
     private Object path;
 
     /**
-     * Get the path value.
+     * Get the OData resource path. Type: string (or Expression with resultType string).
      *
      * @return the path value
      */
@@ -38,7 +38,7 @@ public class ODataResourceDataset extends DatasetInner {
     }
 
     /**
-     * Set the path value.
+     * Set the OData resource path. Type: string (or Expression with resultType string).
      *
      * @param path the path value to set
      * @return the ODataResourceDataset object itself.

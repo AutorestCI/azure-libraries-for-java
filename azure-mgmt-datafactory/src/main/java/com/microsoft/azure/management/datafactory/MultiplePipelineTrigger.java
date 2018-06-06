@@ -22,6 +22,7 @@ import com.microsoft.azure.management.datafactory.implementation.TriggerInner;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("MultiplePipelineTrigger")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "BlobEventsTrigger", value = BlobEventsTrigger.class),
     @JsonSubTypes.Type(name = "BlobTrigger", value = BlobTrigger.class),
     @JsonSubTypes.Type(name = "ScheduleTrigger", value = ScheduleTrigger.class)
 })
@@ -33,7 +34,7 @@ public class MultiplePipelineTrigger extends TriggerInner {
     private List<TriggerPipelineReference> pipelines;
 
     /**
-     * Get the pipelines value.
+     * Get pipelines that need to be started.
      *
      * @return the pipelines value
      */
@@ -42,7 +43,7 @@ public class MultiplePipelineTrigger extends TriggerInner {
     }
 
     /**
-     * Set the pipelines value.
+     * Set pipelines that need to be started.
      *
      * @param pipelines the pipelines value to set
      * @return the MultiplePipelineTrigger object itself.

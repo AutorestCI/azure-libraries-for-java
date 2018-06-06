@@ -29,7 +29,7 @@ public class SapEccResourceDataset extends DatasetInner {
     private String path;
 
     /**
-     * Get the path value.
+     * Get the path of the SAP ECC OData entity. Type: string (or Expression with resultType string).
      *
      * @return the path value
      */
@@ -38,7 +38,7 @@ public class SapEccResourceDataset extends DatasetInner {
     }
 
     /**
-     * Set the path value.
+     * Set the path of the SAP ECC OData entity. Type: string (or Expression with resultType string).
      *
      * @param path the path value to set
      * @return the SapEccResourceDataset object itself.

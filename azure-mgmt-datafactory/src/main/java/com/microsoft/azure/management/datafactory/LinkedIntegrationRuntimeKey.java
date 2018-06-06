@@ -25,7 +25,7 @@ public class LinkedIntegrationRuntimeKey extends LinkedIntegrationRuntimePropert
     private SecureString key;
 
     /**
-     * Get the key value.
+     * Get type of the secret.
      *
      * @return the key value
      */
@@ -34,7 +34,7 @@ public class LinkedIntegrationRuntimeKey extends LinkedIntegrationRuntimePropert
     }
 
     /**
-     * Set the key value.
+     * Set type of the secret.
      *
      * @param key the key value to set
      * @return the LinkedIntegrationRuntimeKey object itself.

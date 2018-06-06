@@ -33,7 +33,7 @@ public class WebLinkedServiceTypeProperties {
     private Object url;
 
     /**
-     * Get the url value.
+     * Get the URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string).
      *
      * @return the url value
      */
@@ -42,7 +42,7 @@ public class WebLinkedServiceTypeProperties {
     }
 
     /**
-     * Set the url value.
+     * Set the URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string).
      *
      * @param url the url value to set
      * @return the WebLinkedServiceTypeProperties object itself.

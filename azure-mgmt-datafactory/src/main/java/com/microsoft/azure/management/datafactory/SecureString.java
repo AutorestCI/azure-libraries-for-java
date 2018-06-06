@@ -26,7 +26,7 @@ public class SecureString extends SecretBase {
     private String value;
 
     /**
-     * Get the value value.
+     * Get value of secure string.
      *
      * @return the value value
      */
@@ -35,7 +35,7 @@ public class SecureString extends SecretBase {
     }
 
     /**
-     * Set the value value.
+     * Set value of secure string.
      *
      * @param value the value value to set
      * @return the SecureString object itself.

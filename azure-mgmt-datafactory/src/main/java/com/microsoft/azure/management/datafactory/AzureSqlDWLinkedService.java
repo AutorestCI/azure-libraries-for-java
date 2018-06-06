@@ -22,10 +22,12 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class AzureSqlDWLinkedService extends LinkedServiceInner {
     /**
-     * The connection string.
+     * The connection string. Type: string, SecureString or
+     * AzureKeyVaultSecretReference. Type: string, SecureString or
+     * AzureKeyVaultSecretReference.
      */
     @JsonProperty(value = "typeProperties.connectionString", required = true)
-    private SecretBase connectionString;
+    private Object connectionString;
 
     /**
      * The ID of the service principal used to authenticate against Azure SQL
@@ -57,27 +59,27 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @return the connectionString value
      */
-    public SecretBase connectionString() {
+    public Object connectionString() {
         return this.connectionString;
     }
 
     /**
-     * Set the connectionString value.
+     * Set the connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @param connectionString the connectionString value to set
      * @return the AzureSqlDWLinkedService object itself.
      */
-    public AzureSqlDWLinkedService withConnectionString(SecretBase connectionString) {
+    public AzureSqlDWLinkedService withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
         return this;
     }
 
     /**
-     * Get the servicePrincipalId value.
+     * Get the ID of the service principal used to authenticate against Azure SQL Data Warehouse. Type: string (or Expression with resultType string).
      *
      * @return the servicePrincipalId value
      */
@@ -86,7 +88,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalId value.
+     * Set the ID of the service principal used to authenticate against Azure SQL Data Warehouse. Type: string (or Expression with resultType string).
      *
      * @param servicePrincipalId the servicePrincipalId value to set
      * @return the AzureSqlDWLinkedService object itself.
@@ -97,7 +99,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalKey value.
+     * Get the key of the service principal used to authenticate against Azure SQL Data Warehouse.
      *
      * @return the servicePrincipalKey value
      */
@@ -106,7 +108,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalKey value.
+     * Set the key of the service principal used to authenticate against Azure SQL Data Warehouse.
      *
      * @param servicePrincipalKey the servicePrincipalKey value to set
      * @return the AzureSqlDWLinkedService object itself.
@@ -117,7 +119,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the tenant value.
+     * Get the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @return the tenant value
      */
@@ -126,7 +128,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the tenant value.
+     * Set the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @param tenant the tenant value to set
      * @return the AzureSqlDWLinkedService object itself.
@@ -137,7 +139,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -146,7 +148,7 @@ public class AzureSqlDWLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureSqlDWLinkedService object itself.

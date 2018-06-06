@@ -41,7 +41,7 @@ public class ExecutePipelineActivity extends ControlActivity {
     private Boolean waitOnCompletion;
 
     /**
-     * Get the pipeline value.
+     * Get pipeline reference.
      *
      * @return the pipeline value
      */
@@ -50,7 +50,7 @@ public class ExecutePipelineActivity extends ControlActivity {
     }
 
     /**
-     * Set the pipeline value.
+     * Set pipeline reference.
      *
      * @param pipeline the pipeline value to set
      * @return the ExecutePipelineActivity object itself.
@@ -61,7 +61,7 @@ public class ExecutePipelineActivity extends ControlActivity {
     }
 
     /**
-     * Get the parameters value.
+     * Get pipeline parameters.
      *
      * @return the parameters value
      */
@@ -70,7 +70,7 @@ public class ExecutePipelineActivity extends ControlActivity {
     }
 
     /**
-     * Set the parameters value.
+     * Set pipeline parameters.
      *
      * @param parameters the parameters value to set
      * @return the ExecutePipelineActivity object itself.
@@ -81,7 +81,7 @@ public class ExecutePipelineActivity extends ControlActivity {
     }
 
     /**
-     * Get the waitOnCompletion value.
+     * Get defines whether activity execution will wait for the dependent pipeline execution to finish. Default is false.
      *
      * @return the waitOnCompletion value
      */
@@ -90,7 +90,7 @@ public class ExecutePipelineActivity extends ControlActivity {
     }
 
     /**
-     * Set the waitOnCompletion value.
+     * Set defines whether activity execution will wait for the dependent pipeline execution to finish. Default is false.
      *
      * @param waitOnCompletion the waitOnCompletion value to set
      * @return the ExecutePipelineActivity object itself.

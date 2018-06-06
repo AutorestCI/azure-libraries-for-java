@@ -59,7 +59,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the environmentUrl value.
+     * Get the URL of Salesforce instance. Default is 'https://login.salesforce.com'. To copy data from sandbox, specify 'https://test.salesforce.com'. To copy data from custom domain, specify, for example, 'https://[domain].my.salesforce.com'. Type: string (or Expression with resultType string).
      *
      * @return the environmentUrl value
      */
@@ -68,7 +68,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the environmentUrl value.
+     * Set the URL of Salesforce instance. Default is 'https://login.salesforce.com'. To copy data from sandbox, specify 'https://test.salesforce.com'. To copy data from custom domain, specify, for example, 'https://[domain].my.salesforce.com'. Type: string (or Expression with resultType string).
      *
      * @param environmentUrl the environmentUrl value to set
      * @return the SalesforceLinkedService object itself.
@@ -79,7 +79,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the username for Basic authentication of the Salesforce instance. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -88,7 +88,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the username for Basic authentication of the Salesforce instance. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the SalesforceLinkedService object itself.
@@ -99,7 +99,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password for Basic authentication of the Salesforce instance.
      *
      * @return the password value
      */
@@ -108,7 +108,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password for Basic authentication of the Salesforce instance.
      *
      * @param password the password value to set
      * @return the SalesforceLinkedService object itself.
@@ -119,7 +119,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the securityToken value.
+     * Get the security token is required to remotely access Salesforce instance.
      *
      * @return the securityToken value
      */
@@ -128,7 +128,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the securityToken value.
+     * Set the security token is required to remotely access Salesforce instance.
      *
      * @param securityToken the securityToken value to set
      * @return the SalesforceLinkedService object itself.
@@ -139,7 +139,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -148,7 +148,7 @@ public class SalesforceLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the SalesforceLinkedService object itself.

@@ -85,7 +85,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     private Object enableServerCertificateValidation;
 
     /**
-     * Get the url value.
+     * Get the base URL of the HTTP endpoint, e.g. http://www.microsoft.com. Type: string (or Expression with resultType string).
      *
      * @return the url value
      */
@@ -94,7 +94,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the url value.
+     * Set the base URL of the HTTP endpoint, e.g. http://www.microsoft.com. Type: string (or Expression with resultType string).
      *
      * @param url the url value to set
      * @return the HttpLinkedService object itself.
@@ -105,7 +105,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type to be used to connect to the HTTP server. Possible values include: 'Basic', 'Anonymous', 'Digest', 'Windows', 'ClientCertificate'.
      *
      * @return the authenticationType value
      */
@@ -114,7 +114,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type to be used to connect to the HTTP server. Possible values include: 'Basic', 'Anonymous', 'Digest', 'Windows', 'ClientCertificate'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the HttpLinkedService object itself.
@@ -125,7 +125,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get user name for Basic, Digest, or Windows authentication. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -134,7 +134,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set user name for Basic, Digest, or Windows authentication. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the HttpLinkedService object itself.
@@ -145,7 +145,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password for Basic, Digest, Windows, or ClientCertificate with EmbeddedCertData authentication.
      *
      * @return the password value
      */
@@ -154,7 +154,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password for Basic, Digest, Windows, or ClientCertificate with EmbeddedCertData authentication.
      *
      * @param password the password value to set
      * @return the HttpLinkedService object itself.
@@ -165,7 +165,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the embeddedCertData value.
+     * Get base64 encoded certificate data for ClientCertificate authentication. For on-premises copy with ClientCertificate authentication, either CertThumbprint or EmbeddedCertData/Password should be specified. Type: string (or Expression with resultType string).
      *
      * @return the embeddedCertData value
      */
@@ -174,7 +174,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the embeddedCertData value.
+     * Set base64 encoded certificate data for ClientCertificate authentication. For on-premises copy with ClientCertificate authentication, either CertThumbprint or EmbeddedCertData/Password should be specified. Type: string (or Expression with resultType string).
      *
      * @param embeddedCertData the embeddedCertData value to set
      * @return the HttpLinkedService object itself.
@@ -185,7 +185,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the certThumbprint value.
+     * Get thumbprint of certificate for ClientCertificate authentication. Only valid for on-premises copy. For on-premises copy with ClientCertificate authentication, either CertThumbprint or EmbeddedCertData/Password should be specified. Type: string (or Expression with resultType string).
      *
      * @return the certThumbprint value
      */
@@ -194,7 +194,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the certThumbprint value.
+     * Set thumbprint of certificate for ClientCertificate authentication. Only valid for on-premises copy. For on-premises copy with ClientCertificate authentication, either CertThumbprint or EmbeddedCertData/Password should be specified. Type: string (or Expression with resultType string).
      *
      * @param certThumbprint the certThumbprint value to set
      * @return the HttpLinkedService object itself.
@@ -205,7 +205,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -214,7 +214,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the HttpLinkedService object itself.
@@ -225,7 +225,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the enableServerCertificateValidation value.
+     * Get if true, validate the HTTPS server SSL certificate. Default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @return the enableServerCertificateValidation value
      */
@@ -234,7 +234,7 @@ public class HttpLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the enableServerCertificateValidation value.
+     * Set if true, validate the HTTPS server SSL certificate. Default value is true. Type: boolean (or Expression with resultType boolean).
      *
      * @param enableServerCertificateValidation the enableServerCertificateValidation value to set
      * @return the HttpLinkedService object itself.

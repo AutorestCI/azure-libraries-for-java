@@ -45,7 +45,7 @@ public class IntegrationRuntimeStatus {
     private IntegrationRuntimeState state;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -54,7 +54,7 @@ public class IntegrationRuntimeStatus {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeStatus object itself.
@@ -65,7 +65,7 @@ public class IntegrationRuntimeStatus {
     }
 
     /**
-     * Get the dataFactoryName value.
+     * Get the data factory name which the integration runtime belong to.
      *
      * @return the dataFactoryName value
      */
@@ -74,7 +74,7 @@ public class IntegrationRuntimeStatus {
     }
 
     /**
-     * Get the state value.
+     * Get the state of integration runtime. Possible values include: 'Initial', 'Stopped', 'Started', 'Starting', 'Stopping', 'NeedRegistration', 'Online', 'Limited', 'Offline'.
      *
      * @return the state value
      */

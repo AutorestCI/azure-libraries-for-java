@@ -48,7 +48,7 @@ public class ForEachActivity extends ControlActivity {
     private List<Activity> activities;
 
     /**
-     * Get the isSequential value.
+     * Get should the loop be executed in sequence or in parallel (max 50).
      *
      * @return the isSequential value
      */
@@ -57,7 +57,7 @@ public class ForEachActivity extends ControlActivity {
     }
 
     /**
-     * Set the isSequential value.
+     * Set should the loop be executed in sequence or in parallel (max 50).
      *
      * @param isSequential the isSequential value to set
      * @return the ForEachActivity object itself.
@@ -68,7 +68,7 @@ public class ForEachActivity extends ControlActivity {
     }
 
     /**
-     * Get the batchCount value.
+     * Get batch count to be used for controlling the number of parallel execution (when isSequential is set to false).
      *
      * @return the batchCount value
      */
@@ -77,7 +77,7 @@ public class ForEachActivity extends ControlActivity {
     }
 
     /**
-     * Set the batchCount value.
+     * Set batch count to be used for controlling the number of parallel execution (when isSequential is set to false).
      *
      * @param batchCount the batchCount value to set
      * @return the ForEachActivity object itself.
@@ -88,7 +88,7 @@ public class ForEachActivity extends ControlActivity {
     }
 
     /**
-     * Get the items value.
+     * Get collection to iterate.
      *
      * @return the items value
      */
@@ -97,7 +97,7 @@ public class ForEachActivity extends ControlActivity {
     }
 
     /**
-     * Set the items value.
+     * Set collection to iterate.
      *
      * @param items the items value to set
      * @return the ForEachActivity object itself.
@@ -108,7 +108,7 @@ public class ForEachActivity extends ControlActivity {
     }
 
     /**
-     * Get the activities value.
+     * Get list of activities to execute .
      *
      * @return the activities value
      */
@@ -117,7 +117,7 @@ public class ForEachActivity extends ControlActivity {
     }
 
     /**
-     * Set the activities value.
+     * Set list of activities to execute .
      *
      * @param activities the activities value to set
      * @return the ForEachActivity object itself.

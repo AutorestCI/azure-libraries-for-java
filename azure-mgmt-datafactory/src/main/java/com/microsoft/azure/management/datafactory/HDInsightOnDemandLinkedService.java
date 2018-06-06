@@ -231,7 +231,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     private Object zookeeperNodeSize;
 
     /**
-     * Get the clusterSize value.
+     * Get number of worker/data nodes in the cluster. Suggestion value: 4. Type: string (or Expression with resultType string).
      *
      * @return the clusterSize value
      */
@@ -240,7 +240,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterSize value.
+     * Set number of worker/data nodes in the cluster. Suggestion value: 4. Type: string (or Expression with resultType string).
      *
      * @param clusterSize the clusterSize value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -251,7 +251,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the timeToLive value.
+     * Get the allowed idle time for the on-demand HDInsight cluster. Specifies how long the on-demand HDInsight cluster stays alive after completion of an activity run if there are no other active jobs in the cluster. The minimum value is 5 mins. Type: string (or Expression with resultType string).
      *
      * @return the timeToLive value
      */
@@ -260,7 +260,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the timeToLive value.
+     * Set the allowed idle time for the on-demand HDInsight cluster. Specifies how long the on-demand HDInsight cluster stays alive after completion of an activity run if there are no other active jobs in the cluster. The minimum value is 5 mins. Type: string (or Expression with resultType string).
      *
      * @param timeToLive the timeToLive value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -271,7 +271,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the version value.
+     * Get version of the HDInsight cluster.  Type: string (or Expression with resultType string).
      *
      * @return the version value
      */
@@ -280,7 +280,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the version value.
+     * Set version of the HDInsight cluster.  Type: string (or Expression with resultType string).
      *
      * @param version the version value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -291,7 +291,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get azure Storage linked service to be used by the on-demand cluster for storing and processing data.
      *
      * @return the linkedServiceName value
      */
@@ -300,7 +300,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set azure Storage linked service to be used by the on-demand cluster for storing and processing data.
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -311,7 +311,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hostSubscriptionId value.
+     * Get the customer’s subscription to host the cluster. Type: string (or Expression with resultType string).
      *
      * @return the hostSubscriptionId value
      */
@@ -320,7 +320,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hostSubscriptionId value.
+     * Set the customer’s subscription to host the cluster. Type: string (or Expression with resultType string).
      *
      * @param hostSubscriptionId the hostSubscriptionId value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -331,7 +331,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalId value.
+     * Get the service principal id for the hostSubscriptionId. Type: string (or Expression with resultType string).
      *
      * @return the servicePrincipalId value
      */
@@ -340,7 +340,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalId value.
+     * Set the service principal id for the hostSubscriptionId. Type: string (or Expression with resultType string).
      *
      * @param servicePrincipalId the servicePrincipalId value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -351,7 +351,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalKey value.
+     * Get the key for the service principal id.
      *
      * @return the servicePrincipalKey value
      */
@@ -360,7 +360,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalKey value.
+     * Set the key for the service principal id.
      *
      * @param servicePrincipalKey the servicePrincipalKey value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -371,7 +371,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the tenant value.
+     * Get the Tenant id/name to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @return the tenant value
      */
@@ -380,7 +380,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the tenant value.
+     * Set the Tenant id/name to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @param tenant the tenant value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -391,7 +391,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clusterResourceGroup value.
+     * Get the resource group where the cluster belongs. Type: string (or Expression with resultType string).
      *
      * @return the clusterResourceGroup value
      */
@@ -400,7 +400,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterResourceGroup value.
+     * Set the resource group where the cluster belongs. Type: string (or Expression with resultType string).
      *
      * @param clusterResourceGroup the clusterResourceGroup value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -411,7 +411,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clusterNamePrefix value.
+     * Get the prefix of cluster name, postfix will be distinct with timestamp. Type: string (or Expression with resultType string).
      *
      * @return the clusterNamePrefix value
      */
@@ -420,7 +420,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterNamePrefix value.
+     * Set the prefix of cluster name, postfix will be distinct with timestamp. Type: string (or Expression with resultType string).
      *
      * @param clusterNamePrefix the clusterNamePrefix value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -431,7 +431,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clusterUserName value.
+     * Get the username to access the cluster. Type: string (or Expression with resultType string).
      *
      * @return the clusterUserName value
      */
@@ -440,7 +440,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterUserName value.
+     * Set the username to access the cluster. Type: string (or Expression with resultType string).
      *
      * @param clusterUserName the clusterUserName value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -451,7 +451,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clusterPassword value.
+     * Get the password to access the cluster.
      *
      * @return the clusterPassword value
      */
@@ -460,7 +460,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterPassword value.
+     * Set the password to access the cluster.
      *
      * @param clusterPassword the clusterPassword value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -471,7 +471,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clusterSshUserName value.
+     * Get the username to SSH remotely connect to cluster’s node (for Linux). Type: string (or Expression with resultType string).
      *
      * @return the clusterSshUserName value
      */
@@ -480,7 +480,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterSshUserName value.
+     * Set the username to SSH remotely connect to cluster’s node (for Linux). Type: string (or Expression with resultType string).
      *
      * @param clusterSshUserName the clusterSshUserName value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -491,7 +491,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clusterSshPassword value.
+     * Get the password to SSH remotely connect cluster’s node (for Linux).
      *
      * @return the clusterSshPassword value
      */
@@ -500,7 +500,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterSshPassword value.
+     * Set the password to SSH remotely connect cluster’s node (for Linux).
      *
      * @param clusterSshPassword the clusterSshPassword value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -511,7 +511,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the additionalLinkedServiceNames value.
+     * Get specifies additional storage accounts for the HDInsight linked service so that the Data Factory service can register them on your behalf.
      *
      * @return the additionalLinkedServiceNames value
      */
@@ -520,7 +520,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the additionalLinkedServiceNames value.
+     * Set specifies additional storage accounts for the HDInsight linked service so that the Data Factory service can register them on your behalf.
      *
      * @param additionalLinkedServiceNames the additionalLinkedServiceNames value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -531,7 +531,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hcatalogLinkedServiceName value.
+     * Get the name of Azure SQL linked service that point to the HCatalog database. The on-demand HDInsight cluster is created by using the Azure SQL database as the metastore.
      *
      * @return the hcatalogLinkedServiceName value
      */
@@ -540,7 +540,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hcatalogLinkedServiceName value.
+     * Set the name of Azure SQL linked service that point to the HCatalog database. The on-demand HDInsight cluster is created by using the Azure SQL database as the metastore.
      *
      * @param hcatalogLinkedServiceName the hcatalogLinkedServiceName value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -551,7 +551,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clusterType value.
+     * Get the cluster type. Type: string (or Expression with resultType string).
      *
      * @return the clusterType value
      */
@@ -560,7 +560,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clusterType value.
+     * Set the cluster type. Type: string (or Expression with resultType string).
      *
      * @param clusterType the clusterType value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -571,7 +571,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the sparkVersion value.
+     * Get the version of spark if the cluster type is 'spark'. Type: string (or Expression with resultType string).
      *
      * @return the sparkVersion value
      */
@@ -580,7 +580,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the sparkVersion value.
+     * Set the version of spark if the cluster type is 'spark'. Type: string (or Expression with resultType string).
      *
      * @param sparkVersion the sparkVersion value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -591,7 +591,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the coreConfiguration value.
+     * Get specifies the core configuration parameters (as in core-site.xml) for the HDInsight cluster to be created.
      *
      * @return the coreConfiguration value
      */
@@ -600,7 +600,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the coreConfiguration value.
+     * Set specifies the core configuration parameters (as in core-site.xml) for the HDInsight cluster to be created.
      *
      * @param coreConfiguration the coreConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -611,7 +611,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hBaseConfiguration value.
+     * Get specifies the HBase configuration parameters (hbase-site.xml) for the HDInsight cluster.
      *
      * @return the hBaseConfiguration value
      */
@@ -620,7 +620,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hBaseConfiguration value.
+     * Set specifies the HBase configuration parameters (hbase-site.xml) for the HDInsight cluster.
      *
      * @param hBaseConfiguration the hBaseConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -631,7 +631,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hdfsConfiguration value.
+     * Get specifies the HDFS configuration parameters (hdfs-site.xml) for the HDInsight cluster.
      *
      * @return the hdfsConfiguration value
      */
@@ -640,7 +640,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hdfsConfiguration value.
+     * Set specifies the HDFS configuration parameters (hdfs-site.xml) for the HDInsight cluster.
      *
      * @param hdfsConfiguration the hdfsConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -651,7 +651,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hiveConfiguration value.
+     * Get specifies the hive configuration parameters (hive-site.xml) for the HDInsight cluster.
      *
      * @return the hiveConfiguration value
      */
@@ -660,7 +660,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hiveConfiguration value.
+     * Set specifies the hive configuration parameters (hive-site.xml) for the HDInsight cluster.
      *
      * @param hiveConfiguration the hiveConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -671,7 +671,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the mapReduceConfiguration value.
+     * Get specifies the MapReduce configuration parameters (mapred-site.xml) for the HDInsight cluster.
      *
      * @return the mapReduceConfiguration value
      */
@@ -680,7 +680,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the mapReduceConfiguration value.
+     * Set specifies the MapReduce configuration parameters (mapred-site.xml) for the HDInsight cluster.
      *
      * @param mapReduceConfiguration the mapReduceConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -691,7 +691,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the oozieConfiguration value.
+     * Get specifies the Oozie configuration parameters (oozie-site.xml) for the HDInsight cluster.
      *
      * @return the oozieConfiguration value
      */
@@ -700,7 +700,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the oozieConfiguration value.
+     * Set specifies the Oozie configuration parameters (oozie-site.xml) for the HDInsight cluster.
      *
      * @param oozieConfiguration the oozieConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -711,7 +711,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the stormConfiguration value.
+     * Get specifies the Storm configuration parameters (storm-site.xml) for the HDInsight cluster.
      *
      * @return the stormConfiguration value
      */
@@ -720,7 +720,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the stormConfiguration value.
+     * Set specifies the Storm configuration parameters (storm-site.xml) for the HDInsight cluster.
      *
      * @param stormConfiguration the stormConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -731,7 +731,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the yarnConfiguration value.
+     * Get specifies the Yarn configuration parameters (yarn-site.xml) for the HDInsight cluster.
      *
      * @return the yarnConfiguration value
      */
@@ -740,7 +740,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the yarnConfiguration value.
+     * Set specifies the Yarn configuration parameters (yarn-site.xml) for the HDInsight cluster.
      *
      * @param yarnConfiguration the yarnConfiguration value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -751,7 +751,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -760,7 +760,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -771,7 +771,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the headNodeSize value.
+     * Get specifies the size of the head node for the HDInsight cluster.
      *
      * @return the headNodeSize value
      */
@@ -780,7 +780,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the headNodeSize value.
+     * Set specifies the size of the head node for the HDInsight cluster.
      *
      * @param headNodeSize the headNodeSize value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -791,7 +791,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the dataNodeSize value.
+     * Get specifies the size of the data node for the HDInsight cluster.
      *
      * @return the dataNodeSize value
      */
@@ -800,7 +800,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the dataNodeSize value.
+     * Set specifies the size of the data node for the HDInsight cluster.
      *
      * @param dataNodeSize the dataNodeSize value to set
      * @return the HDInsightOnDemandLinkedService object itself.
@@ -811,7 +811,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the zookeeperNodeSize value.
+     * Get specifies the size of the Zoo Keeper node for the HDInsight cluster.
      *
      * @return the zookeeperNodeSize value
      */
@@ -820,7 +820,7 @@ public class HDInsightOnDemandLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the zookeeperNodeSize value.
+     * Set specifies the size of the Zoo Keeper node for the HDInsight cluster.
      *
      * @param zookeeperNodeSize the zookeeperNodeSize value to set
      * @return the HDInsightOnDemandLinkedService object itself.

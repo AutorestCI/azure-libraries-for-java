@@ -58,7 +58,25 @@ public class PipelineResourceInner extends SubResource {
     private List<Object> annotations;
 
     /**
-     * Get the additionalProperties value.
+     * The resource name.
+     */
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    private String name;
+
+    /**
+     * The resource type.
+     */
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
+    private String type;
+
+    /**
+     * Etag identifies change in the resource.
+     */
+    @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
+    private String etag;
+
+    /**
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -67,7 +85,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the PipelineResourceInner object itself.
@@ -78,7 +96,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Get the description value.
+     * Get the description of the pipeline.
      *
      * @return the description value
      */
@@ -87,7 +105,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Set the description value.
+     * Set the description of the pipeline.
      *
      * @param description the description value to set
      * @return the PipelineResourceInner object itself.
@@ -98,7 +116,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Get the activities value.
+     * Get list of activities in pipeline.
      *
      * @return the activities value
      */
@@ -107,7 +125,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Set the activities value.
+     * Set list of activities in pipeline.
      *
      * @param activities the activities value to set
      * @return the PipelineResourceInner object itself.
@@ -118,7 +136,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Get the parameters value.
+     * Get list of parameters for pipeline.
      *
      * @return the parameters value
      */
@@ -127,7 +145,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Set the parameters value.
+     * Set list of parameters for pipeline.
      *
      * @param parameters the parameters value to set
      * @return the PipelineResourceInner object itself.
@@ -138,7 +156,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Get the concurrency value.
+     * Get the max number of concurrent runs for the pipeline.
      *
      * @return the concurrency value
      */
@@ -147,7 +165,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Set the concurrency value.
+     * Set the max number of concurrent runs for the pipeline.
      *
      * @param concurrency the concurrency value to set
      * @return the PipelineResourceInner object itself.
@@ -158,7 +176,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Get the annotations value.
+     * Get list of tags that can be used for describing the Pipeline.
      *
      * @return the annotations value
      */
@@ -167,7 +185,7 @@ public class PipelineResourceInner extends SubResource {
     }
 
     /**
-     * Set the annotations value.
+     * Set list of tags that can be used for describing the Pipeline.
      *
      * @param annotations the annotations value to set
      * @return the PipelineResourceInner object itself.
@@ -175,6 +193,33 @@ public class PipelineResourceInner extends SubResource {
     public PipelineResourceInner withAnnotations(List<Object> annotations) {
         this.annotations = annotations;
         return this;
+    }
+
+    /**
+     * Get the resource name.
+     *
+     * @return the name value
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the resource type.
+     *
+     * @return the type value
+     */
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get etag identifies change in the resource.
+     *
+     * @return the etag value
+     */
+    public String etag() {
+        return this.etag;
     }
 
 }

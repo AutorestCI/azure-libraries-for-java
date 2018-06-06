@@ -65,7 +65,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get the endpoint of the Shopify server. (i.e. mystore.myshopify.com).
      *
      * @return the host value
      */
@@ -74,7 +74,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set the endpoint of the Shopify server. (i.e. mystore.myshopify.com).
      *
      * @param host the host value to set
      * @return the ShopifyLinkedService object itself.
@@ -85,7 +85,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessToken value.
+     * Get the API access token that can be used to access Shopify’s data. The token won't expire if it is offline mode.
      *
      * @return the accessToken value
      */
@@ -94,7 +94,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessToken value.
+     * Set the API access token that can be used to access Shopify’s data. The token won't expire if it is offline mode.
      *
      * @param accessToken the accessToken value to set
      * @return the ShopifyLinkedService object itself.
@@ -105,7 +105,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -114,7 +114,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the ShopifyLinkedService object itself.
@@ -125,7 +125,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -134,7 +134,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the ShopifyLinkedService object itself.
@@ -145,7 +145,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -154,7 +154,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the ShopifyLinkedService object itself.
@@ -165,7 +165,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -174,7 +174,7 @@ public class ShopifyLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the ShopifyLinkedService object itself.

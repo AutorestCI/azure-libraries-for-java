@@ -29,7 +29,7 @@ public class SSISPropertyOverride {
     private Boolean isSensitive;
 
     /**
-     * Get the value value.
+     * Get sSIS package property override value. Type: string (or Expression with resultType string).
      *
      * @return the value value
      */
@@ -38,7 +38,7 @@ public class SSISPropertyOverride {
     }
 
     /**
-     * Set the value value.
+     * Set sSIS package property override value. Type: string (or Expression with resultType string).
      *
      * @param value the value value to set
      * @return the SSISPropertyOverride object itself.
@@ -49,7 +49,7 @@ public class SSISPropertyOverride {
     }
 
     /**
-     * Get the isSensitive value.
+     * Get whether SSIS package property override value is sensitive data. Value will be encrypted in SSISDB if it is true.
      *
      * @return the isSensitive value
      */
@@ -58,7 +58,7 @@ public class SSISPropertyOverride {
     }
 
     /**
-     * Set the isSensitive value.
+     * Set whether SSIS package property override value is sensitive data. Value will be encrypted in SSISDB if it is true.
      *
      * @param isSensitive the isSensitive value to set
      * @return the SSISPropertyOverride object itself.

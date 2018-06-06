@@ -27,7 +27,7 @@ public class OperationMetricAvailability {
     private String blobDuration;
 
     /**
-     * Get the timeGrain value.
+     * Get the granularity for the metric.
      *
      * @return the timeGrain value
      */
@@ -36,7 +36,7 @@ public class OperationMetricAvailability {
     }
 
     /**
-     * Set the timeGrain value.
+     * Set the granularity for the metric.
      *
      * @param timeGrain the timeGrain value to set
      * @return the OperationMetricAvailability object itself.
@@ -47,7 +47,7 @@ public class OperationMetricAvailability {
     }
 
     /**
-     * Get the blobDuration value.
+     * Get blob created in the customer storage account, per hour.
      *
      * @return the blobDuration value
      */
@@ -56,7 +56,7 @@ public class OperationMetricAvailability {
     }
 
     /**
-     * Set the blobDuration value.
+     * Set blob created in the customer storage account, per hour.
      *
      * @param blobDuration the blobDuration value to set
      * @return the OperationMetricAvailability object itself.

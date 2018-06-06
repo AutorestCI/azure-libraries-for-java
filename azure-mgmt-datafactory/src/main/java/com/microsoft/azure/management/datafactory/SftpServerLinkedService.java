@@ -106,7 +106,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     private Object hostKeyFingerprint;
 
     /**
-     * Get the host value.
+     * Get the SFTP server host name. Type: string (or Expression with resultType string).
      *
      * @return the host value
      */
@@ -115,7 +115,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set the SFTP server host name. Type: string (or Expression with resultType string).
      *
      * @param host the host value to set
      * @return the SftpServerLinkedService object itself.
@@ -126,7 +126,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port number that the SFTP server uses to listen for client connections. Default value is 22. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the port value
      */
@@ -135,7 +135,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port number that the SFTP server uses to listen for client connections. Default value is 22. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param port the port value to set
      * @return the SftpServerLinkedService object itself.
@@ -146,7 +146,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type to be used to connect to the FTP server. Possible values include: 'Basic', 'SshPublicKey'.
      *
      * @return the authenticationType value
      */
@@ -155,7 +155,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type to be used to connect to the FTP server. Possible values include: 'Basic', 'SshPublicKey'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the SftpServerLinkedService object itself.
@@ -166,7 +166,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get the username used to log on to the SFTP server. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -175,7 +175,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set the username used to log on to the SFTP server. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the SftpServerLinkedService object itself.
@@ -186,7 +186,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password to logon the SFTP server for Basic authentication.
      *
      * @return the password value
      */
@@ -195,7 +195,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password to logon the SFTP server for Basic authentication.
      *
      * @param password the password value to set
      * @return the SftpServerLinkedService object itself.
@@ -206,7 +206,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -215,7 +215,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the SftpServerLinkedService object itself.
@@ -226,7 +226,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the privateKeyPath value.
+     * Get the SSH private key file path for SshPublicKey authentication. Only valid for on-premises copy. For on-premises copy with SshPublicKey authentication, either PrivateKeyPath or PrivateKeyContent should be specified. SSH private key should be OpenSSH format. Type: string (or Expression with resultType string).
      *
      * @return the privateKeyPath value
      */
@@ -235,7 +235,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the privateKeyPath value.
+     * Set the SSH private key file path for SshPublicKey authentication. Only valid for on-premises copy. For on-premises copy with SshPublicKey authentication, either PrivateKeyPath or PrivateKeyContent should be specified. SSH private key should be OpenSSH format. Type: string (or Expression with resultType string).
      *
      * @param privateKeyPath the privateKeyPath value to set
      * @return the SftpServerLinkedService object itself.
@@ -246,7 +246,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the privateKeyContent value.
+     * Get base64 encoded SSH private key content for SshPublicKey authentication. For on-premises copy with SshPublicKey authentication, either PrivateKeyPath or PrivateKeyContent should be specified. SSH private key should be OpenSSH format.
      *
      * @return the privateKeyContent value
      */
@@ -255,7 +255,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the privateKeyContent value.
+     * Set base64 encoded SSH private key content for SshPublicKey authentication. For on-premises copy with SshPublicKey authentication, either PrivateKeyPath or PrivateKeyContent should be specified. SSH private key should be OpenSSH format.
      *
      * @param privateKeyContent the privateKeyContent value to set
      * @return the SftpServerLinkedService object itself.
@@ -266,7 +266,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the passPhrase value.
+     * Get the password to decrypt the SSH private key if the SSH private key is encrypted.
      *
      * @return the passPhrase value
      */
@@ -275,7 +275,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the passPhrase value.
+     * Set the password to decrypt the SSH private key if the SSH private key is encrypted.
      *
      * @param passPhrase the passPhrase value to set
      * @return the SftpServerLinkedService object itself.
@@ -286,7 +286,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the skipHostKeyValidation value.
+     * Get if true, skip the SSH host key validation. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the skipHostKeyValidation value
      */
@@ -295,7 +295,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the skipHostKeyValidation value.
+     * Set if true, skip the SSH host key validation. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param skipHostKeyValidation the skipHostKeyValidation value to set
      * @return the SftpServerLinkedService object itself.
@@ -306,7 +306,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hostKeyFingerprint value.
+     * Get the host key finger-print of the SFTP server. When SkipHostKeyValidation is false, HostKeyFingerprint should be specified. Type: string (or Expression with resultType string).
      *
      * @return the hostKeyFingerprint value
      */
@@ -315,7 +315,7 @@ public class SftpServerLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hostKeyFingerprint value.
+     * Set the host key finger-print of the SFTP server. When SkipHostKeyValidation is false, HostKeyFingerprint should be specified. Type: string (or Expression with resultType string).
      *
      * @param hostKeyFingerprint the hostKeyFingerprint value to set
      * @return the SftpServerLinkedService object itself.

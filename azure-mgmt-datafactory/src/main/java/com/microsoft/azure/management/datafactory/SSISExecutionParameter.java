@@ -22,7 +22,7 @@ public class SSISExecutionParameter {
     private Object value;
 
     /**
-     * Get the value value.
+     * Get sSIS package execution parameter value. Type: string (or Expression with resultType string).
      *
      * @return the value value
      */
@@ -31,7 +31,7 @@ public class SSISExecutionParameter {
     }
 
     /**
-     * Set the value value.
+     * Set sSIS package execution parameter value. Type: string (or Expression with resultType string).
      *
      * @param value the value value to set
      * @return the SSISExecutionParameter object itself.

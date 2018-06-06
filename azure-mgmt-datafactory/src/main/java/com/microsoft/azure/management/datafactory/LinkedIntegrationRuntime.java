@@ -48,7 +48,7 @@ public class LinkedIntegrationRuntime {
     private DateTime createTime;
 
     /**
-     * Get the name value.
+     * Get the name of the linked integration runtime.
      *
      * @return the name value
      */
@@ -57,7 +57,7 @@ public class LinkedIntegrationRuntime {
     }
 
     /**
-     * Get the subscriptionId value.
+     * Get the subscription ID for which the linked integration runtime belong to.
      *
      * @return the subscriptionId value
      */
@@ -66,7 +66,7 @@ public class LinkedIntegrationRuntime {
     }
 
     /**
-     * Get the dataFactoryName value.
+     * Get the name of the data factory for which the linked integration runtime belong to.
      *
      * @return the dataFactoryName value
      */
@@ -75,7 +75,7 @@ public class LinkedIntegrationRuntime {
     }
 
     /**
-     * Get the dataFactoryLocation value.
+     * Get the location of the data factory for which the linked integration runtime belong to.
      *
      * @return the dataFactoryLocation value
      */
@@ -84,7 +84,7 @@ public class LinkedIntegrationRuntime {
     }
 
     /**
-     * Get the createTime value.
+     * Get the creating time of the linked integration runtime.
      *
      * @return the createTime value
      */

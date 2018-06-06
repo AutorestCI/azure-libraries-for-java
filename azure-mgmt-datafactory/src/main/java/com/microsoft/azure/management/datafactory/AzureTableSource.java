@@ -33,7 +33,7 @@ public class AzureTableSource extends CopySource {
     private Object azureTableSourceIgnoreTableNotFound;
 
     /**
-     * Get the azureTableSourceQuery value.
+     * Get azure Table source query. Type: string (or Expression with resultType string).
      *
      * @return the azureTableSourceQuery value
      */
@@ -42,7 +42,7 @@ public class AzureTableSource extends CopySource {
     }
 
     /**
-     * Set the azureTableSourceQuery value.
+     * Set azure Table source query. Type: string (or Expression with resultType string).
      *
      * @param azureTableSourceQuery the azureTableSourceQuery value to set
      * @return the AzureTableSource object itself.
@@ -53,7 +53,7 @@ public class AzureTableSource extends CopySource {
     }
 
     /**
-     * Get the azureTableSourceIgnoreTableNotFound value.
+     * Get azure Table source ignore table not found. Type: boolean (or Expression with resultType boolean).
      *
      * @return the azureTableSourceIgnoreTableNotFound value
      */
@@ -62,7 +62,7 @@ public class AzureTableSource extends CopySource {
     }
 
     /**
-     * Set the azureTableSourceIgnoreTableNotFound value.
+     * Set azure Table source ignore table not found. Type: boolean (or Expression with resultType boolean).
      *
      * @param azureTableSourceIgnoreTableNotFound the azureTableSourceIgnoreTableNotFound value to set
      * @return the AzureTableSource object itself.

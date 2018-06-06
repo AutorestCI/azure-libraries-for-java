@@ -64,7 +64,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get host name for connection. Type: string (or Expression with resultType string).
      *
      * @return the host value
      */
@@ -73,7 +73,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set host name for connection. Type: string (or Expression with resultType string).
      *
      * @param host the host value to set
      * @return the CassandraLinkedService object itself.
@@ -84,7 +84,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get authenticationType to be used for connection. Type: string (or Expression with resultType string).
      *
      * @return the authenticationType value
      */
@@ -93,7 +93,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set authenticationType to be used for connection. Type: string (or Expression with resultType string).
      *
      * @param authenticationType the authenticationType value to set
      * @return the CassandraLinkedService object itself.
@@ -104,7 +104,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the port for the connection. Type: integer (or Expression with resultType integer).
      *
      * @return the port value
      */
@@ -113,7 +113,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the port for the connection. Type: integer (or Expression with resultType integer).
      *
      * @param port the port value to set
      * @return the CassandraLinkedService object itself.
@@ -124,7 +124,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get username for authentication. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -133,7 +133,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set username for authentication. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the CassandraLinkedService object itself.
@@ -144,7 +144,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password for authentication.
      *
      * @return the password value
      */
@@ -153,7 +153,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password for authentication.
      *
      * @param password the password value to set
      * @return the CassandraLinkedService object itself.
@@ -164,7 +164,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -173,7 +173,7 @@ public class CassandraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the CassandraLinkedService object itself.
