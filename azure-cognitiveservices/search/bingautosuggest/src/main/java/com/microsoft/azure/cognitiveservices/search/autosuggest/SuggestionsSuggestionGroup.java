@@ -16,10 +16,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class SuggestionsSuggestionGroup {
     /**
+     * Possible values include: 'Unknown', 'Web', 'StoreApps', 'SearchHistory',
+     * 'PersonalSearchDocuments', 'PersonalSearchTags', 'Custom'.
+     */
+    @JsonProperty(value = "name", required = true)
+    private ScenarioType name;
+
+    /**
      * The searchSuggestions property.
      */
     @JsonProperty(value = "searchSuggestions", required = true)
     private List<SearchAction> searchSuggestions;
+
+    /**
+     * Get possible values include: 'Unknown', 'Web', 'StoreApps', 'SearchHistory', 'PersonalSearchDocuments', 'PersonalSearchTags', 'Custom'.
+     *
+     * @return the name value
+     */
+    public ScenarioType name() {
+        return this.name;
+    }
+
+    /**
+     * Set possible values include: 'Unknown', 'Web', 'StoreApps', 'SearchHistory', 'PersonalSearchDocuments', 'PersonalSearchTags', 'Custom'.
+     *
+     * @param name the name value to set
+     * @return the SuggestionsSuggestionGroup object itself.
+     */
+    public SuggestionsSuggestionGroup withName(ScenarioType name) {
+        this.name = name;
+        return this;
+    }
 
     /**
      * Get the searchSuggestions value.
