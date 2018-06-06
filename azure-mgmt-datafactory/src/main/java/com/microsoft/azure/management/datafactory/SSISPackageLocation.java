@@ -21,7 +21,7 @@ public class SSISPackageLocation {
     private String packagePath;
 
     /**
-     * Get the packagePath value.
+     * Get the SSIS package path.
      *
      * @return the packagePath value
      */
@@ -30,7 +30,7 @@ public class SSISPackageLocation {
     }
 
     /**
-     * Set the packagePath value.
+     * Set the SSIS package path.
      *
      * @param packagePath the packagePath value to set
      * @return the SSISPackageLocation object itself.

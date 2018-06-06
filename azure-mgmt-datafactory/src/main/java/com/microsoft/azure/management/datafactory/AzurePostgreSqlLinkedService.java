@@ -37,7 +37,7 @@ public class AzurePostgreSqlLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get an ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @return the connectionString value
      */
@@ -46,7 +46,7 @@ public class AzurePostgreSqlLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the connectionString value.
+     * Set an ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @param connectionString the connectionString value to set
      * @return the AzurePostgreSqlLinkedService object itself.
@@ -57,7 +57,7 @@ public class AzurePostgreSqlLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -66,7 +66,7 @@ public class AzurePostgreSqlLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzurePostgreSqlLinkedService object itself.

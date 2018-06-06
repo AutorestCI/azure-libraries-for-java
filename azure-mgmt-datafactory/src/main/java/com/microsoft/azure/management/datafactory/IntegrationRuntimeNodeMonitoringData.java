@@ -70,7 +70,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     private Double receivedBytes;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -79,7 +79,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeNodeMonitoringData object itself.
@@ -90,7 +90,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the nodeName value.
+     * Get name of the integration runtime node.
      *
      * @return the nodeName value
      */
@@ -99,7 +99,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the availableMemoryInMB value.
+     * Get available memory (MB) on the integration runtime node.
      *
      * @return the availableMemoryInMB value
      */
@@ -108,7 +108,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the cpuUtilization value.
+     * Get cPU percentage on the integration runtime node.
      *
      * @return the cpuUtilization value
      */
@@ -117,7 +117,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the concurrentJobsLimit value.
+     * Get maximum concurrent jobs on the integration runtime node.
      *
      * @return the concurrentJobsLimit value
      */
@@ -126,7 +126,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the concurrentJobsRunning value.
+     * Get the number of jobs currently running on the integration runtime node.
      *
      * @return the concurrentJobsRunning value
      */
@@ -135,7 +135,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the maxConcurrentJobs value.
+     * Get the maximum concurrent jobs in this integration runtime.
      *
      * @return the maxConcurrentJobs value
      */
@@ -144,7 +144,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the sentBytes value.
+     * Get sent bytes on the integration runtime node.
      *
      * @return the sentBytes value
      */
@@ -153,7 +153,7 @@ public class IntegrationRuntimeNodeMonitoringData {
     }
 
     /**
-     * Get the receivedBytes value.
+     * Get received bytes on the integration runtime node.
      *
      * @return the receivedBytes value
      */

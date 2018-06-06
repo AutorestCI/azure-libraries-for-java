@@ -26,7 +26,7 @@ public class SapEccSource extends CopySource {
     private String query;
 
     /**
-     * Get the query value.
+     * Get sAP ECC OData query. For example, "$top=1". Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -35,7 +35,7 @@ public class SapEccSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set sAP ECC OData query. For example, "$top=1". Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the SapEccSource object itself.

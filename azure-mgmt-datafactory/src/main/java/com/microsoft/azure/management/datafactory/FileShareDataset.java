@@ -56,7 +56,7 @@ public class FileShareDataset extends DatasetInner {
     private DatasetCompression compression;
 
     /**
-     * Get the folderPath value.
+     * Get the path of the on-premises file system. Type: string (or Expression with resultType string).
      *
      * @return the folderPath value
      */
@@ -65,7 +65,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Set the folderPath value.
+     * Set the path of the on-premises file system. Type: string (or Expression with resultType string).
      *
      * @param folderPath the folderPath value to set
      * @return the FileShareDataset object itself.
@@ -76,7 +76,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Get the fileName value.
+     * Get the name of the on-premises file system. Type: string (or Expression with resultType string).
      *
      * @return the fileName value
      */
@@ -85,7 +85,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Set the fileName value.
+     * Set the name of the on-premises file system. Type: string (or Expression with resultType string).
      *
      * @param fileName the fileName value to set
      * @return the FileShareDataset object itself.
@@ -96,7 +96,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Get the format value.
+     * Get the format of the files.
      *
      * @return the format value
      */
@@ -105,7 +105,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Set the format value.
+     * Set the format of the files.
      *
      * @param format the format value to set
      * @return the FileShareDataset object itself.
@@ -116,7 +116,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Get the fileFilter value.
+     * Get specify a filter to be used to select a subset of files in the folderPath rather than all files. Type: string (or Expression with resultType string).
      *
      * @return the fileFilter value
      */
@@ -125,7 +125,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Set the fileFilter value.
+     * Set specify a filter to be used to select a subset of files in the folderPath rather than all files. Type: string (or Expression with resultType string).
      *
      * @param fileFilter the fileFilter value to set
      * @return the FileShareDataset object itself.
@@ -136,7 +136,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Get the compression value.
+     * Get the data compression method used for the file system.
      *
      * @return the compression value
      */
@@ -145,7 +145,7 @@ public class FileShareDataset extends DatasetInner {
     }
 
     /**
-     * Set the compression value.
+     * Set the data compression method used for the file system.
      *
      * @param compression the compression value to set
      * @return the FileShareDataset object itself.

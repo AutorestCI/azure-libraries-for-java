@@ -71,7 +71,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the endpoint value.
+     * Get the endpoint of the Eloqua server. (i.e. eloqua.example.com).
      *
      * @return the endpoint value
      */
@@ -80,7 +80,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the endpoint value.
+     * Set the endpoint of the Eloqua server. (i.e. eloqua.example.com).
      *
      * @param endpoint the endpoint value to set
      * @return the EloquaLinkedService object itself.
@@ -91,7 +91,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the site name and user name of your Eloqua account in the form: sitename/username. (i.e. Eloqua/Alice).
      *
      * @return the username value
      */
@@ -100,7 +100,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the site name and user name of your Eloqua account in the form: sitename/username. (i.e. Eloqua/Alice).
      *
      * @param username the username value to set
      * @return the EloquaLinkedService object itself.
@@ -111,7 +111,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password corresponding to the user name.
      *
      * @return the password value
      */
@@ -120,7 +120,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password corresponding to the user name.
      *
      * @param password the password value to set
      * @return the EloquaLinkedService object itself.
@@ -131,7 +131,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -140,7 +140,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the EloquaLinkedService object itself.
@@ -151,7 +151,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -160,7 +160,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the EloquaLinkedService object itself.
@@ -171,7 +171,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -180,7 +180,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the EloquaLinkedService object itself.
@@ -191,7 +191,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -200,7 +200,7 @@ public class EloquaLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the EloquaLinkedService object itself.

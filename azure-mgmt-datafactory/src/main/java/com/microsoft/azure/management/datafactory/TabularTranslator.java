@@ -35,7 +35,7 @@ public class TabularTranslator extends CopyTranslator {
     private Object schemaMapping;
 
     /**
-     * Get the columnMappings value.
+     * Get column mappings. Example: "UserId: MyUserId, Group: MyGroup, Name: MyName" Type: string (or Expression with resultType string).
      *
      * @return the columnMappings value
      */
@@ -44,7 +44,7 @@ public class TabularTranslator extends CopyTranslator {
     }
 
     /**
-     * Set the columnMappings value.
+     * Set column mappings. Example: "UserId: MyUserId, Group: MyGroup, Name: MyName" Type: string (or Expression with resultType string).
      *
      * @param columnMappings the columnMappings value to set
      * @return the TabularTranslator object itself.
@@ -55,7 +55,7 @@ public class TabularTranslator extends CopyTranslator {
     }
 
     /**
-     * Get the schemaMapping value.
+     * Get the schema mapping to map between tabular data and hierarchical data. Example: {"Column1": "$.Column1", "Column2": "$.Column2.Property1", "Column3": "$.Column2.Property2"}. Type: object (or Expression with resultType object).
      *
      * @return the schemaMapping value
      */
@@ -64,7 +64,7 @@ public class TabularTranslator extends CopyTranslator {
     }
 
     /**
-     * Set the schemaMapping value.
+     * Set the schema mapping to map between tabular data and hierarchical data. Example: {"Column1": "$.Column1", "Column2": "$.Column2.Property1", "Column3": "$.Column2.Property2"}. Type: object (or Expression with resultType object).
      *
      * @param schemaMapping the schemaMapping value to set
      * @return the TabularTranslator object itself.

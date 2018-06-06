@@ -40,7 +40,7 @@ public class AzureKeyVaultSecretReference extends SecretBase {
     private Object secretVersion;
 
     /**
-     * Get the store value.
+     * Get the Azure Key Vault linked service reference.
      *
      * @return the store value
      */
@@ -49,7 +49,7 @@ public class AzureKeyVaultSecretReference extends SecretBase {
     }
 
     /**
-     * Set the store value.
+     * Set the Azure Key Vault linked service reference.
      *
      * @param store the store value to set
      * @return the AzureKeyVaultSecretReference object itself.
@@ -60,7 +60,7 @@ public class AzureKeyVaultSecretReference extends SecretBase {
     }
 
     /**
-     * Get the secretName value.
+     * Get the name of the secret in Azure Key Vault. Type: string (or Expression with resultType string).
      *
      * @return the secretName value
      */
@@ -69,7 +69,7 @@ public class AzureKeyVaultSecretReference extends SecretBase {
     }
 
     /**
-     * Set the secretName value.
+     * Set the name of the secret in Azure Key Vault. Type: string (or Expression with resultType string).
      *
      * @param secretName the secretName value to set
      * @return the AzureKeyVaultSecretReference object itself.
@@ -80,7 +80,7 @@ public class AzureKeyVaultSecretReference extends SecretBase {
     }
 
     /**
-     * Get the secretVersion value.
+     * Get the version of the secret in Azure Key Vault. The default value is the latest version of the secret. Type: string (or Expression with resultType string).
      *
      * @return the secretVersion value
      */
@@ -89,7 +89,7 @@ public class AzureKeyVaultSecretReference extends SecretBase {
     }
 
     /**
-     * Set the secretVersion value.
+     * Set the version of the secret in Azure Key Vault. The default value is the latest version of the secret. Type: string (or Expression with resultType string).
      *
      * @param secretVersion the secretVersion value to set
      * @return the AzureKeyVaultSecretReference object itself.

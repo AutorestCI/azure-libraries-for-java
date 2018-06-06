@@ -29,7 +29,7 @@ public class StoredProcedureParameter {
     private StoredProcedureParameterType type;
 
     /**
-     * Get the value value.
+     * Get stored procedure parameter value. Type: string (or Expression with resultType string).
      *
      * @return the value value
      */
@@ -38,7 +38,7 @@ public class StoredProcedureParameter {
     }
 
     /**
-     * Set the value value.
+     * Set stored procedure parameter value. Type: string (or Expression with resultType string).
      *
      * @param value the value value to set
      * @return the StoredProcedureParameter object itself.
@@ -49,7 +49,7 @@ public class StoredProcedureParameter {
     }
 
     /**
-     * Get the type value.
+     * Get stored procedure parameter type. Possible values include: 'String', 'Int', 'Decimal', 'Guid', 'Boolean', 'Date'.
      *
      * @return the type value
      */
@@ -58,7 +58,7 @@ public class StoredProcedureParameter {
     }
 
     /**
-     * Set the type value.
+     * Set stored procedure parameter type. Possible values include: 'String', 'Int', 'Decimal', 'Guid', 'Boolean', 'Date'.
      *
      * @param type the type value to set
      * @return the StoredProcedureParameter object itself.

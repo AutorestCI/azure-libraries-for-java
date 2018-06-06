@@ -29,7 +29,7 @@ public class SalesforceObjectDataset extends DatasetInner {
     private Object objectApiName;
 
     /**
-     * Get the objectApiName value.
+     * Get the Salesforce object API name. Type: string (or Expression with resultType string).
      *
      * @return the objectApiName value
      */
@@ -38,7 +38,7 @@ public class SalesforceObjectDataset extends DatasetInner {
     }
 
     /**
-     * Set the objectApiName value.
+     * Set the Salesforce object API name. Type: string (or Expression with resultType string).
      *
      * @param objectApiName the objectApiName value to set
      * @return the SalesforceObjectDataset object itself.

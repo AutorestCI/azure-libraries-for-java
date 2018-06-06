@@ -45,7 +45,7 @@ public class AmazonS3LinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the accessKeyId value.
+     * Get the access key identifier of the Amazon S3 Identity and Access Management (IAM) user. Type: string (or Expression with resultType string).
      *
      * @return the accessKeyId value
      */
@@ -54,7 +54,7 @@ public class AmazonS3LinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessKeyId value.
+     * Set the access key identifier of the Amazon S3 Identity and Access Management (IAM) user. Type: string (or Expression with resultType string).
      *
      * @param accessKeyId the accessKeyId value to set
      * @return the AmazonS3LinkedService object itself.
@@ -65,7 +65,7 @@ public class AmazonS3LinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the secretAccessKey value.
+     * Get the secret access key of the Amazon S3 Identity and Access Management (IAM) user.
      *
      * @return the secretAccessKey value
      */
@@ -74,7 +74,7 @@ public class AmazonS3LinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the secretAccessKey value.
+     * Set the secret access key of the Amazon S3 Identity and Access Management (IAM) user.
      *
      * @param secretAccessKey the secretAccessKey value to set
      * @return the AmazonS3LinkedService object itself.
@@ -85,7 +85,7 @@ public class AmazonS3LinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -94,7 +94,7 @@ public class AmazonS3LinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AmazonS3LinkedService object itself.

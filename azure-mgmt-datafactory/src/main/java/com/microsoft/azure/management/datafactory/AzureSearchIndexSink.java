@@ -26,7 +26,7 @@ public class AzureSearchIndexSink extends CopySink {
     private AzureSearchIndexWriteBehaviorType writeBehavior;
 
     /**
-     * Get the writeBehavior value.
+     * Get specify the write behavior when upserting documents into Azure Search Index. Possible values include: 'Merge', 'Upload'.
      *
      * @return the writeBehavior value
      */
@@ -35,7 +35,7 @@ public class AzureSearchIndexSink extends CopySink {
     }
 
     /**
-     * Set the writeBehavior value.
+     * Set specify the write behavior when upserting documents into Azure Search Index. Possible values include: 'Merge', 'Upload'.
      *
      * @param writeBehavior the writeBehavior value to set
      * @return the AzureSearchIndexSink object itself.

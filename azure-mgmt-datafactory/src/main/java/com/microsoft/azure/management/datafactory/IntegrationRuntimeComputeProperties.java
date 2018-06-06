@@ -55,7 +55,7 @@ public class IntegrationRuntimeComputeProperties {
     private IntegrationRuntimeVNetProperties vNetProperties;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -64,7 +64,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeComputeProperties object itself.
@@ -75,7 +75,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Get the location value.
+     * Get the location for managed integration runtime. The supported regions could be found on https://docs.microsoft.com/en-us/azure/data-factory/data-factory-data-movement-activities.
      *
      * @return the location value
      */
@@ -84,7 +84,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Set the location value.
+     * Set the location for managed integration runtime. The supported regions could be found on https://docs.microsoft.com/en-us/azure/data-factory/data-factory-data-movement-activities.
      *
      * @param location the location value to set
      * @return the IntegrationRuntimeComputeProperties object itself.
@@ -95,7 +95,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Get the nodeSize value.
+     * Get the node size requirement to managed integration runtime.
      *
      * @return the nodeSize value
      */
@@ -104,7 +104,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Set the nodeSize value.
+     * Set the node size requirement to managed integration runtime.
      *
      * @param nodeSize the nodeSize value to set
      * @return the IntegrationRuntimeComputeProperties object itself.
@@ -115,7 +115,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Get the numberOfNodes value.
+     * Get the required number of nodes for managed integration runtime.
      *
      * @return the numberOfNodes value
      */
@@ -124,7 +124,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Set the numberOfNodes value.
+     * Set the required number of nodes for managed integration runtime.
      *
      * @param numberOfNodes the numberOfNodes value to set
      * @return the IntegrationRuntimeComputeProperties object itself.
@@ -135,7 +135,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Get the maxParallelExecutionsPerNode value.
+     * Get maximum parallel executions count per node for managed integration runtime.
      *
      * @return the maxParallelExecutionsPerNode value
      */
@@ -144,7 +144,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Set the maxParallelExecutionsPerNode value.
+     * Set maximum parallel executions count per node for managed integration runtime.
      *
      * @param maxParallelExecutionsPerNode the maxParallelExecutionsPerNode value to set
      * @return the IntegrationRuntimeComputeProperties object itself.
@@ -155,7 +155,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Get the vNetProperties value.
+     * Get vNet properties for managed integration runtime.
      *
      * @return the vNetProperties value
      */
@@ -164,7 +164,7 @@ public class IntegrationRuntimeComputeProperties {
     }
 
     /**
-     * Set the vNetProperties value.
+     * Set vNet properties for managed integration runtime.
      *
      * @param vNetProperties the vNetProperties value to set
      * @return the IntegrationRuntimeComputeProperties object itself.

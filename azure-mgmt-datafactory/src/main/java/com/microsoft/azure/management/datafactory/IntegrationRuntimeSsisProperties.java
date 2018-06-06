@@ -49,7 +49,7 @@ public class IntegrationRuntimeSsisProperties {
     private IntegrationRuntimeEdition edition;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -58,7 +58,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeSsisProperties object itself.
@@ -69,7 +69,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Get the catalogInfo value.
+     * Get catalog information for managed dedicated integration runtime.
      *
      * @return the catalogInfo value
      */
@@ -78,7 +78,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Set the catalogInfo value.
+     * Set catalog information for managed dedicated integration runtime.
      *
      * @param catalogInfo the catalogInfo value to set
      * @return the IntegrationRuntimeSsisProperties object itself.
@@ -89,7 +89,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Get the licenseType value.
+     * Get license type for bringing your own license scenario. Possible values include: 'BasePrice', 'LicenseIncluded'.
      *
      * @return the licenseType value
      */
@@ -98,7 +98,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Set the licenseType value.
+     * Set license type for bringing your own license scenario. Possible values include: 'BasePrice', 'LicenseIncluded'.
      *
      * @param licenseType the licenseType value to set
      * @return the IntegrationRuntimeSsisProperties object itself.
@@ -109,7 +109,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Get the customSetupScriptProperties value.
+     * Get custom setup script properties for a managed dedicated integration runtime.
      *
      * @return the customSetupScriptProperties value
      */
@@ -118,7 +118,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Set the customSetupScriptProperties value.
+     * Set custom setup script properties for a managed dedicated integration runtime.
      *
      * @param customSetupScriptProperties the customSetupScriptProperties value to set
      * @return the IntegrationRuntimeSsisProperties object itself.
@@ -129,7 +129,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Get the edition value.
+     * Get the edition for the SSIS Integration Runtime. Possible values include: 'Standard', 'Enterprise'.
      *
      * @return the edition value
      */
@@ -138,7 +138,7 @@ public class IntegrationRuntimeSsisProperties {
     }
 
     /**
-     * Set the edition value.
+     * Set the edition for the SSIS Integration Runtime. Possible values include: 'Standard', 'Enterprise'.
      *
      * @param edition the edition value to set
      * @return the IntegrationRuntimeSsisProperties object itself.

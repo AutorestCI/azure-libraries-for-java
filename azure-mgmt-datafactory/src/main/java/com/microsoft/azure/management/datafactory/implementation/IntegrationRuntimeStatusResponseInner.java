@@ -28,7 +28,7 @@ public class IntegrationRuntimeStatusResponseInner {
     private IntegrationRuntimeStatus properties;
 
     /**
-     * Get the name value.
+     * Get the integration runtime name.
      *
      * @return the name value
      */
@@ -37,7 +37,7 @@ public class IntegrationRuntimeStatusResponseInner {
     }
 
     /**
-     * Get the properties value.
+     * Get integration runtime properties.
      *
      * @return the properties value
      */
@@ -46,7 +46,7 @@ public class IntegrationRuntimeStatusResponseInner {
     }
 
     /**
-     * Set the properties value.
+     * Set integration runtime properties.
      *
      * @param properties the properties value to set
      * @return the IntegrationRuntimeStatusResponseInner object itself.

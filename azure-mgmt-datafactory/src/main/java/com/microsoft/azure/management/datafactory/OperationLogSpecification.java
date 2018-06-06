@@ -33,7 +33,7 @@ public class OperationLogSpecification {
     private String blobDuration;
 
     /**
-     * Get the name value.
+     * Get the name of the log category.
      *
      * @return the name value
      */
@@ -42,7 +42,7 @@ public class OperationLogSpecification {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the log category.
      *
      * @param name the name value to set
      * @return the OperationLogSpecification object itself.
@@ -53,7 +53,7 @@ public class OperationLogSpecification {
     }
 
     /**
-     * Get the displayName value.
+     * Get localized display name.
      *
      * @return the displayName value
      */
@@ -62,7 +62,7 @@ public class OperationLogSpecification {
     }
 
     /**
-     * Set the displayName value.
+     * Set localized display name.
      *
      * @param displayName the displayName value to set
      * @return the OperationLogSpecification object itself.
@@ -73,7 +73,7 @@ public class OperationLogSpecification {
     }
 
     /**
-     * Get the blobDuration value.
+     * Get blobs created in the customer storage account, per hour.
      *
      * @return the blobDuration value
      */
@@ -82,7 +82,7 @@ public class OperationLogSpecification {
     }
 
     /**
-     * Set the blobDuration value.
+     * Set blobs created in the customer storage account, per hour.
      *
      * @param blobDuration the blobDuration value to set
      * @return the OperationLogSpecification object itself.

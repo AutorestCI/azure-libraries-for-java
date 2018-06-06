@@ -33,7 +33,7 @@ public class FilterActivity extends ControlActivity {
     private Expression condition;
 
     /**
-     * Get the items value.
+     * Get input array on which filter should be applied.
      *
      * @return the items value
      */
@@ -42,7 +42,7 @@ public class FilterActivity extends ControlActivity {
     }
 
     /**
-     * Set the items value.
+     * Set input array on which filter should be applied.
      *
      * @param items the items value to set
      * @return the FilterActivity object itself.
@@ -53,7 +53,7 @@ public class FilterActivity extends ControlActivity {
     }
 
     /**
-     * Get the condition value.
+     * Get condition to be used for filtering the input.
      *
      * @return the condition value
      */
@@ -62,7 +62,7 @@ public class FilterActivity extends ControlActivity {
     }
 
     /**
-     * Set the condition value.
+     * Set condition to be used for filtering the input.
      *
      * @param condition the condition value to set
      * @return the FilterActivity object itself.

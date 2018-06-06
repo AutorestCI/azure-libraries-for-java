@@ -95,7 +95,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the server value.
+     * Get the IP address or server name of the MongoDB server. Type: string (or Expression with resultType string).
      *
      * @return the server value
      */
@@ -104,7 +104,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the server value.
+     * Set the IP address or server name of the MongoDB server. Type: string (or Expression with resultType string).
      *
      * @param server the server value to set
      * @return the MongoDbLinkedService object itself.
@@ -115,7 +115,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type to be used to connect to the MongoDB database. Possible values include: 'Basic', 'Anonymous'.
      *
      * @return the authenticationType value
      */
@@ -124,7 +124,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type to be used to connect to the MongoDB database. Possible values include: 'Basic', 'Anonymous'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the MongoDbLinkedService object itself.
@@ -135,7 +135,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the databaseName value.
+     * Get the name of the MongoDB database that you want to access. Type: string (or Expression with resultType string).
      *
      * @return the databaseName value
      */
@@ -144,7 +144,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the databaseName value.
+     * Set the name of the MongoDB database that you want to access. Type: string (or Expression with resultType string).
      *
      * @param databaseName the databaseName value to set
      * @return the MongoDbLinkedService object itself.
@@ -155,7 +155,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get username for authentication. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -164,7 +164,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set username for authentication. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the MongoDbLinkedService object itself.
@@ -175,7 +175,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password for authentication.
      *
      * @return the password value
      */
@@ -184,7 +184,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password for authentication.
      *
      * @param password the password value to set
      * @return the MongoDbLinkedService object itself.
@@ -195,7 +195,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authSource value.
+     * Get database to verify the username and password. Type: string (or Expression with resultType string).
      *
      * @return the authSource value
      */
@@ -204,7 +204,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authSource value.
+     * Set database to verify the username and password. Type: string (or Expression with resultType string).
      *
      * @param authSource the authSource value to set
      * @return the MongoDbLinkedService object itself.
@@ -215,7 +215,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port number that the MongoDB server uses to listen for client connections. The default value is 27017. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the port value
      */
@@ -224,7 +224,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port number that the MongoDB server uses to listen for client connections. The default value is 27017. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param port the port value to set
      * @return the MongoDbLinkedService object itself.
@@ -235,7 +235,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the enableSsl value.
+     * Get specifies whether the connections to the server are encrypted using SSL. The default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the enableSsl value
      */
@@ -244,7 +244,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the enableSsl value.
+     * Set specifies whether the connections to the server are encrypted using SSL. The default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param enableSsl the enableSsl value to set
      * @return the MongoDbLinkedService object itself.
@@ -255,7 +255,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the allowSelfSignedServerCert value.
+     * Get specifies whether to allow self-signed certificates from the server. The default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the allowSelfSignedServerCert value
      */
@@ -264,7 +264,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the allowSelfSignedServerCert value.
+     * Set specifies whether to allow self-signed certificates from the server. The default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param allowSelfSignedServerCert the allowSelfSignedServerCert value to set
      * @return the MongoDbLinkedService object itself.
@@ -275,7 +275,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -284,7 +284,7 @@ public class MongoDbLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the MongoDbLinkedService object itself.

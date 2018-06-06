@@ -36,7 +36,7 @@ public class WebTableDataset extends DatasetInner {
     private Object path;
 
     /**
-     * Get the index value.
+     * Get the zero-based index of the table in the web page. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the index value
      */
@@ -45,7 +45,7 @@ public class WebTableDataset extends DatasetInner {
     }
 
     /**
-     * Set the index value.
+     * Set the zero-based index of the table in the web page. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param index the index value to set
      * @return the WebTableDataset object itself.
@@ -56,7 +56,7 @@ public class WebTableDataset extends DatasetInner {
     }
 
     /**
-     * Get the path value.
+     * Get the relative URL to the web page from the linked service URL. Type: string (or Expression with resultType string).
      *
      * @return the path value
      */
@@ -65,7 +65,7 @@ public class WebTableDataset extends DatasetInner {
     }
 
     /**
-     * Set the path value.
+     * Set the relative URL to the web page from the linked service URL. Type: string (or Expression with resultType string).
      *
      * @param path the path value to set
      * @return the WebTableDataset object itself.

@@ -43,7 +43,7 @@ public class StagingSettings {
     private Object enableCompression;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -52,7 +52,7 @@ public class StagingSettings {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the StagingSettings object itself.
@@ -63,7 +63,7 @@ public class StagingSettings {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get staging linked service reference.
      *
      * @return the linkedServiceName value
      */
@@ -72,7 +72,7 @@ public class StagingSettings {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set staging linked service reference.
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the StagingSettings object itself.
@@ -83,7 +83,7 @@ public class StagingSettings {
     }
 
     /**
-     * Get the path value.
+     * Get the path to storage for storing the interim data. Type: string (or Expression with resultType string).
      *
      * @return the path value
      */
@@ -92,7 +92,7 @@ public class StagingSettings {
     }
 
     /**
-     * Set the path value.
+     * Set the path to storage for storing the interim data. Type: string (or Expression with resultType string).
      *
      * @param path the path value to set
      * @return the StagingSettings object itself.
@@ -103,7 +103,7 @@ public class StagingSettings {
     }
 
     /**
-     * Get the enableCompression value.
+     * Get specifies whether to use compression when copying data via an interim staging. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the enableCompression value
      */
@@ -112,7 +112,7 @@ public class StagingSettings {
     }
 
     /**
-     * Set the enableCompression value.
+     * Set specifies whether to use compression when copying data via an interim staging. Default value is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param enableCompression the enableCompression value to set
      * @return the StagingSettings object itself.

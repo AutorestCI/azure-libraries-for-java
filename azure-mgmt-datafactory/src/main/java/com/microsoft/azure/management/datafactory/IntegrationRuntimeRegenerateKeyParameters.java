@@ -22,7 +22,7 @@ public class IntegrationRuntimeRegenerateKeyParameters {
     private IntegrationRuntimeAuthKeyName keyName;
 
     /**
-     * Get the keyName value.
+     * Get the name of the authentication key to regenerate. Possible values include: 'authKey1', 'authKey2'.
      *
      * @return the keyName value
      */
@@ -31,7 +31,7 @@ public class IntegrationRuntimeRegenerateKeyParameters {
     }
 
     /**
-     * Set the keyName value.
+     * Set the name of the authentication key to regenerate. Possible values include: 'authKey1', 'authKey2'.
      *
      * @param keyName the keyName value to set
      * @return the IntegrationRuntimeRegenerateKeyParameters object itself.

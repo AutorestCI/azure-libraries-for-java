@@ -101,7 +101,7 @@ public class ActivityRunInner {
     private Object error;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -110,7 +110,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the ActivityRunInner object itself.
@@ -121,7 +121,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the pipelineName value.
+     * Get the name of the pipeline.
      *
      * @return the pipelineName value
      */
@@ -130,7 +130,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the pipelineRunId value.
+     * Get the id of the pipeline run.
      *
      * @return the pipelineRunId value
      */
@@ -139,7 +139,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the activityName value.
+     * Get the name of the activity.
      *
      * @return the activityName value
      */
@@ -148,7 +148,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the activityType value.
+     * Get the type of the activity.
      *
      * @return the activityType value
      */
@@ -157,7 +157,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the activityRunId value.
+     * Get the id of the activity run.
      *
      * @return the activityRunId value
      */
@@ -166,7 +166,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get the name of the compute linked service.
      *
      * @return the linkedServiceName value
      */
@@ -175,7 +175,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the status value.
+     * Get the status of the activity run.
      *
      * @return the status value
      */
@@ -184,7 +184,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the activityRunStart value.
+     * Get the start time of the activity run in 'ISO 8601' format.
      *
      * @return the activityRunStart value
      */
@@ -193,7 +193,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the activityRunEnd value.
+     * Get the end time of the activity run in 'ISO 8601' format.
      *
      * @return the activityRunEnd value
      */
@@ -202,7 +202,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the durationInMs value.
+     * Get the duration of the activity run.
      *
      * @return the durationInMs value
      */
@@ -211,7 +211,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the input value.
+     * Get the input for the activity.
      *
      * @return the input value
      */
@@ -220,7 +220,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the output value.
+     * Get the output for the activity.
      *
      * @return the output value
      */
@@ -229,7 +229,7 @@ public class ActivityRunInner {
     }
 
     /**
-     * Get the error value.
+     * Get the error if any from the activity run.
      *
      * @return the error value
      */

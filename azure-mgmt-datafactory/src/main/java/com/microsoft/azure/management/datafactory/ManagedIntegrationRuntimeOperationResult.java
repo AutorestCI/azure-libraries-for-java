@@ -53,7 +53,7 @@ public class ManagedIntegrationRuntimeOperationResult {
     private String activityId;
 
     /**
-     * Get the type value.
+     * Get the operation type. Could be start or stop.
      *
      * @return the type value
      */
@@ -62,7 +62,7 @@ public class ManagedIntegrationRuntimeOperationResult {
     }
 
     /**
-     * Get the startTime value.
+     * Get the start time of the operation.
      *
      * @return the startTime value
      */
@@ -71,7 +71,7 @@ public class ManagedIntegrationRuntimeOperationResult {
     }
 
     /**
-     * Get the result value.
+     * Get the operation result.
      *
      * @return the result value
      */
@@ -80,7 +80,7 @@ public class ManagedIntegrationRuntimeOperationResult {
     }
 
     /**
-     * Get the errorCode value.
+     * Get the error code.
      *
      * @return the errorCode value
      */
@@ -89,7 +89,7 @@ public class ManagedIntegrationRuntimeOperationResult {
     }
 
     /**
-     * Get the parameters value.
+     * Get managed integration runtime error parameters.
      *
      * @return the parameters value
      */
@@ -98,7 +98,7 @@ public class ManagedIntegrationRuntimeOperationResult {
     }
 
     /**
-     * Get the activityId value.
+     * Get the activity id for the operation request.
      *
      * @return the activityId value
      */

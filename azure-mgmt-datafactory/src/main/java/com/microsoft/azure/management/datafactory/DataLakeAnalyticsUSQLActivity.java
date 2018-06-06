@@ -72,7 +72,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     private Object compilationMode;
 
     /**
-     * Get the scriptPath value.
+     * Get case-sensitive path to folder that contains the U-SQL script. Type: string (or Expression with resultType string).
      *
      * @return the scriptPath value
      */
@@ -81,7 +81,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the scriptPath value.
+     * Set case-sensitive path to folder that contains the U-SQL script. Type: string (or Expression with resultType string).
      *
      * @param scriptPath the scriptPath value to set
      * @return the DataLakeAnalyticsUSQLActivity object itself.
@@ -92,7 +92,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the scriptLinkedService value.
+     * Get script linked service reference.
      *
      * @return the scriptLinkedService value
      */
@@ -101,7 +101,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the scriptLinkedService value.
+     * Set script linked service reference.
      *
      * @param scriptLinkedService the scriptLinkedService value to set
      * @return the DataLakeAnalyticsUSQLActivity object itself.
@@ -112,7 +112,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the degreeOfParallelism value.
+     * Get the maximum number of nodes simultaneously used to run the job. Default value is 1. Type: integer (or Expression with resultType integer), minimum: 1.
      *
      * @return the degreeOfParallelism value
      */
@@ -121,7 +121,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the degreeOfParallelism value.
+     * Set the maximum number of nodes simultaneously used to run the job. Default value is 1. Type: integer (or Expression with resultType integer), minimum: 1.
      *
      * @param degreeOfParallelism the degreeOfParallelism value to set
      * @return the DataLakeAnalyticsUSQLActivity object itself.
@@ -132,7 +132,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the priority value.
+     * Get determines which jobs out of all that are queued should be selected to run first. The lower the number, the higher the priority. Default value is 1000. Type: integer (or Expression with resultType integer), minimum: 1.
      *
      * @return the priority value
      */
@@ -141,7 +141,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the priority value.
+     * Set determines which jobs out of all that are queued should be selected to run first. The lower the number, the higher the priority. Default value is 1000. Type: integer (or Expression with resultType integer), minimum: 1.
      *
      * @param priority the priority value to set
      * @return the DataLakeAnalyticsUSQLActivity object itself.
@@ -152,7 +152,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the parameters value.
+     * Get parameters for U-SQL job request.
      *
      * @return the parameters value
      */
@@ -161,7 +161,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the parameters value.
+     * Set parameters for U-SQL job request.
      *
      * @param parameters the parameters value to set
      * @return the DataLakeAnalyticsUSQLActivity object itself.
@@ -172,7 +172,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the runtimeVersion value.
+     * Get runtime version of the U-SQL engine to use. Type: string (or Expression with resultType string).
      *
      * @return the runtimeVersion value
      */
@@ -181,7 +181,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the runtimeVersion value.
+     * Set runtime version of the U-SQL engine to use. Type: string (or Expression with resultType string).
      *
      * @param runtimeVersion the runtimeVersion value to set
      * @return the DataLakeAnalyticsUSQLActivity object itself.
@@ -192,7 +192,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the compilationMode value.
+     * Get compilation mode of U-SQL. Must be one of these values : Semantic, Full and SingleBox. Type: string (or Expression with resultType string).
      *
      * @return the compilationMode value
      */
@@ -201,7 +201,7 @@ public class DataLakeAnalyticsUSQLActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the compilationMode value.
+     * Set compilation mode of U-SQL. Must be one of these values : Semantic, Full and SingleBox. Type: string (or Expression with resultType string).
      *
      * @param compilationMode the compilationMode value to set
      * @return the DataLakeAnalyticsUSQLActivity object itself.

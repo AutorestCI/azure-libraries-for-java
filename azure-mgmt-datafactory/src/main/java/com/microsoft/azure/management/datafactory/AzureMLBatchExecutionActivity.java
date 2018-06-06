@@ -49,7 +49,7 @@ public class AzureMLBatchExecutionActivity extends ExecutionActivity {
     private Map<String, AzureMLWebServiceFile> webServiceInputs;
 
     /**
-     * Get the globalParameters value.
+     * Get key,Value pairs to be passed to the Azure ML Batch Execution Service endpoint. Keys must match the names of web service parameters defined in the published Azure ML web service. Values will be passed in the GlobalParameters property of the Azure ML batch execution request.
      *
      * @return the globalParameters value
      */
@@ -58,7 +58,7 @@ public class AzureMLBatchExecutionActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the globalParameters value.
+     * Set key,Value pairs to be passed to the Azure ML Batch Execution Service endpoint. Keys must match the names of web service parameters defined in the published Azure ML web service. Values will be passed in the GlobalParameters property of the Azure ML batch execution request.
      *
      * @param globalParameters the globalParameters value to set
      * @return the AzureMLBatchExecutionActivity object itself.
@@ -69,7 +69,7 @@ public class AzureMLBatchExecutionActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the webServiceOutputs value.
+     * Get key,Value pairs, mapping the names of Azure ML endpoint's Web Service Outputs to AzureMLWebServiceFile objects specifying the output Blob locations. This information will be passed in the WebServiceOutputs property of the Azure ML batch execution request.
      *
      * @return the webServiceOutputs value
      */
@@ -78,7 +78,7 @@ public class AzureMLBatchExecutionActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the webServiceOutputs value.
+     * Set key,Value pairs, mapping the names of Azure ML endpoint's Web Service Outputs to AzureMLWebServiceFile objects specifying the output Blob locations. This information will be passed in the WebServiceOutputs property of the Azure ML batch execution request.
      *
      * @param webServiceOutputs the webServiceOutputs value to set
      * @return the AzureMLBatchExecutionActivity object itself.
@@ -89,7 +89,7 @@ public class AzureMLBatchExecutionActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the webServiceInputs value.
+     * Get key,Value pairs, mapping the names of Azure ML endpoint's Web Service Inputs to AzureMLWebServiceFile objects specifying the input Blob locations.. This information will be passed in the WebServiceInputs property of the Azure ML batch execution request.
      *
      * @return the webServiceInputs value
      */
@@ -98,7 +98,7 @@ public class AzureMLBatchExecutionActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the webServiceInputs value.
+     * Set key,Value pairs, mapping the names of Azure ML endpoint's Web Service Inputs to AzureMLWebServiceFile objects specifying the input Blob locations.. This information will be passed in the WebServiceInputs property of the Azure ML batch execution request.
      *
      * @param webServiceInputs the webServiceInputs value to set
      * @return the AzureMLBatchExecutionActivity object itself.

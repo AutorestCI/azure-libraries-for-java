@@ -28,7 +28,7 @@ public class RetryPolicy {
     private Integer intervalInSeconds;
 
     /**
-     * Get the count value.
+     * Get maximum ordinary retry attempts. Default is 0. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the count value
      */
@@ -37,7 +37,7 @@ public class RetryPolicy {
     }
 
     /**
-     * Set the count value.
+     * Set maximum ordinary retry attempts. Default is 0. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param count the count value to set
      * @return the RetryPolicy object itself.
@@ -48,7 +48,7 @@ public class RetryPolicy {
     }
 
     /**
-     * Get the intervalInSeconds value.
+     * Get interval between retries in seconds. Default is 30.
      *
      * @return the intervalInSeconds value
      */
@@ -57,7 +57,7 @@ public class RetryPolicy {
     }
 
     /**
-     * Set the intervalInSeconds value.
+     * Set interval between retries in seconds. Default is 30.
      *
      * @param intervalInSeconds the intervalInSeconds value to set
      * @return the RetryPolicy object itself.

@@ -29,7 +29,7 @@ public class OracleTableDataset extends DatasetInner {
     private Object tableName;
 
     /**
-     * Get the tableName value.
+     * Get the table name of the on-premises Oracle database. Type: string (or Expression with resultType string).
      *
      * @return the tableName value
      */
@@ -38,7 +38,7 @@ public class OracleTableDataset extends DatasetInner {
     }
 
     /**
-     * Set the tableName value.
+     * Set the table name of the on-premises Oracle database. Type: string (or Expression with resultType string).
      *
      * @param tableName the tableName value to set
      * @return the OracleTableDataset object itself.

@@ -9,7 +9,6 @@
 package com.microsoft.azure.management.datafactory.implementation;
 
 import java.util.List;
-import com.microsoft.azure.management.datafactory.Operation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -21,7 +20,7 @@ public class OperationListResponseInner {
      * provider.
      */
     @JsonProperty(value = "value")
-    private List<Operation> value;
+    private List<OperationInner> value;
 
     /**
      * The link to the next page of results, if any remaining results exist.
@@ -30,27 +29,27 @@ public class OperationListResponseInner {
     private String nextLink;
 
     /**
-     * Get the value value.
+     * Get list of Data Factory operations supported by the Data Factory resource provider.
      *
      * @return the value value
      */
-    public List<Operation> value() {
+    public List<OperationInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value value.
+     * Set list of Data Factory operations supported by the Data Factory resource provider.
      *
      * @param value the value value to set
      * @return the OperationListResponseInner object itself.
      */
-    public OperationListResponseInner withValue(List<Operation> value) {
+    public OperationListResponseInner withValue(List<OperationInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink value.
+     * Get the link to the next page of results, if any remaining results exist.
      *
      * @return the nextLink value
      */
@@ -59,7 +58,7 @@ public class OperationListResponseInner {
     }
 
     /**
-     * Set the nextLink value.
+     * Set the link to the next page of results, if any remaining results exist.
      *
      * @param nextLink the nextLink value to set
      * @return the OperationListResponseInner object itself.

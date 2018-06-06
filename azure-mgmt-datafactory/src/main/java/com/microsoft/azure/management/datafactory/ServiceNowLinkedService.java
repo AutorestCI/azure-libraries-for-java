@@ -22,7 +22,8 @@ import com.microsoft.azure.management.datafactory.implementation.LinkedServiceIn
 @JsonFlatten
 public class ServiceNowLinkedService extends LinkedServiceInner {
     /**
-     * The endpoint of the ServiceNow server. (i.e. ServiceNowData.com).
+     * The endpoint of the ServiceNow server. (i.e.
+     * &lt;instance&gt;.service-now.com).
      */
     @JsonProperty(value = "typeProperties.endpoint", required = true)
     private Object endpoint;
@@ -91,7 +92,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the endpoint value.
+     * Get the endpoint of the ServiceNow server. (i.e. &lt;instance&gt;.service-now.com).
      *
      * @return the endpoint value
      */
@@ -100,7 +101,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the endpoint value.
+     * Set the endpoint of the ServiceNow server. (i.e. &lt;instance&gt;.service-now.com).
      *
      * @param endpoint the endpoint value to set
      * @return the ServiceNowLinkedService object itself.
@@ -111,7 +112,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type to use. Possible values include: 'Basic', 'OAuth2'.
      *
      * @return the authenticationType value
      */
@@ -120,7 +121,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type to use. Possible values include: 'Basic', 'OAuth2'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the ServiceNowLinkedService object itself.
@@ -131,7 +132,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the user name used to connect to the ServiceNow server for Basic and OAuth2 authentication.
      *
      * @return the username value
      */
@@ -140,7 +141,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the user name used to connect to the ServiceNow server for Basic and OAuth2 authentication.
      *
      * @param username the username value to set
      * @return the ServiceNowLinkedService object itself.
@@ -151,7 +152,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password corresponding to the user name for Basic and OAuth2 authentication.
      *
      * @return the password value
      */
@@ -160,7 +161,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password corresponding to the user name for Basic and OAuth2 authentication.
      *
      * @param password the password value to set
      * @return the ServiceNowLinkedService object itself.
@@ -171,7 +172,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clientId value.
+     * Get the client id for OAuth2 authentication.
      *
      * @return the clientId value
      */
@@ -180,7 +181,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clientId value.
+     * Set the client id for OAuth2 authentication.
      *
      * @param clientId the clientId value to set
      * @return the ServiceNowLinkedService object itself.
@@ -191,7 +192,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the clientSecret value.
+     * Get the client secret for OAuth2 authentication.
      *
      * @return the clientSecret value
      */
@@ -200,7 +201,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the clientSecret value.
+     * Set the client secret for OAuth2 authentication.
      *
      * @param clientSecret the clientSecret value to set
      * @return the ServiceNowLinkedService object itself.
@@ -211,7 +212,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -220,7 +221,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the ServiceNowLinkedService object itself.
@@ -231,7 +232,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -240,7 +241,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the ServiceNowLinkedService object itself.
@@ -251,7 +252,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -260,7 +261,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the ServiceNowLinkedService object itself.
@@ -271,7 +272,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -280,7 +281,7 @@ public class ServiceNowLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the ServiceNowLinkedService object itself.

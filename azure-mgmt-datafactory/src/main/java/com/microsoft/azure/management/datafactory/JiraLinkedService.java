@@ -80,7 +80,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get the IP address or host name of the Jira service. (e.g. jira.example.com).
      *
      * @return the host value
      */
@@ -89,7 +89,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set the IP address or host name of the Jira service. (e.g. jira.example.com).
      *
      * @param host the host value to set
      * @return the JiraLinkedService object itself.
@@ -100,7 +100,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port that the Jira server uses to listen for client connections. The default value is 443 if connecting through HTTPS, or 8080 if connecting through HTTP.
      *
      * @return the port value
      */
@@ -109,7 +109,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port that the Jira server uses to listen for client connections. The default value is 443 if connecting through HTTPS, or 8080 if connecting through HTTP.
      *
      * @param port the port value to set
      * @return the JiraLinkedService object itself.
@@ -120,7 +120,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the user name that you use to access Jira Service.
      *
      * @return the username value
      */
@@ -129,7 +129,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the user name that you use to access Jira Service.
      *
      * @param username the username value to set
      * @return the JiraLinkedService object itself.
@@ -140,7 +140,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password corresponding to the user name that you provided in the username field.
      *
      * @return the password value
      */
@@ -149,7 +149,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password corresponding to the user name that you provided in the username field.
      *
      * @param password the password value to set
      * @return the JiraLinkedService object itself.
@@ -160,7 +160,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -169,7 +169,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the JiraLinkedService object itself.
@@ -180,7 +180,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useHostVerification value.
+     * Get specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @return the useHostVerification value
      */
@@ -189,7 +189,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useHostVerification value.
+     * Set specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
      *
      * @param useHostVerification the useHostVerification value to set
      * @return the JiraLinkedService object itself.
@@ -200,7 +200,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the usePeerVerification value.
+     * Get specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @return the usePeerVerification value
      */
@@ -209,7 +209,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the usePeerVerification value.
+     * Set specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
      *
      * @param usePeerVerification the usePeerVerification value to set
      * @return the JiraLinkedService object itself.
@@ -220,7 +220,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -229,7 +229,7 @@ public class JiraLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the JiraLinkedService object itself.

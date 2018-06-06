@@ -26,7 +26,7 @@ public class DocumentDbCollectionSink extends CopySink {
     private Object nestingSeparator;
 
     /**
-     * Get the nestingSeparator value.
+     * Get nested properties separator. Default is . (dot). Type: string (or Expression with resultType string).
      *
      * @return the nestingSeparator value
      */
@@ -35,7 +35,7 @@ public class DocumentDbCollectionSink extends CopySink {
     }
 
     /**
-     * Set the nestingSeparator value.
+     * Set nested properties separator. Default is . (dot). Type: string (or Expression with resultType string).
      *
      * @param nestingSeparator the nestingSeparator value to set
      * @return the DocumentDbCollectionSink object itself.

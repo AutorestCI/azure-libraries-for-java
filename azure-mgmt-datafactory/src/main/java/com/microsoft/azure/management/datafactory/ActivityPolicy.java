@@ -50,7 +50,7 @@ public class ActivityPolicy {
     private Boolean secureOutput;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -59,7 +59,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the ActivityPolicy object itself.
@@ -70,7 +70,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Get the timeout value.
+     * Get specifies the timeout for the activity to run. The default timeout is 7 days. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @return the timeout value
      */
@@ -79,7 +79,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Set the timeout value.
+     * Set specifies the timeout for the activity to run. The default timeout is 7 days. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
      *
      * @param timeout the timeout value to set
      * @return the ActivityPolicy object itself.
@@ -90,7 +90,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Get the retry value.
+     * Get maximum ordinary retry attempts. Default is 0. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the retry value
      */
@@ -99,7 +99,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Set the retry value.
+     * Set maximum ordinary retry attempts. Default is 0. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param retry the retry value to set
      * @return the ActivityPolicy object itself.
@@ -110,7 +110,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Get the retryIntervalInSeconds value.
+     * Get interval between each retry attempt (in seconds). The default is 30 sec.
      *
      * @return the retryIntervalInSeconds value
      */
@@ -119,7 +119,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Set the retryIntervalInSeconds value.
+     * Set interval between each retry attempt (in seconds). The default is 30 sec.
      *
      * @param retryIntervalInSeconds the retryIntervalInSeconds value to set
      * @return the ActivityPolicy object itself.
@@ -130,7 +130,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Get the secureOutput value.
+     * Get when set to true, Output from activity is considered as secure and will not be logged to monitoring.
      *
      * @return the secureOutput value
      */
@@ -139,7 +139,7 @@ public class ActivityPolicy {
     }
 
     /**
-     * Set the secureOutput value.
+     * Set when set to true, Output from activity is considered as secure and will not be logged to monitoring.
      *
      * @param secureOutput the secureOutput value to set
      * @return the ActivityPolicy object itself.

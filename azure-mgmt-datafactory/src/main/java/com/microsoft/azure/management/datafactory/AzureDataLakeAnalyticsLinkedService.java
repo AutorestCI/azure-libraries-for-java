@@ -80,7 +80,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the accountName value.
+     * Get the Azure Data Lake Analytics account name. Type: string (or Expression with resultType string).
      *
      * @return the accountName value
      */
@@ -89,7 +89,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accountName value.
+     * Set the Azure Data Lake Analytics account name. Type: string (or Expression with resultType string).
      *
      * @param accountName the accountName value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.
@@ -100,7 +100,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalId value.
+     * Get the ID of the application used to authenticate against the Azure Data Lake Analytics account. Type: string (or Expression with resultType string).
      *
      * @return the servicePrincipalId value
      */
@@ -109,7 +109,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalId value.
+     * Set the ID of the application used to authenticate against the Azure Data Lake Analytics account. Type: string (or Expression with resultType string).
      *
      * @param servicePrincipalId the servicePrincipalId value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.
@@ -120,7 +120,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the servicePrincipalKey value.
+     * Get the Key of the application used to authenticate against the Azure Data Lake Analytics account.
      *
      * @return the servicePrincipalKey value
      */
@@ -129,7 +129,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the servicePrincipalKey value.
+     * Set the Key of the application used to authenticate against the Azure Data Lake Analytics account.
      *
      * @param servicePrincipalKey the servicePrincipalKey value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.
@@ -140,7 +140,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the tenant value.
+     * Get the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @return the tenant value
      */
@@ -149,7 +149,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the tenant value.
+     * Set the name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
      *
      * @param tenant the tenant value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.
@@ -160,7 +160,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the subscriptionId value.
+     * Get data Lake Analytics account subscription ID (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @return the subscriptionId value
      */
@@ -169,7 +169,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the subscriptionId value.
+     * Set data Lake Analytics account subscription ID (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @param subscriptionId the subscriptionId value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.
@@ -180,7 +180,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the resourceGroupName value.
+     * Get data Lake Analytics account resource group name (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @return the resourceGroupName value
      */
@@ -189,7 +189,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the resourceGroupName value.
+     * Set data Lake Analytics account resource group name (if different from Data Factory account). Type: string (or Expression with resultType string).
      *
      * @param resourceGroupName the resourceGroupName value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.
@@ -200,7 +200,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the dataLakeAnalyticsUri value.
+     * Get azure Data Lake Analytics URI Type: string (or Expression with resultType string).
      *
      * @return the dataLakeAnalyticsUri value
      */
@@ -209,7 +209,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the dataLakeAnalyticsUri value.
+     * Set azure Data Lake Analytics URI Type: string (or Expression with resultType string).
      *
      * @param dataLakeAnalyticsUri the dataLakeAnalyticsUri value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.
@@ -220,7 +220,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -229,7 +229,7 @@ public class AzureDataLakeAnalyticsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the AzureDataLakeAnalyticsLinkedService object itself.

@@ -92,7 +92,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the deploymentType value.
+     * Get the deployment type of the Dynamics instance. 'Online' for Dynamics Online and 'OnPremisesWithIfd' for Dynamics on-premises with Ifd. Type: string (or Expression with resultType string).
      *
      * @return the deploymentType value
      */
@@ -101,7 +101,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the deploymentType value.
+     * Set the deployment type of the Dynamics instance. 'Online' for Dynamics Online and 'OnPremisesWithIfd' for Dynamics on-premises with Ifd. Type: string (or Expression with resultType string).
      *
      * @param deploymentType the deploymentType value to set
      * @return the DynamicsLinkedService object itself.
@@ -112,7 +112,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the hostName value.
+     * Get the host name of the on-premises Dynamics server. The property is required for on-prem and not allowed for online. Type: string (or Expression with resultType string).
      *
      * @return the hostName value
      */
@@ -121,7 +121,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the hostName value.
+     * Set the host name of the on-premises Dynamics server. The property is required for on-prem and not allowed for online. Type: string (or Expression with resultType string).
      *
      * @param hostName the hostName value to set
      * @return the DynamicsLinkedService object itself.
@@ -132,7 +132,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the port of on-premises Dynamics server. The property is required for on-prem and not allowed for online. Default is 443. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @return the port value
      */
@@ -141,7 +141,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the port of on-premises Dynamics server. The property is required for on-prem and not allowed for online. Default is 443. Type: integer (or Expression with resultType integer), minimum: 0.
      *
      * @param port the port value to set
      * @return the DynamicsLinkedService object itself.
@@ -152,7 +152,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the serviceUri value.
+     * Get the URL to the Microsoft Dynamics server. The property is required for on-line and not allowed for on-prem. Type: string (or Expression with resultType string).
      *
      * @return the serviceUri value
      */
@@ -161,7 +161,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the serviceUri value.
+     * Set the URL to the Microsoft Dynamics server. The property is required for on-line and not allowed for on-prem. Type: string (or Expression with resultType string).
      *
      * @param serviceUri the serviceUri value to set
      * @return the DynamicsLinkedService object itself.
@@ -172,7 +172,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the organizationName value.
+     * Get the organization name of the Dynamics instance. The property is required for on-prem and required for online when there are more than one Dynamics instances associated with the user. Type: string (or Expression with resultType string).
      *
      * @return the organizationName value
      */
@@ -181,7 +181,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the organizationName value.
+     * Set the organization name of the Dynamics instance. The property is required for on-prem and required for online when there are more than one Dynamics instances associated with the user. Type: string (or Expression with resultType string).
      *
      * @param organizationName the organizationName value to set
      * @return the DynamicsLinkedService object itself.
@@ -192,7 +192,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication type to connect to Dynamics server. 'Office365' for online scenario, 'Ifd' for on-premises with Ifd scenario. Type: string (or Expression with resultType string).
      *
      * @return the authenticationType value
      */
@@ -201,7 +201,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication type to connect to Dynamics server. 'Office365' for online scenario, 'Ifd' for on-premises with Ifd scenario. Type: string (or Expression with resultType string).
      *
      * @param authenticationType the authenticationType value to set
      * @return the DynamicsLinkedService object itself.
@@ -212,7 +212,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get user name to access the Dynamics instance. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -221,7 +221,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set user name to access the Dynamics instance. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the DynamicsLinkedService object itself.
@@ -232,7 +232,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password to access the Dynamics instance.
      *
      * @return the password value
      */
@@ -241,7 +241,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password to access the Dynamics instance.
      *
      * @param password the password value to set
      * @return the DynamicsLinkedService object itself.
@@ -252,7 +252,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -261,7 +261,7 @@ public class DynamicsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the DynamicsLinkedService object itself.

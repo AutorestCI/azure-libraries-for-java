@@ -83,7 +83,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     private Map<String, SSISPropertyOverride> propertyOverrides;
 
     /**
-     * Get the packageLocation value.
+     * Get sSIS package location.
      *
      * @return the packageLocation value
      */
@@ -92,7 +92,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the packageLocation value.
+     * Set sSIS package location.
      *
      * @param packageLocation the packageLocation value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -103,7 +103,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the runtime value.
+     * Get specifies the runtime to execute SSIS package. Possible values include: 'x64', 'x86'.
      *
      * @return the runtime value
      */
@@ -112,7 +112,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the runtime value.
+     * Set specifies the runtime to execute SSIS package. Possible values include: 'x64', 'x86'.
      *
      * @param runtime the runtime value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -123,7 +123,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the loggingLevel value.
+     * Get the logging level of SSIS package execution.
      *
      * @return the loggingLevel value
      */
@@ -132,7 +132,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the loggingLevel value.
+     * Set the logging level of SSIS package execution.
      *
      * @param loggingLevel the loggingLevel value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -143,7 +143,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the environmentPath value.
+     * Get the environment path to execute the SSIS package.
      *
      * @return the environmentPath value
      */
@@ -152,7 +152,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the environmentPath value.
+     * Set the environment path to execute the SSIS package.
      *
      * @param environmentPath the environmentPath value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -163,7 +163,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the connectVia value.
+     * Get the integration runtime reference.
      *
      * @return the connectVia value
      */
@@ -172,7 +172,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the connectVia value.
+     * Set the integration runtime reference.
      *
      * @param connectVia the connectVia value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -183,7 +183,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the projectParameters value.
+     * Get the project level parameters to execute the SSIS package.
      *
      * @return the projectParameters value
      */
@@ -192,7 +192,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the projectParameters value.
+     * Set the project level parameters to execute the SSIS package.
      *
      * @param projectParameters the projectParameters value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -203,7 +203,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the packageParameters value.
+     * Get the package level parameters to execute the SSIS package.
      *
      * @return the packageParameters value
      */
@@ -212,7 +212,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the packageParameters value.
+     * Set the package level parameters to execute the SSIS package.
      *
      * @param packageParameters the packageParameters value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -223,7 +223,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the projectConnectionManagers value.
+     * Get the project level connection managers to execute the SSIS package.
      *
      * @return the projectConnectionManagers value
      */
@@ -232,7 +232,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the projectConnectionManagers value.
+     * Set the project level connection managers to execute the SSIS package.
      *
      * @param projectConnectionManagers the projectConnectionManagers value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -243,7 +243,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the packageConnectionManagers value.
+     * Get the package level connection managers to execute the SSIS package.
      *
      * @return the packageConnectionManagers value
      */
@@ -252,7 +252,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the packageConnectionManagers value.
+     * Set the package level connection managers to execute the SSIS package.
      *
      * @param packageConnectionManagers the packageConnectionManagers value to set
      * @return the ExecuteSSISPackageActivity object itself.
@@ -263,7 +263,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the propertyOverrides value.
+     * Get the property overrides to execute the SSIS package.
      *
      * @return the propertyOverrides value
      */
@@ -272,7 +272,7 @@ public class ExecuteSSISPackageActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the propertyOverrides value.
+     * Set the property overrides to execute the SSIS package.
      *
      * @param propertyOverrides the propertyOverrides value to set
      * @return the ExecuteSSISPackageActivity object itself.

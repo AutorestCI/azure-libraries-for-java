@@ -36,7 +36,7 @@ public class SqlServerStoredProcedureActivity extends ExecutionActivity {
     private Map<String, StoredProcedureParameter> storedProcedureParameters;
 
     /**
-     * Get the storedProcedureName value.
+     * Get stored procedure name. Type: string (or Expression with resultType string).
      *
      * @return the storedProcedureName value
      */
@@ -45,7 +45,7 @@ public class SqlServerStoredProcedureActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the storedProcedureName value.
+     * Set stored procedure name. Type: string (or Expression with resultType string).
      *
      * @param storedProcedureName the storedProcedureName value to set
      * @return the SqlServerStoredProcedureActivity object itself.
@@ -56,7 +56,7 @@ public class SqlServerStoredProcedureActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the storedProcedureParameters value.
+     * Get value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
      *
      * @return the storedProcedureParameters value
      */
@@ -65,7 +65,7 @@ public class SqlServerStoredProcedureActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the storedProcedureParameters value.
+     * Set value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
      *
      * @param storedProcedureParameters the storedProcedureParameters value to set
      * @return the SqlServerStoredProcedureActivity object itself.

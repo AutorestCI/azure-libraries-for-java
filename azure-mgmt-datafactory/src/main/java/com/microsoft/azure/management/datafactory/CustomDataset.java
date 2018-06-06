@@ -26,7 +26,7 @@ public class CustomDataset extends DatasetInner {
     private Object typeProperties;
 
     /**
-     * Get the typeProperties value.
+     * Get custom dataset properties.
      *
      * @return the typeProperties value
      */
@@ -35,7 +35,7 @@ public class CustomDataset extends DatasetInner {
     }
 
     /**
-     * Set the typeProperties value.
+     * Set custom dataset properties.
      *
      * @param typeProperties the typeProperties value to set
      * @return the CustomDataset object itself.

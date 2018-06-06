@@ -57,7 +57,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the server value.
+     * Get server name for connection. Type: string (or Expression with resultType string).
      *
      * @return the server value
      */
@@ -66,7 +66,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the server value.
+     * Set server name for connection. Type: string (or Expression with resultType string).
      *
      * @param server the server value to set
      * @return the TeradataLinkedService object itself.
@@ -77,7 +77,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get authenticationType to be used for connection. Possible values include: 'Basic', 'Windows'.
      *
      * @return the authenticationType value
      */
@@ -86,7 +86,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set authenticationType to be used for connection. Possible values include: 'Basic', 'Windows'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the TeradataLinkedService object itself.
@@ -97,7 +97,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get username for authentication. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -106,7 +106,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set username for authentication. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the TeradataLinkedService object itself.
@@ -117,7 +117,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password for authentication.
      *
      * @return the password value
      */
@@ -126,7 +126,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password for authentication.
      *
      * @param password the password value to set
      * @return the TeradataLinkedService object itself.
@@ -137,7 +137,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -146,7 +146,7 @@ public class TeradataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the TeradataLinkedService object itself.

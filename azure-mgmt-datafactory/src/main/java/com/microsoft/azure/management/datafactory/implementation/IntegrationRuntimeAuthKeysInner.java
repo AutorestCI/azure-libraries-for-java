@@ -27,7 +27,7 @@ public class IntegrationRuntimeAuthKeysInner {
     private String authKey2;
 
     /**
-     * Get the authKey1 value.
+     * Get the primary integration runtime authentication key.
      *
      * @return the authKey1 value
      */
@@ -36,7 +36,7 @@ public class IntegrationRuntimeAuthKeysInner {
     }
 
     /**
-     * Set the authKey1 value.
+     * Set the primary integration runtime authentication key.
      *
      * @param authKey1 the authKey1 value to set
      * @return the IntegrationRuntimeAuthKeysInner object itself.
@@ -47,7 +47,7 @@ public class IntegrationRuntimeAuthKeysInner {
     }
 
     /**
-     * Get the authKey2 value.
+     * Get the secondary integration runtime authentication key.
      *
      * @return the authKey2 value
      */
@@ -56,7 +56,7 @@ public class IntegrationRuntimeAuthKeysInner {
     }
 
     /**
-     * Set the authKey2 value.
+     * Set the secondary integration runtime authentication key.
      *
      * @param authKey2 the authKey2 value to set
      * @return the IntegrationRuntimeAuthKeysInner object itself.

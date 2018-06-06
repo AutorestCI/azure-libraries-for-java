@@ -40,7 +40,7 @@ public class DynamicsSink extends CopySink {
     }
 
     /**
-     * Get the writeBehavior value.
+     * Get the write behavior for the operation.
      *
      * @return the writeBehavior value
      */
@@ -49,7 +49,7 @@ public class DynamicsSink extends CopySink {
     }
 
     /**
-     * Set the writeBehavior value.
+     * Set the write behavior for the operation.
      *
      * @param writeBehavior the writeBehavior value to set
      * @return the DynamicsSink object itself.
@@ -60,7 +60,7 @@ public class DynamicsSink extends CopySink {
     }
 
     /**
-     * Get the ignoreNullValues value.
+     * Get the flag indicating whether ignore null values from input dataset (except key fields) during write operation. Default is false. Type: boolean (or Expression with resultType boolean).
      *
      * @return the ignoreNullValues value
      */
@@ -69,7 +69,7 @@ public class DynamicsSink extends CopySink {
     }
 
     /**
-     * Set the ignoreNullValues value.
+     * Set the flag indicating whether ignore null values from input dataset (except key fields) during write operation. Default is false. Type: boolean (or Expression with resultType boolean).
      *
      * @param ignoreNullValues the ignoreNullValues value to set
      * @return the DynamicsSink object itself.

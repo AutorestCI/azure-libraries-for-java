@@ -30,7 +30,7 @@ public class AzureMLWebServiceFile {
     private LinkedServiceReference linkedServiceName;
 
     /**
-     * Get the filePath value.
+     * Get the relative file path, including container name, in the Azure Blob Storage specified by the LinkedService. Type: string (or Expression with resultType string).
      *
      * @return the filePath value
      */
@@ -39,7 +39,7 @@ public class AzureMLWebServiceFile {
     }
 
     /**
-     * Set the filePath value.
+     * Set the relative file path, including container name, in the Azure Blob Storage specified by the LinkedService. Type: string (or Expression with resultType string).
      *
      * @param filePath the filePath value to set
      * @return the AzureMLWebServiceFile object itself.
@@ -50,7 +50,7 @@ public class AzureMLWebServiceFile {
     }
 
     /**
-     * Get the linkedServiceName value.
+     * Get reference to an Azure Storage LinkedService, where Azure ML WebService Input/Output file located.
      *
      * @return the linkedServiceName value
      */
@@ -59,7 +59,7 @@ public class AzureMLWebServiceFile {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set reference to an Azure Storage LinkedService, where Azure ML WebService Input/Output file located.
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the AzureMLWebServiceFile object itself.

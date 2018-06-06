@@ -39,7 +39,7 @@ public class BlobTrigger extends MultiplePipelineTrigger {
     private LinkedServiceReference linkedService;
 
     /**
-     * Get the folderPath value.
+     * Get the path of the container/folder that will trigger the pipeline.
      *
      * @return the folderPath value
      */
@@ -48,7 +48,7 @@ public class BlobTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the folderPath value.
+     * Set the path of the container/folder that will trigger the pipeline.
      *
      * @param folderPath the folderPath value to set
      * @return the BlobTrigger object itself.
@@ -59,7 +59,7 @@ public class BlobTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Get the maxConcurrency value.
+     * Get the max number of parallel files to handle when it is triggered.
      *
      * @return the maxConcurrency value
      */
@@ -68,7 +68,7 @@ public class BlobTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the maxConcurrency value.
+     * Set the max number of parallel files to handle when it is triggered.
      *
      * @param maxConcurrency the maxConcurrency value to set
      * @return the BlobTrigger object itself.
@@ -79,7 +79,7 @@ public class BlobTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Get the linkedService value.
+     * Get the Azure Storage linked service reference.
      *
      * @return the linkedService value
      */
@@ -88,7 +88,7 @@ public class BlobTrigger extends MultiplePipelineTrigger {
     }
 
     /**
-     * Set the linkedService value.
+     * Set the Azure Storage linked service reference.
      *
      * @param linkedService the linkedService value to set
      * @return the BlobTrigger object itself.

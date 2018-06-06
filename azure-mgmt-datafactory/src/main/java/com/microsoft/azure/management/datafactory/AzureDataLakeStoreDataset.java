@@ -49,7 +49,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     private DatasetCompression compression;
 
     /**
-     * Get the folderPath value.
+     * Get path to the folder in the Azure Data Lake Store. Type: string (or Expression with resultType string).
      *
      * @return the folderPath value
      */
@@ -58,7 +58,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     }
 
     /**
-     * Set the folderPath value.
+     * Set path to the folder in the Azure Data Lake Store. Type: string (or Expression with resultType string).
      *
      * @param folderPath the folderPath value to set
      * @return the AzureDataLakeStoreDataset object itself.
@@ -69,7 +69,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     }
 
     /**
-     * Get the fileName value.
+     * Get the name of the file in the Azure Data Lake Store. Type: string (or Expression with resultType string).
      *
      * @return the fileName value
      */
@@ -78,7 +78,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     }
 
     /**
-     * Set the fileName value.
+     * Set the name of the file in the Azure Data Lake Store. Type: string (or Expression with resultType string).
      *
      * @param fileName the fileName value to set
      * @return the AzureDataLakeStoreDataset object itself.
@@ -89,7 +89,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     }
 
     /**
-     * Get the format value.
+     * Get the format of the Data Lake Store.
      *
      * @return the format value
      */
@@ -98,7 +98,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     }
 
     /**
-     * Set the format value.
+     * Set the format of the Data Lake Store.
      *
      * @param format the format value to set
      * @return the AzureDataLakeStoreDataset object itself.
@@ -109,7 +109,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     }
 
     /**
-     * Get the compression value.
+     * Get the data compression method used for the item(s) in the Azure Data Lake Store.
      *
      * @return the compression value
      */
@@ -118,7 +118,7 @@ public class AzureDataLakeStoreDataset extends DatasetInner {
     }
 
     /**
-     * Set the compression value.
+     * Set the data compression method used for the item(s) in the Azure Data Lake Store.
      *
      * @param compression the compression value to set
      * @return the AzureDataLakeStoreDataset object itself.

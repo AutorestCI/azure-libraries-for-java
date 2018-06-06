@@ -28,13 +28,14 @@ public class Expression {
 
     /**
      * Creates an instance of Expression class.
+     * @param value expression value.
      */
     public Expression() {
         type = "Expression";
     }
 
     /**
-     * Get the type value.
+     * Get expression type.
      *
      * @return the type value
      */
@@ -43,7 +44,7 @@ public class Expression {
     }
 
     /**
-     * Set the type value.
+     * Set expression type.
      *
      * @param type the type value to set
      * @return the Expression object itself.
@@ -54,7 +55,7 @@ public class Expression {
     }
 
     /**
-     * Get the value value.
+     * Get expression value.
      *
      * @return the value value
      */
@@ -63,7 +64,7 @@ public class Expression {
     }
 
     /**
-     * Set the value value.
+     * Set expression value.
      *
      * @param value the value value to set
      * @return the Expression object itself.

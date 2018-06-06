@@ -29,7 +29,7 @@ public class AzureMySqlTableDataset extends DatasetInner {
     private Object tableName;
 
     /**
-     * Get the tableName value.
+     * Get the Azure MySQL database table name. Type: string (or Expression with resultType string).
      *
      * @return the tableName value
      */
@@ -38,7 +38,7 @@ public class AzureMySqlTableDataset extends DatasetInner {
     }
 
     /**
-     * Set the tableName value.
+     * Set the Azure MySQL database table name. Type: string (or Expression with resultType string).
      *
      * @param tableName the tableName value to set
      * @return the AzureMySqlTableDataset object itself.

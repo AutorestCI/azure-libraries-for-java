@@ -62,7 +62,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     private Boolean isIdentityCertExprired;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -71,7 +71,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeConnectionInfoInner object itself.
@@ -82,7 +82,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     }
 
     /**
-     * Get the serviceToken value.
+     * Get the token generated in service. Callers use this token to authenticate to integration runtime.
      *
      * @return the serviceToken value
      */
@@ -91,7 +91,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     }
 
     /**
-     * Get the identityCertThumbprint value.
+     * Get the integration runtime SSL certificate thumbprint. Click-Once application uses it to do server validation.
      *
      * @return the identityCertThumbprint value
      */
@@ -100,7 +100,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     }
 
     /**
-     * Get the hostServiceUri value.
+     * Get the on-premises integration runtime host URL.
      *
      * @return the hostServiceUri value
      */
@@ -109,7 +109,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     }
 
     /**
-     * Get the version value.
+     * Get the integration runtime version.
      *
      * @return the version value
      */
@@ -118,7 +118,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     }
 
     /**
-     * Get the publicKey value.
+     * Get the public key for encrypting a credential when transferring the credential to the integration runtime.
      *
      * @return the publicKey value
      */
@@ -127,7 +127,7 @@ public class IntegrationRuntimeConnectionInfoInner {
     }
 
     /**
-     * Get the isIdentityCertExprired value.
+     * Get whether the identity certificate is expired.
      *
      * @return the isIdentityCertExprired value
      */

@@ -133,7 +133,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     private Integer maxConcurrentJobs;
 
     /**
-     * Get the nodeName value.
+     * Get name of the integration runtime node.
      *
      * @return the nodeName value
      */
@@ -142,7 +142,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the machineName value.
+     * Get machine name of the integration runtime node.
      *
      * @return the machineName value
      */
@@ -151,7 +151,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the hostServiceUri value.
+     * Get uRI for the host machine of the integration runtime.
      *
      * @return the hostServiceUri value
      */
@@ -160,7 +160,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the status value.
+     * Get status of the integration runtime node. Possible values include: 'NeedRegistration', 'Online', 'Limited', 'Offline', 'Upgrading', 'Initializing', 'InitializeFailed'.
      *
      * @return the status value
      */
@@ -169,7 +169,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the capabilities value.
+     * Get the integration runtime capabilities dictionary.
      *
      * @return the capabilities value
      */
@@ -178,7 +178,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the versionStatus value.
+     * Get status of the integration runtime node version.
      *
      * @return the versionStatus value
      */
@@ -187,7 +187,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the version value.
+     * Get version of the integration runtime node.
      *
      * @return the version value
      */
@@ -196,7 +196,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the registerTime value.
+     * Get the time at which the integration runtime node was registered in ISO8601 format.
      *
      * @return the registerTime value
      */
@@ -205,7 +205,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the lastConnectTime value.
+     * Get the most recent time at which the integration runtime was connected in ISO8601 format.
      *
      * @return the lastConnectTime value
      */
@@ -214,7 +214,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the expiryTime value.
+     * Get the time at which the integration runtime will expire in ISO8601 format.
      *
      * @return the expiryTime value
      */
@@ -223,7 +223,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the lastStartTime value.
+     * Get the time the node last started up.
      *
      * @return the lastStartTime value
      */
@@ -232,7 +232,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the lastStopTime value.
+     * Get the integration runtime node last stop time.
      *
      * @return the lastStopTime value
      */
@@ -241,7 +241,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the lastUpdateResult value.
+     * Get the result of the last integration runtime node update. Possible values include: 'Succeed', 'Fail'.
      *
      * @return the lastUpdateResult value
      */
@@ -250,7 +250,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the lastStartUpdateTime value.
+     * Get the last time for the integration runtime node update start.
      *
      * @return the lastStartUpdateTime value
      */
@@ -259,7 +259,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the lastEndUpdateTime value.
+     * Get the last time for the integration runtime node update end.
      *
      * @return the lastEndUpdateTime value
      */
@@ -268,7 +268,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the isActiveDispatcher value.
+     * Get indicates whether this node is the active dispatcher for integration runtime requests.
      *
      * @return the isActiveDispatcher value
      */
@@ -277,7 +277,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the concurrentJobsLimit value.
+     * Get maximum concurrent jobs on the integration runtime node.
      *
      * @return the concurrentJobsLimit value
      */
@@ -286,7 +286,7 @@ public class SelfHostedIntegrationRuntimeNodeInner {
     }
 
     /**
-     * Get the maxConcurrentJobs value.
+     * Get the maximum concurrent jobs in this integration runtime.
      *
      * @return the maxConcurrentJobs value
      */

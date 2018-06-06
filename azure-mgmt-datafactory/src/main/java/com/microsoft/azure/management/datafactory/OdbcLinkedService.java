@@ -66,7 +66,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the connectionString value.
+     * Get the non-access credential portion of the connection string as well as an optional encrypted credential. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @return the connectionString value
      */
@@ -75,7 +75,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the connectionString value.
+     * Set the non-access credential portion of the connection string as well as an optional encrypted credential. Type: string, SecureString or AzureKeyVaultSecretReference.
      *
      * @param connectionString the connectionString value to set
      * @return the OdbcLinkedService object itself.
@@ -86,7 +86,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get type of authentication used to connect to the ODBC data store. Possible values are: Anonymous and Basic. Type: string (or Expression with resultType string).
      *
      * @return the authenticationType value
      */
@@ -95,7 +95,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set type of authentication used to connect to the ODBC data store. Possible values are: Anonymous and Basic. Type: string (or Expression with resultType string).
      *
      * @param authenticationType the authenticationType value to set
      * @return the OdbcLinkedService object itself.
@@ -106,7 +106,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the credential value.
+     * Get the access credential portion of the connection string specified in driver-specific property-value format.
      *
      * @return the credential value
      */
@@ -115,7 +115,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the credential value.
+     * Set the access credential portion of the connection string specified in driver-specific property-value format.
      *
      * @param credential the credential value to set
      * @return the OdbcLinkedService object itself.
@@ -126,7 +126,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get user name for Basic authentication. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -135,7 +135,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set user name for Basic authentication. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the OdbcLinkedService object itself.
@@ -146,7 +146,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password for Basic authentication.
      *
      * @return the password value
      */
@@ -155,7 +155,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password for Basic authentication.
      *
      * @param password the password value to set
      * @return the OdbcLinkedService object itself.
@@ -166,7 +166,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -175,7 +175,7 @@ public class OdbcLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the OdbcLinkedService object itself.

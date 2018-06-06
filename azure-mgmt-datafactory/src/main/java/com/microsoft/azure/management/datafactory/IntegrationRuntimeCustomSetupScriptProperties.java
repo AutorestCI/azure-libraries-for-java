@@ -28,7 +28,7 @@ public class IntegrationRuntimeCustomSetupScriptProperties {
     private SecureString sasToken;
 
     /**
-     * Get the blobContainerUri value.
+     * Get the URI of the Azure blob container that contains the custom setup script.
      *
      * @return the blobContainerUri value
      */
@@ -37,7 +37,7 @@ public class IntegrationRuntimeCustomSetupScriptProperties {
     }
 
     /**
-     * Set the blobContainerUri value.
+     * Set the URI of the Azure blob container that contains the custom setup script.
      *
      * @param blobContainerUri the blobContainerUri value to set
      * @return the IntegrationRuntimeCustomSetupScriptProperties object itself.
@@ -48,7 +48,7 @@ public class IntegrationRuntimeCustomSetupScriptProperties {
     }
 
     /**
-     * Get the sasToken value.
+     * Get the SAS token of the Azure blob container.
      *
      * @return the sasToken value
      */
@@ -57,7 +57,7 @@ public class IntegrationRuntimeCustomSetupScriptProperties {
     }
 
     /**
-     * Set the sasToken value.
+     * Set the SAS token of the Azure blob container.
      *
      * @param sasToken the sasToken value to set
      * @return the IntegrationRuntimeCustomSetupScriptProperties object itself.

@@ -33,7 +33,7 @@ public class WebBasicAuthentication extends WebLinkedServiceTypeProperties {
     private SecretBase password;
 
     /**
-     * Get the username value.
+     * Get user name for Basic authentication. Type: string (or Expression with resultType string).
      *
      * @return the username value
      */
@@ -42,7 +42,7 @@ public class WebBasicAuthentication extends WebLinkedServiceTypeProperties {
     }
 
     /**
-     * Set the username value.
+     * Set user name for Basic authentication. Type: string (or Expression with resultType string).
      *
      * @param username the username value to set
      * @return the WebBasicAuthentication object itself.
@@ -53,7 +53,7 @@ public class WebBasicAuthentication extends WebLinkedServiceTypeProperties {
     }
 
     /**
-     * Get the password value.
+     * Get the password for Basic authentication.
      *
      * @return the password value
      */
@@ -62,7 +62,7 @@ public class WebBasicAuthentication extends WebLinkedServiceTypeProperties {
     }
 
     /**
-     * Set the password value.
+     * Set the password for Basic authentication.
      *
      * @param password the password value to set
      * @return the WebBasicAuthentication object itself.

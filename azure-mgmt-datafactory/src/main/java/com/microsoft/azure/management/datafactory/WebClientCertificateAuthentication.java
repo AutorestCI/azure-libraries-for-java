@@ -34,7 +34,7 @@ public class WebClientCertificateAuthentication extends WebLinkedServiceTypeProp
     private SecretBase password;
 
     /**
-     * Get the pfx value.
+     * Get base64-encoded contents of a PFX file.
      *
      * @return the pfx value
      */
@@ -43,7 +43,7 @@ public class WebClientCertificateAuthentication extends WebLinkedServiceTypeProp
     }
 
     /**
-     * Set the pfx value.
+     * Set base64-encoded contents of a PFX file.
      *
      * @param pfx the pfx value to set
      * @return the WebClientCertificateAuthentication object itself.
@@ -54,7 +54,7 @@ public class WebClientCertificateAuthentication extends WebLinkedServiceTypeProp
     }
 
     /**
-     * Get the password value.
+     * Get password for the PFX file.
      *
      * @return the password value
      */
@@ -63,7 +63,7 @@ public class WebClientCertificateAuthentication extends WebLinkedServiceTypeProp
     }
 
     /**
-     * Set the password value.
+     * Set password for the PFX file.
      *
      * @param password the password value to set
      * @return the WebClientCertificateAuthentication object itself.

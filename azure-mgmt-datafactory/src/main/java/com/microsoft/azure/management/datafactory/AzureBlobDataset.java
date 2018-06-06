@@ -55,7 +55,7 @@ public class AzureBlobDataset extends DatasetInner {
     private DatasetCompression compression;
 
     /**
-     * Get the folderPath value.
+     * Get the path of the Azure Blob storage. Type: string (or Expression with resultType string).
      *
      * @return the folderPath value
      */
@@ -64,7 +64,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Set the folderPath value.
+     * Set the path of the Azure Blob storage. Type: string (or Expression with resultType string).
      *
      * @param folderPath the folderPath value to set
      * @return the AzureBlobDataset object itself.
@@ -75,7 +75,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Get the tableRootLocation value.
+     * Get the root of blob path. Type: string (or Expression with resultType string).
      *
      * @return the tableRootLocation value
      */
@@ -84,7 +84,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Set the tableRootLocation value.
+     * Set the root of blob path. Type: string (or Expression with resultType string).
      *
      * @param tableRootLocation the tableRootLocation value to set
      * @return the AzureBlobDataset object itself.
@@ -95,7 +95,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Get the fileName value.
+     * Get the name of the Azure Blob. Type: string (or Expression with resultType string).
      *
      * @return the fileName value
      */
@@ -104,7 +104,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Set the fileName value.
+     * Set the name of the Azure Blob. Type: string (or Expression with resultType string).
      *
      * @param fileName the fileName value to set
      * @return the AzureBlobDataset object itself.
@@ -115,7 +115,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Get the format value.
+     * Get the format of the Azure Blob storage.
      *
      * @return the format value
      */
@@ -124,7 +124,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Set the format value.
+     * Set the format of the Azure Blob storage.
      *
      * @param format the format value to set
      * @return the AzureBlobDataset object itself.
@@ -135,7 +135,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Get the compression value.
+     * Get the data compression method used for the blob storage.
      *
      * @return the compression value
      */
@@ -144,7 +144,7 @@ public class AzureBlobDataset extends DatasetInner {
     }
 
     /**
-     * Set the compression value.
+     * Set the data compression method used for the blob storage.
      *
      * @param compression the compression value to set
      * @return the AzureBlobDataset object itself.

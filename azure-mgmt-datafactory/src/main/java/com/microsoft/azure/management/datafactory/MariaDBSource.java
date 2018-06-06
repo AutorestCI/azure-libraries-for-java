@@ -26,7 +26,7 @@ public class MariaDBSource extends CopySource {
     private Object query;
 
     /**
-     * Get the query value.
+     * Get a query to retrieve data from source. Type: string (or Expression with resultType string).
      *
      * @return the query value
      */
@@ -35,7 +35,7 @@ public class MariaDBSource extends CopySource {
     }
 
     /**
-     * Set the query value.
+     * Set a query to retrieve data from source. Type: string (or Expression with resultType string).
      *
      * @param query the query value to set
      * @return the MariaDBSource object itself.

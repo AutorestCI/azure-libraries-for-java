@@ -29,7 +29,7 @@ public class PipelineRunQueryResponseInner {
     private String continuationToken;
 
     /**
-     * Get the value value.
+     * Get list of pipeline runs.
      *
      * @return the value value
      */
@@ -38,7 +38,7 @@ public class PipelineRunQueryResponseInner {
     }
 
     /**
-     * Set the value value.
+     * Set list of pipeline runs.
      *
      * @param value the value value to set
      * @return the PipelineRunQueryResponseInner object itself.
@@ -49,7 +49,7 @@ public class PipelineRunQueryResponseInner {
     }
 
     /**
-     * Get the continuationToken value.
+     * Get the continuation token for getting the next page of results, if any remaining results exist, null otherwise.
      *
      * @return the continuationToken value
      */
@@ -58,7 +58,7 @@ public class PipelineRunQueryResponseInner {
     }
 
     /**
-     * Set the continuationToken value.
+     * Set the continuation token for getting the next page of results, if any remaining results exist, null otherwise.
      *
      * @param continuationToken the continuationToken value to set
      * @return the PipelineRunQueryResponseInner object itself.

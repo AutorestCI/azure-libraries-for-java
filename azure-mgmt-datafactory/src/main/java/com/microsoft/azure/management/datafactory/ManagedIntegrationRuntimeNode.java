@@ -35,7 +35,7 @@ public class ManagedIntegrationRuntimeNode {
     private List<ManagedIntegrationRuntimeError> errors;
 
     /**
-     * Get the nodeId value.
+     * Get the managed integration runtime node id.
      *
      * @return the nodeId value
      */
@@ -44,7 +44,7 @@ public class ManagedIntegrationRuntimeNode {
     }
 
     /**
-     * Get the status value.
+     * Get the managed integration runtime node status. Possible values include: 'Starting', 'Available', 'Recycling', 'Unavailable'.
      *
      * @return the status value
      */
@@ -53,7 +53,7 @@ public class ManagedIntegrationRuntimeNode {
     }
 
     /**
-     * Get the errors value.
+     * Get the errors that occurred on this integration runtime node.
      *
      * @return the errors value
      */
@@ -62,7 +62,7 @@ public class ManagedIntegrationRuntimeNode {
     }
 
     /**
-     * Set the errors value.
+     * Set the errors that occurred on this integration runtime node.
      *
      * @param errors the errors value to set
      * @return the ManagedIntegrationRuntimeNode object itself.

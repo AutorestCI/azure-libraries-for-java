@@ -49,7 +49,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     private IntegrationRuntimeSsisCatalogPricingTier catalogPricingTier;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -58,7 +58,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the IntegrationRuntimeSsisCatalogInfo object itself.
@@ -69,7 +69,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Get the catalogServerEndpoint value.
+     * Get the catalog database server URL.
      *
      * @return the catalogServerEndpoint value
      */
@@ -78,7 +78,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Set the catalogServerEndpoint value.
+     * Set the catalog database server URL.
      *
      * @param catalogServerEndpoint the catalogServerEndpoint value to set
      * @return the IntegrationRuntimeSsisCatalogInfo object itself.
@@ -89,7 +89,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Get the catalogAdminUserName value.
+     * Get the administrator user name of catalog database.
      *
      * @return the catalogAdminUserName value
      */
@@ -98,7 +98,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Set the catalogAdminUserName value.
+     * Set the administrator user name of catalog database.
      *
      * @param catalogAdminUserName the catalogAdminUserName value to set
      * @return the IntegrationRuntimeSsisCatalogInfo object itself.
@@ -109,7 +109,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Get the catalogAdminPassword value.
+     * Get the password of the administrator user account of the catalog database.
      *
      * @return the catalogAdminPassword value
      */
@@ -118,7 +118,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Set the catalogAdminPassword value.
+     * Set the password of the administrator user account of the catalog database.
      *
      * @param catalogAdminPassword the catalogAdminPassword value to set
      * @return the IntegrationRuntimeSsisCatalogInfo object itself.
@@ -129,7 +129,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Get the catalogPricingTier value.
+     * Get the pricing tier for the catalog database. The valid values could be found in https://azure.microsoft.com/en-us/pricing/details/sql-database/. Possible values include: 'Basic', 'Standard', 'Premium', 'PremiumRS'.
      *
      * @return the catalogPricingTier value
      */
@@ -138,7 +138,7 @@ public class IntegrationRuntimeSsisCatalogInfo {
     }
 
     /**
-     * Set the catalogPricingTier value.
+     * Set the pricing tier for the catalog database. The valid values could be found in https://azure.microsoft.com/en-us/pricing/details/sql-database/. Possible values include: 'Basic', 'Standard', 'Premium', 'PremiumRS'.
      *
      * @param catalogPricingTier the catalogPricingTier value to set
      * @return the IntegrationRuntimeSsisCatalogInfo object itself.

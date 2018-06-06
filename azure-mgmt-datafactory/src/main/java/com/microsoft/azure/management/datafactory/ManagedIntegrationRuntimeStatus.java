@@ -48,7 +48,7 @@ public class ManagedIntegrationRuntimeStatus extends IntegrationRuntimeStatus {
     private ManagedIntegrationRuntimeOperationResult lastOperation;
 
     /**
-     * Get the createTime value.
+     * Get the time at which the integration runtime was created, in ISO8601 format.
      *
      * @return the createTime value
      */
@@ -57,7 +57,7 @@ public class ManagedIntegrationRuntimeStatus extends IntegrationRuntimeStatus {
     }
 
     /**
-     * Get the nodes value.
+     * Get the list of nodes for managed integration runtime.
      *
      * @return the nodes value
      */
@@ -66,7 +66,7 @@ public class ManagedIntegrationRuntimeStatus extends IntegrationRuntimeStatus {
     }
 
     /**
-     * Get the otherErrors value.
+     * Get the errors that occurred on this integration runtime.
      *
      * @return the otherErrors value
      */
@@ -75,7 +75,7 @@ public class ManagedIntegrationRuntimeStatus extends IntegrationRuntimeStatus {
     }
 
     /**
-     * Get the lastOperation value.
+     * Get the last operation result that occurred on this integration runtime.
      *
      * @return the lastOperation value
      */

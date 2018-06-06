@@ -141,7 +141,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the host value.
+     * Get iP address or host name of the Hive server, separated by ';' for multiple hosts (only when serviceDiscoveryMode is enable).
      *
      * @return the host value
      */
@@ -150,7 +150,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the host value.
+     * Set iP address or host name of the Hive server, separated by ';' for multiple hosts (only when serviceDiscoveryMode is enable).
      *
      * @param host the host value to set
      * @return the HiveLinkedService object itself.
@@ -161,7 +161,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the port value.
+     * Get the TCP port that the Hive server uses to listen for client connections.
      *
      * @return the port value
      */
@@ -170,7 +170,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the port value.
+     * Set the TCP port that the Hive server uses to listen for client connections.
      *
      * @param port the port value to set
      * @return the HiveLinkedService object itself.
@@ -181,7 +181,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the serverType value.
+     * Get the type of Hive server. Possible values include: 'HiveServer1', 'HiveServer2', 'HiveThriftServer'.
      *
      * @return the serverType value
      */
@@ -190,7 +190,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the serverType value.
+     * Set the type of Hive server. Possible values include: 'HiveServer1', 'HiveServer2', 'HiveThriftServer'.
      *
      * @param serverType the serverType value to set
      * @return the HiveLinkedService object itself.
@@ -201,7 +201,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the thriftTransportProtocol value.
+     * Get the transport protocol to use in the Thrift layer. Possible values include: 'Binary', 'SASL', 'HTTP '.
      *
      * @return the thriftTransportProtocol value
      */
@@ -210,7 +210,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the thriftTransportProtocol value.
+     * Set the transport protocol to use in the Thrift layer. Possible values include: 'Binary', 'SASL', 'HTTP '.
      *
      * @param thriftTransportProtocol the thriftTransportProtocol value to set
      * @return the HiveLinkedService object itself.
@@ -221,7 +221,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get the authentication method used to access the Hive server. Possible values include: 'Anonymous', 'Username', 'UsernameAndPassword', 'WindowsAzureHDInsightService'.
      *
      * @return the authenticationType value
      */
@@ -230,7 +230,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set the authentication method used to access the Hive server. Possible values include: 'Anonymous', 'Username', 'UsernameAndPassword', 'WindowsAzureHDInsightService'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the HiveLinkedService object itself.
@@ -241,7 +241,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the serviceDiscoveryMode value.
+     * Get true to indicate using the ZooKeeper service, false not.
      *
      * @return the serviceDiscoveryMode value
      */
@@ -250,7 +250,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the serviceDiscoveryMode value.
+     * Set true to indicate using the ZooKeeper service, false not.
      *
      * @param serviceDiscoveryMode the serviceDiscoveryMode value to set
      * @return the HiveLinkedService object itself.
@@ -261,7 +261,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the zooKeeperNameSpace value.
+     * Get the namespace on ZooKeeper under which Hive Server 2 nodes are added.
      *
      * @return the zooKeeperNameSpace value
      */
@@ -270,7 +270,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the zooKeeperNameSpace value.
+     * Set the namespace on ZooKeeper under which Hive Server 2 nodes are added.
      *
      * @param zooKeeperNameSpace the zooKeeperNameSpace value to set
      * @return the HiveLinkedService object itself.
@@ -281,7 +281,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useNativeQuery value.
+     * Get specifies whether the driver uses native HiveQL queries,or converts them into an equivalent form in HiveQL.
      *
      * @return the useNativeQuery value
      */
@@ -290,7 +290,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useNativeQuery value.
+     * Set specifies whether the driver uses native HiveQL queries,or converts them into an equivalent form in HiveQL.
      *
      * @param useNativeQuery the useNativeQuery value to set
      * @return the HiveLinkedService object itself.
@@ -301,7 +301,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the username value.
+     * Get the user name that you use to access Hive Server.
      *
      * @return the username value
      */
@@ -310,7 +310,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the username value.
+     * Set the user name that you use to access Hive Server.
      *
      * @param username the username value to set
      * @return the HiveLinkedService object itself.
@@ -321,7 +321,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get the password corresponding to the user name that you provided in the Username field.
      *
      * @return the password value
      */
@@ -330,7 +330,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set the password corresponding to the user name that you provided in the Username field.
      *
      * @param password the password value to set
      * @return the HiveLinkedService object itself.
@@ -341,7 +341,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the httpPath value.
+     * Get the partial URL corresponding to the Hive server.
      *
      * @return the httpPath value
      */
@@ -350,7 +350,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the httpPath value.
+     * Set the partial URL corresponding to the Hive server.
      *
      * @param httpPath the httpPath value to set
      * @return the HiveLinkedService object itself.
@@ -361,7 +361,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the enableSsl value.
+     * Get specifies whether the connections to the server are encrypted using SSL. The default value is false.
      *
      * @return the enableSsl value
      */
@@ -370,7 +370,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the enableSsl value.
+     * Set specifies whether the connections to the server are encrypted using SSL. The default value is false.
      *
      * @param enableSsl the enableSsl value to set
      * @return the HiveLinkedService object itself.
@@ -381,7 +381,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the trustedCertPath value.
+     * Get the full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
      *
      * @return the trustedCertPath value
      */
@@ -390,7 +390,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the trustedCertPath value.
+     * Set the full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
      *
      * @param trustedCertPath the trustedCertPath value to set
      * @return the HiveLinkedService object itself.
@@ -401,7 +401,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useSystemTrustStore value.
+     * Get specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
      *
      * @return the useSystemTrustStore value
      */
@@ -410,7 +410,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useSystemTrustStore value.
+     * Set specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
      *
      * @param useSystemTrustStore the useSystemTrustStore value to set
      * @return the HiveLinkedService object itself.
@@ -421,7 +421,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the allowHostNameCNMismatch value.
+     * Get specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
      *
      * @return the allowHostNameCNMismatch value
      */
@@ -430,7 +430,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the allowHostNameCNMismatch value.
+     * Set specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
      *
      * @param allowHostNameCNMismatch the allowHostNameCNMismatch value to set
      * @return the HiveLinkedService object itself.
@@ -441,7 +441,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the allowSelfSignedServerCert value.
+     * Get specifies whether to allow self-signed certificates from the server. The default value is false.
      *
      * @return the allowSelfSignedServerCert value
      */
@@ -450,7 +450,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the allowSelfSignedServerCert value.
+     * Set specifies whether to allow self-signed certificates from the server. The default value is false.
      *
      * @param allowSelfSignedServerCert the allowSelfSignedServerCert value to set
      * @return the HiveLinkedService object itself.
@@ -461,7 +461,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -470,7 +470,7 @@ public class HiveLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the HiveLinkedService object itself.

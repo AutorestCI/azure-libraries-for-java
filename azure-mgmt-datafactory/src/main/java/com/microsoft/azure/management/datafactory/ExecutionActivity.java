@@ -50,7 +50,7 @@ public class ExecutionActivity extends Activity {
     private ActivityPolicy policy;
 
     /**
-     * Get the linkedServiceName value.
+     * Get linked service reference.
      *
      * @return the linkedServiceName value
      */
@@ -59,7 +59,7 @@ public class ExecutionActivity extends Activity {
     }
 
     /**
-     * Set the linkedServiceName value.
+     * Set linked service reference.
      *
      * @param linkedServiceName the linkedServiceName value to set
      * @return the ExecutionActivity object itself.
@@ -70,7 +70,7 @@ public class ExecutionActivity extends Activity {
     }
 
     /**
-     * Get the policy value.
+     * Get activity policy.
      *
      * @return the policy value
      */
@@ -79,7 +79,7 @@ public class ExecutionActivity extends Activity {
     }
 
     /**
-     * Set the policy value.
+     * Set activity policy.
      *
      * @param policy the policy value to set
      * @return the ExecutionActivity object itself.

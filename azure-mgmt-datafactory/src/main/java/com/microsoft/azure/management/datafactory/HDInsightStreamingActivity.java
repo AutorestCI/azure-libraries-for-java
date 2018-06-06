@@ -98,7 +98,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     private Map<String, Object> defines;
 
     /**
-     * Get the storageLinkedServices value.
+     * Get storage linked service references.
      *
      * @return the storageLinkedServices value
      */
@@ -107,7 +107,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the storageLinkedServices value.
+     * Set storage linked service references.
      *
      * @param storageLinkedServices the storageLinkedServices value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -118,7 +118,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the arguments value.
+     * Get user specified arguments to HDInsightActivity.
      *
      * @return the arguments value
      */
@@ -127,7 +127,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the arguments value.
+     * Set user specified arguments to HDInsightActivity.
      *
      * @param arguments the arguments value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -138,7 +138,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the getDebugInfo value.
+     * Get debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @return the getDebugInfo value
      */
@@ -147,7 +147,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the getDebugInfo value.
+     * Set debug info option. Possible values include: 'None', 'Always', 'Failure'.
      *
      * @param getDebugInfo the getDebugInfo value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -158,7 +158,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the mapper value.
+     * Get mapper executable name. Type: string (or Expression with resultType string).
      *
      * @return the mapper value
      */
@@ -167,7 +167,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the mapper value.
+     * Set mapper executable name. Type: string (or Expression with resultType string).
      *
      * @param mapper the mapper value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -178,7 +178,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the reducer value.
+     * Get reducer executable name. Type: string (or Expression with resultType string).
      *
      * @return the reducer value
      */
@@ -187,7 +187,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the reducer value.
+     * Set reducer executable name. Type: string (or Expression with resultType string).
      *
      * @param reducer the reducer value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -198,7 +198,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the input value.
+     * Get input blob path. Type: string (or Expression with resultType string).
      *
      * @return the input value
      */
@@ -207,7 +207,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the input value.
+     * Set input blob path. Type: string (or Expression with resultType string).
      *
      * @param input the input value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -218,7 +218,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the output value.
+     * Get output blob path. Type: string (or Expression with resultType string).
      *
      * @return the output value
      */
@@ -227,7 +227,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the output value.
+     * Set output blob path. Type: string (or Expression with resultType string).
      *
      * @param output the output value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -238,7 +238,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the filePaths value.
+     * Get paths to streaming job files. Can be directories.
      *
      * @return the filePaths value
      */
@@ -247,7 +247,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the filePaths value.
+     * Set paths to streaming job files. Can be directories.
      *
      * @param filePaths the filePaths value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -258,7 +258,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the fileLinkedService value.
+     * Get linked service reference where the files are located.
      *
      * @return the fileLinkedService value
      */
@@ -267,7 +267,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the fileLinkedService value.
+     * Set linked service reference where the files are located.
      *
      * @param fileLinkedService the fileLinkedService value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -278,7 +278,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the combiner value.
+     * Get combiner executable name. Type: string (or Expression with resultType string).
      *
      * @return the combiner value
      */
@@ -287,7 +287,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the combiner value.
+     * Set combiner executable name. Type: string (or Expression with resultType string).
      *
      * @param combiner the combiner value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -298,7 +298,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the commandEnvironment value.
+     * Get command line environment values.
      *
      * @return the commandEnvironment value
      */
@@ -307,7 +307,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the commandEnvironment value.
+     * Set command line environment values.
      *
      * @param commandEnvironment the commandEnvironment value to set
      * @return the HDInsightStreamingActivity object itself.
@@ -318,7 +318,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Get the defines value.
+     * Get allows user to specify defines for streaming job request.
      *
      * @return the defines value
      */
@@ -327,7 +327,7 @@ public class HDInsightStreamingActivity extends ExecutionActivity {
     }
 
     /**
-     * Set the defines value.
+     * Set allows user to specify defines for streaming job request.
      *
      * @param defines the defines value to set
      * @return the HDInsightStreamingActivity object itself.

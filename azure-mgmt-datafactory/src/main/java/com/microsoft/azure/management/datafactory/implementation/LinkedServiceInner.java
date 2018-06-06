@@ -128,7 +128,7 @@ public class LinkedServiceInner {
     private List<Object> annotations;
 
     /**
-     * Get the additionalProperties value.
+     * Get unmatched properties from the message are deserialized this collection.
      *
      * @return the additionalProperties value
      */
@@ -137,7 +137,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Set the additionalProperties value.
+     * Set unmatched properties from the message are deserialized this collection.
      *
      * @param additionalProperties the additionalProperties value to set
      * @return the LinkedServiceInner object itself.
@@ -148,7 +148,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Get the connectVia value.
+     * Get the integration runtime reference.
      *
      * @return the connectVia value
      */
@@ -157,7 +157,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Set the connectVia value.
+     * Set the integration runtime reference.
      *
      * @param connectVia the connectVia value to set
      * @return the LinkedServiceInner object itself.
@@ -168,7 +168,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Get the description value.
+     * Get linked service description.
      *
      * @return the description value
      */
@@ -177,7 +177,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Set the description value.
+     * Set linked service description.
      *
      * @param description the description value to set
      * @return the LinkedServiceInner object itself.
@@ -188,7 +188,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Get the parameters value.
+     * Get parameters for linked service.
      *
      * @return the parameters value
      */
@@ -197,7 +197,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Set the parameters value.
+     * Set parameters for linked service.
      *
      * @param parameters the parameters value to set
      * @return the LinkedServiceInner object itself.
@@ -208,7 +208,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Get the annotations value.
+     * Get list of tags that can be used for describing the Dataset.
      *
      * @return the annotations value
      */
@@ -217,7 +217,7 @@ public class LinkedServiceInner {
     }
 
     /**
-     * Set the annotations value.
+     * Set list of tags that can be used for describing the Dataset.
      *
      * @param annotations the annotations value to set
      * @return the LinkedServiceInner object itself.

@@ -28,7 +28,7 @@ public class OperationServiceSpecification {
     private List<OperationMetricSpecification> metricSpecifications;
 
     /**
-     * Get the logSpecifications value.
+     * Get details about operations related to logs.
      *
      * @return the logSpecifications value
      */
@@ -37,7 +37,7 @@ public class OperationServiceSpecification {
     }
 
     /**
-     * Set the logSpecifications value.
+     * Set details about operations related to logs.
      *
      * @param logSpecifications the logSpecifications value to set
      * @return the OperationServiceSpecification object itself.
@@ -48,7 +48,7 @@ public class OperationServiceSpecification {
     }
 
     /**
-     * Get the metricSpecifications value.
+     * Get details about operations related to metrics.
      *
      * @return the metricSpecifications value
      */
@@ -57,7 +57,7 @@ public class OperationServiceSpecification {
     }
 
     /**
-     * Set the metricSpecifications value.
+     * Set details about operations related to metrics.
      *
      * @param metricSpecifications the metricSpecifications value to set
      * @return the OperationServiceSpecification object itself.

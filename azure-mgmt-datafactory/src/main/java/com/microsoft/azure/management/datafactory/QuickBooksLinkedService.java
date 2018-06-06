@@ -34,15 +34,27 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     private Object companyId;
 
     /**
+     * The consumer key for OAuth 1.0 authentication.
+     */
+    @JsonProperty(value = "typeProperties.consumerKey", required = true)
+    private Object consumerKey;
+
+    /**
+     * The consumer secret for OAuth 1.0 authentication.
+     */
+    @JsonProperty(value = "typeProperties.consumerSecret", required = true)
+    private SecretBase consumerSecret;
+
+    /**
      * The access token for OAuth 1.0 authentication.
      */
-    @JsonProperty(value = "typeProperties.accessToken")
+    @JsonProperty(value = "typeProperties.accessToken", required = true)
     private SecretBase accessToken;
 
     /**
      * The access token secret for OAuth 1.0 authentication.
      */
-    @JsonProperty(value = "typeProperties.accessTokenSecret")
+    @JsonProperty(value = "typeProperties.accessTokenSecret", required = true)
     private SecretBase accessTokenSecret;
 
     /**
@@ -61,7 +73,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the endpoint value.
+     * Get the endpoint of the QuickBooks server. (i.e. quickbooks.api.intuit.com).
      *
      * @return the endpoint value
      */
@@ -70,7 +82,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the endpoint value.
+     * Set the endpoint of the QuickBooks server. (i.e. quickbooks.api.intuit.com).
      *
      * @param endpoint the endpoint value to set
      * @return the QuickBooksLinkedService object itself.
@@ -81,7 +93,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the companyId value.
+     * Get the company ID of the QuickBooks company to authorize.
      *
      * @return the companyId value
      */
@@ -90,7 +102,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the companyId value.
+     * Set the company ID of the QuickBooks company to authorize.
      *
      * @param companyId the companyId value to set
      * @return the QuickBooksLinkedService object itself.
@@ -101,7 +113,47 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessToken value.
+     * Get the consumer key for OAuth 1.0 authentication.
+     *
+     * @return the consumerKey value
+     */
+    public Object consumerKey() {
+        return this.consumerKey;
+    }
+
+    /**
+     * Set the consumer key for OAuth 1.0 authentication.
+     *
+     * @param consumerKey the consumerKey value to set
+     * @return the QuickBooksLinkedService object itself.
+     */
+    public QuickBooksLinkedService withConsumerKey(Object consumerKey) {
+        this.consumerKey = consumerKey;
+        return this;
+    }
+
+    /**
+     * Get the consumer secret for OAuth 1.0 authentication.
+     *
+     * @return the consumerSecret value
+     */
+    public SecretBase consumerSecret() {
+        return this.consumerSecret;
+    }
+
+    /**
+     * Set the consumer secret for OAuth 1.0 authentication.
+     *
+     * @param consumerSecret the consumerSecret value to set
+     * @return the QuickBooksLinkedService object itself.
+     */
+    public QuickBooksLinkedService withConsumerSecret(SecretBase consumerSecret) {
+        this.consumerSecret = consumerSecret;
+        return this;
+    }
+
+    /**
+     * Get the access token for OAuth 1.0 authentication.
      *
      * @return the accessToken value
      */
@@ -110,7 +162,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessToken value.
+     * Set the access token for OAuth 1.0 authentication.
      *
      * @param accessToken the accessToken value to set
      * @return the QuickBooksLinkedService object itself.
@@ -121,7 +173,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the accessTokenSecret value.
+     * Get the access token secret for OAuth 1.0 authentication.
      *
      * @return the accessTokenSecret value
      */
@@ -130,7 +182,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the accessTokenSecret value.
+     * Set the access token secret for OAuth 1.0 authentication.
      *
      * @param accessTokenSecret the accessTokenSecret value to set
      * @return the QuickBooksLinkedService object itself.
@@ -141,7 +193,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the useEncryptedEndpoints value.
+     * Get specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @return the useEncryptedEndpoints value
      */
@@ -150,7 +202,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the useEncryptedEndpoints value.
+     * Set specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
      *
      * @param useEncryptedEndpoints the useEncryptedEndpoints value to set
      * @return the QuickBooksLinkedService object itself.
@@ -161,7 +213,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -170,7 +222,7 @@ public class QuickBooksLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the QuickBooksLinkedService object itself.

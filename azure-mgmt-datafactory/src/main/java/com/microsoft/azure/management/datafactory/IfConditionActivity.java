@@ -48,7 +48,7 @@ public class IfConditionActivity extends ControlActivity {
     private List<Activity> ifFalseActivities;
 
     /**
-     * Get the expression value.
+     * Get an expression that would evaluate to Boolean. This is used to determine the block of activities (ifTrueActivities or ifFalseActivities) that will be executed.
      *
      * @return the expression value
      */
@@ -57,7 +57,7 @@ public class IfConditionActivity extends ControlActivity {
     }
 
     /**
-     * Set the expression value.
+     * Set an expression that would evaluate to Boolean. This is used to determine the block of activities (ifTrueActivities or ifFalseActivities) that will be executed.
      *
      * @param expression the expression value to set
      * @return the IfConditionActivity object itself.
@@ -68,7 +68,7 @@ public class IfConditionActivity extends ControlActivity {
     }
 
     /**
-     * Get the ifTrueActivities value.
+     * Get list of activities to execute if expression is evaluated to true. This is an optional property and if not provided, the activity will exit without any action.
      *
      * @return the ifTrueActivities value
      */
@@ -77,7 +77,7 @@ public class IfConditionActivity extends ControlActivity {
     }
 
     /**
-     * Set the ifTrueActivities value.
+     * Set list of activities to execute if expression is evaluated to true. This is an optional property and if not provided, the activity will exit without any action.
      *
      * @param ifTrueActivities the ifTrueActivities value to set
      * @return the IfConditionActivity object itself.
@@ -88,7 +88,7 @@ public class IfConditionActivity extends ControlActivity {
     }
 
     /**
-     * Get the ifFalseActivities value.
+     * Get list of activities to execute if expression is evaluated to false. This is an optional property and if not provided, the activity will exit without any action.
      *
      * @return the ifFalseActivities value
      */
@@ -97,7 +97,7 @@ public class IfConditionActivity extends ControlActivity {
     }
 
     /**
-     * Set the ifFalseActivities value.
+     * Set list of activities to execute if expression is evaluated to false. This is an optional property and if not provided, the activity will exit without any action.
      *
      * @param ifFalseActivities the ifFalseActivities value to set
      * @return the IfConditionActivity object itself.

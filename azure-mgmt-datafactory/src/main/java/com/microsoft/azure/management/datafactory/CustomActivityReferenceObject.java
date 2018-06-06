@@ -28,7 +28,7 @@ public class CustomActivityReferenceObject {
     private List<DatasetReference> datasets;
 
     /**
-     * Get the linkedServices value.
+     * Get linked service references.
      *
      * @return the linkedServices value
      */
@@ -37,7 +37,7 @@ public class CustomActivityReferenceObject {
     }
 
     /**
-     * Set the linkedServices value.
+     * Set linked service references.
      *
      * @param linkedServices the linkedServices value to set
      * @return the CustomActivityReferenceObject object itself.
@@ -48,7 +48,7 @@ public class CustomActivityReferenceObject {
     }
 
     /**
-     * Get the datasets value.
+     * Get dataset references.
      *
      * @return the datasets value
      */
@@ -57,7 +57,7 @@ public class CustomActivityReferenceObject {
     }
 
     /**
-     * Set the datasets value.
+     * Set dataset references.
      *
      * @param datasets the datasets value to set
      * @return the CustomActivityReferenceObject object itself.

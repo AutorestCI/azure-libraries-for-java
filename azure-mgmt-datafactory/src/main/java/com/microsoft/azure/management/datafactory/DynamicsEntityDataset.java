@@ -29,7 +29,7 @@ public class DynamicsEntityDataset extends DatasetInner {
     private Object entityName;
 
     /**
-     * Get the entityName value.
+     * Get the logical name of the entity. Type: string (or Expression with resultType string).
      *
      * @return the entityName value
      */
@@ -38,7 +38,7 @@ public class DynamicsEntityDataset extends DatasetInner {
     }
 
     /**
-     * Set the entityName value.
+     * Set the logical name of the entity. Type: string (or Expression with resultType string).
      *
      * @param entityName the entityName value to set
      * @return the DynamicsEntityDataset object itself.

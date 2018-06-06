@@ -26,7 +26,7 @@ public class DatasetZipDeflateCompression extends DatasetCompression {
     private DatasetCompressionLevel level;
 
     /**
-     * Get the level value.
+     * Get the ZipDeflate compression level. Possible values include: 'Optimal', 'Fastest'.
      *
      * @return the level value
      */
@@ -35,7 +35,7 @@ public class DatasetZipDeflateCompression extends DatasetCompression {
     }
 
     /**
-     * Set the level value.
+     * Set the ZipDeflate compression level. Possible values include: 'Optimal', 'Fastest'.
      *
      * @param level the level value to set
      * @return the DatasetZipDeflateCompression object itself.

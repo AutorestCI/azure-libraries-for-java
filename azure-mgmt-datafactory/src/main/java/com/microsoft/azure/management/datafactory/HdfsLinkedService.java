@@ -59,7 +59,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     private SecretBase password;
 
     /**
-     * Get the url value.
+     * Get the URL of the HDFS service endpoint, e.g. http://myhostname:50070/webhdfs/v1 . Type: string (or Expression with resultType string).
      *
      * @return the url value
      */
@@ -68,7 +68,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the url value.
+     * Set the URL of the HDFS service endpoint, e.g. http://myhostname:50070/webhdfs/v1 . Type: string (or Expression with resultType string).
      *
      * @param url the url value to set
      * @return the HdfsLinkedService object itself.
@@ -79,7 +79,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get type of authentication used to connect to the HDFS. Possible values are: Anonymous and Windows. Type: string (or Expression with resultType string).
      *
      * @return the authenticationType value
      */
@@ -88,7 +88,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set type of authentication used to connect to the HDFS. Possible values are: Anonymous and Windows. Type: string (or Expression with resultType string).
      *
      * @param authenticationType the authenticationType value to set
      * @return the HdfsLinkedService object itself.
@@ -99,7 +99,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -108,7 +108,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the HdfsLinkedService object itself.
@@ -119,7 +119,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get user name for Windows authentication. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -128,7 +128,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set user name for Windows authentication. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the HdfsLinkedService object itself.
@@ -139,7 +139,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password for Windows authentication.
      *
      * @return the password value
      */
@@ -148,7 +148,7 @@ public class HdfsLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password for Windows authentication.
      *
      * @param password the password value to set
      * @return the HdfsLinkedService object itself.

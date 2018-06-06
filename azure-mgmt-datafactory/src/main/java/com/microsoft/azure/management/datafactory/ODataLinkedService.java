@@ -57,7 +57,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     private Object encryptedCredential;
 
     /**
-     * Get the url value.
+     * Get the URL of the OData service endpoint. Type: string (or Expression with resultType string).
      *
      * @return the url value
      */
@@ -66,7 +66,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the url value.
+     * Set the URL of the OData service endpoint. Type: string (or Expression with resultType string).
      *
      * @param url the url value to set
      * @return the ODataLinkedService object itself.
@@ -77,7 +77,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the authenticationType value.
+     * Get type of authentication used to connect to the OData service. Possible values include: 'Basic', 'Anonymous'.
      *
      * @return the authenticationType value
      */
@@ -86,7 +86,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the authenticationType value.
+     * Set type of authentication used to connect to the OData service. Possible values include: 'Basic', 'Anonymous'.
      *
      * @param authenticationType the authenticationType value to set
      * @return the ODataLinkedService object itself.
@@ -97,7 +97,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the userName value.
+     * Get user name of the OData service. Type: string (or Expression with resultType string).
      *
      * @return the userName value
      */
@@ -106,7 +106,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the userName value.
+     * Set user name of the OData service. Type: string (or Expression with resultType string).
      *
      * @param userName the userName value to set
      * @return the ODataLinkedService object itself.
@@ -117,7 +117,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the password value.
+     * Get password of the OData service.
      *
      * @return the password value
      */
@@ -126,7 +126,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the password value.
+     * Set password of the OData service.
      *
      * @param password the password value to set
      * @return the ODataLinkedService object itself.
@@ -137,7 +137,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Get the encryptedCredential value.
+     * Get the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @return the encryptedCredential value
      */
@@ -146,7 +146,7 @@ public class ODataLinkedService extends LinkedServiceInner {
     }
 
     /**
-     * Set the encryptedCredential value.
+     * Set the encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string).
      *
      * @param encryptedCredential the encryptedCredential value to set
      * @return the ODataLinkedService object itself.
