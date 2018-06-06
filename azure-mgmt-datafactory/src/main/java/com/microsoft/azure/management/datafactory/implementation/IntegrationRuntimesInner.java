@@ -580,9 +580,9 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the IntegrationRuntimeResourceInner object if successful.
+     * @return the IntegrationRuntimeStatusResponseInner object if successful.
      */
-    public IntegrationRuntimeResourceInner update(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
+    public IntegrationRuntimeStatusResponseInner update(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
         return updateWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, updateIntegrationRuntimeRequest).toBlocking().single().body();
     }
 
@@ -597,7 +597,7 @@ public class IntegrationRuntimesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<IntegrationRuntimeResourceInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest, final ServiceCallback<IntegrationRuntimeResourceInner> serviceCallback) {
+    public ServiceFuture<IntegrationRuntimeStatusResponseInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest, final ServiceCallback<IntegrationRuntimeStatusResponseInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, updateIntegrationRuntimeRequest), serviceCallback);
     }
 
@@ -609,12 +609,12 @@ public class IntegrationRuntimesInner {
      * @param integrationRuntimeName The integration runtime name.
      * @param updateIntegrationRuntimeRequest The parameters for updating an integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the IntegrationRuntimeResourceInner object
+     * @return the observable to the IntegrationRuntimeStatusResponseInner object
      */
-    public Observable<IntegrationRuntimeResourceInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
-        return updateWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, updateIntegrationRuntimeRequest).map(new Func1<ServiceResponse<IntegrationRuntimeResourceInner>, IntegrationRuntimeResourceInner>() {
+    public Observable<IntegrationRuntimeStatusResponseInner> updateAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
+        return updateWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, updateIntegrationRuntimeRequest).map(new Func1<ServiceResponse<IntegrationRuntimeStatusResponseInner>, IntegrationRuntimeStatusResponseInner>() {
             @Override
-            public IntegrationRuntimeResourceInner call(ServiceResponse<IntegrationRuntimeResourceInner> response) {
+            public IntegrationRuntimeStatusResponseInner call(ServiceResponse<IntegrationRuntimeStatusResponseInner> response) {
                 return response.body();
             }
         });
@@ -628,9 +628,9 @@ public class IntegrationRuntimesInner {
      * @param integrationRuntimeName The integration runtime name.
      * @param updateIntegrationRuntimeRequest The parameters for updating an integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the IntegrationRuntimeResourceInner object
+     * @return the observable to the IntegrationRuntimeStatusResponseInner object
      */
-    public Observable<ServiceResponse<IntegrationRuntimeResourceInner>> updateWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
+    public Observable<ServiceResponse<IntegrationRuntimeStatusResponseInner>> updateWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -651,11 +651,11 @@ public class IntegrationRuntimesInner {
         }
         Validator.validate(updateIntegrationRuntimeRequest);
         return service.update(this.client.subscriptionId(), resourceGroupName, factoryName, integrationRuntimeName, this.client.apiVersion(), updateIntegrationRuntimeRequest, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationRuntimeResourceInner>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationRuntimeStatusResponseInner>>>() {
                 @Override
-                public Observable<ServiceResponse<IntegrationRuntimeResourceInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<IntegrationRuntimeStatusResponseInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<IntegrationRuntimeResourceInner> clientResponse = updateDelegate(response);
+                        ServiceResponse<IntegrationRuntimeStatusResponseInner> clientResponse = updateDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -664,9 +664,9 @@ public class IntegrationRuntimesInner {
             });
     }
 
-    private ServiceResponse<IntegrationRuntimeResourceInner> updateDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<IntegrationRuntimeResourceInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<IntegrationRuntimeResourceInner>() { }.getType())
+    private ServiceResponse<IntegrationRuntimeStatusResponseInner> updateDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<IntegrationRuntimeStatusResponseInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<IntegrationRuntimeStatusResponseInner>() { }.getType())
                 .registerError(ErrorResponseException.class)
                 .build(response);
     }
