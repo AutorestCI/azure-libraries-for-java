@@ -98,7 +98,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ApiErrorException thrown if the request is rejected by server
@@ -115,7 +115,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -131,7 +131,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
@@ -151,7 +151,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
@@ -187,7 +187,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ApiErrorException thrown if the request is rejected by server
@@ -204,7 +204,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -220,7 +220,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryImageVersionInner object
@@ -240,7 +240,7 @@ public class GalleryImageVersionsInner {
      * @param resourceGroupName The name of the resource group.
      * @param galleryName The name of the gallery.
      * @param galleryImageName The name of the gallery image.
-     * @param galleryImageVersionName The name of the gallery image version.
+     * @param galleryImageVersionName The name of the gallery image version. Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits must be within the range of a 32-bit integer. Format: &lt;MajorVersion&gt;.&lt;MinorVersion&gt;.&lt;Patch&gt;
      * @param galleryImageVersion Parameters supplied to the create or update gallery image version operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the GalleryImageVersionInner object
