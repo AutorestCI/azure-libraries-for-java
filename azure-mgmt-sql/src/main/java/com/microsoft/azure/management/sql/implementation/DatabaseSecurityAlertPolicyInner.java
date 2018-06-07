@@ -34,7 +34,7 @@ public class DatabaseSecurityAlertPolicyInner extends ProxyResourceInner {
     /**
      * Specifies the state of the policy. If state is Enabled, storageEndpoint
      * and storageAccountAccessKey are required. Possible values include:
-     * 'New', 'Enabled', 'Disabled'.
+     * 'Enabled', 'Disabled'.
      */
     @JsonProperty(value = "properties.state", required = true)
     private SecurityAlertPolicyState state;
@@ -120,7 +120,7 @@ public class DatabaseSecurityAlertPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Get specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'New', 'Enabled', 'Disabled'.
+     * Get specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the state value
      */
@@ -129,7 +129,7 @@ public class DatabaseSecurityAlertPolicyInner extends ProxyResourceInner {
     }
 
     /**
-     * Set specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'New', 'Enabled', 'Disabled'.
+     * Set specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param state the state value to set
      * @return the DatabaseSecurityAlertPolicyInner object itself.

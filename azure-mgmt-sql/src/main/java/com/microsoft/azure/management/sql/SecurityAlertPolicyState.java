@@ -15,9 +15,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * Defines values for SecurityAlertPolicyState.
  */
 public enum SecurityAlertPolicyState {
-    /** Enum value New. */
-    NEW("New"),
-
     /** Enum value Enabled. */
     ENABLED("Enabled"),
 
