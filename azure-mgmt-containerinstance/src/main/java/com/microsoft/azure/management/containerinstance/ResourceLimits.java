@@ -27,7 +27,7 @@ public class ResourceLimits {
     private Double cpu;
 
     /**
-     * Get the memoryInGB value.
+     * Get the memory limit in GB of this container instance.
      *
      * @return the memoryInGB value
      */
@@ -36,7 +36,7 @@ public class ResourceLimits {
     }
 
     /**
-     * Set the memoryInGB value.
+     * Set the memory limit in GB of this container instance.
      *
      * @param memoryInGB the memoryInGB value to set
      * @return the ResourceLimits object itself.
@@ -47,7 +47,7 @@ public class ResourceLimits {
     }
 
     /**
-     * Get the cpu value.
+     * Get the CPU limit of this container instance.
      *
      * @return the cpu value
      */
@@ -56,7 +56,7 @@ public class ResourceLimits {
     }
 
     /**
-     * Set the cpu value.
+     * Set the CPU limit of this container instance.
      *
      * @param cpu the cpu value to set
      * @return the ResourceLimits object itself.

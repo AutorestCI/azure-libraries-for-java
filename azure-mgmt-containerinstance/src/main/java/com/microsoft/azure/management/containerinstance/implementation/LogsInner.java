@@ -17,16 +17,27 @@ public class LogsInner {
     /**
      * The content of the log.
      */
-    @JsonProperty(value = "content", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "content")
     private String content;
 
     /**
-     * Get the content value.
+     * Get the content of the log.
      *
      * @return the content value
      */
     public String content() {
         return this.content;
+    }
+
+    /**
+     * Set the content of the log.
+     *
+     * @param content the content value to set
+     * @return the LogsInner object itself.
+     */
+    public LogsInner withContent(String content) {
+        this.content = content;
+        return this;
     }
 
 }
