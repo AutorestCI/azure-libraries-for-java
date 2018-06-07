@@ -29,14 +29,14 @@ public class IotCentralClientImpl extends AzureServiceClient {
     }
 
     /** The subscription identifier. */
-    private UUID subscriptionId;
+    private String subscriptionId;
 
     /**
      * Gets The subscription identifier.
      *
      * @return the subscriptionId value.
      */
-    public UUID subscriptionId() {
+    public String subscriptionId() {
         return this.subscriptionId;
     }
 
@@ -46,7 +46,7 @@ public class IotCentralClientImpl extends AzureServiceClient {
      * @param subscriptionId the subscriptionId value.
      * @return the service client itself
      */
-    public IotCentralClientImpl withSubscriptionId(UUID subscriptionId) {
+    public IotCentralClientImpl withSubscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
