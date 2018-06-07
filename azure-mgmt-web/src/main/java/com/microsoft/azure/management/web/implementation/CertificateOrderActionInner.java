@@ -37,7 +37,7 @@ public class CertificateOrderActionInner extends ProxyOnlyResource {
     private DateTime createdAt;
 
     /**
-     * Get the certificateOrderActionType value.
+     * Get action type. Possible values include: 'CertificateIssued', 'CertificateOrderCanceled', 'CertificateOrderCreated', 'CertificateRevoked', 'DomainValidationComplete', 'FraudDetected', 'OrgNameChange', 'OrgValidationComplete', 'SanDrop', 'FraudCleared', 'CertificateExpired', 'CertificateExpirationWarning', 'FraudDocumentationRequired', 'Unknown'.
      *
      * @return the certificateOrderActionType value
      */
@@ -46,7 +46,7 @@ public class CertificateOrderActionInner extends ProxyOnlyResource {
     }
 
     /**
-     * Set the certificateOrderActionType value.
+     * Set action type. Possible values include: 'CertificateIssued', 'CertificateOrderCanceled', 'CertificateOrderCreated', 'CertificateRevoked', 'DomainValidationComplete', 'FraudDetected', 'OrgNameChange', 'OrgValidationComplete', 'SanDrop', 'FraudCleared', 'CertificateExpired', 'CertificateExpirationWarning', 'FraudDocumentationRequired', 'Unknown'.
      *
      * @param certificateOrderActionType the certificateOrderActionType value to set
      * @return the CertificateOrderActionInner object itself.
@@ -57,7 +57,7 @@ public class CertificateOrderActionInner extends ProxyOnlyResource {
     }
 
     /**
-     * Get the createdAt value.
+     * Get time at which the certificate action was performed.
      *
      * @return the createdAt value
      */
@@ -66,7 +66,7 @@ public class CertificateOrderActionInner extends ProxyOnlyResource {
     }
 
     /**
-     * Set the createdAt value.
+     * Set time at which the certificate action was performed.
      *
      * @param createdAt the createdAt value to set
      * @return the CertificateOrderActionInner object itself.

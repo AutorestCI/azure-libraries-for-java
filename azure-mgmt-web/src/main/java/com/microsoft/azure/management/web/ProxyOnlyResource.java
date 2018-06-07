@@ -40,7 +40,7 @@ public class ProxyOnlyResource {
     private String type;
 
     /**
-     * Get the id value.
+     * Get resource Id.
      *
      * @return the id value
      */
@@ -49,7 +49,7 @@ public class ProxyOnlyResource {
     }
 
     /**
-     * Get the name value.
+     * Get resource Name.
      *
      * @return the name value
      */
@@ -58,7 +58,7 @@ public class ProxyOnlyResource {
     }
 
     /**
-     * Get the kind value.
+     * Get kind of resource.
      *
      * @return the kind value
      */
@@ -67,7 +67,7 @@ public class ProxyOnlyResource {
     }
 
     /**
-     * Set the kind value.
+     * Set kind of resource.
      *
      * @param kind the kind value to set
      * @return the ProxyOnlyResource object itself.
@@ -78,7 +78,7 @@ public class ProxyOnlyResource {
     }
 
     /**
-     * Get the type value.
+     * Get resource type.
      *
      * @return the type value
      */
