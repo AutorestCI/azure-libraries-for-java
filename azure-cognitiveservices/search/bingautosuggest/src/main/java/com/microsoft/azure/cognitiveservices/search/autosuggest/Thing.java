@@ -23,123 +23,19 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 })
 public class Thing extends Response {
     /**
-     * The name of the thing represented by this object.
+     * The URL to get more information about the thing represented by this
+     * object.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
-    private String name;
+    @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
+    private String url;
 
     /**
-     * A short description of the item.
-     */
-    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
-    private String description;
-
-    /**
-     * The wikipediaId property.
-     */
-    @JsonProperty(value = "wikipediaId", access = JsonProperty.Access.WRITE_ONLY)
-    private String wikipediaId;
-
-    /**
-     * The freebaseId property.
-     */
-    @JsonProperty(value = "freebaseId", access = JsonProperty.Access.WRITE_ONLY)
-    private String freebaseId;
-
-    /**
-     * An alias for the item.
-     */
-    @JsonProperty(value = "alternateName", access = JsonProperty.Access.WRITE_ONLY)
-    private String alternateName;
-
-    /**
-     * An ID that uniquely identifies this item.
-     */
-    @JsonProperty(value = "bingId", access = JsonProperty.Access.WRITE_ONLY)
-    private String bingId;
-
-    /**
-     * The satoriId property.
-     */
-    @JsonProperty(value = "satoriId", access = JsonProperty.Access.WRITE_ONLY)
-    private String satoriId;
-
-    /**
-     * The ypId property.
-     */
-    @JsonProperty(value = "ypId", access = JsonProperty.Access.WRITE_ONLY)
-    private String ypId;
-
-    /**
-     * Get the name of the thing represented by this object.
+     * Get the URL to get more information about the thing represented by this object.
      *
-     * @return the name value
+     * @return the url value
      */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get a short description of the item.
-     *
-     * @return the description value
-     */
-    public String description() {
-        return this.description;
-    }
-
-    /**
-     * Get the wikipediaId value.
-     *
-     * @return the wikipediaId value
-     */
-    public String wikipediaId() {
-        return this.wikipediaId;
-    }
-
-    /**
-     * Get the freebaseId value.
-     *
-     * @return the freebaseId value
-     */
-    public String freebaseId() {
-        return this.freebaseId;
-    }
-
-    /**
-     * Get an alias for the item.
-     *
-     * @return the alternateName value
-     */
-    public String alternateName() {
-        return this.alternateName;
-    }
-
-    /**
-     * Get an ID that uniquely identifies this item.
-     *
-     * @return the bingId value
-     */
-    public String bingId() {
-        return this.bingId;
-    }
-
-    /**
-     * Get the satoriId value.
-     *
-     * @return the satoriId value
-     */
-    public String satoriId() {
-        return this.satoriId;
-    }
-
-    /**
-     * Get the ypId value.
-     *
-     * @return the ypId value
-     */
-    public String ypId() {
-        return this.ypId;
+    public String url() {
+        return this.url;
     }
 
 }

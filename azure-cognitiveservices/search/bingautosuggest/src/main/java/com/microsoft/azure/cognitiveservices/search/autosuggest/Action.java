@@ -12,12 +12,16 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 /**
  * The Action model.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
 @JsonTypeName("Action")
+@JsonSubTypes({
+    @JsonSubTypes.Type(name = "SearchAction", value = SearchAction.class)
+})
 public class Action extends CreativeWork {
     /**
      * The result property.
@@ -36,6 +40,12 @@ public class Action extends CreativeWork {
      */
     @JsonProperty(value = "isTopAction", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isTopAction;
+
+    /**
+     * The serviceUrl property.
+     */
+    @JsonProperty(value = "serviceUrl", access = JsonProperty.Access.WRITE_ONLY)
+    private String serviceUrl;
 
     /**
      * Get the result value.
@@ -62,6 +72,15 @@ public class Action extends CreativeWork {
      */
     public Boolean isTopAction() {
         return this.isTopAction;
+    }
+
+    /**
+     * Get the serviceUrl value.
+     *
+     * @return the serviceUrl value
+     */
+    public String serviceUrl() {
+        return this.serviceUrl;
     }
 
 }

@@ -25,6 +25,12 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 })
 public class CreativeWork extends Thing {
     /**
+     * The URL to a thumbnail of the item.
+     */
+    @JsonProperty(value = "thumbnailUrl", access = JsonProperty.Access.WRITE_ONLY)
+    private String thumbnailUrl;
+
+    /**
      * For internal use only.
      */
     @JsonProperty(value = "about", access = JsonProperty.Access.WRITE_ONLY)
@@ -53,6 +59,12 @@ public class CreativeWork extends Thing {
      */
     @JsonProperty(value = "text", access = JsonProperty.Access.WRITE_ONLY)
     private String text;
+
+    /**
+     * The discussionUrl property.
+     */
+    @JsonProperty(value = "discussionUrl", access = JsonProperty.Access.WRITE_ONLY)
+    private String discussionUrl;
 
     /**
      * The commentCount property.
@@ -109,6 +121,15 @@ public class CreativeWork extends Thing {
     private Boolean isFamilyFriendly;
 
     /**
+     * Get the URL to a thumbnail of the item.
+     *
+     * @return the thumbnailUrl value
+     */
+    public String thumbnailUrl() {
+        return this.thumbnailUrl;
+    }
+
+    /**
      * Get for internal use only.
      *
      * @return the about value
@@ -151,6 +172,15 @@ public class CreativeWork extends Thing {
      */
     public String text() {
         return this.text;
+    }
+
+    /**
+     * Get the discussionUrl value.
+     *
+     * @return the discussionUrl value
+     */
+    public String discussionUrl() {
+        return this.discussionUrl;
     }
 
     /**

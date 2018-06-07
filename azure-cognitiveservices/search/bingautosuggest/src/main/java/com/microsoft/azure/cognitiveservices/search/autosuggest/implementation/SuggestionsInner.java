@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.microsoft.azure.cognitiveservices.search.autosuggest.SearchResultsAnswer;
 
 /**
- * Defines an AutoSuggest answer.
+ * The SuggestionsInner model.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
 @JsonTypeName("Suggestions")

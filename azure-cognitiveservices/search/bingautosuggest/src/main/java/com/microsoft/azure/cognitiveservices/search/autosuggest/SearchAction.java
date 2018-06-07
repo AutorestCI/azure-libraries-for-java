@@ -9,11 +9,15 @@
 package com.microsoft.azure.cognitiveservices.search.autosuggest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The SearchAction model.
  */
-public class SearchAction {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
+@JsonTypeName("SearchAction")
+public class SearchAction extends Action {
     /**
      * The displayText property.
      */
@@ -32,13 +36,6 @@ public class SearchAction {
      */
     @JsonProperty(value = "searchKind", access = JsonProperty.Access.WRITE_ONLY)
     private SearchKind searchKind;
-
-    /**
-     * The URL to get more information about the thing represented by this
-     * object.
-     */
-    @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
-    private String url;
 
     /**
      * Get the displayText value.
@@ -65,15 +62,6 @@ public class SearchAction {
      */
     public SearchKind searchKind() {
         return this.searchKind;
-    }
-
-    /**
-     * Get the URL to get more information about the thing represented by this object.
-     *
-     * @return the url value
-     */
-    public String url() {
-        return this.url;
     }
 
 }
