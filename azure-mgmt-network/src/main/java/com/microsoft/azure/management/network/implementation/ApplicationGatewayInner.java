@@ -13,6 +13,7 @@ import com.microsoft.azure.management.network.ApplicationGatewaySslPolicy;
 import com.microsoft.azure.management.network.ApplicationGatewayOperationalState;
 import java.util.List;
 import com.microsoft.azure.management.network.ApplicationGatewayWebApplicationFirewallConfiguration;
+import com.microsoft.azure.management.network.ApplicationGatewayAutoscaleConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.rest.SkipParentValidation;
@@ -128,6 +129,12 @@ public class ApplicationGatewayInner extends Resource {
     private Boolean enableHttp2;
 
     /**
+     * Autoscale Configuration.
+     */
+    @JsonProperty(value = "properties.autoscaleConfiguration")
+    private ApplicationGatewayAutoscaleConfiguration autoscaleConfiguration;
+
+    /**
      * Resource GUID property of the application gateway resource.
      */
     @JsonProperty(value = "properties.resourceGuid")
@@ -145,6 +152,13 @@ public class ApplicationGatewayInner extends Resource {
      */
     @JsonProperty(value = "etag")
     private String etag;
+
+    /**
+     * A list of availability zones denoting where the resource needs to come
+     * from.
+     */
+    @JsonProperty(value = "zones")
+    private List<String> zones;
 
     /**
      * Resource ID.
@@ -482,6 +496,26 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
+     * Get autoscale Configuration.
+     *
+     * @return the autoscaleConfiguration value
+     */
+    public ApplicationGatewayAutoscaleConfiguration autoscaleConfiguration() {
+        return this.autoscaleConfiguration;
+    }
+
+    /**
+     * Set autoscale Configuration.
+     *
+     * @param autoscaleConfiguration the autoscaleConfiguration value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withAutoscaleConfiguration(ApplicationGatewayAutoscaleConfiguration autoscaleConfiguration) {
+        this.autoscaleConfiguration = autoscaleConfiguration;
+        return this;
+    }
+
+    /**
      * Get resource GUID property of the application gateway resource.
      *
      * @return the resourceGuid value
@@ -538,6 +572,26 @@ public class ApplicationGatewayInner extends Resource {
      */
     public ApplicationGatewayInner withEtag(String etag) {
         this.etag = etag;
+        return this;
+    }
+
+    /**
+     * Get a list of availability zones denoting where the resource needs to come from.
+     *
+     * @return the zones value
+     */
+    public List<String> zones() {
+        return this.zones;
+    }
+
+    /**
+     * Set a list of availability zones denoting where the resource needs to come from.
+     *
+     * @param zones the zones value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withZones(List<String> zones) {
+        this.zones = zones;
         return this;
     }
 

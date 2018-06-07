@@ -17,14 +17,14 @@ public class ApplicationGatewaySku {
     /**
      * Name of an application gateway SKU. Possible values include:
      * 'Standard_Small', 'Standard_Medium', 'Standard_Large', 'WAF_Medium',
-     * 'WAF_Large'.
+     * 'WAF_Large', 'Standard_v2', 'WAF_v2'.
      */
     @JsonProperty(value = "name")
     private ApplicationGatewaySkuName name;
 
     /**
      * Tier of an application gateway. Possible values include: 'Standard',
-     * 'WAF'.
+     * 'WAF', 'Standard_v2', 'WAF_v2'.
      */
     @JsonProperty(value = "tier")
     private ApplicationGatewayTier tier;
@@ -36,7 +36,7 @@ public class ApplicationGatewaySku {
     private Integer capacity;
 
     /**
-     * Get name of an application gateway SKU. Possible values include: 'Standard_Small', 'Standard_Medium', 'Standard_Large', 'WAF_Medium', 'WAF_Large'.
+     * Get name of an application gateway SKU. Possible values include: 'Standard_Small', 'Standard_Medium', 'Standard_Large', 'WAF_Medium', 'WAF_Large', 'Standard_v2', 'WAF_v2'.
      *
      * @return the name value
      */
@@ -45,7 +45,7 @@ public class ApplicationGatewaySku {
     }
 
     /**
-     * Set name of an application gateway SKU. Possible values include: 'Standard_Small', 'Standard_Medium', 'Standard_Large', 'WAF_Medium', 'WAF_Large'.
+     * Set name of an application gateway SKU. Possible values include: 'Standard_Small', 'Standard_Medium', 'Standard_Large', 'WAF_Medium', 'WAF_Large', 'Standard_v2', 'WAF_v2'.
      *
      * @param name the name value to set
      * @return the ApplicationGatewaySku object itself.
@@ -56,7 +56,7 @@ public class ApplicationGatewaySku {
     }
 
     /**
-     * Get tier of an application gateway. Possible values include: 'Standard', 'WAF'.
+     * Get tier of an application gateway. Possible values include: 'Standard', 'WAF', 'Standard_v2', 'WAF_v2'.
      *
      * @return the tier value
      */
@@ -65,7 +65,7 @@ public class ApplicationGatewaySku {
     }
 
     /**
-     * Set tier of an application gateway. Possible values include: 'Standard', 'WAF'.
+     * Set tier of an application gateway. Possible values include: 'Standard', 'WAF', 'Standard_v2', 'WAF_v2'.
      *
      * @param tier the tier value to set
      * @return the ApplicationGatewaySku object itself.
