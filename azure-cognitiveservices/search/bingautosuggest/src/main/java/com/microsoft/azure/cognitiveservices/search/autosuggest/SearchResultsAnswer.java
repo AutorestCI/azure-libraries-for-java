@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
 @JsonTypeName("SearchResultsAnswer")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "AutoSuggest", value = AutoSuggestInner.class)
+    @JsonSubTypes.Type(name = "Suggestions", value = SuggestionsInner.class)
 })
 public class SearchResultsAnswer extends Answer {
     /**

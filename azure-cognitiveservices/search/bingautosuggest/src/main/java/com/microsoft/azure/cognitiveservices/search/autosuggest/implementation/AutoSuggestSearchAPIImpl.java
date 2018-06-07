@@ -175,9 +175,9 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      * used by Retrofit to perform actually REST calls.
      */
     interface AutoSuggestSearchAPIService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.search.autosuggest.AutoSuggestSearchAPI autoSuggestMethod" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.cognitiveservices.search.autosuggest.AutoSuggestSearchAPI autoSuggest" })
         @GET("Suggestions")
-        Observable<Response<ResponseBody>> autoSuggestMethod(@Header("X-BingApis-SDK") String xBingApisSDK, @Header("Accept-Language") String acceptLanguage, @Header("Pragma") String pragma, @Header("User-Agent") String userAgent, @Header("X-MSEdge-ClientID") String clientId, @Header("X-MSEdge-ClientIP") String clientIp, @Header("X-Search-Location") String location, @Query("cc") String countryCode, @Query("mkt") String market, @Query("q") String query, @Query("safeSearch") SafeSearch safeSearch, @Query("setLang") String setLang, @Query("ResponseFormat") String responseFormat, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> autoSuggest(@Header("X-BingApis-SDK") String xBingApisSDK, @Header("Accept-Language") String acceptLanguage, @Header("Pragma") String pragma, @Header("User-Agent") String userAgent, @Header("X-MSEdge-ClientID") String clientId, @Header("X-MSEdge-ClientIP") String clientIp, @Header("X-Search-Location") String location, @Query("cc") String countryCode, @Query("mkt") String market, @Query("q") String query, @Query("safeSearch") SafeSearch safeSearch, @Query("setLang") String setLang, @Query("ResponseFormat") String responseFormat, @Header("User-Agent") String userAgent);
 
     }
 
@@ -188,10 +188,10 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the AutoSuggestInner object if successful.
+     * @return the SuggestionsInner object if successful.
      */
-    public AutoSuggestInner autoSuggestMethod(String query) {
-        return autoSuggestMethodWithServiceResponseAsync(query).toBlocking().single().body();
+    public SuggestionsInner autoSuggest(String query) {
+        return autoSuggestWithServiceResponseAsync(query).toBlocking().single().body();
     }
 
     /**
@@ -202,8 +202,8 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AutoSuggestInner> autoSuggestMethodAsync(String query, final ServiceCallback<AutoSuggestInner> serviceCallback) {
-        return ServiceFuture.fromResponse(autoSuggestMethodWithServiceResponseAsync(query), serviceCallback);
+    public ServiceFuture<SuggestionsInner> autoSuggestAsync(String query, final ServiceCallback<SuggestionsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(autoSuggestWithServiceResponseAsync(query), serviceCallback);
     }
 
     /**
@@ -211,12 +211,12 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      *
      * @param query The user's search term.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AutoSuggestInner object
+     * @return the observable to the SuggestionsInner object
      */
-    public Observable<AutoSuggestInner> autoSuggestMethodAsync(String query) {
-        return autoSuggestMethodWithServiceResponseAsync(query).map(new Func1<ServiceResponse<AutoSuggestInner>, AutoSuggestInner>() {
+    public Observable<SuggestionsInner> autoSuggestAsync(String query) {
+        return autoSuggestWithServiceResponseAsync(query).map(new Func1<ServiceResponse<SuggestionsInner>, SuggestionsInner>() {
             @Override
-            public AutoSuggestInner call(ServiceResponse<AutoSuggestInner> response) {
+            public SuggestionsInner call(ServiceResponse<SuggestionsInner> response) {
                 return response.body();
             }
         });
@@ -227,9 +227,9 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      *
      * @param query The user's search term.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AutoSuggestInner object
+     * @return the observable to the SuggestionsInner object
      */
-    public Observable<ServiceResponse<AutoSuggestInner>> autoSuggestMethodWithServiceResponseAsync(String query) {
+    public Observable<ServiceResponse<SuggestionsInner>> autoSuggestWithServiceResponseAsync(String query) {
         if (query == null) {
             throw new IllegalArgumentException("Parameter query is required and cannot be null.");
         }
@@ -245,12 +245,12 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
         final String setLang = null;
         final List<ResponseFormat> responseFormat = null;
         String responseFormatConverted = this.serializerAdapter().serializeList(responseFormat, CollectionFormat.CSV);
-        return service.autoSuggestMethod(xBingApisSDK, acceptLanguage, pragma, this.userAgent(), clientId, clientIp, location, countryCode, market, query, safeSearch, setLang, responseFormatConverted, this.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<AutoSuggestInner>>>() {
+        return service.autoSuggest(xBingApisSDK, acceptLanguage, pragma, this.userAgent(), clientId, clientIp, location, countryCode, market, query, safeSearch, setLang, responseFormatConverted, this.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SuggestionsInner>>>() {
                 @Override
-                public Observable<ServiceResponse<AutoSuggestInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SuggestionsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<AutoSuggestInner> clientResponse = autoSuggestMethodDelegate(response);
+                        ServiceResponse<SuggestionsInner> clientResponse = autoSuggestDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -276,10 +276,10 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the AutoSuggestInner object if successful.
+     * @return the SuggestionsInner object if successful.
      */
-    public AutoSuggestInner autoSuggestMethod(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat) {
-        return autoSuggestMethodWithServiceResponseAsync(query, acceptLanguage, pragma, clientId, clientIp, location, countryCode, market, safeSearch, setLang, responseFormat).toBlocking().single().body();
+    public SuggestionsInner autoSuggest(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat) {
+        return autoSuggestWithServiceResponseAsync(query, acceptLanguage, pragma, clientId, clientIp, location, countryCode, market, safeSearch, setLang, responseFormat).toBlocking().single().body();
     }
 
     /**
@@ -300,8 +300,8 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AutoSuggestInner> autoSuggestMethodAsync(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat, final ServiceCallback<AutoSuggestInner> serviceCallback) {
-        return ServiceFuture.fromResponse(autoSuggestMethodWithServiceResponseAsync(query, acceptLanguage, pragma, clientId, clientIp, location, countryCode, market, safeSearch, setLang, responseFormat), serviceCallback);
+    public ServiceFuture<SuggestionsInner> autoSuggestAsync(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat, final ServiceCallback<SuggestionsInner> serviceCallback) {
+        return ServiceFuture.fromResponse(autoSuggestWithServiceResponseAsync(query, acceptLanguage, pragma, clientId, clientIp, location, countryCode, market, safeSearch, setLang, responseFormat), serviceCallback);
     }
 
     /**
@@ -319,12 +319,12 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      * @param setLang The language to use for user interface strings. Specify the language using the ISO 639-1 2-letter language code. For example, the language code for English is EN. The default is EN (English). Although optional, you should always specify the language. Typically, you set setLang to the same language specified by mkt unless the user wants the user interface strings displayed in a different language. This parameter and the Accept-Language header are mutually exclusive; do not specify both. A user interface string is a string that's used as a label in a user interface. There are few user interface strings in the JSON response objects. Also, any links to Bing.com properties in the response objects apply the specified language.
      * @param responseFormat The media type to use for the response. The following are the possible case-insensitive values: JSON, JSONLD. The default is JSON. If you specify JSONLD, the response body includes JSON-LD objects that contain the search results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AutoSuggestInner object
+     * @return the observable to the SuggestionsInner object
      */
-    public Observable<AutoSuggestInner> autoSuggestMethodAsync(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat) {
-        return autoSuggestMethodWithServiceResponseAsync(query, acceptLanguage, pragma, clientId, clientIp, location, countryCode, market, safeSearch, setLang, responseFormat).map(new Func1<ServiceResponse<AutoSuggestInner>, AutoSuggestInner>() {
+    public Observable<SuggestionsInner> autoSuggestAsync(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat) {
+        return autoSuggestWithServiceResponseAsync(query, acceptLanguage, pragma, clientId, clientIp, location, countryCode, market, safeSearch, setLang, responseFormat).map(new Func1<ServiceResponse<SuggestionsInner>, SuggestionsInner>() {
             @Override
-            public AutoSuggestInner call(ServiceResponse<AutoSuggestInner> response) {
+            public SuggestionsInner call(ServiceResponse<SuggestionsInner> response) {
                 return response.body();
             }
         });
@@ -345,21 +345,21 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
      * @param setLang The language to use for user interface strings. Specify the language using the ISO 639-1 2-letter language code. For example, the language code for English is EN. The default is EN (English). Although optional, you should always specify the language. Typically, you set setLang to the same language specified by mkt unless the user wants the user interface strings displayed in a different language. This parameter and the Accept-Language header are mutually exclusive; do not specify both. A user interface string is a string that's used as a label in a user interface. There are few user interface strings in the JSON response objects. Also, any links to Bing.com properties in the response objects apply the specified language.
      * @param responseFormat The media type to use for the response. The following are the possible case-insensitive values: JSON, JSONLD. The default is JSON. If you specify JSONLD, the response body includes JSON-LD objects that contain the search results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AutoSuggestInner object
+     * @return the observable to the SuggestionsInner object
      */
-    public Observable<ServiceResponse<AutoSuggestInner>> autoSuggestMethodWithServiceResponseAsync(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat) {
+    public Observable<ServiceResponse<SuggestionsInner>> autoSuggestWithServiceResponseAsync(String query, String acceptLanguage, String pragma, String clientId, String clientIp, String location, String countryCode, String market, SafeSearch safeSearch, String setLang, List<ResponseFormat> responseFormat) {
         if (query == null) {
             throw new IllegalArgumentException("Parameter query is required and cannot be null.");
         }
         Validator.validate(responseFormat);
         final String xBingApisSDK = "true";
         String responseFormatConverted = this.serializerAdapter().serializeList(responseFormat, CollectionFormat.CSV);
-        return service.autoSuggestMethod(xBingApisSDK, acceptLanguage, pragma, this.userAgent(), clientId, clientIp, location, countryCode, market, query, safeSearch, setLang, responseFormatConverted, this.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<AutoSuggestInner>>>() {
+        return service.autoSuggest(xBingApisSDK, acceptLanguage, pragma, this.userAgent(), clientId, clientIp, location, countryCode, market, query, safeSearch, setLang, responseFormatConverted, this.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SuggestionsInner>>>() {
                 @Override
-                public Observable<ServiceResponse<AutoSuggestInner>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<SuggestionsInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<AutoSuggestInner> clientResponse = autoSuggestMethodDelegate(response);
+                        ServiceResponse<SuggestionsInner> clientResponse = autoSuggestDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -368,9 +368,9 @@ public class AutoSuggestSearchAPIImpl extends AzureServiceClient {
             });
     }
 
-    private ServiceResponse<AutoSuggestInner> autoSuggestMethodDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<AutoSuggestInner, ErrorResponseException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<AutoSuggestInner>() { }.getType())
+    private ServiceResponse<SuggestionsInner> autoSuggestDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<SuggestionsInner, ErrorResponseException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<SuggestionsInner>() { }.getType())
                 .registerError(ErrorResponseException.class)
                 .build(response);
     }

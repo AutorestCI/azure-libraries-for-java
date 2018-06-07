@@ -12,16 +12,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 /**
  * The Action model.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
 @JsonTypeName("Action")
-@JsonSubTypes({
-    @JsonSubTypes.Type(name = "SearchAction", value = SearchAction.class)
-})
 public class Action extends CreativeWork {
     /**
      * The result property.
