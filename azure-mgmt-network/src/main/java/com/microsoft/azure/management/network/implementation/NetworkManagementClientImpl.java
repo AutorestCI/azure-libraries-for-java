@@ -671,6 +671,97 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
     }
 
     /**
+     * The VirtualWANsInner object to access its operations.
+     */
+    private VirtualWANsInner virtualWANs;
+
+    /**
+     * Gets the VirtualWANsInner object to access its operations.
+     * @return the VirtualWANsInner object.
+     */
+    public VirtualWANsInner virtualWANs() {
+        return this.virtualWANs;
+    }
+
+    /**
+     * The VpnSitesInner object to access its operations.
+     */
+    private VpnSitesInner vpnSites;
+
+    /**
+     * Gets the VpnSitesInner object to access its operations.
+     * @return the VpnSitesInner object.
+     */
+    public VpnSitesInner vpnSites() {
+        return this.vpnSites;
+    }
+
+    /**
+     * The VpnSitesConfigurationsInner object to access its operations.
+     */
+    private VpnSitesConfigurationsInner vpnSitesConfigurations;
+
+    /**
+     * Gets the VpnSitesConfigurationsInner object to access its operations.
+     * @return the VpnSitesConfigurationsInner object.
+     */
+    public VpnSitesConfigurationsInner vpnSitesConfigurations() {
+        return this.vpnSitesConfigurations;
+    }
+
+    /**
+     * The VirtualHubsInner object to access its operations.
+     */
+    private VirtualHubsInner virtualHubs;
+
+    /**
+     * Gets the VirtualHubsInner object to access its operations.
+     * @return the VirtualHubsInner object.
+     */
+    public VirtualHubsInner virtualHubs() {
+        return this.virtualHubs;
+    }
+
+    /**
+     * The HubVirtualNetworkConnectionsInner object to access its operations.
+     */
+    private HubVirtualNetworkConnectionsInner hubVirtualNetworkConnections;
+
+    /**
+     * Gets the HubVirtualNetworkConnectionsInner object to access its operations.
+     * @return the HubVirtualNetworkConnectionsInner object.
+     */
+    public HubVirtualNetworkConnectionsInner hubVirtualNetworkConnections() {
+        return this.hubVirtualNetworkConnections;
+    }
+
+    /**
+     * The VpnGatewaysInner object to access its operations.
+     */
+    private VpnGatewaysInner vpnGateways;
+
+    /**
+     * Gets the VpnGatewaysInner object to access its operations.
+     * @return the VpnGatewaysInner object.
+     */
+    public VpnGatewaysInner vpnGateways() {
+        return this.vpnGateways;
+    }
+
+    /**
+     * The VpnConnectionsInner object to access its operations.
+     */
+    private VpnConnectionsInner vpnConnections;
+
+    /**
+     * Gets the VpnConnectionsInner object to access its operations.
+     * @return the VpnConnectionsInner object.
+     */
+    public VpnConnectionsInner vpnConnections() {
+        return this.vpnConnections;
+    }
+
+    /**
      * Initializes an instance of NetworkManagementClient client.
      *
      * @param credentials the management credentials for Azure
@@ -745,6 +836,13 @@ public class NetworkManagementClientImpl extends AzureServiceClient {
         this.virtualNetworkGateways = new VirtualNetworkGatewaysInner(restClient().retrofit(), this);
         this.virtualNetworkGatewayConnections = new VirtualNetworkGatewayConnectionsInner(restClient().retrofit(), this);
         this.localNetworkGateways = new LocalNetworkGatewaysInner(restClient().retrofit(), this);
+        this.virtualWANs = new VirtualWANsInner(restClient().retrofit(), this);
+        this.vpnSites = new VpnSitesInner(restClient().retrofit(), this);
+        this.vpnSitesConfigurations = new VpnSitesConfigurationsInner(restClient().retrofit(), this);
+        this.virtualHubs = new VirtualHubsInner(restClient().retrofit(), this);
+        this.hubVirtualNetworkConnections = new HubVirtualNetworkConnectionsInner(restClient().retrofit(), this);
+        this.vpnGateways = new VpnGatewaysInner(restClient().retrofit(), this);
+        this.vpnConnections = new VpnConnectionsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
         initializeService();
     }
