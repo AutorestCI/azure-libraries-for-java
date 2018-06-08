@@ -77,6 +77,12 @@ public class ManagedClusterInner extends Resource {
     private Map<String, ManagedClusterAddonProfile> addonProfiles;
 
     /**
+     * Name of the resource group containing agent pool nodes.
+     */
+    @JsonProperty(value = "properties.nodeResourceGroup", access = JsonProperty.Access.WRITE_ONLY)
+    private String nodeResourceGroup;
+
+    /**
      * Whether to enable Kubernetes Role-Based Access Control.
      */
     @JsonProperty(value = "properties.enableRBAC")
@@ -230,6 +236,15 @@ public class ManagedClusterInner extends Resource {
     public ManagedClusterInner withAddonProfiles(Map<String, ManagedClusterAddonProfile> addonProfiles) {
         this.addonProfiles = addonProfiles;
         return this;
+    }
+
+    /**
+     * Get name of the resource group containing agent pool nodes.
+     *
+     * @return the nodeResourceGroup value
+     */
+    public String nodeResourceGroup() {
+        return this.nodeResourceGroup;
     }
 
     /**
