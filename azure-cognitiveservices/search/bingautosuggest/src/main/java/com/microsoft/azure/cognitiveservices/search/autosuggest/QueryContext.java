@@ -9,10 +9,14 @@
 package com.microsoft.azure.cognitiveservices.search.autosuggest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Defines the query context that Bing used for the request.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
+@JsonTypeName("QueryContext")
 public class QueryContext {
     /**
      * The query string as specified in the request.

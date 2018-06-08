@@ -10,10 +10,14 @@ package com.microsoft.azure.cognitiveservices.search.autosuggest;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The SuggestionsSuggestionGroup model.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
+@JsonTypeName("Suggestions/SuggestionGroup")
 public class SuggestionsSuggestionGroup {
     /**
      * Possible values include: 'Unknown', 'Web', 'StoreApps', 'SearchHistory',

@@ -9,10 +9,14 @@
 package com.microsoft.azure.cognitiveservices.search.autosuggest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Defines the error that occurred.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "_type")
+@JsonTypeName("Error")
 public class Error {
     /**
      * The error code that identifies the category of error. Possible values
