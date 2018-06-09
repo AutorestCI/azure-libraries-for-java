@@ -12,35 +12,32 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Defines values for SecurityAlertPolicyState.
+ * Defines values for SecurityAlertState.
  */
-public enum SecurityAlertPolicyState {
-    /** Enum value New. */
-    NEW("New"),
-
+public enum SecurityAlertState {
     /** Enum value Enabled. */
     ENABLED("Enabled"),
 
     /** Enum value Disabled. */
     DISABLED("Disabled");
 
-    /** The actual serialized value for a SecurityAlertPolicyState instance. */
+    /** The actual serialized value for a SecurityAlertState instance. */
     private String value;
 
-    SecurityAlertPolicyState(String value) {
+    SecurityAlertState(String value) {
         this.value = value;
     }
 
     /**
-     * Parses a serialized value to a SecurityAlertPolicyState instance.
+     * Parses a serialized value to a SecurityAlertState instance.
      *
      * @param value the serialized value to parse.
-     * @return the parsed SecurityAlertPolicyState object, or null if unable to parse.
+     * @return the parsed SecurityAlertState object, or null if unable to parse.
      */
     @JsonCreator
-    public static SecurityAlertPolicyState fromString(String value) {
-        SecurityAlertPolicyState[] items = SecurityAlertPolicyState.values();
-        for (SecurityAlertPolicyState item : items) {
+    public static SecurityAlertState fromString(String value) {
+        SecurityAlertState[] items = SecurityAlertState.values();
+        for (SecurityAlertState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
                 return item;
             }

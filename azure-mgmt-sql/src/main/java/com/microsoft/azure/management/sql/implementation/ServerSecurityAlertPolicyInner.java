@@ -8,7 +8,7 @@
 
 package com.microsoft.azure.management.sql.implementation;
 
-import com.microsoft.azure.management.sql.SecurityAlertPolicyState;
+import com.microsoft.azure.management.sql.SecurityAlertState;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
@@ -23,7 +23,7 @@ public class ServerSecurityAlertPolicyInner extends ProxyResourceInner {
      * Possible values include: 'Enabled', 'Disabled'.
      */
     @JsonProperty(value = "properties.state", required = true)
-    private SecurityAlertPolicyState state;
+    private SecurityAlertState state;
 
     /**
      * Specifies an array of alerts that are disabled. Allowed values are:
@@ -70,7 +70,7 @@ public class ServerSecurityAlertPolicyInner extends ProxyResourceInner {
      *
      * @return the state value
      */
-    public SecurityAlertPolicyState state() {
+    public SecurityAlertState state() {
         return this.state;
     }
 
@@ -80,7 +80,7 @@ public class ServerSecurityAlertPolicyInner extends ProxyResourceInner {
      * @param state the state value to set
      * @return the ServerSecurityAlertPolicyInner object itself.
      */
-    public ServerSecurityAlertPolicyInner withState(SecurityAlertPolicyState state) {
+    public ServerSecurityAlertPolicyInner withState(SecurityAlertState state) {
         this.state = state;
         return this;
     }
