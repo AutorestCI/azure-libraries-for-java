@@ -10,11 +10,16 @@ package com.microsoft.azure.management.sql.implementation;
 
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
+import com.microsoft.azure.AzureServiceFuture;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.Page;
+import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
 import java.io.IOException;
+import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -24,6 +29,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.Path;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import retrofit2.Response;
 import rx.functions.Func1;
 import rx.Observable;
@@ -73,6 +79,14 @@ public class BackupShortTermRetentionPoliciesInner {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.BackupShortTermRetentionPolicies beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName}")
         Observable<Response<ResponseBody>> beginUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("databaseName") String databaseName, @Path("policyName") String policyName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupShortTermRetentionPolicyInner parameters, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.BackupShortTermRetentionPolicies listByDatabase" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies")
+        Observable<Response<ResponseBody>> listByDatabase(@Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Path("databaseName") String databaseName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.sql.BackupShortTermRetentionPolicies listByDatabaseNext" })
+        @GET
+        Observable<Response<ResponseBody>> listByDatabaseNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -854,6 +868,246 @@ public class BackupShortTermRetentionPoliciesInner {
         return this.client.restClient().responseBuilderFactory().<BackupShortTermRetentionPolicyInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<BackupShortTermRetentionPolicyInner>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param databaseName The name of the database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object if successful.
+     */
+    public PagedList<BackupShortTermRetentionPolicyInner> listByDatabase(final String resourceGroupName, final String serverName, final String databaseName) {
+        ServiceResponse<Page<BackupShortTermRetentionPolicyInner>> response = listByDatabaseSinglePageAsync(resourceGroupName, serverName, databaseName).toBlocking().single();
+        return new PagedList<BackupShortTermRetentionPolicyInner>(response.body()) {
+            @Override
+            public Page<BackupShortTermRetentionPolicyInner> nextPage(String nextPageLink) {
+                return listByDatabaseNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param databaseName The name of the database.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<BackupShortTermRetentionPolicyInner>> listByDatabaseAsync(final String resourceGroupName, final String serverName, final String databaseName, final ListOperationCallback<BackupShortTermRetentionPolicyInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listByDatabaseSinglePageAsync(resourceGroupName, serverName, databaseName),
+            new Func1<String, Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> call(String nextPageLink) {
+                    return listByDatabaseNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param databaseName The name of the database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object
+     */
+    public Observable<Page<BackupShortTermRetentionPolicyInner>> listByDatabaseAsync(final String resourceGroupName, final String serverName, final String databaseName) {
+        return listByDatabaseWithServiceResponseAsync(resourceGroupName, serverName, databaseName)
+            .map(new Func1<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>, Page<BackupShortTermRetentionPolicyInner>>() {
+                @Override
+                public Page<BackupShortTermRetentionPolicyInner> call(ServiceResponse<Page<BackupShortTermRetentionPolicyInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param databaseName The name of the database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> listByDatabaseWithServiceResponseAsync(final String resourceGroupName, final String serverName, final String databaseName) {
+        return listByDatabaseSinglePageAsync(resourceGroupName, serverName, databaseName)
+            .concatMap(new Func1<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>, Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> call(ServiceResponse<Page<BackupShortTermRetentionPolicyInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listByDatabaseNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+    ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
+    ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> * @param serverName The name of the server.
+    ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> * @param databaseName The name of the database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> listByDatabaseSinglePageAsync(final String resourceGroupName, final String serverName, final String databaseName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (serverName == null) {
+            throw new IllegalArgumentException("Parameter serverName is required and cannot be null.");
+        }
+        if (databaseName == null) {
+            throw new IllegalArgumentException("Parameter databaseName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        final String apiVersion = "2017-10-01-preview";
+        return service.listByDatabase(resourceGroupName, serverName, databaseName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> result = listByDatabaseDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> listByDatabaseDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<BackupShortTermRetentionPolicyInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<BackupShortTermRetentionPolicyInner>>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object if successful.
+     */
+    public PagedList<BackupShortTermRetentionPolicyInner> listByDatabaseNext(final String nextPageLink) {
+        ServiceResponse<Page<BackupShortTermRetentionPolicyInner>> response = listByDatabaseNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<BackupShortTermRetentionPolicyInner>(response.body()) {
+            @Override
+            public Page<BackupShortTermRetentionPolicyInner> nextPage(String nextPageLink) {
+                return listByDatabaseNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<BackupShortTermRetentionPolicyInner>> listByDatabaseNextAsync(final String nextPageLink, final ServiceFuture<List<BackupShortTermRetentionPolicyInner>> serviceFuture, final ListOperationCallback<BackupShortTermRetentionPolicyInner> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+            listByDatabaseNextSinglePageAsync(nextPageLink),
+            new Func1<String, Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> call(String nextPageLink) {
+                    return listByDatabaseNextSinglePageAsync(nextPageLink);
+                }
+            },
+            serviceCallback);
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object
+     */
+    public Observable<Page<BackupShortTermRetentionPolicyInner>> listByDatabaseNextAsync(final String nextPageLink) {
+        return listByDatabaseNextWithServiceResponseAsync(nextPageLink)
+            .map(new Func1<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>, Page<BackupShortTermRetentionPolicyInner>>() {
+                @Override
+                public Page<BackupShortTermRetentionPolicyInner> call(ServiceResponse<Page<BackupShortTermRetentionPolicyInner>> response) {
+                    return response.body();
+                }
+            });
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object
+     */
+    public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> listByDatabaseNextWithServiceResponseAsync(final String nextPageLink) {
+        return listByDatabaseNextSinglePageAsync(nextPageLink)
+            .concatMap(new Func1<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>, Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> call(ServiceResponse<Page<BackupShortTermRetentionPolicyInner>> page) {
+                    String nextPageLink = page.body().nextPageLink();
+                    if (nextPageLink == null) {
+                        return Observable.just(page);
+                    }
+                    return Observable.just(page).concatWith(listByDatabaseNextWithServiceResponseAsync(nextPageLink));
+                }
+            });
+    }
+
+    /**
+     * Gets a database's short term retention policy.
+     *
+    ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;BackupShortTermRetentionPolicyInner&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> listByDatabaseNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.listByDatabaseNext(nextUrl, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>>>() {
+                @Override
+                public Observable<ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> result = listByDatabaseNextDelegate(response);
+                        return Observable.just(new ServiceResponse<Page<BackupShortTermRetentionPolicyInner>>(result.body(), result.response()));
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<PageImpl1<BackupShortTermRetentionPolicyInner>> listByDatabaseNextDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<BackupShortTermRetentionPolicyInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<BackupShortTermRetentionPolicyInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

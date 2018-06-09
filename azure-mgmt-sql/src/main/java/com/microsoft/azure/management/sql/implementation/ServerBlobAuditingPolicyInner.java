@@ -15,16 +15,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
 /**
- * A database blob auditing policy.
+ * A server blob auditing policy.
  */
 @JsonFlatten
-public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
-    /**
-     * Resource kind.
-     */
-    @JsonProperty(value = "kind", access = JsonProperty.Access.WRITE_ONLY)
-    private String kind;
-
+public class ServerBlobAuditingPolicyInner extends ProxyResourceInner {
     /**
      * Specifies the state of the policy. If state is Enabled, storageEndpoint
      * and storageAccountAccessKey are required. Possible values include:
@@ -144,15 +138,6 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
     private Boolean isStorageSecondaryKeyInUse;
 
     /**
-     * Get resource kind.
-     *
-     * @return the kind value
-     */
-    public String kind() {
-        return this.kind;
-    }
-
-    /**
      * Get specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the state value
@@ -165,9 +150,9 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
      * Set specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param state the state value to set
-     * @return the DatabaseBlobAuditingPolicyInner object itself.
+     * @return the ServerBlobAuditingPolicyInner object itself.
      */
-    public DatabaseBlobAuditingPolicyInner withState(BlobAuditingPolicyState state) {
+    public ServerBlobAuditingPolicyInner withState(BlobAuditingPolicyState state) {
         this.state = state;
         return this;
     }
@@ -185,9 +170,9 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
      * Set specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint is required.
      *
      * @param storageEndpoint the storageEndpoint value to set
-     * @return the DatabaseBlobAuditingPolicyInner object itself.
+     * @return the ServerBlobAuditingPolicyInner object itself.
      */
-    public DatabaseBlobAuditingPolicyInner withStorageEndpoint(String storageEndpoint) {
+    public ServerBlobAuditingPolicyInner withStorageEndpoint(String storageEndpoint) {
         this.storageEndpoint = storageEndpoint;
         return this;
     }
@@ -205,9 +190,9 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
      * Set specifies the identifier key of the auditing storage account. If state is Enabled, storageAccountAccessKey is required.
      *
      * @param storageAccountAccessKey the storageAccountAccessKey value to set
-     * @return the DatabaseBlobAuditingPolicyInner object itself.
+     * @return the ServerBlobAuditingPolicyInner object itself.
      */
-    public DatabaseBlobAuditingPolicyInner withStorageAccountAccessKey(String storageAccountAccessKey) {
+    public ServerBlobAuditingPolicyInner withStorageAccountAccessKey(String storageAccountAccessKey) {
         this.storageAccountAccessKey = storageAccountAccessKey;
         return this;
     }
@@ -225,9 +210,9 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
      * Set specifies the number of days to keep in the audit logs.
      *
      * @param retentionDays the retentionDays value to set
-     * @return the DatabaseBlobAuditingPolicyInner object itself.
+     * @return the ServerBlobAuditingPolicyInner object itself.
      */
-    public DatabaseBlobAuditingPolicyInner withRetentionDays(Integer retentionDays) {
+    public ServerBlobAuditingPolicyInner withRetentionDays(Integer retentionDays) {
         this.retentionDays = retentionDays;
         return this;
     }
@@ -333,9 +318,9 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
      For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions).
      *
      * @param auditActionsAndGroups the auditActionsAndGroups value to set
-     * @return the DatabaseBlobAuditingPolicyInner object itself.
+     * @return the ServerBlobAuditingPolicyInner object itself.
      */
-    public DatabaseBlobAuditingPolicyInner withAuditActionsAndGroups(List<String> auditActionsAndGroups) {
+    public ServerBlobAuditingPolicyInner withAuditActionsAndGroups(List<String> auditActionsAndGroups) {
         this.auditActionsAndGroups = auditActionsAndGroups;
         return this;
     }
@@ -353,9 +338,9 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
      * Set specifies the blob storage subscription Id.
      *
      * @param storageAccountSubscriptionId the storageAccountSubscriptionId value to set
-     * @return the DatabaseBlobAuditingPolicyInner object itself.
+     * @return the ServerBlobAuditingPolicyInner object itself.
      */
-    public DatabaseBlobAuditingPolicyInner withStorageAccountSubscriptionId(UUID storageAccountSubscriptionId) {
+    public ServerBlobAuditingPolicyInner withStorageAccountSubscriptionId(UUID storageAccountSubscriptionId) {
         this.storageAccountSubscriptionId = storageAccountSubscriptionId;
         return this;
     }
@@ -373,9 +358,9 @@ public class DatabaseBlobAuditingPolicyInner extends ProxyResourceInner {
      * Set specifies whether storageAccountAccessKey value is the storage's secondary key.
      *
      * @param isStorageSecondaryKeyInUse the isStorageSecondaryKeyInUse value to set
-     * @return the DatabaseBlobAuditingPolicyInner object itself.
+     * @return the ServerBlobAuditingPolicyInner object itself.
      */
-    public DatabaseBlobAuditingPolicyInner withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse) {
+    public ServerBlobAuditingPolicyInner withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse) {
         this.isStorageSecondaryKeyInUse = isStorageSecondaryKeyInUse;
         return this;
     }
