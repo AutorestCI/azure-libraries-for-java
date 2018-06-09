@@ -13,6 +13,7 @@ import com.microsoft.azure.management.network.ApplicationGatewaySslPolicy;
 import com.microsoft.azure.management.network.ApplicationGatewayOperationalState;
 import java.util.List;
 import com.microsoft.azure.management.network.ApplicationGatewayWebApplicationFirewallConfiguration;
+import com.microsoft.azure.management.network.ApplicationGatewayAutoscaleConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.rest.SkipParentValidation;
@@ -128,6 +129,18 @@ public class ApplicationGatewayInner extends Resource {
     private Boolean enableHttp2;
 
     /**
+     * Whether FIPS is enabled on the application gateway resource.
+     */
+    @JsonProperty(value = "properties.enableFIPS")
+    private Boolean enableFIPS;
+
+    /**
+     * Autoscale Configuration.
+     */
+    @JsonProperty(value = "properties.autoscaleConfiguration")
+    private ApplicationGatewayAutoscaleConfiguration autoscaleConfiguration;
+
+    /**
      * Resource GUID property of the application gateway resource.
      */
     @JsonProperty(value = "properties.resourceGuid")
@@ -147,13 +160,20 @@ public class ApplicationGatewayInner extends Resource {
     private String etag;
 
     /**
+     * A list of availability zones denoting where the resource needs to come
+     * from.
+     */
+    @JsonProperty(value = "zones")
+    private List<String> zones;
+
+    /**
      * Resource ID.
      */
     @JsonProperty(value = "id")
     private String id;
 
     /**
-     * Get the sku value.
+     * Get sKU of the application gateway resource.
      *
      * @return the sku value
      */
@@ -162,7 +182,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the sku value.
+     * Set sKU of the application gateway resource.
      *
      * @param sku the sku value to set
      * @return the ApplicationGatewayInner object itself.
@@ -173,7 +193,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the sslPolicy value.
+     * Get sSL policy of the application gateway resource.
      *
      * @return the sslPolicy value
      */
@@ -182,7 +202,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the sslPolicy value.
+     * Set sSL policy of the application gateway resource.
      *
      * @param sslPolicy the sslPolicy value to set
      * @return the ApplicationGatewayInner object itself.
@@ -193,7 +213,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the operationalState value.
+     * Get operational state of the application gateway resource. Possible values include: 'Stopped', 'Starting', 'Running', 'Stopping'.
      *
      * @return the operationalState value
      */
@@ -202,7 +222,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the gatewayIPConfigurations value.
+     * Get subnets of application the gateway resource.
      *
      * @return the gatewayIPConfigurations value
      */
@@ -211,7 +231,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the gatewayIPConfigurations value.
+     * Set subnets of application the gateway resource.
      *
      * @param gatewayIPConfigurations the gatewayIPConfigurations value to set
      * @return the ApplicationGatewayInner object itself.
@@ -222,7 +242,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the authenticationCertificates value.
+     * Get authentication certificates of the application gateway resource.
      *
      * @return the authenticationCertificates value
      */
@@ -231,7 +251,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the authenticationCertificates value.
+     * Set authentication certificates of the application gateway resource.
      *
      * @param authenticationCertificates the authenticationCertificates value to set
      * @return the ApplicationGatewayInner object itself.
@@ -242,7 +262,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the sslCertificates value.
+     * Get sSL certificates of the application gateway resource.
      *
      * @return the sslCertificates value
      */
@@ -251,7 +271,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the sslCertificates value.
+     * Set sSL certificates of the application gateway resource.
      *
      * @param sslCertificates the sslCertificates value to set
      * @return the ApplicationGatewayInner object itself.
@@ -262,7 +282,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the frontendIPConfigurations value.
+     * Get frontend IP addresses of the application gateway resource.
      *
      * @return the frontendIPConfigurations value
      */
@@ -271,7 +291,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the frontendIPConfigurations value.
+     * Set frontend IP addresses of the application gateway resource.
      *
      * @param frontendIPConfigurations the frontendIPConfigurations value to set
      * @return the ApplicationGatewayInner object itself.
@@ -282,7 +302,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the frontendPorts value.
+     * Get frontend ports of the application gateway resource.
      *
      * @return the frontendPorts value
      */
@@ -291,7 +311,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the frontendPorts value.
+     * Set frontend ports of the application gateway resource.
      *
      * @param frontendPorts the frontendPorts value to set
      * @return the ApplicationGatewayInner object itself.
@@ -302,7 +322,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the probes value.
+     * Get probes of the application gateway resource.
      *
      * @return the probes value
      */
@@ -311,7 +331,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the probes value.
+     * Set probes of the application gateway resource.
      *
      * @param probes the probes value to set
      * @return the ApplicationGatewayInner object itself.
@@ -322,7 +342,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the backendAddressPools value.
+     * Get backend address pool of the application gateway resource.
      *
      * @return the backendAddressPools value
      */
@@ -331,7 +351,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the backendAddressPools value.
+     * Set backend address pool of the application gateway resource.
      *
      * @param backendAddressPools the backendAddressPools value to set
      * @return the ApplicationGatewayInner object itself.
@@ -342,7 +362,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the backendHttpSettingsCollection value.
+     * Get backend http settings of the application gateway resource.
      *
      * @return the backendHttpSettingsCollection value
      */
@@ -351,7 +371,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the backendHttpSettingsCollection value.
+     * Set backend http settings of the application gateway resource.
      *
      * @param backendHttpSettingsCollection the backendHttpSettingsCollection value to set
      * @return the ApplicationGatewayInner object itself.
@@ -362,7 +382,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the httpListeners value.
+     * Get http listeners of the application gateway resource.
      *
      * @return the httpListeners value
      */
@@ -371,7 +391,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the httpListeners value.
+     * Set http listeners of the application gateway resource.
      *
      * @param httpListeners the httpListeners value to set
      * @return the ApplicationGatewayInner object itself.
@@ -382,7 +402,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the urlPathMaps value.
+     * Get uRL path map of the application gateway resource.
      *
      * @return the urlPathMaps value
      */
@@ -391,7 +411,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the urlPathMaps value.
+     * Set uRL path map of the application gateway resource.
      *
      * @param urlPathMaps the urlPathMaps value to set
      * @return the ApplicationGatewayInner object itself.
@@ -402,7 +422,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the requestRoutingRules value.
+     * Get request routing rules of the application gateway resource.
      *
      * @return the requestRoutingRules value
      */
@@ -411,7 +431,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the requestRoutingRules value.
+     * Set request routing rules of the application gateway resource.
      *
      * @param requestRoutingRules the requestRoutingRules value to set
      * @return the ApplicationGatewayInner object itself.
@@ -422,7 +442,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the redirectConfigurations value.
+     * Get redirect configurations of the application gateway resource.
      *
      * @return the redirectConfigurations value
      */
@@ -431,7 +451,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the redirectConfigurations value.
+     * Set redirect configurations of the application gateway resource.
      *
      * @param redirectConfigurations the redirectConfigurations value to set
      * @return the ApplicationGatewayInner object itself.
@@ -442,7 +462,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the webApplicationFirewallConfiguration value.
+     * Get web application firewall configuration.
      *
      * @return the webApplicationFirewallConfiguration value
      */
@@ -451,7 +471,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the webApplicationFirewallConfiguration value.
+     * Set web application firewall configuration.
      *
      * @param webApplicationFirewallConfiguration the webApplicationFirewallConfiguration value to set
      * @return the ApplicationGatewayInner object itself.
@@ -462,7 +482,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the enableHttp2 value.
+     * Get whether HTTP2 is enabled on the application gateway resource.
      *
      * @return the enableHttp2 value
      */
@@ -471,7 +491,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the enableHttp2 value.
+     * Set whether HTTP2 is enabled on the application gateway resource.
      *
      * @param enableHttp2 the enableHttp2 value to set
      * @return the ApplicationGatewayInner object itself.
@@ -482,7 +502,47 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the resourceGuid value.
+     * Get whether FIPS is enabled on the application gateway resource.
+     *
+     * @return the enableFIPS value
+     */
+    public Boolean enableFIPS() {
+        return this.enableFIPS;
+    }
+
+    /**
+     * Set whether FIPS is enabled on the application gateway resource.
+     *
+     * @param enableFIPS the enableFIPS value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withEnableFIPS(Boolean enableFIPS) {
+        this.enableFIPS = enableFIPS;
+        return this;
+    }
+
+    /**
+     * Get autoscale Configuration.
+     *
+     * @return the autoscaleConfiguration value
+     */
+    public ApplicationGatewayAutoscaleConfiguration autoscaleConfiguration() {
+        return this.autoscaleConfiguration;
+    }
+
+    /**
+     * Set autoscale Configuration.
+     *
+     * @param autoscaleConfiguration the autoscaleConfiguration value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withAutoscaleConfiguration(ApplicationGatewayAutoscaleConfiguration autoscaleConfiguration) {
+        this.autoscaleConfiguration = autoscaleConfiguration;
+        return this;
+    }
+
+    /**
+     * Get resource GUID property of the application gateway resource.
      *
      * @return the resourceGuid value
      */
@@ -491,7 +551,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the resourceGuid value.
+     * Set resource GUID property of the application gateway resource.
      *
      * @param resourceGuid the resourceGuid value to set
      * @return the ApplicationGatewayInner object itself.
@@ -502,7 +562,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get provisioning state of the application gateway resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
      *
      * @return the provisioningState value
      */
@@ -511,7 +571,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the provisioningState value.
+     * Set provisioning state of the application gateway resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
      *
      * @param provisioningState the provisioningState value to set
      * @return the ApplicationGatewayInner object itself.
@@ -522,7 +582,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the etag value.
+     * Get a unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value
      */
@@ -531,7 +591,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the etag value.
+     * Set a unique read-only string that changes whenever the resource is updated.
      *
      * @param etag the etag value to set
      * @return the ApplicationGatewayInner object itself.
@@ -542,7 +602,27 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Get the id value.
+     * Get a list of availability zones denoting where the resource needs to come from.
+     *
+     * @return the zones value
+     */
+    public List<String> zones() {
+        return this.zones;
+    }
+
+    /**
+     * Set a list of availability zones denoting where the resource needs to come from.
+     *
+     * @param zones the zones value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withZones(List<String> zones) {
+        this.zones = zones;
+        return this;
+    }
+
+    /**
+     * Get resource ID.
      *
      * @return the id value
      */
@@ -551,7 +631,7 @@ public class ApplicationGatewayInner extends Resource {
     }
 
     /**
-     * Set the id value.
+     * Set resource ID.
      *
      * @param id the id value to set
      * @return the ApplicationGatewayInner object itself.

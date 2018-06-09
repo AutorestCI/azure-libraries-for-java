@@ -257,7 +257,7 @@ public class ExpressRouteCircuitPeeringsInner {
     }
 
     /**
-     * Gets the specified authorization from the specified express route circuit.
+     * Gets the specified peering for the express route circuit.
      *
      * @param resourceGroupName The name of the resource group.
      * @param circuitName The name of the express route circuit.
@@ -272,7 +272,7 @@ public class ExpressRouteCircuitPeeringsInner {
     }
 
     /**
-     * Gets the specified authorization from the specified express route circuit.
+     * Gets the specified peering for the express route circuit.
      *
      * @param resourceGroupName The name of the resource group.
      * @param circuitName The name of the express route circuit.
@@ -286,7 +286,7 @@ public class ExpressRouteCircuitPeeringsInner {
     }
 
     /**
-     * Gets the specified authorization from the specified express route circuit.
+     * Gets the specified peering for the express route circuit.
      *
      * @param resourceGroupName The name of the resource group.
      * @param circuitName The name of the express route circuit.
@@ -304,7 +304,7 @@ public class ExpressRouteCircuitPeeringsInner {
     }
 
     /**
-     * Gets the specified authorization from the specified express route circuit.
+     * Gets the specified peering for the express route circuit.
      *
      * @param resourceGroupName The name of the resource group.
      * @param circuitName The name of the express route circuit.

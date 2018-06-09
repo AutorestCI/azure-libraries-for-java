@@ -78,7 +78,7 @@ public class DdosProtectionPlanInner {
     private String etag;
 
     /**
-     * Get the id value.
+     * Get resource ID.
      *
      * @return the id value
      */
@@ -87,7 +87,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the name value.
+     * Get resource name.
      *
      * @return the name value
      */
@@ -96,7 +96,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the type value.
+     * Get resource type.
      *
      * @return the type value
      */
@@ -105,7 +105,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -114,7 +114,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Set the location value.
+     * Set resource location.
      *
      * @param location the location value to set
      * @return the DdosProtectionPlanInner object itself.
@@ -125,7 +125,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -134,7 +134,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the DdosProtectionPlanInner object itself.
@@ -145,7 +145,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the resourceGuid value.
+     * Get the resource GUID property of the DDoS protection plan resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
      *
      * @return the resourceGuid value
      */
@@ -154,7 +154,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state of the DDoS protection plan resource. Possible values are: 'Succeeded', 'Updating', 'Deleting', and 'Failed'.
      *
      * @return the provisioningState value
      */
@@ -163,7 +163,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the virtualNetworks value.
+     * Get the list of virtual networks associated with the DDoS protection plan resource. This list is read-only.
      *
      * @return the virtualNetworks value
      */
@@ -172,7 +172,7 @@ public class DdosProtectionPlanInner {
     }
 
     /**
-     * Get the etag value.
+     * Get a unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value
      */

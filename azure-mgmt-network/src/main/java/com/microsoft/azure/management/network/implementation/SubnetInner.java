@@ -76,7 +76,7 @@ public class SubnetInner extends SubResource {
     private String etag;
 
     /**
-     * Get the addressPrefix value.
+     * Get the address prefix for the subnet.
      *
      * @return the addressPrefix value
      */
@@ -85,7 +85,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the addressPrefix value.
+     * Set the address prefix for the subnet.
      *
      * @param addressPrefix the addressPrefix value to set
      * @return the SubnetInner object itself.
@@ -96,7 +96,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the networkSecurityGroup value.
+     * Get the reference of the NetworkSecurityGroup resource.
      *
      * @return the networkSecurityGroup value
      */
@@ -105,7 +105,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the networkSecurityGroup value.
+     * Set the reference of the NetworkSecurityGroup resource.
      *
      * @param networkSecurityGroup the networkSecurityGroup value to set
      * @return the SubnetInner object itself.
@@ -116,7 +116,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the routeTable value.
+     * Get the reference of the RouteTable resource.
      *
      * @return the routeTable value
      */
@@ -125,7 +125,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the routeTable value.
+     * Set the reference of the RouteTable resource.
      *
      * @param routeTable the routeTable value to set
      * @return the SubnetInner object itself.
@@ -136,7 +136,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the serviceEndpoints value.
+     * Get an array of service endpoints.
      *
      * @return the serviceEndpoints value
      */
@@ -145,7 +145,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the serviceEndpoints value.
+     * Set an array of service endpoints.
      *
      * @param serviceEndpoints the serviceEndpoints value to set
      * @return the SubnetInner object itself.
@@ -156,7 +156,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the ipConfigurations value.
+     * Get gets an array of references to the network interface IP configurations using subnet.
      *
      * @return the ipConfigurations value
      */
@@ -165,7 +165,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the resourceNavigationLinks value.
+     * Get gets an array of references to the external resources using subnet.
      *
      * @return the resourceNavigationLinks value
      */
@@ -174,7 +174,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the resourceNavigationLinks value.
+     * Set gets an array of references to the external resources using subnet.
      *
      * @param resourceNavigationLinks the resourceNavigationLinks value to set
      * @return the SubnetInner object itself.
@@ -185,7 +185,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get the provisioning state of the resource.
      *
      * @return the provisioningState value
      */
@@ -194,7 +194,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the provisioningState value.
+     * Set the provisioning state of the resource.
      *
      * @param provisioningState the provisioningState value to set
      * @return the SubnetInner object itself.
@@ -205,7 +205,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the name value.
+     * Get the name of the resource that is unique within a resource group. This name can be used to access the resource.
      *
      * @return the name value
      */
@@ -214,7 +214,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the resource that is unique within a resource group. This name can be used to access the resource.
      *
      * @param name the name value to set
      * @return the SubnetInner object itself.
@@ -225,7 +225,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Get the etag value.
+     * Get a unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value
      */
@@ -234,7 +234,7 @@ public class SubnetInner extends SubResource {
     }
 
     /**
-     * Set the etag value.
+     * Set a unique read-only string that changes whenever the resource is updated.
      *
      * @param etag the etag value to set
      * @return the SubnetInner object itself.
