@@ -69,7 +69,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob audit policy is defined.
+     * @param databaseName The name of the database.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
@@ -84,7 +84,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob audit policy is defined.
+     * @param databaseName The name of the database.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
@@ -98,7 +98,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob audit policy is defined.
+     * @param databaseName The name of the database.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseBlobAuditingPolicyInner object
      */
@@ -116,7 +116,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob audit policy is defined.
+     * @param databaseName The name of the database.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseBlobAuditingPolicyInner object
      */
@@ -134,7 +134,7 @@ public class DatabaseBlobAuditingPoliciesInner {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
         final String blobAuditingPolicyName = "default";
-        final String apiVersion = "2015-05-01-preview";
+        final String apiVersion = "2017-03-01-preview";
         return service.get(resourceGroupName, serverName, databaseName, blobAuditingPolicyName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DatabaseBlobAuditingPolicyInner>>>() {
                 @Override
@@ -161,7 +161,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob auditing policy will be defined.
+     * @param databaseName The name of the database.
      * @param parameters The database blob auditing policy.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
@@ -177,7 +177,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob auditing policy will be defined.
+     * @param databaseName The name of the database.
      * @param parameters The database blob auditing policy.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -192,7 +192,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob auditing policy will be defined.
+     * @param databaseName The name of the database.
      * @param parameters The database blob auditing policy.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseBlobAuditingPolicyInner object
@@ -211,7 +211,7 @@ public class DatabaseBlobAuditingPoliciesInner {
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the blob auditing policy will be defined.
+     * @param databaseName The name of the database.
      * @param parameters The database blob auditing policy.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the DatabaseBlobAuditingPolicyInner object
@@ -234,7 +234,7 @@ public class DatabaseBlobAuditingPoliciesInner {
         }
         Validator.validate(parameters);
         final String blobAuditingPolicyName = "default";
-        final String apiVersion = "2015-05-01-preview";
+        final String apiVersion = "2017-03-01-preview";
         return service.createOrUpdate(resourceGroupName, serverName, databaseName, blobAuditingPolicyName, this.client.subscriptionId(), parameters, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DatabaseBlobAuditingPolicyInner>>>() {
                 @Override
