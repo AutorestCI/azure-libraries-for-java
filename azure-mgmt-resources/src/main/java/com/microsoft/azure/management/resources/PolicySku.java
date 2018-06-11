@@ -11,7 +11,7 @@ package com.microsoft.azure.management.resources;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The policy sku.
+ * The policy sku. This property is optional, obsolete, and will be ignored.
  */
 public class PolicySku {
     /**

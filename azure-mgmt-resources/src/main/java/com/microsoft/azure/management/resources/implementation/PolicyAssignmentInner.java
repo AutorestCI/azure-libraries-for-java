@@ -25,7 +25,7 @@ public class PolicyAssignmentInner {
     private String displayName;
 
     /**
-     * The ID of the policy definition.
+     * The ID of the policy definition or policy set definition being assigned.
      */
     @JsonProperty(value = "properties.policyDefinitionId")
     private String policyDefinitionId;
@@ -79,7 +79,8 @@ public class PolicyAssignmentInner {
     private String name;
 
     /**
-     * The policy sku.
+     * The policy sku. This property is optional, obsolete, and will be
+     * ignored.
      */
     @JsonProperty(value = "sku")
     private PolicySku sku;
@@ -105,7 +106,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the ID of the policy definition.
+     * Get the ID of the policy definition or policy set definition being assigned.
      *
      * @return the policyDefinitionId value
      */
@@ -114,7 +115,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the ID of the policy definition.
+     * Set the ID of the policy definition or policy set definition being assigned.
      *
      * @param policyDefinitionId the policyDefinitionId value to set
      * @return the PolicyAssignmentInner object itself.
@@ -252,7 +253,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Get the policy sku.
+     * Get the policy sku. This property is optional, obsolete, and will be ignored.
      *
      * @return the sku value
      */
@@ -261,7 +262,7 @@ public class PolicyAssignmentInner {
     }
 
     /**
-     * Set the policy sku.
+     * Set the policy sku. This property is optional, obsolete, and will be ignored.
      *
      * @param sku the sku value to set
      * @return the PolicyAssignmentInner object itself.
