@@ -19,13 +19,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("TabularTranslator")
 public class TabularTranslator extends CopyTranslator {
     /**
-     * Column mappings. Type: string (or Expression with resultType string).
+     * Column mappings. Example: "UserId: MyUserId, Group: MyGroup, Name:
+     * MyName" Type: string (or Expression with resultType string).
      */
     @JsonProperty(value = "columnMappings")
     private Object columnMappings;
 
     /**
-     * Get column mappings. Type: string (or Expression with resultType string).
+     * The schema mapping to map between tabular data and hierarchical data.
+     * Example: {"Column1": "$.Column1", "Column2": "$.Column2.Property1",
+     * "Column3": "$.Column2.Property2"}. Type: object (or Expression with
+     * resultType object).
+     */
+    @JsonProperty(value = "schemaMapping")
+    private Object schemaMapping;
+
+    /**
+     * Get column mappings. Example: "UserId: MyUserId, Group: MyGroup, Name: MyName" Type: string (or Expression with resultType string).
      *
      * @return the columnMappings value
      */
@@ -34,13 +44,33 @@ public class TabularTranslator extends CopyTranslator {
     }
 
     /**
-     * Set column mappings. Type: string (or Expression with resultType string).
+     * Set column mappings. Example: "UserId: MyUserId, Group: MyGroup, Name: MyName" Type: string (or Expression with resultType string).
      *
      * @param columnMappings the columnMappings value to set
      * @return the TabularTranslator object itself.
      */
     public TabularTranslator withColumnMappings(Object columnMappings) {
         this.columnMappings = columnMappings;
+        return this;
+    }
+
+    /**
+     * Get the schema mapping to map between tabular data and hierarchical data. Example: {"Column1": "$.Column1", "Column2": "$.Column2.Property1", "Column3": "$.Column2.Property2"}. Type: object (or Expression with resultType object).
+     *
+     * @return the schemaMapping value
+     */
+    public Object schemaMapping() {
+        return this.schemaMapping;
+    }
+
+    /**
+     * Set the schema mapping to map between tabular data and hierarchical data. Example: {"Column1": "$.Column1", "Column2": "$.Column2.Property1", "Column3": "$.Column2.Property2"}. Type: object (or Expression with resultType object).
+     *
+     * @param schemaMapping the schemaMapping value to set
+     * @return the TabularTranslator object itself.
+     */
+    public TabularTranslator withSchemaMapping(Object schemaMapping) {
+        this.schemaMapping = schemaMapping;
         return this;
     }
 

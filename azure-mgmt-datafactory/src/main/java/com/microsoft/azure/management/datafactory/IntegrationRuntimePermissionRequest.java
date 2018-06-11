@@ -15,10 +15,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class IntegrationRuntimePermissionRequest {
     /**
+     * The data factory name.
+     */
+    @JsonProperty(value = "factoryName")
+    private String factoryName;
+
+    /**
      * The data factory identity.
      */
     @JsonProperty(value = "factoryIdentity", required = true)
     private String factoryIdentity;
+
+    /**
+     * Get the data factory name.
+     *
+     * @return the factoryName value
+     */
+    public String factoryName() {
+        return this.factoryName;
+    }
+
+    /**
+     * Set the data factory name.
+     *
+     * @param factoryName the factoryName value to set
+     * @return the IntegrationRuntimePermissionRequest object itself.
+     */
+    public IntegrationRuntimePermissionRequest withFactoryName(String factoryName) {
+        this.factoryName = factoryName;
+        return this;
+    }
 
     /**
      * Get the data factory identity.

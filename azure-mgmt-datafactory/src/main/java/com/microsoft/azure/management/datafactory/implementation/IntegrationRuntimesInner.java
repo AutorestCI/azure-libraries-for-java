@@ -138,11 +138,11 @@ public class IntegrationRuntimesInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.IntegrationRuntimes grantAccess" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/grantAccess")
-        Observable<Response<ResponseBody>> grantAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> grantAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Body IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.IntegrationRuntimes revokeAccess" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/revokeAccess")
-        Observable<Response<ResponseBody>> revokeAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> revokeAccess(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("factoryName") String factoryName, @Path("integrationRuntimeName") String integrationRuntimeName, @Query("api-version") String apiVersion, @Body IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.datafactory.IntegrationRuntimes listByFactoryNext" })
         @GET
@@ -1953,13 +1953,14 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be granted the access to given integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the IntegrationRuntimePermissionResponseInner object if successful.
      */
-    public void grantAccess(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity) {
-        grantAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, factoryIdentity).toBlocking().single().body();
+    public IntegrationRuntimePermissionResponseInner grantAccess(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest) {
+        return grantAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, integrationRuntimePermissionRequest).toBlocking().single().body();
     }
 
     /**
@@ -1968,13 +1969,13 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be granted the access to given integration runtime.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> grantAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(grantAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, factoryIdentity), serviceCallback);
+    public ServiceFuture<IntegrationRuntimePermissionResponseInner> grantAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest, final ServiceCallback<IntegrationRuntimePermissionResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(grantAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, integrationRuntimePermissionRequest), serviceCallback);
     }
 
     /**
@@ -1983,14 +1984,14 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be granted the access to given integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the IntegrationRuntimePermissionResponseInner object
      */
-    public Observable<Void> grantAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity) {
-        return grantAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, factoryIdentity).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<IntegrationRuntimePermissionResponseInner> grantAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest) {
+        return grantAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, integrationRuntimePermissionRequest).map(new Func1<ServiceResponse<IntegrationRuntimePermissionResponseInner>, IntegrationRuntimePermissionResponseInner>() {
             @Override
-            public Void call(ServiceResponse<Void> response) {
+            public IntegrationRuntimePermissionResponseInner call(ServiceResponse<IntegrationRuntimePermissionResponseInner> response) {
                 return response.body();
             }
         });
@@ -2002,11 +2003,11 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be granted the access to given integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the IntegrationRuntimePermissionResponseInner object
      */
-    public Observable<ServiceResponse<Void>> grantAccessWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity) {
+    public Observable<ServiceResponse<IntegrationRuntimePermissionResponseInner>> grantAccessWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -2022,17 +2023,16 @@ public class IntegrationRuntimesInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (factoryIdentity == null) {
-            throw new IllegalArgumentException("Parameter factoryIdentity is required and cannot be null.");
+        if (integrationRuntimePermissionRequest == null) {
+            throw new IllegalArgumentException("Parameter integrationRuntimePermissionRequest is required and cannot be null.");
         }
-        IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest = new IntegrationRuntimePermissionRequest();
-        integrationRuntimePermissionRequest.withFactoryIdentity(factoryIdentity);
-        return service.grantAccess(this.client.subscriptionId(), resourceGroupName, factoryName, integrationRuntimeName, this.client.apiVersion(), this.client.acceptLanguage(), integrationRuntimePermissionRequest, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+        Validator.validate(integrationRuntimePermissionRequest);
+        return service.grantAccess(this.client.subscriptionId(), resourceGroupName, factoryName, integrationRuntimeName, this.client.apiVersion(), integrationRuntimePermissionRequest, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationRuntimePermissionResponseInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<IntegrationRuntimePermissionResponseInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = grantAccessDelegate(response);
+                        ServiceResponse<IntegrationRuntimePermissionResponseInner> clientResponse = grantAccessDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2041,9 +2041,9 @@ public class IntegrationRuntimesInner {
             });
     }
 
-    private ServiceResponse<Void> grantAccessDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+    private ServiceResponse<IntegrationRuntimePermissionResponseInner> grantAccessDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<IntegrationRuntimePermissionResponseInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<IntegrationRuntimePermissionResponseInner>() { }.getType())
                 .registerError(ErrorResponseException.class)
                 .build(response);
     }
@@ -2054,13 +2054,14 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be revoked the access to given integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws ErrorResponseException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the IntegrationRuntimePermissionResponseInner object if successful.
      */
-    public void revokeAccess(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity) {
-        revokeAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, factoryIdentity).toBlocking().single().body();
+    public IntegrationRuntimePermissionResponseInner revokeAccess(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest) {
+        return revokeAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, integrationRuntimePermissionRequest).toBlocking().single().body();
     }
 
     /**
@@ -2069,13 +2070,13 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be revoked the access to given integration runtime.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> revokeAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromResponse(revokeAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, factoryIdentity), serviceCallback);
+    public ServiceFuture<IntegrationRuntimePermissionResponseInner> revokeAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest, final ServiceCallback<IntegrationRuntimePermissionResponseInner> serviceCallback) {
+        return ServiceFuture.fromResponse(revokeAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, integrationRuntimePermissionRequest), serviceCallback);
     }
 
     /**
@@ -2084,14 +2085,14 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be revoked the access to given integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the IntegrationRuntimePermissionResponseInner object
      */
-    public Observable<Void> revokeAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity) {
-        return revokeAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, factoryIdentity).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<IntegrationRuntimePermissionResponseInner> revokeAccessAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest) {
+        return revokeAccessWithServiceResponseAsync(resourceGroupName, factoryName, integrationRuntimeName, integrationRuntimePermissionRequest).map(new Func1<ServiceResponse<IntegrationRuntimePermissionResponseInner>, IntegrationRuntimePermissionResponseInner>() {
             @Override
-            public Void call(ServiceResponse<Void> response) {
+            public IntegrationRuntimePermissionResponseInner call(ServiceResponse<IntegrationRuntimePermissionResponseInner> response) {
                 return response.body();
             }
         });
@@ -2103,11 +2104,11 @@ public class IntegrationRuntimesInner {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param integrationRuntimeName The integration runtime name.
-     * @param factoryIdentity The data factory identity.
+     * @param integrationRuntimePermissionRequest The data factory identity which will be revoked the access to given integration runtime.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the IntegrationRuntimePermissionResponseInner object
      */
-    public Observable<ServiceResponse<Void>> revokeAccessWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, String factoryIdentity) {
+    public Observable<ServiceResponse<IntegrationRuntimePermissionResponseInner>> revokeAccessWithServiceResponseAsync(String resourceGroupName, String factoryName, String integrationRuntimeName, IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -2123,17 +2124,16 @@ public class IntegrationRuntimesInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (factoryIdentity == null) {
-            throw new IllegalArgumentException("Parameter factoryIdentity is required and cannot be null.");
+        if (integrationRuntimePermissionRequest == null) {
+            throw new IllegalArgumentException("Parameter integrationRuntimePermissionRequest is required and cannot be null.");
         }
-        IntegrationRuntimePermissionRequest integrationRuntimePermissionRequest = new IntegrationRuntimePermissionRequest();
-        integrationRuntimePermissionRequest.withFactoryIdentity(factoryIdentity);
-        return service.revokeAccess(this.client.subscriptionId(), resourceGroupName, factoryName, integrationRuntimeName, this.client.apiVersion(), this.client.acceptLanguage(), integrationRuntimePermissionRequest, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+        Validator.validate(integrationRuntimePermissionRequest);
+        return service.revokeAccess(this.client.subscriptionId(), resourceGroupName, factoryName, integrationRuntimeName, this.client.apiVersion(), integrationRuntimePermissionRequest, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IntegrationRuntimePermissionResponseInner>>>() {
                 @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<IntegrationRuntimePermissionResponseInner>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = revokeAccessDelegate(response);
+                        ServiceResponse<IntegrationRuntimePermissionResponseInner> clientResponse = revokeAccessDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -2142,9 +2142,9 @@ public class IntegrationRuntimesInner {
             });
     }
 
-    private ServiceResponse<Void> revokeAccessDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, ErrorResponseException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+    private ServiceResponse<IntegrationRuntimePermissionResponseInner> revokeAccessDelegate(Response<ResponseBody> response) throws ErrorResponseException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<IntegrationRuntimePermissionResponseInner, ErrorResponseException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<IntegrationRuntimePermissionResponseInner>() { }.getType())
                 .registerError(ErrorResponseException.class)
                 .build(response);
     }
