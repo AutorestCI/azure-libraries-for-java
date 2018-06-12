@@ -71,11 +71,11 @@ public class CloudEndpointsInner {
     interface CloudEndpointsService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}")
-        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body CloudEndpointInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body CloudEndpointInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints beginCreate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}")
-        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body CloudEndpointInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body CloudEndpointInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}")
@@ -95,27 +95,27 @@ public class CloudEndpointsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints preBackup" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/prebackup")
-        Observable<Response<ResponseBody>> preBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest body, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> preBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints beginPreBackup" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/prebackup")
-        Observable<Response<ResponseBody>> beginPreBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest body, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginPreBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints postBackup" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/postbackup")
-        Observable<Response<ResponseBody>> postBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest body, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> postBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints beginPostBackup" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/postbackup")
-        Observable<Response<ResponseBody>> beginPostBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest body, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginPostBackup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body BackupRequest parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints preRestore" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/prerestore")
-        Observable<Response<ResponseBody>> preRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PreRestoreRequest body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> preRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PreRestoreRequest parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints beginPreRestore" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/prerestore")
-        Observable<Response<ResponseBody>> beginPreRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PreRestoreRequest body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginPreRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PreRestoreRequest parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints restoreHeatbeat" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/restoreheartbeat")
@@ -123,11 +123,11 @@ public class CloudEndpointsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints postRestore" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/postrestore")
-        Observable<Response<ResponseBody>> postRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PostRestoreRequest body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> postRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PostRestoreRequest parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints beginPostRestore" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/postrestore")
-        Observable<Response<ResponseBody>> beginPostRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PostRestoreRequest body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginPostRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PostRestoreRequest parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -138,14 +138,14 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CloudEndpointInner object if successful.
      */
-    public CloudEndpointInner create(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).toBlocking().last().body();
+    public CloudEndpointInner create(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).toBlocking().last().body();
     }
 
     /**
@@ -155,13 +155,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CloudEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body, final ServiceCallback<CloudEndpointInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body), serviceCallback);
+    public ServiceFuture<CloudEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters, final ServiceCallback<CloudEndpointInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -171,12 +171,12 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<CloudEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).map(new Func1<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>, CloudEndpointInner>() {
+    public Observable<CloudEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>, CloudEndpointInner>() {
             @Override
             public CloudEndpointInner call(ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders> response) {
                 return response.body();
@@ -191,11 +191,11 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body) {
+    public Observable<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -214,11 +214,11 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        Observable<Response<ResponseBody>> observable = service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent());
+        Validator.validate(parameters);
+        Observable<Response<ResponseBody>> observable = service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultWithHeadersAsync(observable, new TypeToken<CloudEndpointInner>() { }.getType(), CloudEndpointsCreateHeaders.class);
     }
 
@@ -229,14 +229,14 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CloudEndpointInner object if successful.
      */
-    public CloudEndpointInner beginCreate(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).toBlocking().single().body();
+    public CloudEndpointInner beginCreate(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -246,13 +246,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CloudEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body, final ServiceCallback<CloudEndpointInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body), serviceCallback);
+    public ServiceFuture<CloudEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters, final ServiceCallback<CloudEndpointInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -262,12 +262,12 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CloudEndpointInner object
      */
-    public Observable<CloudEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).map(new Func1<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>, CloudEndpointInner>() {
+    public Observable<CloudEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>, CloudEndpointInner>() {
             @Override
             public CloudEndpointInner call(ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders> response) {
                 return response.body();
@@ -282,11 +282,11 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint resource.
+     * @param parameters Body of Cloud Endpoint resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CloudEndpointInner object
      */
-    public Observable<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>> beginCreateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner body) {
+    public Observable<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>> beginCreateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, CloudEndpointInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -305,11 +305,11 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.beginCreate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.beginCreate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<CloudEndpointInner, CloudEndpointsCreateHeaders>> call(Response<ResponseBody> response) {
@@ -791,9 +791,9 @@ public class CloudEndpointsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String azureFileShare = null;
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(null);
-        Observable<Response<ResponseBody>> observable = service.preBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent());
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(null);
+        Observable<Response<ResponseBody>> observable = service.preBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<Void>() { }.getType(), CloudEndpointsPreBackupHeaders.class);
     }
     /**
@@ -878,9 +878,9 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(azureFileShare);
-        Observable<Response<ResponseBody>> observable = service.preBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent());
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(azureFileShare);
+        Observable<Response<ResponseBody>> observable = service.preBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<Void>() { }.getType(), CloudEndpointsPreBackupHeaders.class);
     }
 
@@ -963,9 +963,9 @@ public class CloudEndpointsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String azureFileShare = null;
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(null);
-        return service.beginPreBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent())
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(null);
+        return service.beginPreBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreBackupHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreBackupHeaders>> call(Response<ResponseBody> response) {
@@ -1061,9 +1061,9 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(azureFileShare);
-        return service.beginPreBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent())
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(azureFileShare);
+        return service.beginPreBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreBackupHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreBackupHeaders>> call(Response<ResponseBody> response) {
@@ -1165,9 +1165,9 @@ public class CloudEndpointsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String azureFileShare = null;
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(null);
-        Observable<Response<ResponseBody>> observable = service.postBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent());
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(null);
+        Observable<Response<ResponseBody>> observable = service.postBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<PostBackupResponseInner>() { }.getType(), CloudEndpointsPostBackupHeaders.class);
     }
     /**
@@ -1253,9 +1253,9 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(azureFileShare);
-        Observable<Response<ResponseBody>> observable = service.postBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent());
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(azureFileShare);
+        Observable<Response<ResponseBody>> observable = service.postBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<PostBackupResponseInner>() { }.getType(), CloudEndpointsPostBackupHeaders.class);
     }
 
@@ -1339,9 +1339,9 @@ public class CloudEndpointsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String azureFileShare = null;
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(null);
-        return service.beginPostBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent())
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(null);
+        return service.beginPostBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<PostBackupResponseInner, CloudEndpointsPostBackupHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<PostBackupResponseInner, CloudEndpointsPostBackupHeaders>> call(Response<ResponseBody> response) {
@@ -1438,9 +1438,9 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        BackupRequest body = new BackupRequest();
-        body.withAzureFileShare(azureFileShare);
-        return service.beginPostBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent())
+        BackupRequest parameters = new BackupRequest();
+        parameters.withAzureFileShare(azureFileShare);
+        return service.beginPostBackup(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<PostBackupResponseInner, CloudEndpointsPostBackupHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<PostBackupResponseInner, CloudEndpointsPostBackupHeaders>> call(Response<ResponseBody> response) {
@@ -1469,13 +1469,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void preRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body) {
-        preRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).toBlocking().last().body();
+    public void preRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters) {
+        preRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).toBlocking().last().body();
     }
 
     /**
@@ -1485,13 +1485,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> preRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(preRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body), serviceCallback);
+    public ServiceFuture<Void> preRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(preRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -1501,12 +1501,12 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<Void> preRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body) {
-        return preRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>, Void>() {
+    public Observable<Void> preRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters) {
+        return preRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>, Void>() {
             @Override
             public Void call(ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders> response) {
                 return response.body();
@@ -1521,11 +1521,11 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>> preRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body) {
+    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>> preRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1544,11 +1544,11 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        Observable<Response<ResponseBody>> observable = service.preRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent());
+        Validator.validate(parameters);
+        Observable<Response<ResponseBody>> observable = service.preRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<Void>() { }.getType(), CloudEndpointsPreRestoreHeaders.class);
     }
 
@@ -1559,13 +1559,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void beginPreRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body) {
-        beginPreRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).toBlocking().single().body();
+    public void beginPreRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters) {
+        beginPreRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -1575,13 +1575,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> beginPreRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(beginPreRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body), serviceCallback);
+    public ServiceFuture<Void> beginPreRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(beginPreRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -1591,12 +1591,12 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<Void> beginPreRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body) {
-        return beginPreRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>, Void>() {
+    public Observable<Void> beginPreRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters) {
+        return beginPreRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>, Void>() {
             @Override
             public Void call(ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders> response) {
                 return response.body();
@@ -1611,11 +1611,11 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>> beginPreRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest body) {
+    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>> beginPreRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PreRestoreRequest parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1634,11 +1634,11 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.beginPreRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.beginPreRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPreRestoreHeaders>> call(Response<ResponseBody> response) {
@@ -1766,13 +1766,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void postRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body) {
-        postRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).toBlocking().last().body();
+    public void postRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters) {
+        postRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).toBlocking().last().body();
     }
 
     /**
@@ -1782,13 +1782,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> postRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(postRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body), serviceCallback);
+    public ServiceFuture<Void> postRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(postRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -1798,12 +1798,12 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<Void> postRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body) {
-        return postRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>, Void>() {
+    public Observable<Void> postRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters) {
+        return postRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>, Void>() {
             @Override
             public Void call(ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders> response) {
                 return response.body();
@@ -1818,11 +1818,11 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>> postRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body) {
+    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>> postRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1841,11 +1841,11 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        Observable<Response<ResponseBody>> observable = service.postRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent());
+        Validator.validate(parameters);
+        Observable<Response<ResponseBody>> observable = service.postRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<Void>() { }.getType(), CloudEndpointsPostRestoreHeaders.class);
     }
 
@@ -1856,13 +1856,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void beginPostRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body) {
-        beginPostRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).toBlocking().single().body();
+    public void beginPostRestore(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters) {
+        beginPostRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -1872,13 +1872,13 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> beginPostRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(beginPostRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body), serviceCallback);
+    public ServiceFuture<Void> beginPostRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(beginPostRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -1888,12 +1888,12 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<Void> beginPostRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body) {
-        return beginPostRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, body).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>, Void>() {
+    public Observable<Void> beginPostRestoreAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters) {
+        return beginPostRestoreWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>, Void>() {
             @Override
             public Void call(ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders> response) {
                 return response.body();
@@ -1908,11 +1908,11 @@ public class CloudEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param cloudEndpointName Name of Cloud Endpoint object.
-     * @param body Body of Cloud Endpoint object.
+     * @param parameters Body of Cloud Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>> beginPostRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest body) {
+    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>> beginPostRestoreWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, PostRestoreRequest parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1931,11 +1931,11 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.beginPostRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.beginPostRestore(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsPostRestoreHeaders>> call(Response<ResponseBody> response) {

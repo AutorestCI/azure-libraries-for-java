@@ -65,7 +65,7 @@ public class SyncGroupsInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.SyncGroups create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}")
-        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SyncGroupInner body, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SyncGroupInner parameters, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.SyncGroups get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}")
@@ -241,9 +241,9 @@ public class SyncGroupsInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         final String uniqueId = null;
-        SyncGroupInner body = new SyncGroupInner();
-        body.withUniqueId(null);
-        return service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent())
+        SyncGroupInner parameters = new SyncGroupInner();
+        parameters.withUniqueId(null);
+        return service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<SyncGroupInner, SyncGroupsCreateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<SyncGroupInner, SyncGroupsCreateHeaders>> call(Response<ResponseBody> response) {
@@ -333,9 +333,9 @@ public class SyncGroupsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        SyncGroupInner body = new SyncGroupInner();
-        body.withUniqueId(uniqueId);
-        return service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, this.client.apiVersion(), this.client.acceptLanguage(), body, this.client.userAgent())
+        SyncGroupInner parameters = new SyncGroupInner();
+        parameters.withUniqueId(uniqueId);
+        return service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, this.client.apiVersion(), this.client.acceptLanguage(), parameters, this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<SyncGroupInner, SyncGroupsCreateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<SyncGroupInner, SyncGroupsCreateHeaders>> call(Response<ResponseBody> response) {

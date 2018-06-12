@@ -66,19 +66,19 @@ public class ServerEndpointsInner {
     interface ServerEndpointsService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints/{serverEndpointName}")
-        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints beginCreate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints/{serverEndpointName}")
-        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints/{serverEndpointName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints/{serverEndpointName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Body ServerEndpointInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints/{serverEndpointName}")
@@ -113,14 +113,14 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerEndpointInner object if successful.
      */
-    public ServerEndpointInner create(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).toBlocking().last().body();
+    public ServerEndpointInner create(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).toBlocking().last().body();
     }
 
     /**
@@ -130,13 +130,13 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body, final ServiceCallback<ServerEndpointInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body), serviceCallback);
+    public ServiceFuture<ServerEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters, final ServiceCallback<ServerEndpointInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -146,12 +146,12 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServerEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>, ServerEndpointInner>() {
+    public Observable<ServerEndpointInner> createAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>, ServerEndpointInner>() {
             @Override
             public ServerEndpointInner call(ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders> response) {
                 return response.body();
@@ -166,11 +166,11 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
+    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -189,11 +189,11 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        Observable<Response<ResponseBody>> observable = service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent());
+        Validator.validate(parameters);
+        Observable<Response<ResponseBody>> observable = service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultWithHeadersAsync(observable, new TypeToken<ServerEndpointInner>() { }.getType(), ServerEndpointsCreateHeaders.class);
     }
 
@@ -204,14 +204,14 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerEndpointInner object if successful.
      */
-    public ServerEndpointInner beginCreate(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).toBlocking().single().body();
+    public ServerEndpointInner beginCreate(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -221,13 +221,13 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body, final ServiceCallback<ServerEndpointInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body), serviceCallback);
+    public ServiceFuture<ServerEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters, final ServiceCallback<ServerEndpointInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -237,12 +237,12 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerEndpointInner object
      */
-    public Observable<ServerEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>, ServerEndpointInner>() {
+    public Observable<ServerEndpointInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>, ServerEndpointInner>() {
             @Override
             public ServerEndpointInner call(ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders> response) {
                 return response.body();
@@ -257,11 +257,11 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Body of Server Endpoint object.
+     * @param parameters Body of Server Endpoint object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerEndpointInner object
      */
-    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>> beginCreateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
+    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>> beginCreateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -280,11 +280,11 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.beginCreate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.beginCreate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsCreateHeaders>> call(Response<ResponseBody> response) {
@@ -385,8 +385,8 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final ServerEndpointInner body = null;
-        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent());
+        final ServerEndpointInner parameters = null;
+        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultWithHeadersAsync(observable, new TypeToken<ServerEndpointInner>() { }.getType(), ServerEndpointsUpdateHeaders.class);
     }
     /**
@@ -396,14 +396,14 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerEndpointInner object if successful.
      */
-    public ServerEndpointInner update(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).toBlocking().last().body();
+    public ServerEndpointInner update(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).toBlocking().last().body();
     }
 
     /**
@@ -413,13 +413,13 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerEndpointInner> updateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body, final ServiceCallback<ServerEndpointInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body), serviceCallback);
+    public ServiceFuture<ServerEndpointInner> updateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters, final ServiceCallback<ServerEndpointInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -429,12 +429,12 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServerEndpointInner> updateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>, ServerEndpointInner>() {
+    public Observable<ServerEndpointInner> updateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>, ServerEndpointInner>() {
             @Override
             public ServerEndpointInner call(ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders> response) {
                 return response.body();
@@ -449,11 +449,11 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>> updateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
+    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>> updateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -472,8 +472,8 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Validator.validate(body);
-        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent());
+        Validator.validate(parameters);
+        Observable<Response<ResponseBody>> observable = service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultWithHeadersAsync(observable, new TypeToken<ServerEndpointInner>() { }.getType(), ServerEndpointsUpdateHeaders.class);
     }
 
@@ -556,8 +556,8 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final ServerEndpointInner body = null;
-        return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        final ServerEndpointInner parameters = null;
+        return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>> call(Response<ResponseBody> response) {
@@ -578,14 +578,14 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerEndpointInner object if successful.
      */
-    public ServerEndpointInner beginUpdate(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).toBlocking().single().body();
+    public ServerEndpointInner beginUpdate(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return beginUpdateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -595,13 +595,13 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerEndpointInner> beginUpdateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body, final ServiceCallback<ServerEndpointInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body), serviceCallback);
+    public ServiceFuture<ServerEndpointInner> beginUpdateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters, final ServiceCallback<ServerEndpointInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters), serviceCallback);
     }
 
     /**
@@ -611,12 +611,12 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerEndpointInner object
      */
-    public Observable<ServerEndpointInner> beginUpdateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
-        return beginUpdateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, body).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>, ServerEndpointInner>() {
+    public Observable<ServerEndpointInner> beginUpdateAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
+        return beginUpdateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, parameters).map(new Func1<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>, ServerEndpointInner>() {
             @Override
             public ServerEndpointInner call(ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders> response) {
                 return response.body();
@@ -631,11 +631,11 @@ public class ServerEndpointsInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param syncGroupName Name of Sync Group resource.
      * @param serverEndpointName Name of Server Endpoint object.
-     * @param body Any of the properties applicable in PUT request.
+     * @param parameters Any of the properties applicable in PUT request.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerEndpointInner object
      */
-    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner body) {
+    public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, ServerEndpointInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -654,8 +654,8 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.beginUpdate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<ServerEndpointInner, ServerEndpointsUpdateHeaders>> call(Response<ResponseBody> response) {

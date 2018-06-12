@@ -70,11 +70,11 @@ public class RegisteredServersInner {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.RegisteredServers create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/registeredServers/{serverId}")
-        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("serverId") String serverId, @Query("api-version") String apiVersion, @Body RegisteredServerInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("serverId") String serverId, @Query("api-version") String apiVersion, @Body RegisteredServerInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.RegisteredServers beginCreate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/registeredServers/{serverId}")
-        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("serverId") String serverId, @Query("api-version") String apiVersion, @Body RegisteredServerInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("serverId") String serverId, @Query("api-version") String apiVersion, @Body RegisteredServerInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.RegisteredServers delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/registeredServers/{serverId}", method = "DELETE", hasBody = true)
@@ -276,14 +276,14 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the RegisteredServerInner object if successful.
      */
-    public RegisteredServerInner create(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, body).toBlocking().last().body();
+    public RegisteredServerInner create(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, parameters).toBlocking().last().body();
     }
 
     /**
@@ -292,13 +292,13 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<RegisteredServerInner> createAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body, final ServiceCallback<RegisteredServerInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, body), serviceCallback);
+    public ServiceFuture<RegisteredServerInner> createAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters, final ServiceCallback<RegisteredServerInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, parameters), serviceCallback);
     }
 
     /**
@@ -307,12 +307,12 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<RegisteredServerInner> createAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, body).map(new Func1<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>, RegisteredServerInner>() {
+    public Observable<RegisteredServerInner> createAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, parameters).map(new Func1<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>, RegisteredServerInner>() {
             @Override
             public RegisteredServerInner call(ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders> response) {
                 return response.body();
@@ -326,11 +326,11 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body) {
+    public Observable<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -346,11 +346,11 @@ public class RegisteredServersInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        Observable<Response<ResponseBody>> observable = service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, serverId, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent());
+        Validator.validate(parameters);
+        Observable<Response<ResponseBody>> observable = service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, serverId, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent());
         return client.getAzureClient().getPutOrPatchResultWithHeadersAsync(observable, new TypeToken<RegisteredServerInner>() { }.getType(), RegisteredServersCreateHeaders.class);
     }
 
@@ -360,14 +360,14 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the RegisteredServerInner object if successful.
      */
-    public RegisteredServerInner beginCreate(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, body).toBlocking().single().body();
+    public RegisteredServerInner beginCreate(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, parameters).toBlocking().single().body();
     }
 
     /**
@@ -376,13 +376,13 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<RegisteredServerInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body, final ServiceCallback<RegisteredServerInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, body), serviceCallback);
+    public ServiceFuture<RegisteredServerInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters, final ServiceCallback<RegisteredServerInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, parameters), serviceCallback);
     }
 
     /**
@@ -391,12 +391,12 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the RegisteredServerInner object
      */
-    public Observable<RegisteredServerInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body) {
-        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, body).map(new Func1<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>, RegisteredServerInner>() {
+    public Observable<RegisteredServerInner> beginCreateAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters) {
+        return beginCreateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, serverId, parameters).map(new Func1<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>, RegisteredServerInner>() {
             @Override
             public RegisteredServerInner call(ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders> response) {
                 return response.body();
@@ -410,11 +410,11 @@ public class RegisteredServersInner {
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
-     * @param body Body of Registered Server object.
+     * @param parameters Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the RegisteredServerInner object
      */
-    public Observable<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>> beginCreateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner body) {
+    public Observable<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>> beginCreateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String serverId, RegisteredServerInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -430,11 +430,11 @@ public class RegisteredServersInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.beginCreate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, serverId, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.beginCreate(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, serverId, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders>> call(Response<ResponseBody> response) {

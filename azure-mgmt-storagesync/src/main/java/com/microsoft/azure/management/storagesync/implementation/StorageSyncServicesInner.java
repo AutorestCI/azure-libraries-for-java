@@ -70,7 +70,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
     interface StorageSyncServicesService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.StorageSyncServices create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}")
-        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Query("api-version") String apiVersion, @Body StorageSyncServiceInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Query("api-version") String apiVersion, @Body StorageSyncServiceInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.StorageSyncServices getByResourceGroup" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}")
@@ -78,7 +78,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.StorageSyncServices update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Query("api-version") String apiVersion, @Body StorageSyncServiceInner body, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Query("api-version") String apiVersion, @Body StorageSyncServiceInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.StorageSyncServices delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}", method = "DELETE", hasBody = true)
@@ -99,14 +99,14 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource name.
+     * @param parameters Storage Sync Service resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageSyncServiceInner object if successful.
      */
-    public StorageSyncServiceInner create(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, body).toBlocking().single().body();
+    public StorageSyncServiceInner create(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -114,13 +114,13 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource name.
+     * @param parameters Storage Sync Service resource name.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<StorageSyncServiceInner> createAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body, final ServiceCallback<StorageSyncServiceInner> serviceCallback) {
-        return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, body), serviceCallback);
+    public ServiceFuture<StorageSyncServiceInner> createAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters, final ServiceCallback<StorageSyncServiceInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, parameters), serviceCallback);
     }
 
     /**
@@ -128,12 +128,12 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource name.
+     * @param parameters Storage Sync Service resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageSyncServiceInner object
      */
-    public Observable<StorageSyncServiceInner> createAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body) {
-        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, body).map(new Func1<ServiceResponse<StorageSyncServiceInner>, StorageSyncServiceInner>() {
+    public Observable<StorageSyncServiceInner> createAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters) {
+        return createWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, parameters).map(new Func1<ServiceResponse<StorageSyncServiceInner>, StorageSyncServiceInner>() {
             @Override
             public StorageSyncServiceInner call(ServiceResponse<StorageSyncServiceInner> response) {
                 return response.body();
@@ -146,11 +146,11 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource name.
+     * @param parameters Storage Sync Service resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageSyncServiceInner object
      */
-    public Observable<ServiceResponse<StorageSyncServiceInner>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body) {
+    public Observable<ServiceResponse<StorageSyncServiceInner>> createWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -163,11 +163,11 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        if (body == null) {
-            throw new IllegalArgumentException("Parameter body is required and cannot be null.");
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.create(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageSyncServiceInner>>>() {
                 @Override
                 public Observable<ServiceResponse<StorageSyncServiceInner>> call(Response<ResponseBody> response) {
@@ -339,8 +339,8 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        final StorageSyncServiceInner body = null;
-        return service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        final StorageSyncServiceInner parameters = null;
+        return service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>> call(Response<ResponseBody> response) {
@@ -359,14 +359,14 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource.
+     * @param parameters Storage Sync Service resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageSyncServiceInner object if successful.
      */
-    public StorageSyncServiceInner update(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body) {
-        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, body).toBlocking().single().body();
+    public StorageSyncServiceInner update(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, parameters).toBlocking().single().body();
     }
 
     /**
@@ -374,13 +374,13 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource.
+     * @param parameters Storage Sync Service resource.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<StorageSyncServiceInner> updateAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body, final ServiceCallback<StorageSyncServiceInner> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, body), serviceCallback);
+    public ServiceFuture<StorageSyncServiceInner> updateAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters, final ServiceCallback<StorageSyncServiceInner> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, parameters), serviceCallback);
     }
 
     /**
@@ -388,12 +388,12 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource.
+     * @param parameters Storage Sync Service resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageSyncServiceInner object
      */
-    public Observable<StorageSyncServiceInner> updateAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body) {
-        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, body).map(new Func1<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>, StorageSyncServiceInner>() {
+    public Observable<StorageSyncServiceInner> updateAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters) {
+        return updateWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, parameters).map(new Func1<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>, StorageSyncServiceInner>() {
             @Override
             public StorageSyncServiceInner call(ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders> response) {
                 return response.body();
@@ -406,11 +406,11 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
-     * @param body Storage Sync Service resource.
+     * @param parameters Storage Sync Service resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the StorageSyncServiceInner object
      */
-    public Observable<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>> updateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner body) {
+    public Observable<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>> updateWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, StorageSyncServiceInner parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -423,8 +423,8 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Validator.validate(body);
-        return service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, this.client.apiVersion(), body, this.client.acceptLanguage(), this.client.userAgent())
+        Validator.validate(parameters);
+        return service.update(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders>> call(Response<ResponseBody> response) {
