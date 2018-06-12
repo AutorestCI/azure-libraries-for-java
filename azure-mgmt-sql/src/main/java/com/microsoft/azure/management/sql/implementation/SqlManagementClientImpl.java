@@ -823,19 +823,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * The ServerSecurityAlertPoliciesInner object to access its operations.
-     */
-    private ServerSecurityAlertPoliciesInner serverSecurityAlertPolicies;
-
-    /**
-     * Gets the ServerSecurityAlertPoliciesInner object to access its operations.
-     * @return the ServerSecurityAlertPoliciesInner object.
-     */
-    public ServerSecurityAlertPoliciesInner serverSecurityAlertPolicies() {
-        return this.serverSecurityAlertPolicies;
-    }
-
-    /**
      * The RestorePointsInner object to access its operations.
      */
     private RestorePointsInner restorePoints;
@@ -1014,7 +1001,6 @@ public class SqlManagementClientImpl extends AzureServiceClient {
         this.managedDatabases = new ManagedDatabasesInner(restClient().retrofit(), this);
         this.serverAutomaticTunings = new ServerAutomaticTuningsInner(restClient().retrofit(), this);
         this.serverDnsAliases = new ServerDnsAliasesInner(restClient().retrofit(), this);
-        this.serverSecurityAlertPolicies = new ServerSecurityAlertPoliciesInner(restClient().retrofit(), this);
         this.restorePoints = new RestorePointsInner(restClient().retrofit(), this);
         this.databaseOperations = new DatabaseOperationsInner(restClient().retrofit(), this);
         this.elasticPoolOperations = new ElasticPoolOperationsInner(restClient().retrofit(), this);
