@@ -46,7 +46,7 @@ public class Sku {
     private Integer capacity;
 
     /**
-     * Get the name value.
+     * Get name of the notification hub sku. Possible values include: 'Free', 'Basic', 'Standard'.
      *
      * @return the name value
      */
@@ -55,7 +55,7 @@ public class Sku {
     }
 
     /**
-     * Set the name value.
+     * Set name of the notification hub sku. Possible values include: 'Free', 'Basic', 'Standard'.
      *
      * @param name the name value to set
      * @return the Sku object itself.
@@ -66,7 +66,7 @@ public class Sku {
     }
 
     /**
-     * Get the tier value.
+     * Get the tier of particular sku.
      *
      * @return the tier value
      */
@@ -75,7 +75,7 @@ public class Sku {
     }
 
     /**
-     * Set the tier value.
+     * Set the tier of particular sku.
      *
      * @param tier the tier value to set
      * @return the Sku object itself.
@@ -86,7 +86,7 @@ public class Sku {
     }
 
     /**
-     * Get the size value.
+     * Get the Sku size.
      *
      * @return the size value
      */
@@ -95,7 +95,7 @@ public class Sku {
     }
 
     /**
-     * Set the size value.
+     * Set the Sku size.
      *
      * @param size the size value to set
      * @return the Sku object itself.
@@ -106,7 +106,7 @@ public class Sku {
     }
 
     /**
-     * Get the family value.
+     * Get the Sku Family.
      *
      * @return the family value
      */
@@ -115,7 +115,7 @@ public class Sku {
     }
 
     /**
-     * Set the family value.
+     * Set the Sku Family.
      *
      * @param family the family value to set
      * @return the Sku object itself.
@@ -126,7 +126,7 @@ public class Sku {
     }
 
     /**
-     * Get the capacity value.
+     * Get the capacity of the resource.
      *
      * @return the capacity value
      */
@@ -135,7 +135,7 @@ public class Sku {
     }
 
     /**
-     * Set the capacity value.
+     * Set the capacity of the resource.
      *
      * @param capacity the capacity value to set
      * @return the Sku object itself.

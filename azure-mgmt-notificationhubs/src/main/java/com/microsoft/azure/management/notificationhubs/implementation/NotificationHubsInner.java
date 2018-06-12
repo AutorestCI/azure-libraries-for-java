@@ -31,6 +31,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.HTTP;
+import retrofit2.http.PATCH;
 import retrofit2.http.Path;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -74,6 +75,10 @@ public class NotificationHubsInner {
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
         Observable<Response<ResponseBody>> createOrUpdate(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("notificationHubName") String notificationHubName, @Path("subscriptionId") String subscriptionId, @Body NotificationHubCreateOrUpdateParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs patch" })
+        @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
+        Observable<Response<ResponseBody>> patch(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("notificationHubName") String notificationHubName, @Path("subscriptionId") String subscriptionId, @Body NotificationHubPatchParametersInner parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> delete(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("notificationHubName") String notificationHubName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -81,6 +86,10 @@ public class NotificationHubsInner {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}")
         Observable<Response<ResponseBody>> get(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("notificationHubName") String notificationHubName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs debugSend" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/debugsend")
+        Observable<Response<ResponseBody>> debugSend(@Path("resourceGroupName") String resourceGroupName, @Path("namespaceName") String namespaceName, @Path("notificationHubName") String notificationHubName, @Body String parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.notificationhubs.NotificationHubs createOrUpdateAuthorizationRule" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/{notificationHubName}/AuthorizationRules/{authorizationRuleName}")
@@ -321,6 +330,107 @@ public class NotificationHubsInner {
     }
 
     /**
+     * Patch a NotificationHub in a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters Parameters supplied to patch a NotificationHub Resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the NotificationHubResourceInner object if successful.
+     */
+    public NotificationHubResourceInner patch(String resourceGroupName, String namespaceName, String notificationHubName, NotificationHubPatchParametersInner parameters) {
+        return patchWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters).toBlocking().single().body();
+    }
+
+    /**
+     * Patch a NotificationHub in a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters Parameters supplied to patch a NotificationHub Resource.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<NotificationHubResourceInner> patchAsync(String resourceGroupName, String namespaceName, String notificationHubName, NotificationHubPatchParametersInner parameters, final ServiceCallback<NotificationHubResourceInner> serviceCallback) {
+        return ServiceFuture.fromResponse(patchWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters), serviceCallback);
+    }
+
+    /**
+     * Patch a NotificationHub in a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters Parameters supplied to patch a NotificationHub Resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the NotificationHubResourceInner object
+     */
+    public Observable<NotificationHubResourceInner> patchAsync(String resourceGroupName, String namespaceName, String notificationHubName, NotificationHubPatchParametersInner parameters) {
+        return patchWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters).map(new Func1<ServiceResponse<NotificationHubResourceInner>, NotificationHubResourceInner>() {
+            @Override
+            public NotificationHubResourceInner call(ServiceResponse<NotificationHubResourceInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Patch a NotificationHub in a namespace.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters Parameters supplied to patch a NotificationHub Resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the NotificationHubResourceInner object
+     */
+    public Observable<ServiceResponse<NotificationHubResourceInner>> patchWithServiceResponseAsync(String resourceGroupName, String namespaceName, String notificationHubName, NotificationHubPatchParametersInner parameters) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (namespaceName == null) {
+            throw new IllegalArgumentException("Parameter namespaceName is required and cannot be null.");
+        }
+        if (notificationHubName == null) {
+            throw new IllegalArgumentException("Parameter notificationHubName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        Validator.validate(parameters);
+        return service.patch(resourceGroupName, namespaceName, notificationHubName, this.client.subscriptionId(), parameters, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NotificationHubResourceInner>>>() {
+                @Override
+                public Observable<ServiceResponse<NotificationHubResourceInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<NotificationHubResourceInner> clientResponse = patchDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<NotificationHubResourceInner> patchDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<NotificationHubResourceInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<NotificationHubResourceInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
      * Deletes a notification hub associated with a namespace.
      *
      * @param resourceGroupName The name of the resource group.
@@ -501,6 +611,100 @@ public class NotificationHubsInner {
     private ServiceResponse<NotificationHubResourceInner> getDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<NotificationHubResourceInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<NotificationHubResourceInner>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * test send a push notification.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters The shared access authorization rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the NotificationHubResourceInner object if successful.
+     */
+    public NotificationHubResourceInner debugSend(String resourceGroupName, String namespaceName, String notificationHubName, String parameters) {
+        return debugSendWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters).toBlocking().single().body();
+    }
+
+    /**
+     * test send a push notification.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters The shared access authorization rule.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<NotificationHubResourceInner> debugSendAsync(String resourceGroupName, String namespaceName, String notificationHubName, String parameters, final ServiceCallback<NotificationHubResourceInner> serviceCallback) {
+        return ServiceFuture.fromResponse(debugSendWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters), serviceCallback);
+    }
+
+    /**
+     * test send a push notification.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters The shared access authorization rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the NotificationHubResourceInner object
+     */
+    public Observable<NotificationHubResourceInner> debugSendAsync(String resourceGroupName, String namespaceName, String notificationHubName, String parameters) {
+        return debugSendWithServiceResponseAsync(resourceGroupName, namespaceName, notificationHubName, parameters).map(new Func1<ServiceResponse<NotificationHubResourceInner>, NotificationHubResourceInner>() {
+            @Override
+            public NotificationHubResourceInner call(ServiceResponse<NotificationHubResourceInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * test send a push notification.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param namespaceName The namespace name.
+     * @param notificationHubName The notification hub name.
+     * @param parameters The shared access authorization rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the NotificationHubResourceInner object
+     */
+    public Observable<ServiceResponse<NotificationHubResourceInner>> debugSendWithServiceResponseAsync(String resourceGroupName, String namespaceName, String notificationHubName, String parameters) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (namespaceName == null) {
+            throw new IllegalArgumentException("Parameter namespaceName is required and cannot be null.");
+        }
+        if (notificationHubName == null) {
+            throw new IllegalArgumentException("Parameter notificationHubName is required and cannot be null.");
+        }
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
+        }
+        return service.debugSend(resourceGroupName, namespaceName, notificationHubName, parameters, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<NotificationHubResourceInner>>>() {
+                @Override
+                public Observable<ServiceResponse<NotificationHubResourceInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<NotificationHubResourceInner> clientResponse = debugSendDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<NotificationHubResourceInner> debugSendDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<NotificationHubResourceInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(201, new TypeToken<NotificationHubResourceInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

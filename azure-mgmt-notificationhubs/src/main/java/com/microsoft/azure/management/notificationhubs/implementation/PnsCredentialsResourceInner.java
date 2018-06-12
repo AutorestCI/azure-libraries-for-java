@@ -69,7 +69,7 @@ public class PnsCredentialsResourceInner extends Resource {
     private Sku sku;
 
     /**
-     * Get the apnsCredential value.
+     * Get the ApnsCredential of the created NotificationHub.
      *
      * @return the apnsCredential value
      */
@@ -78,7 +78,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Set the apnsCredential value.
+     * Set the ApnsCredential of the created NotificationHub.
      *
      * @param apnsCredential the apnsCredential value to set
      * @return the PnsCredentialsResourceInner object itself.
@@ -89,7 +89,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Get the wnsCredential value.
+     * Get the WnsCredential of the created NotificationHub.
      *
      * @return the wnsCredential value
      */
@@ -98,7 +98,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Set the wnsCredential value.
+     * Set the WnsCredential of the created NotificationHub.
      *
      * @param wnsCredential the wnsCredential value to set
      * @return the PnsCredentialsResourceInner object itself.
@@ -109,7 +109,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Get the gcmCredential value.
+     * Get the GcmCredential of the created NotificationHub.
      *
      * @return the gcmCredential value
      */
@@ -118,7 +118,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Set the gcmCredential value.
+     * Set the GcmCredential of the created NotificationHub.
      *
      * @param gcmCredential the gcmCredential value to set
      * @return the PnsCredentialsResourceInner object itself.
@@ -129,7 +129,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Get the mpnsCredential value.
+     * Get the MpnsCredential of the created NotificationHub.
      *
      * @return the mpnsCredential value
      */
@@ -138,7 +138,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Set the mpnsCredential value.
+     * Set the MpnsCredential of the created NotificationHub.
      *
      * @param mpnsCredential the mpnsCredential value to set
      * @return the PnsCredentialsResourceInner object itself.
@@ -149,7 +149,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Get the admCredential value.
+     * Get the AdmCredential of the created NotificationHub.
      *
      * @return the admCredential value
      */
@@ -158,7 +158,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Set the admCredential value.
+     * Set the AdmCredential of the created NotificationHub.
      *
      * @param admCredential the admCredential value to set
      * @return the PnsCredentialsResourceInner object itself.
@@ -169,7 +169,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Get the baiduCredential value.
+     * Get the BaiduCredential of the created NotificationHub.
      *
      * @return the baiduCredential value
      */
@@ -178,7 +178,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Set the baiduCredential value.
+     * Set the BaiduCredential of the created NotificationHub.
      *
      * @param baiduCredential the baiduCredential value to set
      * @return the PnsCredentialsResourceInner object itself.
@@ -189,7 +189,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku of the created namespace.
      *
      * @return the sku value
      */
@@ -198,7 +198,7 @@ public class PnsCredentialsResourceInner extends Resource {
     }
 
     /**
-     * Set the sku value.
+     * Set the sku of the created namespace.
      *
      * @param sku the sku value to set
      * @return the PnsCredentialsResourceInner object itself.

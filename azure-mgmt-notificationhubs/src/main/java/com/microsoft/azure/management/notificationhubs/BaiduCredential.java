@@ -35,7 +35,7 @@ public class BaiduCredential {
     private String baiduSecretKey;
 
     /**
-     * Get the baiduApiKey value.
+     * Get baidu Api Key.
      *
      * @return the baiduApiKey value
      */
@@ -44,7 +44,7 @@ public class BaiduCredential {
     }
 
     /**
-     * Set the baiduApiKey value.
+     * Set baidu Api Key.
      *
      * @param baiduApiKey the baiduApiKey value to set
      * @return the BaiduCredential object itself.
@@ -55,7 +55,7 @@ public class BaiduCredential {
     }
 
     /**
-     * Get the baiduEndPoint value.
+     * Get baidu Endpoint.
      *
      * @return the baiduEndPoint value
      */
@@ -64,7 +64,7 @@ public class BaiduCredential {
     }
 
     /**
-     * Set the baiduEndPoint value.
+     * Set baidu Endpoint.
      *
      * @param baiduEndPoint the baiduEndPoint value to set
      * @return the BaiduCredential object itself.
@@ -75,7 +75,7 @@ public class BaiduCredential {
     }
 
     /**
-     * Get the baiduSecretKey value.
+     * Get baidu Secret Key.
      *
      * @return the baiduSecretKey value
      */
@@ -84,7 +84,7 @@ public class BaiduCredential {
     }
 
     /**
-     * Set the baiduSecretKey value.
+     * Set baidu Secret Key.
      *
      * @param baiduSecretKey the baiduSecretKey value to set
      * @return the BaiduCredential object itself.

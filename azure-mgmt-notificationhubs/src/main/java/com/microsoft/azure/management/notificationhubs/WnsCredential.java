@@ -35,7 +35,7 @@ public class WnsCredential {
     private String windowsLiveEndpoint;
 
     /**
-     * Get the packageSid value.
+     * Get the package ID for this credential.
      *
      * @return the packageSid value
      */
@@ -44,7 +44,7 @@ public class WnsCredential {
     }
 
     /**
-     * Set the packageSid value.
+     * Set the package ID for this credential.
      *
      * @param packageSid the packageSid value to set
      * @return the WnsCredential object itself.
@@ -55,7 +55,7 @@ public class WnsCredential {
     }
 
     /**
-     * Get the secretKey value.
+     * Get the secret key.
      *
      * @return the secretKey value
      */
@@ -64,7 +64,7 @@ public class WnsCredential {
     }
 
     /**
-     * Set the secretKey value.
+     * Set the secret key.
      *
      * @param secretKey the secretKey value to set
      * @return the WnsCredential object itself.
@@ -75,7 +75,7 @@ public class WnsCredential {
     }
 
     /**
-     * Get the windowsLiveEndpoint value.
+     * Get the Windows Live endpoint.
      *
      * @return the windowsLiveEndpoint value
      */
@@ -84,7 +84,7 @@ public class WnsCredential {
     }
 
     /**
-     * Set the windowsLiveEndpoint value.
+     * Set the Windows Live endpoint.
      *
      * @param windowsLiveEndpoint the windowsLiveEndpoint value to set
      * @return the WnsCredential object itself.

@@ -119,7 +119,7 @@ public class NamespaceResourceInner extends Resource {
     private Sku sku;
 
     /**
-     * Get the namespaceResourceName value.
+     * Get the name of the namespace.
      *
      * @return the namespaceResourceName value
      */
@@ -128,7 +128,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the namespaceResourceName value.
+     * Set the name of the namespace.
      *
      * @param namespaceResourceName the namespaceResourceName value to set
      * @return the NamespaceResourceInner object itself.
@@ -139,7 +139,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the provisioningState value.
+     * Get provisioning state of the Namespace.
      *
      * @return the provisioningState value
      */
@@ -148,7 +148,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the provisioningState value.
+     * Set provisioning state of the Namespace.
      *
      * @param provisioningState the provisioningState value to set
      * @return the NamespaceResourceInner object itself.
@@ -159,7 +159,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the region value.
+     * Get specifies the targeted region in which the namespace should be created. It can be any of the following values: Australia EastAustralia SoutheastCentral USEast USEast US 2West USNorth Central USSouth Central USEast AsiaSoutheast AsiaBrazil SouthJapan EastJapan WestNorth EuropeWest Europe.
      *
      * @return the region value
      */
@@ -168,7 +168,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the region value.
+     * Set specifies the targeted region in which the namespace should be created. It can be any of the following values: Australia EastAustralia SoutheastCentral USEast USEast US 2West USNorth Central USSouth Central USEast AsiaSoutheast AsiaBrazil SouthJapan EastJapan WestNorth EuropeWest Europe.
      *
      * @param region the region value to set
      * @return the NamespaceResourceInner object itself.
@@ -179,7 +179,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the metricId value.
+     * Get identifier for Azure Insights metrics.
      *
      * @return the metricId value
      */
@@ -188,7 +188,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the status value.
+     * Get status of the namespace. It can be any of these values:1 = Created/Active2 = Creating3 = Suspended4 = Deleting.
      *
      * @return the status value
      */
@@ -197,7 +197,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the status value.
+     * Set status of the namespace. It can be any of these values:1 = Created/Active2 = Creating3 = Suspended4 = Deleting.
      *
      * @param status the status value to set
      * @return the NamespaceResourceInner object itself.
@@ -208,7 +208,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the createdAt value.
+     * Get the time the namespace was created.
      *
      * @return the createdAt value
      */
@@ -217,7 +217,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the createdAt value.
+     * Set the time the namespace was created.
      *
      * @param createdAt the createdAt value to set
      * @return the NamespaceResourceInner object itself.
@@ -228,7 +228,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the updatedAt value.
+     * Get the time the namespace was updated.
      *
      * @return the updatedAt value
      */
@@ -237,7 +237,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the updatedAt value.
+     * Set the time the namespace was updated.
      *
      * @param updatedAt the updatedAt value to set
      * @return the NamespaceResourceInner object itself.
@@ -248,7 +248,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the serviceBusEndpoint value.
+     * Get endpoint you can use to perform NotificationHub operations.
      *
      * @return the serviceBusEndpoint value
      */
@@ -257,7 +257,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the serviceBusEndpoint value.
+     * Set endpoint you can use to perform NotificationHub operations.
      *
      * @param serviceBusEndpoint the serviceBusEndpoint value to set
      * @return the NamespaceResourceInner object itself.
@@ -268,7 +268,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the subscriptionId value.
+     * Get the Id of the Azure subscription associated with the namespace.
      *
      * @return the subscriptionId value
      */
@@ -277,7 +277,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the subscriptionId value.
+     * Set the Id of the Azure subscription associated with the namespace.
      *
      * @param subscriptionId the subscriptionId value to set
      * @return the NamespaceResourceInner object itself.
@@ -288,7 +288,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the scaleUnit value.
+     * Get scaleUnit where the namespace gets created.
      *
      * @return the scaleUnit value
      */
@@ -297,7 +297,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the scaleUnit value.
+     * Set scaleUnit where the namespace gets created.
      *
      * @param scaleUnit the scaleUnit value to set
      * @return the NamespaceResourceInner object itself.
@@ -308,7 +308,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the enabled value.
+     * Get whether or not the namespace is currently enabled.
      *
      * @return the enabled value
      */
@@ -317,7 +317,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the enabled value.
+     * Set whether or not the namespace is currently enabled.
      *
      * @param enabled the enabled value to set
      * @return the NamespaceResourceInner object itself.
@@ -328,7 +328,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the critical value.
+     * Get whether or not the namespace is set as Critical.
      *
      * @return the critical value
      */
@@ -337,7 +337,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the critical value.
+     * Set whether or not the namespace is set as Critical.
      *
      * @param critical the critical value to set
      * @return the NamespaceResourceInner object itself.
@@ -348,7 +348,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the dataCenter value.
+     * Get data center for the namespace.
      *
      * @return the dataCenter value
      */
@@ -357,7 +357,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the dataCenter value.
+     * Set data center for the namespace.
      *
      * @param dataCenter the dataCenter value to set
      * @return the NamespaceResourceInner object itself.
@@ -368,7 +368,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the namespaceType value.
+     * Get the namespace type. Possible values include: 'Messaging', 'NotificationHub'.
      *
      * @return the namespaceType value
      */
@@ -377,7 +377,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the namespaceType value.
+     * Set the namespace type. Possible values include: 'Messaging', 'NotificationHub'.
      *
      * @param namespaceType the namespaceType value to set
      * @return the NamespaceResourceInner object itself.
@@ -388,7 +388,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku of the created namespace.
      *
      * @return the sku value
      */
@@ -397,7 +397,7 @@ public class NamespaceResourceInner extends Resource {
     }
 
     /**
-     * Set the sku value.
+     * Set the sku of the created namespace.
      *
      * @param sku the sku value to set
      * @return the NamespaceResourceInner object itself.

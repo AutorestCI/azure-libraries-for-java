@@ -29,7 +29,7 @@ public class SharedAccessAuthorizationRuleListResultInner {
     private String nextLink;
 
     /**
-     * Get the value value.
+     * Get result of the List AuthorizationRules operation.
      *
      * @return the value value
      */
@@ -38,7 +38,7 @@ public class SharedAccessAuthorizationRuleListResultInner {
     }
 
     /**
-     * Set the value value.
+     * Set result of the List AuthorizationRules operation.
      *
      * @param value the value value to set
      * @return the SharedAccessAuthorizationRuleListResultInner object itself.
@@ -49,7 +49,7 @@ public class SharedAccessAuthorizationRuleListResultInner {
     }
 
     /**
-     * Get the nextLink value.
+     * Get link to the next set of results. Not empty if Value contains incomplete list of AuthorizationRules.
      *
      * @return the nextLink value
      */
@@ -58,7 +58,7 @@ public class SharedAccessAuthorizationRuleListResultInner {
     }
 
     /**
-     * Set the nextLink value.
+     * Set link to the next set of results. Not empty if Value contains incomplete list of AuthorizationRules.
      *
      * @param nextLink the nextLink value to set
      * @return the SharedAccessAuthorizationRuleListResultInner object itself.

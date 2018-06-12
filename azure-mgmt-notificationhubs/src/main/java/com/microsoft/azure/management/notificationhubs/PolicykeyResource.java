@@ -23,7 +23,7 @@ public class PolicykeyResource {
     private String policyKey;
 
     /**
-     * Get the policyKey value.
+     * Get name of the key that has to be regenerated for the Namespace/Notification Hub Authorization Rule. The value can be Primary Key/Secondary Key.
      *
      * @return the policyKey value
      */
@@ -32,7 +32,7 @@ public class PolicykeyResource {
     }
 
     /**
-     * Set the policyKey value.
+     * Set name of the key that has to be regenerated for the Namespace/Notification Hub Authorization Rule. The value can be Primary Key/Secondary Key.
      *
      * @param policyKey the policyKey value to set
      * @return the PolicykeyResource object itself.

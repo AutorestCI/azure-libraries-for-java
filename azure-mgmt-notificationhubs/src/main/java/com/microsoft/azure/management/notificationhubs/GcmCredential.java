@@ -29,7 +29,7 @@ public class GcmCredential {
     private String googleApiKey;
 
     /**
-     * Get the gcmEndpoint value.
+     * Get the GCM endpoint.
      *
      * @return the gcmEndpoint value
      */
@@ -38,7 +38,7 @@ public class GcmCredential {
     }
 
     /**
-     * Set the gcmEndpoint value.
+     * Set the GCM endpoint.
      *
      * @param gcmEndpoint the gcmEndpoint value to set
      * @return the GcmCredential object itself.
@@ -49,7 +49,7 @@ public class GcmCredential {
     }
 
     /**
-     * Get the googleApiKey value.
+     * Get the Google API key.
      *
      * @return the googleApiKey value
      */
@@ -58,7 +58,7 @@ public class GcmCredential {
     }
 
     /**
-     * Set the googleApiKey value.
+     * Set the Google API key.
      *
      * @param googleApiKey the googleApiKey value to set
      * @return the GcmCredential object itself.

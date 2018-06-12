@@ -45,7 +45,7 @@ public class ResourceListKeysInner {
     private String keyName;
 
     /**
-     * Get the primaryConnectionString value.
+     * Get primaryConnectionString of the AuthorizationRule.
      *
      * @return the primaryConnectionString value
      */
@@ -54,7 +54,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Set the primaryConnectionString value.
+     * Set primaryConnectionString of the AuthorizationRule.
      *
      * @param primaryConnectionString the primaryConnectionString value to set
      * @return the ResourceListKeysInner object itself.
@@ -65,7 +65,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Get the secondaryConnectionString value.
+     * Get secondaryConnectionString of the created AuthorizationRule.
      *
      * @return the secondaryConnectionString value
      */
@@ -74,7 +74,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Set the secondaryConnectionString value.
+     * Set secondaryConnectionString of the created AuthorizationRule.
      *
      * @param secondaryConnectionString the secondaryConnectionString value to set
      * @return the ResourceListKeysInner object itself.
@@ -85,7 +85,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Get the primaryKey value.
+     * Get primaryKey of the created AuthorizationRule.
      *
      * @return the primaryKey value
      */
@@ -94,7 +94,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Set the primaryKey value.
+     * Set primaryKey of the created AuthorizationRule.
      *
      * @param primaryKey the primaryKey value to set
      * @return the ResourceListKeysInner object itself.
@@ -105,7 +105,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Get the secondaryKey value.
+     * Get secondaryKey of the created AuthorizationRule.
      *
      * @return the secondaryKey value
      */
@@ -114,7 +114,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Set the secondaryKey value.
+     * Set secondaryKey of the created AuthorizationRule.
      *
      * @param secondaryKey the secondaryKey value to set
      * @return the ResourceListKeysInner object itself.
@@ -125,7 +125,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Get the keyName value.
+     * Get keyName of the created AuthorizationRule.
      *
      * @return the keyName value
      */
@@ -134,7 +134,7 @@ public class ResourceListKeysInner {
     }
 
     /**
-     * Set the keyName value.
+     * Set keyName of the created AuthorizationRule.
      *
      * @param keyName the keyName value to set
      * @return the ResourceListKeysInner object itself.

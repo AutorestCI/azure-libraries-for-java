@@ -28,7 +28,7 @@ public class NamespacePatchParameters {
     private Sku sku;
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -37,7 +37,7 @@ public class NamespacePatchParameters {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the NamespacePatchParameters object itself.
@@ -48,7 +48,7 @@ public class NamespacePatchParameters {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku of the created namespace.
      *
      * @return the sku value
      */
@@ -57,7 +57,7 @@ public class NamespacePatchParameters {
     }
 
     /**
-     * Set the sku value.
+     * Set the sku of the created namespace.
      *
      * @param sku the sku value to set
      * @return the NamespacePatchParameters object itself.

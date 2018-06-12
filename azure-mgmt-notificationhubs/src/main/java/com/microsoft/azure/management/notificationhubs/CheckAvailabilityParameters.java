@@ -37,7 +37,7 @@ public class CheckAvailabilityParameters {
     /**
      * Resource location.
      */
-    @JsonProperty(value = "location", required = true)
+    @JsonProperty(value = "location")
     private String location;
 
     /**
@@ -60,7 +60,7 @@ public class CheckAvailabilityParameters {
     private Boolean isAvailiable;
 
     /**
-     * Get the id value.
+     * Get resource Id.
      *
      * @return the id value
      */
@@ -69,7 +69,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the name value.
+     * Get resource name.
      *
      * @return the name value
      */
@@ -78,7 +78,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the name value.
+     * Set resource name.
      *
      * @param name the name value to set
      * @return the CheckAvailabilityParameters object itself.
@@ -89,7 +89,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the type value.
+     * Get resource type.
      *
      * @return the type value
      */
@@ -98,7 +98,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the location value.
+     * Get resource location.
      *
      * @return the location value
      */
@@ -107,7 +107,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the location value.
+     * Set resource location.
      *
      * @param location the location value to set
      * @return the CheckAvailabilityParameters object itself.
@@ -118,7 +118,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the tags value.
+     * Get resource tags.
      *
      * @return the tags value
      */
@@ -127,7 +127,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the tags value.
+     * Set resource tags.
      *
      * @param tags the tags value to set
      * @return the CheckAvailabilityParameters object itself.
@@ -138,7 +138,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku of the created namespace.
      *
      * @return the sku value
      */
@@ -147,7 +147,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the sku value.
+     * Set the sku of the created namespace.
      *
      * @param sku the sku value to set
      * @return the CheckAvailabilityParameters object itself.
@@ -158,7 +158,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Get the isAvailiable value.
+     * Get true if the name is available and can be used to create new Namespace/NotificationHub. Otherwise false.
      *
      * @return the isAvailiable value
      */
@@ -167,7 +167,7 @@ public class CheckAvailabilityParameters {
     }
 
     /**
-     * Set the isAvailiable value.
+     * Set true if the name is available and can be used to create new Namespace/NotificationHub. Otherwise false.
      *
      * @param isAvailiable the isAvailiable value to set
      * @return the CheckAvailabilityParameters object itself.
