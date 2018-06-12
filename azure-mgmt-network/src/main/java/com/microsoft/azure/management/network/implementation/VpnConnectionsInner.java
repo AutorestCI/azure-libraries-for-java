@@ -18,13 +18,17 @@ import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
+import com.microsoft.rest.Validator;
 import java.io.IOException;
 import java.util.List;
 import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.HTTP;
 import retrofit2.http.Path;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 import retrofit2.Response;
@@ -60,6 +64,22 @@ public class VpnConnectionsInner {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VpnConnections get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}")
         Observable<Response<ResponseBody>> get(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("gatewayName") String gatewayName, @Path("connectionName") String connectionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VpnConnections createOrUpdate" })
+        @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}")
+        Observable<Response<ResponseBody>> createOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("gatewayName") String gatewayName, @Path("connectionName") String connectionName, @Query("api-version") String apiVersion, @Body VpnConnectionInner vpnConnectionParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VpnConnections beginCreateOrUpdate" })
+        @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}")
+        Observable<Response<ResponseBody>> beginCreateOrUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("gatewayName") String gatewayName, @Path("connectionName") String connectionName, @Query("api-version") String apiVersion, @Body VpnConnectionInner vpnConnectionParameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VpnConnections delete" })
+        @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}", method = "DELETE", hasBody = true)
+        Observable<Response<ResponseBody>> delete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("gatewayName") String gatewayName, @Path("connectionName") String connectionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VpnConnections beginDelete" })
+        @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}", method = "DELETE", hasBody = true)
+        Observable<Response<ResponseBody>> beginDelete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("gatewayName") String gatewayName, @Path("connectionName") String connectionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VpnConnections listByVpnGateway" })
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections")
@@ -158,6 +178,353 @@ public class VpnConnectionsInner {
     private ServiceResponse<VpnConnectionInner> getDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<VpnConnectionInner, ErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<VpnConnectionInner>() { }.getType())
+                .registerError(ErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the VpnConnectionInner object if successful.
+     */
+    public VpnConnectionInner createOrUpdate(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName, vpnConnectionParameters).toBlocking().last().body();
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<VpnConnectionInner> createOrUpdateAsync(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters, final ServiceCallback<VpnConnectionInner> serviceCallback) {
+        return ServiceFuture.fromResponse(createOrUpdateWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName, vpnConnectionParameters), serviceCallback);
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<VpnConnectionInner> createOrUpdateAsync(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters) {
+        return createOrUpdateWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName, vpnConnectionParameters).map(new Func1<ServiceResponse<VpnConnectionInner>, VpnConnectionInner>() {
+            @Override
+            public VpnConnectionInner call(ServiceResponse<VpnConnectionInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<VpnConnectionInner>> createOrUpdateWithServiceResponseAsync(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (gatewayName == null) {
+            throw new IllegalArgumentException("Parameter gatewayName is required and cannot be null.");
+        }
+        if (connectionName == null) {
+            throw new IllegalArgumentException("Parameter connectionName is required and cannot be null.");
+        }
+        if (vpnConnectionParameters == null) {
+            throw new IllegalArgumentException("Parameter vpnConnectionParameters is required and cannot be null.");
+        }
+        Validator.validate(vpnConnectionParameters);
+        final String apiVersion = "2018-06-01";
+        Observable<Response<ResponseBody>> observable = service.createOrUpdate(this.client.subscriptionId(), resourceGroupName, gatewayName, connectionName, apiVersion, vpnConnectionParameters, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPutOrPatchResultAsync(observable, new TypeToken<VpnConnectionInner>() { }.getType());
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the VpnConnectionInner object if successful.
+     */
+    public VpnConnectionInner beginCreateOrUpdate(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters) {
+        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName, vpnConnectionParameters).toBlocking().single().body();
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<VpnConnectionInner> beginCreateOrUpdateAsync(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters, final ServiceCallback<VpnConnectionInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName, vpnConnectionParameters), serviceCallback);
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the VpnConnectionInner object
+     */
+    public Observable<VpnConnectionInner> beginCreateOrUpdateAsync(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters) {
+        return beginCreateOrUpdateWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName, vpnConnectionParameters).map(new Func1<ServiceResponse<VpnConnectionInner>, VpnConnectionInner>() {
+            @Override
+            public VpnConnectionInner call(ServiceResponse<VpnConnectionInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the VpnConnectionInner object
+     */
+    public Observable<ServiceResponse<VpnConnectionInner>> beginCreateOrUpdateWithServiceResponseAsync(String resourceGroupName, String gatewayName, String connectionName, VpnConnectionInner vpnConnectionParameters) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (gatewayName == null) {
+            throw new IllegalArgumentException("Parameter gatewayName is required and cannot be null.");
+        }
+        if (connectionName == null) {
+            throw new IllegalArgumentException("Parameter connectionName is required and cannot be null.");
+        }
+        if (vpnConnectionParameters == null) {
+            throw new IllegalArgumentException("Parameter vpnConnectionParameters is required and cannot be null.");
+        }
+        Validator.validate(vpnConnectionParameters);
+        final String apiVersion = "2018-06-01";
+        return service.beginCreateOrUpdate(this.client.subscriptionId(), resourceGroupName, gatewayName, connectionName, apiVersion, vpnConnectionParameters, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VpnConnectionInner>>>() {
+                @Override
+                public Observable<ServiceResponse<VpnConnectionInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<VpnConnectionInner> clientResponse = beginCreateOrUpdateDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<VpnConnectionInner> beginCreateOrUpdateDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<VpnConnectionInner, ErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<VpnConnectionInner>() { }.getType())
+                .register(201, new TypeToken<VpnConnectionInner>() { }.getType())
+                .registerError(ErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void delete(String resourceGroupName, String gatewayName, String connectionName) {
+        deleteWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName).toBlocking().last().body();
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> deleteAsync(String resourceGroupName, String gatewayName, String connectionName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(deleteWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName), serviceCallback);
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<Void> deleteAsync(String resourceGroupName, String gatewayName, String connectionName) {
+        return deleteWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<Void>> deleteWithServiceResponseAsync(String resourceGroupName, String gatewayName, String connectionName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (gatewayName == null) {
+            throw new IllegalArgumentException("Parameter gatewayName is required and cannot be null.");
+        }
+        if (connectionName == null) {
+            throw new IllegalArgumentException("Parameter connectionName is required and cannot be null.");
+        }
+        final String apiVersion = "2018-06-01";
+        Observable<Response<ResponseBody>> observable = service.delete(this.client.subscriptionId(), resourceGroupName, gatewayName, connectionName, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<Void>() { }.getType());
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws ErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
+    public void beginDelete(String resourceGroupName, String gatewayName, String connectionName) {
+        beginDeleteWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName).toBlocking().single().body();
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Void> beginDeleteAsync(String resourceGroupName, String gatewayName, String connectionName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromResponse(beginDeleteWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName), serviceCallback);
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<Void> beginDeleteAsync(String resourceGroupName, String gatewayName, String connectionName) {
+        return beginDeleteWithServiceResponseAsync(resourceGroupName, gatewayName, connectionName).map(new Func1<ServiceResponse<Void>, Void>() {
+            @Override
+            public Void call(ServiceResponse<Void> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Deletes a vpn connection.
+     *
+     * @param resourceGroupName The resource group name of the VpnGateway.
+     * @param gatewayName The name of the gateway.
+     * @param connectionName The name of the connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceResponse} object if successful.
+     */
+    public Observable<ServiceResponse<Void>> beginDeleteWithServiceResponseAsync(String resourceGroupName, String gatewayName, String connectionName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (gatewayName == null) {
+            throw new IllegalArgumentException("Parameter gatewayName is required and cannot be null.");
+        }
+        if (connectionName == null) {
+            throw new IllegalArgumentException("Parameter connectionName is required and cannot be null.");
+        }
+        final String apiVersion = "2018-06-01";
+        return service.beginDelete(this.client.subscriptionId(), resourceGroupName, gatewayName, connectionName, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                @Override
+                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<Void> clientResponse = beginDeleteDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<Void> beginDeleteDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, ErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<Void>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
+                .register(204, new TypeToken<Void>() { }.getType())
                 .registerError(ErrorException.class)
                 .build(response);
     }

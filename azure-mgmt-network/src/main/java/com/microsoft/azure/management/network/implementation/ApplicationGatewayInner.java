@@ -129,6 +129,12 @@ public class ApplicationGatewayInner extends Resource {
     private Boolean enableHttp2;
 
     /**
+     * Whether FIPS is enabled on the application gateway resource.
+     */
+    @JsonProperty(value = "properties.enableFIPS")
+    private Boolean enableFIPS;
+
+    /**
      * Autoscale Configuration.
      */
     @JsonProperty(value = "properties.autoscaleConfiguration")
@@ -492,6 +498,26 @@ public class ApplicationGatewayInner extends Resource {
      */
     public ApplicationGatewayInner withEnableHttp2(Boolean enableHttp2) {
         this.enableHttp2 = enableHttp2;
+        return this;
+    }
+
+    /**
+     * Get whether FIPS is enabled on the application gateway resource.
+     *
+     * @return the enableFIPS value
+     */
+    public Boolean enableFIPS() {
+        return this.enableFIPS;
+    }
+
+    /**
+     * Set whether FIPS is enabled on the application gateway resource.
+     *
+     * @param enableFIPS the enableFIPS value to set
+     * @return the ApplicationGatewayInner object itself.
+     */
+    public ApplicationGatewayInner withEnableFIPS(Boolean enableFIPS) {
+        this.enableFIPS = enableFIPS;
         return this;
     }
 
