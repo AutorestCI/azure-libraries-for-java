@@ -21,7 +21,7 @@ public class Patch {
      * Possible values include: 'Single', 'Shared'.
      */
     @JsonProperty(value = "properties.appliedScopeType")
-    private String appliedScopeType;
+    private AppliedScopeType appliedScopeType;
 
     /**
      * The appliedScopes property.
@@ -33,14 +33,14 @@ public class Patch {
      * Possible values include: 'On', 'Off', 'NotSupported'.
      */
     @JsonProperty(value = "properties.instanceFlexibility")
-    private String instanceFlexibility;
+    private InstanceFlexibility instanceFlexibility;
 
     /**
      * Get possible values include: 'Single', 'Shared'.
      *
      * @return the appliedScopeType value
      */
-    public String appliedScopeType() {
+    public AppliedScopeType appliedScopeType() {
         return this.appliedScopeType;
     }
 
@@ -50,7 +50,7 @@ public class Patch {
      * @param appliedScopeType the appliedScopeType value to set
      * @return the Patch object itself.
      */
-    public Patch withAppliedScopeType(String appliedScopeType) {
+    public Patch withAppliedScopeType(AppliedScopeType appliedScopeType) {
         this.appliedScopeType = appliedScopeType;
         return this;
     }
@@ -80,7 +80,7 @@ public class Patch {
      *
      * @return the instanceFlexibility value
      */
-    public String instanceFlexibility() {
+    public InstanceFlexibility instanceFlexibility() {
         return this.instanceFlexibility;
     }
 
@@ -90,7 +90,7 @@ public class Patch {
      * @param instanceFlexibility the instanceFlexibility value to set
      * @return the Patch object itself.
      */
-    public Patch withInstanceFlexibility(String instanceFlexibility) {
+    public Patch withInstanceFlexibility(InstanceFlexibility instanceFlexibility) {
         this.instanceFlexibility = instanceFlexibility;
         return this;
     }

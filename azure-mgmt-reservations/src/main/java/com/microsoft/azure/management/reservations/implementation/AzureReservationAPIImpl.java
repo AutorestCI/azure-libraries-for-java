@@ -229,7 +229,7 @@ public class AzureReservationAPIImpl extends AzureServiceClient {
     interface AzureReservationAPIService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.reservations.AzureReservationAPI getCatalog" })
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.Capacity/catalogs")
-        Observable<Response<ResponseBody>> getCatalog(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Query("reservedResourceType") String reservedResourceType, @Query("location") String location, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> getCatalog(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Query("reservedResourceType") String reservedResourceType1, @Query("location") String location, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.reservations.AzureReservationAPI getAppliedReservationList" })
         @GET("subscriptions/{subscriptionId}/providers/Microsoft.Capacity/appliedReservations")
