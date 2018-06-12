@@ -62,7 +62,7 @@ public class CloudEndpointInner extends ProxyResource {
     /**
      * Backup Enabled.
      */
-    @JsonProperty(value = "properties.backupEnabled")
+    @JsonProperty(value = "properties.backupEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean backupEnabled;
 
     /**
@@ -224,17 +224,6 @@ public class CloudEndpointInner extends ProxyResource {
      */
     public Boolean backupEnabled() {
         return this.backupEnabled;
-    }
-
-    /**
-     * Set backup Enabled.
-     *
-     * @param backupEnabled the backupEnabled value to set
-     * @return the CloudEndpointInner object itself.
-     */
-    public CloudEndpointInner withBackupEnabled(Boolean backupEnabled) {
-        this.backupEnabled = backupEnabled;
-        return this;
     }
 
     /**

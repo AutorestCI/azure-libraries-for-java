@@ -10,18 +10,24 @@ package com.microsoft.azure.management.storagesync.implementation;
 
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet;
 import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete;
+import com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
-import com.microsoft.azure.management.storagesync.ErrorException;
+import com.microsoft.azure.management.storagesync.StorageSyncErrorException;
 import com.microsoft.azure.management.storagesync.StorageSyncServicesDeleteHeaders;
 import com.microsoft.azure.management.storagesync.StorageSyncServicesGetHeaders;
+import com.microsoft.azure.management.storagesync.StorageSyncServicesListByResourceGroupHeaders;
+import com.microsoft.azure.management.storagesync.StorageSyncServicesListBySubscriptionHeaders;
 import com.microsoft.azure.management.storagesync.StorageSyncServicesUpdateHeaders;
+import com.microsoft.azure.Page;
+import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
 import com.microsoft.rest.ServiceResponseWithHeaders;
 import com.microsoft.rest.Validator;
 import java.io.IOException;
+import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -40,11 +46,11 @@ import rx.Observable;
  * An instance of this class provides access to all the operations defined
  * in StorageSyncServices.
  */
-public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncServiceInner>, InnerSupportsDelete<Void> {
+public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncServiceInner>, InnerSupportsDelete<Void>, InnerSupportsListing<StorageSyncServiceInner> {
     /** The Retrofit service to perform REST calls. */
     private StorageSyncServicesService service;
     /** The service client containing this operation class. */
-    private MicrosoftStorageSyncImpl client;
+    private StorageSyncManagementClientImpl client;
 
     /**
      * Initializes an instance of StorageSyncServicesInner.
@@ -52,7 +58,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      * @param retrofit the Retrofit instance built from a Retrofit Builder.
      * @param client the instance of the service client containing this operation class.
      */
-    public StorageSyncServicesInner(Retrofit retrofit, MicrosoftStorageSyncImpl client) {
+    public StorageSyncServicesInner(Retrofit retrofit, StorageSyncManagementClientImpl client) {
         this.service = retrofit.create(StorageSyncServicesService.class);
         this.client = client;
     }
@@ -78,6 +84,14 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> delete(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.StorageSyncServices listByResourceGroup" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices")
+        Observable<Response<ResponseBody>> listByResourceGroup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.StorageSyncServices list" })
+        @GET("subscriptions/{subscriptionId}/providers/Microsoft.StorageSync/storageSyncServices")
+        Observable<Response<ResponseBody>> list(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
     }
 
     /**
@@ -87,7 +101,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param body Storage Sync Service resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageSyncServiceInner object if successful.
      */
@@ -167,10 +181,10 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
             });
     }
 
-    private ServiceResponse<StorageSyncServiceInner> createDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<StorageSyncServiceInner, ErrorException>newInstance(this.client.serializerAdapter())
+    private ServiceResponse<StorageSyncServiceInner> createDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<StorageSyncServiceInner, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<StorageSyncServiceInner>() { }.getType())
-                .registerError(ErrorException.class)
+                .registerError(StorageSyncErrorException.class)
                 .build(response);
     }
 
@@ -180,7 +194,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageSyncServiceInner object if successful.
      */
@@ -253,10 +267,10 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
             });
     }
 
-    private ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesGetHeaders> getByResourceGroupDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<StorageSyncServiceInner, ErrorException>newInstance(this.client.serializerAdapter())
+    private ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesGetHeaders> getByResourceGroupDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<StorageSyncServiceInner, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<StorageSyncServiceInner>() { }.getType())
-                .registerError(ErrorException.class)
+                .registerError(StorageSyncErrorException.class)
                 .buildWithHeaders(response, StorageSyncServicesGetHeaders.class);
     }
 
@@ -266,7 +280,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageSyncServiceInner object if successful.
      */
@@ -347,7 +361,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param body Storage Sync Service resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the StorageSyncServiceInner object if successful.
      */
@@ -424,10 +438,10 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
             });
     }
 
-    private ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders> updateDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<StorageSyncServiceInner, ErrorException>newInstance(this.client.serializerAdapter())
+    private ServiceResponseWithHeaders<StorageSyncServiceInner, StorageSyncServicesUpdateHeaders> updateDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<StorageSyncServiceInner, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<StorageSyncServiceInner>() { }.getType())
-                .registerError(ErrorException.class)
+                .registerError(StorageSyncErrorException.class)
                 .buildWithHeaders(response, StorageSyncServicesUpdateHeaders.class);
     }
 
@@ -437,7 +451,7 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void delete(String resourceGroupName, String storageSyncServiceName) {
@@ -509,12 +523,181 @@ public class StorageSyncServicesInner implements InnerSupportsGet<StorageSyncSer
             });
     }
 
-    private ServiceResponseWithHeaders<Void, StorageSyncServicesDeleteHeaders> deleteDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, ErrorException>newInstance(this.client.serializerAdapter())
+    private ServiceResponseWithHeaders<Void, StorageSyncServicesDeleteHeaders> deleteDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
-                .registerError(ErrorException.class)
+                .registerError(StorageSyncErrorException.class)
                 .buildWithHeaders(response, StorageSyncServicesDeleteHeaders.class);
+    }
+
+    /**
+     * Get a StorageSyncService list by Resource group name.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @return the PagedList<StorageSyncServiceInner> object if successful.
+     */
+    public PagedList<StorageSyncServiceInner> listByResourceGroup(String resourceGroupName) {
+        PageImpl1<StorageSyncServiceInner> page = new PageImpl1<>();
+        page.setItems(listByResourceGroupWithServiceResponseAsync(resourceGroupName).toBlocking().single().body());
+        page.setNextPageLink(null);
+        return new PagedList<StorageSyncServiceInner>(page) {
+            @Override
+            public Page<StorageSyncServiceInner> nextPage(String nextPageLink) {
+                return null;
+            }
+        };
+    }
+
+    /**
+     * Get a StorageSyncService list by Resource group name.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<StorageSyncServiceInner>> listByResourceGroupAsync(String resourceGroupName, final ServiceCallback<List<StorageSyncServiceInner>> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(listByResourceGroupWithServiceResponseAsync(resourceGroupName), serviceCallback);
+    }
+
+    /**
+     * Get a StorageSyncService list by Resource group name.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @return the observable to the List&lt;StorageSyncServiceInner&gt; object
+     */
+    public Observable<Page<StorageSyncServiceInner>> listByResourceGroupAsync(String resourceGroupName) {
+        return listByResourceGroupWithServiceResponseAsync(resourceGroupName).map(new Func1<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListByResourceGroupHeaders>, Page<StorageSyncServiceInner>>() {
+            @Override
+            public Page<StorageSyncServiceInner> call(ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListByResourceGroupHeaders> response) {
+                PageImpl1<StorageSyncServiceInner> page = new PageImpl1<>();
+                page.setItems(response.body());
+                return page;
+            }
+        });
+    }
+
+    /**
+     * Get a StorageSyncService list by Resource group name.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @return the observable to the List&lt;StorageSyncServiceInner&gt; object
+     */
+    public Observable<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListByResourceGroupHeaders>> listByResourceGroupWithServiceResponseAsync(String resourceGroupName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listByResourceGroup(this.client.subscriptionId(), resourceGroupName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListByResourceGroupHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListByResourceGroupHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl1<StorageSyncServiceInner>> result = listByResourceGroupDelegate(response);
+                        List<StorageSyncServiceInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<StorageSyncServiceInner>> clientResponse = new ServiceResponse<List<StorageSyncServiceInner>>(items, result.response());
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponseWithHeaders<PageImpl1<StorageSyncServiceInner>, StorageSyncServicesListByResourceGroupHeaders> listByResourceGroupDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<StorageSyncServiceInner>, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<StorageSyncServiceInner>>() { }.getType())
+                .registerError(StorageSyncErrorException.class)
+                .buildWithHeaders(response, StorageSyncServicesListByResourceGroupHeaders.class);
+    }
+
+    /**
+     * Get a StorageSyncService list by subscription.
+     *
+     * @return the PagedList<StorageSyncServiceInner> object if successful.
+     */
+    public PagedList<StorageSyncServiceInner> list() {
+        PageImpl1<StorageSyncServiceInner> page = new PageImpl1<>();
+        page.setItems(listWithServiceResponseAsync().toBlocking().single().body());
+        page.setNextPageLink(null);
+        return new PagedList<StorageSyncServiceInner>(page) {
+            @Override
+            public Page<StorageSyncServiceInner> nextPage(String nextPageLink) {
+                return null;
+            }
+        };
+    }
+
+    /**
+     * Get a StorageSyncService list by subscription.
+     *
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<StorageSyncServiceInner>> listAsync(final ServiceCallback<List<StorageSyncServiceInner>> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(listWithServiceResponseAsync(), serviceCallback);
+    }
+
+    /**
+     * Get a StorageSyncService list by subscription.
+     *
+     * @return the observable to the List&lt;StorageSyncServiceInner&gt; object
+     */
+    public Observable<Page<StorageSyncServiceInner>> listAsync() {
+        return listWithServiceResponseAsync().map(new Func1<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListBySubscriptionHeaders>, Page<StorageSyncServiceInner>>() {
+            @Override
+            public Page<StorageSyncServiceInner> call(ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListBySubscriptionHeaders> response) {
+                PageImpl1<StorageSyncServiceInner> page = new PageImpl1<>();
+                page.setItems(response.body());
+                return page;
+            }
+        });
+    }
+
+    /**
+     * Get a StorageSyncService list by subscription.
+     *
+     * @return the observable to the List&lt;StorageSyncServiceInner&gt; object
+     */
+    public Observable<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListBySubscriptionHeaders>> listWithServiceResponseAsync() {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.list(this.client.subscriptionId(), this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListBySubscriptionHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<List<StorageSyncServiceInner>, StorageSyncServicesListBySubscriptionHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl1<StorageSyncServiceInner>> result = listDelegate(response);
+                        List<StorageSyncServiceInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<StorageSyncServiceInner>> clientResponse = new ServiceResponse<List<StorageSyncServiceInner>>(items, result.response());
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponseWithHeaders<PageImpl1<StorageSyncServiceInner>, StorageSyncServicesListBySubscriptionHeaders> listDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<StorageSyncServiceInner>, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<StorageSyncServiceInner>>() { }.getType())
+                .registerError(StorageSyncErrorException.class)
+                .buildWithHeaders(response, StorageSyncServicesListBySubscriptionHeaders.class);
     }
 
 }

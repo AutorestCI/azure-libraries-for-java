@@ -10,15 +10,17 @@ package com.microsoft.azure.management.storagesync.implementation;
 
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
-import com.microsoft.azure.management.storagesync.ErrorException;
 import com.microsoft.azure.management.storagesync.RegisteredServersCreateHeaders;
 import com.microsoft.azure.management.storagesync.RegisteredServersDeleteHeaders;
 import com.microsoft.azure.management.storagesync.RegisteredServersGetHeaders;
+import com.microsoft.azure.management.storagesync.RegisteredServersListByStorageSyncServiceHeaders;
+import com.microsoft.azure.management.storagesync.StorageSyncErrorException;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponseWithHeaders;
 import com.microsoft.rest.Validator;
 import java.io.IOException;
+import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -40,7 +42,7 @@ public class RegisteredServersInner {
     /** The Retrofit service to perform REST calls. */
     private RegisteredServersService service;
     /** The service client containing this operation class. */
-    private MicrosoftStorageSyncImpl client;
+    private StorageSyncManagementClientImpl client;
 
     /**
      * Initializes an instance of RegisteredServersInner.
@@ -48,7 +50,7 @@ public class RegisteredServersInner {
      * @param retrofit the Retrofit instance built from a Retrofit Builder.
      * @param client the instance of the service client containing this operation class.
      */
-    public RegisteredServersInner(Retrofit retrofit, MicrosoftStorageSyncImpl client) {
+    public RegisteredServersInner(Retrofit retrofit, StorageSyncManagementClientImpl client) {
         this.service = retrofit.create(RegisteredServersService.class);
         this.client = client;
     }
@@ -58,6 +60,10 @@ public class RegisteredServersInner {
      * used by Retrofit to perform actually REST calls.
      */
     interface RegisteredServersService {
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.RegisteredServers listByStorageSyncService" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/registeredServers")
+        Observable<Response<ResponseBody>> listByStorageSyncService(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.RegisteredServers get" })
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/registeredServers/{serverId}")
         Observable<Response<ResponseBody>> get(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("serverId") String serverId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -81,13 +87,104 @@ public class RegisteredServersInner {
     }
 
     /**
+     * Get a given registered server list.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param storageSyncServiceName Name of Storage Sync Service resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the List&lt;RegisteredServerInner&gt; object if successful.
+     */
+    public List<RegisteredServerInner> listByStorageSyncService(String resourceGroupName, String storageSyncServiceName) {
+        return listByStorageSyncServiceWithServiceResponseAsync(resourceGroupName, storageSyncServiceName).toBlocking().single().body();
+    }
+
+    /**
+     * Get a given registered server list.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param storageSyncServiceName Name of Storage Sync Service resource.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<RegisteredServerInner>> listByStorageSyncServiceAsync(String resourceGroupName, String storageSyncServiceName, final ServiceCallback<List<RegisteredServerInner>> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(listByStorageSyncServiceWithServiceResponseAsync(resourceGroupName, storageSyncServiceName), serviceCallback);
+    }
+
+    /**
+     * Get a given registered server list.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param storageSyncServiceName Name of Storage Sync Service resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the List&lt;RegisteredServerInner&gt; object
+     */
+    public Observable<List<RegisteredServerInner>> listByStorageSyncServiceAsync(String resourceGroupName, String storageSyncServiceName) {
+        return listByStorageSyncServiceWithServiceResponseAsync(resourceGroupName, storageSyncServiceName).map(new Func1<ServiceResponseWithHeaders<List<RegisteredServerInner>, RegisteredServersListByStorageSyncServiceHeaders>, List<RegisteredServerInner>>() {
+            @Override
+            public List<RegisteredServerInner> call(ServiceResponseWithHeaders<List<RegisteredServerInner>, RegisteredServersListByStorageSyncServiceHeaders> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Get a given registered server list.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
+     * @param storageSyncServiceName Name of Storage Sync Service resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the List&lt;RegisteredServerInner&gt; object
+     */
+    public Observable<ServiceResponseWithHeaders<List<RegisteredServerInner>, RegisteredServersListByStorageSyncServiceHeaders>> listByStorageSyncServiceWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName) {
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (storageSyncServiceName == null) {
+            throw new IllegalArgumentException("Parameter storageSyncServiceName is required and cannot be null.");
+        }
+        if (this.client.apiVersion() == null) {
+            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
+        }
+        return service.listByStorageSyncService(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<List<RegisteredServerInner>, RegisteredServersListByStorageSyncServiceHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<List<RegisteredServerInner>, RegisteredServersListByStorageSyncServiceHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<PageImpl1<RegisteredServerInner>> result = listByStorageSyncServiceDelegate(response);
+                        List<RegisteredServerInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<RegisteredServerInner>> clientResponse = new ServiceResponse<List<RegisteredServerInner>>(items, result.response());
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponseWithHeaders<PageImpl1<RegisteredServerInner>, RegisteredServersListByStorageSyncServiceHeaders> listByStorageSyncServiceDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl1<RegisteredServerInner>, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl1<RegisteredServerInner>>() { }.getType())
+                .registerError(StorageSyncErrorException.class)
+                .buildWithHeaders(response, RegisteredServersListByStorageSyncServiceHeaders.class);
+    }
+
+    /**
      * Get a given registered server.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case insensitive.
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the RegisteredServerInner object if successful.
      */
@@ -166,10 +263,10 @@ public class RegisteredServersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersGetHeaders> getDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<RegisteredServerInner, ErrorException>newInstance(this.client.serializerAdapter())
+    private ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersGetHeaders> getDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<RegisteredServerInner, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<RegisteredServerInner>() { }.getType())
-                .registerError(ErrorException.class)
+                .registerError(StorageSyncErrorException.class)
                 .buildWithHeaders(response, RegisteredServersGetHeaders.class);
     }
 
@@ -181,7 +278,7 @@ public class RegisteredServersInner {
      * @param serverId GUID identifying the on-premises server.
      * @param body Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the RegisteredServerInner object if successful.
      */
@@ -265,7 +362,7 @@ public class RegisteredServersInner {
      * @param serverId GUID identifying the on-premises server.
      * @param body Body of Registered Server object.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the RegisteredServerInner object if successful.
      */
@@ -351,11 +448,11 @@ public class RegisteredServersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders> beginCreateDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<RegisteredServerInner, ErrorException>newInstance(this.client.serializerAdapter())
+    private ServiceResponseWithHeaders<RegisteredServerInner, RegisteredServersCreateHeaders> beginCreateDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<RegisteredServerInner, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<RegisteredServerInner>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
-                .registerError(ErrorException.class)
+                .registerError(StorageSyncErrorException.class)
                 .buildWithHeaders(response, RegisteredServersCreateHeaders.class);
     }
 
@@ -366,7 +463,7 @@ public class RegisteredServersInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void delete(String resourceGroupName, String storageSyncServiceName, String serverId) {
@@ -441,7 +538,7 @@ public class RegisteredServersInner {
      * @param storageSyncServiceName Name of Storage Sync Service resource.
      * @param serverId GUID identifying the on-premises server.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws ErrorException thrown if the request is rejected by server
+     * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
     public void beginDelete(String resourceGroupName, String storageSyncServiceName, String serverId) {
@@ -519,12 +616,12 @@ public class RegisteredServersInner {
             });
     }
 
-    private ServiceResponseWithHeaders<Void, RegisteredServersDeleteHeaders> beginDeleteDelegate(Response<ResponseBody> response) throws ErrorException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<Void, ErrorException>newInstance(this.client.serializerAdapter())
+    private ServiceResponseWithHeaders<Void, RegisteredServersDeleteHeaders> beginDeleteDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<Void, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
                 .register(204, new TypeToken<Void>() { }.getType())
-                .registerError(ErrorException.class)
+                .registerError(StorageSyncErrorException.class)
                 .buildWithHeaders(response, RegisteredServersDeleteHeaders.class);
     }
 

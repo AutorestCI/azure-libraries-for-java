@@ -23,7 +23,7 @@ public class RestoreFileSpec {
     /**
      * Restore file spec isdir.
      */
-    @JsonProperty(value = "isdir")
+    @JsonProperty(value = "isdir", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isdir;
 
     /**
@@ -53,17 +53,6 @@ public class RestoreFileSpec {
      */
     public Boolean isdir() {
         return this.isdir;
-    }
-
-    /**
-     * Set restore file spec isdir.
-     *
-     * @param isdir the isdir value to set
-     * @return the RestoreFileSpec object itself.
-     */
-    public RestoreFileSpec withIsdir(Boolean isdir) {
-        this.isdir = isdir;
-        return this;
     }
 
 }

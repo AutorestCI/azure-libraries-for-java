@@ -66,8 +66,8 @@ public class PreRestoreRequest {
     /**
      * Pre Restore pause wait for sync drain time period in seconds.
      */
-    @JsonProperty(value = "pausewaitforsyncdraintimeperiodinseconds")
-    private Integer pausewaitforsyncdraintimeperiodinseconds;
+    @JsonProperty(value = "pauseWaitForSyncDrainTimePeriodInSeconds")
+    private Integer pauseWaitForSyncDrainTimePeriodInSeconds;
 
     /**
      * Get pre Restore partition.
@@ -232,20 +232,20 @@ public class PreRestoreRequest {
     /**
      * Get pre Restore pause wait for sync drain time period in seconds.
      *
-     * @return the pausewaitforsyncdraintimeperiodinseconds value
+     * @return the pauseWaitForSyncDrainTimePeriodInSeconds value
      */
-    public Integer pausewaitforsyncdraintimeperiodinseconds() {
-        return this.pausewaitforsyncdraintimeperiodinseconds;
+    public Integer pauseWaitForSyncDrainTimePeriodInSeconds() {
+        return this.pauseWaitForSyncDrainTimePeriodInSeconds;
     }
 
     /**
      * Set pre Restore pause wait for sync drain time period in seconds.
      *
-     * @param pausewaitforsyncdraintimeperiodinseconds the pausewaitforsyncdraintimeperiodinseconds value to set
+     * @param pauseWaitForSyncDrainTimePeriodInSeconds the pauseWaitForSyncDrainTimePeriodInSeconds value to set
      * @return the PreRestoreRequest object itself.
      */
-    public PreRestoreRequest withPausewaitforsyncdraintimeperiodinseconds(Integer pausewaitforsyncdraintimeperiodinseconds) {
-        this.pausewaitforsyncdraintimeperiodinseconds = pausewaitforsyncdraintimeperiodinseconds;
+    public PreRestoreRequest withPauseWaitForSyncDrainTimePeriodInSeconds(Integer pauseWaitForSyncDrainTimePeriodInSeconds) {
+        this.pauseWaitForSyncDrainTimePeriodInSeconds = pauseWaitForSyncDrainTimePeriodInSeconds;
         return this;
     }
 

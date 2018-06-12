@@ -24,7 +24,7 @@ public class SubscriptionState {
     /**
      * Is Transitioning.
      */
-    @JsonProperty(value = "istransitioning")
+    @JsonProperty(value = "istransitioning", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean istransitioning;
 
     /**
@@ -60,17 +60,6 @@ public class SubscriptionState {
      */
     public Boolean istransitioning() {
         return this.istransitioning;
-    }
-
-    /**
-     * Set is Transitioning.
-     *
-     * @param istransitioning the istransitioning value to set
-     * @return the SubscriptionState object itself.
-     */
-    public SubscriptionState withIstransitioning(Boolean istransitioning) {
-        this.istransitioning = istransitioning;
-        return this;
     }
 
     /**
