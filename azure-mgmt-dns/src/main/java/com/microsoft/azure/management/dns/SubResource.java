@@ -21,7 +21,7 @@ public class SubResource {
     private String id;
 
     /**
-     * Get the id value.
+     * Get resource Id.
      *
      * @return the id value
      */
@@ -30,7 +30,7 @@ public class SubResource {
     }
 
     /**
-     * Set the id value.
+     * Set resource Id.
      *
      * @param id the id value to set
      * @return the SubResource object itself.

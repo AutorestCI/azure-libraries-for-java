@@ -70,7 +70,7 @@ public class ZoneInner extends Resource {
     private List<SubResource> resolutionVirtualNetworks;
 
     /**
-     * Get the etag value.
+     * Get the etag of the zone.
      *
      * @return the etag value
      */
@@ -79,7 +79,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Set the etag value.
+     * Set the etag of the zone.
      *
      * @param etag the etag value to set
      * @return the ZoneInner object itself.
@@ -90,7 +90,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Get the maxNumberOfRecordSets value.
+     * Get the maximum number of record sets that can be created in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.
      *
      * @return the maxNumberOfRecordSets value
      */
@@ -99,7 +99,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Get the numberOfRecordSets value.
+     * Get the current number of record sets in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.
      *
      * @return the numberOfRecordSets value
      */
@@ -108,7 +108,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Get the nameServers value.
+     * Get the name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored.
      *
      * @return the nameServers value
      */
@@ -117,7 +117,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Get the zoneType value.
+     * Get the type of this DNS zone (Public or Private). Possible values include: 'Public', 'Private'.
      *
      * @return the zoneType value
      */
@@ -126,7 +126,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Set the zoneType value.
+     * Set the type of this DNS zone (Public or Private). Possible values include: 'Public', 'Private'.
      *
      * @param zoneType the zoneType value to set
      * @return the ZoneInner object itself.
@@ -137,7 +137,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Get the registrationVirtualNetworks value.
+     * Get a list of references to virtual networks that register hostnames in this DNS zone. This is a only when ZoneType is Private.
      *
      * @return the registrationVirtualNetworks value
      */
@@ -146,7 +146,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Set the registrationVirtualNetworks value.
+     * Set a list of references to virtual networks that register hostnames in this DNS zone. This is a only when ZoneType is Private.
      *
      * @param registrationVirtualNetworks the registrationVirtualNetworks value to set
      * @return the ZoneInner object itself.
@@ -157,7 +157,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Get the resolutionVirtualNetworks value.
+     * Get a list of references to virtual networks that resolve records in this DNS zone. This is a only when ZoneType is Private.
      *
      * @return the resolutionVirtualNetworks value
      */
@@ -166,7 +166,7 @@ public class ZoneInner extends Resource {
     }
 
     /**
-     * Set the resolutionVirtualNetworks value.
+     * Set a list of references to virtual networks that resolve records in this DNS zone. This is a only when ZoneType is Private.
      *
      * @param resolutionVirtualNetworks the resolutionVirtualNetworks value to set
      * @return the ZoneInner object itself.
