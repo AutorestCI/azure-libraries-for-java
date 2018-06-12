@@ -9,6 +9,7 @@
 package com.microsoft.azure.management.resources.implementation;
 
 import com.microsoft.azure.management.resources.PolicyType;
+import com.microsoft.azure.management.resources.PolicyMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 
@@ -24,6 +25,13 @@ public class PolicyDefinitionInner {
      */
     @JsonProperty(value = "properties.policyType")
     private PolicyType policyType;
+
+    /**
+     * The policy definition mode. Possible values are NotSpecified, Indexed,
+     * and All. Possible values include: 'NotSpecified', 'Indexed', 'All'.
+     */
+    @JsonProperty(value = "properties.mode")
+    private PolicyMode mode;
 
     /**
      * The display name of the policy definition.
@@ -44,20 +52,37 @@ public class PolicyDefinitionInner {
     private Object policyRule;
 
     /**
+     * The policy definition metadata.
+     */
+    @JsonProperty(value = "properties.metadata")
+    private Object metadata;
+
+    /**
+     * Required if a parameter is used in policy rule.
+     */
+    @JsonProperty(value = "properties.parameters")
+    private Object parameters;
+
+    /**
      * The ID of the policy definition.
      */
-    @JsonProperty(value = "id")
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /**
-     * The name of the policy definition. If you do not specify a value for
-     * name, the value is inferred from the name value in the request URI.
+     * The name of the policy definition.
      */
-    @JsonProperty(value = "name")
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     /**
-     * Get the policyType value.
+     * The type of the resource (Microsoft.Authorization/policyDefinitions).
+     */
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
+    private String type;
+
+    /**
+     * Get the type of policy definition. Possible values are NotSpecified, BuiltIn, and Custom. Possible values include: 'NotSpecified', 'BuiltIn', 'Custom'.
      *
      * @return the policyType value
      */
@@ -66,7 +91,7 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Set the policyType value.
+     * Set the type of policy definition. Possible values are NotSpecified, BuiltIn, and Custom. Possible values include: 'NotSpecified', 'BuiltIn', 'Custom'.
      *
      * @param policyType the policyType value to set
      * @return the PolicyDefinitionInner object itself.
@@ -77,7 +102,27 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Get the displayName value.
+     * Get the policy definition mode. Possible values are NotSpecified, Indexed, and All. Possible values include: 'NotSpecified', 'Indexed', 'All'.
+     *
+     * @return the mode value
+     */
+    public PolicyMode mode() {
+        return this.mode;
+    }
+
+    /**
+     * Set the policy definition mode. Possible values are NotSpecified, Indexed, and All. Possible values include: 'NotSpecified', 'Indexed', 'All'.
+     *
+     * @param mode the mode value to set
+     * @return the PolicyDefinitionInner object itself.
+     */
+    public PolicyDefinitionInner withMode(PolicyMode mode) {
+        this.mode = mode;
+        return this;
+    }
+
+    /**
+     * Get the display name of the policy definition.
      *
      * @return the displayName value
      */
@@ -86,7 +131,7 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Set the displayName value.
+     * Set the display name of the policy definition.
      *
      * @param displayName the displayName value to set
      * @return the PolicyDefinitionInner object itself.
@@ -97,7 +142,7 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Get the description value.
+     * Get the policy definition description.
      *
      * @return the description value
      */
@@ -106,7 +151,7 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Set the description value.
+     * Set the policy definition description.
      *
      * @param description the description value to set
      * @return the PolicyDefinitionInner object itself.
@@ -117,7 +162,7 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Get the policyRule value.
+     * Get the policy rule.
      *
      * @return the policyRule value
      */
@@ -126,7 +171,7 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Set the policyRule value.
+     * Set the policy rule.
      *
      * @param policyRule the policyRule value to set
      * @return the PolicyDefinitionInner object itself.
@@ -137,7 +182,47 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Get the id value.
+     * Get the policy definition metadata.
+     *
+     * @return the metadata value
+     */
+    public Object metadata() {
+        return this.metadata;
+    }
+
+    /**
+     * Set the policy definition metadata.
+     *
+     * @param metadata the metadata value to set
+     * @return the PolicyDefinitionInner object itself.
+     */
+    public PolicyDefinitionInner withMetadata(Object metadata) {
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
+     * Get required if a parameter is used in policy rule.
+     *
+     * @return the parameters value
+     */
+    public Object parameters() {
+        return this.parameters;
+    }
+
+    /**
+     * Set required if a parameter is used in policy rule.
+     *
+     * @param parameters the parameters value to set
+     * @return the PolicyDefinitionInner object itself.
+     */
+    public PolicyDefinitionInner withParameters(Object parameters) {
+        this.parameters = parameters;
+        return this;
+    }
+
+    /**
+     * Get the ID of the policy definition.
      *
      * @return the id value
      */
@@ -146,18 +231,7 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Set the id value.
-     *
-     * @param id the id value to set
-     * @return the PolicyDefinitionInner object itself.
-     */
-    public PolicyDefinitionInner withId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get the name value.
+     * Get the name of the policy definition.
      *
      * @return the name value
      */
@@ -166,14 +240,12 @@ public class PolicyDefinitionInner {
     }
 
     /**
-     * Set the name value.
+     * Get the type of the resource (Microsoft.Authorization/policyDefinitions).
      *
-     * @param name the name value to set
-     * @return the PolicyDefinitionInner object itself.
+     * @return the type value
      */
-    public PolicyDefinitionInner withName(String name) {
-        this.name = name;
-        return this;
+    public String type() {
+        return this.type;
     }
 
 }

@@ -27,7 +27,7 @@ public class OperationDefinition {
     private OperationDisplay display;
 
     /**
-     * Get the name value.
+     * Get the name of the operation.
      *
      * @return the name value
      */
@@ -36,7 +36,7 @@ public class OperationDefinition {
     }
 
     /**
-     * Set the name value.
+     * Set the name of the operation.
      *
      * @param name the name value to set
      * @return the OperationDefinition object itself.
@@ -47,7 +47,7 @@ public class OperationDefinition {
     }
 
     /**
-     * Get the display value.
+     * Get the operation display definition.
      *
      * @return the display value
      */
@@ -56,7 +56,7 @@ public class OperationDefinition {
     }
 
     /**
-     * Set the display value.
+     * Set the operation display definition.
      *
      * @param display the display value to set
      * @return the OperationDefinition object itself.

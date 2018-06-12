@@ -23,7 +23,7 @@ public class OperationsListInner {
     private List<OperationDefinition> operations;
 
     /**
-     * Get the operations value.
+     * Get the array of feature operations.
      *
      * @return the operations value
      */
@@ -32,7 +32,7 @@ public class OperationsListInner {
     }
 
     /**
-     * Set the operations value.
+     * Set the array of feature operations.
      *
      * @param operations the operations value to set
      * @return the OperationsListInner object itself.

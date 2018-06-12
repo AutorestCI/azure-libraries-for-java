@@ -140,7 +140,11 @@ public class SubscriptionsInner {
                 public Observable<ServiceResponse<List<LocationInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<LocationInner>> result = listLocationsDelegate(response);
-                        ServiceResponse<List<LocationInner>> clientResponse = new ServiceResponse<List<LocationInner>>(result.body().items(), result.response());
+                        List<LocationInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<LocationInner>> clientResponse = new ServiceResponse<List<LocationInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
