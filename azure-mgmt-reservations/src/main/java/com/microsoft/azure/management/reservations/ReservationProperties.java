@@ -21,13 +21,13 @@ public class ReservationProperties {
      * Possible values include: 'VirtualMachines', 'SqlDatabases', 'SuseLinux'.
      */
     @JsonProperty(value = "reservedResourceType")
-    private String reservedResourceType;
+    private ReservedResourceType reservedResourceType;
 
     /**
      * Possible values include: 'On', 'Off', 'NotSupported'.
      */
     @JsonProperty(value = "instanceFlexibility")
-    private String instanceFlexibility;
+    private InstanceFlexibility instanceFlexibility;
 
     /**
      * Friendly name for user to easily identify the reservation.
@@ -45,7 +45,7 @@ public class ReservationProperties {
      * Possible values include: 'Single', 'Shared'.
      */
     @JsonProperty(value = "appliedScopeType")
-    private String appliedScopeType;
+    private AppliedScopeType appliedScopeType;
 
     /**
      * Quantity of the SKUs that are part of the Reservation.
@@ -110,7 +110,7 @@ public class ReservationProperties {
      *
      * @return the reservedResourceType value
      */
-    public String reservedResourceType() {
+    public ReservedResourceType reservedResourceType() {
         return this.reservedResourceType;
     }
 
@@ -120,7 +120,7 @@ public class ReservationProperties {
      * @param reservedResourceType the reservedResourceType value to set
      * @return the ReservationProperties object itself.
      */
-    public ReservationProperties withReservedResourceType(String reservedResourceType) {
+    public ReservationProperties withReservedResourceType(ReservedResourceType reservedResourceType) {
         this.reservedResourceType = reservedResourceType;
         return this;
     }
@@ -130,7 +130,7 @@ public class ReservationProperties {
      *
      * @return the instanceFlexibility value
      */
-    public String instanceFlexibility() {
+    public InstanceFlexibility instanceFlexibility() {
         return this.instanceFlexibility;
     }
 
@@ -140,7 +140,7 @@ public class ReservationProperties {
      * @param instanceFlexibility the instanceFlexibility value to set
      * @return the ReservationProperties object itself.
      */
-    public ReservationProperties withInstanceFlexibility(String instanceFlexibility) {
+    public ReservationProperties withInstanceFlexibility(InstanceFlexibility instanceFlexibility) {
         this.instanceFlexibility = instanceFlexibility;
         return this;
     }
@@ -190,7 +190,7 @@ public class ReservationProperties {
      *
      * @return the appliedScopeType value
      */
-    public String appliedScopeType() {
+    public AppliedScopeType appliedScopeType() {
         return this.appliedScopeType;
     }
 
@@ -200,7 +200,7 @@ public class ReservationProperties {
      * @param appliedScopeType the appliedScopeType value to set
      * @return the ReservationProperties object itself.
      */
-    public ReservationProperties withAppliedScopeType(String appliedScopeType) {
+    public ReservationProperties withAppliedScopeType(AppliedScopeType appliedScopeType) {
         this.appliedScopeType = appliedScopeType;
         return this;
     }
