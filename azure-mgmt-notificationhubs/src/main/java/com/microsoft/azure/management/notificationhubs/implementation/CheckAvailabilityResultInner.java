@@ -32,7 +32,7 @@ public class CheckAvailabilityResultInner extends Resource {
     private Sku sku;
 
     /**
-     * Get the isAvailiable value.
+     * Get true if the name is available and can be used to create new Namespace/NotificationHub. Otherwise false.
      *
      * @return the isAvailiable value
      */
@@ -41,7 +41,7 @@ public class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * Set the isAvailiable value.
+     * Set true if the name is available and can be used to create new Namespace/NotificationHub. Otherwise false.
      *
      * @param isAvailiable the isAvailiable value to set
      * @return the CheckAvailabilityResultInner object itself.
@@ -52,7 +52,7 @@ public class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku of the created namespace.
      *
      * @return the sku value
      */
@@ -61,7 +61,7 @@ public class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * Set the sku value.
+     * Set the sku of the created namespace.
      *
      * @param sku the sku value to set
      * @return the CheckAvailabilityResultInner object itself.

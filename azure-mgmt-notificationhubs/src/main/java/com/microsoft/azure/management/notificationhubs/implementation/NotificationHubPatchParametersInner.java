@@ -23,16 +23,16 @@ import com.microsoft.rest.SkipParentValidation;
 import com.microsoft.azure.Resource;
 
 /**
- * Parameters supplied to the CreateOrUpdate NotificationHub operation.
+ * Parameters supplied to the patch NotificationHub operation.
  */
 @JsonFlatten
 @SkipParentValidation
-public class NotificationHubCreateOrUpdateParametersInner extends Resource {
+public class NotificationHubPatchParametersInner extends Resource {
     /**
      * The NotificationHub name.
      */
     @JsonProperty(value = "properties.name")
-    private String notificationHubCreateOrUpdateParametersName;
+    private String notificationHubPatchParametersName;
 
     /**
      * The RegistrationTtl of the created NotificationHub.
@@ -91,20 +91,20 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
     /**
      * Get the NotificationHub name.
      *
-     * @return the notificationHubCreateOrUpdateParametersName value
+     * @return the notificationHubPatchParametersName value
      */
-    public String notificationHubCreateOrUpdateParametersName() {
-        return this.notificationHubCreateOrUpdateParametersName;
+    public String notificationHubPatchParametersName() {
+        return this.notificationHubPatchParametersName;
     }
 
     /**
      * Set the NotificationHub name.
      *
-     * @param notificationHubCreateOrUpdateParametersName the notificationHubCreateOrUpdateParametersName value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @param notificationHubPatchParametersName the notificationHubPatchParametersName value to set
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withNotificationHubCreateOrUpdateParametersName(String notificationHubCreateOrUpdateParametersName) {
-        this.notificationHubCreateOrUpdateParametersName = notificationHubCreateOrUpdateParametersName;
+    public NotificationHubPatchParametersInner withNotificationHubPatchParametersName(String notificationHubPatchParametersName) {
+        this.notificationHubPatchParametersName = notificationHubPatchParametersName;
         return this;
     }
 
@@ -121,9 +121,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the RegistrationTtl of the created NotificationHub.
      *
      * @param registrationTtl the registrationTtl value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withRegistrationTtl(String registrationTtl) {
+    public NotificationHubPatchParametersInner withRegistrationTtl(String registrationTtl) {
         this.registrationTtl = registrationTtl;
         return this;
     }
@@ -141,9 +141,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the AuthorizationRules of the created NotificationHub.
      *
      * @param authorizationRules the authorizationRules value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withAuthorizationRules(List<SharedAccessAuthorizationRuleProperties> authorizationRules) {
+    public NotificationHubPatchParametersInner withAuthorizationRules(List<SharedAccessAuthorizationRuleProperties> authorizationRules) {
         this.authorizationRules = authorizationRules;
         return this;
     }
@@ -161,9 +161,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the ApnsCredential of the created NotificationHub.
      *
      * @param apnsCredential the apnsCredential value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withApnsCredential(ApnsCredential apnsCredential) {
+    public NotificationHubPatchParametersInner withApnsCredential(ApnsCredential apnsCredential) {
         this.apnsCredential = apnsCredential;
         return this;
     }
@@ -181,9 +181,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the WnsCredential of the created NotificationHub.
      *
      * @param wnsCredential the wnsCredential value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withWnsCredential(WnsCredential wnsCredential) {
+    public NotificationHubPatchParametersInner withWnsCredential(WnsCredential wnsCredential) {
         this.wnsCredential = wnsCredential;
         return this;
     }
@@ -201,9 +201,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the GcmCredential of the created NotificationHub.
      *
      * @param gcmCredential the gcmCredential value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withGcmCredential(GcmCredential gcmCredential) {
+    public NotificationHubPatchParametersInner withGcmCredential(GcmCredential gcmCredential) {
         this.gcmCredential = gcmCredential;
         return this;
     }
@@ -221,9 +221,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the MpnsCredential of the created NotificationHub.
      *
      * @param mpnsCredential the mpnsCredential value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withMpnsCredential(MpnsCredential mpnsCredential) {
+    public NotificationHubPatchParametersInner withMpnsCredential(MpnsCredential mpnsCredential) {
         this.mpnsCredential = mpnsCredential;
         return this;
     }
@@ -241,9 +241,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the AdmCredential of the created NotificationHub.
      *
      * @param admCredential the admCredential value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withAdmCredential(AdmCredential admCredential) {
+    public NotificationHubPatchParametersInner withAdmCredential(AdmCredential admCredential) {
         this.admCredential = admCredential;
         return this;
     }
@@ -261,9 +261,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the BaiduCredential of the created NotificationHub.
      *
      * @param baiduCredential the baiduCredential value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withBaiduCredential(BaiduCredential baiduCredential) {
+    public NotificationHubPatchParametersInner withBaiduCredential(BaiduCredential baiduCredential) {
         this.baiduCredential = baiduCredential;
         return this;
     }
@@ -281,9 +281,9 @@ public class NotificationHubCreateOrUpdateParametersInner extends Resource {
      * Set the sku of the created namespace.
      *
      * @param sku the sku value to set
-     * @return the NotificationHubCreateOrUpdateParametersInner object itself.
+     * @return the NotificationHubPatchParametersInner object itself.
      */
-    public NotificationHubCreateOrUpdateParametersInner withSku(Sku sku) {
+    public NotificationHubPatchParametersInner withSku(Sku sku) {
         this.sku = sku;
         return this;
     }

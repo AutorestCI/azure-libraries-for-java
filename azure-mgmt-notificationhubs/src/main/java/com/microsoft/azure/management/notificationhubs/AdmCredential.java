@@ -35,7 +35,7 @@ public class AdmCredential {
     private String authTokenUrl;
 
     /**
-     * Get the clientId value.
+     * Get the client identifier.
      *
      * @return the clientId value
      */
@@ -44,7 +44,7 @@ public class AdmCredential {
     }
 
     /**
-     * Set the clientId value.
+     * Set the client identifier.
      *
      * @param clientId the clientId value to set
      * @return the AdmCredential object itself.
@@ -55,7 +55,7 @@ public class AdmCredential {
     }
 
     /**
-     * Get the clientSecret value.
+     * Get the credential secret access key.
      *
      * @return the clientSecret value
      */
@@ -64,7 +64,7 @@ public class AdmCredential {
     }
 
     /**
-     * Set the clientSecret value.
+     * Set the credential secret access key.
      *
      * @param clientSecret the clientSecret value to set
      * @return the AdmCredential object itself.
@@ -75,7 +75,7 @@ public class AdmCredential {
     }
 
     /**
-     * Get the authTokenUrl value.
+     * Get the URL of the authorization token.
      *
      * @return the authTokenUrl value
      */
@@ -84,7 +84,7 @@ public class AdmCredential {
     }
 
     /**
-     * Set the authTokenUrl value.
+     * Set the URL of the authorization token.
      *
      * @param authTokenUrl the authTokenUrl value to set
      * @return the AdmCredential object itself.

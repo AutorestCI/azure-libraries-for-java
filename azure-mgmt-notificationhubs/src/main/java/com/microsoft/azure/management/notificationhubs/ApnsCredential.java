@@ -67,7 +67,7 @@ public class ApnsCredential {
     private String token;
 
     /**
-     * Get the apnsCertificate value.
+     * Get the APNS certificate.
      *
      * @return the apnsCertificate value
      */
@@ -76,7 +76,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the apnsCertificate value.
+     * Set the APNS certificate.
      *
      * @param apnsCertificate the apnsCertificate value to set
      * @return the ApnsCredential object itself.
@@ -87,7 +87,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Get the certificateKey value.
+     * Get the certificate key.
      *
      * @return the certificateKey value
      */
@@ -96,7 +96,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the certificateKey value.
+     * Set the certificate key.
      *
      * @param certificateKey the certificateKey value to set
      * @return the ApnsCredential object itself.
@@ -107,7 +107,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Get the endpoint value.
+     * Get the endpoint of this credential.
      *
      * @return the endpoint value
      */
@@ -116,7 +116,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the endpoint value.
+     * Set the endpoint of this credential.
      *
      * @param endpoint the endpoint value to set
      * @return the ApnsCredential object itself.
@@ -127,7 +127,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Get the thumbprint value.
+     * Get the Apns certificate Thumbprint.
      *
      * @return the thumbprint value
      */
@@ -136,7 +136,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the thumbprint value.
+     * Set the Apns certificate Thumbprint.
      *
      * @param thumbprint the thumbprint value to set
      * @return the ApnsCredential object itself.
@@ -147,7 +147,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Get the keyId value.
+     * Get a 10-character key identifier (kid) key, obtained from your developer account.
      *
      * @return the keyId value
      */
@@ -156,7 +156,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the keyId value.
+     * Set a 10-character key identifier (kid) key, obtained from your developer account.
      *
      * @param keyId the keyId value to set
      * @return the ApnsCredential object itself.
@@ -167,7 +167,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Get the appName value.
+     * Get the name of the application.
      *
      * @return the appName value
      */
@@ -176,7 +176,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the appName value.
+     * Set the name of the application.
      *
      * @param appName the appName value to set
      * @return the ApnsCredential object itself.
@@ -187,7 +187,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Get the appId value.
+     * Get the issuer (iss) registered claim key, whose value is your 10-character Team ID, obtained from your developer account.
      *
      * @return the appId value
      */
@@ -196,7 +196,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the appId value.
+     * Set the issuer (iss) registered claim key, whose value is your 10-character Team ID, obtained from your developer account.
      *
      * @param appId the appId value to set
      * @return the ApnsCredential object itself.
@@ -207,7 +207,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Get the token value.
+     * Get provider Authentication Token, obtained through your developer account.
      *
      * @return the token value
      */
@@ -216,7 +216,7 @@ public class ApnsCredential {
     }
 
     /**
-     * Set the token value.
+     * Set provider Authentication Token, obtained through your developer account.
      *
      * @param token the token value to set
      * @return the ApnsCredential object itself.

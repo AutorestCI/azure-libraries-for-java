@@ -21,7 +21,7 @@ public class SharedAccessAuthorizationRuleCreateOrUpdateParameters {
     private SharedAccessAuthorizationRuleProperties properties;
 
     /**
-     * Get the properties value.
+     * Get properties of the Namespace AuthorizationRules.
      *
      * @return the properties value
      */
@@ -30,7 +30,7 @@ public class SharedAccessAuthorizationRuleCreateOrUpdateParameters {
     }
 
     /**
-     * Set the properties value.
+     * Set properties of the Namespace AuthorizationRules.
      *
      * @param properties the properties value to set
      * @return the SharedAccessAuthorizationRuleCreateOrUpdateParameters object itself.

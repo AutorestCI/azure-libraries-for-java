@@ -35,7 +35,7 @@ public class MpnsCredential {
     private String thumbprint;
 
     /**
-     * Get the mpnsCertificate value.
+     * Get the MPNS certificate.
      *
      * @return the mpnsCertificate value
      */
@@ -44,7 +44,7 @@ public class MpnsCredential {
     }
 
     /**
-     * Set the mpnsCertificate value.
+     * Set the MPNS certificate.
      *
      * @param mpnsCertificate the mpnsCertificate value to set
      * @return the MpnsCredential object itself.
@@ -55,7 +55,7 @@ public class MpnsCredential {
     }
 
     /**
-     * Get the certificateKey value.
+     * Get the certificate key for this credential.
      *
      * @return the certificateKey value
      */
@@ -64,7 +64,7 @@ public class MpnsCredential {
     }
 
     /**
-     * Set the certificateKey value.
+     * Set the certificate key for this credential.
      *
      * @param certificateKey the certificateKey value to set
      * @return the MpnsCredential object itself.
@@ -75,7 +75,7 @@ public class MpnsCredential {
     }
 
     /**
-     * Get the thumbprint value.
+     * Get the Mpns certificate Thumbprint.
      *
      * @return the thumbprint value
      */
@@ -84,7 +84,7 @@ public class MpnsCredential {
     }
 
     /**
-     * Set the thumbprint value.
+     * Set the Mpns certificate Thumbprint.
      *
      * @param thumbprint the thumbprint value to set
      * @return the MpnsCredential object itself.

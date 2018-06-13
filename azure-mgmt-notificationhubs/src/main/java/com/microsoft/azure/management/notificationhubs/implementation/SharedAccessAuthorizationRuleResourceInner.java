@@ -85,7 +85,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     private Sku sku;
 
     /**
-     * Get the rights value.
+     * Get the rights associated with the rule.
      *
      * @return the rights value
      */
@@ -94,7 +94,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Set the rights value.
+     * Set the rights associated with the rule.
      *
      * @param rights the rights value to set
      * @return the SharedAccessAuthorizationRuleResourceInner object itself.
@@ -105,7 +105,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the primaryKey value.
+     * Get a base64-encoded 256-bit primary key for signing and validating the SAS token.
      *
      * @return the primaryKey value
      */
@@ -114,7 +114,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the secondaryKey value.
+     * Get a base64-encoded 256-bit primary key for signing and validating the SAS token.
      *
      * @return the secondaryKey value
      */
@@ -123,7 +123,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the keyName value.
+     * Get a string that describes the authorization rule.
      *
      * @return the keyName value
      */
@@ -132,7 +132,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the claimType value.
+     * Get a string that describes the claim type.
      *
      * @return the claimType value
      */
@@ -141,7 +141,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the claimValue value.
+     * Get a string that describes the claim value.
      *
      * @return the claimValue value
      */
@@ -150,7 +150,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the modifiedTime value.
+     * Get the last modified time for this rule.
      *
      * @return the modifiedTime value
      */
@@ -159,7 +159,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the createdTime value.
+     * Get the created time for this rule.
      *
      * @return the createdTime value
      */
@@ -168,7 +168,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the revision value.
+     * Get the revision number for the rule.
      *
      * @return the revision value
      */
@@ -177,7 +177,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Get the sku value.
+     * Get the sku of the created namespace.
      *
      * @return the sku value
      */
@@ -186,7 +186,7 @@ public class SharedAccessAuthorizationRuleResourceInner extends Resource {
     }
 
     /**
-     * Set the sku value.
+     * Set the sku of the created namespace.
      *
      * @param sku the sku value to set
      * @return the SharedAccessAuthorizationRuleResourceInner object itself.
