@@ -8,7 +8,6 @@
 
 package com.microsoft.azure.management.storagesync.implementation;
 
-import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.azure.ProxyResource;
@@ -43,86 +42,6 @@ public class ServerEndpointInner extends ProxyResource {
     private String friendlyName;
 
     /**
-     * Last Sync Success.
-     */
-    @JsonProperty(value = "properties.lastSyncSuccess")
-    private DateTime lastSyncSuccess;
-
-    /**
-     * Sync Error State.
-     */
-    @JsonProperty(value = "properties.syncErrorState")
-    private String syncErrorState;
-
-    /**
-     * Sync Error State Timestamp.
-     */
-    @JsonProperty(value = "properties.syncErrorStateTimestamp")
-    private DateTime syncErrorStateTimestamp;
-
-    /**
-     * Sync Error Direction. Possible values include: 'none', 'initialize',
-     * 'download', 'upload', 'recall'.
-     */
-    @JsonProperty(value = "properties.syncErrorDirection")
-    private String syncErrorDirection;
-
-    /**
-     * Item Upload Error Count.
-     */
-    @JsonProperty(value = "properties.itemUploadErrorCount")
-    private Integer itemUploadErrorCount;
-
-    /**
-     * Item download error count.
-     */
-    @JsonProperty(value = "properties.itemDownloadErrorCount")
-    private Integer itemDownloadErrorCount;
-
-    /**
-     * sync error context.
-     */
-    @JsonProperty(value = "properties.syncErrorContext")
-    private String syncErrorContext;
-
-    /**
-     * current progress type. Possible values include: 'none', 'initialize',
-     * 'download', 'upload', 'recall'.
-     */
-    @JsonProperty(value = "properties.currentProgressType")
-    private String currentProgressType;
-
-    /**
-     * Item Progress Count.
-     */
-    @JsonProperty(value = "properties.itemProgressCount")
-    private Integer itemProgressCount;
-
-    /**
-     * Item Total Count.
-     */
-    @JsonProperty(value = "properties.itemTotalCount")
-    private Integer itemTotalCount;
-
-    /**
-     * Bytes in progress.
-     */
-    @JsonProperty(value = "properties.byteProgress")
-    private Integer byteProgress;
-
-    /**
-     * Total progress.
-     */
-    @JsonProperty(value = "properties.totalProgress")
-    private Integer totalProgress;
-
-    /**
-     * Bytes total.
-     */
-    @JsonProperty(value = "properties.byteTotal")
-    private Integer byteTotal;
-
-    /**
      * Server Resource Id.
      */
     @JsonProperty(value = "properties.serverResourceId")
@@ -139,6 +58,18 @@ public class ServerEndpointInner extends ProxyResource {
      */
     @JsonProperty(value = "properties.lastWorkflowId")
     private String lastWorkflowId;
+
+    /**
+     * Resource Last Operation Name.
+     */
+    @JsonProperty(value = "properties.lastOperationName")
+    private String lastOperationName;
+
+    /**
+     * Sync Health Status.
+     */
+    @JsonProperty(value = "properties.syncStatus")
+    private String syncStatus;
 
     /**
      * Get server Local path.
@@ -221,266 +152,6 @@ public class ServerEndpointInner extends ProxyResource {
     }
 
     /**
-     * Get last Sync Success.
-     *
-     * @return the lastSyncSuccess value
-     */
-    public DateTime lastSyncSuccess() {
-        return this.lastSyncSuccess;
-    }
-
-    /**
-     * Set last Sync Success.
-     *
-     * @param lastSyncSuccess the lastSyncSuccess value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withLastSyncSuccess(DateTime lastSyncSuccess) {
-        this.lastSyncSuccess = lastSyncSuccess;
-        return this;
-    }
-
-    /**
-     * Get sync Error State.
-     *
-     * @return the syncErrorState value
-     */
-    public String syncErrorState() {
-        return this.syncErrorState;
-    }
-
-    /**
-     * Set sync Error State.
-     *
-     * @param syncErrorState the syncErrorState value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withSyncErrorState(String syncErrorState) {
-        this.syncErrorState = syncErrorState;
-        return this;
-    }
-
-    /**
-     * Get sync Error State Timestamp.
-     *
-     * @return the syncErrorStateTimestamp value
-     */
-    public DateTime syncErrorStateTimestamp() {
-        return this.syncErrorStateTimestamp;
-    }
-
-    /**
-     * Set sync Error State Timestamp.
-     *
-     * @param syncErrorStateTimestamp the syncErrorStateTimestamp value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withSyncErrorStateTimestamp(DateTime syncErrorStateTimestamp) {
-        this.syncErrorStateTimestamp = syncErrorStateTimestamp;
-        return this;
-    }
-
-    /**
-     * Get sync Error Direction. Possible values include: 'none', 'initialize', 'download', 'upload', 'recall'.
-     *
-     * @return the syncErrorDirection value
-     */
-    public String syncErrorDirection() {
-        return this.syncErrorDirection;
-    }
-
-    /**
-     * Set sync Error Direction. Possible values include: 'none', 'initialize', 'download', 'upload', 'recall'.
-     *
-     * @param syncErrorDirection the syncErrorDirection value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withSyncErrorDirection(String syncErrorDirection) {
-        this.syncErrorDirection = syncErrorDirection;
-        return this;
-    }
-
-    /**
-     * Get item Upload Error Count.
-     *
-     * @return the itemUploadErrorCount value
-     */
-    public Integer itemUploadErrorCount() {
-        return this.itemUploadErrorCount;
-    }
-
-    /**
-     * Set item Upload Error Count.
-     *
-     * @param itemUploadErrorCount the itemUploadErrorCount value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withItemUploadErrorCount(Integer itemUploadErrorCount) {
-        this.itemUploadErrorCount = itemUploadErrorCount;
-        return this;
-    }
-
-    /**
-     * Get item download error count.
-     *
-     * @return the itemDownloadErrorCount value
-     */
-    public Integer itemDownloadErrorCount() {
-        return this.itemDownloadErrorCount;
-    }
-
-    /**
-     * Set item download error count.
-     *
-     * @param itemDownloadErrorCount the itemDownloadErrorCount value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withItemDownloadErrorCount(Integer itemDownloadErrorCount) {
-        this.itemDownloadErrorCount = itemDownloadErrorCount;
-        return this;
-    }
-
-    /**
-     * Get sync error context.
-     *
-     * @return the syncErrorContext value
-     */
-    public String syncErrorContext() {
-        return this.syncErrorContext;
-    }
-
-    /**
-     * Set sync error context.
-     *
-     * @param syncErrorContext the syncErrorContext value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withSyncErrorContext(String syncErrorContext) {
-        this.syncErrorContext = syncErrorContext;
-        return this;
-    }
-
-    /**
-     * Get current progress type. Possible values include: 'none', 'initialize', 'download', 'upload', 'recall'.
-     *
-     * @return the currentProgressType value
-     */
-    public String currentProgressType() {
-        return this.currentProgressType;
-    }
-
-    /**
-     * Set current progress type. Possible values include: 'none', 'initialize', 'download', 'upload', 'recall'.
-     *
-     * @param currentProgressType the currentProgressType value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withCurrentProgressType(String currentProgressType) {
-        this.currentProgressType = currentProgressType;
-        return this;
-    }
-
-    /**
-     * Get item Progress Count.
-     *
-     * @return the itemProgressCount value
-     */
-    public Integer itemProgressCount() {
-        return this.itemProgressCount;
-    }
-
-    /**
-     * Set item Progress Count.
-     *
-     * @param itemProgressCount the itemProgressCount value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withItemProgressCount(Integer itemProgressCount) {
-        this.itemProgressCount = itemProgressCount;
-        return this;
-    }
-
-    /**
-     * Get item Total Count.
-     *
-     * @return the itemTotalCount value
-     */
-    public Integer itemTotalCount() {
-        return this.itemTotalCount;
-    }
-
-    /**
-     * Set item Total Count.
-     *
-     * @param itemTotalCount the itemTotalCount value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withItemTotalCount(Integer itemTotalCount) {
-        this.itemTotalCount = itemTotalCount;
-        return this;
-    }
-
-    /**
-     * Get bytes in progress.
-     *
-     * @return the byteProgress value
-     */
-    public Integer byteProgress() {
-        return this.byteProgress;
-    }
-
-    /**
-     * Set bytes in progress.
-     *
-     * @param byteProgress the byteProgress value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withByteProgress(Integer byteProgress) {
-        this.byteProgress = byteProgress;
-        return this;
-    }
-
-    /**
-     * Get total progress.
-     *
-     * @return the totalProgress value
-     */
-    public Integer totalProgress() {
-        return this.totalProgress;
-    }
-
-    /**
-     * Set total progress.
-     *
-     * @param totalProgress the totalProgress value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withTotalProgress(Integer totalProgress) {
-        this.totalProgress = totalProgress;
-        return this;
-    }
-
-    /**
-     * Get bytes total.
-     *
-     * @return the byteTotal value
-     */
-    public Integer byteTotal() {
-        return this.byteTotal;
-    }
-
-    /**
-     * Set bytes total.
-     *
-     * @param byteTotal the byteTotal value to set
-     * @return the ServerEndpointInner object itself.
-     */
-    public ServerEndpointInner withByteTotal(Integer byteTotal) {
-        this.byteTotal = byteTotal;
-        return this;
-    }
-
-    /**
      * Get server Resource Id.
      *
      * @return the serverResourceId value
@@ -537,6 +208,46 @@ public class ServerEndpointInner extends ProxyResource {
      */
     public ServerEndpointInner withLastWorkflowId(String lastWorkflowId) {
         this.lastWorkflowId = lastWorkflowId;
+        return this;
+    }
+
+    /**
+     * Get resource Last Operation Name.
+     *
+     * @return the lastOperationName value
+     */
+    public String lastOperationName() {
+        return this.lastOperationName;
+    }
+
+    /**
+     * Set resource Last Operation Name.
+     *
+     * @param lastOperationName the lastOperationName value to set
+     * @return the ServerEndpointInner object itself.
+     */
+    public ServerEndpointInner withLastOperationName(String lastOperationName) {
+        this.lastOperationName = lastOperationName;
+        return this;
+    }
+
+    /**
+     * Get sync Health Status.
+     *
+     * @return the syncStatus value
+     */
+    public String syncStatus() {
+        return this.syncStatus;
+    }
+
+    /**
+     * Set sync Health Status.
+     *
+     * @param syncStatus the syncStatus value to set
+     * @return the ServerEndpointInner object itself.
+     */
+    public ServerEndpointInner withSyncStatus(String syncStatus) {
+        this.syncStatus = syncStatus;
         return this;
     }
 

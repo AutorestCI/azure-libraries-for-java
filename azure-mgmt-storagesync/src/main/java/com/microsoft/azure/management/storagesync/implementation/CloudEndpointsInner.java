@@ -19,7 +19,7 @@ import com.microsoft.azure.management.storagesync.CloudEndpointsPostBackupHeader
 import com.microsoft.azure.management.storagesync.CloudEndpointsPostRestoreHeaders;
 import com.microsoft.azure.management.storagesync.CloudEndpointsPreBackupHeaders;
 import com.microsoft.azure.management.storagesync.CloudEndpointsPreRestoreHeaders;
-import com.microsoft.azure.management.storagesync.CloudEndpointsRestoreHeatbeatHeaders;
+import com.microsoft.azure.management.storagesync.CloudEndpointsRestoreheartbeatHeaders;
 import com.microsoft.azure.management.storagesync.PostRestoreRequest;
 import com.microsoft.azure.management.storagesync.PreRestoreRequest;
 import com.microsoft.azure.management.storagesync.StorageSyncErrorException;
@@ -117,9 +117,9 @@ public class CloudEndpointsInner {
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/prerestore")
         Observable<Response<ResponseBody>> beginPreRestore(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Body PreRestoreRequest parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints restoreHeatbeat" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints restoreheartbeat" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/restoreheartbeat")
-        Observable<Response<ResponseBody>> restoreHeatbeat(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> restoreheartbeat(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("cloudEndpointName") String cloudEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.CloudEndpoints postRestore" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/postrestore")
@@ -1671,8 +1671,8 @@ public class CloudEndpointsInner {
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void restoreHeatbeat(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName) {
-        restoreHeatbeatWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName).toBlocking().single().body();
+    public void restoreheartbeat(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName) {
+        restoreheartbeatWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName).toBlocking().single().body();
     }
 
     /**
@@ -1686,8 +1686,8 @@ public class CloudEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> restoreHeatbeatAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(restoreHeatbeatWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName), serviceCallback);
+    public ServiceFuture<Void> restoreheartbeatAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(restoreheartbeatWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName), serviceCallback);
     }
 
     /**
@@ -1700,10 +1700,10 @@ public class CloudEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<Void> restoreHeatbeatAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName) {
-        return restoreHeatbeatWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreHeatbeatHeaders>, Void>() {
+    public Observable<Void> restoreheartbeatAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName) {
+        return restoreheartbeatWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName).map(new Func1<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreheartbeatHeaders>, Void>() {
             @Override
-            public Void call(ServiceResponseWithHeaders<Void, CloudEndpointsRestoreHeatbeatHeaders> response) {
+            public Void call(ServiceResponseWithHeaders<Void, CloudEndpointsRestoreheartbeatHeaders> response) {
                 return response.body();
             }
         });
@@ -1719,7 +1719,7 @@ public class CloudEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreHeatbeatHeaders>> restoreHeatbeatWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName) {
+    public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreheartbeatHeaders>> restoreheartbeatWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String cloudEndpointName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1738,12 +1738,12 @@ public class CloudEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.restoreHeatbeat(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreHeatbeatHeaders>>>() {
+        return service.restoreheartbeat(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, cloudEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreheartbeatHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreHeatbeatHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Void, CloudEndpointsRestoreheartbeatHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<Void, CloudEndpointsRestoreHeatbeatHeaders> clientResponse = restoreHeatbeatDelegate(response);
+                        ServiceResponseWithHeaders<Void, CloudEndpointsRestoreheartbeatHeaders> clientResponse = restoreheartbeatDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1752,11 +1752,11 @@ public class CloudEndpointsInner {
             });
     }
 
-    private ServiceResponseWithHeaders<Void, CloudEndpointsRestoreHeatbeatHeaders> restoreHeatbeatDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<Void, CloudEndpointsRestoreheartbeatHeaders> restoreheartbeatDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<Void, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .registerError(StorageSyncErrorException.class)
-                .buildWithHeaders(response, CloudEndpointsRestoreHeatbeatHeaders.class);
+                .buildWithHeaders(response, CloudEndpointsRestoreheartbeatHeaders.class);
     }
 
     /**

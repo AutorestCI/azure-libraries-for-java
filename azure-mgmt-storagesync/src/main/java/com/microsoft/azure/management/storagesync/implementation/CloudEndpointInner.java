@@ -78,6 +78,12 @@ public class CloudEndpointInner extends ProxyResource {
     private String lastWorkflowId;
 
     /**
+     * Resource Last Operation Name.
+     */
+    @JsonProperty(value = "properties.lastOperationName")
+    private String lastOperationName;
+
+    /**
      * Get storage Account access key.
      *
      * @return the storageAccountKey value
@@ -263,6 +269,26 @@ public class CloudEndpointInner extends ProxyResource {
      */
     public CloudEndpointInner withLastWorkflowId(String lastWorkflowId) {
         this.lastWorkflowId = lastWorkflowId;
+        return this;
+    }
+
+    /**
+     * Get resource Last Operation Name.
+     *
+     * @return the lastOperationName value
+     */
+    public String lastOperationName() {
+        return this.lastOperationName;
+    }
+
+    /**
+     * Set resource Last Operation Name.
+     *
+     * @param lastOperationName the lastOperationName value to set
+     * @return the CloudEndpointInner object itself.
+     */
+    public CloudEndpointInner withLastOperationName(String lastOperationName) {
+        this.lastOperationName = lastOperationName;
         return this;
     }
 
