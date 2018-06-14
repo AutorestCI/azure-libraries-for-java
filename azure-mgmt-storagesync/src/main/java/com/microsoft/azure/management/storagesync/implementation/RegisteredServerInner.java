@@ -107,6 +107,30 @@ public class RegisteredServerInner {
     private String lastWorkflowId;
 
     /**
+     * Resource Last Operation Name.
+     */
+    @JsonProperty(value = "properties.lastOperationName")
+    private String lastOperationName;
+
+    /**
+     * Resource discoveryEndpointUri.
+     */
+    @JsonProperty(value = "properties.discoveryEndpointUri")
+    private String discoveryEndpointUri;
+
+    /**
+     * Resource Location.
+     */
+    @JsonProperty(value = "properties.resourceLocation")
+    private String resourceLocation;
+
+    /**
+     * Service Location.
+     */
+    @JsonProperty(value = "properties.serviceLocation")
+    private String serviceLocation;
+
+    /**
      * Get resource Id.
      *
      * @return the id value
@@ -370,6 +394,86 @@ public class RegisteredServerInner {
      */
     public RegisteredServerInner withLastWorkflowId(String lastWorkflowId) {
         this.lastWorkflowId = lastWorkflowId;
+        return this;
+    }
+
+    /**
+     * Get resource Last Operation Name.
+     *
+     * @return the lastOperationName value
+     */
+    public String lastOperationName() {
+        return this.lastOperationName;
+    }
+
+    /**
+     * Set resource Last Operation Name.
+     *
+     * @param lastOperationName the lastOperationName value to set
+     * @return the RegisteredServerInner object itself.
+     */
+    public RegisteredServerInner withLastOperationName(String lastOperationName) {
+        this.lastOperationName = lastOperationName;
+        return this;
+    }
+
+    /**
+     * Get resource discoveryEndpointUri.
+     *
+     * @return the discoveryEndpointUri value
+     */
+    public String discoveryEndpointUri() {
+        return this.discoveryEndpointUri;
+    }
+
+    /**
+     * Set resource discoveryEndpointUri.
+     *
+     * @param discoveryEndpointUri the discoveryEndpointUri value to set
+     * @return the RegisteredServerInner object itself.
+     */
+    public RegisteredServerInner withDiscoveryEndpointUri(String discoveryEndpointUri) {
+        this.discoveryEndpointUri = discoveryEndpointUri;
+        return this;
+    }
+
+    /**
+     * Get resource Location.
+     *
+     * @return the resourceLocation value
+     */
+    public String resourceLocation() {
+        return this.resourceLocation;
+    }
+
+    /**
+     * Set resource Location.
+     *
+     * @param resourceLocation the resourceLocation value to set
+     * @return the RegisteredServerInner object itself.
+     */
+    public RegisteredServerInner withResourceLocation(String resourceLocation) {
+        this.resourceLocation = resourceLocation;
+        return this;
+    }
+
+    /**
+     * Get service Location.
+     *
+     * @return the serviceLocation value
+     */
+    public String serviceLocation() {
+        return this.serviceLocation;
+    }
+
+    /**
+     * Set service Location.
+     *
+     * @param serviceLocation the serviceLocation value to set
+     * @return the RegisteredServerInner object itself.
+     */
+    public RegisteredServerInner withServiceLocation(String serviceLocation) {
+        this.serviceLocation = serviceLocation;
         return this;
     }
 

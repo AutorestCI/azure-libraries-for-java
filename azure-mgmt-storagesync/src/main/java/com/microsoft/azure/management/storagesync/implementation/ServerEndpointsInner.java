@@ -14,7 +14,7 @@ import com.microsoft.azure.management.storagesync.ServerEndpointsCreateHeaders;
 import com.microsoft.azure.management.storagesync.ServerEndpointsDeleteHeaders;
 import com.microsoft.azure.management.storagesync.ServerEndpointsGetHeaders;
 import com.microsoft.azure.management.storagesync.ServerEndpointsListBySyncGroupHeaders;
-import com.microsoft.azure.management.storagesync.ServerEndpointsRecallHeaders;
+import com.microsoft.azure.management.storagesync.ServerEndpointsRecallActionHeaders;
 import com.microsoft.azure.management.storagesync.ServerEndpointsUpdateHeaders;
 import com.microsoft.azure.management.storagesync.StorageSyncErrorException;
 import com.microsoft.rest.ServiceCallback;
@@ -96,13 +96,13 @@ public class ServerEndpointsInner {
         @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints")
         Observable<Response<ResponseBody>> listBySyncGroup(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints recall" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints recallAction" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints/{serverEndpointName}/recallAction")
-        Observable<Response<ResponseBody>> recall(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> recallAction(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints beginRecall" })
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.storagesync.ServerEndpoints beginRecallAction" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/serverEndpoints/{serverEndpointName}/recallAction")
-        Observable<Response<ResponseBody>> beginRecall(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginRecallAction(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("storageSyncServiceName") String storageSyncServiceName, @Path("syncGroupName") String syncGroupName, @Path("serverEndpointName") String serverEndpointName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -1068,8 +1068,8 @@ public class ServerEndpointsInner {
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void recall(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
-        recallWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).toBlocking().last().body();
+    public void recallAction(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
+        recallActionWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).toBlocking().last().body();
     }
 
     /**
@@ -1083,8 +1083,8 @@ public class ServerEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> recallAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(recallWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName), serviceCallback);
+    public ServiceFuture<Void> recallActionAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(recallActionWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName), serviceCallback);
     }
 
     /**
@@ -1097,10 +1097,10 @@ public class ServerEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<Void> recallAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
-        return recallWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).map(new Func1<ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders>, Void>() {
+    public Observable<Void> recallActionAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
+        return recallActionWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).map(new Func1<ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders>, Void>() {
             @Override
-            public Void call(ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders> response) {
+            public Void call(ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders> response) {
                 return response.body();
             }
         });
@@ -1116,7 +1116,7 @@ public class ServerEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders>> recallWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
+    public Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders>> recallActionWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1135,8 +1135,8 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        Observable<Response<ResponseBody>> observable = service.recall(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
-        return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<Void>() { }.getType(), ServerEndpointsRecallHeaders.class);
+        Observable<Response<ResponseBody>> observable = service.recallAction(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultWithHeadersAsync(observable, new TypeToken<Void>() { }.getType(), ServerEndpointsRecallActionHeaders.class);
     }
 
     /**
@@ -1150,8 +1150,8 @@ public class ServerEndpointsInner {
      * @throws StorageSyncErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-    public void beginRecall(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
-        beginRecallWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).toBlocking().single().body();
+    public void beginRecallAction(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
+        beginRecallActionWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).toBlocking().single().body();
     }
 
     /**
@@ -1165,8 +1165,8 @@ public class ServerEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> beginRecallAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, final ServiceCallback<Void> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(beginRecallWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName), serviceCallback);
+    public ServiceFuture<Void> beginRecallActionAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName, final ServiceCallback<Void> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(beginRecallActionWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName), serviceCallback);
     }
 
     /**
@@ -1179,10 +1179,10 @@ public class ServerEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<Void> beginRecallAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
-        return beginRecallWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).map(new Func1<ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders>, Void>() {
+    public Observable<Void> beginRecallActionAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
+        return beginRecallActionWithServiceResponseAsync(resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName).map(new Func1<ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders>, Void>() {
             @Override
-            public Void call(ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders> response) {
+            public Void call(ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders> response) {
                 return response.body();
             }
         });
@@ -1198,7 +1198,7 @@ public class ServerEndpointsInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
-    public Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders>> beginRecallWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
+    public Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders>> beginRecallActionWithServiceResponseAsync(String resourceGroupName, String storageSyncServiceName, String syncGroupName, String serverEndpointName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -1217,12 +1217,12 @@ public class ServerEndpointsInner {
         if (this.client.apiVersion() == null) {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
-        return service.beginRecall(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders>>>() {
+        return service.beginRecallAction(this.client.subscriptionId(), resourceGroupName, storageSyncServiceName, syncGroupName, serverEndpointName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders> clientResponse = beginRecallDelegate(response);
+                        ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders> clientResponse = beginRecallActionDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1231,12 +1231,12 @@ public class ServerEndpointsInner {
             });
     }
 
-    private ServiceResponseWithHeaders<Void, ServerEndpointsRecallHeaders> beginRecallDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<Void, ServerEndpointsRecallActionHeaders> beginRecallActionDelegate(Response<ResponseBody> response) throws StorageSyncErrorException, IOException, IllegalArgumentException {
         return this.client.restClient().responseBuilderFactory().<Void, StorageSyncErrorException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<Void>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
                 .registerError(StorageSyncErrorException.class)
-                .buildWithHeaders(response, ServerEndpointsRecallHeaders.class);
+                .buildWithHeaders(response, ServerEndpointsRecallActionHeaders.class);
     }
 
 }
