@@ -35,6 +35,12 @@ public class ApplicationGatewayBackendHealthServer {
     private ApplicationGatewayBackendHealthServerHealth health;
 
     /**
+     * Log to indicate probe failure cause.
+     */
+    @JsonProperty(value = "HealthProbeLog")
+    private String healthProbeLog;
+
+    /**
      * Get iP address or FQDN of backend server.
      *
      * @return the address value
@@ -91,6 +97,26 @@ public class ApplicationGatewayBackendHealthServer {
      */
     public ApplicationGatewayBackendHealthServer withHealth(ApplicationGatewayBackendHealthServerHealth health) {
         this.health = health;
+        return this;
+    }
+
+    /**
+     * Get log to indicate probe failure cause.
+     *
+     * @return the healthProbeLog value
+     */
+    public String healthProbeLog() {
+        return this.healthProbeLog;
+    }
+
+    /**
+     * Set log to indicate probe failure cause.
+     *
+     * @param healthProbeLog the healthProbeLog value to set
+     * @return the ApplicationGatewayBackendHealthServer object itself.
+     */
+    public ApplicationGatewayBackendHealthServer withHealthProbeLog(String healthProbeLog) {
+        this.healthProbeLog = healthProbeLog;
         return this;
     }
 
