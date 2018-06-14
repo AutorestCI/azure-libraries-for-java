@@ -37,7 +37,7 @@ public class ApplicationGatewayBackendHealthServer {
     /**
      * Log to indicate probe failure cause.
      */
-    @JsonProperty(value = "HealthProbeLog")
+    @JsonProperty(value = "healthProbeLog")
     private String healthProbeLog;
 
     /**
