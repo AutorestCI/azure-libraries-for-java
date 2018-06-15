@@ -165,6 +165,22 @@ public class VirtualNetworkGatewaysInner implements InnerSupportsGet<VirtualNetw
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getAdvertisedRoutes")
         Observable<Response<ResponseBody>> beginGetAdvertisedRoutes(@Path("resourceGroupName") String resourceGroupName, @Path("virtualNetworkGatewayName") String virtualNetworkGatewayName, @Path("subscriptionId") String subscriptionId, @Query("peer") String peer, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VirtualNetworkGateways setVpnclientIpsecParameters" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/setvpnclientipsecparameters")
+        Observable<Response<ResponseBody>> setVpnclientIpsecParameters(@Path("resourceGroupName") String resourceGroupName, @Path("virtualNetworkGatewayName") String virtualNetworkGatewayName, @Path("subscriptionId") String subscriptionId, @Body VpnClientIPsecParametersInner vpnclientIpsecParams, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VirtualNetworkGateways beginSetVpnclientIpsecParameters" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/setvpnclientipsecparameters")
+        Observable<Response<ResponseBody>> beginSetVpnclientIpsecParameters(@Path("resourceGroupName") String resourceGroupName, @Path("virtualNetworkGatewayName") String virtualNetworkGatewayName, @Path("subscriptionId") String subscriptionId, @Body VpnClientIPsecParametersInner vpnclientIpsecParams, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VirtualNetworkGateways getVpnclientIpsecParameters" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getvpnclientipsecparameters")
+        Observable<Response<ResponseBody>> getVpnclientIpsecParameters(@Path("resourceGroupName") String resourceGroupName, @Path("virtualNetworkGatewayName") String virtualNetworkGatewayName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VirtualNetworkGateways beginGetVpnclientIpsecParameters" })
+        @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getvpnclientipsecparameters")
+        Observable<Response<ResponseBody>> beginGetVpnclientIpsecParameters(@Path("resourceGroupName") String resourceGroupName, @Path("virtualNetworkGatewayName") String virtualNetworkGatewayName, @Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.network.VirtualNetworkGateways vpnDeviceConfigurationScript" })
         @POST("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/vpndeviceconfigurationscript")
         Observable<Response<ResponseBody>> vpnDeviceConfigurationScript(@Path("resourceGroupName") String resourceGroupName, @Path("virtualNetworkGatewayConnectionName") String virtualNetworkGatewayConnectionName, @Path("subscriptionId") String subscriptionId, @Body VpnDeviceScriptParameters parameters, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
@@ -2625,6 +2641,325 @@ public class VirtualNetworkGatewaysInner implements InnerSupportsGet<VirtualNetw
         return this.client.restClient().responseBuilderFactory().<GatewayRouteListResultInner, CloudException>newInstance(this.client.serializerAdapter())
                 .register(200, new TypeToken<GatewayRouteListResultInner>() { }.getType())
                 .register(202, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the VpnClientIPsecParametersInner object if successful.
+     */
+    public VpnClientIPsecParametersInner setVpnclientIpsecParameters(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams) {
+        return setVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams).toBlocking().last().body();
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<VpnClientIPsecParametersInner> setVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams, final ServiceCallback<VpnClientIPsecParametersInner> serviceCallback) {
+        return ServiceFuture.fromResponse(setVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams), serviceCallback);
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<VpnClientIPsecParametersInner> setVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams) {
+        return setVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams).map(new Func1<ServiceResponse<VpnClientIPsecParametersInner>, VpnClientIPsecParametersInner>() {
+            @Override
+            public VpnClientIPsecParametersInner call(ServiceResponse<VpnClientIPsecParametersInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<VpnClientIPsecParametersInner>> setVpnclientIpsecParametersWithServiceResponseAsync(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (virtualNetworkGatewayName == null) {
+            throw new IllegalArgumentException("Parameter virtualNetworkGatewayName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (vpnclientIpsecParams == null) {
+            throw new IllegalArgumentException("Parameter vpnclientIpsecParams is required and cannot be null.");
+        }
+        Validator.validate(vpnclientIpsecParams);
+        final String apiVersion = "2018-06-01";
+        Observable<Response<ResponseBody>> observable = service.setVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, this.client.subscriptionId(), vpnclientIpsecParams, apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<VpnClientIPsecParametersInner>() { }.getType());
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the VpnClientIPsecParametersInner object if successful.
+     */
+    public VpnClientIPsecParametersInner beginSetVpnclientIpsecParameters(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams) {
+        return beginSetVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams).toBlocking().single().body();
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<VpnClientIPsecParametersInner> beginSetVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams, final ServiceCallback<VpnClientIPsecParametersInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginSetVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams), serviceCallback);
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the VpnClientIPsecParametersInner object
+     */
+    public Observable<VpnClientIPsecParametersInner> beginSetVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams) {
+        return beginSetVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams).map(new Func1<ServiceResponse<VpnClientIPsecParametersInner>, VpnClientIPsecParametersInner>() {
+            @Override
+            public VpnClientIPsecParametersInner call(ServiceResponse<VpnClientIPsecParametersInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The name of the virtual network gateway.
+     * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network resource provider.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the VpnClientIPsecParametersInner object
+     */
+    public Observable<ServiceResponse<VpnClientIPsecParametersInner>> beginSetVpnclientIpsecParametersWithServiceResponseAsync(String resourceGroupName, String virtualNetworkGatewayName, VpnClientIPsecParametersInner vpnclientIpsecParams) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (virtualNetworkGatewayName == null) {
+            throw new IllegalArgumentException("Parameter virtualNetworkGatewayName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        if (vpnclientIpsecParams == null) {
+            throw new IllegalArgumentException("Parameter vpnclientIpsecParams is required and cannot be null.");
+        }
+        Validator.validate(vpnclientIpsecParams);
+        final String apiVersion = "2018-06-01";
+        return service.beginSetVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, this.client.subscriptionId(), vpnclientIpsecParams, apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VpnClientIPsecParametersInner>>>() {
+                @Override
+                public Observable<ServiceResponse<VpnClientIPsecParametersInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<VpnClientIPsecParametersInner> clientResponse = beginSetVpnclientIpsecParametersDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<VpnClientIPsecParametersInner> beginSetVpnclientIpsecParametersDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<VpnClientIPsecParametersInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<VpnClientIPsecParametersInner>() { }.getType())
+                .register(202, new TypeToken<Void>() { }.getType())
+                .registerError(CloudException.class)
+                .build(response);
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the VpnClientIPsecParametersInner object if successful.
+     */
+    public VpnClientIPsecParametersInner getVpnclientIpsecParameters(String resourceGroupName, String virtualNetworkGatewayName) {
+        return getVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName).toBlocking().last().body();
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<VpnClientIPsecParametersInner> getVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName, final ServiceCallback<VpnClientIPsecParametersInner> serviceCallback) {
+        return ServiceFuture.fromResponse(getVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName), serviceCallback);
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<VpnClientIPsecParametersInner> getVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName) {
+        return getVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName).map(new Func1<ServiceResponse<VpnClientIPsecParametersInner>, VpnClientIPsecParametersInner>() {
+            @Override
+            public VpnClientIPsecParametersInner call(ServiceResponse<VpnClientIPsecParametersInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable for the request
+     */
+    public Observable<ServiceResponse<VpnClientIPsecParametersInner>> getVpnclientIpsecParametersWithServiceResponseAsync(String resourceGroupName, String virtualNetworkGatewayName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (virtualNetworkGatewayName == null) {
+            throw new IllegalArgumentException("Parameter virtualNetworkGatewayName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        final String apiVersion = "2018-06-01";
+        Observable<Response<ResponseBody>> observable = service.getVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent());
+        return client.getAzureClient().getPostOrDeleteResultAsync(observable, new TypeToken<VpnClientIPsecParametersInner>() { }.getType());
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws CloudException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the VpnClientIPsecParametersInner object if successful.
+     */
+    public VpnClientIPsecParametersInner beginGetVpnclientIpsecParameters(String resourceGroupName, String virtualNetworkGatewayName) {
+        return beginGetVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName).toBlocking().single().body();
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<VpnClientIPsecParametersInner> beginGetVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName, final ServiceCallback<VpnClientIPsecParametersInner> serviceCallback) {
+        return ServiceFuture.fromResponse(beginGetVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName), serviceCallback);
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the VpnClientIPsecParametersInner object
+     */
+    public Observable<VpnClientIPsecParametersInner> beginGetVpnclientIpsecParametersAsync(String resourceGroupName, String virtualNetworkGatewayName) {
+        return beginGetVpnclientIpsecParametersWithServiceResponseAsync(resourceGroupName, virtualNetworkGatewayName).map(new Func1<ServiceResponse<VpnClientIPsecParametersInner>, VpnClientIPsecParametersInner>() {
+            @Override
+            public VpnClientIPsecParametersInner call(ServiceResponse<VpnClientIPsecParametersInner> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkGatewayName The virtual network gateway name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the VpnClientIPsecParametersInner object
+     */
+    public Observable<ServiceResponse<VpnClientIPsecParametersInner>> beginGetVpnclientIpsecParametersWithServiceResponseAsync(String resourceGroupName, String virtualNetworkGatewayName) {
+        if (resourceGroupName == null) {
+            throw new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null.");
+        }
+        if (virtualNetworkGatewayName == null) {
+            throw new IllegalArgumentException("Parameter virtualNetworkGatewayName is required and cannot be null.");
+        }
+        if (this.client.subscriptionId() == null) {
+            throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
+        }
+        final String apiVersion = "2018-06-01";
+        return service.beginGetVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, this.client.subscriptionId(), apiVersion, this.client.acceptLanguage(), this.client.userAgent())
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<VpnClientIPsecParametersInner>>>() {
+                @Override
+                public Observable<ServiceResponse<VpnClientIPsecParametersInner>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponse<VpnClientIPsecParametersInner> clientResponse = beginGetVpnclientIpsecParametersDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponse<VpnClientIPsecParametersInner> beginGetVpnclientIpsecParametersDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<VpnClientIPsecParametersInner, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<VpnClientIPsecParametersInner>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

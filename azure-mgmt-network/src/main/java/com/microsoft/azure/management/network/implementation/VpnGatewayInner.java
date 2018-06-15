@@ -12,6 +12,7 @@ import com.microsoft.azure.SubResource;
 import java.util.List;
 import com.microsoft.azure.management.network.BgpSettings;
 import com.microsoft.azure.management.network.ProvisioningState;
+import com.microsoft.azure.management.network.Policies;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
 import com.microsoft.rest.SkipParentValidation;
@@ -47,6 +48,12 @@ public class VpnGatewayInner extends Resource {
      */
     @JsonProperty(value = "properties.provisioningState")
     private ProvisioningState provisioningState;
+
+    /**
+     * The policies applied to this vpn gateway.
+     */
+    @JsonProperty(value = "properties.policies")
+    private Policies policies;
 
     /**
      * Gets a unique read-only string that changes whenever the resource is
@@ -138,6 +145,26 @@ public class VpnGatewayInner extends Resource {
      */
     public VpnGatewayInner withProvisioningState(ProvisioningState provisioningState) {
         this.provisioningState = provisioningState;
+        return this;
+    }
+
+    /**
+     * Get the policies applied to this vpn gateway.
+     *
+     * @return the policies value
+     */
+    public Policies policies() {
+        return this.policies;
+    }
+
+    /**
+     * Set the policies applied to this vpn gateway.
+     *
+     * @param policies the policies value to set
+     * @return the VpnGatewayInner object itself.
+     */
+    public VpnGatewayInner withPolicies(Policies policies) {
+        this.policies = policies;
         return this;
     }
 

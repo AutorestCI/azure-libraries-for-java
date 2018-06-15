@@ -10,7 +10,8 @@ package com.microsoft.azure.management.network.implementation;
 
 import com.microsoft.azure.SubResource;
 import com.microsoft.azure.management.network.VpnConnectionStatus;
-import com.microsoft.azure.management.network.TunnelConnectionStatus;
+import java.util.List;
+import com.microsoft.azure.management.network.IpsecPolicy;
 import com.microsoft.azure.management.network.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.rest.serializer.JsonFlatten;
@@ -43,13 +44,6 @@ public class VpnConnectionInner extends Resource {
     private VpnConnectionStatus connectionStatus;
 
     /**
-     * The connection status of tunnel. Possible values include: 'Unknown',
-     * 'Connecting', 'Connected', 'NotConnected'.
-     */
-    @JsonProperty(value = "properties.tunnelConnectionStatus")
-    private TunnelConnectionStatus tunnelConnectionStatus;
-
-    /**
      * Ingress bytes transferred.
      */
     @JsonProperty(value = "properties.ingressBytesTransferred", access = JsonProperty.Access.WRITE_ONLY)
@@ -78,6 +72,18 @@ public class VpnConnectionInner extends Resource {
      */
     @JsonProperty(value = "properties.enableBgp")
     private Boolean enableBgp;
+
+    /**
+     * The IPSec Policies to be considered by this connection.
+     */
+    @JsonProperty(value = "properties.ipsecPolicies")
+    private List<IpsecPolicy> ipsecPolicies;
+
+    /**
+     * EnableRateLimiting flag.
+     */
+    @JsonProperty(value = "properties.enableRateLimiting")
+    private Boolean enableRateLimiting;
 
     /**
      * The provisioning state of the resource. Possible values include:
@@ -160,26 +166,6 @@ public class VpnConnectionInner extends Resource {
     }
 
     /**
-     * Get the connection status of tunnel. Possible values include: 'Unknown', 'Connecting', 'Connected', 'NotConnected'.
-     *
-     * @return the tunnelConnectionStatus value
-     */
-    public TunnelConnectionStatus tunnelConnectionStatus() {
-        return this.tunnelConnectionStatus;
-    }
-
-    /**
-     * Set the connection status of tunnel. Possible values include: 'Unknown', 'Connecting', 'Connected', 'NotConnected'.
-     *
-     * @param tunnelConnectionStatus the tunnelConnectionStatus value to set
-     * @return the VpnConnectionInner object itself.
-     */
-    public VpnConnectionInner withTunnelConnectionStatus(TunnelConnectionStatus tunnelConnectionStatus) {
-        this.tunnelConnectionStatus = tunnelConnectionStatus;
-        return this;
-    }
-
-    /**
      * Get ingress bytes transferred.
      *
      * @return the ingressBytesTransferred value
@@ -243,6 +229,46 @@ public class VpnConnectionInner extends Resource {
      */
     public VpnConnectionInner withEnableBgp(Boolean enableBgp) {
         this.enableBgp = enableBgp;
+        return this;
+    }
+
+    /**
+     * Get the IPSec Policies to be considered by this connection.
+     *
+     * @return the ipsecPolicies value
+     */
+    public List<IpsecPolicy> ipsecPolicies() {
+        return this.ipsecPolicies;
+    }
+
+    /**
+     * Set the IPSec Policies to be considered by this connection.
+     *
+     * @param ipsecPolicies the ipsecPolicies value to set
+     * @return the VpnConnectionInner object itself.
+     */
+    public VpnConnectionInner withIpsecPolicies(List<IpsecPolicy> ipsecPolicies) {
+        this.ipsecPolicies = ipsecPolicies;
+        return this;
+    }
+
+    /**
+     * Get enableRateLimiting flag.
+     *
+     * @return the enableRateLimiting value
+     */
+    public Boolean enableRateLimiting() {
+        return this.enableRateLimiting;
+    }
+
+    /**
+     * Set enableRateLimiting flag.
+     *
+     * @param enableRateLimiting the enableRateLimiting value to set
+     * @return the VpnConnectionInner object itself.
+     */
+    public VpnConnectionInner withEnableRateLimiting(Boolean enableRateLimiting) {
+        this.enableRateLimiting = enableRateLimiting;
         return this;
     }
 
