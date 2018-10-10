@@ -28,52 +28,52 @@ import rx.Observable;
 
 /**
  * An instance of this class provides access to all the operations defined
- * in LogFiles.
+ * in Replicas.
  */
-public class LogFilesInner {
+public class ReplicasInner {
     /** The Retrofit service to perform REST calls. */
-    private LogFilesService service;
+    private ReplicasService service;
     /** The service client containing this operation class. */
     private MySQLManagementClientImpl client;
 
     /**
-     * Initializes an instance of LogFilesInner.
+     * Initializes an instance of ReplicasInner.
      *
      * @param retrofit the Retrofit instance built from a Retrofit Builder.
      * @param client the instance of the service client containing this operation class.
      */
-    public LogFilesInner(Retrofit retrofit, MySQLManagementClientImpl client) {
-        this.service = retrofit.create(LogFilesService.class);
+    public ReplicasInner(Retrofit retrofit, MySQLManagementClientImpl client) {
+        this.service = retrofit.create(ReplicasService.class);
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for LogFiles to be
+     * The interface defining all the services for Replicas to be
      * used by Retrofit to perform actually REST calls.
      */
-    interface LogFilesService {
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.LogFiles listByServer" })
-        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}/logFiles")
+    interface ReplicasService {
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.Replicas listByServer" })
+        @GET("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}/Replicas")
         Observable<Response<ResponseBody>> listByServer(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
     /**
-     * List all the log files in a given server.
+     * List all the replicas for a given server.
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws CloudException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the List&lt;LogFileInner&gt; object if successful.
+     * @return the List&lt;ServerInner&gt; object if successful.
      */
-    public List<LogFileInner> listByServer(String resourceGroupName, String serverName) {
+    public List<ServerInner> listByServer(String resourceGroupName, String serverName) {
         return listByServerWithServiceResponseAsync(resourceGroupName, serverName).toBlocking().single().body();
     }
 
     /**
-     * List all the log files in a given server.
+     * List all the replicas for a given server.
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
@@ -81,36 +81,36 @@ public class LogFilesInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<LogFileInner>> listByServerAsync(String resourceGroupName, String serverName, final ServiceCallback<List<LogFileInner>> serviceCallback) {
+    public ServiceFuture<List<ServerInner>> listByServerAsync(String resourceGroupName, String serverName, final ServiceCallback<List<ServerInner>> serviceCallback) {
         return ServiceFuture.fromResponse(listByServerWithServiceResponseAsync(resourceGroupName, serverName), serviceCallback);
     }
 
     /**
-     * List all the log files in a given server.
+     * List all the replicas for a given server.
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;LogFileInner&gt; object
+     * @return the observable to the List&lt;ServerInner&gt; object
      */
-    public Observable<List<LogFileInner>> listByServerAsync(String resourceGroupName, String serverName) {
-        return listByServerWithServiceResponseAsync(resourceGroupName, serverName).map(new Func1<ServiceResponse<List<LogFileInner>>, List<LogFileInner>>() {
+    public Observable<List<ServerInner>> listByServerAsync(String resourceGroupName, String serverName) {
+        return listByServerWithServiceResponseAsync(resourceGroupName, serverName).map(new Func1<ServiceResponse<List<ServerInner>>, List<ServerInner>>() {
             @Override
-            public List<LogFileInner> call(ServiceResponse<List<LogFileInner>> response) {
+            public List<ServerInner> call(ServiceResponse<List<ServerInner>> response) {
                 return response.body();
             }
         });
     }
 
     /**
-     * List all the log files in a given server.
+     * List all the replicas for a given server.
      *
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the List&lt;LogFileInner&gt; object
+     * @return the observable to the List&lt;ServerInner&gt; object
      */
-    public Observable<ServiceResponse<List<LogFileInner>>> listByServerWithServiceResponseAsync(String resourceGroupName, String serverName) {
+    public Observable<ServiceResponse<List<ServerInner>>> listByServerWithServiceResponseAsync(String resourceGroupName, String serverName) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -124,16 +124,16 @@ public class LogFilesInner {
             throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
         }
         return service.listByServer(this.client.subscriptionId(), resourceGroupName, serverName, this.client.apiVersion(), this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<LogFileInner>>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<List<ServerInner>>>>() {
                 @Override
-                public Observable<ServiceResponse<List<LogFileInner>>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<List<ServerInner>>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<PageImpl<LogFileInner>> result = listByServerDelegate(response);
-                        List<LogFileInner> items = null;
+                        ServiceResponse<PageImpl<ServerInner>> result = listByServerDelegate(response);
+                        List<ServerInner> items = null;
                         if (result.body() != null) {
                             items = result.body().items();
                         }
-                        ServiceResponse<List<LogFileInner>> clientResponse = new ServiceResponse<List<LogFileInner>>(items, result.response());
+                        ServiceResponse<List<ServerInner>> clientResponse = new ServiceResponse<List<ServerInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -142,9 +142,9 @@ public class LogFilesInner {
             });
     }
 
-    private ServiceResponse<PageImpl<LogFileInner>> listByServerDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
-        return this.client.restClient().responseBuilderFactory().<PageImpl<LogFileInner>, CloudException>newInstance(this.client.serializerAdapter())
-                .register(200, new TypeToken<PageImpl<LogFileInner>>() { }.getType())
+    private ServiceResponse<PageImpl<ServerInner>> listByServerDelegate(Response<ResponseBody> response) throws CloudException, IOException, IllegalArgumentException {
+        return this.client.restClient().responseBuilderFactory().<PageImpl<ServerInner>, CloudException>newInstance(this.client.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<ServerInner>>() { }.getType())
                 .registerError(CloudException.class)
                 .build(response);
     }

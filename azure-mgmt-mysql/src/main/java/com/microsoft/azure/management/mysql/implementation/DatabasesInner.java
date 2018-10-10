@@ -602,7 +602,11 @@ public class DatabasesInner {
                 public Observable<ServiceResponse<List<DatabaseInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<DatabaseInner>> result = listByServerDelegate(response);
-                        ServiceResponse<List<DatabaseInner>> clientResponse = new ServiceResponse<List<DatabaseInner>>(result.body().items(), result.response());
+                        List<DatabaseInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<DatabaseInner>> clientResponse = new ServiceResponse<List<DatabaseInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

@@ -14,6 +14,8 @@ import com.microsoft.azure.management.resources.fluentcore.collection.InnerSuppo
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.mysql.ServerForCreate;
+import com.microsoft.azure.management.mysql.ServerUpdateParameters;
 import com.microsoft.azure.Page;
 import com.microsoft.azure.PagedList;
 import com.microsoft.rest.ServiceCallback;
@@ -64,19 +66,19 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
     interface ServersService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.Servers create" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}")
-        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerForCreateInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> create(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerForCreate parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.Servers beginCreate" })
         @PUT("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}")
-        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerForCreateInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginCreate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerForCreate parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.Servers update" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}")
-        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerUpdateParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> update(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerUpdateParameters parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.Servers beginUpdate" })
         @PATCH("subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}")
-        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerUpdateParametersInner parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> beginUpdate(@Path("subscriptionId") String subscriptionId, @Path("resourceGroupName") String resourceGroupName, @Path("serverName") String serverName, @Query("api-version") String apiVersion, @Body ServerUpdateParameters parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.Servers delete" })
         @HTTP(path = "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}", method = "DELETE", hasBody = true)
@@ -111,7 +113,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerInner object if successful.
      */
-    public ServerInner create(String resourceGroupName, String serverName, ServerForCreateInner parameters) {
+    public ServerInner create(String resourceGroupName, String serverName, ServerForCreate parameters) {
         return createWithServiceResponseAsync(resourceGroupName, serverName, parameters).toBlocking().last().body();
     }
 
@@ -125,7 +127,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerInner> createAsync(String resourceGroupName, String serverName, ServerForCreateInner parameters, final ServiceCallback<ServerInner> serviceCallback) {
+    public ServiceFuture<ServerInner> createAsync(String resourceGroupName, String serverName, ServerForCreate parameters, final ServiceCallback<ServerInner> serviceCallback) {
         return ServiceFuture.fromResponse(createWithServiceResponseAsync(resourceGroupName, serverName, parameters), serviceCallback);
     }
 
@@ -138,7 +140,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServerInner> createAsync(String resourceGroupName, String serverName, ServerForCreateInner parameters) {
+    public Observable<ServerInner> createAsync(String resourceGroupName, String serverName, ServerForCreate parameters) {
         return createWithServiceResponseAsync(resourceGroupName, serverName, parameters).map(new Func1<ServiceResponse<ServerInner>, ServerInner>() {
             @Override
             public ServerInner call(ServiceResponse<ServerInner> response) {
@@ -156,7 +158,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ServerInner>> createWithServiceResponseAsync(String resourceGroupName, String serverName, ServerForCreateInner parameters) {
+    public Observable<ServiceResponse<ServerInner>> createWithServiceResponseAsync(String resourceGroupName, String serverName, ServerForCreate parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -188,7 +190,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerInner object if successful.
      */
-    public ServerInner beginCreate(String resourceGroupName, String serverName, ServerForCreateInner parameters) {
+    public ServerInner beginCreate(String resourceGroupName, String serverName, ServerForCreate parameters) {
         return beginCreateWithServiceResponseAsync(resourceGroupName, serverName, parameters).toBlocking().single().body();
     }
 
@@ -202,7 +204,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerInner> beginCreateAsync(String resourceGroupName, String serverName, ServerForCreateInner parameters, final ServiceCallback<ServerInner> serviceCallback) {
+    public ServiceFuture<ServerInner> beginCreateAsync(String resourceGroupName, String serverName, ServerForCreate parameters, final ServiceCallback<ServerInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginCreateWithServiceResponseAsync(resourceGroupName, serverName, parameters), serviceCallback);
     }
 
@@ -215,7 +217,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerInner object
      */
-    public Observable<ServerInner> beginCreateAsync(String resourceGroupName, String serverName, ServerForCreateInner parameters) {
+    public Observable<ServerInner> beginCreateAsync(String resourceGroupName, String serverName, ServerForCreate parameters) {
         return beginCreateWithServiceResponseAsync(resourceGroupName, serverName, parameters).map(new Func1<ServiceResponse<ServerInner>, ServerInner>() {
             @Override
             public ServerInner call(ServiceResponse<ServerInner> response) {
@@ -233,7 +235,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerInner object
      */
-    public Observable<ServiceResponse<ServerInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String serverName, ServerForCreateInner parameters) {
+    public Observable<ServiceResponse<ServerInner>> beginCreateWithServiceResponseAsync(String resourceGroupName, String serverName, ServerForCreate parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -284,7 +286,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerInner object if successful.
      */
-    public ServerInner update(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters) {
+    public ServerInner update(String resourceGroupName, String serverName, ServerUpdateParameters parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, serverName, parameters).toBlocking().last().body();
     }
 
@@ -298,7 +300,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerInner> updateAsync(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters, final ServiceCallback<ServerInner> serviceCallback) {
+    public ServiceFuture<ServerInner> updateAsync(String resourceGroupName, String serverName, ServerUpdateParameters parameters, final ServiceCallback<ServerInner> serviceCallback) {
         return ServiceFuture.fromResponse(updateWithServiceResponseAsync(resourceGroupName, serverName, parameters), serviceCallback);
     }
 
@@ -311,7 +313,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServerInner> updateAsync(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters) {
+    public Observable<ServerInner> updateAsync(String resourceGroupName, String serverName, ServerUpdateParameters parameters) {
         return updateWithServiceResponseAsync(resourceGroupName, serverName, parameters).map(new Func1<ServiceResponse<ServerInner>, ServerInner>() {
             @Override
             public ServerInner call(ServiceResponse<ServerInner> response) {
@@ -329,7 +331,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable for the request
      */
-    public Observable<ServiceResponse<ServerInner>> updateWithServiceResponseAsync(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters) {
+    public Observable<ServiceResponse<ServerInner>> updateWithServiceResponseAsync(String resourceGroupName, String serverName, ServerUpdateParameters parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -361,7 +363,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the ServerInner object if successful.
      */
-    public ServerInner beginUpdate(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters) {
+    public ServerInner beginUpdate(String resourceGroupName, String serverName, ServerUpdateParameters parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, serverName, parameters).toBlocking().single().body();
     }
 
@@ -375,7 +377,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ServerInner> beginUpdateAsync(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters, final ServiceCallback<ServerInner> serviceCallback) {
+    public ServiceFuture<ServerInner> beginUpdateAsync(String resourceGroupName, String serverName, ServerUpdateParameters parameters, final ServiceCallback<ServerInner> serviceCallback) {
         return ServiceFuture.fromResponse(beginUpdateWithServiceResponseAsync(resourceGroupName, serverName, parameters), serviceCallback);
     }
 
@@ -388,7 +390,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerInner object
      */
-    public Observable<ServerInner> beginUpdateAsync(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters) {
+    public Observable<ServerInner> beginUpdateAsync(String resourceGroupName, String serverName, ServerUpdateParameters parameters) {
         return beginUpdateWithServiceResponseAsync(resourceGroupName, serverName, parameters).map(new Func1<ServiceResponse<ServerInner>, ServerInner>() {
             @Override
             public ServerInner call(ServiceResponse<ServerInner> response) {
@@ -406,7 +408,7 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the ServerInner object
      */
-    public Observable<ServiceResponse<ServerInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String serverName, ServerUpdateParametersInner parameters) {
+    public Observable<ServiceResponse<ServerInner>> beginUpdateWithServiceResponseAsync(String resourceGroupName, String serverName, ServerUpdateParameters parameters) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }
@@ -754,7 +756,11 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
                 public Observable<ServiceResponse<List<ServerInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ServerInner>> result = listByResourceGroupDelegate(response);
-                        ServiceResponse<List<ServerInner>> clientResponse = new ServiceResponse<List<ServerInner>>(result.body().items(), result.response());
+                        List<ServerInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ServerInner>> clientResponse = new ServiceResponse<List<ServerInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -831,7 +837,11 @@ public class ServersInner implements InnerSupportsGet<ServerInner>, InnerSupport
                 public Observable<ServiceResponse<List<ServerInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ServerInner>> result = listDelegate(response);
-                        ServiceResponse<List<ServerInner>> clientResponse = new ServiceResponse<List<ServerInner>>(result.body().items(), result.response());
+                        List<ServerInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ServerInner>> clientResponse = new ServiceResponse<List<ServerInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

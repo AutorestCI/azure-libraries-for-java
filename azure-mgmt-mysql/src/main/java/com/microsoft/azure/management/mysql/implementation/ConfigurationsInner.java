@@ -423,7 +423,11 @@ public class ConfigurationsInner {
                 public Observable<ServiceResponse<List<ConfigurationInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<ConfigurationInner>> result = listByServerDelegate(response);
-                        ServiceResponse<List<ConfigurationInner>> clientResponse = new ServiceResponse<List<ConfigurationInner>>(result.body().items(), result.response());
+                        List<ConfigurationInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<ConfigurationInner>> clientResponse = new ServiceResponse<List<ConfigurationInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

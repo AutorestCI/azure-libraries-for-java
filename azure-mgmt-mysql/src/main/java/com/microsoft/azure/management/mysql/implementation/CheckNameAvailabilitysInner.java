@@ -11,6 +11,7 @@ package com.microsoft.azure.management.mysql.implementation;
 import retrofit2.Retrofit;
 import com.google.common.reflect.TypeToken;
 import com.microsoft.azure.CloudException;
+import com.microsoft.azure.management.mysql.NameAvailabilityRequest;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -55,7 +56,7 @@ public class CheckNameAvailabilitysInner {
     interface CheckNameAvailabilitysService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.mysql.CheckNameAvailabilitys execute" })
         @POST("subscriptions/{subscriptionId}/providers/Microsoft.DBforMySQL/checkNameAvailability")
-        Observable<Response<ResponseBody>> execute(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Body NameAvailabilityRequestInner nameAvailabilityRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+        Observable<Response<ResponseBody>> execute(@Path("subscriptionId") String subscriptionId, @Query("api-version") String apiVersion, @Body NameAvailabilityRequest nameAvailabilityRequest, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -68,7 +69,7 @@ public class CheckNameAvailabilitysInner {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the NameAvailabilityInner object if successful.
      */
-    public NameAvailabilityInner execute(NameAvailabilityRequestInner nameAvailabilityRequest) {
+    public NameAvailabilityInner execute(NameAvailabilityRequest nameAvailabilityRequest) {
         return executeWithServiceResponseAsync(nameAvailabilityRequest).toBlocking().single().body();
     }
 
@@ -80,7 +81,7 @@ public class CheckNameAvailabilitysInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<NameAvailabilityInner> executeAsync(NameAvailabilityRequestInner nameAvailabilityRequest, final ServiceCallback<NameAvailabilityInner> serviceCallback) {
+    public ServiceFuture<NameAvailabilityInner> executeAsync(NameAvailabilityRequest nameAvailabilityRequest, final ServiceCallback<NameAvailabilityInner> serviceCallback) {
         return ServiceFuture.fromResponse(executeWithServiceResponseAsync(nameAvailabilityRequest), serviceCallback);
     }
 
@@ -91,7 +92,7 @@ public class CheckNameAvailabilitysInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the NameAvailabilityInner object
      */
-    public Observable<NameAvailabilityInner> executeAsync(NameAvailabilityRequestInner nameAvailabilityRequest) {
+    public Observable<NameAvailabilityInner> executeAsync(NameAvailabilityRequest nameAvailabilityRequest) {
         return executeWithServiceResponseAsync(nameAvailabilityRequest).map(new Func1<ServiceResponse<NameAvailabilityInner>, NameAvailabilityInner>() {
             @Override
             public NameAvailabilityInner call(ServiceResponse<NameAvailabilityInner> response) {
@@ -107,7 +108,7 @@ public class CheckNameAvailabilitysInner {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the NameAvailabilityInner object
      */
-    public Observable<ServiceResponse<NameAvailabilityInner>> executeWithServiceResponseAsync(NameAvailabilityRequestInner nameAvailabilityRequest) {
+    public Observable<ServiceResponse<NameAvailabilityInner>> executeWithServiceResponseAsync(NameAvailabilityRequest nameAvailabilityRequest) {
         if (this.client.subscriptionId() == null) {
             throw new IllegalArgumentException("Parameter this.client.subscriptionId() is required and cannot be null.");
         }

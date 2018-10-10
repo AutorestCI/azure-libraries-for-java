@@ -122,7 +122,11 @@ public class LocationBasedPerformanceTiersInner {
                 public Observable<ServiceResponse<List<PerformanceTierPropertiesInner>>> call(Response<ResponseBody> response) {
                     try {
                         ServiceResponse<PageImpl<PerformanceTierPropertiesInner>> result = listDelegate(response);
-                        ServiceResponse<List<PerformanceTierPropertiesInner>> clientResponse = new ServiceResponse<List<PerformanceTierPropertiesInner>>(result.body().items(), result.response());
+                        List<PerformanceTierPropertiesInner> items = null;
+                        if (result.body() != null) {
+                            items = result.body().items();
+                        }
+                        ServiceResponse<List<PerformanceTierPropertiesInner>> clientResponse = new ServiceResponse<List<PerformanceTierPropertiesInner>>(items, result.response());
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);

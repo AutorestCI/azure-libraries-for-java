@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * The properties to a new server by restoring from a backup.
+ * The properties used to create a new server by restoring from a backup.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "createMode")
 @JsonTypeName("PointInTimeRestore")
@@ -33,7 +33,7 @@ public class ServerPropertiesForRestore extends ServerPropertiesForCreate {
     private DateTime restorePointInTime;
 
     /**
-     * Get the sourceServerId value.
+     * Get the source server id to restore from.
      *
      * @return the sourceServerId value
      */
@@ -42,7 +42,7 @@ public class ServerPropertiesForRestore extends ServerPropertiesForCreate {
     }
 
     /**
-     * Set the sourceServerId value.
+     * Set the source server id to restore from.
      *
      * @param sourceServerId the sourceServerId value to set
      * @return the ServerPropertiesForRestore object itself.
@@ -53,7 +53,7 @@ public class ServerPropertiesForRestore extends ServerPropertiesForCreate {
     }
 
     /**
-     * Get the restorePointInTime value.
+     * Get restore point creation time (ISO8601 format), specifying the time to restore from.
      *
      * @return the restorePointInTime value
      */
@@ -62,7 +62,7 @@ public class ServerPropertiesForRestore extends ServerPropertiesForCreate {
     }
 
     /**
-     * Set the restorePointInTime value.
+     * Set restore point creation time (ISO8601 format), specifying the time to restore from.
      *
      * @param restorePointInTime the restorePointInTime value to set
      * @return the ServerPropertiesForRestore object itself.

@@ -20,7 +20,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 @JsonTypeName("ServerPropertiesForCreate")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Default", value = ServerPropertiesForDefaultCreate.class),
-    @JsonSubTypes.Type(name = "PointInTimeRestore", value = ServerPropertiesForRestore.class)
+    @JsonSubTypes.Type(name = "PointInTimeRestore", value = ServerPropertiesForRestore.class),
+    @JsonSubTypes.Type(name = "GeoRestore", value = ServerPropertiesForGeoRestore.class),
+    @JsonSubTypes.Type(name = "Replica", value = ServerPropertiesForReplica.class)
 })
 public class ServerPropertiesForCreate {
     /**
@@ -43,7 +45,7 @@ public class ServerPropertiesForCreate {
     private StorageProfile storageProfile;
 
     /**
-     * Get the version value.
+     * Get server version. Possible values include: '5.6', '5.7'.
      *
      * @return the version value
      */
@@ -52,7 +54,7 @@ public class ServerPropertiesForCreate {
     }
 
     /**
-     * Set the version value.
+     * Set server version. Possible values include: '5.6', '5.7'.
      *
      * @param version the version value to set
      * @return the ServerPropertiesForCreate object itself.
@@ -63,7 +65,7 @@ public class ServerPropertiesForCreate {
     }
 
     /**
-     * Get the sslEnforcement value.
+     * Get enable ssl enforcement or not when connect to server. Possible values include: 'Enabled', 'Disabled'.
      *
      * @return the sslEnforcement value
      */
@@ -72,7 +74,7 @@ public class ServerPropertiesForCreate {
     }
 
     /**
-     * Set the sslEnforcement value.
+     * Set enable ssl enforcement or not when connect to server. Possible values include: 'Enabled', 'Disabled'.
      *
      * @param sslEnforcement the sslEnforcement value to set
      * @return the ServerPropertiesForCreate object itself.
@@ -83,7 +85,7 @@ public class ServerPropertiesForCreate {
     }
 
     /**
-     * Get the storageProfile value.
+     * Get storage profile of a server.
      *
      * @return the storageProfile value
      */
@@ -92,7 +94,7 @@ public class ServerPropertiesForCreate {
     }
 
     /**
-     * Set the storageProfile value.
+     * Set storage profile of a server.
      *
      * @param storageProfile the storageProfile value to set
      * @return the ServerPropertiesForCreate object itself.
